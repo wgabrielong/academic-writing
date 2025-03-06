@@ -1,0 +1,57 @@
+\section{Lecture 24 -- 14th January 2025}\label{sec: lecture 24}
+Let us make the constructions of the global exterior derivative more precise. 
+\begin{definition}[Exterior Derivative]\label{def: Euclidean exterior derivative}
+    Let $U\subseteq\RR^{n}$ or $U\subseteq\HH^{n}$ be open and $\omega\in\Omega^{k}(U)$. Then $d\omega=\sum_{I\text{ increasing}}d\omega_{I}\wedge dx_{I}$. 
+\end{definition}
+\begin{example}
+    If $\omega\in\Omega^{0}(U)=C^{\infty}(U)$, then $d\omega=d\omega$ the latter being defined in \Cref{def: form of a function}. 
+\end{example}
+\begin{example}
+    If $\omega\in\Omega^{1}(\RR^{2})$ then $\omega=f_{1}(x,y)\cdot dx+f_{2}(x,y)$ and $$d\omega=\partial_{y}f_{1}(x,y)\cdot dy\wedge dx+\partial_{x}f_{2}(x,y)\cdot dx\wedge dy=\left(\partial_{x}f_{2}(x,y)-\partial_{y}f_{1}(x,y)\right)\cdot dx\wedge dy$$
+\end{example}
+This operator has the following properties. 
+\begin{proposition}\label{prop: properties of exterior derivative Euclidean}
+    Let $U\subseteq\RR^{n}$ or $U\subseteq\HH^{n}$ be open and $d:\Omega^{k}(U)\to\Omega^{k+1}(U)$ the exterior derivative. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $d$ is $\RR$-linear. 
+        \item If $\omega\in\Omega^{k}(U),\eta\in\Omega^{l}(U)$ then $d(\omega\wedge\eta)=(d\omega)\wedge \eta+(-1)^{k}\omega\wedge d\eta$. 
+        \item $d^{2}=0$. 
+        \item If $F:U\to V$ for $V\subseteq\RR^{m}$ or $V\subseteq\HH^{m}$ and $\omega\in\Omega^{k}(V)$ then $dF^{*}\omega=F^{*}d\omega$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+    This is immediate as the all the operations involved are $\RR$-linear. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    We have $d(f_{I}\cdot dx_{I})=df_{I}\wedge dx_{I}$ and $k$ forms are sums of forms $f_{I}\cdot dx_{I}$. So let $\omega=f_{I}\cdot dx_{I},\eta=f_{J}\cdot dx_{J}$. Then 
+    \begin{align*}
+        d(\omega\wedge\eta) &= d(f_{I}\cdot dx_{I}\wedge f_{J}\cdot dx_{J}) \\
+        &= d(f_{I}f_{J}\cdot dx_{I}\wedge dx_{J}) \\
+        &= d(f_{I}f_{J})\cdot dx_{I}\wedge dx_{J}\\
+        &= (f_{J}\cdot df_{I}+f_{I}\cdot df_{J})\wedge dx_{I}\wedge dx_{J} \\
+        &= f_{I}\cdot df_{J}\wedge dx_{I}\wedge dx_{J}+f_{J}\cdot df_{I}\wedge dx_{I}\wedge dx_{J} \\
+        &= df_{I}\wedge dx_{I}\wedge (f_{J}dx_{J}) + (-1)^{k}f_{I}\cdot dx_{I}\wedge df_{J}\wedge dx_{J} \\
+        &= d\omega\wedge\eta+(-1)^{k}\omega\wedge d\eta
+    \end{align*}
+    as desired. 
+\end{proof}
+\begin{proof}[Proof of (iii)]
+    This is clear, since $dd(-)$ necessarily introduces a repeated index. 
+\end{proof}
+\begin{proof}[Proof of (iv)]
+    Once again let $\omega=f_{I}\cdot dx_{I}$ in which case, the statement follows from \Cref{lem: notation for differentials} with both sides giving $d(u\circ F)\cdot dF^{i_{1}}\wedge\dots\wedge dF^{i_{k}}$. 
+\end{proof}
+The exterior derivative inherits on forms inherits the desired properties. 
+\begin{theorem}\label{thm: properties of exterior derivative on forms}
+    Let $M$ be a smooth manifold possibly with boundary. There exists a unique operator $d:\Omega^{k}(M)\to\Omega^{k+1}(M)$ for $k\geq 0$ such that:
+    \begin{enumerate}[label=(\roman*)]
+        \item $d$ is $\RR$-linear. 
+        \item For $\omega\in\omega^{k}(M),\eta\in\Omega^{l}(M)$, $d(\omega\wedge\eta)=d\omega\wedge\eta+(-1)^{k}\omega\wedge d\eta$. 
+        \item $d^{2}=0$. 
+        \item If $f\in C^{\infty}(M)=\Omega^{0}(M)$, then $df$ is as in \Cref{def: form of a function}. 
+    \end{enumerate}
+\end{theorem}
+As in the Euclidean case, this is compatible with pullback. 
+\begin{corollary}\label{naturality of forms}
+    If $F:M\to N$ is a smooth map between smooth manifolds and $\omega\in\Omega^{k}(N)$ then $dF^{*}\omega=F^{*}d\omega$. 
+\end{corollary}
