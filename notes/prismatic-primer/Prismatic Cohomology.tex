@@ -1,0 +1,49 @@
+\section{Prismatic Cohomology}\label{sec: prismatic cohomology}
+Prismatic cohomology will be defined on the prismatic site associated to a formal scheme. For preliminaries on the latter, consult \cite[\href{https://stacks.math.columbia.edu/tag/0AHY}{Tag 0AHY}]{stacks-project}. The key result of the theory of formal schemes is that an $\FF_{p}$-scheme $X$, the formal completion functor produces a $p$-adic formal scheme isomorphic to $X$ allowing for cohomology computations to be done in the category of $p$-adic formal schemes.
+
+Covers in the prismatic site will be given by $(p,I)$-completely faithfully flat prisms over the base as we now define. 
+\begin{definition}[$I$-Completely Faithfully Flat Morphism]\label{def: completely faithfully flat morphism}
+    Let $A$ be a commutative ring and $I\subseteq A$ an ideal. An $A$-module $M$ is $I$-completely faithfully flat if:
+    \begin{enumerate}[label=(\roman*)]
+        \item For all $I$-torsion modules $N$, $M\otimes^{L}_{A}N$ is a complex concentrated in degree 0 in $D(A)$. 
+        \item $M\otimes^{L}_{A}(A/I)$ is a complex concentrated in degree 0 in $D(A)$ and faithfully flat as an $A/I$-module. 
+    \end{enumerate}
+\end{definition}
+Given a $X$ smooth $p$-adic formal scheme over $\spf(A/I)$ with $(A,I)$ a bounded prism, we can construct the prismatic site $(X/A)_{\prism}$ as follows. 
+\begin{definition}[Prismatic Site]\label{def: prismatic site}
+    Let $X$ be a smooth $p$-adic formal scheme over $\spf(A/I)$ for some bounded prism $(A,I)$. The prismatic site $(X/A)_{\prism}$ is given by:
+    \begin{itemize}
+        \item Objects $\spf(B)\leftarrow \spf(B/IB)\to X$ where $(A,I)\to(B, IB)$ is a map of bounded prisms and $\spf(B/IB)\to X$ a map of $p$-adic formal schemes over $\spf(A/I)$. 
+        \item Morphisms $(\spf(C)\rightarrow\spf(C/IC)\to X)\to(\spf(B)\leftarrow\spf(B/IB)\to X)$ where $(B,IB)\to (C,IC)$ is a map of bounded prisms under $(A, I)$ and  $\spf(C/IC)\to\spf(B/IB)$ is a map of formal schemes over $X$. 
+        \item Covers $(\spf(C)\rightarrow\spf(C/IC)\to X)\to(\spf(B)\leftarrow\spf(B/IB)\to X)$ where $(B,IB)\to (C,IC)$ is a morphism of prisms such that $C$ is a $(p,IB)$-completely faithfully flat $B$-module. 
+    \end{itemize}
+\end{definition}
+\begin{remark}
+    If $X=\spf(R)$ then we denote the prismatic site $(R/A)_{\prism}$. 
+\end{remark}
+We can define presheaves $\Ocal_{\prism}$ and $\overline{\Ocal}_{\prism}$ by  
+\begin{equation}\label{eqn: Oprism and Oprismbar}
+    \begin{aligned}
+        \Ocal_{\prism}\left(\spf(B)\leftarrow \spf(B/IB)\to X\right) &= B\\
+        \overline{\Ocal}_{\prism}\left(\spf(B)\leftarrow \spf(B/IB)\to X\right) &= B/IB\\
+    \end{aligned}
+\end{equation}
+which are in fact sheaves. 
+\begin{proposition}[{\cite[Corr. 3.12]{BSPrismatic}}]\label{prop: Oprism and Oprismbar are sheaves}
+    Let $X$ be a $p$-adic formal scheme over $\spf(A/I)$ for some bounded prism $(A,I)$. The presheaves $\Ocal_{\prism}$ and $\overline{\Ocal}_{\prism}$ on $(X/A)_{\prism}$ in (\ref{eqn: Oprism and Oprismbar}) are sheaves. 
+\end{proposition}
+These sheaves are known as the structure sheaf and reduced structure sheaf on the prismatic site. 
+\begin{definition}[Structure Sheaves on the Prismatic Site]\label{def: structure sheaves on the prismatic stite}
+    Let $X$ be a $p$-adic formal scheme over $\spf(A/I)$ for some bounded prism $(A,I)$. The sheaf $\Ocal_{\prism}$ (resp. $\overline{\Ocal}_{\prism}$) is the structure sheaf (resp. reduced structure sheaf) on the prismatic site. 
+\end{definition}
+Prismatic cohomology of a $p$-adic formal scheme is taken to be the derived functor cohomology on the prismatic site. 
+\begin{definition}[Prismatic Cohomology]\label{def: prismatic cohomology}
+    Let $X$ be a smooth formal scheme over $\spf(A/I)$ for some bounded prism $(A, I)$. The prismatic cohomology of $X/A$ is 
+    $$R\Gamma_{\prism}(X/A)=R\Gamma((X/A)_{\prism},\Ocal_{\prism})\in D(A).$$
+\end{definition}
+\begin{remark}
+    We define the analogous ringed site with reduced structure sheaf $\overline{\Ocal}_{\prism}$ the reduced prismatic site, which we denote $(X/A)_{\overline{\prism}}$.
+\end{remark}
+\begin{remark}
+    This complex of $A$-modules is equipped with the $\widetilde{\varphi}_{A}$-linear endomorphism arising from the Frobenius action on $\Ocal_{\prism}$. 
+\end{remark}

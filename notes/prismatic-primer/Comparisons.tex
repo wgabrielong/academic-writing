@@ -1,0 +1,56 @@
+\section{Comparisons}\label{sec: comparisons}
+We first state the following affinoid base change theorem that plays a key role in the various comparison theorems. 
+\begin{theorem}[Affinoid Base Change; {\cite[Lem. 15.1.3]{Kedlaya}}]\label{thm: affinoid base change}
+    Let $R$ be a $p$-completely smooth $A/I$-algebra for some bounded prism $(A,I)$ and $(A,I)\to(B,IB)$ a map of bounded prisms of finite $(p,I)$-complete Tor amplitude. For $\widetilde{R}=R\widehat{\otimes}^{L}_{A}B$ there is an equivalence of sites $(\widetilde{R}/B)_{\prism}\cong(R/A)_{\prism}\widehat{\otimes}^{L}_{A}B$ (resp. $(\widetilde{R}/B)_{\overline{\prism}}=(R/A)_{\overline{\prism}}\widehat{\otimes}^{L}_{A}\widetilde{R}$).
+\end{theorem}
+\subsection{Crystalline Comparison}\label{subsec: crystalline comparison}
+Let $(A,I)$ be a crystalline prism as in \Cref{def: crystalline prism} so $I=(p)$. Further preliminearies on crystalline cohomology are given in \Cref{app subsec: crystalline cohomology}. 
+
+By the construction of crystalline cohomology, it is reasonable to expect that there is a comparison map with prismatic cohomology. The precise relationship is given as follows. 
+\begin{theorem}[Affinoid Crystalline Comparison]\label{thm: affine crystalline comparison}
+    Let $(A,I)$ be a crystalline prism, $J$ a divided power ideal of $A$, and $\psi:A/J\to A/I$ the morphism induced by the Frobenius $\varphi_{A}:A/I\to A/I$. If $B$ is a smooth $A/J$-algebra then there is a canonical isomorphism $\prism_{\left(B\otimes_{A/I}\psi(A/I)\right)/A}\cong R\Gamma_{\Crys}(B/A)$. 
+\end{theorem}
+By gluing we yield the following result on formal schemes. 
+\begin{theorem}[Global Crystalline Comparison]\label{thm: global cyrstalline comparison}
+    If $X$ is a smooth $p$-adic formal scheme over a crystalline prism $(A, I)$ then there is a canonical $\widetilde{\varphi}_{A}$-equivariant isomorphism $R\Gamma_{\prism}(X/A)\widehat{\otimes}^{L}_{A}\widetilde{\varphi}_{A}(A)\to R\Gamma_{\Crys}(X/A)$.
+\end{theorem}
+\subsection{Algebraic de Rham Cohomology}\label{subsec: algebraic de Rham cohomology}
+Recall that the algebraic de Rham complex is defined as the complex by taking successive differentials of a ring map 
+\begin{equation}\label{diag: de Rham complex}
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE9jYWxfe1h9Il0sWzIsMCwiXFxPbWVnYV97WC9TfV57MX0iXSxbNCwwLCJcXE9tZWdhX3tYL1N9XnsyfSJdLFs2LDAsIlxcZG90cyJdLFswLDEsImQiXSxbMSwyLCJkIl0sWzIsMywiZCJdXQ==
+\begin{tikzcd}
+	{\Ocal_{X}} && {\Omega_{X/S}^{1}} && {\Omega_{X/S}^{2}} && \dots.
+	\arrow["d", from=1-1, to=1-3]
+	\arrow["d", from=1-3, to=1-5]
+	\arrow["d", from=1-5, to=1-7]
+\end{tikzcd}
+\end{equation}
+It can be shown that the following holds. 
+\begin{theorem}[{\cite[Thm. 15.4.3]{Kedlaya}}]\label{thm: affinoid de Rham comparison}
+    Let $(A,I)$ be a bounded prism such that $\W(A/I)$ is $p$-torsion free. If $B$ is a $p$-completely smooth $A/I$-algebra, there is a natural isomorphism $\prism_{B/A}\widehat{\otimes}^{L}_{A}(A/I)\cong\Omega^{\bullet}_{B/(A/I)}$. 
+\end{theorem}
+In the setting of Hodge-Tate cohomology where the maps between sheaves in (\ref{diag: de Rham complex}) are given by the trivial maps, the comparison results can be extended as we now discuss. 
+\subsection{Hodge-Tate Cohomology}\label{subsec: Hodge-Tate cohomology}
+We make the following preliminar constructions. 
+\begin{definition}[Breuil-Kisin Twist]\label{def: Breuil-Kisin twist}
+    Let $(A,I)$ be a prism, $B$ an $A/I$-algebra, and $M$ an $A/I$-module. The Breuil-Kisin twist $M\{n\}$ of $M$ is defined to be $M\otimes_{A/I}(I/I^{2})^{\otimes n}$. 
+\end{definition}
+Breuil-Kisin twists give rise to the Bockstein differential. 
+\begin{definition}[Bockstein Differential]\label{def: Bockstein differential}
+    Let $(A,I)$ be a prism and  $B$ an $A/I$-algebra. The Bockstein differential is defined to be the boundary map $H^{i}(\overline{\prism}_{B/A})\{i\}\to H^{i+1}(\overline{\prism}_{B/(A/I)})\{i+1\}$ induced by the complex
+    $$0\to\overline{\Ocal}_{\prism_{B/A}}\{i+1\}\to\Ocal_{\prism_{B/(A/I)}}\otimes_{A}(I^{i}/I^{i+2})\to\overline{\Ocal}_{\prism_{B/A}}\{i\}\to0.$$
+\end{definition}
+By unwinding the definitions, one can see that $\bigoplus_{n\geq0}H^{n}(\overline{\prism}_{B/A})\{n\}$ is a commutative differential graded algebra over $A/I$. By the universal property of the de Rham complex, there is a canonical morphism $\Omega^{\bullet}_{B/(A/I)}\to H^{\bullet}(\overline{\prism}_{B/A})\{\bullet\}$ which can be shown to be an isomorphism in both the local and global settings. 
+\begin{theorem}[Hodge-Tate Comparison]\label{thm: Hodge-Tate comparison}
+    If $X$ is a smooth $p$-adic formal scheme over a prism $(A, I)$ then $\Omega^{\bullet}_{X/(A/I)}\to H^{\bullet}(\overline{\prism}_{X/A})\{\bullet\}$ is an isomorphism.
+\end{theorem}
+\subsection{\'{E}tale Comparison}\label{subsec: etale comparison}
+Prismatic cohomology also admits a comparison map to \'{e}tale cohomology. We state the result which is as follows. 
+\begin{theorem}[\'{E}tale Comparison]\label{thm: etale comparison}
+    If $X$ is a smooth $p$-adic formal scheme over a perfect prism $(A, I)$ with generic fiber $X_{\eta}$ there is a canonical isomorphism 
+    $$\mathrm{fib}\left(% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGxlZnQoUlxcR2FtbWFfe1xccHJpc219KFgvQSkvcF57bn1cXHJpZ2h0KVxcbGVmdFtcXGZyYWN7MX17SX1cXHJpZ2h0XSJdLFsyLDAsIlxcbGVmdChSXFxHYW1tYV97XFxwcmlzbX0oWC9BKS9wXntufVxccmlnaHQpXFxsZWZ0W1xcZnJhY3sxfXtJfVxccmlnaHRdIl0sWzAsMSwiXFx3aWRldGlsZGV7XFx2YXJwaGl9X3tBfS0xIl1d
+    \begin{tikzcd}
+        {\left(R\Gamma_{\prism}(X/A)/p^{n}\right)\left[\frac{1}{I}\right]} && {\left(R\Gamma_{\prism}(X/A)/p^{n}\right)\left[\frac{1}{I}\right]}
+        \arrow["{\widetilde{\varphi}_{A}-1}", from=1-1, to=1-3]
+    \end{tikzcd}\right)\cong R\Gamma_{\et}(X_{\eta}, \ZZ/p^{n}\ZZ).$$
+\end{theorem}

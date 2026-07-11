@@ -1,0 +1,83 @@
+\part*{End Matter}
+\appendix
+\section{Cohomology of Arithmetic Schemes}\label{app: cohomology of arithmetic schemes}
+In this section, we recall the definitions and constructions of cohomology theories on arithmetic schemes. 
+\subsection{Crystalline Cohomology}\label{app subsec: crystalline cohomology}
+Crystalline cohomology seeks to produce a cohomology theory for schemes $X$ over a perfect field $k$ of characteristic $p$ by lifting $X$ to a smooth proper scheme $\widetilde{X}$ over the Witt vectors -- that is, $X=\widetilde{X}\times_{\spec(\W(k))}\spec(k)$ -- and computing the algebraic de Rham cohomology $R\Gamma\left(\widetilde{X},\Omega^{\bullet}_{\widetilde{X},\W(k)}\right)$. 
+
+The definition of crystalline cohomology proceeds via divided power rings as we now define. 
+\begin{definition}[Divided Power Structure]\label{def: divided power structure}
+    Let $A$ be a commutative ring and $I\subseteq A$ an ideal. A divided power structure on $I$ is a collection of $\ZZ_{\geq0}$-indexed maps $\{\gamma_{n}:I\to I\}_{n\in \ZZ_{\geq0}}$ such that for all $m\in\NN$ and all $x,y\in I$:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\gamma_{0}(x)=1$. 
+        \item $\gamma_{1}(x)=x$. 
+        \item $\gamma_{n}(x)\cdot\gamma_{m}(x)=\frac{(n+m)!}{n!\cdot m!}\gamma_{n+m}(x)$. 
+        \item $\gamma_{n}(ax)=a^{n}\gamma_{n}(x)$ for all $a\in A$. 
+        \item $\gamma_{n}(x+y)=\sum_{i=0}^{n}\gamma_{i}(x)\gamma_{n-i}(y)$. 
+        \item $\gamma_{n}(\gamma_{m}(x))=\frac{(nm)!}{n!(m!)^{n}}\gamma_{mn}(x)$. 
+    \end{enumerate}
+\end{definition}
+Divided power rings are triples $(A,I,\gamma)$ where $\gamma$ defines a divided power structure on $I$. 
+\begin{definition}[Divided Power Ring]\label{def: divided power ring}
+    A divided power ring is a triple $(A,I,\gamma)$ where $A$ is a commutative ring, $I\subseteq A$ an ideal, and $\gamma$ a divided power structure on $I$. 
+\end{definition}
+\begin{remark}[{\cite[Rmk 14.2.5]{Kedlaya}}]
+    We will at times use the shorthand PD for ``divided powers,'' following the French ``puissances divi\'{e}es.''
+\end{remark}
+A morphism of divided power rings $f:(A,I,\gamma_{A})\to (B,J,\gamma_{B})$ is a morphism of rings $f:A\to B$ such that $f(I)\subseteq J$ and $\gamma_{B,m}(f(x))=f(\gamma_{A,m}(x))$ for all $x\in I$ and $m\in\NN$. 
+
+Specializing to $\ZZ_{(p)}$-algebras, we have the following result. 
+\begin{lemma}[{\cite[\href{https://stacks.math.columbia.edu/tag/07GN}{Tag 07GN}]{stacks-project}}]\label{lem: canonical PD structure on p-local algebras}
+    Let $A$ be a a $\ZZ_{(p)}$-algebra. The ideal $(p)\subseteq A$ hsa a canonical divivided power structure where for $x=pa\in I$, $\gamma_{n}(x)=\frac{p^{n}}{n!}\cdot a^{n}$. 
+\end{lemma}
+We are most concerned with the setting of $p$-complete $p$-torsion free $\ZZ_{p}$-algebras as obtained by completion of some $\ZZ_{(p)}$-algebra. We deduce the following as a corollary. 
+\begin{corollary}\label{corr: PD structure on complete torsion free p-adic algebras}
+    If $A$ is a $p$-complete $p$-torsion free $\ZZ_{p}$-algebra then $A$ admits a canonical divided power structure. 
+\end{corollary}
+We can now define the (big) crystalline site as follows. 
+\begin{definition}[Crystalline Site]\label{def: crystalline site}
+    Let $A$ be a $\ZZ_{p}$-algebra and $X$ a scheme over $A/(p)$. The crystalline site $(X/A)_{\Crys}$ is given by:
+    \begin{itemize}
+        \item Objects $(B,I,\gamma_{B},f_{B})$ where $(B,I,\gamma_{B})$ is a divided power algebras over $(A,(p),\gamma_{A})$ with $B$ $p$-complete as an $A$-module and $f_{B}:\spec(B/J)\to X$ is a morphism of schemes over $\spec(A/(p))$. 
+        \item Morphisms $(B,I,\gamma_{B},f_{B})\to(C,J,\gamma_{C},f_{C})$ where $(C,J,\gamma_{C})\to(B,I,\gamma_{B})$ is a morphism of divided power rings inducing a morphism $\spec(B/I)\to\spec(C/J)$ over $X$. 
+        \item Covers morphisms $(B,I,\gamma_{B},f_{B})\to(C,J,\gamma_{C},f_{C})$ where $(C,J,\gamma_{C})\to(B,I,\gamma_{B})$ is $p$-completely faithfully flat morphism of divided power algebras over $(A,(p),\gamma_{A})$ as in \Cref{def: completely faithfully flat morphism} and $I=JC$. 
+    \end{itemize} 
+\end{definition}
+One can naturally associate a presheaf on the crystalline site 
+\begin{equation}\label{eqn: crystalline structure sheaf}
+    \Ocal_{\Crys}\left((B,I,\gamma_{B},f_{B})\right)\mapsto B
+\end{equation}
+which is in fact a sheaf. 
+\begin{proposition}[{\cite[\href{https://stacks.math.columbia.edu/tag/07I5}{Tag 07I5}]{stacks-project}}]\label{prop: crystalline presheaf is a sheaf}
+    Let $A$ be a $\ZZ_{p}$-algebra and $X$ a scheme over $A/(p)$. The presheaf of rings $\Ocal_{\Crys}$ as in (\ref{eqn: crystalline structure sheaf}) is a sheaf. 
+\end{proposition}
+Crystalline cohomology computes cohomology of the site with respect to this structure sheaf. 
+\begin{definition}[Crystalline Cohomology]\label{def: crystalline cohomology}
+    Let $A$ be a $\ZZ_{p}$-algebra and $X$ a scheme over $A/(p)$. The crystalline cohomology of $X/A$ is 
+    $$R\Gamma_{\Crys}(X/A)=R\Gamma\left((X/A)_{\Crys},\Ocal_{\Crys}\right).$$
+\end{definition}
+\subsection{Algebraic de Rham Cohomology}\label{app subsec: algebraic de Rham cohomology}
+Recall the following algebraic prelimiary. 
+\begin{definition}[Differential Graded Algebra]\label{def: DGA}
+    Let $R$ be a commutative ring. A differential graded algebra over $R$ is a cochain complex of $R$-modules 
+    $$% https://q.uiver.app/#q=WzAsNSxbMiwwLCJFXntuLTF9Il0sWzQsMCwiRV57bn0iXSxbMCwwLCJcXGRvdHMiXSxbNiwwLCJFXntuKzF9Il0sWzgsMCwiXFxkb3RzIl0sWzIsMCwiZF57bi0yfSJdLFswLDEsImRee24tMX0iXSxbMSwzLCJkXntufSJdLFszLDQsImRee24rMX0iXV0=
+    \begin{tikzcd}
+        \dots && {E^{n-1}} && {E^{n}} && {E^{n+1}} && \dots
+        \arrow["{d^{n-2}}", from=1-1, to=1-3]
+        \arrow["{d^{n-1}}", from=1-3, to=1-5]
+        \arrow["{d^{n}}", from=1-5, to=1-7]
+        \arrow["{d^{n+1}}", from=1-7, to=1-9]
+    \end{tikzcd}$$
+    with $R$-bilinear maps $E^{n}\times E^{m}\to E^{n+m}$ by $(a,b)\mapsto ab$ such that $d^{n+m}(ab)=d^{n}(a)\cdot b+(-1)^{n}d^{m}(b)\cdot a$ and $\bigoplus_{n}E^{n}$ is an associative unital $R$-algebra. 
+\end{definition}
+Further objects of this type are defined as follows. 
+\begin{definition}[Commutative DGA]\label{def: commutative DGA}
+    Let $R$ be a commutative ring and $E^{\bullet}$ a differential graded algebra over $R$. $E^{\bullet}$ is a commutative differential graded algebra if $ab=(-1)^{\deg(a)\deg(b)}ba$. 
+\end{definition}
+\begin{definition}[Strictly Commutative DGA]\label{def: strictly commutative DGA}
+    Let $R$ be a commutative ring and $E^{\bullet}$ a differential graded algebra over $R$. $E^{\bullet}$ is a strictly commutative differential graded algebra if it is commutative and $a^{2}=0$ if $\deg(a)\equiv1\pmod{2}$.
+\end{definition}
+The algebraic de Rham complex can be shown to be the universal strictly commutative differential graded algebra in the following sense. 
+\begin{proposition}[{\cite[Lem 12.2.3]{Kedlaya}}]\label{prop: universal property of de Rham complex}
+    If $(E^{\bullet}, d)$ is a strictly commutative differential graded algebra and $\eta:B\to E^{0}$ is a map of $A$-algebras then $\eta$ extends uniquely to a map $\Omega^{\bullet}_{B/A}\to E^{\bullet}$ of differential graded algebras. 
+\end{proposition}

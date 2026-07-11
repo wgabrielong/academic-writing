@@ -1,0 +1,684 @@
+\section{Motivations}\label{sec: motivations}
+Let $X$ be a scheme smooth and proper over $\ZZ$. We can consider cohomology theories for schemes in characteristic $p$ and coefficients in $\ZZ_{\ell}$: 
+\begin{itemize}
+    \item Singular cohomology, the cohomology on the underlying topological space of complex points $X(\CC)$. 
+    \item de Rham cohomology, the sheaf cohomology of the sheaf of (completed) differentials on $X$. 
+    \begin{itemize}
+        \item In the characteristic 0 setting over $\CC$, de Rham cohomology agrees with singular cohomology due to results of Grothendieck and Serre giving an isomorphism 
+        $$H_{\dR}^{i}(X)=H^{i}(X,\ZZ)\otimes_{\ZZ}\CC$$
+        giving rise to Hodge theory and Hodge cohomology. 
+    \end{itemize}
+    \item Crystalline cohomology, sheaf cohomology over the crystalline site which can be thought of as parametrizing infinitesmal thickenings of the scheme. 
+    \item \'{E}tale cohomology, sheaf cohomology on the \'{e}tale site which refines the standard Zariski topology on the scheme. 
+\end{itemize}
+These cohomology theories fit together in the following diagram. 
+\begin{figure}[H]\label{fig: cohomology theories for schemes}
+    \begin{center}
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+            %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+            
+            %Straight Lines [id:da0952341537659509] 
+            \draw [line width=1.5]    (80,50) -- (80,250) ;
+            %Straight Lines [id:da7111142129252268] 
+            \draw [line width=1.5]    (280,250) -- (80,250) ;
+            %Straight Lines [id:da028645264515076097] 
+            \draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (250,80) -- (250,230) ;
+            %Curve Lines [id:da9294844842957037] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (260,230) .. controls (323.14,258.94) and (331.61,230.23) .. (377.16,229.98) ;
+            \draw [shift={(380,230)}, rotate = 181.15] [fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+            %Straight Lines [id:da16218183607559267] 
+            \draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (100,230) -- (250,80) ;
+            %Curve Lines [id:da46448397789272255] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (252,78) .. controls (273.92,61.56) and (292.37,83.69) .. (310.36,90.32)(310,90) .. controls (326.92,96.06) and (346.77,97.23) .. (367.42,90.84) ;
+            \draw [shift={(370,90)}, rotate = 161.25] [fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+            %Straight Lines [id:da17569981206485963] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=3]    (245,230) -- (105,230) ;
+            %Straight Lines [id:da6141146445603498] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.5 ][line width=3]    (245,210) -- (125,210) ;
+            %Straight Lines [id:da7030233390534866] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=3]    (245,190) -- (145,190) ;
+            %Straight Lines [id:da4609713513899869] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (245,170) -- (165,170) ;
+            %Straight Lines [id:da3652149838264511] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (245,150) -- (185,150) ;
+            %Straight Lines [id:da0687944159443874] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ][line width=3]    (99.6,210.4) -- (115.1,210.4) ;
+            %Straight Lines [id:da29740679397726333] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (100,190) -- (135,190) ;
+            %Straight Lines [id:da6031293526553128] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.5 ][line width=3]    (100,170) -- (155,170) ;
+            %Straight Lines [id:da5429620561652055] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.5 ][line width=3]    (100,150) -- (175,150) ;
+            %Straight Lines [id:da5446386684373492] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=0.5 ][line width=3]    (225,110) -- (245,110) ;
+            %Straight Lines [id:da12681534364796665] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (205,130) -- (245,130) ;
+            %Straight Lines [id:da6378972892998505] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.5 ][line width=3]    (100.4,130) -- (195.4,130) ;
+            %Straight Lines [id:da7214851593005454] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (100,110) -- (215,110) ;
+            %Straight Lines [id:da7919593876702715] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (100,90) -- (235,90) ;
+            %Straight Lines [id:da6392959211222515] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (248,90) -- (243,90) ;
+            %Curve Lines [id:da9386734754812409] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (245,150) .. controls (284.4,120.45) and (295.52,201.33) .. (347.59,181) ;
+            \draw [shift={(350,180)}, rotate = 156.25] [fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+            %Curve Lines [id:da5732114335204241] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (245,170.5) .. controls (285,140.5) and (276.86,204.32) .. (350,180) ;
+            %Curve Lines [id:da7912370925665788] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (245,190) .. controls (285,160) and (288.36,210.82) .. (350,180) ;
+            %Curve Lines [id:da3216515176435002] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (230,100) .. controls (281.87,89.53) and (326.61,138.79) .. (367.9,130.41) ;
+            \draw [shift={(370.43,129.82)}, rotate = 165.32] [fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+            %Straight Lines [id:da2588296093220728] 
+            \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (120,205) -- (120,215) ;
+            %Straight Lines [id:da5243340206402929] 
+            \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (140,185) -- (140,195) ;
+            %Straight Lines [id:da0874103571678364] 
+            \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (160,165) -- (160,175) ;
+            %Straight Lines [id:da16590929958889578] 
+            \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (180,145) -- (180,155) ;
+            %Straight Lines [id:da8230548447791335] 
+            \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (200,125) -- (200,135) ;
+            %Straight Lines [id:da6514839175690192] 
+            \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (220,105) -- (220,115) ;
+            %Straight Lines [id:da8981879855490427] 
+            \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (240,85) -- (240,95) ;
+            %Curve Lines [id:da9535357851729787] 
+            \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (200,132.5) .. controls (255.2,147.66) and (266.8,122.46) .. (299.6,140.06)(300,140) .. controls (332.54,157.19) and (380.44,161.82) .. (427.14,150.7) ;
+            \draw [shift={(430,150)}, rotate = 165.85] [fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+            %Straight Lines [id:da4152339099568456] 
+            \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (100,225) -- (100,235) ;
+            
+            % Text Node
+            \draw (40,160) node  [rotate=-270] [align=left] {\begin{minipage}[lt]{68pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\footnotesize $\displaystyle \ell $ - Coefficients}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (180,280) node   [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\footnotesize $\displaystyle p$ - Characteristic}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (100,260) node   [align=left] {\begin{minipage}[lt]{20.4pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle p=2$}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (120,260) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle 3$}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (140,260) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle 5$}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (195,260) node   [align=left] {\begin{minipage}[lt]{61.2pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle \dotsc \dotsc \dotsc $}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (250,260) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle \infty $}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (65,225) node   [align=left] {\begin{minipage}[lt]{20.4pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle \ell =2$}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (70,205) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle 3$}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (70,185) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle 5$}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (65,135) node  [rotate=-270] [align=left] {\begin{minipage}[lt]{61.2pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle \dotsc \dotsc \dotsc $}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (70,75) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\tiny $\displaystyle \infty $}
+            \end{center}
+            
+            \end{minipage}};
+            % Text Node
+            \draw (440,230) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+            {\tiny Singular Cohomology \& K-Theory}\\{\tiny $H^{i}\left(X(\mathbb{C}), \mathbb{Z}\right)\otimes_{\mathbb{Z}}\mathbb{Z}_{\ell}$}\\
+            \end{minipage}};
+            % Text Node
+            \draw (430,90) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+            {\tiny Hodge Cohomology}\\{\tiny $H^{i}\left(X(\mathbb{C}), \mathbb{Z}\right)\otimes_{\mathbb{Z}}\mathbb{C}\cong R\Gamma \left( X,\Omega _{X/\mathbb{C}}^{\bullet}\right)$}
+            \end{minipage}};
+            % Text Node
+            \draw (410,180) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+            {\tiny Étale Cohomology}\\{\tiny $H^{i}_{\et}(X)$}
+            \end{minipage}};
+            % Text Node
+            \draw (430,130) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+            {\tiny de Rham Cohomology}\\{\tiny $H^{i}_{\dR}(X)$}
+            \end{minipage}};
+            % Text Node
+            \draw (490,150) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+            {\tiny Crystalline Cohomology}\\{\tiny $H^{i}_{\Crys}(X)$}
+            \end{minipage}};
+            
+            
+            \end{tikzpicture}
+            \caption{Cohomology theories for schemes.}
+    \end{center}
+\end{figure}
+
+
+For a scheme $X_{\FF_{p}}$ over $\FF_{p}$ we want to consider cohomology theories with coefficients in $\ZZ_{p}$. In this setting, \'{e}tale cohomology is not defined due to the poor behavior of $p$th roots of unity in characteristic $p$. In particular, the Kummer sequence, key to defining \'{e}tale cohomology is no longer exact. 
+\begin{figure}[H]\label{fig: cohomology at p}
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+    %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+    %Straight Lines [id:da3724396964894756] 
+    \draw [line width=1.5]    (75.68,76.19) -- (75.68,250.98) ;
+    %Straight Lines [id:da7271345737723405] 
+    \draw [line width=1.5]    (252.86,250.98) -- (75.68,250.98) ;
+    %Straight Lines [id:da18354860544354357] 
+    \draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (226.28,102.41) -- (226.28,233.5) ;
+    %Straight Lines [id:da3956353435434805] 
+    \draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (93.4,233.5) -- (226.28,102.41) ;
+    %Straight Lines [id:da5037344555521268] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=3]    (221.85,233.5) -- (97.83,233.5) ;
+    %Straight Lines [id:da513805630143122] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.5 ][line width=3]    (221.85,216.02) -- (115.55,216.02) ;
+    %Straight Lines [id:da7043586630254681] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=3]    (221.85,198.54) -- (133.27,198.54) ;
+    %Straight Lines [id:da46252086840060347] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (221.85,181.06) -- (150.98,181.06) ;
+    %Straight Lines [id:da07727608922710716] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (221.85,163.58) -- (168.7,163.58) ;
+    %Straight Lines [id:da5160331585013025] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ][line width=3]    (93.05,216.37) -- (106.78,216.37) ;
+    %Straight Lines [id:da10688216078785251] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (93.4,198.54) -- (124.41,198.54) ;
+    %Straight Lines [id:da5026477723947043] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.5 ][line width=3]    (93.4,181.06) -- (142.12,181.06) ;
+    %Straight Lines [id:da708266876000498] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.5 ][line width=3]    (93.4,163.58) -- (159.84,163.58) ;
+    %Straight Lines [id:da09097017473815283] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=0.5 ][line width=3]    (204.13,128.63) -- (221.85,128.63) ;
+    %Straight Lines [id:da05464383209683121] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (186.42,146.11) -- (221.85,146.11) ;
+    %Straight Lines [id:da15536346912468146] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.5 ][line width=3]    (93.76,146.11) -- (177.91,146.11) ;
+    %Straight Lines [id:da4700374987090794] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (93.4,128.63) -- (195.28,128.63) ;
+    %Straight Lines [id:da595402572300177] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (93.4,111.15) -- (212.99,111.15) ;
+    %Straight Lines [id:da6059535123196857] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (224.51,111.15) -- (220.08,111.15) ;
+    %Straight Lines [id:da8349964531141143] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (111.12,211.65) -- (111.12,220.39) ;
+    %Straight Lines [id:da3999067373710852] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (128.84,194.17) -- (128.84,202.91) ;
+    %Straight Lines [id:da6677250980033844] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (146.55,176.69) -- (146.55,185.43) ;
+    %Straight Lines [id:da5628343059321377] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (164.27,159.22) -- (164.27,167.95) ;
+    %Straight Lines [id:da5700866780622287] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (181.99,141.74) -- (181.99,150.48) ;
+    %Straight Lines [id:da39211575944030086] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (199.71,124.26) -- (199.71,133) ;
+    %Straight Lines [id:da29470404930408867] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (217.42,106.78) -- (217.42,115.52) ;
+    %Straight Lines [id:da9181734827122607] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (93.4,229.13) -- (93.4,237.87) ;
+    %Shape: Rectangle [id:dp7238089782752946] 
+    \draw  [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] (137.69,172.32) -- (155.41,172.32) -- (155.41,189.8) -- (137.69,189.8) -- cycle ;
+    %Curve Lines [id:da7691502310316076] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (137.69,172.32) .. controls (188.79,165.46) and (183.79,172.96) .. (218.79,171.46) .. controls (253.79,169.96) and (250.5,100.43) .. (290,99.96) ;
+    %Shape: Square [id:dp6980949855381158] 
+    \draw  [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] (290.29,100) -- (390.29,100) -- (390.29,200) -- (290.29,200) -- cycle ;
+    %Curve Lines [id:da9167490273712087] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (155.41,189.8) .. controls (208.29,190.46) and (181.29,184.46) .. (232.79,195.46) .. controls (284.29,206.46) and (365.29,225) .. (390.29,200) ;
+    %Straight Lines [id:da19062844767702392] 
+    \draw    (385,105) -- (295,195) ;
+    %Straight Lines [id:da20563584771278998] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=0.5 ][line width=6]    (290,150) -- (330,150) ;
+    %Straight Lines [id:da3203966138005374] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=6]    (390,150) -- (350,150) ;
+    %Straight Lines [id:da3360322741606212] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (340,130) -- (340,170) ;
+    %Curve Lines [id:da08123773392148204] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (340,160) .. controls (388.3,151.14) and (385.42,193.23) .. (427.37,180.83) ;
+    \draw [shift={(430,180)}, rotate = 161.5] [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+    %Straight Lines [id:da8664366226735234] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (390,150) -- (427,150) ;
+    \draw [shift={(430,150)}, rotate = 180] [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+    %Curve Lines [id:da8549170333492784] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (370,120) .. controls (412.28,107.36) and (385.14,132.91) .. (427.33,120.76) ;
+    \draw [shift={(430,119.96)}, rotate = 163.07] [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+
+    % Text Node
+    \draw (40.25,172.32) node  [rotate=-270] [align=left] {\begin{minipage}[lt]{59.43pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\footnotesize $\displaystyle \ell $ - Coefficients}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (164.27,277.2) node   [align=left] {\begin{minipage}[lt]{72.29pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\footnotesize $\displaystyle p$ - Characteristic}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (93.4,259.72) node   [align=left] {\begin{minipage}[lt]{18.07pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle p=2$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (111.12,259.72) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle 3$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (128.84,259.72) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle 5$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (177.56,259.72) node   [align=left] {\begin{minipage}[lt]{54.22pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \dotsc \dotsc \dotsc $}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (226.28,259.72) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \infty $}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (62.4,229.13) node   [align=left] {\begin{minipage}[lt]{18.07pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \ell =2$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (66.83,211.65) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle 3$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (66.83,194.17) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle 5$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (62.4,150.48) node  [rotate=-270] [align=left] {\begin{minipage}[lt]{53.49pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \dotsc \dotsc \dotsc $}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (66.83,98.04) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \infty $}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (490,150) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+    {\tiny Étale Cohomology}\\{\tiny $H^{i}_{\et}(X)$}
+    \end{minipage}};
+    % Text Node
+    \draw (490,120) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+    {\tiny de Rham Cohomology}\\{\tiny $H_{\dR}^{i}(X)$}
+    \end{minipage}};
+    % Text Node
+    \draw (490,180) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+    {\tiny Crystalline Cohomology}\\{\tiny $\displaystyle H^{i}_{\Crys}(X)$}
+    \end{minipage}};
+    % Text Node
+    \draw (340,85) node   [align=left] {\begin{minipage}[lt]{68pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny Characteristic $\displaystyle =p$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (275,150) node  [rotate=-270] [align=left] {\begin{minipage}[lt]{68pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny Coefficients in $\displaystyle \mathbb{Z}_{p}$}
+    \end{center}
+
+    \end{minipage}};
+
+
+    \end{tikzpicture}
+
+    \caption{Cohomology of $\FF_{p}$-schemes with coefficients in $\ZZ_{p}$.}
+\end{figure}
+
+Prismatic cohomology seeks to provide a cohomology theory that incorporates data from the various cohomology theories at the $(p,p)$-point. 
+
+\begin{figure}[H]\label{fig: prismatic at p}
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+    %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+    %Straight Lines [id:da8789357223295982] 
+    \draw [line width=1.5]    (75.68,76.19) -- (75.68,250.98) ;
+    %Straight Lines [id:da9262589218113964] 
+    \draw [line width=1.5]    (252.86,250.98) -- (75.68,250.98) ;
+    %Straight Lines [id:da3569053817782397] 
+    \draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (226.28,102.41) -- (226.28,233.5) ;
+    %Straight Lines [id:da42495558901430397] 
+    \draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (93.4,233.5) -- (226.28,102.41) ;
+    %Straight Lines [id:da3756485393921478] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=3]    (221.85,233.5) -- (97.83,233.5) ;
+    %Straight Lines [id:da8791260635134865] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.5 ][line width=3]    (221.85,216.02) -- (115.55,216.02) ;
+    %Straight Lines [id:da6397628946636444] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=3]    (221.85,198.54) -- (133.27,198.54) ;
+    %Straight Lines [id:da968588317389061] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (221.85,181.06) -- (150.98,181.06) ;
+    %Straight Lines [id:da8207648425293996] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (221.85,163.58) -- (168.7,163.58) ;
+    %Straight Lines [id:da12833428624859278] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ][line width=3]    (93.05,216.37) -- (106.78,216.37) ;
+    %Straight Lines [id:da39562506578107026] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (93.4,198.54) -- (124.41,198.54) ;
+    %Straight Lines [id:da9344656069955208] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.5 ][line width=3]    (93.4,181.06) -- (142.12,181.06) ;
+    %Straight Lines [id:da18211265135350763] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.5 ][line width=3]    (93.4,163.58) -- (159.84,163.58) ;
+    %Straight Lines [id:da5002868481485638] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=0.5 ][line width=3]    (204.13,128.63) -- (221.85,128.63) ;
+    %Straight Lines [id:da6021385438101898] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (186.42,146.11) -- (221.85,146.11) ;
+    %Straight Lines [id:da3128409730877113] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.5 ][line width=3]    (93.76,146.11) -- (177.91,146.11) ;
+    %Straight Lines [id:da3947586637170464] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (93.4,128.63) -- (195.28,128.63) ;
+    %Straight Lines [id:da986952637177245] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (93.4,111.15) -- (212.99,111.15) ;
+    %Straight Lines [id:da26178751636103614] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=3]    (224.51,111.15) -- (220.08,111.15) ;
+    %Straight Lines [id:da9030888493232916] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (111.12,211.65) -- (111.12,220.39) ;
+    %Straight Lines [id:da9074051736382935] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (128.84,194.17) -- (128.84,202.91) ;
+    %Straight Lines [id:da16579331692271548] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (146.55,176.69) -- (146.55,185.43) ;
+    %Straight Lines [id:da2999361227014592] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (164.27,159.22) -- (164.27,167.95) ;
+    %Straight Lines [id:da6127654925340487] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (181.99,141.74) -- (181.99,150.48) ;
+    %Straight Lines [id:da11305397878108026] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (199.71,124.26) -- (199.71,133) ;
+    %Straight Lines [id:da43165730623604603] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (217.42,106.78) -- (217.42,115.52) ;
+    %Straight Lines [id:da6131482042973326] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (93.4,229.13) -- (93.4,237.87) ;
+    %Shape: Rectangle [id:dp47917622740602916] 
+    \draw  [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] (137.69,172.32) -- (155.41,172.32) -- (155.41,189.8) -- (137.69,189.8) -- cycle ;
+    %Curve Lines [id:da2212596977915826] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (137.69,172.32) .. controls (188.79,165.46) and (183.79,172.96) .. (218.79,171.46) .. controls (253.79,169.96) and (250.5,100.43) .. (290,99.96) ;
+    %Shape: Square [id:dp5641757037424355] 
+    \draw  [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] (290.29,100) -- (390.29,100) -- (390.29,200) -- (290.29,200) -- cycle ;
+    %Curve Lines [id:da5157559126408273] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (155.41,189.8) .. controls (208.29,190.46) and (181.29,184.46) .. (232.79,195.46) .. controls (284.29,206.46) and (365.29,225) .. (390.29,200) ;
+    %Straight Lines [id:da47805862781981423] 
+    \draw    (385,105) -- (295,195) ;
+    %Straight Lines [id:da6919998299781667] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=0.5 ][line width=6]    (290,150) -- (330,150) ;
+    %Straight Lines [id:da8396550555320199] 
+    \draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.5 ][line width=6]    (390,150) -- (350,150) ;
+    %Straight Lines [id:da7685309217395557] 
+    \draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (340,130) -- (340,170) ;
+    %Curve Lines [id:da6002638991471902] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (340,160) .. controls (388.3,151.14) and (385.42,193.23) .. (427.37,180.83) ;
+    \draw [shift={(430,180)}, rotate = 161.5] [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+    %Straight Lines [id:da46778680888447366] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (390,150) -- (427,150) ;
+    \draw [shift={(430,150)}, rotate = 180] [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+    %Curve Lines [id:da3789988231954129] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (370,120) .. controls (412.28,107.36) and (385.14,132.91) .. (427.33,120.76) ;
+    \draw [shift={(430,119.96)}, rotate = 163.07] [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+    %Shape: Circle [id:dp7014600136999267] 
+    \draw  [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=0.4 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=0.4 ] (315,150) .. controls (315,136.19) and (326.19,125) .. (340,125) .. controls (353.81,125) and (365,136.19) .. (365,150) .. controls (365,163.81) and (353.81,175) .. (340,175) .. controls (326.19,175) and (315,163.81) .. (315,150) -- cycle ;
+    %Curve Lines [id:da4876517595863026] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=0.75]  [dash pattern={on 0.84pt off 2.51pt}]  (340,175) .. controls (388.9,180.26) and (359.9,186.26) .. (389.9,190.93) .. controls (419.45,195.53) and (377.62,200.51) .. (437.21,209.58) ;
+    \draw [shift={(440,210)}, rotate = 188.34] [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+
+    % Text Node
+    \draw (40.25,172.32) node  [rotate=-270] [align=left] {\begin{minipage}[lt]{59.43pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\footnotesize $\displaystyle \ell $ - Coefficients}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (164.27,277.2) node   [align=left] {\begin{minipage}[lt]{72.29pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\footnotesize $\displaystyle p$ - Characteristic}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (93.4,259.72) node   [align=left] {\begin{minipage}[lt]{18.07pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle p=2$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (111.12,259.72) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle 3$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (128.84,259.72) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle 5$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (177.56,259.72) node   [align=left] {\begin{minipage}[lt]{54.22pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \dotsc \dotsc \dotsc $}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (226.28,259.72) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \infty $}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (62.4,229.13) node   [align=left] {\begin{minipage}[lt]{18.07pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \ell =2$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (66.83,211.65) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle 3$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (66.83,194.17) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle 5$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (62.4,150.48) node  [rotate=-270] [align=left] {\begin{minipage}[lt]{53.49pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \dotsc \dotsc \dotsc $}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (66.83,98.04) node   [align=left] {\begin{minipage}[lt]{12.05pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny $\displaystyle \infty $}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (490,150) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+    {\tiny Étale Cohomology}\\{\tiny $H^{i}_{\et}(X)$}
+    \end{minipage}};
+    % Text Node
+    \draw (490,120) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+    {\tiny de Rham Cohomology}\\{\tiny $H^{i}_{\dR}(X)$}
+    \end{minipage}};
+    % Text Node
+    \draw (490,180) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+    {\tiny Crystalline Cohomology}\\{\tiny $H^{i}_{\Crys}(X)$}
+    \end{minipage}};
+    % Text Node
+    \draw (340,85) node   [align=left] {\begin{minipage}[lt]{68pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny Characteristic$\displaystyle =p$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (275,150) node  [rotate=-270] [align=left] {\begin{minipage}[lt]{68pt}\setlength\topsep{0pt}
+    \begin{center}
+    {\tiny Coefficients in $\displaystyle \mathbb{Z}_{p}$}
+    \end{center}
+
+    \end{minipage}};
+    % Text Node
+    \draw (500,210) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+    {\tiny Prismatic Cohomology}\\{\tiny $H^{i}_{\prism}(X)$}
+    \end{minipage}};
+
+
+    \end{tikzpicture}
+    \caption{Prismatic cohomology at $(p,p)$.}
+\end{figure}
+
+Prismatic cohomology can be thought of as a prism, refracting the beam of light into the various cohomology theories for formal schemes over $\ZZ_{p}$. 
+
+\begin{figure}[H]\label{fig: refraction}
+    \begin{center}
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+            %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+            
+            %Shape: Triangle [id:dp6190437797921686] 
+            \draw  [line width=1.5]  (360,50) -- (460,210) -- (260,210) -- cycle ;
+            %Straight Lines [id:da5486510258212824] 
+            \draw [line width=1.5]    (110,130) -- (310,130) ;
+            %Straight Lines [id:da24163435651210619] 
+            \draw [line width=1.5]    (310,130) -- (360,90) ;
+            %Straight Lines [id:da8135877090109722] 
+            \draw [line width=1.5]    (360,90) -- (520,70) ;
+            %Straight Lines [id:da08058032147529093] 
+            \draw [line width=1.5]    (310,130) -- (360,120) ;
+            %Straight Lines [id:da5252871657693157] 
+            \draw [line width=1.5]    (360,120) -- (520,110) ;
+            %Straight Lines [id:da13289343966498746] 
+            \draw [line width=1.5]    (310,130) -- (360,160) ;
+            %Straight Lines [id:da8188454613400595] 
+            \draw [line width=1.5]    (360,160) -- (520,150) ;
+            %Straight Lines [id:da571840737381748] 
+            \draw [line width=1.5]    (310,130) -- (360,190) ;
+            %Straight Lines [id:da4818675361796294] 
+            \draw [line width=1.5]    (360,190) -- (520,180) ;
+            
+            % Text Node
+            \draw (610,70) node   [align=left] {\begin{minipage}[lt]{122.4pt}\setlength\topsep{0pt}
+            {\footnotesize Crystalline Cohomology}
+            \end{minipage}};
+            % Text Node
+            \draw (610,110) node   [align=left] {\begin{minipage}[lt]{122.4pt}\setlength\topsep{0pt}
+            {\footnotesize de Rham Cohomology}
+            \end{minipage}};
+            % Text Node
+            \draw (610,150) node   [align=left] {\begin{minipage}[lt]{122.4pt}\setlength\topsep{0pt}
+            {\footnotesize Hodge-Tate Cohomology}
+            \end{minipage}};
+            % Text Node
+            \draw (200,115) node   [align=left] {\begin{minipage}[lt]{122.4pt}\setlength\topsep{0pt}
+            {\footnotesize $\displaystyle p$-adic Formal Scheme}
+            \end{minipage}};
+            % Text Node
+            \draw (610,180) node   [align=left] {\begin{minipage}[lt]{122.4pt}\setlength\topsep{0pt}
+            {\footnotesize Étale Cohomology}
+            \end{minipage}};
+            % Text Node
+            \draw (360,220) node   [align=left] {\begin{minipage}[lt]{34pt}\setlength\topsep{0pt}
+            \begin{center}
+            {\footnotesize Prisms}
+            \end{center}
+            
+            \end{minipage}};
+            
+            
+            \end{tikzpicture}
+            
+    \end{center}
+    \caption{Refraction of cohomology theories.}
+\end{figure}

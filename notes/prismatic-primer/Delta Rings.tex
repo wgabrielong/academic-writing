@@ -1,0 +1,87 @@
+\section{$\delta$-Rings}\label{sec: delta rings}
+$\delta$-rings are rings with a lift of Frobenius modulo $p$. 
+\begin{definition}[$\delta$-Ring]\label{def: delta rings}
+    A delta ring $(A,\delta)$ is a pair consisting of a ring $R$ and a set map $\delta:A\to A$ such that:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\delta(0)=\delta(1)=0$. 
+        \item $\delta(xy)=x^{p}\delta(y)+y^{p}\delta(x)+p\delta(x)\delta(y)$. 
+        \item $\delta(x+y)=\delta(x)+\delta(y)+\frac{x^{p}+y^{p}-(x+y)^{p}}{p}. $
+    \end{enumerate}
+\end{definition}
+$\delta$-rings naturally form a category $\Ring_{\delta}$ with objects $\delta$-rings and morphisms ring maps preserving the $\delta$-structures. 
+
+The lifting condition alluded to above is made clear in the following proposition. 
+\begin{proposition}\label{prop: delta structures and Frobenius lifts}
+    If $(R,\delta)$ is a $\delta$-ring then the map $\widetilde{\varphi}_{A}:A\to A$ by $x\mapsto x^{p}+p\delta(x)$ is an endomorphism of $R$ that lifts the Frobenius on $A/(p)$. 
+\end{proposition}
+\begin{proof}
+    The map clearly lifts the Frobenius on $A/(p)$ and that this is an endomorphism can be verified by the following direct computations:
+    \begin{align*}
+        \widetilde{\varphi}_{A}(x+y) &= (x+y)^{p} + p\delta(f+g) \\
+        &= (x+y)^{p}+p\delta(x)+p\delta(y)+x^{p}+y^{p}-(x+y)^{p} && \text{\Cref{def: delta rings} (iii)} \\
+        &= x^{p}+p\delta(x) + y^{p}+p\delta(y) \\
+        &= \widetilde{\varphi}_{A}(x) + \widetilde{\varphi}_{A}(y) \\
+        \widetilde{\varphi}_{A}(xy) &= x^{p}y^{p}+p\delta(xy) \\
+        &= x^{p}y^{p}+px^{p}\delta(y)+py^{p}\delta(x)+p^{2}\delta(x)\delta(y) && \text{\Cref{def: delta rings} (ii)} \\
+        &= (x^{p}+p\delta(x))(y^{p}+p\delta(y)) \\
+        &= \widetilde{\varphi}_{A}(x)\widetilde{\varphi}_{A}(y)
+    \end{align*}
+\end{proof}
+Indeed, for lifts of Frobeneii $\widetilde{\varphi}_{A}:A\to A$ on $A/(p)$ we can construct a $\delta$-structure on $A$ for $A$ $p$-torsion free mutually inverse to the construction \Cref{prop: delta structures and Frobenius lifts}. 
+\begin{proposition}\label{prop: delta structure for Frobenius lifts on p torsion free}
+    Let $A$ be a $p$-torsion free ring. Each $\delta$-structure on $A$ arises uniquely from an endomorphism of $A$ lifting the Frobenius on $A/(p)$. 
+\end{proposition}
+\begin{proof}
+    Suppose $\widetilde{\varphi}:A\to A$ is a lift of Frobenius on $A/(p)$. Note that we have $\widetilde{\varphi}(x)-x^{p}\in (p)$ so $\frac{\widetilde{\varphi}(x)-x^{p}}{p}$ is well-defined and setting $\delta(x)=\frac{\widetilde{\varphi}(x)-x^{p}}{p}$ we can verify by explicit computation that such a map $\delta$ defines a $\delta$-structure on $A$ which is inverse to the construction of \Cref{prop: delta structures and Frobenius lifts} since $A$ is $p$-torsion free. 
+\end{proof}
+We have already encountered an important example of $\delta$-rings: the ring of $p$-typical Witt vectors over a perfect $\FF_{p}$-algebra $A$.
+\begin{proposition}\label{prop: Witt vectors over Fp algebras are delta}
+    Let $A\in\Perf_{\FF_{p}}$ and $\W(A)$ its ring of $p$-typical Witt vectors. Then $\W(A)$ is a $\delta$-ring. 
+\end{proposition}
+\begin{proof}
+    We have a lift of the Frobenius on $A\cong\W(A)/(p)$ to $\W(A)$ by \Cref{rmk: Frobenius lift on Witt vectors} inducing a $\delta$-structure on $\W(A)$ by \Cref{prop: delta structure for Frobenius lifts on p torsion free} since $\W(A)$ is $p$-torsion free. 
+\end{proof}
+The category $\Ring_{\delta}$ possesses nice categorical properties, in particular, it admits all limits and colimits which can be computed in the category of rings. 
+\begin{lemma}[{\cite[Lem. 2.4.3]{Kedlaya}}]\label{lem: limits and colimits in delta rings}
+    $\Ring_{\delta}$ admits all colimits and limits. Furthermore, these limtis and colimits commute with the forgetful functor to the category of rings $\Ring$. 
+\end{lemma}
+In particular, by the adjoint functor theorem, the inclusion $\Ring_{\delta}\hookrightarrow\Ring$ admits both a left and right adjoint.
+
+We now relate $\Perf_{\FF_{p}}$ by introducing the notion of a perfect $\delta$-ring. 
+\begin{definition}[Perfect $\delta$-Ring]\label{def: perfect delta ring}
+    Let $(A,\delta)$ be a $\delta$-ring. $(A,\delta)$ is a perfect $\delta$-ring if $\widetilde{\varphi}_{A}:A\to A$ by $x\mapsto x^{p}+p\delta(x)$ is an isomorphism of rings. 
+\end{definition}
+The category of perfect $\delta$-rings $\Perf_{\delta}$ forms a full subcategory of $\Ring_{\delta}$. Analogous to the case of $\FF_{p}$-algebras in \Cref{def: perfection} we can take (co)limits along the endomorphisms $\widetilde{\varphi}_{A}$ defining for a $R\in\Ring_{\delta}$
+$$R^{\perf}=\lim\left(
+    \begin{tikzcd}
+        R & R & \dots
+        \arrow["{\widetilde{\varphi}_{A}}", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+    \end{tikzcd}\right)\hspace{1cm}R_{\perf}=\colim\left(
+        \begin{tikzcd}
+        A & A & \dots
+        \arrow["{\widetilde{\varphi}_{A}}", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+    \end{tikzcd}\right)$$
+whih are the right and left adjoints of the inclusion $\Perf_{\delta}\to\Ring_{\delta}$. 
+
+The relationship between $\Perf_{\FF_{p}}$ and $\Perf_{\delta}$ is given explicitly by the following proposition. 
+\begin{proposition}[{\cite[Prop. 3.3.6]{Kedlaya}}]\label{prop: equivalence of categories}
+    The following categories are equivalent:
+    \begin{itemize}
+        \item $\Perf_{\FF_{p}}$, the category of perfect $\FF_{p}$-algebras (\Cref{def: perfeft Fp algebra}).  
+        \item The subcategory of $p$-complete objects of $\Perf_{\delta}$, those perfect $\delta$-rings that are $p$-adically complete. 
+        \item The category of $p$-complete, $p$-torsion free rings with perfect quotient modulo $(p)$. 
+    \end{itemize}
+\end{proposition}
+\begin{remark}
+    The functor from $\Perf_{\FF_{p}}$ to $p$-complete perfect $\delta$-rings proceeds by formation of the Witt ring, from $p$-complete perfect $\delta$-rings to $p$-complete, $p$-torsion free rings with perfect quotient modulo $(p)$ is forgetful, and from $p$-complete, $p$-torsion free rings with perfect quotient modulo $(p)$ to $\Perf_{\FF_{p}}$ by taking the quotient modulo $(p)$. 
+\end{remark}
+
+We conclude by recalling further structural results on $\delta$-rings. 
+\begin{lemma}[{\cite[Lem. 2.4.2]{Kedlaya}}]\label{lem: quoteints of delta rings}
+    Let $(A,\delta)$ be a $\delta$-ring and $I\subseteq A$ an ideal such that $\delta(I)\subseteq I$ as sets. Then there exists a unique $\delta$-structure on $A/I$ such that the quotient $A\to A/I$ is a morphism of $\delta$-rings.
+\end{lemma}
+\begin{lemma}[{\cite[Lem 2.4.8]{Kedlaya}}]\label{lem: localizations of delta rings}
+    Let $(A,\delta)$ be a $\delta$-ring and $S\subseteq A$ a multiplicative subset such that $\widetilde{\varphi}_{A}(S)\subseteq S$ as sets. Then there exists a unique $\delta$-structure on $S^{-1}A$ such that the localization $A\to S^{-1}A$ is a morphism of $\delta$-rings. 
+\end{lemma}

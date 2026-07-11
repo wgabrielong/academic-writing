@@ -1,0 +1,113 @@
+\section{Prisms and Perfectoid Rings}\label{sec: prisms}
+We consider a subset of elements of a delta ring $(A,\delta)$ which play a crucial role in existing $p$-adic cohomology theories. 
+\begin{definition}[Distinguished Element]\label{def: distinguished element}
+    Let $(A,\delta)$ be a $\delta$-ring. An element $d\in A$ is a distniguished element if $\delta(d)\in A^{\times}$. 
+\end{definition}
+Distinguished elements are closely related to crystalline cohomology, $q$-de Rham cohomology, Breuil-Kisin cohomology, and $\A_{\inf}$-cohomology. See \cite[Ex. 5.13-16]{Kedlaya} for further discussion. 
+
+We recover the following structural results for distinguished elements. 
+\begin{lemma}[{\cite[Lem. 5.2.1]{Kedlaya}}]\label{lem: product distinguished iff factors distinguished}
+    Let $(A,\delta)$ be a $\delta$-ring and $a,b\in A$. $ab$ is distinguished if and only if both $a$ and $b$ are distinguished and $(p,a,b)=A$. 
+\end{lemma}
+\begin{lemma}[{\cite[Lem. 5.2.3]{Kedlaya}}]\label{lem: distinguished iff p is in an ideal}
+    Let $(A,\delta)$ be a $\delta$-ring and $a\in A$. $a$ is distinguished if and only if $p\in(p^{2},a,\widetilde{\varphi}_{A})$. 
+\end{lemma}
+
+We will define prisms to be derived $(p,I)$-adically complete $\delta$-rings on a $\delta$-ring $A$ and where $I$ is an invertible $A$-module. Let $A$ be a commutative ring, $M$ an $A$-module, and $I\subseteq A$ an ideal. Recall that $A$ is $I$-adically complete (resp. $M$ is $I$-adically complete) if there is an isomorphism $A\cong \lim_{n}A/I^{n}$ (resp. $M\cong\lim_{n}M/I^{n}M$). However, $I$-adic completeness does not often interact well with categorical constructions -- see \cite[\href{https://stacks.math.columbia.edu/tag/05JD}{Tag 05JD}]{stacks-project} for an example. This poor categorical behavior, however, can be resolved by considering derived completions. 
+\begin{definition}[Derived $I$-Adically Complete]\label{def: derived complete}
+    Let $A$ be a ring (resp. $M$ an $A$-module). $A$ is derived $I$-adically complete (resp. $M$ is derived $I$-adically complete) if $\mathrm{Ext}^{n}_{A}(A_{f},A)=0$ (resp. $\mathrm{Ext}^{n}_{A}(A_{f},M)=0$) for all $n$ and all $f\in I$. 
+\end{definition}
+We can now define prisms. 
+\begin{definition}[Prism]\label{def: prism}
+    A prism $(A,I)$ consists of a $\delta$-ring $(A,\delta)$ and an invertible ideal $I\subseteq A$ such that $A$ is derived $(p,I)$-adically complete and $p\in(I,\widetilde{\varphi}_{A}(I))$. 
+\end{definition}
+There is a category $\Prism$ with objects prisms and morphisms $f:(A,I)\to(B,J)$ given by a morphism of $\delta$-rings $f:A\to B$ such that $f(I)\subseteq J$. 
+
+Under additional conditions on $A$ and $I$, we can define additional types of prisms as follows. 
+\begin{definition}[Perfect Prism]\label{def: perfect prism}
+    A prism $(A,I)$ is perfect if $\widetilde{\varphi}_{A}:A\to A$ is an automorphism of $A$. 
+\end{definition}
+\begin{definition}[Oriented Prism]\label{def: oriented prism}
+    A prism $(A,I)$ is oriented if $I$ is a principal ideal. 
+\end{definition}
+\begin{remark}
+    In this situation, a choice of generator of $I$ gives an orientation for the prism. 
+\end{remark}
+\begin{definition}[Bounded Prism]\label{def: bounded prism}
+    A prism $(A,I)$ is bounded if $A/I$ has bounded $p^{\infty}$-torsion: there exists $n\in\NN$ such that $(A/I)[p^{n}]=(A/I)[p^{\infty}]$. 
+\end{definition}
+\begin{definition}[Crystalline Prism]\label{def: crystalline prism}
+    A prism $(A,I)$ is crystalline if $I=(p)$.
+\end{definition}
+Perfect prisms are the best behaved, and perfection in fact implies orientability and boundedness. 
+\begin{proposition}[{\cite[Thm. 7.2.2]{Kedlaya}}]\label{prop: perfect implies orientable and bounded}
+    Let $(A,I)$ be a perfect prism. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $(A,I)$ is an oriented prism and each orientation of $(A,I)$ is given by a distinguished element. 
+        \item $(A,I)$ is a bounded prism. 
+    \end{enumerate}
+\end{proposition}
+Moreover, to any prism $(A,I)$, we can canonically produce a perfect prism in analogy to the colimit perfection of \Cref{def: perfection}. 
+\begin{definition}[Perfection of a Prism]\label{def: perfection of a prism}
+    Let $(A,I)$ be a prism. The perfection of $(A,I)$ is a perfect prism $(A,I)_{\perf}$ such that all morphisms of prisms $(B,J)\to(A,I)$ with $(B,J)$ perfect, there exists a unique factorization of the map through $(A,I)_{\perf}$. 
+\end{definition}
+By Yoneda's lemma, $(A,I)_{\perf}$ is determined uniquely up to unique isomorphism. The construction can also be made explicit as follows. 
+\begin{proposition}[{\cite[Prop. 7.2.3]{Kedlaya}}]\label{prop: perfection construction for prisms}
+    Let $(A,I)$ be a prism and $A_{\perf}$ the colimit perfection of the $\delta$-ring $A$. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item The derived $(p,I)$-adic completion of $A_{\perf}$ agrees with the classical $(p,I)$-adic completion of $A_{\perf}$. 
+        \item For $A_{\infty}$ the derived $(p,I)$-adic completion of $A_{\perf}$, $(A_{\infty},IA_{\infty})$ is the perfection $(A,I)_{\perf}$ of $(A,I)$. 
+    \end{enumerate}
+\end{proposition}
+Perfect prisms are closely related to the theory of perfectoid rings which play a key role in contemporary arithmetic geometry. We recall the following definition. 
+\begin{definition}[Integral Perfectoid Ring]\label{def: integral perfectoid ring}
+    Let $R$ be a commutative ring. $R$ is an integral perfectoid ring if $R\cong A/I$ for some perfect prism $(A,I)$. 
+\end{definition}
+We can show that the functor $(A,I)\mapsto A/I$ is fully faithful on perfect prisms where in conjunction with \Cref{def: integral perfectoid ring}, we can deduce the following. 
+\begin{proposition}[{\cite[Thm. 7.3.5]{Kedlaya}}]\label{prop: equivalence of categories perfect prisms and perfectoid rings}
+    The following categories are equivalent:
+    \begin{itemize}
+        \item The category of perfect prisms. 
+        \item The category of integral perfectoid rings. 
+    \end{itemize}
+\end{proposition}
+\begin{remark}
+    The proof here does not necessitate an explicit description of the inverse functor due to the description of the essential image of $(A,I)\mapsto A/I$ as integral perfectoid rings \Cref{def: integral perfectoid ring}. 
+\end{remark}
+Alternatively, integral perfectoid rings can be characterized as follows. 
+\begin{proposition}[{\cite[Prop. 8.2.5]{Kedlaya}}]\label{prop: characterization of integral perfectoid rings}
+    Let $R$ be a commutative ring. $R$ is an integral perfectoid ring if and only if all of the following conditions hold:
+    \begin{enumerate}[label=(\roman*)]
+        \item $R$ is classically $p$-adically complete. 
+        \item $\varphi_{R}:R/(p)\to R/(p)$ is surjective. 
+        \item The kernel of $\A_{\inf}(R)\to R$ is principal. 
+        \item There exists $\varpi\in R$ such that $\varpi^{p}=pu$ for some $u\in R^{\times}$. 
+    \end{enumerate}
+\end{proposition}
+We can provide a more explicit characterization of the functors involved in \Cref{prop: equivalence of categories perfect prisms and perfectoid rings} via the tilting and untilting constructions. 
+\begin{definition}[Tilt]\label{def: tilt}
+    Let $R$ be an integral perfectoid ring. The tilt $R^{\flat}$ of $R$ is the limit perfection $(R/(p))^{\perf}$ of the quotient $R/(p)$. 
+\end{definition}
+\begin{remark}
+    Tilts can also be defined on prisms $(A,I)$ by taking $(\overline{A}/(p))^{\perf}$ of $\overline{A}/(p)$ where $\overline{A}=A/I$. If $(A,I)$ is a perfect prism, this tilt agrees with the tilt of the corresponding integral perfectoid ring $A/I$.
+\end{remark}
+\begin{definition}[Untilt]\label{def: untilt}
+    Let $A$ be a perfect $\FF_{p}$-algebra. An untilt of $A$ is an integral perfectoid ring $R$ such that $R^{\flat}\cong A$. 
+\end{definition}
+The Witt vector construction recovers this property. 
+\begin{proposition}[{\cite[Prop. 7.3.3]{Kedlaya}}]\label{prop: untilt is Witt vectors}
+    Let $A$ be a perfect $\FF_{p}$-algebra. Then $\W(A)$ is such that $\W(A)/(p)\cong A$
+\end{proposition}
+We can extend the untilting construction by taking the prism 
+$$(\W(R^{\flat}), \ker(\W(R^{\flat})\to R))$$ 
+which describes the inverse functor of \Cref{prop: equivalence of categories perfect prisms and perfectoid rings} for an integral perfectoid ring $R$. 
+
+Furthermore, tilting induces an equivalence between perfectoid algebras over a perfectoid ring and perfectoid algebras over its tilt. 
+\begin{proposition}[{\cite[Thm. 1.7]{Morrow}}]\label{prop: tilting correspondence}
+    Let $R$ be an integral perfectoid ring. The tilting construction results in an equivalence between the following categories:
+    \begin{itemize}
+        \item The category of integral perfectoid $R$-algebras. 
+        \item The category of integral perfectoid $R^{\flat}$-algebras. 
+    \end{itemize}
+\end{proposition}
+Having developed the necessary language of prisms, prismatic cohomology can be defined via the prismatic site. 

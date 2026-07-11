@@ -1,0 +1,65 @@
+\documentclass{amsart}
+\usepackage[margin=1.5in]{geometry} 
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{accents}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{euscript}
+\usepackage[bbgreekl]{mathbbol}
+\DeclareSymbolFontAlphabet{\mathbb}{AMSb} % to ensure \mathbb does not change
+\DeclareSymbolFontAlphabet{\mathbbl}{bbold}
+\input{shortcuts.tex}
+\setlength{\headheight}{40pt}
+
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}
+  \begin{proof}[Solution]}
+  {\end{proof}}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\usepackage{amsmath, amssymb, tikz, amsthm, csquotes, multicol, footnote, tablefootnote, biblatex, wrapfig, float, quiver, mathrsfs, cleveref, enumitem, upgreek, todonotes}
+\addbibresource{refs.bib}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\numberwithin{equation}{section}
+
+\setuptodonotes{color=blue!20, size=tiny}
+
+
+\begin{document}
+\large
+\title[A Prismatic Primer]{A Primer on Prismatic Cohomology}
+\author{Wern Juin Gabriel Ong}
+\address{Universit\"{a}t Bonn, Bonn, D-53111}
+\email{wgabrielong@uni-bonn.de}
+\urladdr{https://wgabrielong.github.io/}
+\maketitle
+\section*{Preliminaries}
+This document seeks to give a primer on the theory of prismatic cohomology first developed in Bhatt-Scholze's seminal article \cite{BSPrismatic} based primarily on the lecture course of G. Bosco at the Universit\"{a}t Bonn in the Summer 2024 semester \cite{Bosco} and of J. Ansch\"{u}tz at the Recent Advances in Algebraic K-Theory conference at the I'HES in Summer 2023 \cite{Anschutz}. In particular, no claims to completeness of proofs -- if at all given -- are made. 
+\tableofcontents
+\newpage
+\include{Motivations}
+\include{Witt Vectors and Deformation Theory}
+\include{Delta Rings}
+\include{Prisms}
+\include{Prismatic Cohomology}
+\include{Comparisons}
+\include{Cohomology of Arithmetic Schemes}
+\printbibliography
+\end{document}
