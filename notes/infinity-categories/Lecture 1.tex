@@ -1,0 +1,196 @@
+\section{Lecture 1 -- 6th September 2023}
+Understanding infinity categories is a daunting task. Ideally, we will end this class with the student being conversant in the language of infinity categories, though this may be difficult to achieve. Let us start with the definition of a (1-)category. 
+\begin{definition}[Category]
+    A category $\Csf$ is a class $\Obj(\Csf)$ and for $A,B\in\Obj(\Csf)$ a set $\Mor_{\Csf}(A,B)$ of morphisms from $A$ to $B$ such that
+    \begin{enumerate}[label=(\alph*)]
+        \item $\id_{A}\in\Mor_{\Csf}(A,A)$,
+        \item and a composition law $\Mor_{\Csf}(B,C)\times\Mor_{\Csf}(A,B)\to\Mor_{\Csf}(A,C)$ by $(g,f)\mapsto g\circ f$ that is unital $\id_{A}\circ f=f=f\circ\id_{B}$ and associating $(g\circ f)\circ h=g\circ(f\circ h)$. 
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+  We consider the underlying collection of objects of a category a class to avoid set-theoretic difficulties such as Russell's Paradox when dealing with the category of sets. 
+\end{remark}
+Let us consider some examples. 
+\begin{example}
+  $\Sets$ whose objects are sets and whose morphisms are set functions. 
+\end{example}
+\begin{example}
+  $\Top$ whose objects are topological spaces and whose morphisms are continuous maps between them. 
+\end{example}
+\begin{example}[Representable Spaces of Groups]\label{ex:representable spaces}
+Let $G$ be a group. We can construct a category $B_{G}$ whose object is a point $*$ and whose morphisms are given by $\Mor_{B_{G}}(*,*)=G$ where the unital element is $\id_{G}$ and composition given by group multiplication.
+\end{example}
+\begin{example}[Fundemental Groupoid]\label{ex: fundamental groupoid}
+Let $X$ be a topological space. Consider $\Pi_{\leq1}X$ the fundamental groupoid of $X$ whose object is $X$ itself and whose morphisms $\Mor_{\Pi_{\leq1}X}(x,y)$ homotopy classes of paths from $x,y\in X$. Note that the unital and associative properties of path composition only hold after passing to homotopy equivalence. 
+\end{example}
+Let us now define a functor. 
+\begin{definition}[Functor]
+  Let $\Csf,\Dsf$ be categories. A functor $F:\Csf\to\Dsf$ consists of a function $F:\Obj(\Csf)\to\Obj(\Dsf)$ such that for all $A,B\in\Obj(\Csf)$, there is a function $\Mor_{\Csf}(A,B)\to\Mor_{\Dsf}(F(A),F(B))$ satisfying $F(\id_{A})=\id_{F(A)}$ and $F(g\circ f)=F(g)\circ F(f)$. 
+\end{definition}
+A functor is a map between categories. Correspondingly, we can define a map between functors as a natural transformation. 
+\begin{definition}[Natural Transformation]\label{def:natural transformation}
+Let $F,G:\Csf\to\Dsf$ be functors. $T$ is a natural transformation between $F$ and $G$ consists of a morphism $T(A):F(A)\to G(A)$ in $\Dsf$ for all $A\in\Obj(\Csf)$ and the diagram
+$$\begin{tikzcd}
+	{F(A)} && {G(A)} \\
+	{F(B)} && {G(B)}
+	\arrow["{T(A)}", from=1-1, to=1-3]
+	\arrow["{T(B)}", from=2-1, to=2-3]
+	\arrow["{F(f)}"', from=1-1, to=2-1]
+	\arrow["{G(f)}"', from=1-3, to=2-3]
+\end{tikzcd}$$
+commutes for all $f\in\Mor_{\Csf}(A,B)$. 
+\end{definition}
+\begin{example}
+  Let $X$ be a topological space. We can construct a covering space of $X$ denoted $\widetilde{X}$ such that for the solid diagram, 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCIqIl0sWzAsMSwiWzAsMV0iXSxbMiwxLCJYIl0sWzIsMCwiXFx3aWRldGlsZGV7WH0iXSxbMCwzXSxbMywyLCJwIl0sWzAsMV0sWzEsMl0sWzEsMywiXFxleGlzdHMhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    {*} && {\widetilde{X}} \\
+    {[0,1]} && X
+    \arrow[from=1-1, to=1-3]
+    \arrow["p", from=1-3, to=2-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=2-1, to=2-3]
+    \arrow["{\exists!}"{description}, dashed, from=2-1, to=1-3]
+  \end{tikzcd}$$
+  there is a unique dotted arrow lifting a path in $X$ to $\widetilde{X}$. In other words, this is a functor $\Pi_{\leq 1}X\to\Sets$ by $x\mapsto p^{-1}(x)$. 
+\end{example}
+In fact, and old theorem of Grothendieck states the following. 
+\begin{theorem}[Grothendieck]
+  Let $X$ be a topological space. The category of covering spaces of $X$ is equivalent ot the category of functors $\Pi_{\leq 1}X\to\Sets$. 
+\end{theorem}
+Within this framework, topological statements like Van-Kampen's theorem become much easier. 
+
+In topology, we have paths, and homotopies between paths. Indeed, we can construct homotopies between homotopies, and so on. This is the root of the concept of an infinity category. 
+
+And much of the topological information we wish to incorporate above is easiest done with simplices, leading the formalism of infinity categories to be built on the backbone of the rich combinatorial structure of simplical sets. Let's start with an easy example of the partially ordered set, or poset. 
+\begin{definition}[Poset]
+  A poset $(S,\leq)$ is a set $S$ together with a relation $\leq$ such that
+  \begin{enumerate}[label=(\alph*)]
+    \item $a\leq a$ for all $a\in S$, 
+    \item if $a\leq b$ and $b\leq c$ then $a\leq c$, 
+    \item and if $a\leq b$ and $b\leq a$ then $a=b$. 
+  \end{enumerate}
+\end{definition}
+A poset can be seen as a category whose objects are the elements of $S$ and $$\Mor_{S}(a,b)=\begin{cases}\emptyset & a\nleq b \\ * & a\leq b.\end{cases}$$ Indeed, one can show that any category with at most one morphism between any two objects is a poset under the relation induced by the morphisms. We can now introduce simplical sets. 
+\begin{definition}[Simplices]
+  The category of simplices $\DDelta$ has objects finite totally ordered sets $[n]=\{0,1,2,\dots,n\}$ and morphisms order-preserving maps. 
+\end{definition}
+There is a functor $\DDelta\to\Top$ taking $[n]$ to $|\Delta^{n}|$ the standard $n$-simplex, the convex hull of $\{e_{0},\dots,e_{n}\}$ in $\RR^{n+1}$ and taking a morphism $[n]\to[m]$ to linear-maps $e_{i}\mapsto e_{f(i)}$. Such maps $f:[n]\to[m]$ are determined by their (finite) images $0\leq f(1)\leq f(2)\leq\dots\leq f(n)\leq m$ which we will write as $\langle f(1), \dots, f(n)\rangle$. 
+
+\begin{example}
+  There are maps $\langle i, i+1\rangle:[1]\to[n]$ for $0\leq i\leq n-1$.  
+  $$\begin{tikzcd}
+    && 2 \\
+    \\
+    & 0 && 1 \\
+    \\
+    1 & 2
+    \arrow[from=3-2, to=1-3]
+    \arrow[""{name=0, anchor=center, inner sep=0}, from=3-4, to=1-3]
+    \arrow[from=3-2, to=3-4]
+    \arrow[""{name=1, anchor=center, inner sep=0}, from=5-1, to=5-2]
+    \arrow[curve={height=-6pt}, shorten <=9pt, shorten >=9pt, rightarrow, from=1, to=0]
+  \end{tikzcd}$$
+  The above demonstrates the map $\langle1,2\rangle:[1]\to[2]$. 
+\end{example}
+
+Let $X$ be an arbitrary topological space. We can get a contravariant functor $\DDelta\to\Sets$ by taking $[n]\to\Mor_{\Top}(|\Delta^{n}|,X)$. We denote this functor $\Sing X:\DDelta\to\Sets$. This allows us to define simplical sets. 
+\begin{definition}[Simplicial Sets]
+  The category of simplicial sets $\SSets$ is the functor category whose objects are contravariant functors $\DDelta\to\Sets$ and morphisms natural transformations between such functors. 
+\end{definition}
+
+Let us switch directions for a moment and consider nerves of categories. We have already seen how a poset can be made into a category. Analogously, a totally ordered set can be made into a category in a similar way, yielding a functor $\DDelta\to\Cat$, the category whose objects are categories and whose morphisms are functors. Nerves help us understand how simplices live within categories. 
+\begin{definition}[Nerve]
+  Let $\Csf$ be a category. The nerve of $\Csf$ is the simplicial set $N\Csf$ so that 
+  $$(N\Csf)_{n}=\Fun([n],\Csf)$$
+  the set of functors from $[n]$ to $\Csf$ such that the simplical operators $f:[n]\to[m]$ act by pre-composition where $a\mapsto a\circ f$ for $a:[n]\to\Csf$ in $(N\Csf)_{n}$. 
+\end{definition}
+We can make this more concrete with a few examples. 
+\begin{example}
+  $(N\Csf)_{0}$ is the simplicial set of maps from the point to $\Csf$ and hence corresponds to the objects of $\Csf$, $\Obj(\Csf)$. 
+  \\\\
+  $(N\Csf)_{1}$ is the simplicial set of maps from $0\to 1$ to $\Csf$ and hence corresponds to the morphisms of $\Csf$. 
+  \\\\
+  $(N\Csf)_{2}$ is the simplicial set of maps 
+  $$\begin{tikzcd}
+    0 && 1 \\
+    && 2
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=1-1, to=2-3]
+  \end{tikzcd}$$
+  to $\Csf$, that is, to pairs of composable morphisms in $\Csf$. 
+  \\\\
+  More generally $(N\Csf)_{n}$ is the set of composable $n$-tuples of morphisms in $\Csf$. 
+\end{example}
+\begin{theorem}
+  A simplicial set $X$ is isomorphic to the nerve of some category $\Csf$ if and only if for all $n\geq2$, the map 
+  $$X_{n}\to \underbrace{X_{1}\times_{X_{0}}X_{1}\times_{X_{0}}\times_{X_{0}}\dots\times_{X_{0}}X_{1}}_{n\text{ times}}$$
+  by
+  $$g\mapsto (\langle0,1\rangle^{*}g, \langle1,2\rangle^{*}g,\dots,\langle n-1,n\rangle^{*}g)$$
+  is an isomorphism. 
+\end{theorem}
+This proof follows that in \cite[Proposition 1.4.8]{Rezk}.
+\begin{proof}
+  $(\Longrightarrow)$ Suppose $X=N\Csf$ for some category $\Csf$. A tuple of $n$ composable morphisms in $\Csf$ is precisely the datum of the $n$-nerve $(N\Csf)_{n}$. 
+  \\\\
+  $(\Longleftarrow)$ Suppose $X$ is a simplicial set such that the function above is a bijection. We construct the category $\Csf$ whose objects $\Obj(\Csf)=X_{0}$ and whose morphisms are $X_{1}$. For $g\in X_{1}$, we have two functors $X_{1}\to X_{0}$ taking $g\mapsto\langle0\rangle^{*}g$ its source object and $g\to\langle1\rangle^{*}g$ its target object. Since $0\to0$ is a morphism in $|\DDelta^{1}|$, we trivially have identity morphisms on each object. Moreover, given a morphism $f\in X_{1}$, we can recover its source object $\langle0\rangle^{*}f$ and its target object $\langle1\rangle^{*}f$. And for any $(g,h)\in X_{1}\times_{X_{0}}X_{1}$, the composite $h\circ g\in X_{2}$ is the unique morphism where $\langle0,1\rangle^{*}(g\circ h)=h$ and $\langle 1,2\rangle^{*}(g\circ h)=g$ where uniqueness follows from bijectivity. We now claim that for any $g\in X_{n}$ and $0\leq i\leq j\leq k\leq n$ we have $\langle i,k\rangle^{*}g=\langle j,k\rangle^{*}g\circ\langle j,i\rangle^{*}g$ where each of $\langle i,k\rangle^{*}g,\langle j,k\rangle^{*}g,\langle j,i\rangle^{*}g\in X_{1}$ as images of maps $[1]\to[n]$. Indeed any element of $X_{2}$ decomposes in this way. We can thus define maps $X_{n}\to (N\Csf)_{n}$ by sending $g\in X_{n}$ to $[n]\to\Csf$ by $g\mapsto g$ and $(i\to j)\mapsto \langle j, i\rangle^{*}g$ which is a functor by the above. We can verify these maps are bijections since $((i-1)\to i)\mapsto\langle i, i-1\rangle^{*}g$. Furthermore, if $f:[m]\to [n]$ is a map of simplices, we compute
+  $$\langle j,i\rangle^{*}(g\circ f) = \langle f(j), f(i)\rangle^{*}g$$
+  giving an isomorphism $X\to N\Csf$ of simplical sets. 
+\end{proof}
+We now discuss the further significance of $\Sing X$. To do this, we first have to discuss horns and Kan complexes. Horns are subcomplexes of standard simplicies. 
+\begin{definition}[Horn]
+  For each $n\geq1$, there are subcomplexes $\Lambda_{j}^{n}\subseteq\Delta^{n}$ for each $0\leq j\leq n$ defined by 
+  $$(\Lambda_{j}^{n})_{k}=\{f:[k]\to[n]|([n]\setminus[j])\not\subseteq f([k])\}.$$
+\end{definition}
+Morally, we should think of a horn $\Lambda^{n}_{j}$ is the union of faces of the $n$ simplex other than the $j$th. 
+\begin{example}[1-Horns]
+  The horns in $\Delta^{1}$ are the vertices $\Lambda^{1}_{0}=\{0\}, \Lambda^{1}_{1}=\{1\}$. 
+\end{example}
+\begin{example}[2-Horns]
+  There are three horns in the 2-simplex. 
+  $$% https://q.uiver.app/#q=WzAsMTMsWzAsMiwiMCJdLFsxLDAsIjIiXSxbMiwyLCIxIl0sWzQsMiwiMCJdLFs2LDBdLFs1LDAsIjIiXSxbNiwyLCIxIl0sWzgsMiwiMCJdLFsxMCwyLCIxIl0sWzksMCwiMiJdLFs5LDMsIlxcTGFtYmRhXnsyfV97Mn0iXSxbNSwzLCJcXExhbWJkYV57Mn1fezF9Il0sWzEsMywiXFxMYW1iZGFeezJ9X3swfSJdLFswLDFdLFswLDJdLFszLDZdLFs2LDVdLFs3LDldLFs4LDldXQ==
+  \begin{tikzcd}
+    & 2 &&&& 2 & {} &&& 2 \\
+    \\
+    0 && 1 && 0 && 1 && 0 && 1 \\
+    & {\Lambda^{2}_{0}} &&&& {\Lambda^{2}_{1}} &&&& {\Lambda^{2}_{2}}
+    \arrow[from=3-1, to=1-2]
+    \arrow[from=3-1, to=3-3]
+    \arrow[from=3-5, to=3-7]
+    \arrow[from=3-7, to=1-6]
+    \arrow[from=3-9, to=1-10]
+    \arrow[from=3-11, to=1-10]
+  \end{tikzcd}$$
+\end{example}
+We can now define Kan complexes. 
+\begin{definition}[Kan Complex]\label{def: kan complex}
+  A simplicial set is a Kan complex if for all $k,n$ the solid diagram
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzIsMCwiWCJdLFswLDEsInxcXERlbHRhXntufXwiXSxbMSwwXSxbMCwxXSxbMiwxLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+  \begin{tikzcd}
+    {\Lambda^{n}_{k}} & {} & X \\
+    {\Delta^{n}}
+    \arrow[from=1-1, to=1-3]
+    \arrow[dashed, from=2-1, to=1-3]
+    \arrow[hook, from=1-1, to=2-1]
+  \end{tikzcd}$$
+  admits a dotted map making the diagram commute. 
+\end{definition}
+A theorem of Kan states the following:
+\begin{theorem}[Kan]
+  $\Sing X$ is a Kan complex. 
+\end{theorem}
+This eventually led to the definition of quasicategories. 
+\begin{definition}[Quasicategory; Boardman-Vogt, Joyal, Lurie]\label{def:quasicategory}
+  A simplicial set is a quasicategory if every solid diagram of an inner horn inclusion
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzIsMCwiWCJdLFswLDEsInxcXERlbHRhXntufXwiXSxbMSwwXSxbMCwxXSxbMiwxLCJcXGV4aXN0cyEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+  \begin{tikzcd}
+    {\Lambda^{n}_{k}} & {} & X \\
+    {\Delta^{n}}
+    \arrow[from=1-1, to=1-3]
+    \arrow["{\exists!}"', dashed, from=2-1, to=1-3]
+    \arrow[hook, from=1-1, to=2-1]
+  \end{tikzcd}$$
+  for $0<k<n$ admits a dotted map making the diagram commute. 
+\end{definition}
+We will revisit these ideas in the following lecture.  

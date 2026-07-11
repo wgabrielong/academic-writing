@@ -1,0 +1,226 @@
+\section{Lecture 13 -- 30th October 2023}
+One of the most interesting facts in category theory is the Yoneda lemma, \Cref{lem:yoneda}, stating that for a category $\Csf$ there is a fully faithful functor $\Csf\to\Sets^{\Csf^{\Opp}}$ by $A\mapsto\Mor_{\Csf}(-,A)$ for $A\in X_{0}$. We seek a quasicategorical analogue. For $X$ a quasicateogry, we can define a functor $X\to \Sets^{X^{\Opp}}$ by $A\mapsto\Mor_{X}(-,A)$ for $A\in X_{0}$. This is problematic, as we are mapping a quasicateory into Kan complexes. We seek to solve this problem via Cartesian fibrations. 
+\\\\
+Recall from algebraic topology the following theorem relating the fundamental group of a base space and covering spaces of the base space. 
+\begin{theorem}
+    Let $X$ be a locally simply connected pointed topological space. There is a bijective correspondence between covering spaces of $X$ and sets with an action of $\pi_{1}(X,x)$. 
+\end{theorem}
+Let us think about this theorem through a categorical lens. Recall from \Cref{ex: fundamental groupoid} that the fundamental groupoid of $X$, $\Pi_{\leq 1}X$ whose objects are points on $X$ and whose morphisms are homotopy classes of paths between these points. If $\widetilde{X}$ is a covering space of $X$, uniqueness of path lifting tells us that we have a lift $\widetilde{\gamma}$ of $\gamma$ 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHswXFx9Il0sWzAsMSwiWzAsMV0iXSxbMiwxLCJYIl0sWzIsMCwiXFx3aWRldGlsZGV7WH0iXSxbMSwyLCJcXGdhbW1hIiwyXSxbMywyLCJwIl0sWzAsMSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwzLCJcXHdpZGV0aWxkZXthfSJdLFsxLDMsIlxcd2lkZXRpbGRle1xcZ2FtbWF9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\begin{tikzcd}
+	{\{0\}} && {\widetilde{X}} \\
+	{[0,1]} && X
+	\arrow["\gamma"', from=2-1, to=2-3]
+	\arrow["p", from=1-3, to=2-3]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow["{\widetilde{a}}", from=1-1, to=1-3]
+	\arrow["{\widetilde{\gamma}}"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+such that $\gamma_{*}(\widetilde{a})=\widetilde{\gamma}(1)$ from which we construct a functor $\Pi_{\leq1}X\to\Sets$ by $c_{a}\mapsto p^{-1}(a)$ denoting the constant path at $a$ by $c_{a}$. Conversely, let $\widetilde{X}=\{(x,a):x\in X, a\in T(x)\}$ for $T:\Pi_{\leq 1}X\to\Sets$. We get an equivalence of categories from the category of covering spaces $\mathrm{Cov}(X)$ to $\Sets^{\Pi_{\leq 1}X}$. Suppose we can realize $X$ as a pushout 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJVXFxjYXAgViJdLFsyLDAsIlUiXSxbMCwxLCJWIl0sWzIsMSwiWCJdLFswLDFdLFsxLDNdLFswLDJdLFsyLDNdXQ==
+\begin{tikzcd}
+	{U\cap V} && U \\
+	V && X
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+we have a pushout of covers 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHdpZGV0aWxkZXtVfVxcY2FwXFx3aWRldGlsZGV7Vn0iXSxbMiwwLCJcXHdpZGV0aWxkZXtVfSJdLFswLDEsIlxcd2lkZXRpbGRle1Z9Il0sWzIsMSwiXFx3aWRldGlsZGV7WH0iXSxbMCwxXSxbMSwzXSxbMCwyXSxbMiwzXV0=
+\begin{tikzcd}
+	{\widetilde{U}\cap\widetilde{V}} && {\widetilde{U}} \\
+	{\widetilde{V}} && {\widetilde{X}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+whence we recover $\mathrm{Cov}(X)$ as the pullback 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhybXtDb3Z9KFgpIl0sWzAsMSwiXFxtYXRocm17Q292fShVKSJdLFsyLDAsIlxcbWF0aHJte0Nvdn0oVikiXSxbMiwxLCJcXG1hdGhybXtDb3Z9KFVcXGNhcCBWKSJdLFswLDJdLFsyLDNdLFswLDFdLFsxLDNdXQ==
+\begin{tikzcd}
+	{\mathrm{Cov}(X)} && {\mathrm{Cov}(V)} \\
+	{\mathrm{Cov}(U)} && {\mathrm{Cov}(U\cap V)}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+so in the category of groupoids, $\mathsf{Grpd}$ we have a pushout 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXFBpX3tcXGxlcTF9VVxcY2FwIFYiXSxbMCwxLCJcXFBpX3tcXGxlcTF9ViJdLFsyLDAsIlxcUGlfe1xcbGVxMX1VIl0sWzIsMSwiXFxQaV97XFxsZXExfVgiXSxbMCwyXSxbMiwzXSxbMCwxXSxbMSwzXV0=
+\begin{tikzcd}
+	{\Pi_{\leq1}U\cap V} && {\Pi_{\leq1}U} \\
+	{\Pi_{\leq1}V} && {\Pi_{\leq1}X}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+as desired. 
+\\\\
+This is a special case of a more general notion, where we can try to develop a notion of covering spaces for categories. 
+\begin{definition}
+    Let $T:\Csf\to\Sets$ be a functor. Let $\widetilde{\Csf}$ be the category whose objects are pairs $(A,t)$ with $t\in T(A)$ and morphisms $\widetilde{f}:(A,t)\to(A',t')$ with $(f:A\to A')\in\Mor_{\Csf}(A,A')$ such that $T(\widetilde{f}):T(A)\to T(A')$ satisfying $T(\widetilde{f})(t)=t'$. 
+\end{definition}
+There is a natural forgetful map $\widetilde{\Csf}\to\Csf$ by $(x,t)\mapsto x$. A natural question arises: for a functor $\Dsf\to\Csf$, when is $\Dsf=\widetilde{\Csf}$ for some $T:\Csf\to\Sets$? This will eventually lead to a discussion of Grothendieck fibrations and a discussion of functoriality of pullbacks. 
+\begin{example}
+    Let $E\to B$ be a fibration in the category of topological spaces $\Top$. We get a functor of spaces over $B$ to spaces, $\Top_{(-/B)}\to\Top$ by pulling back. For $X\to B$ another morphism, we consider the pullback 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXFx0aW1lc197Qn1YIl0sWzAsMSwiWCJdLFsyLDAsIkUiXSxbMiwxLCJCIl0sWzAsMl0sWzIsM10sWzEsM10sWzAsMV1d
+    \begin{tikzcd}
+        {E\times_{B}X} && E \\
+        X && B
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=1-1, to=2-1]
+    \end{tikzcd}$$
+    $E\times_{B}X\to X$. 
+\end{example}
+\begin{definition}[Cartesian Morphism]\label{def: Cartesian Fibration}
+	Let $P:\Csf\to\Dsf$ be a functor. A morphism $f:A\to B$ in $\Csf$ is Cartesian if for every $A'\in\Obj(\Csf)$, a map $g:A'\to B$, and a map $\overline{h}:P(A')\to P(A)$, such that the diagram in $\Dsf$
+	$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJQKEEnKSJdLFsyLDEsIlAoQikiXSxbMCwxLCJQKEEpIl0sWzAsMiwiXFxvdmVybGluZXtofSIsMl0sWzIsMSwiUChmKSIsMl0sWzAsMSwiUChnKSJdXQ==
+	\begin{tikzcd}
+		{P(A')} \\
+		{P(A)} && {P(B)}
+		\arrow["{\overline{h}}"', from=1-1, to=2-1]
+		\arrow["{P(f)}"', from=2-1, to=2-3]
+		\arrow["{P(g)}", from=1-1, to=2-3]
+	\end{tikzcd}$$
+	commutes, there is a unique map $h:A'\to A$ such that the diagram in $\Csf$
+	$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBJyJdLFswLDEsIkEiXSxbMiwxLCJCIl0sWzAsMiwiZyJdLFsxLDIsImYiLDJdLFswLDEsIlxcZXhpc3RzISBoIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+	\begin{tikzcd}
+		{A'} \\
+		A && B
+		\arrow["g", from=1-1, to=2-3]
+		\arrow["f"', from=2-1, to=2-3]
+		\arrow["{\exists! h}"', dashed, from=1-1, to=2-1]
+	\end{tikzcd}$$
+	commutes. 
+\end{definition}
+Alternatively, we can state that $f$ is cartesian if there is a pullback square of the following form. 
+\begin{equation}\label{fig: cartesian as pullback}
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE1vcl97XFxDc2Z9KEEsQScpIl0sWzIsMCwiXFxNb3Jfe1xcQ3NmfShBLEIpIl0sWzAsMSwiXFxNb3Jfe1xcRHNmfShQKEEpLFAoQScpKSJdLFsyLDEsIlxcTW9yX3tcXERzZn0oUChBKSxQKEIpKSJdLFswLDEsImZcXGNpcmMoLSkiXSxbMiwzLCJQKGYpXFxjaXJjKC0pIiwyXSxbMSwzLCJQKC0pIl0sWzAsMiwiUCgtKSIsMl1d
+\begin{tikzcd}
+	{\Mor_{\Csf}(A,A')} && {\Mor_{\Csf}(A,B)} \\
+	{\Mor_{\Dsf}(P(A),P(A'))} && {\Mor_{\Dsf}(P(A),P(B))}
+	\arrow["{f\circ(-)}", from=1-1, to=1-3]
+	\arrow["{P(f)\circ(-)}"', from=2-1, to=2-3]
+	\arrow["{P(-)}", from=1-3, to=2-3]
+	\arrow["{P(-)}"', from=1-1, to=2-1]
+\end{tikzcd}
+\end{equation}
+This allows us to define a Grothendieck fibration. 
+\begin{definition}[Grothendieck Fibration]\label{def: Grothendieck Fibration}
+	Let $P:\Csf\to\Dsf$ be a functor. $P$ is a Grothendieck fibration if for all $(f:A\to B)\in\Mor_{\Dsf}$ and $\widetilde{B}$ such that $P(\widetilde{B})=B$, there is a Cartesian morphism $(\widetilde{f}:\widetilde{A}\to\widetilde{B})\in\Mor_{\Csf}$ such that the diagram 
+	$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHdpZGV0aWxkZXtBfSJdLFsyLDAsIlxcd2lkZXRpbGRle0J9Il0sWzAsMSwiQSJdLFsyLDEsIkIiXSxbMCwxLCJcXHdpZGV0aWxkZXtmfSJdLFsyLDMsImYiLDJdLFsxLDMsIlAiXSxbMCwyLCJQIiwyXV0=
+	\begin{tikzcd}
+		{\widetilde{A}} && {\widetilde{B}} \\
+		A && B
+		\arrow["{\widetilde{f}}", from=1-1, to=1-3]
+		\arrow["f"', from=2-1, to=2-3]
+		\arrow["P", from=1-3, to=2-3]
+		\arrow["P"', from=1-1, to=2-1]
+	\end{tikzcd}$$
+	commutes. 
+\end{definition}
+The idea here is that if $P:\Csf\to\Dsf$ is a Grothendieck fibration and $(f:A\to B)\in\Mor_{\Dsf}$, then for some choice of $\widetilde{B}\in P^{-1}(B)$ we say that $\widetilde{f}:\widetilde{A}\to\widetilde{B}$ is a Cartesian lift of $f$ to $\widetilde{B}$. 
+\\\\
+We consider the quasicategorical analogue. 
+\begin{definition}[Quasicategorical Cartesian Morphism]\label{def: quasicat cartesian morphism}
+	Let $P:X\to Y$ be an inner fibration of simplicial sets. A morphism $f\in X_{1}$ is Cartesian if for any $n\geq 2$ any lifting problem of the following form 
+	$$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXERlbHRhXntcXHtuLTEsblxcfX0iXSxbMiwwLCJcXExhbWJkYV57bn1fe259Il0sWzIsMSwiXFxEZWx0YV57bn0iXSxbNCwwLCJYIl0sWzQsMSwiWSJdLFsxLDNdLFswLDFdLFsyLDRdLFsxLDJdLFszLDQsIlAiXSxbMiwzLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDMsImYiLDAseyJjdXJ2ZSI6LTJ9XV0=
+	\begin{tikzcd}
+		{\Delta^{\{n-1,n\}}} && {\Lambda^{n}_{n}} && X \\
+		&& {\Delta^{n}} && Y
+		\arrow[from=1-3, to=1-5]
+		\arrow[from=1-1, to=1-3]
+		\arrow[from=2-3, to=2-5]
+		\arrow[from=1-3, to=2-3]
+		\arrow["P", from=1-5, to=2-5]
+		\arrow["\exists"{description}, dashed, from=2-3, to=1-5]
+		\arrow["f", curve={height=-12pt}, from=1-1, to=1-5]
+	\end{tikzcd}$$
+	admits a solution. 
+\end{definition}
+We can define coCartesian morphisms by lifting from the leading edge of a horn. 
+\begin{definition}[CoCartesian Morphism]\label{def: quasicat cocartesian morphism}
+	Let $P:X\to Y$ be an inner fibration of simplicial sets. A morphism $f\in X_{1}$ is coCartesian if for any $n\geq 2$ any lifting problem of the following form 
+	$$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXERlbHRhXntcXHswLDFcXH19Il0sWzIsMCwiXFxMYW1iZGFee259X3swfSJdLFsyLDEsIlxcRGVsdGFee259Il0sWzQsMCwiWCJdLFs0LDEsIlkiXSxbMSwzXSxbMCwxXSxbMiw0XSxbMSwyXSxbMyw0LCJQIl0sWzIsMywiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwzLCJmIiwwLHsiY3VydmUiOi0yfV1d
+	\begin{tikzcd}
+		{\Delta^{\{0,1\}}} && {\Lambda^{n}_{0}} && X \\
+		&& {\Delta^{n}} && Y
+		\arrow[from=1-3, to=1-5]
+		\arrow[from=1-1, to=1-3]
+		\arrow[from=2-3, to=2-5]
+		\arrow[from=1-3, to=2-3]
+		\arrow["P", from=1-5, to=2-5]
+		\arrow["\exists"{description}, dashed, from=2-3, to=1-5]
+		\arrow["f", curve={height=-12pt}, from=1-1, to=1-5]
+	\end{tikzcd}$$
+	admits a solution. 
+\end{definition}
+We can rephrase the (co)Cartesian condition as via slice categories in a very natural way, generalizing \Cref{fig: cartesian as pullback}. 
+\begin{theorem}
+	Let $P:X\to Y$ be an inner fibration of simplicial sets and $(f:A\to B)\in X_{1}$. $f$ is Cartesian if and only if the map $X_{(-/f)}\to X_{(-/B)}\times_{Y_{(-/p(B))}}Y_{(-/p(f))}$ is an acyclic Kan fibration. 
+\end{theorem}
+\begin{remark}
+	The map $X_{(-/f)}\to X_{(-/B)}\times_{Y_{(-/p(B))}}Y_{(-/p(f))}$ arises as the morphism from $X_{(-/f)}$ to the following pullback square:
+	$$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJYX3soLS9mKX0iXSxbMSwxLCJYX3soLS9CKX1cXHRpbWVzX3tZX3soLS9QKEIpKX19WV97KC0vUChmKSl9Il0sWzEsMiwiWV97KC0vUChmKSl9Il0sWzMsMSwiWF97KC0vQil9Il0sWzMsMiwiWV97KC0vUChCKSl9Il0sWzEsM10sWzEsMl0sWzIsNF0sWzMsNF0sWzAsMywiZl97Kn0iLDAseyJjdXJ2ZSI6LTJ9XSxbMCwyLCJQIiwyLHsiY3VydmUiOjN9XSxbMCwxLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+	\begin{tikzcd}
+		{X_{(-/f)}} \\
+		& {X_{(-/B)}\times_{Y_{(-/P(B))}}Y_{(-/P(f))}} && {X_{(-/B)}} \\
+		& {Y_{(-/P(f))}} && {Y_{(-/P(B))}}
+		\arrow[from=2-2, to=2-4]
+		\arrow[from=2-2, to=3-2]
+		\arrow[from=3-2, to=3-4]
+		\arrow[from=2-4, to=3-4]
+		\arrow["{f_{*}}", curve={height=-12pt}, from=1-1, to=2-4]
+		\arrow["P"', curve={height=18pt}, from=1-1, to=3-2]
+		\arrow["\exists"{description}, dashed, from=1-1, to=2-2]
+	\end{tikzcd}$$
+\end{remark}
+\begin{proof}
+	Let $n\geq0$ and consider a lifting problem 
+	$$% https://q.uiver.app/#q=WzAsNyxbMiwxLCJYX3soLS9CKX1cXHRpbWVzX3tZX3soLS9QKEIpKX19WV97KC0vUChmKSl9Il0sWzIsMiwiWV97KC0vUChmKSl9Il0sWzQsMSwiWF97KC0vQil9Il0sWzQsMiwiWV97KC0vUChCKSl9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMCwwLCJcXHBhcnRpYWxcXERlbHRhXntufSJdLFsyLDAsIlhfeygtL2YpfSJdLFswLDJdLFswLDFdLFsxLDNdLFsyLDNdLFs2LDBdLFs0LDBdLFs1LDZdLFs0LDYsIlxcZXhpc3RzPyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDRdXQ==
+	\begin{tikzcd}
+		{\partial\Delta^{n}} && {X_{(-/f)}} \\
+		{\Delta^{n}} && {X_{(-/B)}\times_{Y_{(-/P(B))}}Y_{(-/P(f))}} && {X_{(-/B)}} \\
+		&& {Y_{(-/P(f))}} && {Y_{(-/P(B))}}
+		\arrow[from=2-3, to=2-5]
+		\arrow[from=2-3, to=3-3]
+		\arrow[from=3-3, to=3-5]
+		\arrow[from=2-5, to=3-5]
+		\arrow[from=1-3, to=2-3]
+		\arrow[from=2-1, to=2-3]
+		\arrow[from=1-1, to=1-3]
+		\arrow["{\exists?}"{description}, dashed, from=2-1, to=1-3]
+		\arrow[from=1-1, to=2-1]
+	\end{tikzcd}$$
+	which is equivalent to the solution to the following lifting problem 
+	$$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXERlbHRhXnsxfVxcc3RhclxcZW1wdHlzZXQiXSxbMiwwLCJcXERlbHRhXnswfVxcc3RhclxcRGVsdGFee259XFxjb3Byb2Rfe1xccGFydGlhbFxcRGVsdGFee259XFxzdGFyXFxEZWx0YV57MH19XFxwYXJ0aWFsXFxEZWx0YV57bn1cXHN0YXJcXERlbHRhXnsxfSJdLFs0LDAsIlgiXSxbNCwxLCJZIl0sWzIsMSwiXFxEZWx0YV57MX1cXHN0YXJcXERlbHRhXntufSJdLFsyLDMsIlAiXSxbNCwzXSxbMSwyXSxbMSw0XSxbMCwxXSxbMCwyLCJmIiwwLHsiY3VydmUiOi0zfV0sWzQsMiwiXFxleGlzdHM/IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+	\begin{tikzcd}
+		{\Delta^{1}\star\emptyset} && {\Delta^{0}\star\Delta^{n}\coprod_{\partial\Delta^{n}\star\Delta^{0}}\partial\Delta^{n}\star\Delta^{1}} && X \\
+		&& {\Delta^{1}\star\Delta^{n}} && Y
+		\arrow["P", from=1-5, to=2-5]
+		\arrow[from=2-3, to=2-5]
+		\arrow[from=1-3, to=1-5]
+		\arrow[from=1-3, to=2-3]
+		\arrow[from=1-1, to=1-3]
+		\arrow["f", curve={height=-18pt}, from=1-1, to=1-5]
+		\arrow["{\exists?}"{description}, dashed, from=2-3, to=1-5]
+	\end{tikzcd}$$
+	but this is precisely the condition of lifting against an outer horn 
+	$$% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXERlbHRhXntcXHtuKzEsbisyXFx9fSJdLFsyLDAsIlxcTGFtYmRhXntuKzJ9X3tuKzJ9Il0sWzIsMSwiXFxEZWx0YV57bisyfSJdLFs1LDBdLFs0LDAsIlgiXSxbNCwxLCJZIl0sWzAsMV0sWzEsNF0sWzQsNV0sWzEsMl0sWzIsNV0sWzIsNCwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCw0LCJmIiwwLHsiY3VydmUiOi0zfV1d
+	\begin{tikzcd}
+		{\Delta^{\{n+1,n+2\}}} && {\Lambda^{n+2}_{n+2}} && X & {} \\
+		&& {\Delta^{n+2}} && Y
+		\arrow[from=1-1, to=1-3]
+		\arrow[from=1-3, to=1-5]
+		\arrow[from=1-5, to=2-5]
+		\arrow[from=1-3, to=2-3]
+		\arrow[from=2-3, to=2-5]
+		\arrow["\exists"{description}, dashed, from=2-3, to=1-5]
+		\arrow["f", curve={height=-18pt}, from=1-1, to=1-5]
+	\end{tikzcd}$$
+	which has a solution if and only if $f$ is Cartesian per \Cref{def: quasicat cartesian morphism}. 
+\end{proof}

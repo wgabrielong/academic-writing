@@ -1,0 +1,142 @@
+\section{Lecture 7 -- 4th October 2023}
+Today we will prove the theorem of Joyal, \Cref{thm: Joyal on functor category of quasicategory and simplicial set} via reduction to a technical combinatorial result not salient to the exposition of quasicategories. Recalling the statement, we have the following:
+\begin{theorem}[Joyal; =\Cref{thm: Joyal on functor category of quasicategory and simplicial set}]
+  If $X$ is a quasicategory and $A$ a simplical set, the functor category $\Fun(A,X)=X^{A}$ is a quasicategory. 
+\end{theorem}
+Recalling the discussion following \Cref{ex: weak sat of inner horns are inner anodyne}, we want to show that given the diagram 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV57bn1fe2t9XFx0aW1lcyBJIl0sWzAsMSwiXFxEZWx0YV57bn1cXHRpbWVzIEkiXSxbMiwwLCJYIl0sWzAsMl0sWzAsMV0sWzEsMiwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\begin{tikzcd}
+	{\Lambda^{n}_{k}\times I} && X \\
+	{\Delta^{n}\times I}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+the map $\Lambda^{n}_{k}\times I\to\Delta^{n}\times I$ is inner anodyne. Let us consider some small examples. 
+\begin{example}
+  Let $I=\{*\}=\Delta^{0}$. The diagram above reduces to 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwwLCJYIl0sWzAsMl0sWzAsMV0sWzEsMiwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+  \begin{tikzcd}
+    {\Lambda^{n}_{k}} && X \\
+    {\Delta^{n}}
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+  \end{tikzcd}$$
+  where the dotted map exists since $X$ is a quasicategory. 
+\end{example}
+\begin{example}\label{ex: lifting to boundary of one simplex}
+  Let $I=\partial\Delta^{1}$ the category with two objects and only identity morphisms. We have the diagram 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV57bn1fe2t9XFxjb3Byb2RcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn1cXGNvcHJvZFxcRGVsdGFee259Il0sWzIsMCwiWCJdLFswLDJdLFswLDFdLFsxLDIsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    {\Lambda^{n}_{k}\coprod\Lambda^{n}_{k}} && X \\
+    {\Delta^{n}\coprod\Delta^{n}}
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+  \end{tikzcd}$$
+  by lifting one at a time. 
+\end{example}
+How do we generalize \Cref{ex: lifting to boundary of one simplex} to $\Delta^{1}$ with the addition of the data of the morphism? We have the diagram 
+$$% https://q.uiver.app/#q=WzAsNCxbMiwwLCJYXntcXERlbHRhXnsxfX0iXSxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwxLCJYXntcXHBhcnRpYWxcXERlbHRhXnsxfX0iXSxbMSwwXSxbMiwzXSxbMCwzXSxbMSwyXSxbMiwwLCI/IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\begin{tikzcd}
+	{\Lambda^{n}_{k}} && {X^{\Delta^{1}}} \\
+	{\Delta^{n}} && {X^{\partial\Delta^{1}}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{?}"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+where the map $\Delta^{n}\to X^{\partial\Delta^{1}}$ is given by \Cref{ex: lifting to boundary of one simplex}. We have to incorporate the data of the morphism by building $\Delta^{1}$ from $\partial\Delta^{1}=\Delta^{0}\coprod\Delta^{0}$. More generally, given $J\subseteq I$ for $I,J\in\Obj(\SSets)$ and $X^{J}$ a quasicategory, we want to construct a quasicategory $X^{I}$ from $X^{J}$. That is, finding a dotted morphism making the following diagram commute. 
+$$% https://q.uiver.app/#q=WzAsNCxbMiwwLCJYXntJfSJdLFswLDAsIlxcTGFtYmRhXntufV97a30iXSxbMCwxLCJcXERlbHRhXntufSJdLFsyLDEsIlhee0p9Il0sWzEsMF0sWzIsM10sWzAsM10sWzEsMl0sWzIsMCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\begin{tikzcd}
+	{\Lambda^{n}_{k}} && {X^{I}} \\
+	{\Delta^{n}} && {X^{J}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+We begin with some prerequisites for the proof.  
+\begin{definition}[Product-Pushout Map]\label{def: product pushout map}
+  Let $f:A\to B, g:X\to Y$ be morphisms. There is a product pushout morphism $f\square g$ from the pushout of 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXFx0aW1lcyBBIl0sWzIsMCwiWVxcdGltZXMgQSJdLFswLDEsIlhcXHRpbWVzIEIiXSxbMCwyLCJcXGlkX3tYfVxcdGltZXMgZiIsMl0sWzAsMSwiZ1xcdGltZXNcXGlkX3tBfSJdXQ==
+  \begin{tikzcd}
+    {X\times A} && {Y\times A} \\
+    {X\times B}
+    \arrow["{\id_{X}\times f}"', from=1-1, to=2-1]
+    \arrow["{g\times\id_{A}}", from=1-1, to=1-3]
+  \end{tikzcd}$$
+  to $Y\times B$. 
+\end{definition}
+\begin{remark}
+  The map from the pushout to $Y\times B$ is unique by the universal property of the pushout. 
+\end{remark}
+%We now show the following proposition. 
+%\begin{proposition}
+%  Let $\Csf$ be a category and $f:A\to B,g:X\to Y$ morphisms of simplicial sets. There is a bijective correspondence between natural transformations $\Csf^{f}=$
+%\end{proposition}
+Let $I$ be a simplicial set. How do we build $I$ out of smaller simplicial sets. To describe this process, we first need to explain some notation. Suppose $X$ is a simplicial set and $X_{n}=\Fun([n],X)$. We can write $X_{n}$ as a disjoint union $X_{n}^{\mathrm{nd}}\sqcup X_{n}^{\mathrm{d}}$ a disjoint union of the non-degenerate and degenerate simplices. We likely have an intuitive understanding of what these are, but we first give an example before stating the formal definition. 
+\begin{example}
+  The 2-simplex $\langle0,1,2\rangle$ is nondegenerate. 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwxLCIwIl0sWzIsMSwiMSJdLFsxLDAsIjIiXSxbMCwxXSxbMSwyXSxbMCwyXV0=
+  \begin{tikzcd}
+    & 2 \\
+    0 && 1
+    \arrow[from=2-1, to=2-3]
+    \arrow[from=2-3, to=1-2]
+    \arrow[from=2-1, to=1-2]
+  \end{tikzcd}$$
+\end{example}
+\begin{example}
+  The 2-simplices $\langle0,0,1\rangle$ (left) and $\langle0,0,2\rangle$ (right) are degenerate. 
+  $$% https://q.uiver.app/#q=WzAsNixbMCwxLCIwIl0sWzIsMSwiMSJdLFsxLDAsIjIiXSxbNCwxLCIwIl0sWzYsMSwiMSJdLFs1LDAsIjIiXSxbMCwxXSxbMyw1XV0=
+  \begin{tikzcd}
+    & 2 &&&& 2 \\
+    0 && 1 && 0 && 1
+    \arrow[from=2-1, to=2-3]
+    \arrow[from=2-5, to=1-6]
+  \end{tikzcd}$$
+\end{example}
+This leads us to the definition of degenerate simplices. Nondegenerate simplices will simply be those that do not satisfy the definition below. 
+\begin{definition}[Degenerate Simplices]
+  Let $X$ be a simplicial set. A simplex $x\in X_{n}$ is degenerate if there is a surjective map $p:[n]\to [k]$ for $k<n$ and $x'\in X_{k}$ such that $x=x'\circ p$. 
+\end{definition}
+\begin{remark}
+  The definition above means that a simplex is degenerate if is the image the composition of a collection of degeneracy maps, or equivalently that it factors through a simplex of strictly lower degree. 
+\end{remark}
+Suppose $X$ is a simplicial set and $X'\subseteq X$ a simplicial subset. How can we ``fill in'' $X'$ such that it gets closer to $X$? Let $x\in X$ be a minimal non-degenerate simplex not in $X'$ so if $x$ is a $n$-simplex -- that is $X_{k}'\to X_{k}$ is an isomorphism of simplicial sets for $k<n$. Let $X''$ be the smallest simplicial set of $X$ containing $X'$ and $x$. Recall that $x$ is a functor $x:\Delta^{n}\to X$ and $\partial\Delta^{n}$ the union of $\Delta^{n-1}$s constituting the facets of $\Delta^{n}$. We thus have a diagram of the following form. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXERlbHRhXntufSJdLFsyLDAsIlgiXSxbMCwxLCJcXHBhcnRpYWxcXERlbHRhXntufSJdLFsyLDEsIlgnIl0sWzIsM10sWzMsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxXSxbMCwyXV0=
+\begin{tikzcd}
+	{\Delta^{n}} && X \\
+	{\partial\Delta^{n}} && {X'}
+	\arrow[from=2-1, to=2-3]
+	\arrow[hook, from=2-3, to=1-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+\end{tikzcd}$$
+There is an obvious inclusion map $\partial\Delta^{n}\to\Delta^{n}$ from which we construct the following diagram
+\begin{equation}\label{diagram: product pushout of boundary map}
+  % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHBhcnRpYWxcXERlbHRhXntufSJdLFsyLDAsIlxcRGVsdGFee259Il0sWzAsMSwiWCciXSxbMiwxLCJYJ1xcY29wcm9kX3tcXHBhcnRpYWxcXERlbHRhXntufX1cXERlbHRhXntufSJdLFs0LDIsIlgnJyJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMl0sWzIsM10sWzEsM10sWzEsNCwiIiwwLHsiY3VydmUiOi0yfV0sWzIsNCwiIiwwLHsiY3VydmUiOjJ9XSxbMyw0LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\begin{tikzcd}
+	{\partial\Delta^{n}} && {\Delta^{n}} \\
+	{X'} && {X'\coprod_{\partial\Delta^{n}}\Delta^{n}} \\
+	&&&& {X''}
+	\arrow[hook, from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[curve={height=-12pt}, from=1-3, to=3-5]
+	\arrow[curve={height=12pt}, from=2-1, to=3-5]
+	\arrow["\exists"{description}, dashed, from=2-3, to=3-5]
+\end{tikzcd}
+\end{equation}
+where the dotted morphism is the product-pushout map from \Cref{def: product pushout map}. 
+\begin{proposition}
+  The map of simplicial sets $X'\coprod_{\partial\Delta^{n}}\Delta^{n}\to X''$ in (\ref{diagram: product pushout of boundary map}) is an isomorphism. 
+\end{proposition}
+\begin{proof}
+  
+\end{proof}

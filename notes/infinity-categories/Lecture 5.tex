@@ -1,0 +1,302 @@
+\section{Lecture 5 -- 20th September 2023}
+We want to define adjoints, initial and final objects, and analogous constructions from ordinary category theory in the setting of quasicategories. Unfortunately, technical stuff gets in the way. Let's try and wade through this today. 
+\\\\
+Let $I$ be a directed graph and let $\Csf^{I}=\Fun(I,\Csf)$ be the category whose objects are functors $I\to\Csf$ and whose morphisms are natural transformations between such functors. We will now see how $\Fun(I,\Csf)$ is naturally isomorphic to $\Mor_{\SSets}(NI,N\Csf)$. 
+\begin{proposition}
+  There exists a natural isomorphism $\Fun(I,\Csf)\to\Mor_{\SSets}(NI,N\Csf)$. 
+\end{proposition}
+\begin{proof}
+  This is \cite[\href{https://kerodon.net/tag/002Z}{002Z}]{kerodon}. 
+\end{proof}
+We now define products. 
+\begin{definition}[Products of Categories]
+  Let $\Csf,\Dsf$ be categories. The product $\Csf\times\Dsf$ is final among categories with functors to both $\Csf$ and $\Dsf$, that is for the solid diagram 
+  $$% https://q.uiver.app/#q=WzAsNCxbMSwxLCJcXENzZlxcdGltZXNcXERzZiJdLFsxLDIsIlxcRHNmIl0sWzMsMSwiXFxDc2YiXSxbMCwwLCJcXEVzZiJdLFszLDEsIiIsMCx7ImN1cnZlIjoyfV0sWzMsMiwiIiwyLHsiY3VydmUiOi0yfV0sWzAsMiwiXFxwcl97XFxDc2Z9Il0sWzAsMSwiXFxwcl97XFxEc2Z9IiwyXSxbMywwLCJcXGV4aXN0cyAhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    \Esf \\
+    & \Csf\times\Dsf && \Csf \\
+    & \Dsf
+    \arrow[curve={height=12pt}, from=1-1, to=3-2]
+    \arrow[curve={height=-12pt}, from=1-1, to=2-4]
+    \arrow["{\pr_{\Csf}}", from=2-2, to=2-4]
+    \arrow["{\pr_{\Dsf}}"', from=2-2, to=3-2]
+    \arrow["{\exists !}"{description}, dashed, from=1-1, to=2-2]
+  \end{tikzcd}$$
+  there is a unique dotted functor making the diagram commute. 
+\end{definition}
+Analogously for simplicial sets, we have the following definition. 
+\begin{definition}[Products of Simplicial Sets]
+  Let $X,Y$ be simplicial sets. The product $X\times Y$ is final among simplicial sets with simplicial set morphisms to $X$ and to $Y$, that is for the solid diagram, 
+  $$% https://q.uiver.app/#q=WzAsNCxbMSwxLCJYXFx0aW1lcyBZIl0sWzEsMiwiWSJdLFszLDEsIlgiXSxbMCwwLCJaIl0sWzMsMSwiIiwwLHsiY3VydmUiOjJ9XSxbMywyLCIiLDIseyJjdXJ2ZSI6LTJ9XSxbMCwyLCJcXHByX3tYfSJdLFswLDEsIlxccHJfe1l9IiwyXSxbMywwLCJcXGV4aXN0cyAhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    Z \\
+    & {X\times Y} && X \\
+    & Y
+    \arrow[curve={height=12pt}, from=1-1, to=3-2]
+    \arrow[curve={height=-12pt}, from=1-1, to=2-4]
+    \arrow["{\pr_{X}}", from=2-2, to=2-4]
+    \arrow["{\pr_{Y}}"', from=2-2, to=3-2]
+    \arrow["{\exists !}"{description}, dashed, from=1-1, to=2-2]
+  \end{tikzcd}$$
+  there is a unique simplicial set morphism making the diagram commute. 
+\end{definition}
+This is equivalent to the universal property that for all simplicial sets $Z$, $\Mor_{\SSets}(Z,X\times Y)=\Mor_{\SSets}(Z,X)\times\Mor_{\SSets}(Z,Y)$. We can thus compute the $n$-simplices of a the product of simplicial sets by 
+\begin{align*}
+  (X\times Y)_{n} &= \Mor_{\SSets}(\Delta^{n},X\times Y)  \\
+  &= \Mor_{\SSets}(\Delta^{n},X)\times\Mor_{\SSets}(\Delta^{n},Y) && \text{by universal property} \\
+  &= X_{n}\times Y_{n}. 
+\end{align*}
+\begin{example}
+  The simplicial set $\Delta^{1}\times\Delta^{1}$ is a triangulated square. 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCIoMCwxKSJdLFsyLDAsIigxLDEpIl0sWzAsMSwiKDAsMCkiXSxbMiwxLCIoMSwwKSJdLFswLDFdLFsyLDNdLFszLDFdLFsyLDBdLFsyLDFdXQ==
+  \begin{tikzcd}
+    {(0,1)} && {(1,1)} \\
+    {(0,0)} && {(1,0)}
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=2-1, to=2-3]
+    \arrow[from=2-3, to=1-3]
+    \arrow[from=2-1, to=1-1]
+    \arrow[from=2-1, to=1-3]
+  \end{tikzcd}$$
+\end{example}
+\begin{example}
+  The simplicial set $\Delta^{1}\times\Delta^{2}$ is a triangulated triangular prism. 
+  $$% https://q.uiver.app/#q=WzAsNyxbMCwyLCIoMCwwKSJdLFsxLDBdLFswLDAsIigwLDIpIl0sWzQsMiwiKDAsMSkiXSxbNCwwLCIoMSwyKSJdLFsxLDEsIigwLDEpIl0sWzUsMSwiKDEsMSkiXSxbMiw0XSxbNSw2XSxbMyw2XSxbMyw0XSxbNiw0XSxbNSwyXSxbMCw1XSxbMCwzXSxbMCwyXSxbMCw0LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XSxbMCw2LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw0XV0=
+  \begin{tikzcd}
+    {(0,2)} & {} &&& {(1,2)} \\
+    & {(0,1)} &&&& {(1,1)} \\
+    {(0,0)} &&&& {(0,1)}
+    \arrow[from=1-1, to=1-5]
+    \arrow[from=2-2, to=2-6]
+    \arrow[from=3-5, to=2-6]
+    \arrow[from=3-5, to=1-5]
+    \arrow[from=2-6, to=1-5]
+    \arrow[from=2-2, to=1-1]
+    \arrow[from=3-1, to=2-2]
+    \arrow[from=3-1, to=3-5]
+    \arrow[from=3-1, to=1-1]
+    \arrow[dotted, from=3-1, to=1-5]
+    \arrow[dashed, from=3-1, to=2-6]
+    \arrow[from=2-2, to=1-5]
+  \end{tikzcd}$$
+\end{example}
+\begin{proposition}
+  The nerve functor $N:\Cat\to\SSets$ preserves products. 
+\end{proposition}
+\begin{proof}
+  This is direct from the universal properties of categorical products and products of simplicial sets. 
+\end{proof}
+We have previously discussed natural transformations (see \Cref{def:natural transformation}). For functors $F,G:\Csf\to\Dsf$ a natural transformation between them $\alpha\in\NatTrans(F,G)$ 
+$$% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXENzZiJdLFszLDAsIlxcRHNmIl0sWzAsMSwiRiIsMCx7ImN1cnZlIjotM31dLFswLDEsIkciLDIseyJjdXJ2ZSI6M31dLFsyLDMsIlxcYWxwaGEiLDIseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+\begin{tikzcd}
+	\Csf &&& \Dsf
+	\arrow[""{name=0, anchor=center, inner sep=0}, "F", curve={height=-18pt}, from=1-1, to=1-4]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "G"', curve={height=18pt}, from=1-1, to=1-4]
+	\arrow["\alpha"', shorten <=5pt, shorten >=5pt, Rightarrow, from=0, to=1]
+\end{tikzcd}$$
+such that for all $A,B\in\Obj(\Csf)$ and $f\in\Mor_{\Csf}(A,B)$ the diagram
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGKEEpIl0sWzIsMCwiRihCKSJdLFswLDEsIkcoQSkiXSxbMiwxLCJHKEIpIl0sWzAsMSwiRihmKSJdLFsyLDMsIkcoZikiLDJdLFswLDIsIlxcYWxwaGEoQSkiLDJdLFsxLDMsIlxcYWxwaGEoQikiXV0=
+\begin{tikzcd}
+	{F(A)} && {F(B)} \\
+	{G(A)} && {G(B)}
+	\arrow["{F(f)}", from=1-1, to=1-3]
+	\arrow["{G(f)}"', from=2-1, to=2-3]
+	\arrow["{\alpha(A)}"', from=1-1, to=2-1]
+	\arrow["{\alpha(B)}", from=1-3, to=2-3]
+\end{tikzcd}$$
+commutes in $\Dsf$. 
+\begin{proposition}
+  Let $F,G:\Csf\to\Dsf$ be functors. We have a bijection of sets $$\NatTrans(\Csf,\Dsf)\to\Fun(\Csf\times[1],\Dsf).$$ 
+\end{proposition}
+\begin{proof}
+  Let $i\in\Mor_{[2]}$ where $i:0\to 1$ and let $H(-,0)=F(-), H(-,1)=G(-)$. By $F,G$ being functors we have the diagram on the left, and rewriting with $H$ we have the diagram on the right
+  $$% https://q.uiver.app/#q=WzAsOCxbMCwwLCJGKEEpIl0sWzIsMCwiRihCKSJdLFswLDEsIkcoQSkiXSxbMiwxLCJHKEIpIl0sWzQsMCwiSChBLDApIl0sWzQsMSwiSChBLDEpIl0sWzYsMCwiSChCLDApIl0sWzYsMSwiSChCLDEpIl0sWzAsMSwiRihmKSJdLFsyLDMsIkcoZikiLDJdLFs2LDcsImkiXSxbNCw1LCJpIiwyXSxbNCw2LCJIKGYsMCkiXSxbNSw3LCJIKGYsMSkiLDJdXQ==
+  \begin{tikzcd}
+    {F(A)} && {F(B)} && {H(A,0)} && {H(B,0)} \\
+    {G(A)} && {G(B)} && {H(A,1)} && {H(B,1)}
+    \arrow["{F(f)}", from=1-1, to=1-3]
+    \arrow["{G(f)}"', from=2-1, to=2-3]
+    \arrow["i", from=1-7, to=2-7]
+    \arrow["i"', from=1-5, to=2-5]
+    \arrow["{H(f,0)}", from=1-5, to=1-7]
+    \arrow["{H(f,1)}"', from=2-5, to=2-7]
+  \end{tikzcd}$$
+  where $i$ induces a map $H(-,0)\to H(-,1)$ which is a natural transformation of functors.  
+\end{proof}
+\begin{corollary}
+  Natural transformations between functors $\NatTrans(\Csf,\Dsf)$ are in bijection with maps of simplicial sets $N\Csf\times\Delta^{1}\to N\Dsf$. 
+\end{corollary}
+\begin{proof}
+  We have $\NatTrans(\Csf,\Dsf)=\Fun(\Csf\times[1],\Dsf)$ and apply the nerve functor.
+\end{proof}
+Let $X,Y$ be simplicial sets. We have a simplicial function space $Y^{X}=\Mor_{\SSets}(X,Y)$ of simplicial set morphisms $X\to Y$ with the property that $\Mor_{\SSets}(Z,\Mor_{\SSets}(X,Y))=\Mor_{\SSets}(X\times Z,Y)$. We can prove this simplicial function space with $n$-simplices where 
+$$(Y^{X})_{n}=\Mor_{\SSets}(\Delta^{n},Y^{X})=\Mor_{\SSets}(X\times\Delta^{n},Y).$$
+Under the correspondence described above, functors $\Csf\to\Dsf$ correspond to maps of simplical sets $N\Csf\to N\Dsf$ otherwise described $\left((N\Dsf)^{N\Csf}\right)_{0}$ and natural transformations between functors $\Csf\to\Dsf$ correspond to simplical set maps $N\Csf\times\Delta^{1}\to N\Dsf$ otherwise described $\left((N\Dsf)^{N\Csf}\right)_{1}$. This is only the begining of the interactions between category theory and the theory of quasicategories. A theorem of Joyal states the following. 
+\begin{theorem}[Joyal]\label{thm: simplical set maps are quasicategories}
+  If $W$ is a quasicategory and $X$ a simplicial set, the category $\Mor_{\SSets}(X,W)=W^{X}$ is a quasicategory. 
+\end{theorem}
+Let us say a few words about the proof. Recall from \Cref{def:quasicategory} that $Y$ is a quasicategory if every inner horn has a fill.
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzIsMCwiWSJdLFswLDEsIlxcRGVsdGFee259Il0sWzAsMl0sWzAsMV0sWzIsMSwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\begin{tikzcd}
+	{\Lambda^{n}_{k}} && Y \\
+	{\Delta^{n}}
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-1, to=1-3]
+	\arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+It suffices to show that if $W$ is a quasicategory and $X$ a simplicial set, either of the equivalent solid diagrams admits a fill. 
+$$% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn1fe2t9Il0sWzIsMCwiV157WH0iXSxbNCwwLCJYXFx0aW1lc1xcTGFtYmRhXntufV97a30iXSxbNCwxLCJYXFx0aW1lc1xcRGVsdGFee259Il0sWzYsMCwiVyJdLFswLDJdLFswLDFdLFsxLDIsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNV0sWzMsNF0sWzQsNSwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\begin{tikzcd}
+	{\Lambda^{n}_{k}} && {W^{X}} && {X\times\Lambda^{n}_{k}} && W \\
+	{\Delta^{n}_{k}} &&&& {X\times\Delta^{n}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+	\arrow[from=1-5, to=1-7]
+	\arrow[from=1-5, to=2-5]
+	\arrow["\exists"{description}, dashed, from=2-5, to=1-7]
+\end{tikzcd}$$
+Let us take a step back and take stock of the situation. The theory of categories and of quasicategories are not that distant as one might first imagine. Quasicategories and simplicial sets also give us a number of tools to understand constructions in category theory. Let us introduce a few more categorical notions, before we discuss morphisms of simplical sets. 
+\begin{definition}[Cobase Change]
+  Let 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQiJdLFswLDEsIlgiXSxbMCwyLCJpIiwyXSxbMCwxLCJmIl1d
+  \begin{tikzcd}
+    A && B \\
+    X
+    \arrow["i"', from=1-1, to=2-1]
+    \arrow["f", from=1-1, to=1-3]
+  \end{tikzcd}$$
+  be a diagram. In the pushout
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzIsMCwiQiJdLFswLDEsIlgiXSxbMiwxLCJZIl0sWzAsMiwiaSIsMl0sWzAsMSwiZiJdLFsyLDMsImciLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMSwzLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+  \begin{tikzcd}
+    A && B \\
+    X && Y
+    \arrow["i"', from=1-1, to=2-1]
+    \arrow["f", from=1-1, to=1-3]
+    \arrow["g"', dashed, from=2-1, to=2-3]
+    \arrow[dashed, from=1-3, to=2-3]
+  \end{tikzcd}$$
+  we say $g$ is obtained from $f$ by cobase change along $i$. 
+\end{definition}
+Dually, we have a notion of base change. 
+\begin{definition}[Base Change]
+  Let 
+  $$% https://q.uiver.app/#q=WzAsMyxbMiwxLCJZIl0sWzAsMSwiWCJdLFsyLDAsIkIiXSxbMSwwLCJpIl0sWzIsMCwiZiJdXQ==
+  \begin{tikzcd}
+    && B \\
+    X && Y
+    \arrow["i", from=2-1, to=2-3]
+    \arrow["f", from=1-3, to=2-3]
+  \end{tikzcd}$$
+  be a diagram. In the pullback
+  $$% https://q.uiver.app/#q=WzAsNCxbMiwxLCJZIl0sWzAsMSwiWCJdLFsyLDAsIkIiXSxbMCwwLCJBIl0sWzEsMCwiaSJdLFsyLDAsImYiXSxbMywyLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMywxLCJnIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    A && B \\
+    X && Y
+    \arrow["i", from=2-1, to=2-3]
+    \arrow["f", from=1-3, to=2-3]
+    \arrow[dashed, from=1-1, to=1-3]
+    \arrow["g"', dashed, from=1-1, to=2-1]
+  \end{tikzcd}$$
+  we say $g$ is obtained from $f$ by base change along $i$. 
+\end{definition}
+We're working towards a definition of a class of morphisms of simplical sets. We will now develop several more necessary simplicial notions. 
+\begin{definition}[Transfinite Composition]
+  A collection of morphisms of simplicial sets $S$ is closed under transfinite composition if for a diagram 
+  $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJYX3swfSJdLFsxLDAsIlhfezF9Il0sWzIsMCwiWF97Mn0iXSxbMywwLCJYX3szfSJdLFs0LDAsIlxcZG90cyJdLFszLDRdLFsyLDNdLFsxLDJdLFswLDFdXQ==
+  \begin{tikzcd}
+    {X_{i_{0}}} & {X_{i_{1}}} & {X_{i_{2}}} & {X_{i_{3}}} & \dots
+    \arrow[from=1-4, to=1-5]
+    \arrow[from=1-3, to=1-4]
+    \arrow[from=1-2, to=1-3]
+    \arrow[from=1-1, to=1-2]
+  \end{tikzcd}$$
+  with $f_{i}\in S$ for all $i_{j}\in I$ an arbitrary indexing set, the induced morphism $X_{0}\to\colim_{k}X_{k}$ is in $S$.  
+\end{definition}
+\begin{definition}[Retracts]
+  A morphism $f\in\Mor_{\SSets}(X,Y)$ is a retract of $g\in\Mor_{\SSets}(X',Y')$ if there is a diagram in $\SSets$ of the folllowing form. 
+  $$% https://q.uiver.app/#q=WzAsNyxbMCwwLCJYIl0sWzAsMSwiWSJdLFsyLDAsIlgnIl0sWzEsMF0sWzIsMSwiWSciXSxbNCwwLCJYIl0sWzQsMSwiWSJdLFswLDEsImYiLDJdLFs1LDYsImYiLDJdLFsyLDQsImciLDJdLFswLDJdLFsyLDVdLFsxLDRdLFs0LDZdLFsxLDYsIlxcaWRfe1l9IiwyLHsiY3VydmUiOjJ9XSxbMCw1LCJcXGlkX3tYfSIsMCx7ImN1cnZlIjotMn1dXQ==
+  \begin{tikzcd}
+    X & {} & {X'} && X \\
+    Y && {Y'} && Y
+    \arrow["f"', from=1-1, to=2-1]
+    \arrow["f"', from=1-5, to=2-5]
+    \arrow["g"', from=1-3, to=2-3]
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-3, to=1-5]
+    \arrow[from=2-1, to=2-3]
+    \arrow[from=2-3, to=2-5]
+    \arrow["{\id_{Y}}"', curve={height=12pt}, from=2-1, to=2-5]
+    \arrow["{\id_{X}}", curve={height=-12pt}, from=1-1, to=1-5]
+  \end{tikzcd}$$
+\end{definition}
+This allows us to define weakly saturated morphisms, an important class of morphisms. 
+\begin{definition}[Weakly Saturated Maps]\label{def: weakly saturated maps}
+  Let $\mathcal{A}\subseteq\Mor_{\SSets}$ be a collection of maps of simplicial sets. The collection $\mathcal{A}$ is weakly saturated if it satisfies all of the following conditions:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\mathcal{A}$ contains all isomorphisms. 
+    \item $\mathcal{A}$ is closed under cobase change. 
+    \item $\mathcal{A}$ is closed under composition. 
+    \item $\mathcal{A}$ is closed under transfinite composition. 
+    \item $\mathcal{A}$ is closed under coproducts. 
+    \item $\mathcal{A}$ is closed under retracts. 
+  \end{enumerate} 
+\end{definition}
+\begin{definition}[Weak Saturation]\label{def: weak saturation}
+  For $\mathcal{A}$ a class of simplical maps we define its weak saturation $\overline{\mathcal{A}}$ the smallest weakly saturated class containing $\mathcal{A}$. 
+\end{definition}
+This allows us to introduce anodyne functors, a construction introduced by Gabriel and Zisman. 
+\begin{definition}[Left Anodyne]
+  The left anodyne functors are those given by the weak saturation of inner horn maps
+  $$\overline{\{\Lambda^{n}_{k}\hookrightarrow\Delta^{n}|0\leq k< n\}}.$$
+\end{definition}
+\begin{definition}[Right Anodyne]
+  The right anodyne functors are given by the weak saturation of outer horn maps 
+  $$\overline{\{\Lambda^{n}_{k}\hookrightarrow\Delta^{n}|0< k\leq n\}}.$$
+\end{definition}
+\begin{definition}[Anodyne]
+  The anodyne functors are functors given by the weak saturation of horn maps 
+  $$\overline{\{\Lambda^{n}_{k}\hookrightarrow\Delta^{n}|0\leq k\leq n\}}.$$
+\end{definition}
+So returning to our discussion of the proof of \Cref{thm: simplical set maps are quasicategories}, we want to show that for $X$ a simplicial set, the functors
+$$X\times\Lambda^{n}_{k}\to X\times \Delta^{n}$$
+is inner anodyne for $0<k<n$. 
+\\\\
+We conclude with the notion of the spine of a category. 
+\begin{definition}[Spine]\label{def:spine}
+  The spine $I^{n}\subseteq\Delta^{n}$ is the union of the faces $\langle0,1\rangle,\dots,\langle n-1,n\rangle$. 
+\end{definition}
+\begin{example}
+  The spine of $\Delta^{2}$ consists of the solid arrows. 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwyLCIwIl0sWzIsMiwiMSJdLFsxLDAsIjIiXSxbMCwxXSxbMSwyXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XV0=
+  \begin{tikzcd}
+    & 2 \\
+    \\
+    0 && 1
+    \arrow[from=3-1, to=3-3]
+    \arrow[from=3-3, to=1-2]
+    \arrow[dotted, from=3-1, to=1-2]
+  \end{tikzcd}$$
+\end{example}
+\begin{example}
+  The spine of $\Delta^{3}$ consists of the solid arrows. 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwyLCIwIl0sWzIsMywiMSJdLFsxLDAsIjMiXSxbMiwxLCIyIl0sWzAsMywiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzAsMV0sWzEsM10sWzMsMl0sWzAsMiwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzEsMiwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV1d
+  \begin{tikzcd}
+    & 3 \\
+    && 2 \\
+    0 \\
+    && 1
+    \arrow[dotted, from=3-1, to=2-3]
+    \arrow[from=3-1, to=4-3]
+    \arrow[from=4-3, to=2-3]
+    \arrow[from=2-3, to=1-2]
+    \arrow[dotted, from=3-1, to=1-2]
+    \arrow[dotted, from=4-3, to=1-2]
+  \end{tikzcd}$$
+\end{example}
+\begin{proposition}
+  The map $I^{n}\hookrightarrow\Delta^{n}$ is inner anodyne for $n\geq 2$. 
+\end{proposition}
+\begin{proof}
+  This is done by filling the horns $\Lambda^{2}_{1}, \Lambda^{3}_{2},\dots,\Lambda^{n}_{n-1}$ in succession. 
+\end{proof}

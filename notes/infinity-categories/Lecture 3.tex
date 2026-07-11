@@ -1,0 +1,216 @@
+\section{Lecture 3 -- 13th September 2023}
+We will discuss some constructions in ordinary category theory. Thinking about these constructions will give us a better idea of analogous constructions in infinity category theory. 
+\begin{definition}[Isomorphism]\label{def:isomorphism}
+  Let $\Csf$ be a category. A morphism $f\in\Mor_{\Csf}(A,B)$ is an isomorphism if there exists $g\in\Mor_{\Csf}(B,A)$ such that $g\circ f=\id_{A}$ and $f\circ g=\id_{B}$.
+\end{definition}
+One can easily show that isomorphisms are preserved by functors. 
+\begin{proposition}
+  Let $F:\Csf\to\Dsf$ be a functor. If $f\in\Mor_{\Csf}(A,B)$ is an isomorphism then $F(f)\in\Mor_{\Dsf}(F(A),F(B))$ is an isomorphism. 
+\end{proposition}
+\begin{proof}
+  The statement follows by the commutativity of the following diagram. 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzIsMCwiQiJdLFswLDEsIkYoQSkiXSxbMiwxLCJGKEIpIl0sWzEsMywiRiIsMl0sWzAsMiwiRiIsMl0sWzAsMSwiZiIsMCx7Im9mZnNldCI6LTF9XSxbMSwwLCJnIiwwLHsib2Zmc2V0IjotMX1dLFsyLDMsIkYoZikiLDAseyJvZmZzZXQiOi0xfV0sWzMsMiwiRihnKSIsMCx7Im9mZnNldCI6LTF9XV0=
+  \begin{tikzcd}
+    A && B \\
+    {F(A)} && {F(B)}
+    \arrow["F"', from=1-3, to=2-3]
+    \arrow["F"', from=1-1, to=2-1]
+    \arrow["f", shift left, from=1-1, to=1-3]
+    \arrow["g", shift left, from=1-3, to=1-1]
+    \arrow["{F(f)}", shift left, from=2-1, to=2-3]
+    \arrow["{F(g)}", shift left, from=2-3, to=2-1]
+  \end{tikzcd}$$
+  More explicitly, there exists $g\in\Mor_{\Csf}(B,A)$ such that $g\circ f=\id_{A}$ and $f\circ g=\id_{B}$ so by functoriality we have $F(g)\circ F(f)=\id_{F(A)},F(f)\circ F(g)=\id_{F(B)}$ as desired. 
+\end{proof}
+The acute would perceive that \Cref{def:isomorphism} may be slightly problematic since it involves some choice of $g\in\Mor_{\Csf}(B,A)$. The following proposition resolves this issue, showing that such a choice is unique. 
+\begin{proposition}
+  Let $\Csf$ be a category and $f\in\Mor_{\Csf}(A,B)$ is an isomorphism. If $g_{1},g_{2}\in\Mor_{\Csf}(B,A)$ satisfies $g_{i}\circ f=\id_{A}$ and $f\circ g_{i}=\id_{B}$ for $i\in\{1,2\}$ then $g_{1}=g_{2}$. 
+\end{proposition}
+\begin{proof}
+  We have $g_{1}=g_{1}\circ\id_{Y}=g_{1}\circ f\circ g_{2}=\id_{X}\circ g_{2}=g_{2}$. 
+\end{proof}
+In some settings, it can be difficult to find such $g$ that satisfies the composition identities as set out in \Cref{def:isomorphism}. Fortunately, we can use the Yoneda functors from \Cref{lem:yoneda} to characterize isomorphisms. 
+\begin{theorem}[Representable Functors Determine Isomorphism]\label{thm:rep functors determine iso}
+  Let $\Csf$ be a category. A map $f:A\to B$ is an isomorphism if and only if there is an isomorphic natural transformation of the functors they represent $\Mor_{\Csf}(-,A)\to\Mor_{\Csf}(-,B)$.
+\end{theorem}
+\begin{remark}
+  It is equivalent to require that for all $Z\in\Obj(\Csf)$, $\Mor_{\Csf}(Z,A)=\Mor_{\Csf}(Z,B)$. 
+\end{remark}
+\begin{proof}[Proof of \Cref{thm:rep functors determine iso}]
+  This follows from the Yoneda lemma, \Cref{lem:yoneda}.  
+\end{proof}
+Note the increasing levels of abstraction we have encountered. We started with the ``traditional'' definition of isomorphism that one encounters in say a course on the theory of groups, followed by the characterization of isomorphisms via representable functors. Let us look at one more characterization of isomorphisms in the flavor of how we defined the objects of a category as the 0th nerve $(N\Csf)_{0}$, we can define a category $I_{\cong}$ with two objects and two non-identity morphisms
+$$% https://q.uiver.app/#q=WzAsMixbMCwwLCIqIl0sWzIsMCwiKiJdLFswLDEsIiIsMCx7Im9mZnNldCI6LTF9XSxbMSwwLCIiLDAseyJvZmZzZXQiOi0xfV1d
+\begin{tikzcd}
+	{*} && {*}
+	\arrow[shift left, from=1-1, to=1-3]
+	\arrow[shift left, from=1-3, to=1-1]
+\end{tikzcd}$$
+and define an isomorphism as follows:
+\begin{definition}[Isomorphism]
+  Let $\Csf$ be a category. An isomorphism in $\Csf$ is a functor $I_{\cong}\to\Csf$. 
+\end{definition}
+We will no doubt revisit isomorphisms in the infinity categorical setting later in the course. 
+
+Now, let us recall the following definitions. 
+\begin{definition}[Initial Object]\label{def:initial object}
+  Let $\Csf$ be a category. An object $X\in\Obj(\Csf)$ is initial if for all $Y\in\Obj(\Csf)$, there is a unique map $X\to Y$. 
+\end{definition}
+\begin{definition}[Final Object]\label{def:final object}
+  Let $\Csf$ be a category. An object $X\in\Obj(\Csf)$ is final if for all $Y\in\Obj(\Csf)$, there is a unique map $Y\to X$. 
+\end{definition}
+We now show that final objects (and initial objects, by taking the opposite category) are unique up to unique isomorphism. In other words, they satisfy a universal property. Universal properties are ubiquitous in many fields of mathematics and significantly streamlines one's thinking about mathematical constructions. 
+\begin{proposition}
+  If $X_{1},X_{2}$ be final objects of a category $\Csf$ then $X_{1}$ is isomorphic to $X_{2}$. 
+\end{proposition}
+\begin{proof}
+  Both $X_{1}$ and $X_{2}$ represent the same functor $\Csf\to\Sets$, taking any object of $\Csf$ to the one-point set $\{*\}$. 
+\end{proof}
+We have already seen how isomorphisms work in a category. We now define them in the setting of quasicategories. 
+\begin{definition}[Isomorphism in Quasicategories]
+  Let $X$ be a quasicategory. A morphism $f\in X_{1}$ is an isomorphism if and only if $[f]\in(hX)_{1}$ is an isomorphism. 
+\end{definition}
+Isomorphisms arising in homotopy categories will soon provide a tool for characterizing Kan complexes. We begin by defining the groupoid. 
+\begin{definition}[Groupoid]\label{def:groupoid}
+  A category $\Csf$ is a groupoid if all morphisms in $\Csf$ are isomorphisms. 
+\end{definition}
+\begin{example}
+  The fundamental groupoid of a topological space $\Pi_{\leq1}X$ is a groupoid. Morphisms correspond to paths, which are invertible by sending $\gamma(t)\to\gamma(1-t)$. 
+\end{example}
+The following theorem outlines a correspondence between quasicategories and Kan complexes with the language of groupoids. 
+\begin{theorem}\label{thm:kan complex iff hX groupoid}
+  A quasicategory $X$ is a Kan complex if and only if its homotopy category $hX$ is a groupoid. 
+\end{theorem}
+\begin{proof}[Partial Proof of \Cref{thm:kan complex iff hX groupoid}]
+  $(\Longrightarrow)$ We prove that if $X$ is a Kan complex, its homotopy category is a groupoid.  
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwxLCJBIl0sWzIsMSwiQiJdLFswLDAsIkEiXSxbMCwxLCJmIiwyXSxbMSwyLCJcXGV4aXN0cyEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwyLCJcXGlkX3tBfSJdXQ==
+  \begin{tikzcd}
+    A \\
+    A && B
+    \arrow["f"', from=2-1, to=2-3]
+    \arrow["{\exists}"', dashed, from=2-3, to=1-1]
+    \arrow["{\id_{A}}", from=2-1, to=1-1]
+  \end{tikzcd}$$
+  Let $f:A\to B$ be a morphism in $X$ and since $X$ is a Kan complex, the horn $\Lambda^{2}_{0}$ admits a fill by some $\tau\in X_{2}$. One verifies that for $g=\tau\langle1,2\rangle$ we have $g\circ f=\id_{A}$. To show $f\circ g=\id_{B}$ we construct the diagram 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwxLCJBIl0sWzIsMSwiQiJdLFsyLDAsIkIiXSxbMSwyLCJcXGlkX3tCfSIsMl0sWzAsMiwiZiJdLFsxLDAsIlxcZXhpc3RzIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    && B \\
+    A && B
+    \arrow["{\id_{B}}"', from=2-3, to=1-3]
+    \arrow["f", from=2-1, to=1-3]
+    \arrow["\exists", dashed, from=2-3, to=2-1]
+  \end{tikzcd}$$
+  and by the fact that $X$ is a Kan complex, the horn $\Lambda^{2}_{2}$ admits a fill by some $\tau'\in X_{2}$ such that $\tau'\langle0,1\rangle=h$ satisfying $f\circ h=\id_{B}$. But we have $g=g\circ \id_{B}=g\circ f\circ h=\id_{A}\circ h=h$ proving that there is a unique inverse in the homotopy category. 
+\end{proof}
+The converse, showing that a homotopy category in which all morphisms are isomorphisms arises as the homotopy category of a Kan complex is much more difficult requiring a significant combinatorial assertion. We will return to Joyal's proof of the converse later in this course. 
+\begin{definition}[Quasigroupoid]
+  A quasicategory $X$ is a quasigroupoid if $hX$ is a groupoid. 
+\end{definition}
+As \Cref{thm:kan complex iff hX groupoid} shows, Kan complexes are examples of quasigroupoids. 
+
+\begin{definition}[Small Category]
+  A category $\Csf$ is a small category if $\Obj(\Csf)$ is a set as opposed to a class. 
+\end{definition}
+Having defined a small category, we can define the category of small categories. 
+\begin{definition}[Category of Small Categories]
+  Denote $\Cat_{1}$ the category of small categories whose objects are small categories and whose morphisms are functors betweeen them. 
+\end{definition}
+Analogously to nerves, we can consider $(\Cat_{1})_{n}$ be the data of a category $\Csf_{i}$ for each $1\leq i\leq n$, a functor $F_{ij}:\Csf_{i}\to\Csf_{j}$ for each $i\leq j$, and a natural isomorphism of functors $\varepsilon_{ijk}:F_{ik}\Rightarrow F_{jk}\circ F_{ij}$ making the following diagram commute. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXENzZl97aX0iXSxbMywxXSxbNCwxLCJcXENzZl97a30iXSxbMiwwLCJcXENzZl97an0iXSxbMCwzLCJGX3tpan0iXSxbMywyLCJGX3tqa30iXSxbMCwyLCJGX3tpa30iLDJdLFs2LDMsIlxcdmFyZXBzaWxvbl97aWprfSIsMCx7Im9mZnNldCI6LTEsInNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjozMH19XV0=
+\begin{tikzcd}
+	&& {\Csf_{j}} \\
+	{\Csf_{i}} &&& {} & {\Csf_{k}}
+	\arrow["{F_{ij}}", from=2-1, to=1-3]
+	\arrow["{F_{jk}}", from=1-3, to=2-5]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{F_{ik}}"', from=2-1, to=2-5]
+	\arrow["{\varepsilon_{ijk}}", shift left, shorten <=2pt, shorten >=5pt, Rightarrow, from=0, to=1-3]
+\end{tikzcd}$$
+Additionally, we require the functors to satisfy the following ``cocycle conditons'' which we now explain. Given $(\Cat_{1})_{3}$ 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwzLCJcXENzZl97aX0iXSxbMywyLCJcXENzZl97bH0iXSxbMiwwLCJcXENzZl97a30iXSxbMyw0LCJcXENzZl97an0iXSxbMiwxLCJGX3trbH0iXSxbMCwxLCJGX3tpbH0iLDFdLFszLDIsIkZfe2prfSIsMV0sWzAsMywiRl97aWp9IiwyXSxbMywxLCJGX3tqbH0iLDFdLFswLDIsIkZfe2lrfSIsMV1d
+\begin{tikzcd}
+	&& {\Csf_{k}} \\
+	\\
+	&&& {\Csf_{l}} \\
+	{\Csf_{i}} \\
+	&&& {\Csf_{j}}
+	\arrow["{F_{kl}}", from=1-3, to=3-4]
+	\arrow["{F_{il}}"{description}, from=4-1, to=3-4]
+	\arrow["{F_{jk}}"{description}, from=5-4, to=1-3]
+	\arrow["{F_{ij}}"', from=4-1, to=5-4]
+	\arrow["{F_{jl}}"{description}, from=5-4, to=3-4]
+	\arrow["{F_{ik}}"{description}, from=4-1, to=1-3]
+\end{tikzcd}$$
+we can ``flatten'' the tetrahedron to observe 
+$$% https://q.uiver.app/#q=WzAsOSxbMCwyLCJcXENzZl97aX0iXSxbMiwzLCJcXENzZl97an0iXSxbMiwwXSxbMiwxLCJcXENzZl97bH0iXSxbNCwyLCJcXENzZl97a30iXSxbNywyLCJcXENzZl97aX0iXSxbMTEsMiwiXFxDc2Zfe2t9Il0sWzksMSwiXFxDc2Zfe2x9Il0sWzksMywiXFxDc2Zfe2p9Il0sWzEsMywiRl97amx9IiwxXSxbMCwzLCJGX3tpbH0iXSxbNCwzLCJGX3trbH0iLDJdLFswLDEsIkZfe2lqfSIsMl0sWzEsNCwiRl97amt9IiwyXSxbNSw2LCJGX3tpa30iLDFdLFs1LDcsIkZfe2lsfSJdLFs2LDcsIkZfe2tsfSIsMl0sWzUsOCwiRl97aWp9IiwyXSxbOCw2LCJGX3tqa30iLDJdLFsxMCwxLCJcXHZhcmVwc2lsb25fe2lrbH0iLDIseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6NDB9fV0sWzksMTMsIlxcdmFyZXBzaWxvbl97amtsfSIsMCx7Im9mZnNldCI6LTQsInNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XSxbMTUsMTQsIlxcdmFyZXBzaWxvbl97aWxrfSIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjozMH19XSxbMTQsOCwiXFx2YXJlcHNpbG9uX3tpamt9IiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjIwfX1dXQ==
+\begin{tikzcd}
+	&& {} \\
+	&& {\Csf_{l}} &&&&&&& {\Csf_{l}} \\
+	{\Csf_{i}} &&&& {\Csf_{k}} &&& {\Csf_{i}} &&&& {\Csf_{k}} \\
+	&& {\Csf_{j}} &&&&&&& {\Csf_{j}}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{F_{jl}}"{description}, from=4-3, to=2-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{F_{il}}", from=3-1, to=2-3]
+	\arrow["{F_{kl}}"', from=3-5, to=2-3]
+	\arrow["{F_{ij}}"', from=3-1, to=4-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{F_{jk}}"', from=4-3, to=3-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{F_{ik}}"{description}, from=3-8, to=3-12]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{F_{il}}", from=3-8, to=2-10]
+	\arrow["{F_{kl}}"', from=3-12, to=2-10]
+	\arrow["{F_{ij}}"', from=3-8, to=4-10]
+	\arrow["{F_{jk}}"', from=4-10, to=3-12]
+	\arrow["{\varepsilon_{ijl}}"', shorten <=7pt, shorten >=14pt, Rightarrow, from=1, to=4-3]
+	\arrow["{\varepsilon_{jkl}}", shift left=4, shorten <=7pt, shorten >=7pt, Rightarrow, from=0, to=2]
+	\arrow["{\varepsilon_{ikl}}", shorten <=7pt, shorten >=10pt, Rightarrow, from=4, to=3]
+	\arrow["{\varepsilon_{ijk}}", shorten <=5pt, shorten >=3pt, Rightarrow, from=3, to=4-10]
+\end{tikzcd}$$
+that $\varepsilon_{ijl}\circ\varepsilon_{jkl}=\varepsilon_{ijk}\circ\varepsilon_{ikl}$. More explicitly, we have natural transformations 
+\begin{center}
+\begin{tabular}{c c}
+  $\varepsilon_{ijl}:F_{il}\to F_{jl}\circ F_{ij}$ & $\varepsilon_{ikl}:F_{il}\to F_{kl}\circ F_{ik}$ \\
+  $\varepsilon_{jkl}:F_{jl}\to F_{kl}\circ F_{jk}$ & $\varepsilon_{ijk}:F_{ik}\to F_{jk}\circ F_{ij}$
+\end{tabular}
+\end{center}
+where the ``cocycle condition'' asserts that the the composition of functors is associative
+$$\varepsilon_{jkl}\circ\varepsilon_{ijl}:F_{il}\to(F_{kl}\circ F_{jk})\circ F_{ij}$$
+$$\varepsilon_{ijk}\circ\varepsilon_{ikl}:F_{il}\to F_{kl}\circ(F_{jk}\circ F_{ij})$$
+by forcing the natural transformations to agree as one would expect. 
+\begin{remark}
+  $h\Cat_{1}$ is the category whose objects are categories and whose morphisms are functors modulo isomorphic natural transformations. 
+\end{remark}
+This would imply that in $h\Cat_{1}$ the morphisms are isomorphisms of categories in some appropriate sense. We will characterize isomorphisms of categories using fullness, faithfullness, and essential surjectivity which we now define. 
+\begin{definition}[Full Functor]
+  A functor $F:\Csf\to\Dsf$ is full if for all $A,B\in\Obj(\Csf)$ the map of sets $\Mor_{\Csf}(A,B)\to\Mor_{\Dsf}(F(A),F(B))$ is surjective.
+\end{definition}
+\begin{definition}[Faithful Functor]
+  A functor $F:\Csf\to\Dsf$ is faithful if for all $A,B\in\Obj(\Csf)$ the map of sets $\Mor_{\Csf}(A,B)\to\Mor_{\Dsf}(F(A),F(B))$ is injective. 
+\end{definition}
+Naturally, one defines a fully faithful functor as follows. 
+\begin{definition}[Fully Faithful Functor]
+  A functor $F:\Csf\to\Dsf$ is fully faithful if it is full and faithful, that is for all $A,B\in\Obj(\Csf)$ the map of sets $\Mor_{\Csf}(A,B)\to\Mor_{\Dsf}(F(A),F(B))$ is a bijection. 
+\end{definition}
+We now define essential surjectivity as follows. 
+\begin{definition}[Essentially Surjective Functor]
+  A functor $F:\Csf\to\Dsf$ is essentially surjective if for all $B\in\Obj(\Dsf)$ there is an isomorphism $F(X)\to B$ in $\Dsf$. 
+\end{definition}
+We then define an isomorphism of functors as follows. 
+\begin{definition}[Categorical Equivalence]\label{def: categorical equivalence}
+  A functor is an isomorphism if it is fully faithful and essentially surjective. 
+\end{definition}
+We have done a lot of work to think about basic notions such as isomorphisms in new ways. Now let us return to the hunble morphism. Recall that a morphism in a category $\Csf$ is a morphism from the free walking morphism $0\to 1$ to $\Csf$. More explicitly, we have a diagram
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE1vcl97XFxDc2Z9KEEsQikiXSxbMCwyLCIqIl0sWzMsMCwiXFxNb3Jfe1xcQ2F0fShbMV0sXFxDc2YpIl0sWzMsMiwiXFxDc2ZcXHRpbWVzXFxDc2YiXSxbMSwzLCIoQSxCKSIsMl0sWzAsMV0sWzIsM10sWzAsMl1d
+\begin{tikzcd}
+	{\Mor_{\Csf}(A,B)} &&& {\Fun([1],\Csf)} \\
+	\\
+	{*} &&& \Csf\times\Csf
+	\arrow["{(A,B)}"', from=3-1, to=3-4]
+	\arrow[from=1-1, to=3-1]
+	\arrow[from=1-4, to=3-4]
+	\arrow[from=1-1, to=1-4]
+\end{tikzcd}$$
+taking a morphism $f$ to the tuple of objects in $\Csf$, $(\langle0\rangle^{*}f, \langle1\rangle^{*}f)\in\Obj(\Csf)\times\Obj(\Csf)$. A key notion here is the realization of regular morphisms as functors. This naturally generalizes to the functor category. 
+\begin{definition}
+  Let $\Csf,\Dsf$ be categories. The functor category $\Fun(\Csf,\Dsf)$ has objects functors $\Csf\to\Dsf$ and morphisms natural transformations between such functors. 
+\end{definition}
+In the case of simplicial sets, this admits an even nicer description. Let $X,Y$ be simplicial sets. $\Mor_{\SSets}(X,Y)=Y^{X}$ is itself a simplicial set such that maps $Z\to Y^{X}$ can be identified with maps $X\times Z\to Y$. More generally, one can show that for $\Csf,\Dsf$ categories $\Fun(N\Csf, N\Dsf)=N\Dsf^{N\Csf}$ is isomorphic to the nerve of the functor category $N \Fun(\Csf,\Dsf)$. In the case of quasicategories, a theorem of Joyal states that we have the following. 
+\begin{theorem}[Joyal]\label{thm: Joyal on functor category of quasicategory and simplicial set}
+  If $X$ is a quasicategory and $A$ a simplical set, the functor category $\Fun(A,X)=X^{A}$ is a quasicategory. 
+\end{theorem}

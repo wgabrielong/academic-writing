@@ -1,0 +1,130 @@
+\section{Lecture 10 -- 18th October 2023}
+When working in a category, as opposed to working in a set, we seek to formulate things as maps between objects instead of going inside objects themselves. We will try to work towards a discussion of limits, colimits, and cones in quasicategories by embodying this ethos. 
+\\\\
+Let $\Csf$ be a category and $C\in\Obj(\Csf)$. We can define the overcategory of $C\in\Obj(\Csf)$ which we denote as $\Csf_{(-/C)}$ whose objects are $\{A\to C\}$ and whose morphisms $\Mor_{\Csf_{(-/C)}}((A\to C), (B\to C))$ are commuting triangles as follows.
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQiJdLFsxLDEsIkMiXSxbMCwxXSxbMSwyXSxbMCwyXV0=
+\begin{tikzcd}
+	A && B \\
+	& C
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-2]
+	\arrow[from=1-1, to=2-2]
+\end{tikzcd}$$
+We often surpress notation and write $\Mor_{\Csf_{(-/C)}}(A,B)$ where the maps to $C$ in the category $\Csf$ are taken to be implicit. One develops the notion of an undercategory in an analogous way. \\\\
+More generally for $I$ and indexing category and $F:I\to \Csf$ a functor, we can consider the overcategory and undercategory of a diagram $I$ in $\Csf$. More precisely, we have the following definitions. 
+\begin{definition}[Overcategory]
+  Let $I$ be an indexing category, $\Csf$ a category, and $F:I\to \Csf$ a functor. The overcategory of the diagram $\Csf_{(-/F)}$ consists of objects of $\Csf$ admitting a morphism to each vertex of the diagram $F(I)$ and whose morphisms are those between those objects over the diagram $F(I)$ such that the morphisms to the diagram commute. 
+\end{definition}
+\begin{definition}[Undercategory]
+  Let $I$ be an indexing category, $\Csf$ a category, and $F:I\to \Csf$ a functor. The undercategory of the diagram $\Csf_{(F/-)}$ consists of objects of $\Csf$ admitting a morphism from each vertex of the diagram $F(I)$ and whose morphisms are those between those objects under the diagram $F(I)$ such that the morphisms from the diagram commute. 
+\end{definition}
+We can use these notions to define limits and colimits. 
+\begin{definition}[Limit]
+  Let $I$ be an indexing category, $\Csf$ a category, and $F:I\to \Csf$ a functor. The limit over the diagram indexed by $I$ is the final object in the overcategory $\Csf_{(-/F)}$.
+\end{definition}
+\begin{definition}[Colimit]
+  Let $I$ be an indexing category, $\Csf$ a category, and $F:I\to \Csf$ a functor. The colimit over the diagram indexed by $I$ is the initial object in the undercategory $\Csf_{(F/-)}$. 
+\end{definition}
+We want to generalize this to simplicial sets. We can follow the setup of our previous discussion and take $I$ to be the 0-simplex $\Delta^{0}$. Indeed for $F:I\to X$ where $X$ is a simplicial set, we can analogously the simplicial sets $X_{(F/-)}, X_{(-/F)}$. For $J$ another simplicial set and $J\to X_{(F/-)}$ to the undercategory we have a commutative diagram
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJJIl0sWzIsMCwiWCJdLFswLDEsIklcXHN0YXIgSiJdLFsyLDEsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDFdLFswLDJdXQ==
+\begin{tikzcd}
+	I && X \\
+	{I\star J}
+	\arrow[dashed, from=2-1, to=1-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+\end{tikzcd}$$
+where the diagram $J$ in the undercategory has the property that maps from $X_{(F/-)}$ are compatible with the maps in the $J$-indexed diagram in the undercategory. Dually, one defines maps to the overcategory $J\to X_{(-/F)}$ with the following commutative diagram. 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJJIl0sWzIsMCwiWCJdLFswLDEsIkpcXHN0YXIgSSJdLFsyLDEsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDFdLFswLDJdXQ==
+\begin{tikzcd}
+	I && X \\
+	{J\star I}
+	\arrow[dashed, from=2-1, to=1-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+\end{tikzcd}$$ 
+This gives the following adjoint pairs. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXFNTZXRzIl0sWzMsMCwiXFxTU2V0c197KEYvLSl9Il0sWzAsMiwiXFxTU2V0cyJdLFszLDIsIlxcU1NldHNfeygtL0YpfSJdLFswLDEsIigtKV97KEYvLSl9IiwwLHsib2Zmc2V0IjotMX1dLFsxLDAsIklcXHN0YXIoLSkiLDAseyJvZmZzZXQiOi0xfV0sWzIsMywiKC0pX3soLS9GKX0iLDAseyJvZmZzZXQiOi0xfV0sWzMsMiwiKC0pXFxzdGFyIEkiLDAseyJvZmZzZXQiOi0xfV1d
+\begin{tikzcd}
+	\SSets &&& {\SSets_{(F/-)}} \\
+	\\
+	\SSets &&& {\SSets_{(-/F)}}
+	\arrow["{(-)_{(F/-)}}", shift left, from=1-1, to=1-4]
+	\arrow["{I\star(-)}", shift left, from=1-4, to=1-1]
+	\arrow["{(-)_{(-/F)}}", shift left, from=3-1, to=3-4]
+	\arrow["{(-)\star I}", shift left, from=3-4, to=3-1]
+\end{tikzcd}$$
+Returning to our discussion of ordinary category, we can think of an object $C$ in a category as a map $I=\Delta^{0}\to\Csf$. We can do our overcategory and undercategory constructions to see that a map in the overcategory $\Csf_{(-/C)}$ is given by 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXERlbHRhXnswfVxcc3RhciBJIl0sWzAsMSwiSSJdLFsyLDAsIlxcQ3NmIl0sWzAsMl0sWzEsMF0sWzEsMl1d
+\begin{tikzcd}
+	{\Delta^{0}\star I} && \Csf \\
+	I
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=2-1, to=1-1]
+	\arrow[from=2-1, to=1-3]
+\end{tikzcd}$$
+that is, a morphism with image $C$. The construction for the undercategory is formally dual. 
+\\\\
+Recall the definition of the final object \Cref{def:final object}. Using the language of representable functors, this is the object which represents the functor to the one point set. How do we define the terminal object without reference to objects? \\\\
+Let $Z\in\Obj(\Csf)$ and consider the overcategory $\Csf_{(-/Z)}$. We have a forgetful functor $\Csf_{(-/Z)}\to\Csf$ taking $(X\to Z)\mapsto X$. This forgetful functor can be thought of as a bifunctor by letting $F:I\to\Csf$ be the inclusion of $Z$ into the category $\Csf$ and taking the functor $\Csf_{(-/Z)}\to\Csf$ as a bifunctor $\Csf\star I\to \Csf$. For $F$ as above and $G:J\to I$ we have $F\circ G:J\to\Csf$. Recall that the data of a map $A\to\Csf_{(-/I)}$ is the data of a commutative diagram as below.  
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJJIl0sWzIsMCwiXFxDc2YiXSxbMCwxLCJBXFxzdGFyIEkiXSxbMCwyXSxbMiwxLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDFdXQ==
+\begin{tikzcd}
+	I && \Csf \\
+	{A\star I}
+	\arrow[from=1-1, to=2-1]
+	\arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+	\arrow[from=1-1, to=1-3]
+\end{tikzcd}$$
+So given functors $F,G$ we have a commutative diagram 
+$$% https://q.uiver.app/#q=WzAsNSxbMCwxLCJKIl0sWzIsMSwiSSJdLFswLDAsIkFcXHN0YXIgSiJdLFsyLDAsIkFcXHN0YXIgSSJdLFs0LDAsIlxcQ3NmIl0sWzIsMywiXFxpZF97QX1cXHN0YXIgRyJdLFszLDRdLFsxLDQsIkYiLDJdLFsxLDNdLFswLDJdLFswLDEsIkciLDJdXQ==
+\begin{tikzcd}
+	{A\star J} && {A\star I} && \Csf \\
+	J && I
+	\arrow["{\id_{A}\star G}", from=1-1, to=1-3]
+	\arrow[from=1-3, to=1-5]
+	\arrow["F"', from=2-3, to=1-5]
+	\arrow[from=2-3, to=1-3]
+	\arrow[from=2-1, to=1-1]
+	\arrow["G"', from=2-1, to=2-3]
+\end{tikzcd}$$
+and there is a functor $\Csf_{(-/F)}\to\Csf_{(-/F\circ G)}$ induced by $G$. Now suppose $H:\Csf\to\Dsf$ is a functor. We can similarly compose to yield a functor $F\circ H:I\to\Dsf$ inducing a functor $\Csf_{(-/F)}\to\Dsf_{(-/H\circ F)}$. 
+\\\\
+Recall that $\emptyset$ is the initial object in the category $\Sets$ so we have 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGVtcHR5c2V0Il0sWzIsMCwiSSJdLFs0LDAsIlxcQ3NmIl0sWzAsMV0sWzEsMiwiRiJdXQ==
+\begin{tikzcd}
+	\emptyset && I && \Csf
+	\arrow[from=1-1, to=1-3]
+	\arrow["F", from=1-3, to=1-5]
+\end{tikzcd}$$
+and consequently for any $\Dsf\to\Csf$, a functor $\Dsf\to\Csf_{(-/\emptyset)}$. In particular, we can take $\Dsf=\Csf$ to yield a functor $\Csf\to\Csf_{(-/\emptyset)}$ which is an equivalence of categories by the adjunction. 
+% Maybe add more details here. 
+This allows us to redefine initial and final objects of categories in terms of over and undercategories. 
+\begin{definition}[Categorical Initial Object]
+  Let $\Csf$ be a category. $Z\in\Obj(\Csf)$ is an initial object if and only if $\Csf_{(-/Z)}\to\Csf$ is an equivalence of categories.  
+\end{definition}
+\begin{definition}[Categorical Final Object]
+  Let $\Csf$ be a category. $Z\in\Obj(\Csf)$ is a final object if and only if $\Csf_{(-/Z)}\to\Csf$ is an equivalence of categories. 
+\end{definition}
+This immediately generalizes to the setting of quasicategories. 
+\begin{definition}[Quasicategorical Initial Object]\label{def: initial object quasicategory}
+  Let $X$ be a quasicategory. A 0-simplex $x\in X_{0}$ is an initial object if $X_{(x/-)}\to X$ is an acyclic Kan fibration. 
+\end{definition}
+\begin{definition}[Quasicategorical Final Object]\label{def: final object quasicategory}
+  Let $X$ be a quasicategory. A 0-simplex $x\in X_{0}$ is a final object if $X_{(-/x)}\to X$ is an acyclic Kan fibration. 
+\end{definition}
+Let us take the dual view and focus on initial objects. 
+\begin{proposition}
+  Let $X$ be a simplicial set and $x\in X_{0}$. If every factorization problem 
+  $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXERlbHRhXnswfSJdLFsxLDEsIlgiXSxbMCwxLCJcXHBhcnRpYWxcXERlbHRhXntufSJdLFswLDNdLFswLDIsIlxcRGVsdGFee259Il0sWzAsMSwieCJdLFswLDJdLFsyLDRdLFsyLDFdLFs0LDEsIj8iLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+  \begin{tikzcd}
+    {\Delta^{0}} \\
+    {\partial\Delta^{n}} & X \\
+    {\Delta^{n}} \\
+    \arrow["x", from=1-1, to=2-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=2-1, to=3-1]
+    \arrow[from=2-1, to=2-2]
+    \arrow["{?}"{description}, dashed, from=3-1, to=2-2]
+  \end{tikzcd}$$
+  admits a solution for $n\geq 1$, then $x$ is initial. 
+\end{proposition}

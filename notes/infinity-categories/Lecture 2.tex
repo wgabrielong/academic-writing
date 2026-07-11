@@ -1,0 +1,171 @@
+\section{Lecture 2 -- 11th September 2023}
+We made a very quick pass of simplicial sets in the previous lecture. Let us go through it in more detail. 
+
+Let $\DDelta$ be the category whose objects are finite ordered sets and whose morphisms are order-preserving maps. Following the notation in Rezk's text \cite{Rezk}, for a morphism $[n]\to[k]$, we write it $\langle k_{0},\dots,k_{n}\rangle$ where $0\leq k_{0}\leq\dots\leq k_{n}\leq k$. In the category $\DDelta$, there are two types of distinguished maps $d_{i}$ and $s_{i}$ which we now define. 
+\begin{definition}[Face Maps]\label{def:face maps}
+  In the category $\DDelta$, there are maps $d^{k}:[n-1]\to[n]$ by $\langle 0,1,\dots,\hat{k},\dots,n\rangle=\langle 0,1,\dots,k-1,k+1,\dots,n\rangle\to[n]$. 
+\end{definition}
+\begin{example}
+  We should think of these as the inclusion of a face into the simplex. 
+  $$% https://q.uiver.app/#q=WzAsNyxbMiwyLCIxIl0sWzQsMiwiMCJdLFs2LDMsIjEiXSxbNiwxLCIyIl0sWzUsMCwiMyJdLFswLDEsIjAiXSxbMiwwLCIyIl0sWzIsNF0sWzEsMl0sWzIsM10sWzEsNF0sWzEsM10sWzMsNF0sWzUsMF0sWzAsNl0sWzUsNl0sWzE0LDcsImReezJ9IiwwLHsiY3VydmUiOjEsInNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+  \begin{tikzcd}
+    && 2 &&& 3 \\
+    0 &&&&&& 2 \\
+    && 1 && 0 \\
+    &&&&&& 1
+    \arrow[""{name=0, anchor=center, inner sep=0}, from=4-7, to=1-6]
+    \arrow[from=3-5, to=4-7]
+    \arrow[from=4-7, to=2-7]
+    \arrow[from=3-5, to=1-6]
+    \arrow[from=3-5, to=2-7]
+    \arrow[from=2-7, to=1-6]
+    \arrow[from=2-1, to=3-3]
+    \arrow[""{name=1, anchor=center, inner sep=0}, from=3-3, to=1-3]
+    \arrow[from=2-1, to=1-3]
+    \arrow["{d^{2}}", curve={height=6pt}, shorten <=23pt, shorten >=23pt, rightarrow, from=1, to=0]
+  \end{tikzcd}$$
+  Here, we show the inclusion $d^{2}:[2]\to[3]$ by $\langle0,1,3\rangle$, taking the 2-simplex to the face ``opposite'' the vertex 2, that is, the face bounded by the vertices 0, 1, and 3. 
+\end{example}
+We can also define degeneracy maps as follows. 
+\begin{definition}[Degeneracy Map]\label{def:degeneracy map}
+  In the category $\DDelta$, there are maps $s^{k}:[n]\to[n-1]$ by $[n]\mapsto\langle 0,1,2,\dots,k,k,k+1,\dots,n\rangle$. 
+\end{definition}
+\begin{example}
+  We should think of this as collapsing the $k$th to the $(k-1)$th vertex. 
+  $$% https://q.uiver.app/#q=WzAsNixbMCwwLCIxIl0sWzAsMV0sWzAsMiwiMCJdLFsyLDEsIjIiXSxbMCw0LCIwIl0sWzIsNCwiMSJdLFswLDNdLFsyLDNdLFsyLDBdLFs0LDVdLFs3LDksInNeezB9IiwwLHsiY3VydmUiOi0xLCJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9fV1d
+  \begin{tikzcd}
+    1 \\
+    {} && 2 \\
+    0 \\
+    \\
+    0 && 1
+    \arrow[from=1-1, to=2-3]
+    \arrow[""{name=0, anchor=center, inner sep=0}, from=3-1, to=2-3]
+    \arrow[from=3-1, to=1-1]
+    \arrow[""{name=1, anchor=center, inner sep=0}, from=5-1, to=5-3]
+    \arrow["{s^{0}}", curve={height=-6pt}, shorten <=5pt, shorten >=5pt, rightarrow, from=0, to=1]
+  \end{tikzcd}$$
+  Here we show $s^{0}:[2]\to[1]$ by $\langle 0,0,1\rangle$ collapsing the vertex 1 to the vertex 0. 
+\end{example}
+With these operations on $\DDelta$, one can in fact show the following theorem. 
+\begin{theorem}
+  If $f$ is a morphism in $\DDelta$, then $f$ factors as the composition of face and degeneracy maps. 
+\end{theorem}
+We omit the proof. 
+
+Now recall that a simplicial set $X$ is a covariant functor $X:\DDelta^{\Opp}\to\Sets$. We write $$X_{n}=\Fun([n], X)
+.$$ For a simplicial set $X$, we have a diagram
+$$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJYX3swfSJdLFsyLDAsIlhfezF9Il0sWzQsMCwiWF97Mn0iXSxbNSwwLCJcXGRvdHMiXSxbNiwwLCJcXGRvdHMiXSxbMCwxLCJzXnswfSIsMV0sWzEsMCwiZF57MX0iLDEseyJvZmZzZXQiOi0zLCJjdXJ2ZSI6LTF9XSxbMCwxLCJkXnswfSIsMSx7Im9mZnNldCI6LTMsImN1cnZlIjotMSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwyLCJzXnsxfSIsMSx7Im9mZnNldCI6MywiY3VydmUiOjF9XSxbMiwxLCJkXnsxfSIsMV0sWzEsMiwic157MH0iLDEseyJvZmZzZXQiOi0yLCJjdXJ2ZSI6LTF9XSxbMiwxLCJkXnsyfSIsMSx7Im9mZnNldCI6LTUsImN1cnZlIjotMn1dLFsyLDEsImReezB9IiwxLHsib2Zmc2V0Ijo1LCJjdXJ2ZSI6Mn1dXQ==
+\begin{tikzcd}
+	{X_{0}} && {X_{1}} && {X_{2}} & \dots & \dots
+	\arrow["{s^{0}}"{description}, from=1-1, to=1-3]
+	\arrow["{d^{1}}"{description}, shift left=3, curve={height=-6pt}, from=1-3, to=1-1]
+	\arrow["{d^{0}}"{description}, shift left=3, curve={height=-6pt}, tail reversed, no head, from=1-1, to=1-3]
+	\arrow["{s^{1}}"{description}, shift right=3, curve={height=6pt}, from=1-3, to=1-5]
+	\arrow["{d^{1}}"{description}, from=1-5, to=1-3]
+	\arrow["{s^{0}}"{description}, shift left=2, curve={height=-6pt}, from=1-3, to=1-5]
+	\arrow["{d^{2}}"{description}, shift left=5, curve={height=-12pt}, from=1-5, to=1-3]
+	\arrow["{d^{0}}"{description}, shift right=5, curve={height=12pt}, from=1-5, to=1-3]
+\end{tikzcd}$$
+induced by the degeneracy and face maps. 
+\begin{definition}[$n$-Simplex]
+  The $n$-simplex is the functor $\Delta^{n}:\DDelta^{\Opp}\to\Sets$ by $[k]\mapsto\Mor_{\DDelta}([k],[n])$. 
+\end{definition}
+\begin{remark}
+  Note that $\Delta^{n}$ is the functor $\DDelta^{\Opp}\to\Sets$, while the topological $n$-simplex $|\Delta^{n}|\simeq S^{n}\in\Obj(\Top)$ is topological space homeomorphic (and homotopic) to the $n$-sphere. 
+\end{remark}
+In this way, we can think of $\Delta^{n}$ as the functor represented by $[n]\in\Obj(\DDelta)$. More generally, one can define representable functors as follows. 
+\begin{definition}[Representable Functor]
+  Let $\Csf$ be a category. A functor $F:\Csf\to\Sets$ is representable if there exists $A\in\Obj(\Csf)$ such that there exists an isomorphism of functors $F\to\Mor_{\Csf}(-,A)$. 
+\end{definition}
+Generally, consider $F:\Csf^{\Opp}\to\Sets$ a contravariant functor from an arbitrary category $\Csf$ to $\Sets$. Let $f:B\to A$. $F(f):F(B)\to F(A)$ is a map betewen sets. For $u\in F(A)$, $u$ determines a natural transformation of functors $\NatTrans(\Mor_{\Csf}(-,A),F)$. This is Yoneda's lemma. We adapt the version from \cite[Theorem 2.2.4]{Riehl}.  
+\begin{lemma}[Yoneda]\label{lem:yoneda}
+  For a contravariant functor $F:\Csf\to\Sets$ and $A\in\Obj(\Csf)$, there is a bijection 
+  $$\NatTrans(\Mor_{\Csf}(-,A), F)\to F(A)$$
+  that associates a natural transformation of functors $\alpha:\Mor_{\Csf}(-,A)\Rightarrow F$ to the element $\alpha(\id_{A})\in F(A)$, natural in both $A$ and $F$. 
+\end{lemma}
+Let us recall the definition of quasicategories as in \Cref{def:quasicategory}. 
+\begin{definition}[Quasicategory]
+  A simplcial set $X$ is a quasicategory if every inner horn $\Lambda^{n}_{k}$ where $0<k<n$ has a fill. 
+\end{definition}
+In other words, for every solid diagram, 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwwLCJYIl0sWzAsMSwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMCwyXSxbMSwyLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\begin{tikzcd}
+	{\Lambda^{n}_{k}} && X \\
+	{\Delta^{n}}
+	\arrow[hook', from=1-1, to=2-1]
+	\arrow[from=1-1, to=1-3]
+	\arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+there is a dotted map making the diagram commute. 
+
+Let us now fix some notation that we will use going forward. For $X$ a simplicial set we denote $X_{n}=\Fun([n],X)$ and $\alpha\in\Mor_{\DDelta}([k],[n])$, we have $X_{\alpha}:X_{n}\to X_{k}$. 
+\begin{theorem}\label{thm: nerve iff unique filler}
+  A simplicial set is the nerve of some category if and only if every inner horn has a unique filler. 
+\end{theorem}
+In other words, for every solid diagram, 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwwLCJYIl0sWzAsMSwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMCwyXSxbMSwyLCJcXGV4aXN0cyEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\begin{tikzcd}
+	{\Lambda^{n}_{k}} && X \\
+	{\Delta^{n}}
+	\arrow[hook', from=1-1, to=2-1]
+	\arrow[from=1-1, to=1-3]
+	\arrow["{\exists!}"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+there is a dotted map making the diagram commute. 
+
+We omit the proof of \Cref{thm: nerve iff unique filler} which can be found in \cite[\S 1.7.10]{Rezk}. 
+
+We want to consider an analogue of \Cref{thm: nerve iff unique filler} in the case of quasicategories. Let $X$ be a quasicategory with objects $X_{0}$ and morphisms $X_{1}$. For $f\in X_{0}$, let $\langle0\rangle^{*}f$ denote the source of the map $f$ and $\langle1\rangle^{*}f$ its target. Let 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDAsIkMiXSxbMSwyLCJnIiwyXSxbMCwxLCJmIiwyXV0=
+\begin{tikzcd}
+	A && C \\
+	B
+	\arrow["g"', from=2-1, to=1-3]
+	\arrow["f"', from=1-1, to=2-1]
+\end{tikzcd}$$
+be the image of a horn $\Lambda^{2}_{1}$ and $h=\tau\langle0,2\rangle:A\to C$ be the fill. 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDAsIkMiXSxbMSwyLCJnIiwyXSxbMCwxLCJmIiwyXSxbMCwyLCJcXHRhdVxcbGFuZ2xlMCwyXFxyYW5nbGU9aCJdXQ==
+\begin{tikzcd}
+	A && C \\
+	B
+	\arrow["g"', from=2-1, to=1-3]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["{\tau\langle0,2\rangle=h}", from=1-1, to=1-3]
+\end{tikzcd}$$
+Since the fill is not unique, we say $\tau$ witnesses $h$ as the composition of $g$ with $f$. This begs the question of how we can perform some operation to make $X$ into a category. This is done via the construction of the fundamental category, which can be done on simplicial sets in general. 
+\begin{definition}[Fundamental Category]
+  Let $X$ be a simplicial set. A category $\Csf$ is the fundamental category of $X$ if every map $X\to\Dsf$ for $\Dsf$ factors through $\Csf$ and $\Csf$ is final with respect to that property. 
+\end{definition}
+Fundamental categories are in general hard to construct, but much easier in the case of quasicategories. Indeed if $X$ is a quasicategory, its fundamental category coincides with its homotopy category $hX$. The homotopy category will have objects $X_{0}$ and morphisms those in $X_{1}$ up to ``witnessing''-equivalence. We will have to discuss these notions of equivalence before defining the homotopy category rigorously. 
+\begin{definition}[Left-Equivalence]\label{def:left equivalence}
+  Let $f,g\in\Mor_{X}(A,B)$. We say that $f$ is left-equivalent to $g$ if there is $\tau\in X_{2}$ such that $\tau\langle0,1\rangle=\id_{A}, \tau\langle0,2\rangle=f, \tau\langle1,2\rangle=g$. 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzAsMSwiQSJdLFsyLDEsIkIiXSxbMCwyLCJmIiwxXSxbMSwyLCJnIiwxXSxbMCwxLCJcXGlkX3tBfSIsMV1d
+  \begin{tikzcd}
+    A \\
+    A && B
+    \arrow["f"{description}, from=1-1, to=2-3]
+    \arrow["g"{description}, from=2-1, to=2-3]
+    \arrow["{\id_{A}}"{description}, from=1-1, to=2-1]
+  \end{tikzcd}$$
+\end{definition}
+Similarly, we have right-equivalence. 
+\begin{definition}[Right-Equivalence]\label{def:right equivalence}
+  Let $f,g\in\Mor_{X}(A,B)$. We say that $f$ is right-equivalent to $g$ if there is $\tau\in X_{2}$ such that $\tau\langle1,2\rangle=\id_{B}, \tau\langle0,1\rangle=f, \tau\langle0,2\rangle=g$. 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwxLCJBIl0sWzIsMSwiQiJdLFsyLDAsIkIiXSxbMCwyLCJnIiwxXSxbMSwyLCJcXGlkX3tCfSIsMV0sWzAsMSwiZiIsMV1d
+  \begin{tikzcd}
+    && B \\
+    A && B
+    \arrow["g"{description}, from=2-1, to=1-3]
+    \arrow["{\id_{B}}"{description}, from=2-3, to=1-3]
+    \arrow["f"{description}, from=2-1, to=2-3]
+  \end{tikzcd}$$
+\end{definition}
+One then shows the following proposition before defining the homotopy category. 
+\begin{proposition}\label{prop: left eq right equivalence}
+  The relations of left equivalence (\Cref{def:left equivalence}) and right equivalence (\Cref{def:right equivalence}) coincide. 
+\end{proposition}
+We can now define the homotopy category. 
+\begin{definition}[Homotopy Category]\label{def:homotopy category}
+  Let $X$ be a simplicial set. The homotopy category $hX$ has objects those in $X_{0}$ and morphisms those in $X_{1}$ up to equivalence. 
+\end{definition}

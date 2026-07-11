@@ -1,0 +1,153 @@
+\section{Lecture 16 -- 8th November 2023}
+Recall that we are trying to progress towards a quasicategorical version of the Yoneda lemma \Cref{lem:yoneda}. In ordinary category theory, for $\Csf$ a category and $A\in\Obj(\Csf)$, we get a functor $\Csf^{\Opp}\to\Sets$ by $A\mapsto\Mor_{\Csf}(-,A)$. For $X$ a quasicategory and $x\in X_{0}$, we get a functor $X^{\Opp}\to\Kan_{\infty}$ some $\infty$-category of Kan complexes by $x\mapsto\Mor_{X}(-,x)$. With the notion of Cartesian fibrations, we can develop a notion of $\Kan_{\infty}$. 
+\\\\
+We seek a definition of $\Kan_{\infty}$ as an $\infty$-category that is a ``universal'' Kan complex in an appropriate sense. We do this via Cartesian fibrations, in particular by realizing $\Kan_{\infty}$ as a fibration. 
+\\\\
+Let us consider for $B$ a simplicial set, left fibrations $E\to B$. 
+\begin{proposition}\label{prop: left fibration iff cocartesian fibration and every morphism is cocartesian}
+    A map of simplicial sets $P:E\to B$ is a left fibration if and only if it is a coCartesian fibration and every morphism in $E$ is coCartesian. 
+\end{proposition}
+\begin{proof}
+    Since $P:E\to B$ is a coCartesian fibration and $f$ is coCartesian per \Cref{def: quasicat cocartesian morphism}, the lifting problem 
+    $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXERlbHRhXntcXHswLDFcXH19Il0sWzIsMCwiXFxMYW1iZGFee259X3swfSJdLFs0LDAsIkUiXSxbMiwxLCJcXERlbHRhXntufSJdLFs0LDEsIkIiXSxbMCwyLCJmIiwwLHsiY3VydmUiOi0zfV0sWzAsMV0sWzEsMl0sWzEsM10sWzIsNCwiUCJdLFszLDRdLFszLDIsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \begin{tikzcd}
+        {\Delta^{\{0,1\}}} && {\Lambda^{n}_{0}} && E \\
+        && {\Delta^{n}} && B
+        \arrow["f", curve={height=-18pt}, from=1-1, to=1-5]
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-3, to=1-5]
+        \arrow[from=1-3, to=2-3]
+        \arrow["P", from=1-5, to=2-5]
+        \arrow[from=2-3, to=2-5]
+        \arrow["\exists"{description}, dashed, from=2-3, to=1-5]
+    \end{tikzcd}$$
+    admits a solution. But this is exactly the condition of lifting against left horns, that is, $P$ a left fibration.  
+\end{proof}
+\begin{proposition}\label{prop: fiber over any 0-simplex is Kan}
+    If $P:E\to B$ is a left fibration, for any $b\in B_{0}$, $p^{-1}(b)$ is a Kan complex. 
+\end{proposition}
+\begin{proof}
+    $E_{b}=p^{-1}(b)$ is a simplicial set admitting left horn fillers. By Joyal's Extension theorem, \Cref{thm: Joyal extension theorem}, every edge is an isomorphism. Applying \Cref{thm: Joyal extension theorem}, outer horns can be filled too, showing $E_{b}$ is a Kan complex by \Cref{def: kan complex}.
+\end{proof}
+Consider a pullback diagram 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXERlbHRhXnsxfSJdLFsyLDEsIkIiXSxbMiwwLCJFIl0sWzIsMSwiUCJdLFswLDEsIihmOmJfezB9XFx0byBiKSIsMl1d
+\begin{tikzcd}
+	&& E \\
+	{\Delta^{1}} && B
+	\arrow["P", from=1-3, to=2-3]
+	\arrow["{(f:b_{0}\to b_{1})}"', from=2-1, to=2-3]
+\end{tikzcd}$$
+where we note the map $\Delta^{\{0\}}\to\Delta^{1}$ induces a map $B^{\Delta^{1}}\to B^{\Delta^{\{0\}}}$ sending $f$ to $b_{0}$ yielding an acyclic Kan fibration $E_{b}\to E\times_{B}B^{\Delta^{1}}$ by the statement dual to \Cref{prop: X Delta 1 Cart to fiber is acyclic Kan}. Pulling back along the ayclic Kan fibration $E_{\mathrm{coCart}}^{\Delta^{1}}$, we get a pullback diagram 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFX3tcXG1hdGhybXtjb0NhcnR9LGJfezB9fV57XFxEZWx0YV57MX19Il0sWzAsMSwiRV97Yl97MH19Il0sWzIsMSwiRVxcdGltZXNfe0J9Ql57XFxEZWx0YV57MX19Il0sWzIsMCwiRV97XFxtYXRocm17Y29DYXJ0fX1ee1xcRGVsdGFeezF9fSJdLFswLDNdLFszLDJdLFswLDFdLFsxLDJdXQ==
+\begin{tikzcd}
+	{E_{\mathrm{coCart},b_{0}}^{\Delta^{1}}} && {E_{\mathrm{coCart}}^{\Delta^{1}}} \\
+	{E_{b_{0}}} && {E\times_{B}B^{\Delta^{1}}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+where the map $E_{\mathrm{coCart},b_{0}}^{\Delta^{1}}\to E_{b_{0}}$ is an acyclic Kan fibration. Pushing forward along $f$, we have maps 
+$$% https://q.uiver.app/#q=WzAsNSxbMiwwLCJFX3tcXG1hdGhybXtjb0NhcnR9LGZ9XntcXERlbHRhXnsxfX0iXSxbMSwxXSxbMCwxLCJFX3tiX3swfX0iXSxbMywxXSxbNCwxLCJFX3tiX3sxfX0iXSxbMCwyXSxbMCw0XSxbMiw0LCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\begin{tikzcd}
+	&& {E_{\mathrm{coCart},f}^{\Delta^{1}}} \\
+	{E_{b_{0}}} & {} && {} & {E_{b_{1}}}
+	\arrow[from=1-3, to=2-1]
+	\arrow[from=1-3, to=2-5]
+	\arrow["\exists"{description}, dashed, from=2-1, to=2-5]
+\end{tikzcd}$$
+with the left one an acyclic Kan fibration, making the map $E_{b_{0}}\to E_{b_{1}}$ exist, the map on fibers given by pushforward. 
+\\\\
+This starts to give us an idea of how to define $\Kan_{\infty}$. Naturally, for say $\Delta^{n}\to\Kan_{\infty}$, we would expect this to be a fibration over $\Delta^{n}$ by Kan complexes. As \Cref{prop: left fibration iff cocartesian fibration and every morphism is cocartesian,prop: fiber over any 0-simplex is Kan} suggest, this should correspond to left fibrations $E\to\Delta^{n}$. So $(\Kan_{\infty})_{n}$ consists of a left fibration $E\to\Delta^{n}$ and for each $([m]\to[n])\in\Mor_{\DDelta}$, a choice of pullback $E'$ given by the following commuting square. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwxLCJbbV0iXSxbMiwxLCJbbl0iXSxbMCwwLCJFJyJdLFsyLDAsIkUiXSxbMywxXSxbMiwwXSxbMiwzXSxbMCwxXV0=
+\begin{tikzcd}
+	{E'} && E \\
+	{\Delta^{m}} && {\Delta^{n}}
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+We show this data amalgamates into a quasicategory. 
+\begin{theorem}\label{thm: Kan infinity is a quasicategory}
+    $\Kan_{\infty}$ is a quasicategory. 
+\end{theorem}
+% prove this
+\begin{definition}[$\Kan_{\infty}$]\label{def: kan-infty}
+    The quasicategory $\Kan_{\infty}$ is the data of $(\Kan_{\infty})_{n}$, left fibrations over $\Delta^{n}$, for all $n$, where the simplicial operators act by precomposition. 
+\end{definition}
+Associated to the functor $\id_{\Kan_{\infty}}:\Kan_{\infty}\to\Kan_{\infty}$ is a universal pullback fibration, so for any left fibration $E\to B$ there is a pullback square 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFIl0sWzAsMSwiQiJdLFsyLDAsIkVfe1xcaW5mdHl9Il0sWzIsMSwiXFxLYW5fe1xcaW5mdHl9Il0sWzAsMiwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsM10sWzAsMV0sWzEsM11d
+\begin{tikzcd}
+	E && {E_{\infty}} \\
+	B && {\Kan_{\infty}}
+	\arrow[dashed, from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$ where for a commutative square of left fibrations (left), 
+$$% https://q.uiver.app/#q=WzAsMTAsWzUsMSwiRSJdLFs1LDIsIkIiXSxbNywyLCJFJyJdLFs3LDMsIkInIl0sWzgsMCwiRV97XFxpbmZ0eX0iXSxbOCwxLCJcXEthbl97XFxpbmZ0eX0iXSxbMCwxLCJFIl0sWzAsMiwiQiJdLFsyLDEsIkUnIl0sWzIsMiwiQiciXSxbNiw4XSxbOCw5XSxbNiw3XSxbNyw5XSxbMCwxXSxbMCwyXSxbMSwzXSxbMiwzXSxbMCw0LCIiLDEseyJjdXJ2ZSI6LTF9XSxbMSw1LCIiLDEseyJjdXJ2ZSI6LTF9XSxbMiw0LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMyw1LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCw1XV0=
+\begin{tikzcd}
+	&&&&&&&& {E_{\infty}} \\
+	E && {E'} &&& E &&& {\Kan_{\infty}} \\
+	B && {B'} &&& B && {E'} \\
+	&&&&&&& {B'}
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=2-1, to=3-1]
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=2-6, to=3-6]
+	\arrow[from=2-6, to=3-8]
+	\arrow[from=3-6, to=4-8]
+	\arrow[from=3-8, to=4-8]
+	\arrow[curve={height=-6pt}, from=2-6, to=1-9]
+	\arrow[curve={height=-6pt}, from=3-6, to=2-9]
+	\arrow[dashed, from=3-8, to=1-9]
+	\arrow[dashed, from=4-8, to=2-9]
+	\arrow[from=1-9, to=2-9]
+\end{tikzcd}$$
+there are dotted morphisms making the diagram on the right commute. In this way, we say that the quasicategory of Kan complexes $\Kan_{\infty}$ is the base of the universal left fibration. One can repeat the steps we have done so far using Cartesian fibrations to show that $\Kan_{\infty}$ is similarly the base of the universal right fibration. 
+\\\\
+Returning to the quasicategorical Yoneda lemma, for $X$ a quasicategory, we have a functor $X^{\Opp}\to\Kan_{\infty}$ which are right fibrations over $X$. A natural question arises: which right fibrations $E\to X$ correspond to representable functors? 
+\\\\
+In the case of a slice category $X_{(-/x)}$ for $x\in X_{0}$, 
+\begin{definition}[Representable Right Fibration]\label{def: representable right fibration}
+    Let $X$ be a quasicategory. A right fibration $E\to X$ is representable if $E$ has a terminal object. 
+\end{definition}
+We want to show that right fibrations arise along slice restrictions. 
+\begin{proposition}
+    If we have a commutative diagram 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJFX3sxfSJdLFs0LDAsIkVfezJ9Il0sWzIsMSwiWCJdLFswLDIsIlBfezF9IiwyXSxbMSwyLCJQX3syfSJdLFswLDEsIkYiXV0=
+    \begin{tikzcd}
+        {E_{1}} &&&& {E_{2}} \\
+        && X
+        \arrow["{P_{1}}"', from=1-1, to=2-3]
+        \arrow["{P_{2}}", from=1-5, to=2-3]
+        \arrow["F", from=1-1, to=1-5]
+    \end{tikzcd}$$
+    with $P_{1},P_{2}$ representable right fibrations and $F$ any map then $F$ is an equivalence of quasicategories. 
+\end{proposition}
+Recall from above that $\Kan_{\infty}$ is a quasicategory of Kan complexes. Can we construct a quasicategory of quasicategories? We can realize a similar construction of $\Cat_{\infty}$ which is the base of the universal Cartesian and coCartesian fibration. Similarly, $(\Cat_{\infty})_{n}$ is given by a (co)Cartesian fibration $E\to \Delta^{n}$ and for all $([m]\to[n])\in\Mor_{\DDelta}$, a choice of pullback $E'$ from the following commuting square. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFJyJdLFswLDEsIlxcRGVsdGFee219Il0sWzIsMCwiRSJdLFsyLDEsIlxcRGVsdGFee259Il0sWzEsM10sWzIsM10sWzAsMl0sWzAsMV1d
+\begin{tikzcd}
+	{E'} && E \\
+	{\Delta^{m}} && {\Delta^{n}}
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+\end{tikzcd}$$
+\begin{theorem}[Cisinski-Nguyen, 2022]\label{thm: cat infinity is a quasicategory}
+    $\Cat_{\infty}$ is a quasicategory. 
+\end{theorem}
+\begin{proof}
+    See \cite[Theorem 3.8]{Cisinski}. 
+\end{proof}
+\begin{definition}[$\Cat_{\infty}$]
+    The quasicategory $\Cat_{\infty}$ is the data of $(\Cat_{\infty})_{n}$, (co)Cartesian fibrations over $\Delta^{n}$, for all $n$, where the simplicial operators act by precomposition. 
+\end{definition}
+We naturally define an $\infty$-category as an object (0-simplex) of $\Cat_{\infty}$. This leads us to the following long-awaited definition. 
+\begin{definition}[$\infty$-Category]
+    An $\infty$-category is a Cartesian fibration over $\Delta^{0}$. 
+\end{definition}
+One naturally defines a morphism of $\infty$-categories as a choice of map $\Delta^{1}\to\Cat_{\infty}$. 

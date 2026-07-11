@@ -1,0 +1,209 @@
+\section{Lecture 4 -- 18th September 2023}
+We begin with some philosophical ruminations about category theory. Here is a question to stimulate some thought: what would it mean to do math in a quasicategory instead of a category (as we do now)? 
+\\\\
+Our original plan was to discuss category theory and quasicategory theory in parallel. But to do so will require significant knowledge of category theory in the first place. As with the last class, we devote today to further discussions of notions in ordinary category theory. 
+\\\\
+Recall our discussion of initial objects (\Cref{def:initial object}) and final objects (\Cref{def:final object}). We denote these $\emptyset$ and $\{*\}$, respectively, since these are the initial and final objects in the category of sets $\Sets$. 
+\\\\
+Let $I$ be an indexing category, that is a directed graph whose objects are the vertices and morphisms the directed edges. 
+\begin{example}
+  Both of the following are examples of indexing categories. 
+  $$% https://q.uiver.app/#q=WzAsNyxbMCwwLCJcXGJ1bGxldCJdLFsyLDAsIlxcYnVsbGV0Il0sWzAsMSwiXFxidWxsZXQiXSxbMiwxLCJcXGJ1bGxldCJdLFs0LDAsIlxcYnVsbGV0Il0sWzQsMSwiXFxidWxsZXQiXSxbNiwwLCJcXGJ1bGxldCJdLFsxLDNdLFswLDJdLFsyLDNdLFswLDFdLFs0LDZdLFs0LDVdXQ==
+  \begin{tikzcd}
+    \bullet && \bullet && \bullet && \bullet \\
+    \bullet && \bullet && \bullet
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=2-1, to=2-3]
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-5, to=1-7]
+    \arrow[from=1-5, to=2-5]
+  \end{tikzcd}$$
+\end{example}
+\begin{example}
+  Recall the definition of representable spaces of groups \Cref{ex:representable spaces}. Let $BG$ be the representable space of a group $G$. A functor $BG\to\Csf$ is an object of $\Csf$ equipped with a left $G$-action. Indeed, if 
+\end{example}
+\begin{remark}\label{rmk:top bottom beings}
+  What if there were beings on another planet with arms atop and on the bottom of their body. Saying a left action would make absolutely no sense. To be more precise, one ought use the language of contravariant and covariant functors. Suppose we have the following in $BG$
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGJ1bGxldCJdLFsxLDAsIlxcYnVsbGV0Il0sWzIsMCwiXFxidWxsZXQiXSxbMCwxLCJnX3sxfSIsMV0sWzEsMiwiZ197Mn0iLDFdXQ==
+  \begin{tikzcd}
+    \bullet & \bullet & \bullet
+    \arrow["{g_{1}}"{description}, from=1-1, to=1-2]
+    \arrow["{g_{2}}"{description}, from=1-2, to=1-3]
+  \end{tikzcd}$$
+  The image of $BG$ under the functor is an object $g_{2}(g_{1}\cdot x)=(g_{1}g_{2})\cdot x$. 
+\end{remark}
+We can now define the cone over an indexing category. 
+\begin{definition}[Cones]
+  Let $F:I\to\Csf$ be a functor for some indexing category $I$. A cone on $F$ is a object $A\in\Obj(\Csf)$ along with maps $g_{i}:F(i)\to A$ for all $i\in\Obj(I)$ such that for all $i\to j\in\Mor_{I}$ the diagram 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJGKGkpIl0sWzIsMCwiRihqKSJdLFsyLDEsIkEiXSxbMCwxLCJGKGlcXHRvIGopIl0sWzEsMiwiZ197an0iXSxbMCwyLCJnX3tpfSIsMl1d
+  \begin{tikzcd}
+    {F(i)} && {F(j)} \\
+    && A
+    \arrow["{F(i\to j)}", from=1-1, to=1-3]
+    \arrow["{g_{j}}", from=1-3, to=2-3]
+    \arrow["{g_{i}}"', from=1-1, to=2-3]
+  \end{tikzcd}$$
+  commutes. 
+\end{definition}
+Let us now look at some examples. 
+\begin{example}\label{ex:prepushout}
+  Let $I$ be the indexing category/diagram
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGJ1bGxldCJdLFsyLDAsIlxcYnVsbGV0Il0sWzAsMSwiXFxidWxsZXQiXSxbMCwxXSxbMCwyXV0=
+  \begin{tikzcd}
+    \bullet && \bullet \\
+    \bullet
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-1, to=2-1]
+  \end{tikzcd}$$
+  the cone over the diagram is an object $*\in\Obj(I)$ such that the diagram 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGJ1bGxldCJdLFsyLDAsIlxcYnVsbGV0Il0sWzAsMSwiXFxidWxsZXQiXSxbMiwxLCIqIl0sWzAsMV0sWzAsMl0sWzEsMywiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsMywiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    \bullet && \bullet \\
+    \bullet && {*}
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow[dashed, from=1-3, to=2-3]
+    \arrow[dashed, from=2-1, to=2-3]
+  \end{tikzcd}$$
+  commutes. 
+\end{example}
+\begin{remark}
+  In such a situation, we write $F\to*$ for the cone on $F$. 
+\end{remark}
+\begin{definition}[Colimit Cone]\label{def: colimit cone}
+  Let $\Csf$ be a category and $F\to A$ with $A\in\Obj(\Csf)$ for some indexing category $I$. The cone $F\to A$ is a colimit cone if for all other cones $F\to B$ with $B\in\Obj(\Csf)$ the diagram
+  $$% https://q.uiver.app/#q=WzAsMyxbMSwwLCJGIl0sWzAsMSwiQSJdLFsyLDEsIkIiXSxbMSwyLCJcXGV4aXN0cyIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDFdLFswLDJdXQ==
+  \begin{tikzcd}
+    & F \\
+    A && B
+    \arrow["\exists"', dashed, from=2-1, to=2-3]
+    \arrow[from=1-2, to=2-1]
+    \arrow[from=1-2, to=2-3]
+  \end{tikzcd}$$
+  commutes. 
+\end{definition}
+If $F\to A$ is a colimit cone, we say $A$ is the colimit of $F$ where one writes $$\varprojlim F=\colim_{I}F=A.$$
+\begin{example}[Pushout]
+  Let $I$ be the indexing category as in \Cref{ex:prepushout}. Let $F:I\to\Csf$ be a functor. The colimit of $F$ is the pushout of the diagram. 
+\end{example}
+We can actually define colimits differently using universal properties. 
+\begin{definition}[Colimit Cone]
+  Let $\Csf$ be a category and $F:I\to\Csf$ a functor from some indexing category $I$. Let $F/\Csf$ be the category whose objects are cones on $F$ and whose morphisms are maps $(F\to A)\to(F\to B)$ are morphisms $f\in\Mor_{\Csf}(A,B)$ making the diagram 
+  $$% https://q.uiver.app/#q=WzAsMyxbMSwwLCJGIl0sWzAsMSwiQSJdLFsyLDEsIkIiXSxbMSwyLCJmIiwyXSxbMCwxXSxbMCwyXV0=
+  \begin{tikzcd}
+    & F \\
+    A && B
+    \arrow["f"', from=2-1, to=2-3]
+    \arrow[from=1-2, to=2-1]
+    \arrow[from=1-2, to=2-3]
+  \end{tikzcd}$$
+  commutes. The colimit cone of $F$ is the initial object of the category $F/\Csf$. 
+\end{definition}
+One can check that the above definitions of the colimit agree, and that the colimit can be described by a universal property, that is, it is unique up to unique isomorphism. \\\\
+\emph{Universal properties allow you to dream about an object. -- Emily Riehl}
+\begin{definition}[Coequalizer]\label{def:coequalizer}
+  Let $I$ be the indexing category 
+  $$% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGJ1bGxldCJdLFsyLDAsIlxcYnVsbGV0Il0sWzAsMSwiZiIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCJnIiwyLHsib2Zmc2V0IjoxfV1d
+  \begin{tikzcd}
+    \bullet && \bullet
+    \arrow["f", shift left, from=1-1, to=1-3]
+    \arrow["g"', shift right, from=1-1, to=1-3]
+  \end{tikzcd}$$
+  and if $F:I\to\Csf$ is a functor for any category $\Csf$, we define the colimit of $I$ to be the coequalizer of $f$ and $g$. 
+\end{definition}
+\begin{example}
+  If $\Csf=\Sets$ then the coequalizer of the diagram 
+  $$% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGJ1bGxldCJdLFsyLDAsIlxcYnVsbGV0Il0sWzAsMSwiZiIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCJnIiwyLHsib2Zmc2V0IjoxfV1d
+  \begin{tikzcd}
+    \bullet && \bullet
+    \arrow["f", shift left, from=1-1, to=1-3]
+    \arrow["g"', shift right, from=1-1, to=1-3]
+  \end{tikzcd}$$
+  is $S_{2}/\sim$ where $\sim$ is the equivalence relation generated by $f(s)\sim g(s)$ for all $s\in S_{1}$. 
+\end{example}
+\begin{example}
+  If $\Csf=\AbGrp$ the coequalizer of the diagram 
+  $$% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGJ1bGxldCJdLFsyLDAsIlxcYnVsbGV0Il0sWzAsMSwiZiIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCJnIiwyLHsib2Zmc2V0IjoxfV1d
+  \begin{tikzcd}
+    \bullet && \bullet
+    \arrow["f", shift left, from=1-1, to=1-3]
+    \arrow["g"', shift right, from=1-1, to=1-3]
+  \end{tikzcd}$$
+  is the cokernel of $A\to B$, that is $B/\mathrm{im}(A)$. 
+\end{example}
+\begin{example}
+  Let $I$ be the indexing category with no non-identity morphisms. The colimit over $I$ is the coproduct. In $\Sets$ the coproduct is the disjoint union, in $\Grp$ the coproduct is the free product, and in $\AbGrp$ the coproduct is the direct sum. 
+\end{example}
+One can in fact show the following theorem. 
+\begin{theorem}
+  Let $\Csf$ be a category. If $\Csf$ has all coproducts and coequalizers, then $\Csf$ has all colimits. 
+\end{theorem}
+One can consider dual objects by taking the opposite category to define co-cones, limits, etc. \\\\
+The guiding philosophy here is that categories and categorical structures can be built out of functors from indexing categories/diagrams. 
+\begin{definition}[Constant Functor]
+  Let $I$ be an indexing category, $\Csf$ a category, and $F:I\to\Csf$ a functor. For $A\in\Obj(\Csf)$, define the constant functor at $A$ $\delta_{A}:I\to\Csf$ the functor that maps each object of $I$ to $A\in\Obj(\Csf)$ and each morphism to $\id_{A}$. 
+\end{definition} 
+We can think of a cone on $F$ as a natural transformation $F\to\delta_{A}$. Consider $\Csf^{I}=\Fun(I,\Csf)$ the category of functors from $I$ to $\Csf$. There is a functor $\colim_{I}:\Csf^{I}\to\Csf$ taking a diagram to its colimit. Dually, there is a functor $\delta_{\Obj(\Csf)}:\Csf\to\Csf^{I}$ by $A\mapsto\delta_{A}$. There is a natural transformation $\id_{\Csf^{I}}\to\delta_{\colim_{I}}$. This is the universal property of colimits, that there is an isomorphism in $\Sets$ between $\Mor_{\Csf^{I}}(F,\delta_{A})$ and $\Mor_{\Csf}(\colim_{I}F, A)$. This was our first example of adjoint functors, first defined by Dan Kan. 
+\begin{definition}[Adjunction]
+  Let $\Csf,\Dsf$ be categories and $F:\Csf\to\Dsf,G:\Dsf\to\Csf$ be functors. An adjunction between $F$ and $G$ is a natural isomorphism of functors $\Csf^{\Opp}\times\Dsf\to\Sets$ by $\Mor_{\Dsf}(F(X),Y)\to\Mor_{\Csf}(X,F(Y))$ for all $X\in\Obj(\Csf), Y\in\Obj(\Dsf)$. 
+\end{definition}
+This leads to several closely related notions. 
+\begin{definition}[Adjoint Pair]
+  Let $\Csf,\Dsf$ be categories and $F:\Csf\to\Dsf,G:\Dsf\to\Csf$ be functors. If there is an adjunction between $F$ and $G$ then we say $F$ and $G$ form an adjoint pair. 
+\end{definition}
+\begin{definition}[Left and Right Adjoints]
+  Let $\Csf,\Dsf$ be categories and $F:\Csf\to\Dsf,G:\Dsf\to\Csf$ be an adjoint pair. We say $F$ is the left adjoint and $G$ is the right adjoint. 
+\end{definition}
+\begin{remark}
+  The language of left and right adjoints can be confusing. See, for example, the remark above. The directionality could be deduced from the following diagram, which is often used in the literature. 
+  $$% https://q.uiver.app/#q=WzAsMixbMCwwLCJGOlxcQ3NmIl0sWzIsMCwiXFxEc2Y6RyJdLFsxLDAsIiIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCIiLDAseyJvZmZzZXQiOi0xfV1d
+  \begin{tikzcd}
+    {F:\Csf} && {\Dsf:G}
+    \arrow[shift left, from=1-3, to=1-1]
+    \arrow[shift left, from=1-1, to=1-3]
+  \end{tikzcd}$$
+\end{remark}
+We revisit colimits in a new language. 
+\begin{example}
+  Let $\Csf$ be a category, $I$ an indexing category, and $F:I\to\Csf$ a functor. The colimit functor $\colim_{I}:\Csf^{I}\to\Csf$ and $\delta_{\Obj(\Csf)}:\Csf\to\Csf^{I}$ form an adjoint pair. The functor $\colim_{I}:\Csf^{I}\to\Csf$ is the left adjoint to $\delta_{\Obj(\Csf)}:\Csf\to\Csf^{I}$. Analogously, $\delta_{\Obj(\Csf)}:\Csf\to\Csf^{I}$ is the right adjoint to $\colim_{I}:\Csf^{I}\to\Csf$. 
+\end{example}
+\begin{remark}
+  Dan Kan began writing the paper on adjoint functors without full knowledge of how it would develop. The lesson here is to start writing early, even when you don't think something will be significant. 
+\end{remark}
+One can easily deduce the following about adjunctions. 
+\begin{proposition}
+  Suppose we have categories $\Csf,\Dsf,\Esf$ and functors $F_{1},F_{2},G_{1},G_{2}$ as below where $F_{1},G_{1}$ and $F_{2},G_{2}$ are adjoint pairs. The pair $F_{2}\circ F_{1}, G_{1}\circ G_{2}$ is an adjoint pair as well. 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXENzZiJdLFsyLDAsIlxcRHNmIl0sWzQsMCwiXFxFc2YiXSxbMCwxLCJGX3sxfSIsMCx7Im9mZnNldCI6LTF9XSxbMSwyLCJGX3syfSIsMCx7Im9mZnNldCI6LTF9XSxbMiwxLCJHX3syfSIsMCx7Im9mZnNldCI6LTF9XSxbMSwwLCJHX3sxfSIsMCx7Im9mZnNldCI6LTF9XV0=
+  \begin{tikzcd}
+    \Csf && \Dsf && \Esf
+    \arrow["{F_{1}}", shift left, from=1-1, to=1-3]
+    \arrow["{F_{2}}", shift left, from=1-3, to=1-5]
+    \arrow["{G_{2}}", shift left, from=1-5, to=1-3]
+    \arrow["{G_{1}}", shift left, from=1-3, to=1-1]
+  \end{tikzcd}$$
+\end{proposition}
+\begin{proof}
+  We have natural isomorphisms 
+  $$\Mor_{\Esf}(F_{2}(F_{1}(X)),Y)\to\Mor_{\Dsf}(F_{1}(X),G_{2}(Y))\to\Mor_{\Csf}(X,G_{2}(G_{1}(Y)))$$
+  for all $X\in\Obj(\Csf),Y\in\Obj(\Esf)$ proving the claim. 
+\end{proof}
+We now introduce sheaves. One likely encounters this in an algebraic geometry course. 
+\begin{example}[Sheaves on a Space]
+  Let $X$ be a topological space and $X^{\Opens}$ be the category of open sets of $X$ whose objects are open sets and whose morphisms are inclusion maps. A $\Csf$-valued sheaf on $X$ is a contravariant functor $\Fun((X^{\Opens})^{\Opp},\Csf)$ from the category of open sets on $X$ to $\Csf$. 
+\end{example}
+We now define sheaves on categories, a generalization of the abovementioned concept. 
+\begin{definition}[Sheaves on Categories]
+  Let $\Csf$ be a category. The category of $\Dsf$-valued presheaves on $\Csf$ is the functor category $\Fun(\Csf^{\Opp},\Dsf)=\PSh(\Csf)$. 
+\end{definition}
+\begin{remark}
+  The notation $\PSh(\Csf)$ does not indicate the category in which the presheaf is valued. This is often obvious from context. If this is not indicated, we will take $\Dsf=\Sets$. 
+\end{remark}
+Naturally, there is a map from the (higher) category of categories $\Cat$ taking a category $\Csf$ to the category of presheaves on it $\PSh(\Csf)$. 
+\begin{definition}[Representable Presheaves]
+  A presheaf on $\Csf$ is representable if it is naturally isomorphic to $\Fun(-,\Csf)$.
+\end{definition}
+One can then show that this is a category that fulfils several nice properties. 
+\begin{theorem}
+  Let $\Csf$ be a category. The category $\PSh(\Csf)$ admits all limits and colimits, and every $F\in\Obj(\PSh(\Csf))$ is the colimit of representable functors. 
+\end{theorem}

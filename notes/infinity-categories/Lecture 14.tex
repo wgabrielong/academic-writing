@@ -1,0 +1,92 @@
+\section{Lecture 14 -- 1st November 2023}
+Let us recall the definition of categorical equivalence \Cref{def: categorical equivalence}. We develop its analogue in quasicategories. 
+\begin{definition}[Quasicategorical Equivalence]\label{def: quasicategorical equivalence}
+    Let $F:X\to Y$ be a functor between quasicategories. $F$ is an equivalence of quasicategories if there exists $G:Y\to X$ and natural transformations $G\circ F\Rightarrow\id_{X}, F\circ G\Rightarrow\id_{Y}$. 
+\end{definition}
+\begin{remark}
+    Since we are in a quasicategory, the maps $G\circ F\Rightarrow\id_{X}, F\circ G\Rightarrow\id_{Y}$ are not natural isomorphisms. 
+\end{remark}
+When we try to do this for simplicial sets, things get a little more complicated. But we can use Joyal's theorem, \Cref{thm: Joyal on functor category of quasicategory and simplicial set} to state the following. 
+\begin{definition}[Equivalence of Simplicial Sets]\label{def: simplicial set equivalence}
+    Let $F:X\to Y$ be a map of simplicial sets. $F$ is a categorical equivalence if for all quasicategories $Z$, $Z^{F}:Z^{Y}\to Z^{X}$ is an equivalence of quasicategories in the sense of \Cref{def: quasicategorical equivalence}. 
+\end{definition}
+Quasicategories are in fact simplicial sets (with a horn filling condition). So we would expect the definitions \Cref{def: quasicategorical equivalence} and \Cref{def: simplicial set equivalence} to coincide. This is in fact the case. 
+\begin{proposition}
+    For quasicategories, the definitions of equivalence in \Cref{def: quasicategorical equivalence} and \Cref{def: simplicial set equivalence} coincide.
+\end{proposition}
+To make \Cref{def: simplicial set equivalence} more precise, we seek $\Bcal$ a category of simplicial sets. This would be a category $\Bcal$ where $\Bcal_{0}$ are a collection of simplicial sets\footnote{The astute among us would bound the size of these simplicial sets, say by some cardinal $\kappa$, but we omit this for ease of exposition (and also because set theory can be scary).}. Let $X$ be a simplicial set. What is a functor $X:\Delta^{0}\to\Bcal$, viewed as the inclusion of $X$ as a simplical set into $\Bcal$? This is a sort of moduli problem which we would expect to take values in Kan complexes. More precisely, Yoneda's lemma suggests that there is an equivalence between natural transformations between the functor $X$ represents and some Kan complex which is a subquasicategory of $\Bcal$ with maps $Y\to X$. Expecting $\Bcal$ to be a simplicial set, we would ask what the functor $\id_{\Bcal}:\Bcal\to\Bcal$ induces? Naturally, we would expect it to have some universal property, namely a map of simplicial sets $\Ecal\to\Bcal$ such that for all maps $X\to\Bcal$, $Y$ is obtained by pulling back $\Ecal\to\Bcal$ along $X\to\Bcal$.  
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJZIl0sWzAsMSwiWCJdLFsyLDAsIlxcRWNhbCJdLFsyLDEsIlxcQmNhbCJdLFsxLDNdLFsyLDNdLFswLDJdLFswLDFdXQ==
+\begin{tikzcd}
+	Y && \Ecal \\
+	X && \Bcal
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+\end{tikzcd}$$
+Here, we say that $\Bcal$ is the target of the universal map of simplicial sets, $\Ecal\to\Bcal$ being the universal map of simplicial sets. 
+\\\\
+Let's try to figure out what $\Bcal$ looks like. Naturally, we have the equality 
+$$\Bcal_{n}=\Mor_{\SSets}(\Delta^{n},\Bcal)=\{Y\to\Delta^{n}|Y\in\Obj(\SSets)\}.$$
+\begin{remark}
+    $\Bcal_{n}$ is not a simplicial set in general. In particular, $\Bcal_{n}$ is given by a choice of data $Y\to\Delta^{n}$ and for each $[m]\to[n]$ in $\DDelta$, a choice of pullback square. 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJZJyJdLFswLDEsIlxcRGVsdGFee219Il0sWzIsMCwiWSJdLFsyLDEsIlxcRGVsdGFee259Il0sWzEsM10sWzIsM10sWzAsMV0sWzAsMl1d
+    \begin{tikzcd}
+        {Y'} && Y \\
+        {\Delta^{m}} && {\Delta^{n}}
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-1, to=1-3]
+    \end{tikzcd}$$
+\end{remark}
+The universal property of $\Ecal\to\Bcal$ is that given every map of simplicial sets $Y\to X$, there is a unique pullback square 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJZIl0sWzAsMSwiWCJdLFsyLDAsIlxcRWNhbCJdLFsyLDEsIlxcQmNhbCJdLFsxLDNdLFsyLDNdLFswLDJdLFswLDFdXQ==
+\begin{tikzcd}
+	Y && \Ecal \\
+	X && \Bcal
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+\end{tikzcd}$$
+such that given a solid diagram of maps, 
+$$% https://q.uiver.app/#q=WzAsNixbMCwxLCJYIl0sWzAsMiwiWSJdLFsyLDIsIlgnIl0sWzIsMywiWSciXSxbMywwLCJcXEVjYWwiXSxbMywxLCJcXEJjYWwiXSxbMCw0LCIiLDAseyJjdXJ2ZSI6LTF9XSxbMSw1LCIiLDAseyJjdXJ2ZSI6LTJ9XSxbMCwxXSxbMCwyXSxbMSwzXSxbMiw0LCJcXGV4aXN0cyIsMSx7ImxhYmVsX3Bvc2l0aW9uIjozMCwiY3VydmUiOjEsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDUsIlxcZXhpc3RzIiwxLHsiY3VydmUiOjIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDVdLFsyLDNdXQ==
+\begin{tikzcd}
+	&&& \Ecal \\
+	X &&& \Bcal \\
+	Y && {X'} \\
+	&& {Y'}
+	\arrow[curve={height=-6pt}, from=2-1, to=1-4]
+	\arrow[curve={height=-12pt}, from=3-1, to=2-4]
+	\arrow[from=2-1, to=3-1]
+	\arrow[from=2-1, to=3-3]
+	\arrow[from=3-1, to=4-3]
+	\arrow["\exists"{description, pos=0.3}, curve={height=6pt}, dashed, from=3-3, to=1-4]
+	\arrow["\exists"{description}, curve={height=12pt}, dashed, from=4-3, to=2-4]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=3-3, to=4-3]
+\end{tikzcd}$$
+there exist dotted maps making the diagram commute. 
+\\\\
+Is $\Bcal$ a quasicategory? Equivalently, do we have inner horn fillers? 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwwLCJcXEJjYWwiXSxbMCwyXSxbMCwxXSxbMSwyLCJcXGV4aXN0cz8iLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\begin{tikzcd}
+	{\Lambda^{n}_{k}} && \Bcal \\
+	{\Delta^{n}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\exists?}"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+The top arrow corresonds to $Y\to\Lambda^{n}_{k}$ so this extending to $\Delta^{n}$ means that there exists some $Z\to\Delta^{n}$ from which $Y\to\Lambda^{n}_{k}$ is obtained by pulling back in the following square. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJZIl0sWzAsMSwiXFxMYW1iZGFee259X3trfSJdLFsyLDAsIloiXSxbMiwxLCJcXERlbHRhXntufSJdLFswLDJdLFsyLDNdLFswLDFdLFsxLDNdXQ==
+\begin{tikzcd}
+	Y && Z \\
+	{\Lambda^{n}_{k}} && {\Delta^{n}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+But we can set $Z=Y$ from which horn filling follows. 
+% The last part of this lecture is a little sketchy. Come back to reivise. 

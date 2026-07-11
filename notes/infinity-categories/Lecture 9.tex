@@ -1,0 +1,49 @@
+\section{Lecture 9 -- 16th October 2023}
+Recall that in the analogue of universal properties in the setting of quasicategories are isolating them as members of acyclic Kan complexes. Let us recall the definition. 
+\begin{definition}[Acyclic Kan Fibration]
+  ????
+\end{definition}
+These will be the formulations to construct limits and colimits in the setting of quasicategories. Let us recall the definition of colimits. 
+\begin{definition}[Cone, Cf. \Cref{def: colimit cone}]\label{def: cone v2}
+  Let $\Csf$ be a category and $F:I\to\Csf$ be a functor. Let $I_{+}=I\sqcup\{\infty\}$ where $\Mor_{I_{+}}(-,\infty)=\{*\}$. A cone on $F$ is a functor extending $F:I\to \Csf$ to $\overline{F}:I_{+}\to\Csf$. 
+\end{definition}
+This allows us to define colimits as follows. 
+\begin{definition}[Colimit]
+  Following the notation of \Cref{def: cone v2}, the colimit of $F:I\to \Csf$ is $\overline{F}(\infty)$. 
+\end{definition}
+We seek to generalize the notion of cones and related notions to the setting of quasicategories. We do this via joins and slices in an analogous way to constructing $I_{+}$. 
+\begin{definition}[Joins]
+  Let $\Csf,\Dsf$ be categories. We define the join $\Csf\star\Dsf$ as the category whose objects $\Obj(\Csf\star\Dsf)=\Obj(\Csf)\sqcup\Obj(\Dsf)$ and whose morphisms are given by the following:
+  $$\Mor_{\Csf\star\Dsf}(A,B)=\begin{cases}
+    \Mor_{\Csf}(A,B) & A,B\in\Obj(\Csf) \\
+    \Mor_{\Dsf}(A,B) & A,B\in\Obj(\Dsf) \\
+    \{*\} & A\in\Obj(\Csf), B\in\Obj(\Dsf) \\
+    \emptyset & A\in\Obj(\Dsf), B\in\Obj(\Csf).
+  \end{cases}$$
+\end{definition}
+We can consider the nerves of these categories to verify 
+\begin{align*}
+  (\Csf\star\Dsf)_{0} &= (\Csf)_{0}\sqcup (\Dsf)_{0} \\
+  (\Csf\star\Dsf)_{1} &= (\Csf)_{1} \sqcup (\Csf\times\Dsf)_{0} \sqcup (\Dsf)_{1}. 
+\end{align*}
+We want to consider this in terms of simplicial sets. In $\DDelta$ take $[-1]=\emptyset$ to be initial and we can define a binary operation $\sqcup$ on simplicial sets by extending total orders on both. 
+\begin{example}
+  $[2]\sqcup[3]$ is $0\leq 1\leq 2\leq 0'\leq 1'\leq 2'\leq 3'$, that is, $[6]$. More generally, $[m]\sqcup [n]=[m+n+1]$. 
+\end{example}
+This allows us to define joins on simplicial sets. 
+\begin{definition}[Joins of Simplicial Sets]
+  Let $X,Y$ be simplicial sets. Their join $X\star Y$ is given by the nerves at each level by taking $(X\star Y)_{0}=X_{0}\sqcup Y_{0}$ and inducting by 
+  $$(X\star Y)_{n}=\bigsqcup_{[n]=[n_{1}]\sqcup[n_{2}]}X_{n_{1}}\times Y_{n_{2}}.$$
+\end{definition}
+We would desire that these respect maps $[n]\to[m]$ in $\DDelta$. That is, for $[n]\to[m]$ a map in $\DDelta$, that there is a map of simplicial sets $(X\star Y)_{m}\to (X\star Y)_{n}$. This is made possbile by the following lemma. 
+\begin{lemma}
+  Given order-preserving maps $f:[n]\to[m_{1}]\sqcup [m_{2}]$, there are $k_{1},k_{2}$ such that $k_{1}+k_{2}+1=n$, $f_{i}:[k_{i}]\to[m_{i}]$ order-preserving maps for $i\in\{1,2\}$ such that $f$ decomposes as $f=f_{1}\sqcup f_{2}$. 
+\end{lemma}
+We omit the proof. 
+\begin{example}
+  For $f:[5]\to[2]\sqcup [3]$ by $\langle 0,2,0',1',2',3'\rangle$ we can decompose $f=f_{1}\sqcup f_{2}$ where $f_{1}:[1]\to[2]$ by $\langle 0,2\rangle$ and $f_{2}:[2]\to[3]$ by $\langle 0,1,2,3\rangle$. 
+\end{example}
+Since joins of simplicial sets are functorial, we have shown the following. 
+\begin{proposition}
+  If $X,Y$ are quasicategories then $X\star Y$ is a quasicategory. 
+\end{proposition}

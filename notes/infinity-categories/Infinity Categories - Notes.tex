@@ -1,0 +1,72 @@
+\documentclass{amsart}
+\usepackage[margin=1.1in]{geometry} 
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{accents}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+\input{shortcuts.tex}
+\setlength{\headheight}{40pt}
+
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}
+  \begin{proof}[Solution]}
+  {\end{proof}}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\usepackage{amsmath, amssymb, tikz, amsthm, csquotes, multicol, footnote, tablefootnote, biblatex, wrapfig, float, quiver, mathrsfs, cleveref, enumitem, upgreek,stmaryrd}
+\addbibresource{refs.bib}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem*{remark}{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\numberwithin{equation}{section}
+\begin{document}
+\large
+\title[Infinity Categories]{MATH 292Z: First Steps in Infinity Categories}
+\author{Wern Juin Gabriel Ong}
+\address{Bowdoin College, Brunswick, Maine 04011}
+\email{gong@bowdoin.edu}
+\urladdr{https://wgabrielong.github.io/}
+\maketitle
+\section*{Preliminaries}
+These notes roughly correspond to the course \textbf{MATH 292Z: First Steps in Infinity Categories} taught by Prof. Michael Hopkins at Harvard University in the Fall 2023 semester. These notes are \LaTeX-ed after the fact with significant alteration and are subject to misinterpretation and mistranscription. Use with caution. Any errors are undoubtedly my own and any virtues that could be ascribed to these notes ought be attributed to the instructor and not the typist. A special thanks to Prof. Hopkins, who made his lecture notes available to the class, and in referencing it have greatly improved my own notes and understanding of the subject. 
+\tableofcontents
+\include{Lecture 1}
+\include{Lecture 2}
+\include{Lecture 3}
+\include{Lecture 4}
+\include{Lecture 5}
+\include{Lecture 6}
+\include{Lecture 7}
+\include{Lecture 8}
+\include{Lecture 9}
+\include{Lecture 10}
+\include{Lecture 11}
+\include{Lecture 12}
+\include{Lecture 13}
+\include{Lecture 14}
+\include{Lecture 15}
+\include{Lecture 16}
+\include{Lecture 17}
+\include{Lecture 18}
+\include{Lecture 19}
+\include{Lecture 20}
+\include{Lecture 21}
+\include{Lecture 22}
+\newpage
+\printbibliography
+\end{document}

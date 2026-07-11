@@ -1,0 +1,112 @@
+\section{Lecture 19 -- 20th November 2023}
+We will consider a recent application of quasicategories/$\infty$-categories due to Lurie known as ambidexterity. References are \cite{HarpazAmbi,LuriHopkinsAmbi}. 
+\\\\
+Let $\Csf$ be an ordinary category with limits and colimits. $\Csf$ thus has an initial object $\emptyset$ and a final object $*$. 
+\begin{definition}
+    Let $\Csf$ be a category with all limits and colimits. If $\emptyset\to*$ is an isomorphism, then $\Csf$ is a pointed category. 
+\end{definition}
+For a pointed category $\Csf$ we can construct a map $X\coprod Y\to X\times Y$ for all $X,Y\in\Obj(\Csf)$ as follows. 
+$$% https://q.uiver.app/#q=WzAsNixbMSwxLCJYXFx0aW1lcyBZIl0sWzEsM10sWzEsMiwiWSJdLFswLDEsIlhcXGNvcHJvZCBZIl0sWzEsMCwiWCJdLFswLDBdLFszLDBdLFszLDIsIigqLFxcaWRfe1l9KSIsMl0sWzMsNCwiKFxcaWRfe1h9LCopIl0sWzAsMiwiXFxwcl97Mn0iXSxbMCw0LCJcXHByX3sxfSIsMl1d
+\begin{tikzcd}
+	 & X \\
+	{X\coprod Y} & {X\times Y} \\
+	& Y 
+	\arrow[from=2-1, to=2-2]
+	\arrow["{(*,\id_{Y})}"', from=2-1, to=3-2]
+	\arrow["{(\id_{X},*)}", from=2-1, to=1-2]
+	\arrow["{\pr_{2}}", from=2-2, to=3-2]
+	\arrow["{\pr_{1}}"', from=2-2, to=1-2]
+\end{tikzcd}$$
+If further the map $X\coprod Y\to X\times Y$ is an isomorphism, we have a map 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXFx0aW1lcyBYIl0sWzIsMCwiWFxcY29wcm9kIFgiXSxbMiwxLCJYIl0sWzAsMV0sWzEsMiwiKFxcaWRfe1h9LFxcaWRfe1h9KSJdLFswLDIsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\begin{tikzcd}
+	{X\times X} && {X\coprod X} \\
+	&& X
+	\arrow[from=1-1, to=1-3]
+	\arrow["{(\id_{X},\id_{X})}", from=1-3, to=2-3]
+	\arrow["\exists"{description}, dashed, from=1-1, to=2-3]
+\end{tikzcd}$$
+endowing $X$ with a natural multiplication structure. For all $Y\in\Obj(\Csf)$ this gives the set $\Mor_{\Csf}(Y,X)$ with the structure of a unital monoid by Yoneda's lemma \Cref{lem:yoneda}. 
+\\\\
+This leads to a discussion of spans. 
+\begin{definition}[$\Csf^{\dagger}$]\label{def: set of morphisms C dagger}
+	Let $\Csf$ be a category and $\Csf^{\dagger}\subseteq\Mor_{\Csf}$ such that 
+	\begin{enumerate}[label=(\alph*)]
+		\item $\Csf^{\dagger}$ contains every isomorphism in $\Csf$. 
+		\item $\Csf^{\dagger}$ is closed under composition. 
+		\item $\Csf^{\dagger}$ is preserved by base change, that is, for a morphism $X\to Z$ in $\Csf^{\dagger}$ and $Y\to Z$ another morphism 
+		$$% https://q.uiver.app/#q=WzAsNCxbMiwxLCJaIl0sWzIsMCwiWCJdLFswLDEsIlkiXSxbMCwwLCJYXFx0aW1lc197Wn1ZIl0sWzEsMF0sWzIsMF0sWzMsMV0sWzMsMl1d
+		\begin{tikzcd}
+			{X\times_{Z}Y} && X \\
+			Y && Z
+			\arrow[from=1-3, to=2-3]
+			\arrow[from=2-1, to=2-3]
+			\arrow[from=1-1, to=1-3]
+			\arrow[from=1-1, to=2-1]
+		\end{tikzcd}$$
+		the morphism obtained by base change along $Y\to Z$, $X\times_{Z}Y\to Y$, is in $\Csf^{\dagger}$. 
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	$\Csf^{\dagger}$ is all isomorphisms in $\Csf$. 
+\end{example}
+\begin{example}
+	$\Csf^{\dagger}$ is all morphisms in $\Csf$.
+\end{example}
+We can construct a new category $\mathrm{Span}_{\Csf^{\dagger}}\Csf$. 
+\begin{definition}[Category of Spans]\label{def: category of spans}
+	The category of spans of $\Csf$ with respect to $\Csf^{\dagger}$, $\mathrm{Span}_{\Csf^{\dagger}}\Csf$, is the category with objects those of $\Csf$ and morphisms between $X,Y$ are of the form 
+	$$% https://q.uiver.app/#q=WzAsMyxbMSwwLCJcXHdpZGV0aWxkZXtYfSJdLFswLDEsIlgiXSxbMiwxLCJZIl0sWzAsMSwicF97WH0iLDJdLFswLDIsImZfe1l9Il1d
+	\begin{tikzcd}
+		& {\widetilde{X}} \\
+		X && Y
+		\arrow["{p_{X}}"', from=1-2, to=2-1]
+		\arrow["{f_{Y}}", from=1-2, to=2-3]
+	\end{tikzcd}$$
+	where $p_{X}$ a morphism in $\Csf^{\dagger}$. The composition law is given by the data of the following diagram 
+	$$% https://q.uiver.app/#q=WzAsNixbMSwxLCJcXHdpZGV0aWxkZXtYfSJdLFswLDIsIlgiXSxbMiwyLCJZIl0sWzMsMSwiXFx3aWRldGlsZGV7WX0iXSxbNCwyLCJaIl0sWzIsMCwiUCJdLFswLDEsInBfe1h9IiwyXSxbMCwyLCJmX3tZfSJdLFszLDIsInBfe1l9IiwyXSxbMyw0LCJmX3tafSJdLFs1LDAsImZeeyp9cF97WX0iLDJdLFs1LDMsInBfe1l9XnsqfWZfe1l9Il1d
+	\begin{tikzcd}
+		&& P \\
+		& {\widetilde{X}} && {\widetilde{Y}} \\
+		X && Y && Z
+		\arrow["{p_{X}}"', from=2-2, to=3-1]
+		\arrow["{f_{Y}}", from=2-2, to=3-3]
+		\arrow["{p_{Y}}"', from=2-4, to=3-3]
+		\arrow["{f_{Z}}", from=2-4, to=3-5]
+		\arrow["{f_{Y}^{*}p_{Y}}"', from=1-3, to=2-2]
+		\arrow["{p_{Y}^{*}f_{Y}}", from=1-3, to=2-4]
+	\end{tikzcd}$$
+	where the square bounded by $P,\widetilde{X},\widetilde{Y}, Y$ a pullback. 
+\end{definition}
+\begin{remark}
+	Since $p_{Y}\in\Csf^{\dagger}$, the morphism $f^{*}_{Y}p_{Y}$ is in $\Csf^{\dagger}$ also, obtained by pullback of $p_{Y}$ along $f_{Y}$. The identity is evidently given by 
+	$$% https://q.uiver.app/#q=WzAsMyxbMSwwLCJYIl0sWzAsMSwiWCJdLFsyLDEsIlgiXSxbMCwxLCJcXGlkX3tYfSIsMl0sWzAsMiwiXFxpZF97WH0iXV0=
+	\begin{tikzcd}
+		& X \\
+		X && X
+		\arrow["{\id_{X}}"', from=1-2, to=2-1]
+		\arrow["{\id_{X}}", from=1-2, to=2-3]
+	\end{tikzcd}$$
+	and we declare two spans 
+	$$% https://q.uiver.app/#q=WzAsNixbMSwwLCJcXHdpZGV0aWxkZXtYfSJdLFswLDEsIlgiXSxbMiwxLCJZIl0sWzUsMCwiXFx3aWRldGlsZGV7WCd9Il0sWzQsMSwiWCJdLFs2LDEsIlkiXSxbMCwxLCJwX3tYfSIsMl0sWzAsMiwiZl97WX0iXSxbMyw0LCJwJ197WH0iLDJdLFszLDUsImYnX3tZfSJdXQ==
+	\begin{tikzcd}
+		& {\widetilde{X}} &&&& {\widetilde{X'}} \\
+		X && Y && X && Y
+		\arrow["{p_{X}}"', from=1-2, to=2-1]
+		\arrow["{f_{Y}}", from=1-2, to=2-3]
+		\arrow["{p'_{X}}"', from=1-6, to=2-5]
+		\arrow["{f'_{Y}}", from=1-6, to=2-7]
+	\end{tikzcd}$$
+	equivalent if and only if there is a commutative diagram as follows. 
+	$$% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHdpZGV0aWxkZXtYfSJdLFswLDEsIlgiXSxbMiwxLCJZIl0sWzEsMiwiXFx3aWRldGlsZGV7WCd9Il0sWzAsMiwiZl97WX0iXSxbMCwxLCJwX3tYfSIsMl0sWzMsMSwicCdfe1h9Il0sWzMsMiwiZidfe1l9IiwyXSxbMCwzLCJcXHdyIl1d
+	\begin{tikzcd}
+		& {\widetilde{X}} \\
+		X && Y \\
+		& {\widetilde{X'}}
+		\arrow["{f_{Y}}", from=1-2, to=2-3]
+		\arrow["{p_{X}}"', from=1-2, to=2-1]
+		\arrow["{p'_{X}}", from=3-2, to=2-1]
+		\arrow["{f'_{Y}}"', from=3-2, to=2-3]
+		\arrow["\wr", from=1-2, to=3-2]
+	\end{tikzcd}$$
+\end{remark}

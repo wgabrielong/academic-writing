@@ -1,0 +1,223 @@
+\section{Lecture 11 -- 23rd October 2023}
+We are trying to think about mathematics inside a quaicategory, and define constructions such as initial and final objects, limits and colimits, and more. Let us consider something that we have yet to develop the language to prove. 
+\\\\
+Suppose $F:I\to\Csf$ be a functor from an indexing category $I$ to a category $\Csf$. Let $G:\Csf\to\Dsf$ be a functor. When is $G\left(\colim_{I}F(i)\right)=\colim_{I}(G\circ F)(i)$? Evidently, this holds if $G$ is an equivalence of categories, but in what other settings does it hold? What is the analogue in the setting of quasicategories?
+\\\\
+We will consider isomorphisms in quasicategories. 
+\begin{definition}[Joyal]\label{def: quasicategory isomorphism}
+    Let $X$ be a quasicategory and $f\in X_{1}$. If the image of $f$ is an isomorphism in the fundamental category of $X$, then $f$ is an isomorphism in $X$. 
+\end{definition}
+Recall that to define the homotopy category we had to consider left and right inverses that were witnessed by 2-simplices. For $f\in X_{1}$ with $f:A\to B$ and $A,B\in X_{0}$, we say that $f$ admits a left inverse $g$ if the diagram 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzAsMSwiQSJdLFsyLDEsIkIiXSxbMCwxLCJcXHdyIiwyXSxbMSwyLCJmIiwyXSxbMiwwLCJnIiwyXV0=
+\begin{tikzcd}
+	A \\
+	A && B
+	\arrow["\wr"', from=1-1, to=2-1]
+	\arrow["f"', from=2-1, to=2-3]
+	\arrow["g"', from=2-3, to=1-1]
+\end{tikzcd}$$
+commutes where $g\circ f\simeq\id_{A}$. Similarly, we say $f$ admits a right inverse $g'$ if the diagram 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwxLCJBIl0sWzIsMSwiQiJdLFsyLDAsIkIiXSxbMSwyLCJcXHdyIiwyXSxbMiwwLCJnJyIsMl0sWzAsMSwiZiIsMl1d
+\begin{tikzcd}
+	&& B \\
+	A && B
+	\arrow["\wr"', from=2-3, to=1-3]
+	\arrow["{g'}"', from=1-3, to=2-1]
+	\arrow["f"', from=2-1, to=2-3]
+\end{tikzcd}$$
+commutes where $f\circ g'=\id_{B}$. 
+\begin{remark}
+    In the setting of an ordinary category, we can verify 
+    $$g=g\circ\id_{B}=g\circ f\circ g'=\id_{A}\circ g'=g'$$
+    showing that $g=g'$. 
+\end{remark}
+We now state another theorem of Joyal, known as the Joyal Extension theorem. 
+\begin{theorem}[Joyal -- Extension]\label{thm: Joyal extension theorem}
+    Let $X$ be a quasicategory and $f\in X_{1}$. The following are equivalent. 
+    \begin{enumerate}[label=(\alph*)]
+        \item $f$ is an isomorphism. 
+        \item The horn inclusion of $f$ into the leading edge of a horn can be lifted. 
+        $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXERlbHRhXnsxfSJdLFs0LDAsIlgiXSxbMiwwLCJcXExhbWJkYV97MH1ee259Il0sWzIsMSwiXFxEZWx0YV57bn0iXSxbMywxLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDFdLFsyLDNdLFswLDIsIlxcbGFuZ2xlMCwxXFxyYW5nbGUiLDJdLFswLDEsImYiLDEseyJjdXJ2ZSI6LTN9XV0=
+        \begin{tikzcd}
+            {\Delta^{1}} && {\Lambda_{0}^{n}} && X \\
+            && {\Delta^{n}}
+            \arrow["\exists"{description}, dashed, from=2-3, to=1-5]
+            \arrow[from=1-3, to=1-5]
+            \arrow[from=1-3, to=2-3]
+            \arrow["{\langle0,1\rangle}"', from=1-1, to=1-3]
+            \arrow["f"{description}, curve={height=-18pt}, from=1-1, to=1-5]
+        \end{tikzcd}$$
+        \item The horn inclusion of $f$ into the tailing edge of a horn can be lifted. 
+        $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXERlbHRhXnsxfSJdLFs0LDAsIlgiXSxbMiwwLCJcXExhbWJkYV97bn1ee259Il0sWzIsMSwiXFxEZWx0YV57bn0iXSxbMywxLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDFdLFsyLDNdLFswLDIsIlxcbGFuZ2xlIG4tMSxuXFxyYW5nbGUiLDJdLFswLDEsImYiLDEseyJjdXJ2ZSI6LTN9XV0=
+        \begin{tikzcd}
+            {\Delta^{1}} && {\Lambda_{n}^{n}} && X \\
+            && {\Delta^{n}}
+            \arrow["\exists"{description}, dashed, from=2-3, to=1-5]
+            \arrow[from=1-3, to=1-5]
+            \arrow[from=1-3, to=2-3]
+            \arrow["{\langle n-1,n\rangle}"', from=1-1, to=1-3]
+            \arrow["f"{description}, curve={height=-18pt}, from=1-1, to=1-5]
+        \end{tikzcd}$$
+    \end{enumerate}
+\end{theorem}
+The proof of this theorem will take some additional tools that we have yet to discuss. Following the correspondence between isomorphisms in quasicategories and isomorphisms in categories, we define the following. 
+\begin{definition}[Conservative Functor]\label{def: conservative functor}
+    Let $F:X\to Y$ be a functor between quasicategories. The functor $F$ is conservative if for all $f\in X_{1}$ and $F(f)\in Y_{1}$ is an isomorphism then $f$ is an isomorphism in $X$. 
+\end{definition}
+\begin{remark}
+    This is a very important concept. In fact, some conjectures in algebraic geometry reduce to showing a functor is conservative. 
+\end{remark}
+\begin{proposition}\label{prop: left and right fibrations are conservative}
+    If $F$ is a left (resp. right) fibration then $F$ is conservative. 
+\end{proposition}
+\begin{proof}
+    We prove the case of left fibrations. 
+    \\\\
+    Suppose that $F:X\to Y$ is a left fibration, $f\in X_{1}, F(f)\in Y_{1}$ is an isomorphism. Choose $\tau\in Y_{2}$ witnessing the inverse $g$ of $F(f)$. 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwxLCIwIl0sWzIsMSwiMSJdLFsxLDAsIjIiXSxbMCwxLCJGKGYpIiwxXSxbMSwyLCJnIiwxXSxbMCwyLCJcXHNpbSJdXQ==
+    \begin{tikzcd}
+        & 2 \\
+        0 && 1
+        \arrow["{F(f)}"{description}, from=2-1, to=2-3]
+        \arrow["g"{description}, from=2-3, to=1-2]
+        \arrow["\sim", from=2-1, to=1-2]
+    \end{tikzcd}$$
+    We now consider the lifting problem 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXExhbWJkYV57Mn1fezB9Il0sWzAsMSwiXFxEZWx0YV57Mn0iXSxbMiwxLCJZIl0sWzIsMCwiWCJdLFswLDFdLFszLDIsIkYiXSxbMCwzLCJcXHNpZ21hIl0sWzEsMiwiXFx0YXUiLDJdLFsxLDMsIlxcd2lkZXRpbGRle1xcdGF1fSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \begin{tikzcd}
+        {\Lambda^{2}_{0}} && X \\
+        {\Delta^{2}} && Y
+        \arrow[from=1-1, to=2-1]
+        \arrow["F", from=1-3, to=2-3]
+        \arrow["\sigma", from=1-1, to=1-3]
+        \arrow["\tau"', from=2-1, to=2-3]
+        \arrow["{\widetilde{\tau}}"{description}, dashed, from=2-1, to=1-3]
+    \end{tikzcd}$$
+    where $\sigma\langle0,2\rangle=\id, \sigma\langle0,1\rangle=f$ and the lift $\widetilde{\tau}$ exists by $F$ being a left fibration where we take $\widetilde{\tau}\langle1,2\rangle$ to be the left inverse of $f$ showing that $f$ is an isomorphism. 
+\end{proof}
+We can now define isofibrations. 
+\begin{definition}[Isofibration; Riehl-Verity, Lurie]\label{def: isofibration}
+    A functor $F:X\to Y$ between quasicategories is an isofibration if it is an inner fibration and for every diagram of the form
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXERlbHRhXnswfSJdLFswLDEsIlxcRGVsdGFeezF9Il0sWzIsMCwiWCJdLFsyLDEsIlkiXSxbMiwzLCJGIl0sWzAsMl0sWzEsMywiZiIsMl0sWzAsMSwiXFxsYW5nbGUwXFxyYW5nbGUiLDJdLFsxLDIsImciLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+        {\Delta^{0}} && X \\
+        {\Delta^{1}} && Y
+        \arrow["F", from=1-3, to=2-3]
+        \arrow[from=1-1, to=1-3]
+        \arrow["f"', from=2-1, to=2-3]
+        \arrow["\langle0\rangle"', from=1-1, to=2-1]
+        \arrow["g"{description}, dashed, from=2-1, to=1-3]
+    \end{tikzcd}$$
+    $f$ being an isomorphism implies $g$ being an isomorphism. 
+\end{definition}
+In fact, we can show that the lifting the tail in the definition above can be rephrased as lifting a tip. 
+\begin{lemma}
+    Let $F:X\to Y$ be an inner fibration between quasicategories. The diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXERlbHRhXnswfSJdLFswLDEsIlxcRGVsdGFeezF9Il0sWzIsMCwiWCJdLFsyLDEsIlkiXSxbMiwzLCJGIl0sWzAsMl0sWzEsMywiZiIsMl0sWzAsMSwiXFxsYW5nbGUwXFxyYW5nbGUiLDJdLFsxLDIsImciLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+        {\Delta^{0}} && X \\
+        {\Delta^{1}} && Y
+        \arrow["F", from=1-3, to=2-3]
+        \arrow[from=1-1, to=1-3]
+        \arrow["f"', from=2-1, to=2-3]
+        \arrow["\langle0\rangle"', from=1-1, to=2-1]
+        \arrow["g"{description}, dashed, from=2-1, to=1-3]
+    \end{tikzcd}$$
+    admits a lift if and only if the diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXERlbHRhXnswfSJdLFswLDEsIlxcRGVsdGFeezF9Il0sWzIsMCwiWCJdLFsyLDEsIlkiXSxbMiwzLCJGIl0sWzAsMl0sWzEsMywiZiIsMl0sWzAsMSwiXFxsYW5nbGUxXFxyYW5nbGUiLDJdLFsxLDIsImciLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+        {\Delta^{0}} && X \\
+        {\Delta^{1}} && Y
+        \arrow["F", from=1-3, to=2-3]
+        \arrow[from=1-1, to=1-3]
+        \arrow["f"', from=2-1, to=2-3]
+        \arrow["\langle1\rangle"', from=1-1, to=2-1]
+        \arrow["g"{description}, dashed, from=2-1, to=1-3]
+    \end{tikzcd}$$
+    does. 
+\end{lemma}
+\begin{proof}
+    Both diagrams show that $f$ is an isomorphism admitting left or right inverses, that is, invertible in the homotopy category with inverse $g$. 
+\end{proof}
+We can then show the following. 
+\begin{proposition}
+    Let $F:X\to Y$ be a functor between quasicategories. If $F$ is a left or right fibration then $F$ is an isofibration. 
+\end{proposition}
+\begin{proof}
+    Left and right fibrations are conservative by \Cref{prop: left and right fibrations are conservative} and hence isofibrations. 
+\end{proof}
+We now can prove Joyal's extension theorem. 
+\begin{proof}[Proof of \Cref{thm: Joyal extension theorem}]
+    (a) $\Longrightarrow$ (b) and (a) $\Longrightarrow$ (c) follow from the definition of the homotopy category. We will show (b) $\Longrightarrow$ (a) from which one shows (c) $\Longrightarrow$ (a) by passing to the opposite quasicategory. \\\\
+    Suppose we have a diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXERlbHRhXnsxfSJdLFs0LDAsIlgiXSxbMiwwLCJcXExhbWJkYV97MH1ee259Il0sWzIsMSwiXFxEZWx0YV57bn0iXSxbMywxLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDFdLFsyLDNdLFswLDIsIlxcbGFuZ2xlMCwxXFxyYW5nbGUiLDJdLFswLDEsImYiLDEseyJjdXJ2ZSI6LTN9XV0=
+    \begin{tikzcd}
+        {\Delta^{1}} && {\Lambda_{0}^{n}} && X \\
+        && {\Delta^{n}}
+        \arrow[from=1-3, to=1-5]
+        \arrow[from=1-3, to=2-3]
+        \arrow["{\langle0,1\rangle}"', from=1-1, to=1-3]
+        \arrow["f"{description}, curve={height=-18pt}, from=1-1, to=1-5]
+    \end{tikzcd}$$
+    and writing the 0-horn as 
+    $$\Lambda^{n}_{0}=\Delta^{1}\star\partial\Delta^{n-2}\bigcup_{\Delta^{\{1\}}\star\partial\Delta^{n-2}}\Delta^{\{1\}}\star\Delta^{n-2}$$
+    the data of the diagram
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXERlbHRhXntcXHsxXFx9fSJdLFswLDEsIlxcRGVsdGFeezB9Il0sWzIsMCwiXFxEZWx0YV57MX0iXSxbMCwxXSxbMSwyLCJcXGxhbmdsZTFcXHJhbmdsZSIsMl0sWzAsMl1d
+    \begin{tikzcd}
+        {\Delta^{\{1\}}} && {\Delta^{1}} \\
+        {\Delta^{0}}
+        \arrow[from=1-1, to=2-1]
+        \arrow["\langle1\rangle"', from=2-1, to=1-3]
+        \arrow[from=1-1, to=1-3]
+    \end{tikzcd}$$
+    and $\Delta^{0}\star\Delta^{1}=\Delta^{1}$ we can transform our factorization problem into the following lifting problem 
+    $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXERlbHRhXntcXHsxXFx9fSJdLFsyLDAsIlhfeygtL1xcRGVsdGFee24tMn0pfSJdLFswLDEsIlxcRGVsdGFeezF9Il0sWzIsMSwiWF97KC0vXFxwYXJ0aWFsXFxEZWx0YV57bi0yfSl9Il0sWzIsMiwiWCJdLFszLDRdLFsxLDNdLFswLDFdLFsyLDNdLFswLDJdLFsyLDQsImYiLDJdLFsyLDEsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \begin{tikzcd}
+        {\Delta^{\{1\}}} && {X_{(-/\Delta^{n-2})}} \\
+        {\Delta^{1}} && {X_{(-/\partial\Delta^{n-2})}} \\
+        && X
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow["f"', from=2-1, to=3-3]
+        \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+    \end{tikzcd}$$
+    where the dotted arrow exists by $X_{(-/\Delta^{n-2})}\to X_{(-/\partial\Delta^{n-2})}$ is an isofibration and $X_{(-/\partial\Delta^{n-2})}\to X$ a right fibration. 
+\end{proof}
+\Cref{thm: Joyal extension theorem} implies the following corollary. 
+\begin{corollary}\label{corr: all isos implies Kan}
+    If every morphism is an isomorphism in a quasicategory $X$ then $X$ is a Kan complex. 
+\end{corollary}
+\begin{proof}
+    Inner horns have fills by $X$ being a quasicategory and left and right horns have fills by \Cref{thm: Joyal extension theorem}. 
+\end{proof}
+Now let us recall the definition of a quasigroupoid. 
+\begin{definition}[Quasigroupoid]\label{def: quasigroupoid}
+    Let $X$ be a quasicategory. $X$ is a quasigroupoid if every morphism $f\in X_{1}$ is an isomorphism. 
+\end{definition}
+\begin{remark}
+    The definition of a quasigroupoid \Cref{def: quasigroupoid} is one of the rare instances where the definition in categories lifts to the definition in quasicategories. 
+\end{remark}
+We can now show the following corollary. 
+\begin{corollary}
+    If $X\to\Delta^{0}$ is a left fibration, then $X$ is a Kan complex. 
+\end{corollary}
+\begin{remark}
+    We could equivalently say that if $X$ is a quasicategory with left horn fillers, then $X$ has all horn fillers. 
+\end{remark}
+\begin{proof}
+    We consider the diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwwLCJYIl0sWzIsMSwiXFxEZWx0YV57MH0iXSxbMSwzXSxbMCwyXSxbMiwzXSxbMCwxXSxbMSwyLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \begin{tikzcd}
+        {\Lambda^{n}_{k}} && X \\
+        {\Delta^{n}} && {\Delta^{0}}
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+    \end{tikzcd}$$
+    where $k=0$ is by assumption, and $k=n$ follows by \Cref{thm: Joyal extension theorem} so every morphism is an isomorphism showing that $X$ is a Kan complex by \Cref{corr: all isos implies Kan}. 
+\end{proof}

@@ -1,0 +1,127 @@
+\section{Lecture 15 -- 6th November 2023}
+We have alluded to some form of quasicategorical Yoneda lemma which would take 0-simplices of a quasicategory functors from the opposite quasicategory to Kan complexes, that is, 
+$$X\to\textrm{Kan Complexes}^{X^{\Opp}}.$$
+Adopting Grothendieck's language in category theory, the categorical Yoneda $\Csf^{\Opp}\to\Sets$ can be stated in terms of Grothendieck opp-fibrations. In the theory of quasicategory theory, we consider Cartesian fibrations, those inner fibrations $P:X\to Y$ such that lifting problems of the form 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHsxXFx9Il0sWzAsMSwiXFxEZWx0YV57MX0iXSxbMiwwLCJYIl0sWzIsMSwiWSJdLFswLDJdLFsyLDMsIlAiXSxbMCwxXSxbMSwzLCJmIiwyXSxbMSwyLCJcXGV4aXN0cyBcXHdpZGV0aWxkZXtmfSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\begin{tikzcd}
+	{\{1\}} && X \\
+	{\Delta^{1}} && Y
+	\arrow[from=1-1, to=1-3]
+	\arrow["P", from=1-3, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["f"', from=2-1, to=2-3]
+	\arrow["{\exists \widetilde{f}}"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+admit solutions with $\widetilde{f}$ Cartesian. Suppose $P:X\to Y$ is a Cartesian fibration. Given $b\in Y_{0}$ treated as an inclusion $b:\Delta^{0}\to Y$, we can consider the following pullback. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYX3tifSJdLFswLDEsIlxcRGVsdGFeezB9Il0sWzIsMCwiWCJdLFsyLDEsIlkiXSxbMSwzLCJiIiwyXSxbMiwzLCJQIl0sWzAsMl0sWzAsMV1d
+\begin{tikzcd}
+	{X_{b}} && X \\
+	{\Delta^{0}} && Y
+	\arrow["b"', from=2-1, to=2-3]
+	\arrow["P", from=1-3, to=2-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+\end{tikzcd}$$
+In $\Top$, $X_{b}$ is the fiber over $b$. If this is a Cartesian fibration and $(f:a\to b)\in Y_{1}$ then we can form the pullback 
+$$% https://q.uiver.app/#q=WzAsNixbMywwLCJYIl0sWzMsMSwiWSJdLFsyLDMsIlxcRGVsdGFeezB9Il0sWzIsMiwiWF97YX0iXSxbMCwxLCJYX3tifSJdLFswLDIsIlxcRGVsdGFeezB9Il0sWzAsMSwiUCJdLFsyLDEsImEiLDJdLFs1LDEsImIiLDAseyJjdXJ2ZSI6LTF9XSxbNCwwLCIiLDAseyJjdXJ2ZSI6LTF9XSxbMywyXSxbMywwXSxbNSwyLCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsMywiZl57Kn0iLDIseyJsYWJlbF9wb3NpdGlvbiI6NzB9XSxbNCw1XV0=
+\begin{tikzcd}
+	&&& X \\
+	{X_{b}} &&& Y \\
+	{\Delta^{0}} && {X_{a}} \\
+	&& {\Delta^{0}}
+	\arrow["P", from=1-4, to=2-4]
+	\arrow["a"', from=4-3, to=2-4]
+	\arrow["b", curve={height=-6pt}, from=3-1, to=2-4]
+	\arrow[curve={height=-6pt}, from=2-1, to=1-4]
+	\arrow[from=3-3, to=4-3]
+	\arrow[from=3-3, to=1-4]
+	\arrow[no head, from=3-1, to=4-3]
+	\arrow["{f^{*}}"'{pos=0.7}, from=2-1, to=3-3]
+	\arrow[from=2-1, to=3-1]
+\end{tikzcd}$$
+and consider the map $f^{*}:X_{b}\to X_{a}$. Here's an example for some intuition. 
+\begin{example}
+    Let $T:\Csf^{\Opp}\to\Sets$ be a functor. Given $(f:A\to B)\in\Mor_{\Csf}$, we have a map of sets $T(A)\to T(B)$. Let $\Csf_{T}=\{(A,t)\in\Obj(\Csf)\times T(A)\}$. We have a natural functor $\Csf_{T}\to\Csf$ by $(A,t)\mapsto A$ so considering the pullback 
+    $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCIoXFxDc2Zfe1R9KV97Qn0iXSxbMCwxLCIqIl0sWzEsMV0sWzIsMSwiXFxDc2YiXSxbMiwwLCJcXENzZl97VH0iXSxbMCwxXSxbNCwzXSxbMSwzLCJCIiwyXSxbMCw0XV0=
+    \begin{tikzcd}
+        {(\Csf_{T})_{B}} && {\Csf_{T}} \\
+        {*} && \Csf
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow["B"', from=2-1, to=2-3]
+        \arrow[from=1-1, to=1-3]
+    \end{tikzcd}$$
+    we have $(\Csf_{T})_{B}=\{(B,t)\in B\times T(B)\}$ which is a (discrete) set $T(B)$.
+\end{example}
+We now state some combinatorial lemmata that we will need later. 
+\begin{lemma}\label{lem: box product of Deltan x Delta1}
+    The inclusion $\partial\Delta^{n}\times\Delta^{1}\cup\Delta^{n}\times\{1\}\hookrightarrow\Delta^{n}\times\Delta^{1}$ is the product-pushout $$(\partial\Delta^{n}\to\Delta^{n})\square(\{1\}\to\Delta^{1}).$$
+\end{lemma}
+Let $\Acal=\partial\Delta^{n}\times\Delta^{1}\cup\Delta^{n}\times\{1\}$. We know that we have $a_{i}:\Delta^{n+1}\to\Delta^{n}\times\Delta^{1}$ with $\Delta^{n}\times\Delta^{1}=\Acal\cup a_{0}\cup\dots\cup a_{n}$ (see, for example, the intuition in \Cref{lem: conservativity of one simplex}). All faces of $a_{i}$ are in $\Acal$ except $d^{i}a_{i}, d^{i}a_{i+1}$
+\\\\
+From this, we deduce the following corollaries. 
+\begin{corollary}\label{corr: A to An is inner anodyne}
+    The map $\partial\Delta^{n}\times\Delta^{1}\cup\Delta^{n}\times\{1\}\to \Acal_{n}$ is  inner anodyne. 
+\end{corollary}
+\begin{corollary}\label{corr: An to Deltan x Delta1 is right horn fill}
+    The map $\to\Delta^{n}\times\Delta^{1}$ is a right horn filling with a terminal edge $\Delta^{\{n\}}\times\Delta^{1}$. 
+\end{corollary}
+% Many details missing in the combinatorics here. 
+Let $P:X\to Y$ be a Cartesian fibration. We want to understand the space of Cartesian lifts, that is, the space of solutions to the following lifting problem. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHsxXFx9Il0sWzIsMCwiWCJdLFsyLDEsIlkiXSxbMCwxLCJcXERlbHRhXnsxfSJdLFsxLDIsIlAiXSxbMCwxXSxbMywyXSxbMCwzXSxbMywxLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\begin{tikzcd}
+	{\{1\}} && X \\
+	{\Delta^{1}} && Y
+	\arrow["P", from=1-3, to=2-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+We have a natural map 
+$$X^{\Delta^{1}}\to X^{\{1\}}\times_{Y^{\{1\}}}Y^{\Delta^{1}}$$
+from all morphisms in $X$ to those morphisms in $X$ with codomain in the fiber over $f\langle 1\rangle\in Y$. Recall here that a 0-simplex of $X^{\Delta^{1}}$ is a map $\Delta^{1}\to X$. We consider the full subcategory $X_{\mathrm{Cart}}^{\Delta^{1}}$ of Cartesian lifts. 
+\begin{proposition}\label{prop: X Delta 1 Cart to fiber is acyclic Kan}
+    The map of quasicategories $X^{\Delta^{1}}_{\mathrm{Cart}}\to X^{\{1\}}\times_{Y^{\{1\}}}Y^{\Delta^{1}}$ is an acyclic Kan fibration. 
+\end{proposition}
+\begin{proof}
+    We want to show that the lifting problem 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHBhcnRpYWxcXERlbHRhXntufSJdLFswLDEsIlxcRGVsdGFee259Il0sWzIsMCwiWF57XFxEZWx0YV57MX19X3tcXG1hdGhybXtDYXJ0fX0iXSxbMiwxLCJYXntcXHsxXFx9fVxcdGltZXNfe1lee1xcezFcXH19fVlee1xcRGVsdGFeezF9fSJdLFswLDJdLFsyLDNdLFswLDFdLFsxLDNdLFsxLDIsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \begin{tikzcd}
+        {\partial\Delta^{n}} && {X^{\Delta^{1}}_{\mathrm{Cart}}} \\
+        {\Delta^{n}} && {X^{\{1\}}\times_{Y^{\{1\}}}Y^{\Delta^{1}}}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=2-1, to=2-3]
+        \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+    \end{tikzcd}$$
+    always has a solution. This is equivalent to the factorization problem 
+    $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHBhcnRpYWxcXERlbHRhXntufSJdLFswLDEsIlxcRGVsdGFee259Il0sWzIsMCwiWF57XFxEZWx0YV57MX19X3tcXG1hdGhybXtDYXJ0fX0iXSxbNCwwLCJYXntcXERlbHRhXnsxfX0iXSxbNCwxLCJYXntcXHsxXFx9fVxcdGltZXNfe1lee1xcezFcXH19fVlee1xcRGVsdGFeezF9fSJdLFswLDJdLFsyLDNdLFszLDRdLFsxLDRdLFswLDFdLFsxLDNdLFsxLDIsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \begin{tikzcd}
+        {\partial\Delta^{n}} && {X^{\Delta^{1}}_{\mathrm{Cart}}} && {X^{\Delta^{1}}} \\
+        {\Delta^{n}} &&&& {X^{\{1\}}\times_{Y^{\{1\}}}Y^{\Delta^{1}}}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-3, to=1-5]
+        \arrow[from=1-5, to=2-5]
+        \arrow[from=2-1, to=2-5]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=2-1, to=1-5]
+        \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+    \end{tikzcd}$$
+    where it suffices to show that $X^{\Delta^{1}}_{\mathrm{Cart}}\to X^{\Delta^{1}}$ is a full subcategory. This is showing that the following lifting problem can be solved 
+    $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHtpXFx9XFx0aW1lc1xcRGVsdGFeezF9Il0sWzAsMSwiXFxwYXJ0aWFsXFxEZWx0YV57bn1cXHRpbWVzXFxEZWx0YV57MX1cXGN1cFxcRGVsdGFee259XFx0aW1lc1xcezFcXH0iXSxbMCwyLCJcXERlbHRhXntufVxcdGltZXNcXERlbHRhXnsxfSJdLFsyLDIsIlkiXSxbMiwxLCJYIl0sWzAsNF0sWzIsM10sWzQsM10sWzEsNF0sWzAsMV0sWzEsMl0sWzIsNCwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+        {\{i\}\times\Delta^{1}} \\
+        {\partial\Delta^{n}\times\Delta^{1}\cup\Delta^{n}\times\{1\}} && X \\
+        {\Delta^{n}\times\Delta^{1}} && Y
+        \arrow[from=1-1, to=2-3]
+        \arrow[from=3-1, to=3-3]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=2-1, to=3-1]
+        \arrow["\exists"{description}, dashed, from=3-1, to=2-3]
+    \end{tikzcd}$$
+    when $\{i\}\times\Delta^{1}\to X$ are Cartesian in $X$ for $0\leq i\leq n+1$. 
+\end{proof}

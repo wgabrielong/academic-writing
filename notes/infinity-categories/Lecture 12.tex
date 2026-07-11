@@ -1,0 +1,252 @@
+\section{Lecture 12 -- 25th October 2023}
+Today we will continue learning about what is happening inside a quasicategory. In particular, getting a better understanding of isomorphisms and natural transformations. 
+\\\\
+Let $\Csf,\Dsf$ be categories. For $F,G:\Csf\to\Dsf$ and $\alpha:F\Rightarrow G$ a natural transformation, we can represent this data as a diagram as follows. 
+$$% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXENzZiJdLFsyLDAsIlxcRHNmIl0sWzAsMSwiRiIsMCx7ImN1cnZlIjotMn1dLFswLDEsIkciLDIseyJjdXJ2ZSI6Mn1dLFsyLDMsIlxcYWxwaGEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+\begin{tikzcd}
+	\Csf && \Dsf
+	\arrow[""{name=0, anchor=center, inner sep=0}, "F", curve={height=-12pt}, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "G"', curve={height=12pt}, from=1-1, to=1-3]
+	\arrow["\alpha", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
+\end{tikzcd}$$
+If further $\alpha$ is a natural isomorphism of functors $F:\Csf\to\Dsf,G:\Csf\to\Dsf$ $\alpha(A):F(A)\to G(A)$ is an isomorphism in $\Dsf$ for all $A\in\Obj(\Csf)$. 
+\\\\
+Considering $F,G$ as objects of the functor category $\Fun(\Csf,\Dsf)=\Dsf^{\Csf}$ we can show that $\alpha\in\Mor_{\Dsf^{\Csf}}(F,G)$ is a natural isomorphism if and only if $\alpha$ is an isomorphism in the functor category. In the setting of categories, however, we can appeal to uniqueness of morphisms as between any two objects there is a set worth of morphisms between them. 
+\\\\
+Let us fix some notation to consider natural isomorphisms in the setting of quasicategories. Let $X$ be a quasicategory, $I$ a simplicial set, and $F,G:I\to X$ functors. A natural transformation $\alpha$ betwteen $F$ and $G$ is the data of some inclusion of a 1-simplex that restricts to $F$ and $G$ at the tip and tail of the arrow, respectively. 
+$$% https://q.uiver.app/#q=WzAsNyxbMSwxLCJcXERlbHRhXnswfSJdLFswLDAsIlxcRGVsdGFeezF9Il0sWzIsMCwiWF57SX0iXSxbNCwxXSxbNCwwLCJcXERlbHRhXnsxfSJdLFs1LDEsIlxcRGVsdGFeezB9Il0sWzYsMCwiWF57SX0iXSxbMCwyLCJGIiwxXSxbMSwyXSxbMCwxLCJcXGxhbmdsZTBcXHJhbmdsZSIsMV0sWzUsNCwiXFxsYW5nbGUxXFxyYW5nbGUiLDFdLFs1LDYsIkciLDFdLFs0LDZdXQ==
+\begin{tikzcd}
+	{\Delta^{1}} && {X^{I}} && {\Delta^{1}} && {X^{I}} \\
+	& {\Delta^{0}} &&& {} & {\Delta^{0}}
+	\arrow["F"{description}, from=2-2, to=1-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow["\langle0\rangle"{description}, from=2-2, to=1-1]
+	\arrow["\langle1\rangle"{description}, from=2-6, to=1-5]
+	\arrow["G"{description}, from=2-6, to=1-7]
+	\arrow[from=1-5, to=1-7]
+\end{tikzcd}$$
+This can be phrased as an inclusion of a 1-simplex $\alpha:\Delta^{1}\to X^{I}$ in the functor category that restricts appropriately to $F$ and $G$. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXERlbHRhXnswfSJdLFsxLDEsIlxcRGVsdGFeezF9Il0sWzAsMiwiXFxEZWx0YV57MH0iXSxbMiwxLCJYXntJfSJdLFsxLDMsIlxcYWxwaGEiLDFdLFswLDMsIkYiLDEseyJjdXJ2ZSI6LTJ9XSxbMCwxLCJcXGxhbmdsZTBcXHJhbmdsZSIsMV0sWzIsMSwiXFxsYW5nbGUxXFxyYW5nbGUiLDFdLFsyLDMsIkciLDEseyJjdXJ2ZSI6Mn1dXQ==
+\begin{tikzcd}
+	{\Delta^{0}} \\
+	& {\Delta^{1}} & {X^{I}} \\
+	{\Delta^{0}}
+	\arrow["\alpha"{description}, from=2-2, to=2-3]
+	\arrow["F"{description}, curve={height=-12pt}, from=1-1, to=2-3]
+	\arrow["\langle0\rangle"{description}, from=1-1, to=2-2]
+	\arrow["\langle1\rangle"{description}, from=3-1, to=2-2]
+	\arrow["G"{description}, curve={height=12pt}, from=3-1, to=2-3]
+\end{tikzcd}$$
+This formulation of a natural transformation between simplicial sets allows us to formulate a condition for natural isomorphism as a condition of morphisms in the simplicial set $X^{I}$, here recalling the theorem of Joyal, \Cref{thm: Joyal on functor category of quasicategory and simplicial set}, showing that $X^{I}$ is endowed with the structure of a quasicategory. 
+\\\\
+We rewrite the 1-categorical condition for natural isomorphisms in the setting of quasicategories. Suppose $\alpha:\Delta^{1}\to X^{I}$ is a natural isomophism. As in the case of 1-categories, we want for all $i\in I$, $\alpha_{i}:\Delta^{1}\to X^{I}$. Reprhasing this as condition over the product of all $i\in I$, we take this as the condition for $I_{0}\to I$, the induced map of simplicial sets $X^{I_{0}}\to X^{I}$ has the property for all $\alpha:\Delta^{1}\to X^{I}$, the map $\alpha$ extends to a map $\widetilde{\alpha}:\Delta^{1}\to X^{I_{0}}$ making the diagram 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXERlbHRhXnsxfSJdLFsyLDAsIlhee0l9Il0sWzIsMSwiWF57SV97MH19Il0sWzAsMiwiXFx3aWRldGlsZGV7XFxhbHBoYX0iLDJdLFswLDEsIlxcYWxwaGEiXSxbMSwyXV0=
+\begin{tikzcd}
+	{\Delta^{1}} && {X^{I}} \\
+	&& {X^{I_{0}}}
+	\arrow["{\widetilde{\alpha}}"', from=1-1, to=2-3]
+	\arrow["\alpha", from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-3]
+\end{tikzcd}$$
+commute. This condition is stated as the following theorem. 
+\begin{theorem}[Pointwise Criterion for Natural Isomorphisms]\label{thm: pointwise for nat isos in quasicats}
+    If $X$ is a quasicategory and $I$ a simplicial set, the map $X^{I}\to X^{I_{0}}$ is conservative. 
+\end{theorem}
+We can see the beginning of the proof by considering the case of monomorphisms. 
+\begin{proposition}\label{prop: composition of conservative functors}
+    Suppose $X,Y,Z$ are quasicategories, $F:X\to Y, G:Y\to Z$ admitting a composition $G\circ F:X\to Z$. If $G\circ F$ is conservative then $F$ is conservative. 
+\end{proposition}
+\begin{proof}
+    If $f\in X_{1}$ is such that $F(f)$ is an isomorphism in $Y$ then $(G\circ F)(f)$ is an isomorphism in $Z$. But $G\circ F$ is conservative so $f$ is an isomophism. 
+\end{proof}
+More generally one can show the following. 
+\begin{lemma}\label{lem: }
+    Let $X$ be a quasicategory and $J\to I$ a monomorphism of simplicial sets inducing an isomorphism $I_{0}\to J_{0}$. If $X^{I}\to X^{I_{0}}$ is a conservative inner fibration then so is $X^{J}\to X^{I}$. 
+\end{lemma}
+\begin{proof}
+    A theorem of Joyal, \Cref{thm: Joyal on functor category of quasicategory and simplicial set}, states that each of $X^{I}\to X^{I_{0}}, X^{J}\to X^{J_{0}}$ are inner fibrations. Considering the diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYXntJfSJdLFsyLDAsIlhee0p9Il0sWzAsMSwiWF57SV97MH19Il0sWzIsMSwiWF57Sl97MH19Il0sWzIsMywiXFxzaW0iXSxbMCwyXSxbMSwzXSxbMCwxXV0=
+    \begin{tikzcd}
+        {X^{J}} && {X^{I}} \\
+        {X^{J_{0}}} && {X^{I_{0}}}
+        \arrow["\sim", from=2-1, to=2-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-1, to=1-3]
+    \end{tikzcd}$$
+    the lower map is an isomorphism, so taking the composite $X^{I}\to X^{J}\to X^{J_{0}}$ is an inner fibration, in particular a left and right fibration, and thus conservative. Thus $X^{I}\to X^{J}$ is conservative by \Cref{prop: composition of conservative functors}. 
+\end{proof}
+We now work towards the proof of \Cref{thm: pointwise for nat isos in quasicats} by proving the following lemmata. 
+\begin{lemma}\label{lem: conservativity of higher simplices}
+    For $n\geq 2$, the map $X^{\Delta^{n}}\to X^{\partial\Delta^{n}}$ is a conservative inner fibration. 
+\end{lemma}
+\begin{proof}
+    Let $I^{n}\to\Delta^{n}$ be the spine inclusion to the $n$-simplex, recall this is the inclusion of $0\to 1\to 2\to\dots\to n$ to $\Delta^{n}$. This is inner anodyne for $n\geq 1$ so $X^{\Delta^{n}}\to X^{I^{n}}$ is an acyclic Kan fibration, and hence conservative. 
+\end{proof}
+The following result for the $\Delta^{1}$ is surprisingly more technical. 
+\begin{lemma}\label{lem: conservativity of one simplex}
+    The map $X^{\Delta^{1}}\to X^{\partial\Delta^{1}}$ is a conservative inner fibration. 
+\end{lemma}
+\begin{proof}
+    This map is an inner fibration, induced by a the stronger version of Joyal's theorem, since $\partial\Delta^{1}\to\Delta^{1}$ is a monomorphism of simplicial sets. We want to show that if the lifting problem 
+	$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXExhbWJkYV57Mn1fezB9Il0sWzIsMCwiWF57XFxEZWx0YV57MX19Il0sWzAsMSwiXFxEZWx0YV57Mn0iXSxbMiwxLCJYXFx0aW1lcyBYIl0sWzAsMV0sWzIsM10sWzEsM10sWzAsMl0sWzIsMSwiPyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+	\begin{tikzcd}
+		{\Lambda^{2}_{0}} && {X^{\Delta^{1}}} \\
+		{\Delta^{2}} && {X\times X}
+		\arrow[from=1-1, to=1-3]
+		\arrow[from=2-1, to=2-3]
+		\arrow[from=1-3, to=2-3]
+		\arrow[from=1-1, to=2-1]
+		\arrow["{?}"{description}, dashed, from=2-1, to=1-3]
+	\end{tikzcd}$$
+	has a solution. By the product-mapping space equivalence, this is the existence of a solution to the following factorization problem. 
+	$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV57Mn1fezB9XFx0aW1lc1xcRGVsdGFeezF9XFxiaWdjdXBfe1xcTGFtYmRhXnsyfV97MH1cXHRpbWVzXFxwYXJ0aWFsXFxEZWx0YV57MX19XFxEZWx0YV57Mn1cXHRpbWVzXFxwYXJ0aWFsXFxEZWx0YV57MX0iXSxbMiwwLCJYIl0sWzAsMSwiXFxEZWx0YV57Mn1cXHRpbWVzXFxEZWx0YV57MX0iXSxbMCwyXSxbMiwxLCI/IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMV1d
+	\begin{tikzcd}
+		{\Lambda^{2}_{0}\times\Delta^{1}\bigcup_{\Lambda^{2}_{0}\times\partial\Delta^{1}}\Delta^{2}\times\partial\Delta^{1}} && X \\
+		{\Delta^{2}\times\Delta^{1}}
+		\arrow[from=1-1, to=2-1]
+		\arrow["{?}"{description}, dashed, from=2-1, to=1-3]
+		\arrow[from=1-1, to=1-3]
+	\end{tikzcd}$$
+	We can think of $\Lambda^{2}_{0}\times\Delta^{1}\bigcup_{\Lambda^{2}_{0}\times\partial\Delta^{1}}\Delta^{2}\times\partial\Delta^{1}$ as a trough where the faces bounded by $(0,0),(1,0),(0,1),(1,0)$ and $(0,0),(2,0),(0,1),(2,1)$ are filled, but the face $(1,0),(2,0),(1,1),(2,1)$ is not. 
+	$$% https://q.uiver.app/#q=WzAsNixbMCwwLCIoMiwwKSJdLFsyLDAsIigxLDApIl0sWzEsMSwiKDAsMCkiXSxbMywyLCIoMiwxKSJdLFs0LDMsIigwLDEpIl0sWzUsMiwiKDEsMSkiXSxbMCwzXSxbMiw0XSxbMSw1XSxbMiwwXSxbMiwxXSxbNCwzXSxbNCw1XSxbMSwwXSxbNSwzXSxbMiwzXSxbMiw1LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+	\begin{tikzcd}
+		{(2,0)} && {(1,0)} \\
+		& {(0,0)} \\
+		&&& {(2,1)} && {(1,1)} \\
+		&&&& {(0,1)}
+		\arrow[from=1-1, to=3-4]
+		\arrow[from=2-2, to=4-5]
+		\arrow[from=1-3, to=3-6]
+		\arrow[from=2-2, to=1-1]
+		\arrow[from=2-2, to=1-3]
+		\arrow[from=4-5, to=3-4]
+		\arrow[from=4-5, to=3-6]
+		\arrow[from=1-3, to=1-1]
+		\arrow[from=3-6, to=3-4]
+		\arrow[from=2-2, to=3-4]
+		\arrow[dashed, from=2-2, to=3-6]
+	\end{tikzcd}$$
+	We first observe that there is an inner horn $\lambda^{2}_{3}$ with vertices $(0,0),(0,1),(2,1),(1,1)$ having face $(0,0),(2,1),(1,1)$ unfilled, which can be filled by $X$ a quasicategory. 
+	$$% https://q.uiver.app/#q=WzAsNCxbMiwxLCIoMiwxKSJdLFs0LDEsIigxLDEpIl0sWzMsMiwiKDAsMSkiXSxbMCwwLCIoMCwwKSJdLFszLDJdLFszLDAsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFszLDEsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFsxLDAsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFsyLDBdLFsyLDFdXQ==
+	\begin{tikzcd}
+		{(0,0)} \\
+		&& {(2,1)} && {(1,1)} \\
+		&&& {(0,1)}
+		\arrow[from=1-1, to=3-4]
+		\arrow[from=1-1, to=2-3]
+		\arrow[from=1-1, to=2-5]
+		\arrow[from=2-5, to=2-3]
+		\arrow[from=3-4, to=2-3]
+		\arrow[from=3-4, to=2-5]
+	\end{tikzcd}$$
+	Next, note that we have another inner horn $\Lambda^{2}_{1}$ with vertices $(0,0),(1,0),(2,1)$ and edge $(1,0),(2,1)$ unfilled, which can be filled by $X$ a quasicategory. 
+	$$% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXGNkb3QiXSxbMiwwLCIoMSwwKSJdLFsxLDEsIigwLDApIl0sWzMsMiwiKDIsMSkiXSxbNCwzLCJcXGNkb3QiXSxbNSwyLCJcXGNkb3QiXSxbMCwzLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDQsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiwwLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDFdLFs0LDMsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsNSwiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwwLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDMsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsM10sWzIsNSwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwzXV0=
+	\begin{tikzcd}
+		\cdot && {(1,0)} \\
+		& {(0,0)} \\
+		&&& {(2,1)} && \cdot \\
+		&&&& \cdot
+		\arrow[dotted, no head, from=1-1, to=3-4]
+		\arrow[dotted, no head, from=2-2, to=4-5]
+		\arrow[dotted, no head, from=1-3, to=3-6]
+		\arrow[dotted, no head, from=2-2, to=1-1]
+		\arrow[from=2-2, to=1-3]
+		\arrow[dotted, no head, from=4-5, to=3-4]
+		\arrow[dotted, no head, from=4-5, to=3-6]
+		\arrow[dotted, no head, from=1-3, to=1-1]
+		\arrow[dotted, no head, from=3-6, to=3-4]
+		\arrow[from=2-2, to=3-4]
+		\arrow[dotted, no head, from=2-2, to=3-6]
+		\arrow[from=1-3, to=3-4]
+	\end{tikzcd}$$
+	Subsequently, we have 3-horn $\Lambda^{3}_{2}$ with vertices $(2,0),(1,0),(0,0),(2,1)$ with face $(0,0),(1,0),(2,0)$ unfilled, which can be filled by $X$ a quasicategory. 
+	$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCIoMiwwKSJdLFsyLDAsIigxLDApIl0sWzEsMSwiKDAsMCkiXSxbMywyLCIoMiwxKSJdLFswLDNdLFsyLDBdLFsyLDFdLFsxLDBdLFsyLDNdLFsxLDNdXQ==
+	\begin{tikzcd}
+		{(2,0)} && {(1,0)} \\
+		& {(0,0)} \\
+		&&& {(2,1)}
+		\arrow[from=1-1, to=3-4]
+		\arrow[from=2-2, to=1-1]
+		\arrow[from=2-2, to=1-3]
+		\arrow[from=1-3, to=1-1]
+		\arrow[from=2-2, to=3-4]
+		\arrow[from=1-3, to=3-4]
+	\end{tikzcd}$$
+	It remains to fill the horn $\Lambda^{3}_{0}$ with vertices $(0,0),(1,0),(1,1),(2,1)$ with face $(0,1),(1,1),(2,1)$ unfilled. 
+	$$% https://q.uiver.app/#q=WzAsNixbMiwwLCIoMSwwKSJdLFsxLDEsIigwLDApIl0sWzMsMiwiKDIsMSkiXSxbNSwyLCIoMSwxKSJdLFs0LDMsIlxcY2RvdCJdLFswLDAsIlxcY2RvdCJdLFswLDNdLFsxLDBdLFszLDJdLFsxLDJdLFsxLDMsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDJdLFs1LDIsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSwwLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDQsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsMiwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwzLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+	\begin{tikzcd}
+		\cdot && {(1,0)} \\
+		& {(0,0)} \\
+		&&& {(2,1)} && {(1,1)} \\
+		&&&& \cdot
+		\arrow[from=1-3, to=3-6]
+		\arrow[from=2-2, to=1-3]
+		\arrow[from=3-6, to=3-4]
+		\arrow[from=2-2, to=3-4]
+		\arrow[dashed, from=2-2, to=3-6]
+		\arrow[from=1-3, to=3-4]
+		\arrow[dotted, no head, from=1-1, to=3-4]
+		\arrow[dotted, no head, from=2-2, to=1-1]
+		\arrow[dotted, no head, from=1-1, to=1-3]
+		\arrow[dotted, no head, from=2-2, to=4-5]
+		\arrow[dotted, no head, from=4-5, to=3-4]
+		\arrow[dotted, no head, from=4-5, to=3-6]
+	\end{tikzcd}$$
+	But we have a leading edge isomorphism, and the horn can be filled by the Joyal extension theorem, \Cref{thm: Joyal extension theorem}. 
+\end{proof}
+We are now prepared to prove \Cref{thm: pointwise for nat isos in quasicats}. 
+\begin{proof}[Proof of \Cref{thm: pointwise for nat isos in quasicats}]
+	We proceed via induction, appealing to Zorn's lemma. 
+	\\\\
+	Let $S$ be the poset of simplicial sets $I_{\alpha}$ satisfying the conditions that (i) $(I_{\alpha})_{0}=I_{0}$ and (ii) the map $X^{I_{0}}\to X^{I_{\alpha}}$ induced by $I_{\alpha}\to I_{0}$ is a conservative inner fibration with $S$ ordered by inclusion. $S$ trivially contains $I_{0}$ and hence is nonempty. Now take $I_{\alpha}$ maximal such that there exists some $x\in(I)_{n}\setminus(I_{\alpha})_{n}$, choosing $x$ minimal such that $\partial x\in(I_{\alpha})_{n}$. We have a diagram for each $n$
+	$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHBhcnRpYWxcXERlbHRhXntufSJdLFswLDEsIihJX3tcXGFscGhhfSlfe259Il0sWzIsMCwiXFxEZWx0YV57bn0iXSxbMCwyXSxbMCwxXV0=
+	\begin{tikzcd}
+		{\partial\Delta^{n}} && {\Delta^{n}} \\
+		{(I_{\alpha})_{n}}
+		\arrow[from=1-1, to=1-3]
+		\arrow[from=1-1, to=2-1]
+	\end{tikzcd}$$
+	where we label the pushout $(I_{\beta})_{n}$, with a product-pushout map to $I$ in the sense of \Cref{def: product pushout map} as follows. 
+	$$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHBhcnRpYWxcXERlbHRhXntufSJdLFswLDEsIihJX3tcXGFscGhhfSlfe259Il0sWzIsMCwiXFxEZWx0YV57bn0iXSxbMiwxLCIoSV97XFxiZXRhfSlfe259Il0sWzMsMiwiSSJdLFswLDIsIlxccGFydGlhbCB4Il0sWzAsMV0sWzEsM10sWzIsM10sWzIsNCwiIiwwLHsiY3VydmUiOi0yfV0sWzEsNCwiIiwwLHsiY3VydmUiOjJ9XSxbMyw0LCJcXGV4aXN0cyEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+	\begin{tikzcd}
+		{\partial\Delta^{n}} && {\Delta^{n}} \\
+		{(I_{\alpha})_{n}} && {(I_{\beta})_{n}} \\
+		&&& I
+		\arrow["{\partial x}", from=1-1, to=1-3]
+		\arrow[from=1-1, to=2-1]
+		\arrow[from=2-1, to=2-3]
+		\arrow[from=1-3, to=2-3]
+		\arrow[curve={height=-12pt}, from=1-3, to=3-4]
+		\arrow[curve={height=12pt}, from=2-1, to=3-4]
+		\arrow["{\exists!}"{description}, dashed, from=2-3, to=3-4]
+	\end{tikzcd}$$
+	By functoriality, we have a pullback diagram 
+	$$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJYXntJfSJdLFsxLDEsIlhee0lfe1xcYmV0YX19Il0sWzEsMiwiWF57SV97XFxhbHBoYX19Il0sWzMsMSwiWF57XFxEZWx0YV57bn19Il0sWzMsMiwiWF57XFxwYXJ0aWFsXFxEZWx0YV57bn19Il0sWzAsMSwiXFxleGlzdHMhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMywiIiwxLHsiY3VydmUiOi0yfV0sWzAsMiwiIiwxLHsiY3VydmUiOjJ9XSxbMSwyXSxbMSwzXSxbMyw0XSxbMiw0XV0=
+	\begin{tikzcd}
+		{X^{I}} \\
+		& {X^{I_{\beta}}} && {X^{\Delta^{n}}} \\
+		& {X^{I_{\alpha}}} && {X^{\partial\Delta^{n}}}
+		\arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+		\arrow[curve={height=-12pt}, from=1-1, to=2-4]
+		\arrow[curve={height=12pt}, from=1-1, to=3-2]
+		\arrow[from=2-2, to=3-2]
+		\arrow[from=2-2, to=2-4]
+		\arrow[from=2-4, to=3-4]
+		\arrow[from=3-2, to=3-4]
+	\end{tikzcd}$$
+	and it suffices to show that $X^{\Delta^{n}}\to X^{\partial\Delta^{n}}$ is a conservative inner fibration, which is given by \Cref{lem: conservativity of higher simplices,lem: conservativity of one simplex}. 
+\end{proof}
+Here is an important consequence of what we have proven. 
+\\\\
+Recall the notion of a function space. For $X$ a quasicategory, and $A,B\in X_{0}$, we have a diagram 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE1vcl97WH0oQSxCKSJdLFsyLDAsIlhee1xcRGVsdGFeezF9fSJdLFsyLDEsIlhee1xccGFydGlhbFxcRGVsdGFeezF9fT1YXFx0aW1lcyBYIl0sWzAsMSwiXFxEZWx0YV57MH0iXSxbMCwxXSxbMywyLCIoYSxiKSIsMl0sWzAsM10sWzEsMl1d
+\begin{tikzcd}
+	{\Mor_{X}(A,B)} && {X^{\Delta^{1}}} \\
+	{\Delta^{0}} && {X^{\partial\Delta^{1}}=X\times X}
+	\arrow[from=1-1, to=1-3]
+	\arrow["{(a,b)}"', from=2-1, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+\end{tikzcd}$$
+where $\Mor_{X}(A,B)\to\Delta^{0}$ and $X^{\Delta^{1}}\to X^{\partial\Delta^{1}}$ are inner fibrations. This shows that the mapping space $\Mor_{X}(A,B)$ is itself a quasicategory from $X^{\Delta^{1}}\to X^{\partial\Delta^{1}}=X\times X$ is conservative by \Cref{lem: conservativity of one simplex}. More generally, this is an example about how pulling back a conservative map is conservative. In particular, one can show that the mapping space is a Kan complex. 

@@ -1,0 +1,105 @@
+\section{Lecture 17 -- 13th November 2023}
+In this lecture and in the remainder of this course we will consider examples of $\infty$-categories, developing whatever further formalisms of $\infty$-categories we may need on the fly. We will try to embody a philosophy apocryphally attributed to Grothendieck, allowing the mathematical structure to tell us what it wants to be. 
+\\\\
+We begin by exploring simplicially enriched categories, which were first studied by Dan Kan, and are related to simplicial categories. Recall for $X,Y$ simplicial sets, we had $\Mor_{\SSets}(X,Y)=Y^{X}$ a simplicial set of maps from $X$ to $Y$. Naturally, there is an identity map on $X$, $\id_{X}$ which we can view as the map of a 0-simplex to a mapping space $\id_{X}:\Delta^{0}\to X^{X}$. For simplicial sets $X,Y,Z$, there is naturally a composition law $Z^{Y}\times Y^{X}\to Z^{X}$ that is unital and associative. This leads to the following definition of a simplicially enriched category. 
+\begin{definition}[Simplicially Enriched Category]\label{def: simplicially enriched category}
+    A simplicially enriched category $\Csf$ consists of a class $\Obj(\Csf)$ and for $A,B\in\Obj(\Csf)$ a simplical set $\Mor_{\Csf}(A,B)$ such that 
+    \begin{enumerate}[label=(\alph*)]
+        \item there is a map $\id_{A}:\Delta^{0}\to\Mor_{\Csf}(A,A)$, 
+        \item and a composition law $\Mor_{\Csf}(B,C)\times\Mor_{\Csf}(A,B)\to\Mor_{\Csf}(A,C)$ that is unital and associative. 
+    \end{enumerate}
+\end{definition}
+Note that in a simplicially enriched category, morphisms have a higher structure. For a commuting diagram 
+$$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQiJdLFsxLDEsIkMiXSxbMCwyLCJoIiwyXSxbMCwxLCJmIl0sWzEsMiwiZyJdXQ==
+\begin{tikzcd}
+	A && B \\
+	& C
+	\arrow["h"', from=1-1, to=2-2]
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["g", from=1-3, to=2-2]
+\end{tikzcd}$$
+we have maps $f:\Delta^{0}\to\Mor_{\Csf}(A,B), g:\Delta^{0}\to\Mor_{\Csf}(B,C)$ and $\tau:\Delta^{1}\to\Mor_{\Csf}(A,C)$ such that $\tau\langle0\rangle = h$ and $\tau\langle 1\rangle = g\circ f$. One naturally defines a functor of simplicially enriched categories as a map on objects and a simplicial set map on morphisms preserving units and composition. 
+\\\\
+Denote $\Cat_{\DDelta}$ the 2-category of simplicially enriched categories. We want to construct a functor $\Cat_{\DDelta}\to\SSets$. We will do this via the homotopy coherent nerve. We first consider the following construction of a path category. 
+\begin{definition}[Path Category]\label{def: path category}
+    Let $(S,\leq)$ be a poset. The path category on $S$ $\Path(S)$ is a category with objects those of $S$ and for $s,t\in S$, $\Mor_{\Path(S)}(s,t)$ is the nerve of the finite linearly ordered set between $s$ and $t$. 
+\end{definition}
+\begin{example}
+    Consider $\Path([1])$ where we have $\Mor_{\Path(S)}(0,1)=\{*\}$ so the simplicial set has two 0-simplices with a 1-simplex connecting them. 
+\end{example}
+\begin{example}
+    For $\Path([2])$ we have the following. 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCIwIl0sWzIsMCwiMiJdLFsxLDEsIjEiXSxbMCwyXSxbMiwxXSxbMCwxLCJcXHsxXFx9IiwxLHsiY3VydmUiOi0yfV0sWzAsMSwiXFxlbXB0eXNldCIsMSx7ImN1cnZlIjoyfV0sWzUsNiwiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dXQ==
+    \begin{tikzcd}
+        0 && 2 \\
+        & 1
+        \arrow[from=1-1, to=2-2]
+        \arrow[from=2-2, to=1-3]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{\{1\}}"{description}, curve={height=-12pt}, from=1-1, to=1-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "\emptyset"{description}, curve={height=12pt}, from=1-1, to=1-3]
+        \arrow[shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
+    \end{tikzcd}$$
+\end{example}
+This allows us to define the homotopy coherent nerve of a simplicially enriched category. 
+\begin{definition}[Homotopy Coherent Nerve]
+    Let $\Csf$ be a simplicially enriched category. The homotopy coherent nerve $N^{\mathrm{hc}}\Csf$ is such that $(N^{\mathrm{hc}}\Csf)_{n}=\Mor_{\Cat_{\DDelta}}(\Path([n]),\Csf)$ such that the simplicial operators act by precomposition. 
+\end{definition}
+One naturally wonders if $N^{\mathrm{hc}}\Csf$ is a quaiscategory. It turns out this is not always the case. In fact, one can show the following. 
+\begin{theorem}[Cordier and Porter]\label{thm: Cordier and Porter}
+    Let $\Csf$ be a simplicially enriched category. If $\Mor_{\Csf}(A,B)$ is a Kan complex for all $A,B\in\Obj(\Csf)$, then $N^{\mathrm{hc}}\Csf$ is a quasicategory. 
+\end{theorem}
+Let $\Kan$ be the full subcategory of simplicial sets $\SSets$ containing all Kan complexes. But wa also defined $\Kan_{\infty}$ in \Cref{def: kan-infty} which was the base of the universal left fibration. These two objects are related by the following theorem. 
+\begin{theorem}[Lurie]\label{thm: kan-infty and hc nerve of kan are equivalent}
+    $\Kan_{\infty}$ and $N^{\mathrm{hc}}\Kan$ are equivalent. 
+\end{theorem}
+One proves this by showing that $N^{\mathrm{hc}}(\Kan)$ is the base of the universal left fibration. This is known as straightening and unstraightening, more information on which can be found in \cite[Ch. 4]{Land} and \cite[Ch. 3.2]{LurieHTT}. One can also make a similar construction to show that for $\mathsf{QCat}$ the quasicategory of quaiscategories, $N^{\mathrm{hc}}\mathsf{QCat}$ and $\Cat_{\infty}$ are equivalent. 
+\\\\
+Let $I$ be a category and consider $\SPSh(I)$, functors $I^{\Opp}\to\SSets$. Otherwise put, $\SPSh(I)$ is the category of presheaves of simplicial sets on $I$. Restricting our attention to presheaves on $I$ that take values in Kan complexes instead of arbitrary simplicial sets, this category is $N^{\mathrm{hc}}\SPSh(I)$. \\\\
+Maps $N^{\mathrm{hc}}\SPSh(I)\to X$ for $X$ a cocomplete quasicategory correspond to $I\to X$ in $\Cat_{\infty}$, that is, a coCartesian fibration over $\Delta^{1}$ restricting to $I$ on one end and $X$ on the other. \\\\
+More generally, in the topological category, we define a presheaf of sets on a topoological space $X$ as follows. 
+\begin{definition}[Presheaf on a Topological Space]\label{def: presheaf on topological space}
+    Let $X$ be a topological space and $X^{\Opens}$ the category whose objects are open sets of $X$ and whose morphisms are inclusions. A presheaf of sets on $X$ is a functor $\Fcal:(X^{\Opens})^{\Opp}\to \Sets$. 
+\end{definition}
+The prototypical example here is of continuous functions on a manifold $X$. In such a situation, continuous functions glue: for $f_{1}$ on $U_{1}$ and $f_{2}$ on $U_{2}$ continuous such that $f_{1}|_{U_{1}\cap U_{2}}=f_{2}|_{U_{1}\cap U_{2}}$ then there is a continuous function on $U_{1}\cup U_{2}$ restricting to $f_{1}$ and $f_{2}$ on $U_{1}$ and $U_{2}$, respectively. This leads to the definition of a sheaf. 
+\begin{definition}[Sheaf]\label{def: sheaf on topological space}
+    Let $X$ be a topological space and $X^{\Opens}$ the category whose objects are open sets of $X$ and whose morphisms are inclusions. A presheaf of sets $\Fcal:(X^{\Opens})^{\Opp}\to\Sets$ is a sheaf if the sequence 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEZjYWwoWCkiXSxbMiwwLCJcXHByb2Rfe2l9XFxGY2FsKFhfe2l9KSJdLFs0LDAsIlxccHJvZF97aSxqfVxcRmNhbChYX3tpfVxcY2FwIFhfe2p9KSJdLFswLDFdLFsxLDIsIiIsMCx7Im9mZnNldCI6LTF9XSxbMSwyLCIiLDAseyJvZmZzZXQiOjF9XV0=
+    \begin{tikzcd}
+        {\Fcal(X)} && {\prod_{i}\Fcal(X_{i})} && {\prod_{i,j}\Fcal(X_{i}\cap X_{j})}
+        \arrow[from=1-1, to=1-3]
+        \arrow[shift left, from=1-3, to=1-5]
+        \arrow[shift right, from=1-3, to=1-5]
+    \end{tikzcd}$$
+    is an equalizer for $\{X_{i}\}$ an open cover of $X$. 
+\end{definition}
+In this sense, we say that a sheaf is a presheaf satisfying descent. 
+\\\\
+This leads to the definition of localization, where we force certain maps to be isomorphisms. We consider the definition of localization in quasicategories.\newpage 
+\begin{definition}[Localization in Quasicategories]\label{def: localization of quasicategories}
+    Let $X$ be a quaiscategory and $S\subseteq X$ a simplicial subset. The localization of $X$ at $S$ denoted $X[S^{-1}]$ is such that for every quasicategory $Y$ the map $Y^{X[S^{-1}]}\to (Y^{\sim})^{S}\times_{Y}Y^{X}$ in the diagram 
+    $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJZXntYW1Neey0xfV19Il0sWzEsMSwiKFlee1xcc2ltfSlee1N9XFx0aW1lc197WX1ZXntYfSJdLFsxLDIsIihZXntcXHNpbX0pXntTfSJdLFszLDEsIllee1h9Il0sWzMsMiwiWV57U30iXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwzLCIiLDIseyJjdXJ2ZSI6LTJ9XSxbMCwyLCIiLDIseyJjdXJ2ZSI6Mn1dLFsyLDRdLFszLDRdLFsxLDJdLFsxLDNdXQ==
+    \begin{tikzcd}
+        {Y^{X[S^{-1}]}} \\
+        & {(Y^{\sim})^{S}\times_{Y}Y^{X}} && {Y^{X}} \\
+        & {(Y^{\sim})^{S}} && {Y^{S}}
+        \arrow[dashed, from=1-1, to=2-2]
+        \arrow[curve={height=-12pt}, from=1-1, to=2-4]
+        \arrow[curve={height=12pt}, from=1-1, to=3-2]
+        \arrow[from=3-2, to=3-4]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-2, to=2-4]
+    \end{tikzcd}$$
+    is an acyclic Kan fibration. 
+\end{definition}
+We can consider the following examples. 
+\begin{example}
+    Let $\Csf$ be a category with a Grothendieck topology and $S$ the collection of nerves of covers of $\Csf$. We can consider the localization 
+    $$N^{\mathrm{hc}}(\SPSh(\Csf))[S^{-1}]$$
+    the homotopy coherent sheaf theory on $\Csf$. 
+\end{example}
+\begin{example}
+    Let $k$ be a field and $\mathsf{SmSch}_{k}$ the category of smooth quasiprojective schemes over $k$. We consider the localization over Nisnevich covers (arithmetically trivial maps) and that arise as fibers of a higher-dimensional schemes over $\mathbb{A}^{1}$
+    $$\SPSh(\mathsf{SmSch}_{k})[\mathsf{Nis}^{-1}, \{M\times\{0\}\to M\times\mathbb{A}^{1}_{k}\}^{-1}]$$
+    the $\mathbb{A}^{1}$-homotopy category of schemes. This forces a notion of $\mathbb{A}^{1}$-equivalence similar to the notion of rational equivalence on schemes. 
+\end{example}

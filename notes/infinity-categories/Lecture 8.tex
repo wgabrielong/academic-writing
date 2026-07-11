@@ -1,0 +1,47 @@
+\section{Lecture 8 -- 11th October 2023}
+% Revise preamble. 
+Recall that if $I\to J$ a morphism of simplicial sets and $\Csf$ a quasicategory, $\Csf^{J}\to\Csf^{I}$ is an inner fibration. From this, one can deduce Joyal's theorem by taking $I=\emptyset$ the initial object in $\SSets$ to see that $\Csf^{J}$ is a quasicategory. 
+\\\\
+Consider the composition of morphisms, $f:A\to B, g:B\to C$ in a category $\Csf$. In a simplicial set, we see this as a horn filling condition. That is, the horn $\Lambda^{2}_{1}$ admits a fill in the simplicial set. 
+$$% https://q.uiver.app/#q=WzAsNixbMCwxLCJBIl0sWzIsMSwiQyJdLFsxLDAsIkIiXSxbNCwwLCJcXExhbWJkYV57Mn1fezF9Il0sWzQsMSwiXFxEZWx0YV57Mn0iXSxbNiwwLCJcXENzZiJdLFswLDIsImYiXSxbMiwxLCJnIl0sWzMsNV0sWzMsNF0sWzQsNSwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\begin{tikzcd}
+	& B &&& {\Lambda^{2}_{1}} && \Csf \\
+	A && C && {\Delta^{2}}
+	\arrow["f", from=2-1, to=1-2]
+	\arrow["g", from=1-2, to=2-3]
+	\arrow[from=1-5, to=1-7]
+	\arrow[from=1-5, to=2-5]
+	\arrow["\exists"{description}, dashed, from=2-5, to=1-7]
+\end{tikzcd}$$
+As a corollary to Joyal's theorem \Cref{thm: Joyal on functor category of quasicategory and simplicial set}, we have the following. 
+\begin{corollary}
+  If $X$ is a quasicategory then $X^{\Delta^{2}}\to X^{\Lambda^{2}_{1}}$ has the right lifting property for all morphisms of simplicial sets. 
+\end{corollary}
+Put another way, for all monomorphisms of simplicial sets $Y\to Z$, the diagram 
+$$% https://q.uiver.app/#q=WzAsNCxbMiwwLCJYXntcXERlbHRhXnsyfX0iXSxbMiwxLCJYXntcXExhbWJkYV57Mn1fezF9fSJdLFswLDAsIlkiXSxbMCwxLCJaIl0sWzIsM10sWzAsMV0sWzIsMF0sWzMsMV0sWzMsMCwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\begin{tikzcd}
+	Y && {X^{\Delta^{2}}} \\
+	Z && {X^{\Lambda^{2}_{1}}}
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=2-1, to=2-3]
+	\arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+admits a lift. 
+\begin{proof}
+  Suppose $Y\to Z$ is a monomorphism of simplicial sets and by functoriality and contravariance of simplicial sets to verify $\Fun(Y,X^{\Delta^{2}})=\Fun(Y\times\Delta^{2},X)=\Fun(\Delta^{2},X^{Y}), \Fun(Z,X^{\Lambda^{2}_{1}})=\Fun(Z\times\Lambda^{2}_{1},X)=\Fun(Z,X^{\Lambda^{2}_{1}})$ and it would suffice to show a lift of the following diagram. 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXExhbWJkYV57Mn1fezF9Il0sWzAsMSwiXFxEZWx0YV57Mn0iXSxbMiwwLCJYXntafSJdLFsyLDEsIlhee1l9Il0sWzEsM10sWzIsM10sWzAsMV0sWzAsMl0sWzEsMiwiPyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+  \begin{tikzcd}
+    {\Lambda^{2}_{1}} && {X^{Z}} \\
+    {\Delta^{2}} && {X^{Y}}
+    \arrow[from=2-1, to=2-3]
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-3]
+    \arrow["{?}"{description}, dashed, from=2-1, to=1-3]
+  \end{tikzcd}$$
+  Note that in the above, $X^{Z}\to X^{Y}$ is an inner fibration by Joyal's theorem, \Cref{thm: Joyal on functor category of quasicategory and simplicial set}. We can rewrite this lifting this problem as the following 
+
+
+\end{proof}

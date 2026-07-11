@@ -1,0 +1,280 @@
+\section{Lecture 6 -- 2nd October 2023}
+Recall the definition of weakly saturated maps in a category \Cref{def: weakly saturated maps} and the result that the category of simplicial sets $\SSets$ contains all small limits and colimits which follows from the more general statement that the presheaf category over a base category admits all limits and colimits (see, for example \cite[\href{https://stacks.math.columbia.edu/tag/00VB}{00VB}]{stacks-project}). 
+\begin{example}
+  Consider the category of simplicial sets $\SSets$ and $\Acal$ the class of all monomorphisms, those morphisms such that if $f\circ g_{1}=f\circ g_{2}$ then $g_{1}=g_{2}$. The class $\Acal$ is weakly saturated. 
+\end{example}
+\begin{example}
+  Let $X\in\Obj(\SSets)$ and consider the following collection of morphisms. 
+  $$\Acal=\left\{A\to B:% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzEsMCwiWCJdLFswLDEsIkIiXSxbMiwxLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwxXSxbMCwyXV0=
+  \begin{tikzcd}
+    A & X \\
+    B
+    \arrow["\exists"{description}, dashed, from=2-1, to=1-2]
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+  \end{tikzcd}\right\}$$
+  The class $\Acal$ is weakly saturated. 
+\end{example}
+\begin{example}
+  Let $\Bcal\subseteq\Obj(\SSets)$ and consider the following class of morphisms. 
+  $$\Acal=\left\{A\to B:\forall X\in\Bcal, % https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzEsMCwiWCJdLFswLDEsIkIiXSxbMiwxLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDFdLFswLDJdXQ==
+  \begin{tikzcd}
+    A & X \\
+    B
+    \arrow["\exists"{description}, dashed, from=2-1, to=1-2]
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+  \end{tikzcd}\right\}$$
+  The class $\Acal$ is weakly saturated. 
+\end{example}
+Now recall for the notation for weak saturation \Cref{def: weak saturation}, for any $S\subseteq\Mor_{\Csf}$ we define $\overline{S}\subseteq\Mor_{\Csf}$ to be the smallest class of weakly saturated maps containing $S$. 
+\begin{example}\label{ex: weak sat of inner horns are inner anodyne}
+  Let $\mathrm{InnHorn}=\{\Lambda^{n}_{k}\hookrightarrow\Delta^{n}|0<k<n\}$. The weak saturation of this class $\overline{\mathrm{InnHorn}}$ are the inner anodyne maps. 
+\end{example}
+\begin{remark}
+  Let $X$ be a quasicategory and $A\to B$ an inner anodyne map in $\SSets$. Any map $A\to X$ can be extended through $B$ via horn filling. 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiWCJdLFswLDEsIkIiXSxbMiwxLCJcXGV4aXN0cyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDIsImYiLDJdLFswLDFdXQ==
+  \begin{tikzcd}
+    A && X \\
+    B
+    \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+    \arrow["f"', from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-3]
+  \end{tikzcd}$$
+  This controls the amount of information $X$ has. If there are many maps to $X$, then $X$ contains little information and if there are few maps to $X$, $X$ contains much information. A useful thing to think of here is the final object and how it is characterized by their universal property: a final object is unique up to unique isomorphism, and admits only one morphism from any object in the category. 
+\end{remark}
+Returning to our discussion of Joyal's theorem, \Cref{thm: Joyal on functor category of quasicategory and simplicial set}, we want to show that for all inner horns, there exists a filler, that is, in any one of the following two equivalent diagrams, there exists a dotted morphism making the diagrams commute. 
+$$% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwwLCJcXENzZl57SX0iXSxbNCwwLCJcXExhbWJkYV57bn1fe2t9XFx0aW1lcyBJIl0sWzQsMSwiXFxEZWx0YV57bn1cXHRpbWVzIEkiXSxbNiwwLCJcXENzZiJdLFswLDJdLFswLDFdLFszLDRdLFszLDVdLFs0LDUsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMiwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\begin{tikzcd}
+	{\Lambda^{n}_{k}} && {\Csf^{I}} && {\Lambda^{n}_{k}\times I} && \Csf \\
+	{\Delta^{n}} &&&& {\Delta^{n}\times I}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-5, to=2-5]
+	\arrow[from=1-5, to=1-7]
+	\arrow["\exists"{description}, dashed, from=2-5, to=1-7]
+	\arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+Using our newfound language of anodyne functors, we can phrase this condition as showing that $\Lambda^{n}_{k}\times I\hookrightarrow \Delta^{n}\times I$ is inner anodyne. 
+\\\\
+More generally, this can be understood through solving a lifting problem. 
+\begin{definition}[Lifting]\label{def: lifting}
+  Suppose we have the following solid commutative diagram. 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDAsIlgiXSxbMiwxLCJZIl0sWzAsMl0sWzIsMywiZyJdLFswLDEsImYiLDJdLFsxLDNdLFsxLDIsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+  \begin{tikzcd}
+    A && X \\
+    B && Y
+    \arrow[from=1-1, to=1-3]
+    \arrow["g", from=1-3, to=2-3]
+    \arrow["f"', from=1-1, to=2-1]
+    \arrow[from=2-1, to=2-3]
+    \arrow[dashed, from=2-1, to=1-3]
+  \end{tikzcd}$$
+  If the dotted map exists, we say that $f$ lifts against $g$, writing $f\lifts g$. 
+\end{definition}
+Given the definition of lifting, we can define lifting with respect to classes of morphisms. 
+\begin{definition}[Right Complement]\label{def: right complement}
+  Let $\Acal$ be a class of maps. We define the left complement of $\Acal$ as
+  $$\Acal^{\lifts}\{g\in\Mor_{\SSets}|a\lifts g, \forall a\in\Acal\}$$ 
+  those $f\in\Mor_{\SSets}$ such that the lift 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDAsIlgiXSxbMiwxLCJZIl0sWzAsMl0sWzIsMywiZyJdLFswLDEsImEiLDJdLFsxLDNdLFsxLDIsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    A && X \\
+    B && Y
+    \arrow[from=1-1, to=1-3]
+    \arrow["g", from=1-3, to=2-3]
+    \arrow["a"', from=1-1, to=2-1]
+    \arrow[from=2-1, to=2-3]
+    \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+  \end{tikzcd}$$
+  for all $a\in\Acal$. 
+\end{definition}
+\begin{remark}
+  Equivalently, we say that $g:X\to Y$ has the right lifting property with respect to $\Acal$. 
+\end{remark}
+\begin{definition}[Left Complement]\label{def: left complement}
+  Let $\Acal$ be a class of maps. We define the left complement of $\Acal$ as 
+  $$^{\lifts}\Acal=\{f\in\Mor_{\SSets}|f\lifts a, \forall a\in\Acal\}$$
+  those $g\in\Mor_{\SSets}$ such that the lift 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDAsIlgiXSxbMiwxLCJZIl0sWzAsMl0sWzIsMywiYSJdLFswLDEsImYiLDJdLFsxLDNdLFsxLDIsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    A && X \\
+    B && Y
+    \arrow[from=1-1, to=1-3]
+    \arrow["a", from=1-3, to=2-3]
+    \arrow["f"', from=1-1, to=2-1]
+    \arrow[from=2-1, to=2-3]
+    \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+  \end{tikzcd}$$
+  for all $a\in\Acal$. 
+\end{definition}
+\begin{remark}
+  Equivalently, we say that $f$ has the left lifting property with respect to $\Acal$. 
+\end{remark}
+For any $\Acal$ a class of maps, the right complement $^{\lifts}\Acal$ is a weakly saturated class. This generalizes the case where $\Acal$ consists of the the map to the point, the final object in $\SSets$. 
+\begin{example}
+  Let $\Acal$ be the inner anodyne maps. 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwwLCJYIl0sWzIsMSwiKiJdLFsyLDMsImciXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDJdLFsxLDNdLFsxLDIsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+  \begin{tikzcd}
+    {\Lambda^{n}_{k}} && X \\
+    {\Delta^{n}} && {*}
+    \arrow["g", from=1-3, to=2-3]
+    \arrow[hook, from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=2-1, to=2-3]
+    \arrow[dashed, from=2-1, to=1-3]
+  \end{tikzcd}$$
+  A map $g:X\to *$ for $X$ a simplicial set is in $\Acal^{\lifts}$ if and only if $X$ is a quasicategory. 
+\end{example}
+This allows us to define the collection of inner fibrations, an important class of morphisms in simplicial sets. 
+\begin{definition}[Inner Fibrations]\label{def: inner fibration}
+  Let $g\in\Mor_{\SSets}$. The map $g$ is an inner fibration if $\mathrm{InnHorn}\lifts g$. That is, if for all inner horns $\Lambda^{n}_{k}$,  
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwwLCJYIl0sWzIsMSwiWSJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMl0sWzEsM10sWzEsMiwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiwzLCJnIl1d
+  \begin{tikzcd}
+    {\Lambda^{n}_{k}} && X \\
+    {\Delta^{n}} && Y
+    \arrow[hook, from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=2-1, to=2-3]
+    \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+    \arrow["g", from=1-3, to=2-3]
+  \end{tikzcd}$$
+  the lift exists. 
+\end{definition}
+We now want to prove a theorem about the factorization between maps of simplicial sets into inner anodyne maps and inner fibrations. To do so, we will first need to go over an argument known as the small object argument. 
+\begin{lemma}[Small Object Argument]\label{lem: small object argument}
+  
+\end{lemma}
+\begin{proof}
+  
+\end{proof}
+We now prove the theorem we alluded to earlier. 
+\begin{theorem}\label{thm: maps of ssets factorize}
+  Let $f\in\Mor_{\SSets}(X,Y)$. The morphism admits a factorization $p\circ i$
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzQsMCwiWSJdLFsyLDBdLFsyLDEsIlxcd2lkZXRpbGRle1h9Il0sWzAsMywiaSIsMl0sWzMsMSwicCIsMl0sWzAsMSwiZiJdXQ==
+  \begin{tikzcd}
+    X && {} && Y \\
+    && {\widetilde{X}}
+    \arrow["i"', from=1-1, to=2-3]
+    \arrow["p"', from=2-3, to=1-5]
+    \arrow["f", from=1-1, to=1-5]
+  \end{tikzcd}$$
+  where $i$ is inner anodyne and $p$ is an inner fibration. 
+\end{theorem}
+\begin{proof}
+  We begin by constructing a sequence of objects 
+  \begin{equation}\label{diagram: maps of ssets factorize}
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJYPVhfezB9Il0sWzEsMCwiWF97MX0iXSxbMiwwLCJYX3syfSJdLFszLDAsIlhfezN9Il0sWzAsMSwiWSJdLFs0LDAsIlxcZG90cyJdLFswLDFdLFsxLDJdLFsyLDNdLFswLDRdLFsxLDRdLFsyLDRdLFszLDVdLFszLDRdXQ==
+  \begin{tikzcd}
+	{X=X_{(0)}} & {X_{(1)}} & {X_{(2)}} & {X_{(3)}} & \dots \\
+	Y
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-1]
+	\arrow[from=1-3, to=2-1]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-1]
+  \end{tikzcd}
+  \end{equation}
+  where each $X_{(i)}\to X_{(i+1)}$ is inner anodyne and every lifting problem for $X_{(m)}$ (left) admits a solution in $X_{(m+1)}$ (right). 
+  $$% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxMYW1iZGFee259X3trfSJdLFswLDEsIlxcRGVsdGFee259Il0sWzIsMCwiWF97bX0iXSxbMiwxLCJZIl0sWzQsMCwiXFxMYW1iZGFee259X3trfSJdLFs0LDEsIlxcRGVsdGFee259Il0sWzYsMCwiWF97bX0iXSxbNiwxLCJZIl0sWzgsMCwiWF97bSsxfSJdLFs4LDEsIlkiXSxbMCwyXSxbMiwzXSxbMCwxXSxbMSwzXSxbNCw1XSxbNiw3XSxbOCw5XSxbNSw3XSxbNyw5LCJcXHNpbSJdLFs0LDZdLFs2LDhdLFs1LDgsIlxcZXhpc3RzIiwxLHsibGFiZWxfcG9zaXRpb24iOjQwLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+  \begin{tikzcd}
+    {\Lambda^{n}_{k}} && {X_{(m)}} && {\Lambda^{n}_{k}} && {X_{(m)}} && {X_{(m+1)}} \\
+    {\Delta^{n}} && Y && {\Delta^{n}} && Y && Y
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=2-1, to=2-3]
+    \arrow[from=1-5, to=2-5]
+    \arrow[from=1-7, to=2-7]
+    \arrow[from=1-9, to=2-9]
+    \arrow[from=2-5, to=2-7]
+    \arrow["\sim", from=2-7, to=2-9]
+    \arrow[from=1-5, to=1-7]
+    \arrow[from=1-7, to=1-9]
+    \arrow["\exists"{description, pos=0.4}, dashed, from=2-5, to=1-9]
+  \end{tikzcd}$$
+  Existence
+  \\\\
+  Having shown that the diagram (\ref{diagram: maps of ssets factorize}) exists, let $\widetilde{X}=\lim_{n\to\infty}X_{(n)}=\colim_{n}X_{(n)}$. The map $i:X\to\widetilde{X}$ is inner anodyne as weakly saturated classes are closed under infinite composition. Moreover, note that $Y$ is the cone over the diagram $X_{(0)}\to X_{(1)}\to X_{(2)}\to\dots$ so by the universal property of the colimit, the map $p:\widetilde{X}\to Y$ exists. It remains to show that $p$ is an inner fibration. Given the lifting problem 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzAsMSwiXFxEZWx0YV57bn0iXSxbMiwwLCJcXHdpZGV0aWxkZXtYfSJdLFsyLDEsIlkiXSxbMCwyLCJwIl0sWzEsMywicSIsMl0sWzAsMV0sWzIsM11d
+  \begin{tikzcd}
+    {\Lambda^{n}_{k}} && {\widetilde{X}} \\
+    {\Delta^{n}} && Y
+    \arrow["p", from=1-1, to=1-3]
+    \arrow["q"', from=2-1, to=2-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-3, to=2-3]
+  \end{tikzcd}$$
+  there exists $m$ large such that 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV57bn1fe2t9Il0sWzIsMCwiWF97KG0pfSJdLFs0LDAsIlxcd2lkZXRpbGRle1h9Il0sWzAsMSwicF97bn0iXSxbMSwyXSxbMCwyLCJwIiwyLHsiY3VydmUiOjJ9XV0=
+  \begin{tikzcd}
+    {\Lambda^{n}_{k}} && {X_{(m)}} && {\widetilde{X}}
+    \arrow["{p_{n}}", from=1-1, to=1-3]
+    \arrow[from=1-3, to=1-5]
+    \arrow["p"', curve={height=12pt}, from=1-1, to=1-5]
+  \end{tikzcd}$$
+  and noting that the data of a map $\Lambda^{n}_{k}\to Y$ is the data of the map on the faces 
+  $$y_{0},\dots,y_{k-1},y_{k+1},\dots,y_{n}$$
+  in $Y_{n-1}$ the $(n-1)$-cells of $Y$. This factors through the map $p$
+\end{proof}
+We started with inner horn maps $\mathrm{InnHorn}$ and used weak saturation to produce the class $\overline{\mathrm{InnHorn}}$, the inner anodyne maps. Now consider the left complement of the inner horn maps, this is exactly the collection of inner fibrations as defined in \Cref{def: inner fibration}. We denote this $\mathrm{InnFib}$. Suppose $p:X\to Y$ and $f:A\to B$ lifts against all inner fibrations. 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDAsIlgiXSxbMiwxLCJZIl0sWzAsMSwiZiIsMl0sWzIsMywicCJdLFswLDJdLFsxLDNdLFsxLDIsIlxcZXhpc3RzIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\begin{tikzcd}
+	A && X \\
+	B && Y
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["p", from=1-3, to=2-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=2-1, to=2-3]
+	\arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+\end{tikzcd}$$
+That is, $f\lifts\mathrm{InnFib}$, or equivalently $f\in^{\lifts}\mathrm{InnFib}$. We know that the collection of inner fibrations are weakly saturated so the collection of inner fibrations contains the inner anodyne maps, that is, 
+\begin{equation}\label{eqn: inner anodyne subset left complement inner fibrations}
+  \overline{\mathrm{InnHorn}}\subseteq ^{\lifts}\mathrm{InnFib}.
+\end{equation}
+One might wonder what other classes of maps lift against inner fibrations, but there are no others. Indeed, he expression in (\ref{eqn: inner anodyne subset left complement inner fibrations}) is in fact an equality as we now show. 
+\begin{proposition}
+  The inner anodyne maps are precisely those lifting against inner fibrations, in the left complement of inner fibrations. That is, an equality 
+  $$\overline{\mathrm{InnHorn}}\subseteq ^{\lifts}\mathrm{InnFib}.$$ 
+\end{proposition}
+\begin{proof}
+  Given the containment in (\ref{eqn: inner anodyne subset left complement inner fibrations}), we show that if $f:A\to B$ lifts against an inner fibration, then it is inner anodyne. Given \Cref{thm: maps of ssets factorize}, we write 
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzQsMCwiQiJdLFsyLDEsIlxcd2lkZXRpbGRle0F9Il0sWzAsMiwiaSIsMl0sWzIsMSwicCIsMl0sWzAsMSwiZiJdXQ==
+  \begin{tikzcd}
+    A &&&& B \\
+    && {\widetilde{A}}
+    \arrow["i"', from=1-1, to=2-3]
+    \arrow["p"', from=2-3, to=1-5]
+    \arrow["f", from=1-1, to=1-5]
+  \end{tikzcd}$$
+  where $i$ is inner anodyne and $p$ is an inner fibration. We can consider the diagram 
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDAsIlxcd2lkZXRpbGRle0F9Il0sWzIsMSwiQiJdLFsxLDMsIlxcc2ltIl0sWzAsMSwiZiIsMl0sWzIsMywicCJdLFswLDIsImkiXSxbMSwyLCJoIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \begin{tikzcd}
+    A && {\widetilde{A}} \\
+    B && B
+    \arrow["\sim", from=2-1, to=2-3]
+    \arrow["f"', from=1-1, to=2-1]
+    \arrow["p", from=1-3, to=2-3]
+    \arrow["i", from=1-1, to=1-3]
+    \arrow["h"{description}, dashed, from=2-1, to=1-3]
+  \end{tikzcd}$$
+  where the map $h$ exists since $f$ lifts against inner fibrations. Now consider the diagram 
+  $$% https://q.uiver.app/#q=WzAsNixbMCwwLCJBIl0sWzIsMCwiQSJdLFs0LDAsIkEiXSxbMCwxLCJCIl0sWzIsMSwiXFx3aWRldGlsZGV7QX0iXSxbNCwxLCJCIl0sWzQsNSwicCIsMl0sWzMsNCwiaCIsMl0sWzAsMywiZiIsMl0sWzEsNCwiaSIsMl0sWzIsNSwiZiJdLFswLDEsIlxcc2ltIl0sWzEsMiwiXFxzaW0iXSxbMyw1LCJcXGlkX3tCfSIsMSx7ImN1cnZlIjozfV0sWzAsMiwiXFxpZF97QX0iLDEseyJjdXJ2ZSI6LTN9XV0=
+  \begin{tikzcd}
+    A && A && A \\
+    B && {\widetilde{A}} && B
+    \arrow["p"', from=2-3, to=2-5]
+    \arrow["h"', from=2-1, to=2-3]
+    \arrow["f"', from=1-1, to=2-1]
+    \arrow["i"', from=1-3, to=2-3]
+    \arrow["f", from=1-5, to=2-5]
+    \arrow["\sim", from=1-1, to=1-3]
+    \arrow["\sim", from=1-3, to=1-5]
+    \arrow["{\id_{B}}"{description}, curve={height=18pt}, from=2-1, to=2-5]
+    \arrow["{\id_{A}}"{description}, curve={height=-18pt}, from=1-1, to=1-5]
+  \end{tikzcd}$$
+  where we can see that $f$ is inner anodyne as $i$ is inner anodyne by assumption and the inner anodyne maps are closed under retracts. 
+\end{proof}
