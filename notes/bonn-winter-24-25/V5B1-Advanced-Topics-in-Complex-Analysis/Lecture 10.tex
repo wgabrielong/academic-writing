@@ -1,0 +1,116 @@
+\section{Lecture 10 -- 12th November 2024}\label{sec: lecture 10}
+Continuing our discussion of real and complex differentiation, we note that Wirtinger derivatives are closely related to the multivariable Cauchy-Riemann equations. 
+\begin{proposition}\label{prop: Wirtinger are partials}
+    Let $U\subseteq\CC^{n}$ be an open set and $f:U\to\CC$ a real differentiable function of the form 
+    $$f(z)-f(\tau)=\sum_{j=1}^{n}\Delta_{j}(z)(z_{j}-\tau_{j})+\sum_{j=1}^{n}E_{j}(z)(\overline{z}_{j}-\overline{\tau}_{j}).$$
+    Then $$\partial_{z_{j}}f(z)=\Delta_{j}(z)=\frac{1}{2}\left(\partial_{x_{j}}f(z)-i\cdot\partial_{y_{j}}f(z)\right)$$
+    and 
+    $$\partial_{\overline{z_{j}}}f(z)=E_{j}(z)=\frac{1}{2}\left(\partial_{x_{j}}f(z)+i\cdot\partial_{y_{j}}f(z)\right).$$
+\end{proposition}
+\begin{proof}
+    Suppsose $z_{1}=\tau_{1},\dots,z_{j-1}=\tau_{j-1},z_{j+1}=\tau_{j+1},\dots,z_{n}=\tau_{n}$ so $f'(z)=\lim_{z_{j}\to\tau_{j}}\frac{f(z)-f(\tau)}{z_{j}-\tau_{j}}=\Delta_{j}(\tau)$, the second equality in the first line follows from the first by applying the chain rule, and the second set of equalities follows by an analogous computation. 
+\end{proof}
+As such, we can show the following theorem. 
+\begin{theorem}\label{thm: holomorphic iff differential equations}
+    Let $U\subseteq\CC^{n}$ be an open set and $f:U\to\CC$ a function. $f$ is complex holomorphic if and only if it is real differentiable and satisfies the system of partial differential equations 
+    $$\partial_{\overline{z_{1}}}f(z)=\dots=\partial_{\overline{z_{n}}}f(z)=0.$$
+\end{theorem}
+\begin{proof}
+    \Cref{prop: Wirtinger are partials} expresses $\partial_{\overline{z_{j}}}f(z)$ in terms of $E_{j}(z)$ which vanish identically for a holomorphic function by \Cref{def: complex differentiable function}. 
+\end{proof}
+\begin{remark}
+    Evidently a holomoprhic function is holomorphic in each variable. That is, for $f:U\to\CC$ holomorphic, the function $f(\tau_{1},\dots,\tau_{j-1},z_{j},\tau_{j+1},\dots,\tau_{n})$ is a univariate holomorphic function in $z_{j}$. Furthermore, while in real analysis there exist functions that are differentiable in each variable but are not even continuous, differentiability in each variable implies global differentiability in complex analysis by Hartogs' theorem. This is highly subtle and is beyond the scope of the course, and an account can be found in the text of H\"{o}rmander \cite{Hormander}. 
+\end{remark}
+We can show that holomorphic functions on a domain behave well algebraically and form a ring. 
+\begin{proposition}\label{prop: holomorphic functions on a domain form a ring}
+    Let $U\subseteq\CC^{n}$ be open. The set of holomorphic functions $\Ocal_{U}$ is a $\CC$-algebra that contains $\CC[z_{1},\dots,z_{n}]$. 
+\end{proposition}
+\begin{proof}
+    Elements of $\CC[z_{1},\dots,z_{n}]$ are holomorphic on $\CC^{n}$ and hence on $U$, and the constants are holomorphic on $U$. Complex differentiable functions are preserved sums and products, and thus so too are holomorphic functions. 
+\end{proof}
+We now state and prove the Cauchy integral formula for functions of several complex variables. To do so, we will define integrals over the distinguished boundary of a polydisc. 
+\begin{definition}[Distinguished Boundary of Polydisc]\label{def: distinguished boundary}
+    Let $D_{r}(\tau)$ be a polydisc of polyradius $r$ around $\tau$. The distinguished boundary $T_{r}(\tau)$ of $D_{r}(\tau)$ is given by 
+    $$\{z\in\CC^{n}:|z_{j}-\tau_{j}|=r_{j}\}.$$
+\end{definition}
+\begin{remark}
+    The distinguished boundary is the product of $n$ copies of the topological circle $S^{1}$, that is, is of real dimension $n$. 
+\end{remark}
+We can now turn to a discussion of the multivariate Cauchy integral formula. 
+\begin{theorem}[Multivariate Cauchy Integral]\label{thm: multivariate cauchy integral}
+    Let $U\subseteq\CC^{n}$ be an open set and $f:U\to\CC$ a holomorphic function. If $D_{r}(\tau)\subseteq U$ is a polydisc with distinguished boundary $T_{r}(\tau)$ then for all $\alpha\in U$ 
+    $$f(\alpha)=\frac{1}{(2\pi i)^{n}}\int_{T_{r}(\tau)}\frac{f(z)}{(z_{1}-\alpha_{1})\dots(z_{n}-\alpha_{n})}dz.$$
+\end{theorem}
+\begin{proof}
+    The $n=1$ case is the univariate Cauchy integral formula. We proceed by induction on $n$, supposing it holds for the case $k$. Consider the case $k+1$ with a function $f(z_{1},\dots,z_{k+1})$. Let $g(z_{1})=f(z_{1},\alpha_{2},\dots,\alpha_{k+1})$ be a univariate function. By Cauchy's integral formula in one dimension, we have 
+    $$f(\alpha)=f(\alpha_{1},\dots,\alpha_{k+1})=\int_{T_{r_{1}}(\tau_{1})}\frac{g(z_{1})}{z_{1}-\alpha_{1}}dw.$$
+    But by the induction hypothesis, for fixed $w$, we have 
+    $$f(z_{1},\alpha_{2},\dots,\alpha_{k+1})=\int_{T_{(r_{2},\dots,r_{k+1})}((\tau_{2},\dots,\tau_{k+1}))}\frac{f(z_{1},z_{2},\dots,z_{n})}{(z_{2}-\alpha_{2})\dots(z_{n}-\alpha_{n})}$$
+    and combining the two integrals yields the claim. 
+\end{proof}
+We can alternatively phrase \Cref{thm: multivariate cauchy integral} in terms of Cauchy kernels. 
+\begin{definition}[Cauchy Kernel]\label{def: cauchy kernel}
+    Let $U\subseteq\CC^{n}$ be an open set, $f:U\to\CC$ a continuous function, and $D_{r}(\tau)\subseteq U$ is a polydisc with distinguished boundary $T_{r}(\tau)$. Then the Cauchy kernel is given by 
+    $$C_{f}(z)=\frac{1}{(2\pi i)^{n}}\int_{T_{r}(\tau)}\frac{f(w)}{(w_{1}-z_{1})\dots(w_{n}-z_{n})}dw_{1}\dots dw_{n}.$$
+\end{definition}
+\begin{remark}
+    By \Cref{thm: multivariate cauchy integral}, the Cauchy kernel agrees with $f$ if $f$ is holomorphic. 
+\end{remark}
+The Cauchy kernel allows us to deduce that holomorphic functions of several variables are infinitely differentiable. 
+\begin{proposition}\label{prop: multivariate holomorphic are infinitey differentiable}
+    Let $U\subseteq\CC^{n}$ be an open set containing a polydisc $D_{r}(\tau)$ with distinguished boundary $T_{r}(\tau)$ and $f:U\to\CC$ a holomorphic function. Then $f$ admits holomorphic partial derivatives of all orders.\marginpar{Theorem 1.2} 
+\end{proposition}
+\begin{proof}
+    Differentiating the Cauchy kernel under the integral sign, we have 
+    $$\partial^{\nu}_{z}C_{f}(z)=\frac{\nu_{1}!\dots\nu_{n}!}{(2\pi i)^{n}}\int_{T_{r}(\tau)}\frac{f(w)}{(w_{1}-z_{1})^{\nu_{1}+1}\dots(w_{n}-z_{n})^{\nu_{n}+1}}d_{w_{1}}\dots dw_{n}$$
+    giving the claim. 
+\end{proof}
+We will now consider analogues of key results in complex analysis in the multivariate setting. This discussion will require the following lemma which often allows us to reduce to the single variable case. 
+\begin{lemma}\label{lem: testing holomorphic by lines}
+    Let $\alpha,\beta\in\CC^{n}$ and $\lambda:\CC\mapsto\CC^{n}$ by $t\mapsto\alpha+t\beta$. If $f$ is holomorphic on $U\subseteq\CC^{n}$ open then $f\circ\lambda$ is holomorphic on $\lambda^{-1}(U)$. 
+\end{lemma}
+\begin{proof}
+    We compute $$\frac{d}{dt}(f\circ\lambda)(t)=\sum_{j=1}^{n}\partial_{z_{j}}(\lambda(t))\beta_{j}$$
+    which is a $\beta_{j}$-weighted sum of holomorphic functions and hence holomorphic on $\lambda^{-1}(U)=f|_{L}$. 
+\end{proof}
+We can now prove the multivariate analogues of the identity theorem and maximum principle. 
+\begin{theorem}[Multivariate Identity]\label{thm: multivariate identity}
+    Let $f$ be holomorphic on a domain $G$ and identically zero on a nonempty open subset $U$ of $G$. Then $f\equiv0$ on $G$.\marginpar{Theorem 1.5} 
+\end{theorem}
+\begin{proof}
+    Let $L$ be a line the image of $\lambda$ through $G$ and consider $f\circ\lambda$ the induced holomorphic function of one variable. By the identity theorem in one variable \Cref{thm: identity theorem}, $f$ is identically zero on all of $L$. Writing $G$ as the union of all lines passing through it gives the claim.  
+\end{proof}
+\begin{theorem}[Multivariate Maximum Modulus]\label{thm: multivariate maximum modulus}
+    Let $f$ be holomophric on a domain $G$ and $|f|$ has local maximum at $\tau\in G$. Then $f(z)=f(\tau)$ is constant.\marginpar{Theorem 1.6}
+\end{theorem}
+\begin{proof}
+    Arguing as before, let $L$ be a line the image of $\lambda$ through $G$ and consider $f\circ\lambda$ the induced holomorphic function of one variable. By the maximum maximum modulus principle in one variable, $f$ is constant on all of $L$. Writing $G$ as the union of all lines passing through it gives the claim. 
+\end{proof}
+We now turn to a consequence of \Cref{thm: multivariate cauchy integral} and some surprising consequences. 
+\begin{proposition}\label{prop: holomorphic extensions over polyannuli}
+    Let $D_{r}(\tau)\subseteq\CC^{n}$ for $n\geq2$. If $f$ is holomorphic in a punctured neighborhood of the origin in $D_{r}(\tau)$, then $f$ is holomorphic on $D_{r}(\tau)$. 
+\end{proposition}
+\begin{proof}
+    By translation, it suffices to consider the case of a function $f$ holomorphic on $D_{1}(0)\setminus\overline{D_{1/2}(0)}$ in $\CC^{n}$, here considering polydiscs of fixed radius. By the univariate Cauchy integral formula we have 
+    $$f(\alpha)=\frac{1}{(2\pi i)^{n}}\int_{T_{r}(\tau)}\frac{f(z)}{(z_{1}-\alpha_{1})\dots(z_{n}-\alpha_{n})}dz$$
+    but fixing any $\alpha_{j}$ the Cauchy integral formula in one variable holds but $\alpha_{j}$ is arbitrary so the function extends in each variable to all of $D_{1}(0)$ and so it does overall. 
+\end{proof}
+This implies that holomorphic functions have zeroes and thus poles along a subset of $\CC^{n}$ of codimension at least 1. 
+\begin{corollary}\label{corr: nonisolated zeroes and poles}
+    Let $f$ be a holomorphic function on $U\subseteq\CC^{n}$ open. Then $\{z\in\CC^{n}:f(z)=0\}$ and $\{z\in\CC^{n}:f(z)=\infty\}$ are non-isolated. 
+\end{corollary}
+\begin{proof}
+    The poles of $f$ are non-isolated by \Cref{prop: holomorphic extensions over polyannuli} and thus so too zeroes are non-isolated under passage to $1/f(z)$. 
+\end{proof}
+With the language of holomorphic functions in hand, we can discuss holomorphic maps. 
+\begin{definition}[Holomorphic Map]\label{def: holomorphic map}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ be open sets and $f=(f_{1},\dots,f_{m}):U\to V$ be a continuous function. $f$ is a holomorphic map if each component function $f_{k}:U\to\CC$ is holomorphic. 
+\end{definition}
+The chain rule generalizes to the multivariate setting. 
+\begin{proposition}[Multivariate Chain Rule]\label{prop: multivariate chain rule}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ be open sets and $f=(f_{1},\dots,f_{m}):U\to V$ and $g:V\to\CC$ holomorphic functions. Then 
+    $$\partial z_{j}(g\circ f)=\sum_{k=1}^{m}\frac{\partial g}{\partial w_{k}}\frac{\partial f}{\partial z_{j}}.$$
+\end{proposition}
+\begin{proof}
+    This is immediate from the chain rule and the Cauchy-Riemann equations. 
+\end{proof}

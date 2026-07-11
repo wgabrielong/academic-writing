@@ -1,0 +1,82 @@
+\section{Lecture 2 -- 11th October 2024}\label{sec: lecture 2}
+Previously, morphisms of presheaves and sheaves were defined in \Cref{def: morphism of presheaves,def: sheaves}. In this way, being a sheaf is a structure on presheaves.\marginpar{See \cite{nLabStructure} and the discussion therein.} This data determines the category of sheaves as we now define. 
+\begin{definition}[Category of Sheaves]\label{def: category of sheaves}
+    Let $X$ be a topological space. The category $\Sh(X)$ of sheaves on $X$ has objects sheaves and morphisms presheaf morphisms between them. 
+\end{definition}
+\begin{remark}\label{rmk: forgetful functor is fully faithful}
+    Since morphisms of sheaves are morphisms of the underlying presheaves, the forgetful functor $\Sh(X)\to\PSh(X)$ exhibits the category of sheaves as a full subcategory of the category of presheaves. 
+\end{remark}
+A natural question that arises from the consideration of a full subcategory is the existence of a left adjoint, which in this context amounts to the construction of a sheaf given a presheaf that is canonical in an appropriate sense. We will show such a construction is possible by considering stalks, the definition of which we now consider. 
+\begin{definition}[Stalk]\label{def: stalk}
+    Let $X$ be a topological space, $x\in X$, and $\Fcal$ a presheaf on $X$. The stalk $\Fcal_{x}$ of $\Fcal$ at $x$ is the colimit 
+    $$\Fcal_{x}=\colim_{x\in\subseteq U}\Fcal(U).$$
+\end{definition}
+\begin{remark}
+    Such a colimit is naturally filtered since in the category $\Opens_{X}^{\Opp}$ since it admits a final object -- the empty set $\emptyset$. The subcategory of $\Opens_{X}^{\Opp}$ too is filtered by taking intersections. In these settings of sheaves over topological spaces,  taking stalks preserves exactness \cite[\href{https://stacks.math.columbia.edu/tag/04B0}{Tag 04B0}]{stacks-project}.  
+\end{remark}
+By the universal property of colimits, there is a unique map from $\Fcal(U)$ to $\Fcal_{x}$ for $x\in X$ which on application of the universal property of the product induces a map $\Fcal(U)\to\prod_{x\in U}\Fcal_{x}$ which in general is neither injective nor surjective. This map, however, is injective when $\Fcal$ is a sheaf. 
+
+Alternatively, the stalk of a presheaf $\Fcal$ on a topological space $X$ at a point $x$ can be described more explicitly as equivalence classes of sections that agree on sufficently small neighborhoods given by pairs $(s,U)$ where $s\in\Fcal(U)$ and $U$ containing $x$ modulo the equivalence relation $(s,U)\sim(s',U')$ if there exists $V\subseteq U\cap U'$ such that $s|_{V}=s'|_{V}$. This explicit construction of the stalk allows us to see that the stalks of a presheaf retains knowledge of the sheaf in an infinitesmally small neighborhood of the point. 
+\begin{lemma}\label{lem: map to stalks is injective}
+    Let $X$ be a topological space and $U\subseteq X$ open. If $\Fcal$ is a sheaf, the canonical map $\Fcal(U)\to\prod_{x\in U}\Fcal_{x}$ is injective. 
+\end{lemma}
+\begin{proof}
+    Suppose $s,s'\in\Fcal(U)$ such that they map to the same element in the product. In which case we can pick open sets $V_{x}$ for each $x$ on which $s|_{V_{x}}=s'|_{V_{x}}$. These $V_{x}$ form an open cover of $x$ so $s=s'$ since $\Fcal$ is a sheaf. 
+\end{proof}
+We now describe the process of sheafification, first proving the desired construction is a sheaf before stating the definition. 
+\begin{proposition}\label{prop: sheafification is a sheaf}
+    Let $X$ be a topological space and $\Fcal$ a presheaf on $X$. The presheaf 
+    $$\Fcal^{\#}(U)=\left\{(s_{x})_{x\in U}:\substack{\forall x\in X \text{ there is an open neighborhood }V\subseteq U\text{ of }x \\ \text{ and }\sigma\in\Fcal(V)\text{ such that }\forall x'\in V, s_{x'}=(\sigma,V)\in\Fcal_{v}}\right\}$$
+    is a sheaf. 
+\end{proposition}
+\begin{proof}
+    Suppose $\{U_{i}\}_{i\in I}$ is an open cover of $U$ and $(s_{i,x})_{x\in U_{i}}\in\Fcal^{\#}(U_{i})$ where $(s_{i,x})_{x\in U_{i}}$ and $(s_{j,x})_{x\in U_{j}}$ are such that $(s_{i,x})_{x\in U_{i}\cap U_{j}} = (s_{j,x})_{x\in U_{i}\cap U_{j}}$. This glues in $\prod_{x\in U}\Fcal_{x}$ which is a sheaf under the natural restriction maps so consider $s=(s_{x})_{x\in U}$ that restricts to $(s_{i,x})_{x\in U_{i}}$ and $(s_{j,x})_{x\in U_{j}}$. For any $x\in U$ with $x\in U_{i}$ we can find some $V\subseteq U_{i}$ containing $x$ and $\sigma\in\Fcal(V)$ such that $s_{i,x'}=(\sigma,V)$ for all $x'\in V$ where since $s_{i,x'}=s_{x'}$ we have that $s=(s_{x})_{x\in U}$ satisfies the condition as well. 
+\end{proof}
+In light of \Cref{prop: sheafification is a sheaf}, we have the following. 
+\begin{definition}[Sheafification]\label{def: sheafification}
+    Let $X$ be a topological space and $\Fcal$ a presheaf on $X$. The sheafification $\Fcal^{\#}$ is the sheaf 
+    $$\Fcal^{\#}(U)=\left\{(s_{x})_{x\in U}:\substack{\forall x\in X \text{ there is an open neighborhood }V\subseteq U\text{ of }x \\ \text{ and }\sigma\in\Fcal(V)\text{ such that }\forall x'\in V, s_{x'}=(\sigma,V)\in\Fcal_{v}}\right\}.$$
+\end{definition}
+As the construction of \Cref{prop: sheafification is a sheaf} and the above definition suggests, sheafification does not change stalks. This expectation in fact holds. 
+\begin{proposition}\label{prop: sheafification does not change stalks}
+    Let $X$ be a topological space and $\Fcal$ a presheaf on $X$ with sheafification $\Fcal^{\#}$. For all $x\in X$, $\Fcal_{x}=\Fcal^{\#}_{x}$.
+\end{proposition}
+\begin{proof}
+    The map $\Fcal_{x}\to\Fcal_{x}^{\#}$ is injective by \Cref{lem: map to stalks is injective}. It remains to show surjectivity. Let $\overline{s}\in\Fcal_{x}^{\#}$ be a section and consider $U\subseteq X$ containing $x$ such that $\overline{s}$ is in the equivalence class of some $(s,U)$ with $s\in\Fcal^{\#}(U)$. As such, there is an open neighborhood $V$ of $U$ and $\sigma\in\Fcal(V)$ with $s|_{V}$ is in the image of $\sigma$ in $\prod_{x\in V}\Fcal_{x}$ which defines a map of an element of $\Fcal_{x}$ to $\overline{s}$. 
+\end{proof}
+This allows us to show that sheafification exhibits the expected universal property -- that of the initial sheaf admitting a map from $\Fcal$. 
+\begin{proposition}\label{prop: universal property of sheafification}
+    Let $X$ be a topological space, $\Fcal$ a presheaf on $X$, and $\Gcal$ a sheaf on $X$. For any morphism of presheaves $\Fcal\to\Gcal$ there exists a unique morphism making the diagram 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEZjYWwiXSxbMiwwLCJcXEdjYWwiXSxbMCwxLCJcXEZjYWxee1xcc2hhcnB9Il0sWzIsMSwiXFxleGlzdHMhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMV0sWzAsMl1d
+    \begin{tikzcd}
+        \Fcal && \Gcal \\
+        {\Fcal^{\#}}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow["{\exists!}"', dashed, from=2-1, to=1-3]
+    \end{tikzcd}$$
+    commute. 
+\end{proposition}
+\begin{proof}
+    We have a commutative diagram of the form 
+    $$% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXEZjYWwiXSxbMCwxLCJcXEdjYWwiXSxbMiwwLCJcXEZjYWxee1xcc2hhcnB9Il0sWzIsMSwiXFxHY2FsXntcXHNoYXJwfSJdLFs0LDAsIlxccHJvZF97eFxcaW4gWH1cXEZjYWxfe3h9Il0sWzQsMSwiXFxwcm9kX3t4XFxpbiBYfVxcR2NhbF97eH0iXSxbMyw1XSxbMiw0XSxbNCw1XSxbMiwzXSxbMCwxXSxbMSwzXSxbMCwyXV0=
+    \begin{tikzcd}
+        \Fcal && {\Fcal^{\#}} && {\prod_{x\in X}\Fcal_{x}} \\
+        \Gcal && {\Gcal^{\#}} && {\prod_{x\in X}\Gcal_{x}}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=1-5]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-5, to=2-5]
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=2-3, to=2-5]
+    \end{tikzcd}$$
+    which induces the factorization as $\Gcal^{\#}=\Gcal$ since sheaves satisfy the compatibility condition imposed by the sheafification process.
+\end{proof}
+The proposition easily allows us to conclude the following. 
+\begin{proposition}\label{prop: forgetful is adjoint to sheafification}
+    Let $X$ be a topological space. The forgetful functor $\Sh(X)\to\PSh(X)$ is right adjoint to the sheafification functor $\PSh(X)\to\Sh(X)$.  
+\end{proposition}
+\begin{proof}
+    We want to show for a presheaf $\Fcal$ and a sheaf $\Gcal$ on $X$ that there is an equivalence $\Hom_{\Sh(X)}(\Fcal^{\#},\Gcal)=\Hom_{\PSh(X)}(\Fcal,\Gcal)$ treating $\Gcal$ as a presheaf in the latter. But the universal property of \Cref{prop: universal property of sheafification} implies that any morphism $\Fcal\to\Gcal$ uniquely extends through $\Fcal^{\#}$ giving the claim. 
+\end{proof}

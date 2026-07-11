@@ -1,0 +1,211 @@
+\section{Lecture 4 -- 15th November 2024}\label{sec: lecture 4}
+We consider some properties of the dilogarithm function following \cite{ZagierDilogarithm}. 
+
+Recall polylogarithms from \Cref{def: polylogarithm}. We can in fact alternatively define polylogarithms using the relation of \Cref{lem: polylogarithm differential equation}. 
+\begin{lemma}\label{lem: dilogarithm as integral on split plane}
+    The dilogarithm $\Li_{2}(t)$ satisfies the integral equation 
+    \begin{equation}\label{eqn: dilogarithm integral equation}
+        \Li_{2}(t)=-\int_{0}^{t}\log(1-z)dz
+    \end{equation}
+    on the slit plane $\CC\setminus[1,\infty)$. 
+\end{lemma}
+\begin{proof}
+    The claim follows from \Cref{lem: polylogarithm differential equation} and $\Li_{1}(t)=-\log(1-t)$ of Table \ref{table: polylogarithm values}, noting that the logarithm is defined on the slit plane. 
+\end{proof}
+Special values of the dilogarithm are given as follows \cite[\S 1]{ZagierDilogarithm}. 
+
+\begin{table}[h]\label{table: dilogarithm special values}
+    \begin{tabular}{c c c}
+        $\Li_{2}(0)=0$ & $\Li_{2}(1)=\frac{\pi^{2}}{6}$ & $\Li_{2}(-1)=-\frac{\pi^{2}}{12}$ \\
+        $\Li_{2}\left(\frac{1}{2}\right)=\frac{\pi^{2}}{12}-\frac{1}{2}\log(2)^{2}$ & $\Li_{2}\left(\frac{1-\sqrt{5}}{2}\right)=\frac{\pi^{2}}{15}+\frac{1}{2}\log\left(\frac{1+\sqrt{5}}{2}\right)^{2}$
+    \end{tabular}
+    \caption{Special values of the dilogarithm.}
+\end{table}
+The dilogarithm has especially interesting behavior at roots of unity where it can be expressed in terms of the Dedekind Zeta function and exhibit close connections to $L$-functions \cite[\S 5]{ZagierDilogarithm}. Dilogarithms also satisfy a number of functional equations:
+
+\begin{table}[h]\label{table: dilogarithm functional equations}
+    \begin{equation}\label{eqn: dilogarithm and negative functional equation}
+        \Li_{2}(1/t) = -\Li_{2}(t) - \frac{\pi^{2}}{6}-\frac{1}{2}\log(-t)^{2}
+    \end{equation}
+    \begin{equation}\label{eqn: dilogarithm and inverse functional equation}
+        \Li_{2}(1-z)=-\Li_{2}(t) + \frac{\pi^{2}}{6}-\log(t)\log(1-t)
+    \end{equation}
+    \caption{Functional equations for the dilogarithm.}
+\end{table}
+
+The phenomena above, where products of logarithms appear, are quite common in the setting of dilogarithm functional equations. The dilogarithm can be analytically continued in the following way. 
+\begin{theorem}\label{thm: analytic continuation for dilogarithm}
+    The function 
+    \begin{equation}\label{eqn: analytic continuation for dilogarithm}
+        \Li_{2}(e^{h})+h\cdot\Li_{1}(e^{h})
+    \end{equation}
+    is well deined $\CC\setminus(2\pi i\ZZ)\to\CC/(2\pi i)^{2}\ZZ$. 
+\end{theorem}
+\begin{proof}
+    Computing, we get 
+    \begin{align*}
+        \frac{d}{dh}\left(\Li_{2}(e^{h})+h\cdot\Li_{1}(e^{h})\right) &= -e^{h}\cdot\frac{1}{e^{h}}\Li_{1}(e^{h}) + \Li_{1}(e^{h}) + h\Li_{0}(e^{h}) \\
+        &= \frac{he^{h}}{1-e^{h}} && \Li_{0}(t)=\frac{t}{1-t}
+    \end{align*}
+    which is a well-defined meromorphic function on $\CC$ with simple poles at integer multiples of $2\pi i$ and residues multiples of $2\pi i$ so the map descends to the quotient. 
+\end{proof}
+One can also consider an analogue of the dilogarithm is the Bloch-Wigner dilogarithm. 
+\begin{definition}[Bloch-Wigner Dilogarithm]\label{def: Bloch-Wigner dilogarithm}
+    The Bloch-Wigner dilogarithm is the function 
+    $$D(z)=\img(\Li_{2}(z))+\arg(1-z)\log(|z|).$$
+\end{definition}
+\begin{remark}
+    The Bloch-Wigner dilogarithm is a well-defined continuous function on $\CC\cup\{\infty\}$.
+\end{remark}
+The advantage of working with the Bloch-Wigner dilogarithm is that one no longer needs to consider the products of logarithms in functional equations that arose above. We state some functional equations below. 
+
+\begin{table}[h]\label{table: BW dilogarithm functional equations}
+    \begin{equation}\label{eqn: BW dilogarithm sixfold}
+        D(z)=D\left(1-\frac{1}{z}\right)=D\left(\frac{1}{1-z}\right)=-D\left(\frac{1}{z}\right)=-D(1-z)=-D\left(\frac{-z}{1-z}\right)
+    \end{equation}
+    \begin{equation}\label{eqn: BW dilogarithm five term relation}
+        D(x)+D(y)+D\left(\frac{1-x}{1-xy}\right)+D(1-xy)+D\left(\frac{1-y}{1-xy}\right)=0
+    \end{equation}
+    \caption{Functional equations for the Bloch-Wigner dilogarithm.}
+\end{table}
+Let us return to our discussion of asymptotics of Nahm sums as in \Cref{sec: lecture 2}. We focus on the case $A=a$ for $a\in\ZZ$ producing Nahm sums of the form 
+$$f_{a}(t,q)=\sum_{n\geq0}\frac{q^{\frac{1}{2}an^{2}}}{(q;q)_{n}}t^{n}.$$
+The $q$-difference equation this satisfies can be easily deduced. 
+\begin{proposition}\label{prop: q-difference equation of 1x1 Nahm sum}
+    Let $a\in\ZZ$. The $t$-deformed Nahm sum $f_{a}(t,q)=\sum_{n\geq0}\frac{q^{\frac{1}{2}an^{2}}}{(q;q)_{n}}t^{n}$ satisfies the $t$-deformed $q$-difference equation 
+    \begin{equation}\label{eqn: q-difference equation of 1x1 Nahm sum}
+        f_{a}(t,q) - f_{a}(qt,q)=tq^{a/2}f_{a}(q^{a}t,q).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        f_{a}(t,q) - f_{a}(qt,q) &= \sum_{n\geq0}\frac{q^{\frac{1}{2}an^{2}}}{(q;q)_{n}}t^{n} - \sum_{n\geq0}\frac{q^{\frac{1}{2}an^{2}}}{(q;q)_{n}}q^{n}t^{n} \\
+        &= \sum_{n\geq0}\left(\frac{q^{\frac{1}{2}an^{2}}(1-q^{n})}{(q;q)_{n}}\right)t^{n} \\
+        &= \sum_{n\geq0}\frac{q^{\frac{1}{2}a(n+1)^{2}}}{(q;q)_{n}}t^{n+1} && \text{reindexing}\\
+        &= \sum_{n\geq0}\frac{q^{\frac{1}{2}an^{2}+an+\frac{a}{2}}}{(q;q)_{n}}t^{n+1}\\
+        &= tq^{a/2}\left(\sum_{n\geq0}\frac{q^{\frac{1}{2}an^{2}}}{(q;q)_{n}}q^{an}t^{n}\right)\\
+        &= tq^{a/2}f_{a}(q^{a}t,q)
+    \end{align*}
+    as desired. 
+\end{proof}
+We can modify the Nahm sum to rid ourselves of the $q^{a/2}$ factor in (\ref{eqn: q-difference equation of 1x1 Nahm sum}).\marginpar{The exposition that follows is drawn from the erratum discussed at the begining of lecture 5. The reader is encouraged to consult \cite{NahmAsymptotics} for full details.}
+\begin{corollary}\label{corr: q-difference equation of modified 1x1 Nahm sum}
+    Let 
+    $$f_{a}^{\mathrm{mod}}(t,q)=f_{a}(q^{-a/2}t,q)=\sum_{n\geq0}(-1)^{an}\frac{q^{\frac{1}{2}an^{2}-\frac{1}{2}an}}{(q;q)_{n}}t^{n}$$
+    Then the modified Nahm sum satisfies the $t$-deformed $q$-difference equation 
+    \begin{equation}\label{eqn: q-difference equation of modified 1x1 Nahm sum}
+        f_{a}^{\mathrm{mod}}(t,q) - f_{a}^{\mathrm{mod}}(qt,q) = (-1)^{a}t\cdot f_{a}^{\mathrm{mod}}(q^{a}t,q).
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    This follows from a similar computation as in \Cref{prop: q-difference equation of 1x1 Nahm sum}. 
+\end{proof}
+\begin{remark}
+    $f_{a}(t,q)\in\ZZ[[t,\sqrt{q}]]$ but $f_{a}^{\mathrm{mod}}(t,q)\in\ZZ[[t,q]]$. 
+\end{remark}
+We will henceforth work with these modified Nahm sums. As previously discussed, we would expect the asymptotic expansion of such a Nahm sum to be expressed as a product of an exponential of a dilogarithm, a square root, and a power series in $h$ as $q\to 1$ and $q=\exp(h)$, mirroring the discussion of \Cref{prop: asymptotics of q t Pochhammer at root of unity}. 
+
+We use the ansatz 
+\begin{equation}\label{eqn: 1x1 Nahm sum ansatz}
+    f_{a}(t,q)=\exp\left(\frac{V(t)}{h}\right)g_{a}(t,q)
+\end{equation}
+\begin{equation}\label{eqn: qt 1x1 Nahm sum ansatz}
+    f_{a}(qt,q)=\exp\left(\frac{V(qt)}{h}\right)g_{a}(qt,q)
+\end{equation}
+in what follows, with $V(t)\in\QQ[[t]]$ satisfying $V(0)=0$. \Cref{eqn: 1x1 Nahm sum ansatz,eqn: qt 1x1 Nahm sum ansatz} takes are related by the formula we now describe. 
+\begin{proposition}\label{prop: V functional equation for 1x1 Nahm ansatz}
+    The equation $V(t)$ of the Nahm equation ansatz satisfies the logarithmic differential equation 
+    \begin{equation}\label{eqn: V functional equation for 1x1 Nahm ansatz}
+        V(e^{h}t) = V(t) + h(\partial^{\log}V)(t)+\frac{h^{2}}{2}((\partial^{\log})^{2}V)(t)
+    \end{equation}
+    with $\partial^{\log}V(t)=t\cdot V'(t)$.
+\end{proposition}
+\begin{remark}
+    (\ref{eqn: V functional equation for 1x1 Nahm ansatz}) of \Cref{prop: V functional equation for 1x1 Nahm ansatz} should be thought of as a multiplicative analogue of the Taylor expansion. 
+\end{remark}
+Using this, we can compute the ratio of the leading factors of \Cref{eqn: 1x1 Nahm sum ansatz,eqn: qt 1x1 Nahm sum ansatz}. 
+\begin{proposition}\label{prop: asymptotic expansion of modifed 1x1 Nahm sum at 1}
+    The Nahm sum $f_{a}(t,q)$ satisfies the asymptotic formula 
+    \begin{equation}\label{eqn: asymptotic expansion of modified 1x1 Nahm sum at 1}
+        f_{a}(t,q)\sim\exp\left(\frac{V(t)}{h}\right)\cdot O(h)
+    \end{equation}
+    as $q\to 1$ and $O(h)\in\QQ[[t,h]]$. 
+\end{proposition}
+\begin{corollary}\label{corr: exponent ratio for 1x1 Nahm sum antsatz}
+    Let $V(t)$ be as in the Nahm equation ansatz. The ratios of the exponential factors satisfy 
+    $$\exp\left(\frac{V(qt)}{h}\right)/\exp\left(\frac{V(t)}{h}\right)\sim\exp((\partial^{\log}V)(t))(1+O(h))$$
+    for $q=e^{h}$.  
+\end{corollary}
+\begin{proof}
+    We have by \Cref{prop: V functional equation for 1x1 Nahm ansatz}
+    \begin{align*}
+        \exp\left(\frac{V(qt)}{h}\right) &= \exp\left(\frac{V(t)}{h}+(\partial^{\log}V)(t)+\frac{h}{2}((\partial^{\log})^{2}V)(t)\right)\\
+        &=\exp\left(\frac{V(t)}{h}\right)\exp\left((\partial^{\log}V)(t)\right)\exp\left(\frac{h}{2}((\partial^{\log})^{2}V)(t)\right)
+    \end{align*}
+    where the first term of the product above cancels in the ratio and the final term of the product expands to a power series in $h$ with constant coefficient 1. 
+\end{proof}
+Denoting $Z(t)=\exp((\partial^{\log}V)(t))$ and $\widetilde{Z}(t,q)=\exp\left((\partial^{\log}V)(t)\right)\exp\left(\frac{h}{2}((\partial^{\log})^{2}V)(t)\right)$, we divide (\ref{eqn: q-difference equation of modified 1x1 Nahm sum}) by the exponential prefactor $\exp\left(\frac{V(t)}{h}\right)$ and the ansatz \Cref{eqn: 1x1 Nahm sum ansatz,eqn: qt 1x1 Nahm sum ansatz} to observe 
+$$g_{a}(t,q)-\widetilde{Z}(t,q)g_{a}(qt,q)=(-1)^{a}\cdot t\cdot\prod_{i=0}^{a-1}\widetilde{Z}(q^{i}t,q)\cdot g_{a}(q^{a},t)$$
+which we seek to show lies in $\QQ[[t,q-1]]$.
+
+Specializing at $q=1$ (ie. $h=0$) produces 
+\begin{equation}\label{eqn: specialized Z functional equation}
+    1-Z(t)=(-1)^{a}t\cdot Z(t)^{a}
+\end{equation}
+
+We now explicitly describe $V(t)$. As suggested by the preceding discussion, it suffices to solve the differential equation $V'(t)=\frac{1}{t}\log(Z(t))$. 
+\begin{proposition}\label{prop: V t dilogarithm equation}
+    Let $V(t)$ be as in the Nahm equation ansatz and $Z(t)=\exp((\partial^{\log}V)(t))$. $V(t)$ satisfies the equation 
+    \begin{equation}\label{eqn: V t dilogarithm equation}
+        V(t) = -\Li_{2}(1-Z(t))-\frac{a}{2}\log(Z(t))^{2}
+    \end{equation}
+    with $V(0)=0$. 
+\end{proposition}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        V'(t) &= -\frac{Z'(t)}{1-Z(t)}\log(Z(t)) - a\cdot\log(Z(t))\cdot\frac{Z'(t)}{Z(t)} \\
+        &= \log(Z(t))\cdot\frac{\left(Z(t)+a(1-Z(t))\right)Z'(t)}{(1-Z(t))Z(t)}
+    \end{align*}
+    and differentiating (\ref{eqn: specialized Z functional equation}) we get 
+    $-Z'(t)=(-1)^{a}Z(t)^{a}+(-1)^{a}at\cdot Z(t)^{a-1}Z'(t)$. Now note $(-1)^{a}at\cdot Z(t)^{a-1}=\frac{1-Z(t)}{Z'(t)}$ so $-Z'(t)=\frac{Z'(t)}{Z(t)}\left(Z(t)+a(1-Z(t))\right)=-\frac{1-Z(t)}{t}$. Substituting this into the equation for $V'(t)$ we get the desired result. 
+\end{proof}
+We can also discuss asymptotics of Nahm sums at roots of unity $\zeta_{m}$. In parallel to \Cref{prop: asymptotics of q t Pochhammer at root of unity}, we have the following result for Nahm sums. 
+\begin{theorem}\label{thm: Nahm sum asymptotics at roots of unity}
+    The Nahm sum $f_{a}(t,q)$ satisfies the asymptotic formula 
+    \begin{equation}\label{eqn: Nahm sum asymptotics at roots of unity}
+        f_{a}(t,q)\sim\exp\left(\frac{V(t^{m})}{m^{2}h}\right)\cdot O(h)
+    \end{equation}
+    as $q\to\zeta_{m}$ with $\zeta_{m}$ a primitive $m$th root of unity and $O(h)\in\QQ(\zeta_{m})[[t,h]]$. 
+\end{theorem}
+\begin{proof}[Proof Outline]
+    We use the ansatz 
+    \begin{equation}\label{eqn: Nahm sum at roots of unity ansatz}
+        f_{a}(t,q) = \exp\left(\frac{V(t^{m})}{m^{2}h}\right)g_{a}(t,h)
+    \end{equation}
+    where we want to show that $g_{a}(t,h)\in\QQ(\zeta_{m})[[t,h]]$ where \emph{a priori}, $g_{a}(t,q)\in\QQ(\zeta_{m})((h))[[t]]$. 
+
+    By \Cref{prop: V t dilogarithm equation}, we have that $t\cdot V'(t)=\log(Z(t))$ so we can write
+    $$\widetilde{Z}(t^{m},h)=\frac{\exp\left(\frac{V(q^{m}t^{m})}{m^{2}h}\right)}{\exp\left(\frac{V(t^{m})}{m^{2}h}\right)}=Z(t^{m})^{1/m}\cdot(1+O(h)).$$
+    and thus 
+    \begin{equation}\label{eqn: expansion of g function}
+        g_{a}(t,h)-\widetilde{Z}(t^{m},h)g_{a}(\zeta_{m}e^{h}t,h)=(-1)^{a}t\cdot\prod_{j=0}^{a-1}\widetilde{Z}(e^{\pi i h}t^{m},h)\cdot g_{a}(\zeta_{m}^{a}e^{ah}t,h).
+    \end{equation}
+    shwoing specialization at $h=0$ is well-defined. As such, we can write $g_{a}(t,0)$ as 
+    $$\sum_{j=0}^{a-1}t^{j}h_{j}(t^{m})$$
+    and $h_{j}$ a function in $t$. As such, by (\ref{eqn: expansion of g function}) we have
+    \begin{align*}
+        \sum_{j=0}^{a-1}t^{j}h_{j}(t^{m}) - Z(t^{m})^{1/m}\sum_{j=0}^{a-1}\zeta_{m}^{j}t^{j}h_{j}(t^{m}) &= (-1)^{a}t\cdot Z(t^{m})^{a/m}\cdot\sum_{j=0}^{a-1}\zeta_{m}^{aj}t^{j}h_{j}(t^{m})
+    \end{align*}
+    and we separate the sum for each $j$ by taking residue classes of exponents of $t$ where we have 
+    \begin{align*}
+        h_{j}(t^{m})(1-\zeta_{m}^{j}Z(t^{m})^{1/m})&=(-1)^{a}\zeta_{m}^{a(j-1)}Z(t^{m})^{a/m}\cdot h_{j-1}(t^{m}) && j>0 \\
+        h_{0}(t^{m})(1-Z(t^{m})^{1/m})&=(-1)^{a}\zeta_{m}^{a(m-1)}t^{m}Z(t^{m})^{a/m}h_{m-1}(t^{m}) && j=0
+    \end{align*}
+    where 
+    $$\prod_{j=0}^{m-1}(1-\zeta_{m}^{j}Z(t^{m})^{1/m})=(-1)^{am}\prod_{j=0}^{m-1}\zeta_{m}^{aj}t^{m}Z(t^{m})^{a}$$
+    holds as it simplifies to 
+    $$1-Z(t^{m})=(-1)^{a}t^{m}\cdot Z(t^{m})^{a}$$
+    by factorization results for cyclotomic polynomials. 
+\end{proof}

@@ -1,0 +1,214 @@
+\section{Lecture 1 -- 11th October 2024}\label{sec: lecture 1}
+This course will roughly center around forthcoming joint work of the instructor with Stavros Garoufalidis, Campbell Wheeler, and Don Zagier \cite{HabiroNumberField} and will largely focus on the theme of ``Ramanujan-style'' $q$-series. 
+
+One motivation for the this circle of ideas is to elucidate the connection between the $q$ of ``Ramanujan-style'' $q$-series to the $q$ that arises in the study of $p$-adic Hodge theory through $p$-adic period rings like Fontaine's $\mathbb{A}_{\inf}$ as in \cite{qDeformations}. The correspondence between rings and affine schemes hints at the possibilility for these $q$-series to be studied as functions on an appropriately defined space. However, it remains unclear what such a topological space should be. 
+
+Consider the case of the $q$-Pochhammer symbol, one of the most elementary $q$-series. 
+\begin{definition}[$q$-Pochhammer]\label{def: q-Pochhammer}
+    The $q$-Pochhammer symbol $(t;q)_{n}$ is given by the product 
+    $$\prod_{i=0}^{n-1}(1-tq^{i}).$$
+\end{definition}
+Consider the symbol $(q;q)_{\infty}$ given by the product $\prod_{n=1}^{\infty}(1-q^{n})$ which are naturally elements of the power series ring $\ZZ[[q]]$. In fact, the product under consideration can be rescaled such that $q(q;q)_{\infty}^{24}$ admits an expansion $\sum_{n\geq0}\tau(n)q^{n}$ where $\tau(n)$ is Ramanujan's $\tau$-function. Now contemplating the expansion 
+$$q\prod_{n=0}^{\infty}(1-q^{n})^{24}$$
+one can deduce that the function above is a full level of weight 12 -- converging on $q\in\CC$ with $|q|<1$, on $q=\exp(2\pi i z)$ with $z$ having positive imaginary part, satisfy a periodicity condition, and an automorphy condition under $\SL_{2}(\ZZ)$ transformations on the complex upper half-plane $\HH$. Scaling appropriately, one realizes $\Delta(q)=q(q;q)_{\infty}^{24}$ as a full level modular form of weight 12.
+
+The discussion above suggests that the quotient of $\HH$ by the action of $\SL_{2}(\ZZ)$ by linear fractional transformations will play a key role in the theory, with the additional automorphy data kept track of via the data of a line bundle $\omega$ on the quotient, with $\Delta(q)$ above being a global section of the line bundle $\omega^{\otimes 12}$ on the quotient space. Indeed, while the quotient space $\HH/\SL_{2}(\ZZ)$ begins life as a Riemann surface, it is in fact not only a complex-analytic curve, but also defined over $\ZZ$ as a modular curve. In this light, $\Delta(q)$ is not only a complex-valued section of the line bundle $\omega^{\otimes 12}$ over the complex numbers, but a section of the same line bundle defined over the integers, and as such carries arithmetic information.
+ 
+
+Over the course of the semester, we will unravel a similar story by consdering $q$-series and their corresponding (non-)modularity properties in conjunction with their associated spaces and line bundles for which these $q$-series naturally arise as sections. 
+
+These considerations begin with a discussion of Nahm sums, the definition of which we now recall. 
+\begin{definition}[Nahm Sum]\label{def: Nahm sum}
+    Let $A$ be a positive-definite $N\times N$ matrix over $\ZZ$. The Nahm sum $f_{A}(q)$ is given by 
+    $$f_{A}(q)=\sum_{n\in\ZZ_{\geq0}^{N}}\frac{q^{\frac{1}{2}n^{T}An}}{\prod_{i=1}^{N}(q;q)_{n_{i}}}\in\ZZ[[q^{1/2}]].$$
+\end{definition}
+\begin{remark}
+    This definition can be generalized, taking a positive-definite $N\times N$ matrix over $\QQ$, and yielding an element of $\ZZ[[q^{1/2d}]]$ for $d$ large. 
+\end{remark}
+\begin{remark}
+    In fact, the $N=1$ case considering Nahm sums of the form 
+    $$f_{a}(q)=\sum_{n\geq0}\frac{q^{\frac{1}{2}an^{2}}}{(q;q)_{n}}$$
+    already contains the essential features of the theory, and we will restrict to this case when the technical difficulties of $n\geq 2$ obfuscate the clarity of exposition. 
+\end{remark}
+Using simple estimates, one can show that these Nahm sums are convergent for $q\in\CC$ with $|q|<1$. 
+
+Even in the simplest case of $N=1$ and $a=1$, we can get surprising ``modular-type'' behavior and yielding a modular function. 
+\begin{proposition}\label{prop: modularity of a=1}
+    Let $f_{1}(q)=\sum_{n\geq0}\frac{q^{\frac{1}{2}n^{2}}}{(q;q)_{n}}$. Then $f_{1}(q)=q^{-1/48}(-q^{1/2};q)_{\infty}$. 
+\end{proposition}
+\begin{proof}
+    We will show for $f_{1}(t,q)=\sum_{n\geq0}\frac{q^{\frac{1}{2}n^{2}}}{(q;q)_{n}}t^{n}\in\ZZ[[q^{1/2},t]]$ that $f_{1}(t,q)=(-q^{1/2}t;q)_{\infty}$ and recover the desired result for $t=1$. 
+
+    We show that the $q$-difference equation $f_{1}(t,q)-f_{1}(qt,q)=q^{1/2}t\cdot f_{1}(qt,q)$ is satisfied. Computing, we have
+    \begin{align*}
+        f_{1}(t,q) - f_{1}(qt,q) &= \left(\sum_{n\geq0}\frac{q^{\frac{1}{2}n^{2}}}{(q;q)_{n}}t^{n}\right) + \left(\sum_{n\geq0}\frac{q^{\frac{1}{2}n^{2}+1}}{(q;q)_{n}}t^{n}\right) \\
+        &= \sum_{n\geq0}\frac{q^{\frac{1}{2}n^{2}}}{(q;q)_{n}}t^{n}(1-q^{n}) \\
+        &= \sum_{n\geq0}\frac{q^{\frac{1}{2}(n-1)^{2}+(n-1)+\frac{1}{2}}}{(q;q)_{n-1}}t^{n-1}t \\
+        &= q^{1/2}t\cdot f_{1}(qt,q)
+    \end{align*}
+    which is the unique solution to the $q$-difference equation congruent to 1 modulo $t$ by inspecting the $n=0$ term of $f_{1}(t,q)$. As such, $f_{1}(t,q)=(1+q^{1/2}t)f_{1}(qt,q)$ and iterating this procedure, we express $f_{1}(t,q)$ as the desired infinite product.
+\end{proof}
+The techniques of $t$-deformations and finding solutions to $q$-difference equations -- which can be thought of as a $q$-analogue of the classical derivative -- will play a crucial role in the development of the theory. This setup will allow us to prove results by ``analytic continuation in the $t$-variables.'' More generally, we can consider Nahm sums of the form $f_{A}(t_{1},\dots,t_{N},q)$ specialized to $t_{1}=\dots=t_{N}=1$ arising from multivariate $t$-deformations with $f_{A}(t_{1},\dots,t_{N},q)$ being the unique solution 1 modulo $t_{1},\dots,t_{N}$ to a system of $q$-difference equations.
+
+In the situation above, as $q\to1$ we can think of this as analogous to taking a deriviative. However, unlike the theory of linear differential equations that can be studied through the rich and well-studied geometry of $D$-modules, these $q$-difference equations do not carry the local data necessary to set up a geometric theory in a parallel fashion to that of $D$-modules. Yet, the fact that these $q$-difference equations arise in the study of arithmetic geometry, in particular $q$-de Rahm cohomology which are $q$-deformed analogues of de Rahm cohomology, reaffirms the possibility of a geometric theory. 
+
+Returning to our discussion of modularity properties, in the case of $a=2$ is well known with 
+\begin{equation}\label{eqn: RR-equivalence}
+    f_{2}(q)=\sum_{n\geq0}\frac{q^{n^{2}}}{(q;q)_{n}}=(q;q^{5})_{\infty}^{-1}(q^{4};q^{5})^{-1}_{\infty}
+\end{equation}
+being one of the Rogers-Ramanujan identities \cite{OEIS-1}, and is a modular function up to multiplication by $q^{-1/60}$. 
+
+It is perhaps surprising, then, that for no other integers, and no rational numbers other than $a=\frac{1}{2}$, is the corresponding Nahm sum a modular function. In fact, it will be possible to provide a systematic explanation as to why it is only these special values of $a$ that result in a modular function, and a reason for the reason for the repeated power of five in both $q$-Pochhammer symbol factors of (\ref{eqn: RR-equivalence}). 
+
+By considering systems of $t$-deformed Nahm equations of the form 
+$$1-z_{i}=t_{i}z_{1}^{A_{i1}}z_{2}^{A_{i2}}\dots z_{N}^{A_{iN}}$$
+where $A_{ij}$ is the $i,j$th entry of the $N\times N$ matrix $A$ that on specialization to $t_{1}=\dots=t_{N}=1$, has a unique solution $z_{i}\in(0,1)$ for all $i$. This produces a number field 
+\begin{equation}\label{eqn: number field of Nahm equation}
+    \KK=\QQ(z_{1},\dots,z_{N}).
+\end{equation}
+Furthermore, there is a class $\xi\in K_{3}(\KK)$ the third algebraic $K$-group of the number field $\KK$ which is known to be isomorphic to the Bloch group $B(\KK)$, with the isomorphism taking $\xi\in K_{3}(\KK)$ to $\sum_{i=1}^{N}[z_{i}]\in B(\KK)$.
+
+Nahm conjectured that the modularity of $f_{A}(q)$ was completely determined by the behavior of $\xi\in K_{3}(\KK)$, in particular that $f_{A}(q)$ is modular if and only if $\xi$ is torsion. There is a fairly clear understanding of how modularity implies torsion on the class in the $K$-group through results of Calegari-Garoufalidis-Zagier \cite{BlochGroupsNahm}, but the converse is much less understood. 
+
+The result of Calegari-Garoufalidis-Zagier can already be observed in the modularity of the Rogers-Ramanujan identity previously discussed: the Nahm equation is given by $1-z=z^{2}$ with root the golden ratio $\frac{1+\sqrt{5}}{2}$ giving rise to the number field $\QQ(\sqrt{5})$. This number field is totally real, and as such the entire $K$-group $K_{3}(\KK)$ is torsion as shown by Borel. The square root of five appearing here also explains the structure of the product in (\ref{eqn: RR-equivalence}) by the splitting behavior of primes in this field. 
+
+For the proof of this direction of Nahm's conjecture, Calegari-Garoufalidis-Zagier study the asymptotics of Nahm sums at roots of unity. In particular, while Nahm sums blow up at roots of unity, one can still consider the behavior of power series as one approaches roots of unity radially
+\begin{figure}[h]\label{fig: approaching roots of unity radially}
+    
+
+
+
+    
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Circle [id:dp3096852740244671] 
+\draw   (100,160) .. controls (100,115.82) and (135.82,80) .. (180,80) .. controls (224.18,80) and (260,115.82) .. (260,160) .. controls (260,204.18) and (224.18,240) .. (180,240) .. controls (135.82,240) and (100,204.18) .. (100,160) -- cycle ;
+%Straight Lines [id:da8004943647057496] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ]   (60,160) -- (300,160) ;
+%Straight Lines [id:da9124179035972817] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=0.75]    (180,40) -- (180,280) ;
+%Curve Lines [id:da5993222886010168] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (123.67,91) .. controls (140.67,76.5) and (151,73.5) .. (173.33,73.17) ;
+%Curve Lines [id:da4555896757495488] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (191,73.5) .. controls (230.33,75.17) and (265.33,117.5) .. (268.67,148.5) ;
+%Curve Lines [id:da18041627656259873] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (90.33,150.17) .. controls (90.67,136.5) and (91.33,131.5) .. (95.33,119.17) ;
+%Curve Lines [id:da6034967217051008] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (92.33,166.5) .. controls (93.33,203.5) and (128.67,247.83) .. (176,247.83) ;
+%Curve Lines [id:da10649584400155199] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (192.33,247.17) .. controls (248.67,239.5) and (263.67,207.17) .. (269.67,170.17) ;
+%Straight Lines [id:da599070398615182] 
+\draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (151,129.5) -- (126.85,108.8) ;
+\draw [shift={(125.33,107.5)}, rotate = 40.6] [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (4.8,-1.2) -- (0,0) -- (4.8,1.2) -- cycle    ;
+%Straight Lines [id:da6781629252706285] 
+\draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (145.33,136.5) -- (115.84,123.95) ;
+\draw [shift={(114,123.17)}, rotate = 23.05] [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (4.8,-1.2) -- (0,0) -- (4.8,1.2) -- cycle    ;
+%Straight Lines [id:da6388242281353793] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ]   (320,160) -- (560,160) ;
+%Straight Lines [id:da8718690777472893] 
+\draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (450,130) -- (450,153) ;
+\draw [shift={(450,155)}, rotate = 270] [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (4.8,-1.2) -- (0,0) -- (4.8,1.2) -- cycle    ;
+%Straight Lines [id:da30457226457972797] 
+\draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ]   (420,130) -- (420,153) ;
+\draw [shift={(420,155)}, rotate = 270] [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (4.8,-1.2) -- (0,0) -- (4.8,1.2) -- cycle    ;
+
+% Text Node
+\draw (90,155) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle -1$}
+\end{minipage}};
+% Text Node
+\draw (270,145) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle 1$}
+\end{minipage}};
+% Text Node
+\draw (190,70) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle i$}
+\end{minipage}};
+% Text Node
+\draw (185,250) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle -i$}
+\end{minipage}};
+% Text Node
+\draw (115,90) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle \zeta _{3}$}
+\end{minipage}};
+% Text Node
+\draw (100,110) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle \zeta _{5}$}
+\end{minipage}};
+% Text Node
+\draw (420,170) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle \zeta _{5}$}
+\end{minipage}};
+% Text Node
+\draw (450,170) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle \zeta _{3}$}
+\end{minipage}};
+
+
+\end{tikzpicture}
+\caption{Approaching roots of unity radially in the disc and from above in the upper-half plane.}
+\end{figure}
+
+We can then translate this to the upper-half plane model, where we then consider asymptotics as we approach the points with imaginary part zero. If the function were modular, we know that the modular gorup acts on the boundary of $\HH$ with finitely many orbits, so understanding these asymptotics becomes much simpler, since we expect conjugate asymptotics to be closely related, even if they are not equal on the nose. In fact, Garoufalidis and Zagier are able to describe the asymptotic behavior of these functions based using lifts of $\xi$ by dilogarithms which turns out to be the complex regulator of the $K$-group. 
+
+However, understanding these asymptotics on approach to roots of unity is closely related to a construction made by Habiro in the 2000s \cite{HabiroRing}. 
+\begin{definition}[Habiro Ring]\label{def: Habiro ring}
+    The Habiro ring $\Hcal$ is 
+    $$\lim_{n,m\geq1}\ZZ[q]/(1-q^{m})^{n}=\lim_{n}\ZZ[q]/(q;q)_{n}$$
+    the completion of $\ZZ[q]$ at all roots of unity.
+\end{definition}
+Elements of the Habiro ring are of the form $(f_{m})_{m}\in\ZZ[\zeta_{m}][[q-\zeta_{m}]]$ but for $m,pm$ the rings are the same up to $p$-adic completion. That is, $f_{m}=f_{pm}\in\ZZ[\zeta_{pm}][[q-\zeta_{m}]]\cong\ZZ_{p}[\zeta_{pm}][[q-\zeta_{pm}]]$. As such, these power series agree in characteristic $p$ but no other characteristic. 
+\begin{figure}[h]\label{fig: agree in char p}
+    
+
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+    %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+    
+    %Straight Lines [id:da5858698884102702] 
+    \draw    (40,180) -- (260,180) ;
+    %Straight Lines [id:da23025189850916727] 
+    \draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ]   (90,70) -- (90,180) ;
+    %Curve Lines [id:da5097558410292509] 
+    \draw    (45,150) .. controls (83.57,151.43) and (76,128.71) .. (90,120) .. controls (104,111.29) and (216.86,100.29) .. (250,100) ;
+    %Curve Lines [id:da3974989863148686] 
+    \draw    (45,100) .. controls (73.57,101.43) and (72.71,96.14) .. (89.86,119.86)(90,120) .. controls (107.29,143.86) and (182.86,167.43) .. (250,170) ;
+    
+    % Text Node
+    \draw (150,200) node   [align=left] {\begin{minipage}[lt]{54.4pt}\setlength\topsep{0pt}
+    \begin{center}
+    $\displaystyle \spec(\mathbb{Z})$
+    \end{center}
+    
+    \end{minipage}};
+    % Text Node
+    \draw (250,185) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+    {\tiny $\displaystyle 0$}
+    \end{minipage}};
+    % Text Node
+    \draw (90,190) node   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+    {\tiny $\displaystyle p$}
+    \end{minipage}};
+    % Text Node
+    \draw (220,85) node   [align=left] {\begin{minipage}[lt]{27.2pt}\setlength\topsep{0pt}
+    {\tiny $\displaystyle q=\zeta _{m}$}
+    \end{minipage}};
+    % Text Node
+    \draw (225,150) node   [align=left] {\begin{minipage}[lt]{34pt}\setlength\topsep{0pt}
+    {\tiny $\displaystyle q=\zeta _{pm}$}
+    \end{minipage}};
+    
+    
+    \end{tikzpicture}
+    
+    \caption{The power series $f_{m}$ and $f_{pm}$ agree in characteristic $p$.}
+
+\end{figure}
+
+The power series arising from Nahm sums, however, live in the number field $\KK$, necessitating an extended definition of the Habiro ring that works over more than just the integers. Moreover, one can compute $f_{A}(q)f_{A}(q^{-1})$ which lie in $\Ocal_{\KK}[\frac{1}{\mathrm{disc}(\KK)}][\zeta_{m}][[q-\zeta_{m}]]$ but the gluing doesn't work na\"{i}vely, though it can be shown that these agree up to a lift of Frobenius on the $p$-adic completion $(\Ocal_{\KK})^{\wedge}_{p}$. The prediction of Garoufalidis-Zagier is that there is a natural map from $K_{3}(\KK)$ to the Picard groupoid of line bundles on the (Zariski) spectrum of the yet-to-be-defined Habiro ring of a number field $\Hcal_{\KK}$ such that the asymptotic expansions at roots of unity of $f_{A}$ define sections of $\Hcal_{\KK,\xi}$. We will explore this theorem and its implications over the course of the semester. 

@@ -1,0 +1,118 @@
+\section{Lecture 2 -- 15th October 2024}\label{sec: lecture 2}
+We recall some results on integration theory, first treating the case of rational functions. 
+\begin{proposition}\label{prop: integral of rational function}
+    The integral of a rational function can be expresssed as a the sum of a rational function and a linear combination of logarithms of linear forms.\marginpar{Proposition 2.4}
+\end{proposition}
+\begin{proof}
+    Without loss of generality, by taking the partial fraction decomposition of a rational function, it suffices to consider integrals of the form $\frac{f(z)}{(z-a)^{m}}$ where $f(z)$ is a polynomial in $z$. If $m>1$ then note that $\frac{1}{1-m}\frac{d}{dz}\frac{1}{(z-a)^{m-1}}=\frac{1}{(z-a)^{m}}$ so we can write $\frac{d}{dz}\frac{1}{1-m}\frac{f(z)}{(z-a)^{m-1}}=\frac{f(z)}{(z-a)^{m}}+\frac{f'(z)}{(1-m)(z-a)^{m-1}}$ reducing the integral to the integration of $\frac{f'(z)}{(1-m)(z-a)^{m-1}}+\frac{d}{dz}\frac{1}{1-m}\frac{f(z)}{(z-a)^{m-1}}$. Iterating this procedure, we get to the case of $\frac{f(z)}{(z-a)}$ which can be treated via integration by parts and that $\int\frac{1}{z-a}dz=\log(z-a)$. 
+\end{proof}
+We now turn to the case of integrals related to cubics. Consider the integral 
+$$\int\frac{1}{\sqrt{4z^{3}-g_{2}z-g_{3}}}dz$$
+which arises from the affine regular cubic in normal form as discussed in \Cref{prop: existence of normal form for cubics}. We will soon be able to find a parameterization of the above integral to solve it via the study of elliptic functions. 
+
+We begin with a more general treatment of periods of meromorphic functions. 
+\begin{definition}[Period]\label{def: period}
+    Let $f(z)$ be a meromorphic function. A complex number $\omega\in\CC$ is a period of $f$ if $f(z+\omega)=f(z)$ for all $z$.\marginpar{Definition 1.1} 
+\end{definition}
+\begin{remark}\label{rmk: zero is a period}
+    It can be seen that $0\in\CC$ is a period for all meromorphic functions.
+\end{remark}
+To the end of showing that these periods form a discrete additive subgroup of $\CC$, let us recall the following result concerning the classification of subgroups of discrete subgroups of $\CC$. 
+\begin{lemma}\label{lem: discrete subgroups of complex numbers}
+    If $G$ is a discrete additive subgroup of $\CC$ then $G$ is one of the following:\marginpar{Proposition 1.1}
+    \begin{itemize}
+        \item The trivial group 0. 
+        \item $\omega\cdot\ZZ$ for $\omega\in\CC$. 
+        \item $\Omega=\{a_{1}\omega_{1}+a_{2}\omega_{2}:a_{1},a_{2}\in\ZZ\}$ with $\frac{\omega_{2}}{\omega_{1}}\in\CC\setminus\RR$. 
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    If $G$ is trivial, we are done. Otherwise, suppose $G$ is non-trivial and consider $r>0$ such that the closed unit ball $\overline{B_{r}(0)}$ of radius $r$ contains a non-identity element. Since $\overline{B_{r}(0)}$ is compact and $G$ is discrete the intersection $\overline{B_{r}(0)}\cap G$ consists of only finitely many elements of $G$. Take $\omega_{1}$ nonzero in this intersection such that $|\omega_{1}|$ is minimal. This shows $\ZZ\cdot\omega_{1}\leq G$ and we are done if this is an equality. 
+
+    If $\ZZ\cdot\omega_{1}<G$ then consider some $\omega_{2}\in G\setminus\ZZ\cdot\omega_{1}$ with $|\omega_{2}|$ minimal. We first show that $\frac{\omega_{2}}{\omega_{1}}\notin\RR$. Suppose to the contrary that $\frac{\omega_{2}}{\omega_{1}}\in\RR$. Then there is an integer $n$ such that $n<\frac{\omega_{2}}{\omega_{1}}<n+1$  where the inequalities are strict since $\omega_{2}\in G\setminus\ZZ\cdot\omega_{1}$. As such $|n\omega_{1}-\omega_{2}|<|\omega_{1}|$ contradicting minimality of $|\omega_{1}|$ showing $\ZZ\cdot\omega_{1}\oplus\ZZ\cdot\omega_{2}\leq G$.
+
+    Note that since $\omega_{1},\omega_{2}$ are $\RR$-linearly independent, any complex number can be written as an $\RR$-linear combination of $\omega_{1},\omega_{2}$. For $z\in\CC$ expressed as $z=\lambda_{1}\omega_{1}+\lambda_{2}\omega_{2}$ with $\lambda_{1},\lambda_{2}\in\RR$, take $m_{1}m_{2}\in\ZZ$ such that $|\lambda_{1}-m_{1}|,|\lambda_{2}-m_{2}|\leq\frac{1}{2}$. In particular, for $z\in G$ possibly not in $\ZZ\cdot\omega_{1}\oplus\ZZ\cdot\omega_{2}$ we have that $z'=z-m_{1}\omega_{1}-m_{2}\omega_{2}\in G$ as well, but 
+    $$|z'|=|(\lambda_{1}-m_{1})\omega_{1}+(\lambda_{2}-m_{2})\omega_{2}|<\frac{1}{2}|\omega_{1}|+\frac{1}{2}|\omega_{2}|\leq|\omega_{2}|$$
+    where the strictness of the middle inequality follows from $\RR$-linear independence of $\omega_{1},\omega_{2}$ and the second inequality from $\frac{1}{2}|\omega_{1}|\leq\frac{1}{2}|\omega_{2}|$ by minimality of $|\omega_{1}|$ in $\overline{B_{r}(0)}\cap G$. Now noting that $|\omega_{2}|$ was minimal among $G\setminus\ZZ\cdot\omega_{1}$, we have that $z'\in\ZZ\cdot\omega_{1}$ so for $z'=n\omega_{1}$ we can rewrite $z=(n+m_{1})\omega_{1}+m_{2}\omega_{2}$ showing $z\in\ZZ\cdot\omega_{1}\oplus\ZZ\cdot\omega_{2}$, giving the claim. 
+\end{proof}
+We can now show that periods form an additive subgroup as follows. 
+\begin{proposition}\label{prop: periods form an additive subgroup}
+    Let $f(z)$ be a meromorphic function on $\CC$. If $f$ is not constant, then the periods of $f$ form a discrete additive subgroup $\Omega$ of $\CC$. 
+\end{proposition}
+\begin{proof}
+    Let $\omega,\omega'$ be periods and $-\omega$ the additive inverse of $\omega$ in $\CC$. We can compute  
+    \begin{align*}
+        f(z+(\omega+\omega'))=f((z+\omega)+\omega')=f(z+\omega')&=f(z) \\
+        f(z-\omega)=f((z+\omega)-\omega)&=f(z)
+    \end{align*}
+    showing that periods are closed under addition and inversion, and contain zero per \Cref{rmk: zero is a period}. Associativity follows from associativity on the group additive group of complex numbers, showing that the periods form a subgroup. 
+
+    It remains to show discreteness. Let $\omega$ be a period and consider $B_{r}(\omega)$ the open ball of radius $r$ with $r$ chosen small enough that $f$ is analytic on $B_{r}(\omega)$. Suppose to the contrary for each $n\in\NN$ there exists a period $\omega_{n}\in B_{r/n}(\omega)$. Then $|\omega-\omega_{n}|<\frac{r}{n}$ showing that the sequence $\omega_{n}\to\omega$ as $n\to\infty$. By the identity theorem \Cref{thm: identity theorem}, $f$ is constant on $B_{r}(\omega)$, a contradiction, as $f$ is non-constant. 
+\end{proof}
+Elliptic functions are defined in terms of their period group. 
+\begin{definition}[Elliptic Function]\label{def: elliptic function}
+    A meromorphic function $f(z)$ is elliptic if its period group contains a lattice. 
+\end{definition}
+\begin{remark}
+    Elliptic functions are often also known as doubly periodic functions. 
+\end{remark}
+\begin{remark}
+    Defining elliptic functions in terms of their period group containing a lattice allows constant functions to be elliptic -- since constant functions have period group $\CC$. 
+\end{remark}
+Elliptic functions are determined by their values on their open period parallelogram since for $\Omega$ a lattice, we can define an equivalence relation $z\sim z'$ if $z-z'\in\Omega$.
+\begin{definition}[Period Parallelogram]\label{def: period parallelogram}
+    Let $\Omega=\{a_{1}\omega_{1}+a_{2}\omega_{2}:a_{1},a_{2}\in\ZZ\}\subseteq\CC$ be a lattice. The period parallelogram is given by 
+    $$P_{\Omega}=\{t_{1}\omega_{1}+t_{2}\omega_{2}:0\leq t_{1},t_{2}<1\}\subseteq\CC.$$ 
+\end{definition}
+Under the equivalence relation described above, the quotient space $\CC/\Omega$ is an additive group where each point of the period parallelogram is a representative of the quotient. Moreover, this can be seen to be a complex torus using the standard cut-and-paste diagram for a torus in topology which is a compact topological space, and in fact a compact Riemann surface. As such, any $\Omega$-periodic meromorphic function is determined by its values on the torus. 
+
+We now consider a general property of lattices before returning to a discussion of periodic functions. 
+\begin{proposition}\label{prop: absolute convergence of lattice sum}
+    Let $\Omega=\{a_{1}\omega_{1}+a_{2}\omega_{2}:a_{1},a_{2}\in\ZZ\}\subseteq\CC$ be a lattice. Then $\sum_{\omega\in\Omega\setminus\{0\}}\frac{1}{\omega^{k}}$ is absolutely convergent for $k>2$.\marginpar{Proposition 1.2} 
+\end{proposition}
+\begin{proof}
+    Denote $P_{\ell}$ the parallelogram given by the lattice points of the convex hull of $\pm\ell\omega_{1},\pm\ell\omega_{2}$ and $\partial P_{\ell}$ its boundary. We have that $|\partial P_{\ell}|=8\ell$ and for $C=\max_{\omega\in\partial P_{1}}|\omega|$ and that $(\ell C)^{k}\leq |\omega|^{k}$ for $\omega\in\partial P_{\ell}$. We can compute 
+    \begin{align*}
+        \sum_{\omega\setminus\{0\}}\frac{1}{|\omega|^{k}} &=\sum_{\ell=1}^{\infty}\sum_{\omega\in\partial P_{\ell}}\frac{1}{|\omega|^{k}} \\ 
+        &\leq \sum_{\ell=1}^{\infty}\frac{8\ell}{(\ell C)^{k}} = \frac{8}{C^{k}}\sum_{\ell=1}^{\infty}\frac{1}{\ell^{k-1}}
+    \end{align*}
+    which is only convergent if $k>2$. 
+\end{proof}
+Let us return to a discussion of ellitpic functions. 
+\begin{proposition}\label{prop: elliptic functions form a field}
+    Let $\Omega=\{a_{1}\omega_{1}+a_{2}\omega_{2}:a_{1},a_{2}\in\ZZ\}\subseteq\CC$ be a lattice. Then the elliptic functions with respect to $\Omega$ form a field that is closed under differentiation. 
+\end{proposition}
+\begin{proof}
+    Double periodicity is preserved under sums, products, differences, and quotients, and the operations distribute in the expected way. Preservation under differentiation follows from the chain rule. 
+\end{proof}
+However, holomorphic elliptic functions are uninteresting. 
+\begin{proposition}\label{prop: holomorhic elliptic are constant}
+    Let $f$ be an elliptic function with respect to a lattice $\Omega$. If $f$ is holomorphic, then $f$ is constant.\marginpar{Proposition 2.2} 
+\end{proposition}
+\begin{proof}
+    The closure of the open period parallelogram $P_{\Omega}$ is compact on which $|f(z)|$ admits a maximum. By periodicity, $f(z)$ is a bounded holomorphic function on $\CC$, from which the claim follows by Liouville's theorem \ref{thm: Liouville}. 
+\end{proof}
+Generalizing our discussion to elliptic functions with poles, we can show the following. 
+\begin{proposition}\label{prop: residue sum is zero}
+    Let $f$ be a nonconstant elliptic function and $z_{1},\dots,z_{m}$ the poles of $f$ in $P_{\Omega}$. Then $\sum_{i=1}^{m}\res_{z_{i}}f=0$.\marginpar{Proposition 2.3} 
+\end{proposition}
+\begin{proof}
+    Without loss of generality, we can take the poles to lie in the interior of the open period parallelogram. By Cauchy's residue theorem, we have $\frac{1}{2\pi i}\int_{\partial P_{\Omega}}f(z)=\sum_{i=1}^{m}\res_{z_{i}}f$. Denoting $[a,b]$ the oriented straight line path from $a$ to $b$ we compute
+    \begin{align*}
+        \frac{1}{2\pi i}\int_{\partial P_{\Omega}}f(z)dz &= \int_{[0,\omega_{1}]}f(z)dz + \int_{[\omega_{1},\omega_{1}+\omega_{2}]}f(z)dz\\
+        &\hspace{1cm}+\int_{[\omega_{1}+\omega_{2},\omega_{2}]}f(z)dz + \int_{[\omega_{2},0]}f(z)dz \\
+        &= \left(\int_{[0,\omega_{1}]}f(z)dz - \int_{[\omega_{2},\omega_{1}+\omega_{2}]}f(z)dz\right) + \\
+        &\hspace{1cm} \left(\int_{[\omega_{1},\omega_{1}+\omega_{2}]}f(z)dz-\int_{[0,\omega_{2}]}f(z)dz\right)
+    \end{align*}
+    where both of the summands vanish by periodicity of $f$ yielding the claim. 
+\end{proof}
+\begin{remark}\label{rmk: at least two poles}
+    \Cref{prop: residue sum is zero} implies that an elliptic function has at least two poles when counting with multiplicity. 
+\end{remark}
+Given a non-constant -- and hence meromorphic -- elliptic function, it can be shown that its image is all of $\widehat{\CC}$. 
+\begin{proposition}\label{prop: assumes every value}
+    Let $f$ be a non-constant elliptic function. Then $f$ assumes every value in $\widehat{\CC}$ equally often, counting with multiplicity. 
+\end{proposition}
+\begin{proof}
+    Let $\lambda\in\widehat{\CC}$. Note that the integral $\frac{1}{2\pi i}\int_{\partial P_{\Omega}}\frac{f'(z)}{f(z)-\lambda}dz$ computes the difference between the number of times $f$ assumes the value $\lambda$ and $f$ assumes the value $\infty$ which is zero since the integrand is an elliptic function by \Cref{prop: elliptic functions form a field} and zero by \Cref{prop: residue sum is zero}. 
+\end{proof}

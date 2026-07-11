@@ -1,0 +1,65 @@
+\section{Lecture 16 -- 3rd December 2024}\label{sec: lecture 16}
+Recall that meromorphic functions are constructed locally, so a meromorphic function on an open set $U\subseteq\CC^{n}$ as a section of the sheaf of \Cref{def: sheaf of meromorphic functions} is given by the data of triples $\{(U_{i},f_{i},g_{i})\}_{i\in I}$ where $\{U_{i}\}_{i\in I}$ form an open cover of $U$, $f_{i},g_{i}\in\Ocal(U_{i})$ with $g_{i}$ not identically zero and satisfying the conditions that $(\frac{f_{i}}{g_{i}})_{z}=\frac{f_{i,z}}{g_{i,z}}\in\Kcal_{z}$ for $z\in U_{i}$ and $f_{i}g_{j}=f_{j}g_{i}$ on $U_{ij}=U_{i}\cap U_{j}$. In particular, the value of a meromorphic function $h$ is defined at $z$ if its representative $\frac{f_{z}}{g_{z}}$ has nonvanishing denominator. This in turn allows us to define the polar set of a meromorphic function. 
+\begin{definition}[Polar Set]\label{def: polar set}
+    Let $U\subseteq\CC^{n}$ be open and $h\in\Kcal(U)$. The polar set $M_{h}$ of $h$ in $U$ is the set of points of $U$ on which $h$ is undefined. 
+\end{definition}
+\begin{remark}
+    If $h$ is already holomorphic, then its polar set $M_{h}$ is empty. 
+\end{remark}
+We now define the notion of an analytic hypersurface and show the polar set of a single meromorphic function is an analytic hypersurface. 
+\begin{definition}[Analytic Hypersurface]\label{def: analytic hypersurface}
+    Let $U\subseteq\CC^{n}$ be open. An analytic hypersurface is the vanishing locus of a holomorphic function $f\in\Ocal(U)$ in $U$. 
+\end{definition}
+We can now show the desired result. 
+\begin{proposition}\label{prop: polar set of meromorphic function is analytic hypersurface}
+    Let $U\subseteq\CC^{n}$ be open and $h\in\Kcal(U)$ be a meromorphic function. The polar $M_{h}$ is an analytic hypersurface in $U$. 
+\end{proposition}
+\begin{proof}
+    Without loss of generality, let $V\subseteq U$ be sufficiently small that $h=\frac{f}{g}$ with $f,g\in\Ocal(V)$. We have that $M_{h}\cap V=\{g=0\}$ since if $f_{z},g_{z}$ are relatively prime for all $z\in U$ and $a\in\{g=0\}$ with $h$ holomorphic at $a$ implies $h_{a}g_{a}=f_{a}$, a contradiction to relatively primiality. 
+\end{proof}
+
+We now discuss a number of extension and convexity properties which is well-known in the univariate setting using the tools of Hadamard factorization and Blaschke products. In particular, we seek to characterize the domains of existence of holomorphic functions on these domains, and to produce holomorphic and meromorphic functions with prescribed properties. 
+
+\begin{definition}[Analytic Set]\label{def: analytic set}
+    Let $U\subseteq\CC^{n}$ be open. $M\subseteq U$ is an analytic set if there exists a presentation of $M$ as the vanishing locus of finitely many holomorphic functions. 
+\end{definition}
+\begin{remark}
+    In particular, $M$ will be closed and for all $z\in M$ there is a neighborhood $V$ and $f_{1},\dots,f_{k}\in\Ocal(V)$ such that $V\cap M=\{f_{1}=\dots=f_{k}=0\}$. 
+\end{remark}
+One of the most elementary examples of an extension proerty is the extension over analytic sets. 
+\begin{theorem}[First Riemann Extension]\label{thm: first Riemann extension}
+    Let $U\subseteq\CC^{n}$ be open, $M\subsetneq U$ an analytic set, and $h$ holomorphic on $U\setminus M$ and locally bounded on $U$. Then $h$ extends to a holomorphic function on all of $U$.\marginpar{Proposition 1.1}
+\end{theorem}
+\begin{proof}
+    Without loss of generality suppose $0\in M$ and $h=\frac{f}{g}$ with $\{g=0\}\subseteq M$ so $g$ is a Weierstrass polynomial $\omega(z',z_{n})$. Now consider the univariate function $z_{n}\mapsto h(z',z_{n})$ for fixed $z'$. $\omega(z',z_{n})$ has finitely many zeroes so $z_{n}\mapsto h(z',z_{n})$ is bounded at these zeros and thus extends holomorphically over these zeroes given by Cauchy integrals that vary holomorphically in $z'$.  
+\end{proof}
+We now introduce the Bochner-Martinelli kernel, which will play a key role in what follows. 
+\begin{definition}[Bochner-Martinelli Kernel]\label{def: Bochner-Martinelli kernel}
+    The Bochner-Martinelli kernel is given by \marginpar{Definition 1.2}
+    \footnotesize
+    $$\beta(w,z)=\frac{(n-1)!}{(2\pi i)^{n}}\sum_{j=1}^{n}\frac{1}{\Vert w_{j}-z_{j}\Vert^{2n}}\dform\overline{w_{1}}\wedge\dform w_{1}\wedge\dots\wedge\dform w_{j-1}\wedge\dform w_{j}\wedge \dform\overline{w_{j+1}}\wedge\dots\wedge\dform\overline{w_{n}}\wedge\dform w_{n}.$$
+    \large
+\end{definition}
+\begin{remark}
+    That is, in the expression of \Cref{def: Bochner-Martinelli kernel}, the wedge-factor $\dform \overline{w_{j}}$ is omitted, making the Bochner-Martinelli kernel a form of type $(n,n-1,0,0)$ in the $\dform w, \dform\overline{w}, \dform z,\dform \overline{z}$'s, respectively. 
+\end{remark}
+We prove an elementary property of the Bochner-Martinelli kernel. 
+\begin{lemma}\label{lem: Bochner-Martinelli computation}
+    Let $U\subseteq\CC^{n}$ be a bounded open set with smooth boundary and $\tau\in U$ and $f$ continuously differentiable on $\partial U$. Then $\dform(f(w)\beta(w,z))=\overline{\partial}f(w)\wedge \beta(w,z)$. 
+\end{lemma}
+\begin{proof}
+    Note that $f(w)\beta(w,\tau)$ contain the holomorphic forms $\dform w_{j}$ so we can compute 
+    \footnotesize
+    \begin{align*}
+        \dform(f(w)\beta(w,\tau)) &= \overline{\partial}(f(w)\beta(w,\tau)) \\
+        &= \overline{\partial}f(w)\wedge \beta(w,\tau) \\
+        &\hspace{1cm}+ f(w)\frac{(n-1)!}{(2\pi i)^{n}}\sum_{j=1}^{n}\partial_{\overline{w_{j}}}\left(\frac{\overline{w_{j}}-\overline{\tau_{j}}}{\Vert w-\tau\Vert^{2n}}\right)\dform\overline{w_{1}}\wedge\dform w_{1}\wedge\dots\wedge\dform\overline{w_{n}}\wedge\dform w_{n}
+    \end{align*}
+    \large
+    but
+    \begin{align*}
+        \sum_{j=1}^{n}\partial_{\overline{w_{j}}}\left(\frac{\overline{w_{j}}-\overline{\tau_{j}}}{\Vert w-\tau\Vert^{2n}}\right) &= \sum_{j=1}^{n}\left(\frac{1}{\Vert w-z\Vert^{2n}}-n\frac{|w_{j}-\tau_{j}|^{2}}{\Vert w-\tau\Vert^{2n+2}}\right) \\
+        &= 0
+    \end{align*}
+    giving the claim. 
+\end{proof}

@@ -1,0 +1,137 @@
+\section{Lecture 6 -- 25th October 2024}\label{lec: lecture 6}
+Recall that for a topological space $X$ and a continuous map $f:X\to Y$, the induced functors $\Gamma(X,-):\Sh(X)\to\AbGrp$ and $f_{*}:\Sh(X)\to\Sh(Y)$ are not in general exact, but only left exact \Cref{def: sheaf cohomology,def: derived pushforward}. We can measure the failure of exactness by using $\delta$-functors which is computed using injective resolutions. However, injective resolutions are quite difficult to work with. We will consider some resolutions to the difficulty of computation today. 
+\begin{definition}[$F$-Acyclic Objects]\label{def: F-acyclic}
+    Let $F:\Asf\to\Bsf$ be a left exact additive functor between Abelian categories and $R^{i}F$ exists. An object $A$ of $\Asf$ is $F$-acyclic if $R^{i}F(A)=0$ for all $i\geq1$. 
+\end{definition}
+\begin{remark}
+    Injective objects are $F$-acyclic per \Cref{lem: vanishing of higher derived image of injective object}. 
+\end{remark}
+Cohomology can in most cases be computed on acyclic resolutions in place of injective resolutions. 
+\begin{proposition}\label{prop: acyclic resolutions replace }
+    Let $F:\Asf\to\Bsf$ be a left exact additive functor between Abelian categories and $\Asf$ having enough injectives. Then the cohomology of any $F$-acyclic resolution is equal to the cohomology of any injective resolution. 
+\end{proposition}
+\begin{proof}
+    These are both effacable $\delta$-functors and hence universal by \Cref{thm: Grothendieck tohoku effacable implies universal}.
+\end{proof}
+Let us now turn to the case of derived pushforward. 
+\begin{proposition}\label{prop: derived pushforward is sheafification of inverse image cohomology sheaf}
+    Let $f:X\to Y$ be a continuous map and $\Fcal$ a sheaf on $X$. Then $R^{i}f_{*}\Fcal$ is the sheafification of the presheaf $V\mapsto H^{i}(f^{-1}(V),\Fcal)$ for all sheaves $\Fcal$ on $X$. 
+\end{proposition}
+\begin{proof}
+    Taking an injective resolution of $\Fcal$, we know its direct image is injective, extending the left exact functor $f_{*}$. So computing the cohomology of the complex $0\to f_{*}\Fcal\to f_{*}\Ical_{0}\to\dots$, we have 
+    $$R^{i}f_{*}\Fcal=\frac{\ker\left(f_{*}\Ical_{i}\to f_{*}\Ical_{i+1}\right)}{\img\left(f_{*}\Ical_{i-1}\to f_{*}\Ical_{i}\right)}$$
+    with sections over $V\subseteq Y$ open are given by
+    \begin{align*}
+        R^{i}f_{*}\Fcal(V) &= \frac{\ker\left(f_{*}\Ical_{i}(V)\to f_{*}\Ical_{i+1}(V)\right)}{\img\left(f_{*}\Ical_{i-1}(V)\to f_{*}\Ical_{i}(V)\right)}\\
+        &=\frac{\ker\left(\Ical_{i}(f^{-1}(V))\to \Ical_{i+1}(f^{-1}(V))\right)}{\img\left(\Ical_{i-1}(f^{-1}(V))\to \Ical_{i}(f^{-1}(V))\right)} \\
+        &= \frac{\ker(\Ical_{i}\to\Ical_{i+1})(f^{-1}(V))}{\img(\Ical_{i-1}\to\Ical_{i})(f^{-1}(V))}
+    \end{align*} 
+    where the claim follows, noting that the image sheaf in the quotient is the sheafification of the presheaf image. 
+\end{proof}
+In the case of computing sheaf cohomology, a large example of $\Gamma$-acyclic sheaves is provided by flasque sheaves. 
+\begin{definition}[Flasque Sheaf]\label{def: flasque sheaf}
+    Let $X$ be a topological space. A sheaf $\Fcal$ on $X$ is flasque if for all $U\subseteq X$ open and $V\subseteq U$ open $\res_{U,V}:\Fcal(U)\to\Fcal(V)$ is surjective. 
+\end{definition}
+We consider some elementary properties of flasque sheaves. 
+\begin{proposition}\label{prop: properties of flasque sheaves}
+    Let $X$ be a topological space. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item If $\Fcal$ is flasque, then $\Fcal|_{U}$ is flasque for all $U\subseteq X$ open. 
+        \item If $\Ical$ is injective, then $\Ical$ is flasque. 
+        \item If $f:X\to Y$ is a continuous map and $\Fcal$ a flasque sheaf on $X$ then $f_{*}\Fcal$ is a flasque sheaf on $Y$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+    This is immediate from the definition as for $W\subseteq V\subseteq U$ we have $\Fcal(V)=\Fcal|_{U}(V)\to\Fcal|_{U}(W)=\Fcal(W)$ surjective. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    See \cite[\href{https://stacks.math.columbia.edu/tag/01EA}{Tag 01EA}]{stacks-project}. 
+\end{proof}
+\begin{proof}[Proof of (iii)]
+    For $W\subseteq V\subseteq Y$ we have $f^{-1}(W)\subseteq f^{-1}(V)$ giving so $\Fcal(f^{-1}(V))=f_{*}\Fcal(V)\to f_{*}\Fcal(W)=\Fcal(f^{-1}(W))$ is surjective. 
+\end{proof}
+As expected, flasque sheaves are $\Gamma$-acyclic. We can say more:
+\begin{proposition}\label{prop: flasque sheaves are gamma acyclic}
+    Let $X$ be a topological space. If $0\to\Fcal\to\Gcal\to\Hcal\to0$ is a short exact sequence of sheaves and $\Fcal$ is flasque then $0\to\Fcal(U)\to\Gcal(U)\to\Hcal(U)\to0$ is exact for all $U\subseteq X$ open. 
+\end{proposition}
+\begin{proof}
+    Taking sections is generally left exact by \Cref{prop: sections does not preserve exactness} giving an exact sequence 
+    $$0\longrightarrow\Fcal(U)\longrightarrow\Gcal(U)\longrightarrow\Hcal(U).$$ 
+    To show exactness on the right, then, it suffices to show that the morphism $\Gcal(U)\to\Hcal(U)$ is surjective. Consider the induced sequence on stalks for some $p\in U$ which is exact. So, passing to germs, for any section $s\in\Fcal(U)$ there exists an open covering $\{U_{i}\}_{i\in I}$ for an ordered indexing set $I$ on which $s_{i}$ is the image of $t_{i}\in\Fcal(U_{i})$, though the $t_{i}$ need not glue as sections of $\Gcal(U)$. 
+    \\\\
+    We proceed by induction. For some fixed $j\in I$ suppose that $t_{i}$ are such that they glue to $t$ in $U_{(j)}=\bigcup_{i<j}U_{i}$. Consider $t|_{U_{(j)}\cap U_{j}}-t_{j}|_{U_{(j)}\cap U_{j}}$ which lies in the subsheaf $\Fcal'(U_{(j)}\cap U_{j})$ as its image vanishes in $\Hcal(U_{(j)}\cap U_{j})$. But $\Fcal$ is flasque so there is $r_{j}\in\Fcal(U_{j})$ with image $t|_{U_{(j)}\cap U_{j}}-t_{j}|_{U_{(j)}\cap U_{j}}$ in $\Fcal(U_{(j)}\cap U_{j})$. Now note that $r_{j}+t_{j}$ is compatible with $t$: on $U_{i}\cap U_{j}$ for $i<j$ is given by 
+    $$t|_{U_{i}\cap U_{j}}= (t|_{U_{i}\cap U_{j}} - t_{j}|_{U_{i}\cap U_{j}}) + t_{j}|_{U_{i}\cap U_{j}}.$$
+    The section $r_{j}+t_{j}\in\Fcal(U)$ hence extends to a section on $\bigcup_{i\leq j}U_{i}$ by the gluability axiom of the sheaf $\Gcal$. Repeating this process inductively yields a section of $\Gcal(U)$ with image $s$, showing surjectivity, and thus exactness on the right. 
+\end{proof}
+We conclude with a final property of flasque sheaves. 
+\begin{proposition}\label{prop: flasque sheaves are 2 of 3}
+    Let $X$ be a topological space. If 
+    $$0\to\Fcal\to\Gcal\to\Hcal\to0$$
+    is a short exact sequence of sheaves with $\Fcal,\Gcal$ flasque then $\Hcal$ is flasque. 
+\end{proposition}
+\begin{proof}
+    For suppose $V\subseteq U$ and the exactness result from \Cref{prop: flasque sheaves are gamma acyclic} gives 
+    $$
+    \begin{tikzcd}
+        0 & {\Fcal(U)} & {\Gcal(U)} & {\Hcal(U)} & 0 \\
+        0 & {\Fcal(V)} & {\Gcal(V)} & {\Hcal(V)} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-2, to=2-2]
+    \end{tikzcd}$$
+    a diagram with vertical maps given by restrictions. Furthermore, the diagram is commutative by the definition of morphisms of schemes which commute with restrictions. $\Gcal(U)\to\Gcal(V)$ is surjective by flasqueness of $\Gcal$, $\Gcal(U)\to\Hcal(U)$ and $\Gcal(V)\to\Hcal(V)$ surjective by exactness of the sequence. In particular, the composite $\Fcal(U)\to\Gcal(U)\to\Hcal(V)$ is surjective, and hence $\Hcal(U)\to\Hcal(V)$ is surjective -- recalling here that if $f:A\to B$, $g:B\to C$ are such that $g\circ f:A\to B\to C$ is surjective then $g$ is surjective.
+\end{proof}
+We introduce \v{C}ech cohomology which will be a key tool for computing sheaf cohomology, and will agree with sheaf cohomology in many cases. This will be done by computing the cohomology of the \v{C}ech complex associated to a cover. 
+\begin{proposition}\label{prop: cech complex is a complex}
+    Let $X$ be a topological space, $\{U_{i}\}_{i\in I}$ a cover of $X$ with $I$ a totally ordered set, and $\Fcal$ a sheaf on $X$. Consider the data of
+    \begin{itemize}
+        \item An Abelian group for each $p\geq0$
+        $$C^{p}(\{U_{i}\}_{i\in I},\Fcal)=\prod_{i_{0}<i_{1}<\dots<i_{p}}\Fcal(U_{i_{0}}\cap U_{i_{1}}\cap \dots\cap U_{i_{p}})$$
+        \item Morphisms $C^{p}(\{U_{i}\}_{i\in I},\Fcal)\to C^{p+1}(\{U_{i}\}_{i\in I},\Fcal)$ by 
+        $$(s_{i_{0},\dots,i_{p}})_{i_{0}<i_{1}<\dots<i_{p}}\mapsto\left(\sum_{j=0}^{p+1}(-1)^{j}s_{i_{0},\dots,\widehat{i_{j}},\dots,i_{p+1}}|_{U_{i_{0}\cap\dots \cap U_{i_{p+1}}}}\right)_{i_{0}<i_{1}<\dots<i_{p}<i_{p+1}}$$
+    \end{itemize}
+    giving a diagram of Abelian groups 
+    \begin{equation}\label{eqn: Cech complex}
+        0\to C^{0}(\{U_{i}\}_{i\in I},\Fcal)\to C^{1}(\{U_{i}\}_{i\in I},\Fcal)\to C^{2}(\{U_{i}\}_{i\in I},\Fcal)\to\dots.
+    \end{equation}
+    The diagram (\ref{eqn: Cech complex}) is a chain complex of Abelian groups. 
+\end{proposition}
+\begin{proof}
+    We verify the map $C^{p-1}(\{U_{i}\}_{i\in I},\Fcal)\to C^{p+1}(\{U_{i}\}_{i\in I},\Fcal)$ is the zero map via direct computation. For a section $(s_{i_{0},\dots,i_{p-1}})_{i_{0}<\dots<i_{p-1}}$, its image in $C^{p+1}(\{U_{i}\}_{i\in I},\Fcal)$ is given by 
+    \begin{align*}
+        &\sum_{j=0}^{p+1}(-1)^{j}\left(\sum_{k=0}^{p}(-1)^{k}s_{i_{0},\dots,\widehat{i_{k}},\dots,i_{p}}|_{U_{i_{0},\dots,i_{p}}}\right)_{i_{0},\dots,\widehat{i_{k}},\dots,i_{p_1}} \\
+        &= \sum_{j=0}^{p+1}(-1)^{j}\left(\sum_{k=0}^{j-1}(-1)^{k}s_{i_{0},\dots,\widehat{i_{k}},\dots,\widehat{i_{j}},\dots,i_{p+1}}+\sum_{k=j+1}^{p+1}(-1)^{k-1}s_{i_{0},\dots,\widehat{i_{j}},\dots,\widehat{i_{k}},\dots,i_{p+1}}\right)|_{U_{i_{0},\dots,i_{p+1}}}
+    \end{align*}
+    but the sum telescopes, giving the claim. 
+\end{proof}
+\begin{remark}
+    The construction of \Cref{prop: cech complex is a complex}, in words, states that given a family of sections $s_{i_{0},\dots,i_{p}}$ defined on $U_{i_{0}}\cap\dots\cap U_{i_{p}}$ for each ordered subset of $I$ of size $p+1$ to a section on $U_{i_{0}}\cap\dots\cap U_{i_{p}}\cap U_{i_{p+1}}$ by taking the alternating sum of the restriction of sections $s_{i_{0},\dots,i_{p}}|_{U_{i_{0}}\cap\dots\cap U_{i_{p+1}}}$ over all $p+1$ element subsets of $i_{0},\dots,i_{p+1}$. 
+\end{remark}
+\begin{remark}
+    To the end of getting better intuition for the construction, let's consider some cases of the \v{C}ech complex for $|I|$ small. Let $X$ admit a cover by $U_{0},U_{1},U_{2}$ and $\Fcal$ a sheaf on $X$. For a section $s\in\Fcal(X)$ the construction of the \v{C}ech complex takes $s$ to the tuple of sections $(s|_{U_{0}},s|_{U_{1}},s|_{U_{2}})$, the tuple of sections $(s|_{U_{0}},s|_{U_{1}},s|_{U_{2}})$ to $((s|_{U_{1}}-s|_{U_{0}})|_{U_{0}\cap U_{1}}, (s|_{U_{2}}-s|_{U_{0}})|_{U_{0}\cap U_{2}}, (s|_{U_{2}}-s|_{U_{1}})|_{U_{1}\cap U_{2}})$.
+\end{remark}
+As such we are justified in making the following definition. 
+\begin{definition}[\v{C}ech Complex]\label{def: Cech complex}
+    Let $X$ be a topological space, $\{U_{i}\}_{i\in I}$ a cover of $X$ with $I$ a totally ordered set, and $\Fcal$ a sheaf on $X$. The \v{C}ech complex of $\Fcal$ with respect to the cover $U$ is the chain complex 
+    $$0\to C^{0}(\{U_{i}\}_{i\in I},\Fcal)\to C^{1}(\{U_{i}\}_{i\in I},\Fcal)\to C^{2}(\{U_{i}\}_{i\in I},\Fcal)\to\dots$$
+    where $C^{p}(\{U_{i}\}_{i\in I},\Fcal)$ and the differentials given by 
+    $$(s_{i_{0},\dots,i_{p}})_{i_{0}<i_{1}<\dots<i_{p}}\mapsto\left(\sum_{j=0}^{p+1}(-1)^{j}s_{i_{0},\dots,\widehat{i_{j}},\dots,i_{p+1}}|_{U_{i_{0}\cap\dots \cap U_{i_{p+1}}}}\right)_{i_{0}<i_{1}<\dots<i_{p}<i_{p+1}}.$$
+\end{definition}
+The \v{C}ech cohomology of a sheaf is merely the cohomology of the corresponding \v{C}ech complex. 
+\begin{definition}\label{def: Cech cohomology}
+    Let $X$ be a topological space, $\{U_{i}\}_{i\in I}$ a cover of $X$ with $I$ a totally ordered set, and $\Fcal$ a sheaf on $X$. The \v{C}ech cohomology of the sheaf 
+    $$\check{H}^{p}(X,\Fcal)=\frac{\ker\left(C^{p}(\{U_{i}\}_{i\in I},\Fcal)\to C^{p+1}(\{U_{i}\}_{i\in I},\Fcal)\right)}{\img\left(C^{p-1}(\{U_{i}\}_{i\in I},\Fcal)\to C^{p}(\{U_{i}\}_{i\in I},\Fcal)\right)}$$
+    is the cohomology of the corresponding \v{C}ech complex. 
+\end{definition}
+We can use this to compute the sheaf cohomology of $\underline{\ZZ}$ on the circle $S^{1}$. 
+\begin{example}
+    Let $S^{1}$ be the unit circle and $U_{0},U_{1}$ a cover of the upper and lower semicircles intersecting around $(-1,0)$ and $(1,0)$. Then the \v{C}ech complex is given by $H^{0}(S^{1},\underline{\ZZ})\to C^{0}(\{U_{0},U_{1}\},\Fcal)\to C^{1}(\{U_{0},U_{1}\},\Fcal)$ by $\ZZ\to\ZZ\oplus\ZZ\to\ZZ\oplus\ZZ$ where the first map is by $s\mapsto (s|_{U_{0}},s|_{U_{1}})$ and the second by $(s|_{U_{0}},s|_{U_{1}})\mapsto (s|_{U_{1}}-s|_{U_{0}},s|_{U_{1}}-s|_{U_{0}})$ yielding $\check{H}^{0}(S^{1},\underline{\ZZ})=\check{H}^{1}(S^{1},\underline{\ZZ})=\ZZ$. 
+\end{example}

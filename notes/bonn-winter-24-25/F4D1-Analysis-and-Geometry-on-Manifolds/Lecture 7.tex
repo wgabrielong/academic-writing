@@ -1,0 +1,145 @@
+\section{Lecture 7 -- 29th October 2024}\label{sec: lecture 7}
+Let us consider some elementary properties of tangent spaces. 
+\begin{lemma}\label{lem: equivalence of curves}
+    Let $\gamma:(-\varepsilon,\varepsilon)\to\RR^{n},\sigma:(-\delta,\delta)\to\RR^{n}$ such that $\gamma(0)=\sigma(0)$ in $\RR^{n}$. Then $\gamma\sim\sigma$ if and only if $\gamma'(0)=\sigma'(0)$. 
+\end{lemma}
+\begin{proof}
+    $(\Rightarrow)$ Suppose $\gamma\sim\sigma$. The $i$th component function is smooth so we have that the $i$th components $\gamma'(0)_{i}$ and $\sigma'(0)_{i}$ agree, showing that $\gamma'(0)=\sigma'(0)$. $(\Leftarrow)$ Conversely, suppose $\gamma'(0)=\sigma'(0)$ then given any smooth function $f$ defined on $\RR^{n}$ near $p=\gamma(0)=\sigma(0)$, we have by the chain rule
+    \begin{align*}
+        (f\circ\gamma)'(0)&=(\partial_{x_{1}}f(p),\dots,\partial_{x_{n}}f(p))(\gamma'(0)_{1},\dots,\gamma'(0)_{n}) \\
+        &=(\partial_{x_{1}}f(p),\dots,\partial_{x_{n}}f(p))(\sigma'(0)_{1},\dots,\sigma'(0)_{n}) \\
+        &=(f\circ\sigma)'(0)
+    \end{align*}
+    yielding the claim. 
+\end{proof}
+We can specialize to $\RR$-vector spaces to get the following. 
+\begin{corollary}\label{corr: map to tangent space is a bijection}
+    Let $V$ be a finite dimensional $\RR$-vector space. For any $p\in V$, the canonical map $V\to T_{p}V$ by $w\mapsto[t\mapsto p+tw]$ is a bijection. 
+\end{corollary}
+\begin{proof}
+    If $V=\RR^{n}$, then this is immediate from the previous lemma, for the construction produces a unique equivalence class of curves centered at $p$. Otherwise, choosing a basis of $V$ as an $\RR$-vector space, we get an isomorphism of $\RR$-vector spaces $F:V\to\RR^{n}$ whereby the diagram 
+    $$% https://q.uiver.app/#q=WzAsNixbMCwwLCJWIl0sWzQsMCwiViJdLFsyLDAsIlxcUlJee259Il0sWzAsMSwiVF97cH1WIl0sWzIsMSwiVF97RihwKX1WIl0sWzQsMSwiVF97cH1WIl0sWzAsMiwiRiJdLFsyLDEsIkZeey0xfSJdLFswLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMiw0LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEsNSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFszLDQsImRGX3twfSIsMl0sWzQsNSwiZEZeey0xfV97cH0iLDJdXQ==
+    \begin{tikzcd}
+        V && {\RR^{n}} && V \\
+        {T_{p}V} && {T_{F(p)}V} && {T_{p}V}
+        \arrow["F", from=1-1, to=1-3]
+        \arrow[maps to, from=1-1, to=2-1]
+        \arrow["{F^{-1}}", from=1-3, to=1-5]
+        \arrow[maps to, from=1-3, to=2-3]
+        \arrow[maps to, from=1-5, to=2-5]
+        \arrow["{dF_{p}}"', from=2-1, to=2-3]
+        \arrow["{dF^{-1}_{p}}"', from=2-3, to=2-5]
+    \end{tikzcd}$$
+    commutes with the horizontal maps along the top row being isomorhisms, so by functoriality, so is the bottom row.  
+\end{proof}
+\begin{remark}
+    The same can be shown to be a morphism of vector spaces, not merely a map of sets. 
+\end{remark}
+We can alternatively define tangent spaces using derivations of smooth functions. Let us recall the definition. 
+\begin{definition}[Derivation]\label{def: derivation}
+    Let $M$ be a smooth manifold. A derivation at $p\in M$ is an $\RR$-linear map $v:C^{\infty}(M)\to\RR$ satisfying the Leibniz rule:
+    $$v(fg)=f(p)v(g)+v(f)g(p)$$
+    for all and $f,g\in C^{\infty}(M)$. 
+\end{definition}
+For some fixed point $p$ on a smooth manifold $M$, we will construct a bijection of sets between the tangent space $T_{p}M$ of \Cref{def: tangent space} and the set of derivations at that point. Furthermore we will show that the set of derivations forms a $\RR$-vector space and use the derivations perspective going forward. With a non-insignificant amount of work, one can endow the space of equivalence classes of curves with the structure of an $\RR$-vector space and show that the bijection described above is in fact an isomorphism of $\RR$-vector space. We refer to the text of Warner for a complete account \cite{Warner}. We set up the proof of this proposition with the following lemmata, denoting $D_{p}$ for the set of derivations up until we identify them with the tangent space defined previously. 
+\begin{lemma}\label{lem: properties of derivations}
+    Let $M$ be a smooth manifold with $p\in M$ and $D_{p}M$ the set of derivations at $p$. Then: 
+    \begin{enumerate}[label=(\roman*)]
+        \item If $f\in C^{\infty}(M)$ is constant, then $v(f)=0$. 
+        \item If $f(p)=g(p)=0$ for $f,g\in C^{\infty}(M)$ then $v(fg)=0$. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (i)]
+    By linearity of $v$, it suffices to show this for $f$ being the constant function 1. In which case we have $f=f^{2}$ so 
+    \begin{align*}
+        v(f) &= v(f^{2}) \\
+        &= f(p)v(f)+v(f)f(p) \\
+        &= 2v(f)
+    \end{align*}
+    which holds if and only if $v(f)=0$. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    Once again we compute
+    \begin{align*}
+        v(fg) &= f(p)v(g)+v(f)g(p) \\
+        &= 0\cdot v(g)+v(f)\cdot 0\\
+        &=0
+    \end{align*}
+    as desired. 
+\end{proof}
+\begin{lemma}\label{lem: derivation determined by action on dual basis}
+    Let $V$ be a finite dimensional $\RR$-vector space. A derivation $v\in D_{p}V$ is determined uniquely by its action on a dual basis $\xi_{1},\dots,\xi_{n}$. 
+\end{lemma}
+\begin{proof}
+    Let $e_{1},\dots,e_{n}$ be a basis of $V$ idnucing an isomorphism to $\RR^{n}$. It suffices to show that $v(f)=0$ if $\partial_{x_{1}}f(p),\dots,\partial_{x_{n}}f(p)$. Writing $f$ using Taylor's formula 
+    \begin{align*}
+        f(x)&=f(p)+\sum_{i=1}^{n}\partial_{x_{i}}f(p)(x_{i}-p_{i})\\
+        &\hspace{1cm}+\sum_{i,j=1}^{n}(x_{i}-p_{i})(x_{j}-p_{j})\int_{0}^{1}(1-t)\partial_{x_{i}x_{j}}f(p+t(x-p))dt.
+    \end{align*}
+    The second summand and the $(x_{i}-p_{i})$ factor of the third summand vanish at $p$, so the function is constant, and hence has trivial derivation by \Cref{lem: properties of derivations} (i). 
+\end{proof}
+We deduce the subsequent statement as a corollary. 
+\begin{corollary}\label{corr: derivations gives iso of vector spaces}
+    Let $V$ be a finite dimensional $\RR$-vector space. The map $V\to D_{p}V$ by $w\mapsto[f\mapsto \frac{d}{dt}|_{t=0}f(p+tw)]$ is an isomorphism of $\RR$-vector spaces. 
+\end{corollary}
+\begin{proof}
+    We construct an inverse map taking a derivation $v$ to $\sum_{i=1}^{n}v(\xi_{i})e_{i}$ for a dual basis element $\xi_{i}:V\to\RR$. By \Cref{lem: derivation determined by action on dual basis}, this construction is injective so it suffices to show that the map $V\to D_{p}V$ is injective as well. Suppose to the contrary $w\in V$ is nonzero but maps to the zero derivation, in which case $0=\frac{d}{dt}f(p+tw)$ for all $f\in C^{\infty}(V)$ and thus in particular holds for the dual vector $w^{\vee}\in C^{\infty}(M)$ where $\frac{d}{dt}w^{\vee}(p+tw)=1$, a contradiction. 
+\end{proof}
+\begin{remark}
+    The space of derivations at a point in a vector space is canonically isomorphic to the vector space itself. 
+\end{remark}
+We are now ready to show the main result. 
+\begin{proposition}\label{prop: derivations equal to curve equivalence classes}
+    Let $M$ be a smooth manifold and $p\in M$. Let $D_{p}M$ be the set of derivations at $p$ and $T_{p}M$ the tangent space of $M$ at $p$. There is a bijection $T_{p}M\to D_{p}M$ by $\gamma\mapsto[f\mapsto(f\circ\gamma)'(0)]$. 
+\end{proposition}
+\begin{proof}
+    Let $M$ be as above and let $(\phi, U)$ be a chart centered at $p$. We have a commuting diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJUX3twfU0iXSxbMCwxLCJEX3twfU0iXSxbMiwwLCJUX3tcXHBoaShwKX1cXHBoaShVKSJdLFsyLDEsIkRfe1xccGhpKHApfVxccGhpKFUpIl0sWzEsM10sWzIsMywiS197XFxwaGkocCl9Il0sWzAsMSwiS197cH0iLDJdLFswLDJdXQ==
+    \begin{tikzcd}
+        {T_{p}M} && {T_{\phi(p)}\phi(U)} \\
+        {D_{p}M} && {D_{\phi(p)}\phi(U)}
+        \arrow[from=1-1, to=1-3]
+        \arrow["{K_{p}}"', from=1-1, to=2-1]
+        \arrow["{K_{\phi(p)}}", from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    denoting the map $\gamma\mapsto[f\mapsto(f\circ\gamma)'(0)]$ by $K_{p}$. The horizontal maps are equalities since $\phi$ is a diffeomorhphism and so is $K_{\phi(p)}$ by \Cref{corr: map to tangent space is a bijection,corr: derivations gives iso of vector spaces} implying the right vertical arrow is as well. 
+\end{proof}
+We are thus justified in making the following definition (cf. \Cref{def: tangent space}). 
+\begin{definition}[Tangent Space]\label{def: tangent space derivations}
+    Let $M$ be a smooth manifold and $p\in M$. The tangent space $T_{p}M$ of $M$ at $x$ is the set of derivations at $p$. 
+\end{definition}
+Indeed, the derivations $D_{p}M=T_{p}M$ form a $\RR$-vector space. 
+\begin{proposition}\label{prop: derivations are a vector space}
+    The tangent space $T_{p}M$ is a vector subspace of the dual space $C^{\infty}(M)^{\vee}$. 
+\end{proposition}
+\begin{proof}
+    It suffices to show that for $v_{1},v_{2}\in T_{p}M$ that for all $\lambda\in\RR$, $\lambda v_{1}+v_{2}\in T_{p}M$. We compute for $f,g\in C^{\infty}(M)$
+    \begin{align*}
+        (\lambda v_{1}+v_{2})(fg) &= \lambda v_{1}(fg) + v_{2}(fg) \\
+        &= \lambda\left(v_{1}(f)g(p)+f(p)v_{1}(g)\right)+\left(v_{2}(f)g(p)+f(p)v_{2}(g)\right) \\
+        &= f(p)\left(\lambda v_{1}+v_{2}\right)(g)+\left(\lambda v_{1}+v_{2}\right)(f)g(p)
+    \end{align*}
+    as desired. 
+\end{proof}
+We conclude with a discussion of coordinates. 
+\begin{definition}[Coordinates on Tangent Space of $\RR^{n}$]\label{def: Rn coordinates}
+    Let $p\in\RR^{n}$. The coordinate $(\partial_{x_{i}})_{p}\in T_{p}\RR^{n}$ is represented by the curve $p+te_{i}$ with $e_{i}$ the $i$th standard basis vector of $\RR^{n}$. 
+\end{definition}
+\begin{definition}[Coordinates on Smooth Manifold]\label{def: coordinates on smooth manifold}
+    Let $M$ be a smooth manifold and $p\in M$. Thhe coordinate $(\partial_{x_{i}})_{p}$ is given by $d\phi^{-1}_{\phi(p)}(\partial_{x_{i}})_{p}$ for some chart $(\phi,U)$ containing $p$.
+\end{definition}
+These behave well under morphisms of smooth manifolds. 
+\begin{proposition}\label{prop: map on tangent spaces is Jacobian}
+    Let $M,N$ be smooth $m,n$ manifolds, respectively, and $F:M\to N$ a smooth map. Let $(U,\phi),(V,\psi)$ be charts on $M,N$ respectively with $F(U)\subseteq V$, and $p\in M$. Then the map $T_{p}M\to T_{F(p)}N$ is given by the Jacobian matrix 
+    $$\begin{bmatrix}
+        \partial_{x_{1}}F_{1}(p) & \dots & \partial_{x_{m}}F_{1}(p) \\
+        \vdots & \ddots & \vdots \\
+        \partial_{x_{1}} F_{n}(p) & \dots & \partial_{x_{m}}F_{n}(p)
+    \end{bmatrix}.$$
+\end{proposition}
+\begin{proof}
+    Up to composition with $\phi,\psi$ we get a map from the basis $(\partial_{x_{1}})_{p},\dots,(\partial_{x_{m}})_{p}$ of $T_{p}M=T_{\phi(p)}\RR^{m}$ to the basis $(\partial_{y_{1}})_{F(p)},\dots,(\partial_{y_{n}})_{F(p)}$ of $T_{F(p)}N=T_{\psi(F(p))}\RR^{n}$. But using the chain rule we have 
+    $$dF_{p}((\partial_{x_{i}})_{p})=\sum_{j=1}^{n}\partial_{x_{i}}F_{j}(p)(\partial_{y_{j}})_{F(p)}$$
+    giving the Jacobian matrix. 
+\end{proof}

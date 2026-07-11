@@ -1,0 +1,13 @@
+\section{Lecture 14 -- 25th November 2024}\label{sec: lecture 14}
+\begin{proposition}\label{prop: affine communication for locally finite type}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is locally of finite type if and only if for all affine opens $V\subseteq Y$ and $U\subseteq f^{-1}(V)$, $\Gamma(U,\Ocal_{X})$ is finite type over $\Gamma(V,\Ocal_{Y})$
+\end{proposition}
+\begin{proof}
+    Let $f:X\to Y$ be a morphism locally of finite type. We apply the affine communication lemma \Cref{lem: affine communication} on $Y$. Let P be the property that ``the preimage $f^{-1}(V)$ of an affine open $V$ has a cover by affine opens $\{U_{i}\}_{i\in I}$ such that each $\Gamma(U_{i},\Ocal_{X}|_{U_{i}})$ is a finitely generated $\Gamma(V,\Ocal_{Y}|_{V})$-algebra''.
+    \\\\
+    We first show condition (i) of the lemma. Suppose $V,\{U_{i}\}_{i\in I}$ as described above with $f_{i}:U_{i}\to V$ the induced morphisms of affine schemes and take $g\in\Gamma(V,\Ocal_{Y}|_{V})$. We have $f_{i}^{\sharp}:\Ocal_{V}\to f_{i*}\Ocal_{U_{i}}$ where taking sections over $D(g)\subseteq V\subseteq Y$ we have $\Gamma(U_{i}\cap f^{-1}(D(g)),\Ocal_{X}|_{U_{i}})$ the localization of $\Gamma(U_{i},\Ocal_{X}|_{U_{i}})$ at the image of $f_{i}^{\sharp}(g)$ when taking sections over $V$, and finite generation as an algebra is a property preserved by localization. 
+    \\\\
+    To show (ii), suppose $g_{1},\dots,g_{n}$ generate $\Gamma(V,\Ocal_{Y}|_{V})$ so the $D(g_{i})$ cover $V$ and the $\{f^{-1}(D(g_{i}))\}_{i=1}^{n}$ cover $f^{-1}(V)$ and each of the $f^{-1}(D(g_{i}))$ have a cover by spectra of finitely generated $\Gamma(D(g_{i}),\Ocal_{Y}|_{D(g_{i})})$-algebras say by $\{T_{ij}\}_{j\in J_{i}}$ so the $\{T_{ij}\}_{i\in I, j\in J_{i}}$ form an affine open cover of $f^{-1}(V)$ by spectra of finitely generated $\Gamma(V,\Ocal_{Y}|_{V})$-algebras. In particular, any finitely generated $\Gamma(D(g_{i}),\Ocal_{Y}|_{D(g_{i})})$ is a finitely generated algebra over $\Gamma(V,\Ocal_{Y}|_{V})$ since $\Gamma(D(g_{i}),\Ocal_{Y}|_{D(g_{i})})$ is already a finitely generated algebra over $\Gamma(V,\Ocal_{Y}|_{V})$.
+    \\\\
+    $(\Longleftarrow)$ This is essentially by definition. $Y$ as a scheme can always be covered by affine opens. And since every such affine open has a preimage with a cover by affine opens satisfying the desired condition, $f$ satisfies the definition for locally finite typeness. 
+\end{proof}

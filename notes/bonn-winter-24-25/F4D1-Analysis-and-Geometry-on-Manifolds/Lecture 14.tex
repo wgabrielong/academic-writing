@@ -1,0 +1,50 @@
+\section{Lecture 14 -- 26th November 2024}\label{sec: lecture 14}
+We complete the proof of \Cref{thm: sard} by way of various lemmata. 
+\begin{lemma}\label{lem: Ck for k large have measure zero image}
+    Let $U\subseteq\RR^{m}$, $F:U\to\RR^{n}$ be a smooth map with critical points $C\subseteq U$, and $C_{k}\subseteq C$ on which the $i$th partial derivatives of $F$ for $1\leq i\leq k$ functions of vanish. If $k>\frac{m}{n}-1$ then $F(C_{k})$ has measure zero.
+\end{lemma}
+\begin{proof}
+    For each $p\in U$, there exists a closed cube $E\subseteq U$ containing $p$. By second countability, we can cover $C_{k}$ by countably many such cubes. We show $F(C_{k}\cap E)$ is of measure zero. Let $A>\sup_{q\in E}|\partial_{x}^{\alpha}(q)|$ be a constant and $|\alpha|\leq k+1$. Let $L>0$ be the side length of $E$ and $K>>1$ large a natural number. We can subdivide $E$ into cubes of sidelength $L/K$, of which there are $K^{m}$. Consider an enumeration of these subcubes and an index $i_{0}$ such that $p\in E_{i_{0}}$. 
+
+    Since $p\in C_{k}$, we know by Taylor's theorem that 
+    $$|F(x)-F(a)|<A'|x-p|^{k+1}$$
+    since the first $k$-terms of the Taylor expansion vanishes, which holds for all $x\in E_{i_{0}}$ and $A'$ depending on $A$. Thus $F(E_{i_{0}})$ is contained in a ball centered around $F(p)$ of radius $A'(L/K)^{k+1}$. 
+
+    Now 
+    $$F(C_{k}\cap E)=\bigcup_{\{i_{0}:E_{i_{0}}\cap C_{k}\neq\emptyset\}}F(C_{k}\cap E_{i_{0}}).$$
+    but each $F(C_{k}\cap E_{i_{0}})$ is covered in a union of balls of volume $\Lambda\left(A'(L/K)^{k+1}\right)^{n}$ and there are at most $K^{m}$ of such cube images, so $F(C_{k}\cap E)$ is covered by a union of balls of total volume $K^{m}\cdot\Lambda\left(A'(L/K)^{k+1}\right)^{n}=\Lambda A'^{n}L^{kn+n}K^{m-kn-n}$ but by hypothesis $m-kn-n<0$ so by making $K$ arbitrarily large, we can make the volume of $F(C_{k}\cap E)$ arbitrarily small, showing it is of measure zero. 
+\end{proof}
+The proof of \Cref{thm: sard} proceeds by induction, and we show that the induction step holds by considering $C_{k}$ as a telescoping sum. 
+\begin{lemma}\label{lem: C minus C1 is measure zero}
+    Let $U\subseteq\RR^{m}$, $F:U\to\RR^{n}$ be a smooth map with critical points $C\subseteq U$, and $C_{k}\subseteq C$ on which the $i$th partial derivatives of $F$ for $1\leq i\leq k$ functions of vanish. If Sard's theorem holds for domains of dimension strictly less than $m$ then $F(C\setminus C_{1})$ has measure zero. 
+\end{lemma}
+\begin{proof}
+    Note that $C_{1}$ is closed in $U$ and up to replacing $U$ by $U\setminus C_{1}\subseteq U$ open, we can take $C_{1}=\emptyset$. We show $F(C)$ is of measure zero. Up to reordering coordinates $x,y$ in source and target, respectively, we can assume that $\partial_{x_{1}}F_{1}(p)\neq0$. Now taking $u(x)=F_{1}(x), v_{i}(x)=F_{i}(x)$ for $2\leq i\leq m$, the inverse function theorem shows that the functions $u,v$ form a coordinate system around $V_{p}$ of $p$ with transition matrix 
+    $$\begin{bmatrix}
+        \partial_{x_{1}}F_{1} & \dots \\
+        0 & \id
+    \end{bmatrix}$$ 
+    which extend smoothly to coordinates on $\overline{V_{p}}$. With respect to the new coordinates, we write $F(u,v)=(u,F_{2}(u,v),\dots,F_{n}(u,v))$ and thus the differential is of the form 
+    $$\begin{bmatrix}
+        1 & 0 \\ \vdots & \partial_{v_{j}}F_{i}
+    \end{bmatrix}$$
+    and observing that $C\cap\overline{V_{p}}$ is precisely the set of points such that the Jacobian submatrix $\partial_{v_{j}}F_{i}$ is not full. 
+
+    We show $F(C\cap \overline{V_{p}})$ is measure zero by showing it is measure zero on slices. We show $F(C\cap \overline{V_{p}})\cap\{y_{1}=\ell\}$ is measure zero for $\ell\in\RR$. Let $B_{\ell}=\{v:(\ell,v)\in\overline{V_{p}}\}\subseteq\RR^{m-1}$ and set $F_{\ell}(v)=(F_{2}(\ell,v),\dots,F_{n}(\ell,v))$ and since $F(\ell,v)=(\ell,F_{\ell}(v))$ we have that the critical values of $F|_{\overline{V_{p}}}$ in $\{y_{1}=\ell\}$ are precisely the pairs $(\ell,v')$ such that $v'$ is a critical value of $F_{\ell}$. 
+
+    Now since Sard's theorem holds on the domain of $F_{\ell}$ of dimension $m-1$, the critical values of $F_{\ell}$ are measure zero for each $\ell$. And thus $F(C)$ is of measure zero by \Cref{lem: measure zero slices imply measure zero space}. 
+\end{proof}
+\begin{lemma}\label{lem: Ck minus Ck plus one is measure zero}
+    Let $U\subseteq\RR^{m}$, $F:U\to\RR^{n}$ be a smooth map with critical points $C\subseteq U$, and $C_{k}\subseteq C$ on which the $i$th partial derivatives of $F$ for $1\leq i\leq k$ functions of vanish. If Sard's theorem holds for domains of dimension strictly less than $m$ then for all $k\geq 1$, $F(C_{k}\setminus C_{k-1})$ has measure zero. 
+\end{lemma}
+\begin{proof}
+    As in the proof of \Cref{lem: C minus C1 is measure zero}, we can consider $U\setminus C_{k+1}$ and prove that $F(C_{k})$ is of measure zero. For $p\in C_{k}$ and $\sigma:U\to\RR$ such that $\sigma$ is a partial derivative that has at least one nonvanishing partial derivative at $p$, that is, $\sigma=\partial_{x_{i}}^{\alpha}F_{j}$ with $|\alpha|=k$ and $\partial_{x_{i}}\sigma(p)\neq0$ for all $i$. 
+
+    Let $V_{p}$ be a neighborhood of $p$ consisting of regular points and $\Sigma=\{\sigma^{-1}(0)\}\cap V_{p}$. Then $\Sigma$ is a smooth submanifold of $V_{p}$. By definition of $C_{k}$, we have that $(C_{k}\cap V_{p})\subseteq\sigma^{-1}(0)\cap V_{p}$. Moreover, $F(C_{k}\cap V_{p})$ is contained in the set of critical values of $F|_{\Sigma}$ as if all $\partial_{x_{i}}F_{j}=0$ then $dF|_{T\Sigma}=0$. But $\dim(\Sigma)=\dim(U)-1$ so the set of $F|_{\Sigma}$ is measure zero by hypothesis.
+\end{proof}
+The lemmata imply the proof as follows. 
+\begin{proof}[Proof of \Cref{thm: sard}]
+    We proceed by induction on dimension of the source. If $m=0$, we are done. Now assume \Cref{thm: sard} holds for all $m<\widetilde{m}$. By covering the target with charts and considering the preimage of the fixed chart, we can assume that the source is $U\subseteq\RR^{m}$ and the target is $\RR^{n}$. We have 
+    $$\dots\subseteq C_{2}\subseteq C_{1}\subseteq C_{0}=C$$
+    and thus $F(C)\subseteq \bigcup_{k\geq 0}F(C_{k}\setminus C_{k+1})$ which is the union of measure zero sets by \Cref{lem: Ck for k large have measure zero image,lem: C minus C1 is measure zero,lem: Ck minus Ck plus one is measure zero} and thus $F(C)$ is of measure zero.
+\end{proof}

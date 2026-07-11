@@ -1,0 +1,49 @@
+\section{Lecture 5 -- 24th October 2024}\label{sec: lecture 5}
+The differential equation of \Cref{thm: Weierstrass differential equation} suggests a close link between the theory of elliptic functions and cubic curves. In fact, we will show that the Weierstrass $\wp$-function and its derivative determine a map from $\CC/\Omega\to\CC^{2}$ with image a regular affine cubic \Cref{def: affine regular cubic}. We now set up some requisite results. 
+\begin{proposition}\label{prop: addition theorem}
+    Let $z_{1},z_{2}\in\CC/\Omega$ and $\wp(z_{1})\neq\wp(z_{2})$.\marginpar{Theorem 5.1} Then 
+    $$\wp(z_{1}+z_{2})=-\wp(z_{1})-\wp(z_{2})+\frac{1}{4}\left(\frac{\wp'(z_{1})-\wp'(z_{2})}{\wp(z_{1})-\wp(z_{2})}\right)^{2}.$$
+\end{proposition}
+\begin{proof}
+    Consider the function $f(z)=\wp'(z)-a\wp(z)-b$ for $a,b\in\CC$ such that $f(z_{1})=0=f(z_{2})$. In this case, we have $\wp'(z_{1})-a\wp(z_{1})-b=\wp'(z_{2})-a\wp(z_{2})-b$ which yields $\frac{\wp'(z_{1})-\wp'(z_{2})}{\wp(z_{1})-\wp(z_{2})}$ on solving for $a$. 
+
+    Note also that $f(z)$ is an elliptic function of order 3 since it is a $\CC$-linear combination of elliptic functions with $\wp'(z)$ of order 3 so by \Cref{prop: residue sum is zero} there is some $z_{3}\in P_{\Omega}$ which is a zero of $f$ satisfying $z_{1}+z_{2}+z_{3}=0$ up to the quotient of $\Omega$. As such, $f(-z_{1}-z_{2})=0$ which by substitution yields $\wp'(-z_{1}-z_{2})=a\wp(-z_{1}-z_{2})+b$ and thus $-\wp'(z_{1}+z_{2})=a\wp(z_{1}+z_{2})+b$ by $\wp'(z)$ an odd function as in \Cref{prop: orders of weierstrass P-function}. 
+
+    Now observe that the points $(\wp(z_{1}),\wp'(z_{1})), (\wp(z_{2}),\wp'(z_{2})),(\wp(z_{3}),-\wp'(z_{3}))$ lie on the complex line $v=au+b$. But by the differential equation in \Cref{thm: Weierstrass differential equation}, $\wp(z_{1}),\wp(z_{2}),\wp(z_{3})$ are the zeroes of the cubic polynomial and hence satisfy the symmetric polynomial identity $a^{2}=4(\wp(z_{1})+\wp(z_{2})+\wp(z_{3}))$. So 
+    $$\wp(z_{3})=\wp(z_{1}+z_{2})=-\wp(z_{1})-\wp(z_{2})+\frac{1}{4}\left(\frac{\wp'(z_{1})-\wp'(z_{2})}{\wp(z_{1})-\wp(z_{2})}\right)$$
+    as required. 
+\end{proof}
+We deduce the following as a corollary. 
+\begin{corollary}\label{corr: corollary of addition theorem}
+    If $z\in\CC/\Omega$ is such that $2z\notin\Omega$ then \marginpar{Theorem 5.1}
+    $$\wp(2z)=-2\wp(z)+\frac{1}{4}\left(\frac{\wp''(z)}{\wp'(z)}\right)^{2}=-2\wp(z)+\frac{1}{4}\left(\frac{12\wp^{2}(z)-g_{2}}{2\wp'(z)}\right)^{2}.$$
+\end{corollary}
+\begin{proof}
+    The first follows from passing to the limit as $z_{2}\to z_{1}$ and the second from the first by writing $\wp''(z)$ in terms of the derivative of (\ref{eqn: Weierstrass differential equation}). 
+\end{proof}
+The construction of the embedding proceeds as follows. 
+\begin{proposition}\label{prop: holomorphic embedding by Weierstrass function}
+    Let $\Omega$ be a lattice. Then $\CC/\Omega\to\CC^{2}$ by $z\mapsto(\wp(z),\wp'(z))$ is a holomorphic parametrization of the regular affine plane cubic $$E=\{(u,v)\in\CC^{2}:v^{2}=4u^{3}-g_{2}(\Omega)u-g_{3}(\Omega)\}.$$ 
+\end{proposition}
+\begin{proof}
+    The function is holomorphic on the quotient since the Weierstrass function and its derivative have poles at the lattice points. The map is surjective since for any $(u,v)\in E$ there is $z\in\CC/\Omega$ with $\wp(z)=u$ by \Cref{prop: assumes every value} and $\wp'(z)=\pm v$ satiesfies the equation for $E$ by (\ref{eqn: Weierstrass differential equation}). The map is also injective since if $(\wp(z_{1}),\wp'(z_{1}))=(\wp(z_{2}),\wp'(z_{2}))$ we have $z_{2}-z_{1}\in\Omega$ since $\wp(z_{1})=\wp'(z_{2})$ excludes $z_{1}+z_{2}\in\Omega$ from \Cref{prop: addition theorem} so $z_{2}-z_{1}\in\Omega$, that is, they are identified in the quotient, showing the map is injective. 
+\end{proof}
+This map to an affine regular plane cubic can be extended to a regular projective cubic. 
+\begin{proposition}\label{prop: group structure on projective cubic curve. }
+    Let $\Omega$ be a lattice and
+    $$E=\{(u,v)\in\CC^{2}:v^{2}=4u^{3}-g_{2}(\Omega)u-g_{3}(\Omega)\}\subseteq\CC^{2}$$
+    the image of $z\mapsto(\wp(z),\wp'(z))$. Then the closure $\overline{E}\subseteq\CC\PP^{2}$ has the structure of an Abelian group with identity element the image of a lattice point. 
+\end{proposition}
+\begin{proof}
+    $\overline{E}$ is given by the projective closure of $E$ which takes elements of $\Omega$ to the point $[0:0:1]$, extending the group structure on the quotient $\CC/\Omega$. 
+\end{proof}
+\begin{remark}
+    Explicitly, the sum of points $p,p'$ on $\overline{E}$ for an embedding $\overline{\varphi}:\CC\to\CC\PP^{2}$ by $z\mapsto[1:\wp(z):\wp'(z)]$ is given by $\varphi(\varphi^{-1}(p)+\varphi^{-1}(p'))$. 
+\end{remark}
+As an aside, we show that cubics do not admit a rational parametrization. 
+\begin{proposition}\label{prop: no rational parametrization for cubics}
+    A regular projective cubic $\overline{E}$ does not admit a rational parametrization. 
+\end{proposition}
+\begin{proof}
+    A rational parametrization would necessarily factor as a holomorphic map $\widehat{\CC}\to\CC\to\overline{E}$, but any map $\widehat{\CC}\to\CC$ cannot be holomorphic. 
+\end{proof}

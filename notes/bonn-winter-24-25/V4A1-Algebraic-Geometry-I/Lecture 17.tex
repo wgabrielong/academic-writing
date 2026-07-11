@@ -1,0 +1,46 @@
+\section{Lecture 17 -- 6th December 2024}\label{sec: lecture 17}
+For a ringed space, we consider different types of $\Ocal_{X}$-modules. 
+\begin{definition}[Free $\Ocal_{X}$-Module]
+    Let $X$ be a ringed space. An $\Ocal_{X}$-module $\Fcal$ such that $\Fcal\cong\Ocal_{X}^{\oplus I}$ for some indexing set $I$. 
+\end{definition}
+\begin{definition}[Locally Free $\Ocal_{X}$-Module]
+    Let $X$ be a ringed space. An $\Ocal_{X}$-module $\Fcal$ such that there exists an open cover $\{U_{i}\}_{i\in I}$ of $X$ such that $\Fcal|_{U_{i}}\cong\Ocal_{U_{i}}^{\oplus J}$ for some $J$ and all $i\in I$. 
+\end{definition}
+\begin{definition}[Invertible $\Ocal_{X}$-Module]
+    Let $X$ be a ringed space. An $\Ocal_{X}$-module $\Fcal$ that is locally free of rank 1. 
+\end{definition}
+Recall that for a ring morphism $A\to B$ there is a functor taking an $A$-module $M$ to its base-extension $M\otimes_{A}B$ which is a $B$-module. Moreover given a $B$-module, there is a forgetful functor $N\mapsto N|_{A}$ which satisfies the tensor-hom adjunction for extension and restriction of scalars giving an isomorphism of Abelian groups
+$$\Hom_{\Mod_{B}}(M\otimes_{A}B,N)\cong\Hom_{\Mod_{A}}(M,N|_{A})$$
+for $A$-modules $M$ and $B$-modules $N$. This holds for sheaves as well: for $\Ocal_{X},\Ocal_{X}'$ two sheaves on a fixed topological space $X$ and a morphism $\Ocal_{X}\to\Ocal_{X}'$ gives an adjunction
+$$\Hom_{\Mod_{\Ocal_{X}'}}(\Fcal\otimes_{\Ocal_{X}}\Ocal_{X}',\Gcal)\cong\Hom_{\Mod_{\Ocal_{X}}}(\Fcal,\Gcal|_{\Ocal_{X}})$$
+for $\Ocal_{X}$-modules $\Fcal$ and $\Ocal_{X}'$-modules $\Gcal$. In particular, this extends the adjunction for a morphism $f:X\to Y$ of ringed spaces allowing us to define a functor $f^{*}:\Mod_{\Ocal_{Y}}\to\Mod_{\Ocal_{X}}$ as follows. 
+\begin{definition}[Pullback Functor]\label{def: pullback}
+    Let $f:X\to Y$ be a morphism of ringed spaces. The pullback functor $f^{*}:\Mod_{\Ocal_{Y}}\to\Mod_{\Ocal_{X}}$ is defined by $f^{-1}(-)\otimes_{f_{*}\Ocal_{X}}\Ocal_{X}$.
+\end{definition}
+We can now define quasicoherent and coherent sheaves. 
+\begin{definition}[Quasicoherent Sheaf]\label{def: quasicoherent sheaf}
+    Let $X$ be a ringed space. An $\Ocal_{X}$-module $\Fcal$ is a quasicoherent sheaf if for all $U\subseteq X$ open there exists an exact sequence 
+    $$\Ocal_{U}^{\oplus I}\to\Ocal_{U}^{\oplus J}\to\Fcal|_{U}\to0.$$
+\end{definition}
+\begin{definition}[Coherent Sheaf]\label{def: coherent sheaf}
+    Let $X$ be a ringed space. An $\Ocal_{X}$-module $\Fcal$ is a coherent sheaf if for all $U\subseteq X$ there exists a surjection 
+    $$\Ocal_{U}^{\oplus J}\to\Fcal|_{U}$$
+    with $J$ finite with kernel finitely generated. 
+\end{definition}
+\begin{remark}
+    Coherent sheaves are in particular quasicoherent giving full subcategories 
+    $$\Coh(X)\hookrightarrow\QCoh(X)\hookrightarrow\Mod_{\Ocal_{X}}.$$
+\end{remark}
+Let us consider what happens on an affine scheme $\spec(A)$ for a ring $A$. 
+\begin{proposition}\label{prop: fully faithful exact modules on affine schemes}
+    Let $A$ be a ring. The functor $\Mod_{A}\to\QCoh(\spec(A))$ by $M\mapsto\widetilde{M}$ is fully faithful and exact. 
+\end{proposition}
+\begin{proof}
+    The construction is functorial and localization is exact, and since exactness can be verified on stalks, the claim follows. 
+\end{proof}
+\begin{proposition}\label{prop: equivalence of categories modules on affine schemes}
+    There is an equivalence of categories between $\QCoh(\spec(A))$ and $\Mod_{A}$. 
+\end{proposition}
+\begin{proof}
+    The global sections functor is the inverse. 
+\end{proof}

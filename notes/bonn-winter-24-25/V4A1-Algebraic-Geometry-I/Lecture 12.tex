@@ -1,0 +1,216 @@
+\section{Lecture 12 -- 18th November 2024}\label{sec: lecture 12}
+We continue with some formal properties of fibered products. 
+\begin{proposition}\label{prop: triple fibered products are associative}
+    Let $X\to S, Y\to S, W\to T, Y\to T$ be morphisms in a category admitting fibered products. Then there is a unique isomorphism $(X\times_{S}Y)\times_{T}W\cong X\times_{S}(Y\times_{T}W)$. 
+\end{proposition}
+\begin{proof}
+    The ? of the diagram 
+    $$% https://q.uiver.app/#q=WzAsOCxbMCwwLCI/Il0sWzAsMSwiWFxcdGltZXNfe1N9WSJdLFsyLDAsIllcXHRpbWVzX3tUfVciXSxbMiwxLCJZIl0sWzQsMCwiVyJdLFs0LDEsIlQiXSxbMiwyLCJTIl0sWzAsMiwiWCJdLFszLDVdLFsxLDNdLFszLDZdLFsxLDddLFs3LDZdLFs0LDVdLFsyLDRdLFsyLDNdLFswLDJdLFswLDFdXQ==
+    \begin{tikzcd}
+        {?} && {Y\times_{T}W} && W \\
+        {X\times_{S}Y} && Y && T \\
+        X && S
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=1-5]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-5, to=2-5]
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=2-1, to=3-1]
+        \arrow[from=2-3, to=2-5]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=3-1, to=3-3]
+    \end{tikzcd}$$
+    with all squares cartesian can be filled by $X\times_{S}(Y\times_{T}W)$ and $(X\times_{S}Y)\times_{T}W$ by considering the vertical and horizontal rectangles, respectively. But in any such diagram, the rectangles are Cartesian as well so both of the objects above satisfy the same universal property and are thus isomorphic. 
+\end{proof}
+We now show fibered products exist in general. We do this in a sequence of lemmas.\marginpar{We follow the presentation of \cite[\href{https://stacks.math.columbia.edu/tag/01JO}{Tag 01JO}]{stacks-project} in place of \cite[Thm. II.3.3]{Hartshorne} presented in class.}
+\begin{lemma}
+    Let $f:X\to S,g:Y\to S$ be morphisms of schemes and suppose $X\times_{S}Y$ exists. If $U\subseteq S, V\subseteq X, W\subseteq Y$ are open such that $f(V)\subseteq U$ and $g(W)\subseteq U$ then there is a unique morphism $V\times_{U}W\to X\times_{S}Y$ and $V\times_{U}W\subseteq X\times_{S}Y$ is open. 
+\end{lemma}
+\begin{proof}
+    For any other scheme $Z$ admitting maps to $V,W$ whose compatible with $f|_{V},g|_{W}$, there is a unique morphism $Z\to X\times_{S}Y$ which is contained in the open subscheme $\pr_{X}^{-1}(V)\cap\pr_{Y}^{-1}(W)$ of $X\times_{S}Y$, giving an identification $V\times_{U}W\cong\pr_{X}^{-1}(V)\cap\pr_{Y}^{-1}(W)$ by the uniqueness of fibered products. 
+
+    Uniqueness of the map follows from the diagram 
+    $$% https://q.uiver.app/#q=WzAsOCxbMywxLCJYIl0sWzEsMiwiWSJdLFszLDIsIlMiXSxbMSwxLCJYXFx0aW1lc197U31ZIl0sWzQsMywiVSJdLFs0LDAsIlYiXSxbMCwzLCJXIl0sWzAsMCwiVlxcdGltZXNfe1V9VyJdLFszLDBdLFswLDJdLFszLDFdLFsxLDJdLFs1LDRdLFs0LDJdLFs1LDBdLFs2LDFdLFs2LDRdLFs3LDMsIlxcZXhpc3RzISIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs3LDZdLFs3LDVdXQ==
+    \begin{tikzcd}
+        {V\times_{U}W} &&&& V \\
+        & {X\times_{S}Y} && X \\
+        & Y && S \\
+        W &&&& U.
+        \arrow[from=1-1, to=1-5]
+        \arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+        \arrow[from=1-1, to=4-1]
+        \arrow[from=1-5, to=2-4]
+        \arrow[from=1-5, to=4-5]
+        \arrow[from=2-2, to=2-4]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-2, to=3-4]
+        \arrow[from=4-1, to=3-2]
+        \arrow[from=4-1, to=4-5]
+        \arrow[from=4-5, to=3-4]
+    \end{tikzcd}$$
+\end{proof}
+\begin{proposition}\label{prop: fibered products exist}
+    Let $X\to S, Y\to S$ be morphisms of schemes. Then the fibered product $X\times_{S}Y$ exists in the category of schemes. 
+\end{proposition}
+\begin{proof}
+    Let $\{U_{i}\}_{i\in I}$ be an affine open cover of $S$, $\{V_{j}\}_{j\in J_{i}}$ an affine open cover of $f^{-1}(U_{i})$ for each $i$, and $\{W_{k}\}_{k\in K_{i}}$ an affine open cover of $g^{-1}(U_{i})$ for each $i$. By \Cref{prop: fibered products of affine schemes}, each $V_{j}\times_{U_{i}}W_{k}$ is affine and satisfies the universal property of the fibered product for morphisms factoring through $V_{j},W_{k}$ that agree on $U_{i}$ and any scheme $Z$ admitting maps to $X,Y$ that agree on $S$ is given by the data of maps to each such $V_{j}\times_{U_{i}}W_{k}$. Moreover these schemes satisfy the hypothesis of \Cref{prop: gluing schemes} so these schemes glue to give the fibered product $X\times_{S}Y$ which satisfies the expected universal property. 
+\end{proof}
+Note that fibered products of schemes can behave unexpectedly. 
+\begin{example}
+    Let $X=\spec(k[x_{1}]),Y=\spec(k[x_{2}]),S=\spec(k)$ for $k$ algebraically closed. $X\times_{S}Y=\spec(k[x_{1}]\otimes_{k}k[x_{2}])=\spec(k[x_{1},x_{2}])=\A^{2}_{k}$ but the underlying topological space $|\A^{2}_{k}|$ is not $|\A^{1}_{k}|\times|\A^{1}_{k}|$ -- the latter has points given by pairs of prime ideals in $k[x_{1}]\oplus k[x_{2}]$ but $(x_{1}-x_{2})$ is a point of $\A^{2}_{k}$ not of this form. 
+\end{example}
+\begin{example}
+    Let $X=Y=\spec(\CC)$ and $S=\spec(\RR)$. $X\times_{S}Y=\spec(\RR[x]/(x^{2}-1)\otimes_{\RR}\CC)=\spec(\CC[x]/(x^{2}-1))$ which consists of two points given by the maximal ideals $(x-i),(x+i)$. But the product $|X|\times|Y|$ is just one point, so there is not even a natural map $|X\times Y|\to|X\times_{S}Y|$. 
+\end{example}
+One place fibered products are ubiquitous is in the computation of fibers of a morphism. 
+\begin{definition}[Fiber]\label{def: fiber of morphism}
+    Let $f:X\to Y$ be a morphism of schemes and $y\in Y$ with residue field $\kappa(y)$. The fiber $X_{y}$ of $f$ over $Y$ is the fibered product $X\times_{Y}\spec(\kappa(y))$. 
+\end{definition}
+More explicitly, the fiber is induced by the following diagram.
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYX3t5fT1YXFx0aW1lc197WX1cXHNwZWMoXFxrYXBwYSh5KSkiXSxbMCwxLCJcXHNwZWMoXFxrYXBwYSh5KSkiXSxbMiwwLCJYIl0sWzIsMSwiWSJdLFswLDJdLFsyLDNdLFsxLDNdLFswLDFdXQ==
+\begin{tikzcd}
+	{X_{y}=X\times_{Y}\spec(\kappa(y))} && X \\
+	{\spec(\kappa(y))} && Y
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+In the case of $Y$ having a generic point, we can construct generic and closed fibers. 
+\begin{definition}[Generic Fiber]\label{def: generic fiber}
+    Let $f:X\to Y$ be a morphism of schemes and $\eta\in Y$ the unique generic point of $Y$ with residue field $\kappa(\eta)$. The generic fiber $X_{\eta}$ of $f$ over $Y$ is the fibered product $X\times_{Y}\spec(\kappa(\eta))$.
+\end{definition}
+\begin{definition}[Closed Fiber]\label{def: closed fiber}
+    Let $f:X\to Y$ be a morphism of schemes and $y\in Y$ a closed point with residue field $\kappa(y)$. The closed fiber $X_{y}$ of $f$ over $Y$ is the fibered product $X\times_{Y}\spec(\kappa(y))$.
+\end{definition}
+\begin{example}
+    Let $A$ be a discrete valuation ring. Then $\spec(A)=\{\eta,\pi\}$ where $\eta$ is the generic point and $\pi$ the prime ideal corresponding to the uniformizer. A scheme $X$ over $\spec(A)$ has two fibers: the generic fiber $X_{\eta}$ and the closed fiber $X_{\pi}$. 
+\end{example}
+Fibered products are also a key tool in working in Grothendieck's ``relative point of view.''
+\begin{definition}[Category of $S$-Schemes]\label{def: category of S-schemes}
+    The category of $S$-schemes $\Sch_{S}$ has objects morphisms of schemes $X\to S$ and morphisms commutative diagrams 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzIsMCwiWSJdLFsxLDEsIlMiXSxbMCwyXSxbMSwyXSxbMCwxXV0=
+    \begin{tikzcd}
+        X && Y \\
+        & S.
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-2]
+        \arrow[from=1-3, to=2-2]
+    \end{tikzcd}$$
+\end{definition}
+\begin{definition}[Category of $k$-Schemes]\label{def: category of k-schemes}
+    Let $k$ be field. The category of $k$-schemes $\Sch_{k}$ has objects morphisms of schemes $X\to \spec(k)$ and morphisms commutative diagrams 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzIsMCwiWSJdLFsxLDEsIlxcc3BlYyhrKSJdLFswLDJdLFsxLDJdLFswLDFdXQ==
+    \begin{tikzcd}
+        X && Y \\
+        & {\spec(k).}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-2]
+        \arrow[from=1-3, to=2-2]
+    \end{tikzcd}$$
+\end{definition}
+\begin{remark}
+    When working in the setting of $k$-schemes and considering the fibered product of $X\to\spec(k),Y\to\spec(k)$ we will write $X\times_{k}Y$ in place of $X\times_{\spec(k)}Y$. 
+\end{remark}
+The fibered product gives us a way to ``extend scalars'' on schemes defined over a field. 
+\begin{definition}[Base Change]\label{def: base change}
+    Let $k$ be a field, $\Sch_{k}$ the category of $k$-schemes, and $L/k$ a field extension. The base change functor $(-)_{L}:\Sch_{k}\to\Sch_{L}$ is given by $X\mapsto X_{L}=X\times_{k}\spec(L)$ and morphisms those induced morphisms of $L$-schemes. 
+\end{definition}
+More precisely, for a morphism $X\to Y$ of $k$-schemes, we have a diagram 
+$$% https://q.uiver.app/#q=WzAsNixbNSwyLCJZIl0sWzMsMiwiWCJdLFs0LDMsIlxcc3BlYyhrKSJdLFswLDAsIlhfe0x9Il0sWzIsMCwiWV97TH0iXSxbMSwxLCJcXHNwZWMoTCkiXSxbMywxXSxbNCwwXSxbNSwyXSxbMSwwXSxbMSwyXSxbMCwyXSxbMyw1XSxbNCw1XV0=
+\begin{tikzcd}
+	{X_{L}} && {Y_{L}} \\
+	& {\spec(L)} \\
+	&&& X && Y \\
+	&&&& {\spec(k)}
+	\arrow[from=1-1, to=2-2]
+	\arrow[from=1-1, to=3-4]
+	\arrow[from=1-3, to=2-2]
+	\arrow[from=1-3, to=3-6]
+	\arrow[from=2-2, to=4-5]
+	\arrow[from=3-4, to=3-6]
+	\arrow[from=3-4, to=4-5]
+	\arrow[from=3-6, to=4-5]
+\end{tikzcd}$$
+with both rectangles Cartesian so there is a unique map $X_{L}\to Y_{L}$ making the diagram 
+$$% https://q.uiver.app/#q=WzAsNixbMywyLCJcXHNwZWMoaykiXSxbMSwyLCJcXHNwZWMoTCkiXSxbMywxLCJZIl0sWzEsMSwiWV97TH0iXSxbMSwwLCJYIl0sWzAsMCwiWF97TH0iXSxbMSwwXSxbNSwxXSxbNSw0XSxbNCwyXSxbMiwwXSxbMywyXSxbMywxXSxbNSwzLCJcXGV4aXN0cyEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCwwXV0=
+\begin{tikzcd}
+	{X_{L}} & X \\
+	& {Y_{L}} && Y \\
+	& {\spec(L)} && {\spec(k)}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+	\arrow[from=1-1, to=3-2]
+	\arrow[from=1-2, to=2-4]
+	\arrow[from=1-2, to=3-4]
+	\arrow[from=2-2, to=2-4]
+	\arrow[from=2-2, to=3-2]
+	\arrow[from=2-4, to=3-4]
+	\arrow[from=3-2, to=3-4]
+\end{tikzcd}$$
+commute. 
+
+These constructions are especially important in arithmetic applications. 
+\begin{definition}[Rational Points]\label{def: rational points}
+    Let $X$ be a $k$-scheme and $L/k$ a field extension. The set of $L$-rational points of $X$ is the set $X(L)=\Mor_{\Sch_{k}}(\spec(L),X)$. 
+\end{definition}
+One can easily show that this is invariant under base change of the scheme to $L$. 
+\begin{lemma}\label{lem: bijection of rational points}
+    Let $X$ be a $k$-scheme and $L/k$ a field extension. Then $X(L)=X_{L}(L)$ as sets. 
+\end{lemma}
+\begin{proof}
+    Any morphism $\spec(L)\to X$ factors over a morphism to $X_{L}$
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwyLCJcXHNwZWMoTCkiXSxbMywyLCJcXHNwZWMoaykiXSxbMywxLCJYIl0sWzEsMSwiWF97TH0iXSxbMCwwLCJcXHNwZWMoTCkiXSxbNCwyLCIiLDEseyJjdXJ2ZSI6LTF9XSxbNCwwLCJcXGlkX3tcXHNwZWMoTCl9IiwyLHsiY3VydmUiOjF9XSxbMywwXSxbMywyXSxbMiwxXSxbMCwxXSxbNCwzLCJcXGV4aXN0cyEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+        {\spec(L)} \\
+        & {X_{L}} && X \\
+        & {\spec(L)} && {\spec(k)}
+        \arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+        \arrow[curve={height=-6pt}, from=1-1, to=2-4]
+        \arrow["{\id_{\spec(L)}}"', curve={height=6pt}, from=1-1, to=3-2]
+        \arrow[from=2-2, to=2-4]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-2, to=3-4]
+    \end{tikzcd}$$
+    giving the claim. 
+\end{proof}
+The most ``absolute'' form of base change is the geometric fiber. 
+\begin{definition}[Geometric Fiber]\label{def: geometric fiber}
+    Let $f:X\to Y$ be a morphism of schemes,$y\in Y$ with residue field $\kappa(y)$, and $\overline{\kappa(y)}$ a choice of algebraic closure of $\kappa(y)$. The geometric fiber $X_{\overline{y}}$ is defined to be $X\times_{Y}\spec(\overline{\kappa(y)})$. 
+\end{definition}
+\begin{remark}
+    The topology may change under passage to the geometric fiber. This often has better topological behavior as the underling topological spaces of schemes over algebraically closed fields $k$ are often identical to the set of $k$-rational points. 
+\end{remark}
+\begin{example}
+    Let $X$ be a scheme over $\spec(\ZZ_{(p)})$, the localization of $\ZZ$ at the prime ideal $(p)$. $\ZZ_{(p)}$ consists of two points $\{\eta,\mfrak\}$ corresponding to the generic and maximal ideal. The generic fiber $X_{\eta}$ is a scheme over $\spec(\QQ)$ and the closed fiber $X_{\mfrak}$ is a scheme over $\spec(\FF_{p})$. On the other hand, the generic and closed fibers $X_{\overline{\eta}},X_{\overline{\mfrak}}$ are schemes over $\spec(\overline{\QQ}),\spec(\overline{\FF_{p}})$, respectively. 
+\end{example}
+Returning to a discussion of arithmetic, we consider conjugate $k$-schemes. 
+\begin{definition}[Conjugate $k$-Schemes]\label{def: conjugate k-schemes}
+    Let $k$ be a field, $X$ a $k$-scheme, and $\sigma\in\Aut(k)$. The conjugate $k$-scheme is defined as the fibered product 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYX3tcXHNpZ21hfSJdLFsyLDAsIlgiXSxbMiwxLCJcXHNwZWMoaykiXSxbMCwxLCJcXHNwZWMoaykiXSxbMywyLCJcXHNpZ21hIl0sWzEsMl0sWzAsMV0sWzAsM11d
+    \begin{tikzcd}
+        {X_{\sigma}} && X \\
+        {\spec(k)} && {\spec(k).}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow["\sigma", from=2-1, to=2-3]
+    \end{tikzcd}$$
+\end{definition}
+Note that $X_{\sigma}\to X$ is an isomorphism of abstract schemes, but not necessarily as $k$-schemes, since $X_{\sigma}$ has a different structure map that commutes with the structure map of $X$ up to $\sigma$. 
+\begin{example}\label{ex: non-isomorphic as schemes over the base}
+    Note that $\Aut(\RR)$ is the trivial group. Consider the $\spec(\QQ(\sqrt{2}))$ scheme $X=\spec(\RR)$ induced by the inclusion $\QQ(\sqrt{2})\hookrightarrow\RR$. Let $\sigma\in\Gal(\QQ(\sqrt{2})/\QQ)$ be the non-trivial element of the Galois group of the quadratic extension. We can consider $X_{\sigma}$ obtained as the fibered product 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYX3tcXHNpZ21hfSJdLFsyLDAsIlgiXSxbMiwxLCJcXHNwZWMoXFxRUShcXHNxcnR7Mn0pKSJdLFswLDEsIlxcc3BlYyhcXFFRKFxcc3FydHsyfSkpIl0sWzMsMiwiXFxzaWdtYSIsMl0sWzEsMl0sWzAsM10sWzAsMV1d
+    \begin{tikzcd}
+        {X_{\sigma}} && X \\
+        {\spec(\QQ(\sqrt{2}))} && {\spec(\QQ(\sqrt{2})).}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow["\sigma"', from=2-1, to=2-3]
+    \end{tikzcd}$$
+    If $X$ and $X_{\sigma}$ are isomorphic as $\QQ(\sqrt{2})$-schemes, there would be an automorphism of $\RR$ by $\sqrt{2}\mapsto-\sqrt{2}$, a contradiction. 
+\end{example}

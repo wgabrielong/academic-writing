@@ -1,0 +1,184 @@
+\section{Lecture 9 -- 7th November 2024}\label{sec: lecture 9}
+We conclude the proof of the prime number theorem by considering a sequence of estimation results. 
+\begin{proposition}\label{prop: estimation result for bounded locally integrable function on closed half plane}
+    Let $f:[1,\infty)\to\RR$ be a bounded locally integrable function and $F(s)=\int_{1}^{\infty}f(x)x^{-s}dx$. If $F$ admits a holomorphic extension to a neighborhood of the closed halfspace $\RE(s)\geq 1$ then \marginpar{Theorem 8}
+    $$F(1)=\lim_{\mu\to\infty}\int_{1}^{\mu}\frac{f(x)}{x}dx.$$
+\end{proposition}
+\begin{proof}
+    By Cauchy's integral formula, we have $F(a)-F_{\mu}(a)=\frac{1}{2\pi i}\int_{\gamma}\frac{F(s)-F_{\mu}(s)}{s-a}ds$ where $F_{\mu}(s)=\int_{1}^{\mu}\frac{f(x)}{x}dx$. We consider the integral over the contour $\gamma$
+    \begin{center}
+        \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da1172371507107095] 
+\draw    (250,50) -- (250,230) ;
+%Straight Lines [id:da45784589133800924] 
+\draw    (130,140) -- (430,140) ;
+%Shape: Arc [id:dp06980968714570057] 
+\draw  [draw opacity=0] (272.63,64.8) .. controls (281.17,61.7) and (290.39,60) .. (300,60) .. controls (344.18,60) and (380,95.82) .. (380,140) .. controls (380,184.18) and (344.18,220) .. (300,220) .. controls (290.39,220) and (281.17,218.3) .. (272.63,215.2) -- (300,140) -- cycle ; \draw  [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] (272.63,64.8) .. controls (281.17,61.7) and (290.39,60) .. (300,60) .. controls (344.18,60) and (380,95.82) .. (380,140) .. controls (380,184.18) and (344.18,220) .. (300,220) .. controls (290.39,220) and (281.17,218.3) .. (272.63,215.2) ;  
+%Straight Lines [id:da8562439417694567] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (300,50) -- (300,230) ;
+%Straight Lines [id:da30553490236329095] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ]   (272.63,64.8) -- (272.63,215.2) ;
+%Straight Lines [id:da9277426543531648] 
+\draw    (275.71,135) -- (297,135) ;
+\draw [shift={(300,135)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+\draw [shift={(272.71,135)}, rotate = 0] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+%Straight Lines [id:da30968282921451973] 
+\draw    (303,135) -- (351.86,135) -- (377.14,135) ;
+\draw [shift={(380.14,135)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+\draw [shift={(300,135)}, rotate = 0] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (3.57,-1.72) -- (0,0) -- (3.57,1.72) -- cycle    ;
+
+% Text Node
+\draw (300.29,34.57) node   [align=left] {\begin{minipage}[lt]{27.2pt}\setlength\topsep{0pt}
+\begin{center}
+{\tiny $\displaystyle s=1$}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (291.53,122.57) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle \delta $}
+\end{minipage}};
+% Text Node
+\draw (336.96,122.57) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle R$}
+\end{minipage}};
+% Text Node
+\draw (376.39,78.86) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle \gamma _{1}$}
+\end{minipage}};
+% Text Node
+\draw (269.25,166.86) node   [align=left] {\begin{minipage}[lt]{13.6pt}\setlength\topsep{0pt}
+{\tiny $\displaystyle \gamma _{2}$}
+\end{minipage}};
+
+
+\end{tikzpicture}
+
+    \end{center}
+    traversed counterclockwise where $\delta>0$ sufficiently small that the complement $\gamma_{2}$ of the semicircular arc $\gamma_{1}$ lies within the domain of holomorphy of $F$. So we have 
+    $$F(1)-F_{\mu}(1)=\frac{1}{2\pi i}\int_{\gamma}\frac{F(s)-F_{\mu}(1)}{s-1}ds$$
+    where we decompose the integral 
+    \begin{equation}\label{eqn: integral sum decomposition}
+        \int_{\gamma}\frac{F(s)-F_{\mu}(1)}{s-1}ds = \int_{\gamma_{1}}\frac{F(s)-F_{\mu}(s)}{s-1}ds - \int_{\gamma_{2}}\frac{F_{\mu}(s)}{s-1}ds + \int_{\gamma_{2}}\frac{F(s)}{s-1}ds.
+    \end{equation}
+
+    For the first two summands of (\ref{eqn: integral sum decomposition}), we consider the function 
+    $$h_{\mu, R}(s)=\frac{(s-1)^{2}+R^{2}}{R^{2}}\mu^{s-1}$$
+    which satisfies $h_{\mu,R}(1)=1$ and consider instead 
+    $$\int_{\gamma_{1}}\frac{(F(s)-F_{\mu}(s))h_{\mu,R}(s)}{s-1}ds, \int_{\gamma_{2}}\frac{F_{\mu}(s)h_{\mu,R}(s)}{s-1}ds.$$
+    Now for the first summand of (\ref{eqn: integral sum decomposition}), we have 
+    \begin{align*}
+        |F(s)-F_{\mu}(s)| &= \left|\int_{\mu}^{\infty}f(x)x^{-s}dx\right| \\
+        &\leq C\int_{\mu}^{\infty}x^{-\RE(s)}dx && f(x)\leq C \\
+        &= \frac{C}{\RE(s)-1}\mu^{1-\RE(s)} \\
+        &= \left|\frac{2C}{(s-1)+(\overline{s}-1)}\mu^{1-s}\right|
+    \end{align*}
+    so for $\RE(s)>1$ and $|s-1|=R$ we get 
+    $$\left|\frac{F(s)-F_{\mu}(s)}{s-1}\right|\leq \left|\frac{2C}{(s-1)^{2}+R^{2}}\mu^{1-s}\right|$$
+    and thus 
+    $$\left|\frac{(F(s)-F_{\mu}(s))h_{\mu,R}(s)}{s-1}\right|\leq \left|\frac{2C}{(s-1)^{2}+R^{2}}\mu^{1-s}\right|\cdot\left|\frac{(s-1)^{2}+R^{2}}{R^{2}}\mu^{s-1}\right|$$
+    showing 
+    $$\left|\frac{(F(s)-F_{\mu}(s))h_{\mu,R}(s)}{s-1}\right|\leq\frac{2C}{R^{2}}.$$
+
+    For the second summand of (\ref{eqn: integral sum decomposition}) we have on $\gamma_{2}$
+    \begin{align*}
+        |F_{\mu}(s)| &\leq C\int_{1}^{\mu}x^{-\RE(s)}dx && f(x)\leq C \\
+        &= \frac{C}{1-\RE(s)}(\mu^{1-\RE(s)}-1) \\
+        &\leq \frac{C}{1-\RE(s)}\mu^{1-\RE(s)}
+    \end{align*}
+    and applying the same argument as before for $\RE(s)\leq 1$ and $|s-1|\leq R$ we get 
+    $$\left|\frac{F_{\mu}(s)}{s-1}\right|\leq\frac{2C}{R^{2}}.$$
+
+    Finally, for the third summand of (\ref{eqn: integral sum decomposition}), we further decompose the contour $\gamma_{2}$ into $\gamma_{2}'$ consisting of the segment in $\RE(s)\leq 1-\delta'$ for $0<\delta'<\delta$ and $\gamma_{2}^{+},\gamma_{2}^{-}$ the arc segments $[1+Ri, \gamma_{2}'(0)]$ and $[\gamma_{2}'(1),1-Ri]$ so that the concatenation of $\gamma_{2}^{+},\gamma_{2}',\gamma_{2}^{-1}$ is all of $\gamma_{2}$ as previously defined. $F(s)$ is bounded on $\gamma_{2}$ so 
+    $$\left|F(s)\left(\frac{s-1}{R^{2}}+\frac{1}{s-1}\right)\right|\leq A(R,\delta)$$
+    for some constant $A(R,\delta)$ depending only on $R$ and $\delta$ and on $\gamma_{2}'$ we get the estimate
+    $$\left|\frac{1}{2\pi i}_{\gamma_{2}'}F(s)\left(\frac{s-1}{R^{2}}+\frac{1}{s-1}\right)\mu^{s-1}ds\right|\leq\frac{R\cdot A(R,\delta)}{2}\cdot\sup_{s\in\gamma_{2}'}\mu^{\RE(s)-1}=\frac{RA}{2}\mu^{-\delta'.}$$
+    The segments $\gamma_{2}^{+},\gamma_{2}^{-}$ have length at most $\frac{\pi\delta'}{2}$ so since $|\mu^{\RE(s)-1}|\leq 1$ we have 
+    $$\left|\frac{1}{2\pi i}_{\gamma_{2}'}F(s)\left(\frac{s-1}{R^{2}}+\frac{1}{s-1}\right)\mu^{s-1}ds\right|\leq\frac{1}{2\pi}\cdot \pi\delta'A(R,\delta)=\frac{\delta_{1}A}{2}.$$
+
+    Now for $\varepsilon>0$ we can take $R=\frac{1}{\varepsilon}$ and $\delta$ sufficiently small such that each of the first two summands of (\ref{eqn: integral sum decomposition}) is less than $\varepsilon$ by taking $\mu$ large and for the third summand taking $\delta'$ small such that the integral over $\gamma_{2}'$ and the sum of integrals on $\gamma_{2}^{+},\gamma_{2}^{-}$ are both at most $\varepsilon$ by taking $\mu$ large and $\delta'$ small. In sum we have that $|F(1)-F_{\mu}(1)|\leq 4\varepsilon$ bounded by a function decreasing in $\mu$, giving the claim. 
+\end{proof}
+The prime number theorem is a consequence of \Cref{prop: estimation result for bounded locally integrable function on closed half plane} and the following lemma. 
+\begin{lemma}\label{lem: improper integral has limit 1}
+    Let $f:[1,\infty)\to\RR$ be a nondecreasing function such that $$\lim_{\mu\to\infty}\int_{1}^{\mu}\left(\frac{f(x)}{x^{2}}-\frac{1}{x}\right)dx$$ exists. Then $\lim_{x\to\infty}\frac{f(x)}{x}=1$. 
+\end{lemma}
+\begin{proof}
+    Suppose to the contrary that the limit is not 1, then for $\eta>0$ there is an increasing sequence $\{x_{n}\}_{n\geq0}$ such that $|\frac{f(x_{n})}{x_{n}}-1|\geq\eta$ in which case we can assume, by rearranging the equation, that $f(x_{n})\geq(1+\eta)x_{n}$ for all $n$ by passing to a subsequence. Taking $\rho=\frac{1+\eta}{1+\eta/2}$ we have for $x_{n}\leq x\leq \rho x_{n}$
+    that 
+    $$\left(1+\frac{\eta}{2}\right)x\leq(1+\eta)x_{n}\leq f(x_{n})\leq f(x)$$
+    with the last inequality by $f$ increasing. So integrating on the interval $[x_{n},\rho x_{n}]$ we get 
+    $$0<\frac{\eta\log(\rho)}{2}\leq\int_{x_{n}}^{\rho x_{n}}\left(\frac{f(x)}{x^{2}}-\frac{1}{x}\right)dx$$
+    a contradiction to existence fo the improper integra. 
+\end{proof}
+The above suffices to prove the prime number theorem. 
+\begin{theorem}[Prime Number Theorem]\label{thm: prime number theorem}
+    Let $\pi(x)$ be the prime counting function. Then 
+    $$\lim_{x\to\infty}\frac{\pi(x)\cdot\log(x)}{x}=1.$$
+\end{theorem}
+\begin{proof}
+    By \Cref{prop: equivalence of PNT limits} it suffices to show $\lim_{x\to\infty}\frac{\vartheta(x)}{x}=1$. Let $f(x)=\frac{\vartheta(x)}{x}-1$ and 
+    $$F(s)=s\int_{1}^{\infty}\left(\frac{\vartheta(x)}{x}-1\right)x^{-s}dx=s\int_{1}^{\infty}(\vartheta(x)-x)x^{-s-1}dx=\Mcal_{\vartheta(x)-x}(s)$$
+    which admits a holomorphic extension to a neighborhood of the closed halfspace $\RE(s)\geq 1$ by \Cref{eqn: Mellin transformation of theta x minus x}. Further noting $\frac{\vartheta(x)}{x}$ is bounded by \Cref{lem: boundedness of theta function ratio} and is locally integrable, \Cref{prop: estimation result for bounded locally integrable function on closed half plane} applies and we have existence of the improper integral $F_{\mu}(1)$ and the conclusion follows by \Cref{lem: improper integral has limit 1}. 
+\end{proof}
+We now begin a discussion of complex analysis in several variables. 
+
+Consider $\CC^{n}$ which is an $n$-dimensional complex vector space and thus a $2n$-dimensional real vector space. 
+\begin{definition}[Orientation]\label{def: orientation}
+    An orientation on $\CC^{n}$ is a choice of coordinates on $\CC^{n}$ as a $2n$-dimensional real vector space. 
+\end{definition}
+\begin{remark}\label{rmk: choice of orientations}
+    We will use the orientation 
+    $$(a_{1},b_{1},a_{2},b_{2},\dots,a_{n},b_{n})\in\RR^{2n}$$ 
+    for $(z_{1},\dots,z_{n})\in\CC^{n}$ with $z_{j}=a_{j}+b_{j}i$. This behaves well with respect to taking products of complex vector spaces. 
+\end{remark}
+$\CC^{n}$ is a normed vector space. 
+\begin{definition}[Maximum Norm]\label{def: maximum norm}
+    The maximum norm on $\CC^{n}$ is given by $\Vert z\Vert_{\max}=\max_{1\leq j\leq n}\{|z_{j}|_{\CC}\}$ where $z=(z_{1},\dots,z_{n})\in\CC^{n}$ and $|\cdot|_{\CC}$ is the standard norm on $\CC$. 
+\end{definition}
+\begin{definition}[Euclidean Norm]\label{def: Euclidean norm}
+    The Euclidean norm on $\CC^{n}$ is given by $\Vert z\Vert=\sqrt{\sum_{j=1}^{n}|z_{j}|_{\CC}}$ where $z=(z_{1},\dots,z_{n})\in\CC^{n}$ and $|\cdot|_{\CC}$ is the standard norm on $\CC$. 
+\end{definition}
+\begin{remark}
+    We will often just denote the standard norm $|\cdot|_{\CC}$ on $\CC$ as $|\cdot|$. 
+\end{remark}
+Open discs plays a central role in univariate complex analysis. Its analogue in complex analysis of several variables is the polydisc. 
+\begin{definition}[Polydisc]\label{def: polydisc}
+    Let $\tau\in\CC^{n}$ and $r=(r_{1},\dots,r_{n})\in\RR_{>0}^{n}$. The polydisc $D_{r}(\tau)$ of polyradius $r$ is given by the set 
+    $$\{z\in\CC^{n}:|\tau_{j}-z_{j}|<r_{j}, \forall 1\leq j\leq n\}.$$
+\end{definition}
+\begin{remark}
+    We can also define the polydisc $D_{r}(\tau)$ of radius $r\in\RR_{>0}$ as 
+    $$\{z\in\CC^{n}:|\tau_{j}-z_{j}|<r, \forall 1\leq j\leq n\}.$$
+\end{remark}
+We also have an analogue of the open ball. 
+\begin{definition}[Multivariate Ball]\label{def: multivariate open ball}
+    Let $\tau\in\CC^{n}$ and $r\in\RR_{>0}$ the ball $B_{r}(\tau)$ is given by the set 
+    $$\{z\in\CC^{n}:\Vert \tau-z\Vert < r\}.$$
+\end{definition}
+\begin{remark}
+    The open balls form a basis for the analytic topology on $\CC^{n}$. 
+\end{remark}
+Let us define the multivariate analogue of holomorphic functions via real and complex differentiable functions. 
+\begin{definition}[Real Differentiable]\label{def: real differentiable}
+    Let $U\subseteq\CC^{n}$ be an open set and $f:U\to\CC$ a function. $f$ is real differentiable at $\tau\in U$ if there exist continuous functions $\Delta_{1},\dots,\Delta_{n},E_{1},\dots,E_{n}$ continuous at $\tau$ such that 
+    $$f(z)-f(\tau)=\sum_{j=1}^{n}\Delta_{j}(z)(z_{j}-\tau_{j})+\sum_{j=1}^{n}E_{j}(z)(\overline{z}_{j}-\overline{\tau}_{j})$$
+    for all $z\in U$. 
+\end{definition}
+\begin{definition}[Complex Differentiable]\label{def: complex differentiable function}
+    Let $U\subseteq\CC^{n}$ be an open set and $f:U\to \CC$ a function. $f$ is complex differentiable at $\tau\in U$ if there exist functions $\Delta_{1},\dots,\Delta_{n}:U\to\CC$ continuous at $z$ such that 
+    $$f(z)-f(\tau)=\sum_{j=1}^{n}\Delta_{j}(z)(z_{j}-\tau_{j})$$
+    for all $z\in U$. 
+\end{definition}
+\begin{definition}[Holomorphic Function]\label{def: holomorphic function}
+    Let $U\subseteq\CC^{n}$ be an open set and $f:U\to \CC$ a function. $f$ is holomorphic on $U$ if $f$ is complex differentiable at all $z\in U$. 
+\end{definition}
+The functions $\Delta_{j},\eta_{j}$ play a special role. 
+\begin{definition}[Wirtinger Derivatives]\label{def: Wirtinger derivatives}
+    Let $U\subseteq\CC^{n}$ be an open set and $f:U\to \CC$ a function. The Wirtinger derivatives of $f$ at $\tau$ are given by $\Delta_{j}(z),\eta_{j}(z)$ where 
+    $$f(z)-f(a)=\sum_{j=1}^{n}\Delta_{j}(z)(z_{j}-\tau_{j})+\sum_{j=1}^{n}E_{j}(z)(\overline{z}_{j}-\overline{\tau}_{j})$$
+    with $\Delta_{1},\dots,\Delta_{n},E_{1},\dots,E_{n}:U\to\CC$ continuous for all $z\in U$.
+\end{definition}

@@ -1,0 +1,67 @@
+\section{Lecture 8 -- 5th November 2024}\label{sec: lecture 8}
+We continue with the discussion of tangent spaces. 
+\begin{definition}[Tangent Bundle]\label{def: tangent bundle}
+    Let $M$ be a smooth manifold. The tangent bundle $TM$ of $M$ is given by $\coprod_{p\in M}T_{p}M$. 
+\end{definition}
+\begin{remark}
+    Elements of the tangent bundle are denoted by pairs $(p,v)\in M\times T_{p}M$ and there is a natural forgetful map $TM\to M$ by $(p,v)\mapsto p$. 
+\end{remark}
+\begin{proposition}\label{prop: tangent bundle is smooth manifold}
+    Let $M$ be a smooth manifold. The tangent bundle can be endowed with a structure of a smooth manifold such that the map $TM\to M$ is smooth. 
+\end{proposition}
+\begin{remark}
+    We will soon see that the data of a map of smooth manifolds with fiberes fector spaces forms a vector bundle. In fact, this map is sufficiently functorial and is a functor from the category of smooth manifolds to the category of vector bundles. 
+\end{remark}
+We now discuss submersions, immersions, and embeddings, which are special classes of smooth maps. 
+\begin{definition}[Rank of Smooth Map]\label{def: rank of smooth map}
+    Let $F:M\to N$ be a morphism of smooth manifolds. The rank of $F$ at $p$ is the rank of the linear map $dF_{p}:T_{p}M\to T_{F(p)}N$. 
+\end{definition}
+Smooth maps of full rank are particularly important. 
+\begin{definition}[Submersion]\label{def: submersion}
+    Let $M,N$ be smooth $m,n$ manifolds, respectively, and $F:M\to N$ a smooth map. $F$ is a submersion if $dF_{p}$ is surjective for all $p\in M$. 
+\end{definition}
+\begin{definition}[Immersion]\label{def: immersion}
+    Let $M,N$ be smooth $m,n$ manifolds, respectively, and $F:M\to N$ a smooth map. $F$ is an immersion if $dF_{p}$ is injective for all $p\in M$.
+\end{definition}
+\begin{remark}
+    A necessary but insufficient condition for a submersion is that $m\geq n$, and a necessary but insufficient condition for an immersion is that $m\leq n$.   
+\end{remark}
+To define immersions, we require the following lemma. 
+\begin{lemma}\label{lem: subset of matrices of full rank is open}
+    Let $m,n\in\NN$. The set of matrices of rank $\min\{m,n\}$ is open in $\mathrm{Mat}_{m\times n}(\RR)$. 
+\end{lemma}
+\begin{proof}
+    Fix some full rank matrix $A\in\mathrm{Mat}_{m\times n}(\RR)$. Up to transposition, it suffices to consider the case $m\leq n$. Now note that if $A$ is of full rank, there is an invertible submatrix $A'$ of $A$ obtained by deleting $m-n$ columns from $A$. Consider the map $\mathrm{Mat}_{m\times n}(\RR)\to\mathrm{Mat}_{m\times m}(\RR)\to\RR$ by deleting the columns and taking the determinant, respectively. Observe that this map is continuous and that the image of $A$ is nonzero. As such, the preimage of any open neighborhood of the image of $A$ not intersecting zero gives an open neighborhood of $A$ in $\mathrm{Mat}_{m\times n}(\RR)$ of matrices of full rank, as desired. 
+\end{proof}
+We can show that immersions and submersions are local conditions. 
+\begin{proposition}\label{prop: immersions and submersions are local}
+    Let $M,N$ be smooth $m,n$ manifolds, respectively, and $F:M\to N$ a smooth map. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item If $dF_{p}$ is injective, there exists an open neighborhood of $p$ on which $dF_{(-)}$ is injective. 
+        \item If $dF_{p}$ is surjective, there exists an open neighborhood of $p$ on which $dF_{(-)}$ is surjective.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    On passage to charts, we can reduce to the case of $M\subseteq\RR^{m},N\subseteq\RR^{n}$ where we note that $dF_{(-)}:M\to\mathrm{Mat}_{m\times n}(\RR)$ has image in the full rank matrices -- of full column rank in the case of injectivity and of full row rank in the case of surjectivity -- both of which are open conditions by \Cref{lem: subset of matrices of full rank is open} yielding the claim. 
+\end{proof}
+We can now define local diffeomorphisms. 
+\begin{definition}[Local Diffeomorphism]\label{def: local diffeomorphism}
+    Let $M,N$ be smooth $m,n$ manifolds, respectively, and $F:M\to N$ a smooth map. $F$ is a local diffeomorphism if it is both an immersion and a submersion. 
+\end{definition}
+The rank theorem will give a necessary and sufficient conditions for a smooth map to be a local diffeomorphism. 
+\begin{example}
+    Let $S^{1}\subseteq\CC$. The map $S^{1}\to S^{1}$ by $z\mapsto z^{2}$ is a local diffeomorphism but not a (global) diffeomorphism. 
+\end{example}
+We define embeddings as follows. 
+\begin{definition}\label{def: embedding}
+    Let $M,N$ be smooth $m,n$ manifolds, respectively, and $F:M\to N$ a smooth map. $F$ is an embedding if it is an immersion and a homeomorphism onto its image endowed with the subspace topology. 
+\end{definition}
+\begin{example}
+    The inclusion $S^{1}\to\CC$ is an embedding. 
+\end{example}
+\begin{example}
+    More generally, the inclusion $S^{n}\to\RR^{n+1}$ is an embedding. 
+\end{example}
+\begin{example}
+    The map $\RR\to\TT^{2}$ the 2-torus by $t\mapsto (t,\alpha t)$ for $\alpha\in\RR\setminus\QQ$ is an immersion since the map on tangent spaces is injective, but not an embedding as it is not a homeomorphism onto its image with the subspace topology.
+\end{example}

@@ -1,0 +1,74 @@
+\section{Lecture 20 -- 17th December 2024}\label{sec: lecture 20}
+The linear algebra constructions described in \Cref{sec: lecture 19} globalize to vector bundles. 
+\begin{theorem}[Omnibus Linear Algebra]\label{def: omnibus linear algebra}
+    The category of vector bundles over a fixed base is symmetric monoidal category, and the formation of $\bigwedge^{k}E, \Sym^{k}E, E\otimes E'$ are compatibile with pullback. 
+\end{theorem}
+\begin{proof}
+    This follows from the functoriality of the linear algebra constructions and of pullback. 
+\end{proof}
+\begin{remark}
+    Neither the category of vector bundles nor the category of vector bundles over a fixed base are Abelian. Consider the vector bundle $\RR\times\RR$ over $\RR$ and the morphism of vector bundles over $\RR$ by $(t,v)\mapsto(t,t\cdot v)$. The kernel is the union of the two axes in $\RR\times\RR\cong\RR^{2}$ which is not a vector bundle. 
+\end{remark}
+We also remark on the distinction between vector subbundles and subobjects in a category. 
+\begin{definition}[Subbundle]\label{def: subbundle}
+    Let $E,E'$ be vector bundles over a fixed base $M$. $E$ is a subbundle of $E'$ if there is a morphism $i:E\to E'$ over $M$ such that $E_{p}\to E'_{p}$ is an injection of vector spaces for all points $p\in M$. 
+\end{definition}
+Note that monomorphisms in the category of vector bundles over a fixed base may not be subbundles. 
+
+Generalizing \Cref{lem: smooth vector fields form a vector space}, we can make show the following. 
+\begin{lemma}\label{lem: linear algebra of space of sections}
+    Let $M$ be a smooth manifold and $\pi:E\to M$ be a vector bundle. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item The space of sections $\Gamma(M,E)$ is an $\RR$-vector space. 
+        \item The space of sections $\Gamma(M,E)$ is a module over $C^{\infty}(M)$. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (i)]
+    These extend over the pointwise operations on vector spaces. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    A smooth section can be represented by a tuple of smooth functions which naturally inherits a module action by $C^{\infty}(M)$.
+\end{proof}
+The main constructions we will consider are as follows. 
+\begin{definition}[1-Form]\label{def: 1-form}
+    Let $M$ be a smooth manifold. The space of 1-forms is $\Omega^{1}(M)=\Gamma(T^{*}M)$. 
+\end{definition}
+\begin{definition}[$k$-Form]\label{def: k-form}
+    Let $M$ be a smooth manifold. The space of 1-forms is $\Omega^{k}(M)=\Gamma(\bigwedge^{k}T^{*}M)$.
+\end{definition}
+Sections over closed submanifolds of $M$ can be defined in the following way. 
+\begin{lemma}\label{lem: sections of vector bundles over smooth closed submanifolds}
+    Let $M$ be a smooth manfiold, $A\subseteq M$ closed, $U$ an open neighborhood of $A$, and $\pi:E\to M$ be a vector bundle. If $\pi:A\to E$ is a smooth section, then there exists $\widetilde{\sigma}\in\Gamma(M,E)$ such that $\widetilde{\sigma}|_{A}=\sigma$ and $\supp(\widetilde{\sigma})\subseteq U$. 
+\end{lemma}
+\begin{proof}
+    Since sections are locally pointwise given by smooth functions on a closed subsets, the result follows by the extension lemma for smooth functions. 
+\end{proof}
+\begin{lemma}\label{lem: R-linear map on sections by precomposition}\marginpar{We append some results from \Cref{sec: lecture 21} to this section, leaving that lecture for the introduction to Riemannial geometry.}
+    Let $F:M\to N$ be a morphism of smooth manifolds and $E$ a vector bundle on $N$. There is an $\RR$-linear map $\Gamma(N,E)\to\Gamma(M,F^{*}E)$ given by precomposition. 
+\end{lemma}
+\begin{proof}
+    This can be deduced by the universal property of fibered products and the map is given by $\sigma\mapsto \sigma\circ F$. 
+\end{proof}
+\begin{example}
+    If $E'=T^{*}N$, the universal property induces the diagram 
+    $$% https://q.uiver.app/#q=WzAsNixbMCwwLCJUTSJdLFsyLDAsIkZeeyp9VF57Kn1OIl0sWzQsMCwiVF57Kn1OIl0sWzQsMSwiTiJdLFsyLDEsIk0iXSxbMCwxLCJNIl0sWzQsNSwiXFxpZF97TX0iXSxbMSwwLCJkRl57XFx2ZWV9IiwyXSxbMCw1XSxbMSw0XSxbMSwyLCJGXnsqfSJdLFsyLDNdLFs0LDMsIkYiLDJdXQ==
+    \begin{tikzcd}
+        TM && {F^{*}T^{*}N} && {T^{*}N} \\
+        M && M && N
+        \arrow[from=1-1, to=2-1]
+        \arrow["{dF^{\vee}}"', from=1-3, to=1-1]
+        \arrow["{F^{*}}", from=1-3, to=1-5]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-5, to=2-5]
+        \arrow["{\id_{M}}", from=2-3, to=2-1]
+        \arrow["F"', from=2-3, to=2-5]
+    \end{tikzcd}$$
+    so we have $dF^{\vee}(p,v)=(p,dF_{p}^{\vee}(v))$ giving a map $F^{*}\sigma=dF^{\vee}\circ\sigma\circ F$ which produces pullbacks for tensors defined using $T^{*}N$ more generally. 
+\end{example}
+We conclude with the definition of local and global frames for vector bundles more generally. 
+\begin{definition}[Local Frame]\label{def: local frame vector bundle}
+    Let $\pi:E\to M$ be a rank $k$ vector bundle over a smooth manifold $M$. A collection of sections $X^{1},\dots,X^{k}$ of $E$ is a local frame at $p\in M$ if the span of the vectors $X^{1}_{p},\dots,X^{k}_{p}$ span $E_{p}$. 
+\end{definition}
+\begin{definition}[Global Frame]\label{def: global frame vector bundle}
+    Let $\pi:E\to M$ be a rank $k$ vector bundle over a smooth manifold $M$. A collection of sections $X^{1},\dots,X^{k}$ of $E$ is a global frame at if the span of the vectors $X^{1}_{p},\dots,X^{k}_{p}$ span $E_{p}$ for all $p\in M$. 
+\end{definition}

@@ -1,0 +1,78 @@
+\section{Lecture 5 -- 22nd October 2024}\label{sec: lecture 5}
+Having considered smooth manifolds, we turn to a discussion of smooth manifolds with boundary. We begin with our building blocks of smooth functions in this setting. 
+\begin{definition}[Smooth Functions on $\HH^{n}$]\label{def: smooth functions on upper half space}
+    Let $U\subseteq\HH^{n}$ be an open subset of the upper-half space. A function $f:U\to\RR^{m}$ is smooth if every $p\in U$ admits an open neighborhood $U_{p}\subseteq\RR^{n}$ such that $f$ extends to a smooth function $\widetilde{f}:U_{p}\to\RR^{m}$. 
+\end{definition}
+Considering some examples, we have the following. 
+\begin{example}
+    For $n=1$, $\HH^{1}=[0,\infty)$ and $f(x)=x^{2}$ fulfils this property. 
+\end{example}
+\begin{example}
+    $\sqrt{x}$ does not work as there is no smooth extension of the function at the origin -- derivatives get arbitrarily large. 
+\end{example}
+Given the above definition, one can extend the definition of smooth manifolds to smooth manifolds with boundary, taking smooth compatibility to be defined using \Cref{def: smooth functions on upper half space} above. In particular, every smooth manifold is a smooth manifold with boundary. However, we will largely restrict our attention to the boundaryless case. 
+
+We now turn to a discussion of partitions of unity, which will serve as a key tool in the study of smooth manifolds. Indeed, it is the fact that smooth manifolds admit partitions of unity that makes the study of them differ from the study of geometric objects such as those found in algebraic geometry. We begin with some preparatory lemmata, in particular the following. 
+\begin{lemma}\label{lem: property of special function}
+    The function $f:\RR\to\RR$ be given by 
+    $$f(t)=\begin{cases}
+        e^{-\frac{1}{t}} & t>0 \\ 0 & t\leq 0
+    \end{cases}$$
+    is smooth. 
+\end{lemma}
+\begin{proof}
+    The function is continuous as it is piecewise continuous and agrees at the origin. It thus suffices to show that $f$ has well-defined and continuous derivatives of all order. We proceed by induction on the hypothesis that $f^{(k)}$ exists, is identically 0 on $(-\infty,0]$, and is of the form $P_{k}(\frac{1}{t})e^{-\frac{1}{t}}$ where $P_{k}$ is a univariate polynomial. For the first derivative, we can explicitly compute that the derivative of $e^{-frac{1}{t}}$ is given by $\frac{1}{t^{2}}e^{-\frac{1}{t}}$ and the function satisfies the hypotheses. Suppose this holds for the first $k$ derivatives. We can compute the $k+1$st derivative at the origin as $\lim_{t\to 0^{+}}\frac{f^{(k)}(t)-f^{(k)}(0)}{t}=\lim_{t\to 0^{+}}\frac{f^{(k)}(t)}{t}$ using that $f^{(k)}(t)$ is of the form $P_{k}(\frac{1}{t})\frac{1}{t}e^{-\frac{1}{t}}$ we can show using substitution that this limits to 0 and thus that $f^{(k+1)}(t)$ is differentiable at the origin. Verification that it is of the desired form on $(0,\infty)$ is a direct computation of the derivative of $P_{k}(\frac{1}{t})e^{-\frac{1}{t}}$. In particular, $f^{(k+1)}(t)$ is differentiable and continuous, yielding the claim. 
+\end{proof}
+This function allows us to construct smooth functions that take prescribed values on specific open intervals, which we will soon generalize to balls in $\RR^{n}$. 
+\begin{lemma}\label{lem: 1 dimensional cutoff functions}
+    Let $r_{1}<r_{2}$. There exists a smooth function $g:\RR\to\RR$ with the following properties:
+    \begin{itemize}
+        \item $g=1$ on $(-\infty,r_{1}]$. 
+        \item $0<g<1$ on $(r_{1},r_{2})$. 
+        \item $g=0$ on $[r_{2},\infty)$. 
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    The function $g(t)=\frac{f(r_{2}-t)}{f(r_{2}-t)+f(t-r_{1})}$ suffices since the denominator is nonvanishing as both summands are bounded below and one of them is strictly positive for all $t\in\RR$. 
+\end{proof}
+This phenomena has a natural generalization as cutoff functions. 
+\begin{definition}[Cutoff Function]\label{def: cutoff functions}
+    Let $0<r_{1}<r_{2}$. A cutoff function is a function $H:\RR^{n}\to\RR$ with the following properties:
+    \begin{itemize}
+        \item $H=1$ on $\overline{B_{r_{1}}}$. 
+        \item $0<H<1$ on $B_{r_{2}}\setminus\overline{B_{r_{1}}}$. 
+        \item $H=0$ on $\RR^{n}\setminus B_{r_{2}}$. 
+    \end{itemize}
+\end{definition}
+These functions are easily seen to exist by inputting the norm of a point into the function of \Cref{lem: 1 dimensional cutoff functions}. 
+\begin{lemma}\label{lem: existence of cutoff functions}
+    Let $0<r_{1}<r_{2}$. There exists a cutoff function $H:\RR^{n}\to\RR$. 
+\end{lemma}
+\begin{proof}
+    The function $H(x)=g(|x|)$ with $g$ as in \Cref{lem: 1 dimensional cutoff functions} suffices. It is smooth as it is piecewise smooth and infinitely differentiable at the boundary of each piece. 
+\end{proof}
+We define one final notion before considering partitions of unity. 
+\begin{definition}[Support]\label{def: support}
+    Let $X$ be a topological space and $f:X\to\RR$ a real-valued function on $X$. The support of $f$ is given by 
+    $$\supp(f)=\overline{\{x\in X:f(x)\neq 0\}}.$$
+\end{definition}
+\begin{example}
+    A univariate polynomial has support $\RR$ since the closure of the complement of its finitely many roots is $\RR$. 
+\end{example}
+\begin{example}
+    The support of the function $g$ in \Cref{lem: 1 dimensional cutoff functions} is $(-\infty,r_{2}]$. 
+\end{example}
+Partitions of unity are defined as follows. 
+\begin{definition}[Partition of Unity]\label{def: partition of unity}
+    Let $M$ be a smooth manifold and $\{U_{\alpha}\}_{\alpha\in\Acal}$ an open cover of $M$. A partition of unity subordinate to the cover $\{U_{\alpha}\}_{\alpha\in\Acal}$ is a collection of smooth functions $\{\psi_{\alpha}\}_{\alpha\in\Acal}$ such that:
+    \begin{itemize}
+        \item $0<\psi_{\alpha}<1$, 
+        \item $\supp(\psi_{\alpha})\subseteq U_{\alpha}$,
+        \item $\{\supp(\psi_{\alpha})\}_{\alpha\in\Acal}$ is locally finite, and
+        \item $\sum_{\alpha\in\Acal}\psi_{\alpha}=1$. 
+    \end{itemize}
+\end{definition}
+These partitions of unity exist for any smooth manifold. 
+\begin{theorem}\label{thm: existence of partitions of unity}
+    Let $M$ be a smooth manifold and $\{U_{\alpha}\}_{\alpha\in\Acal}$ an open cover of $M$. There exists a partition of unity subordinate to the cover $\{U_{\alpha}\}_{\alpha\in\Acal}$.
+\end{theorem}

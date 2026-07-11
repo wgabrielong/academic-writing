@@ -1,0 +1,81 @@
+\section{Lecture 3 -- 17th October 2024}\label{sec: lecture 3}
+We consider some additional properties of elliptic functions. 
+\begin{proposition}\label{prop: sum of residues of elliptic functions}
+    Let $\Omega$ be a lattice with period parallelogram $P_{\Omega}$ and $f$ an elliptic function with respect to $\Omega$.\marginpar{Proposition 2.5} Let $a_{1},\dots,a_{n}$ and $a_{n+1},\dots,a_{\ell}$ be the zeroes and poles of $f$, respectively, of orders $m_{1},\dots,m_{n}$ and $m_{n+1},\dots,m_{\ell}$, respectively. Then 
+    \begin{equation}\label{eqn: residue sum of zeroes and poles of elliptic function}
+        \left(\sum_{i=1}^{n}m_{i}a_{i}\right)-\left(\sum_{i=n+1}^{\ell}m_{i}a_{i}\right)\in\Omega.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    Without loss of generality, we can take these zeroes and poles to lie in the interior of the period parallelogram. Consider the function $g(z)=z\cdot\frac{f'(z)}{f(z)}$ which has simple poles at both the poles and zeroes of $f$ with residues $m_{i}a_{i}$ and $-m_{i}a_{i}$, respectively. In particular, the sum of (\ref{eqn: residue sum of zeroes and poles of elliptic function}) is given by $\frac{1}{2\pi i}\int_{\partial P_{\Omega}}g(z)dz$. Decomposing this as an integral over segments as in \Cref{prop: residue sum is zero}, we have 
+    $$\int_{\partial P_{\Omega}}g(z)dz = \int_{[0,\omega_{1}]}g(z)dz + \int_{[\omega_{1},\omega_{1}+\omega_{2}]}g(z)dz + \int_{[\omega_{1}+\omega_{2},\omega_{2}]}g(z)dz+\int_{[\omega_{2},0]}g(z)dz.$$
+    Considering the integral over the oriented segments $[0,\omega_{1}]$ and $[\omega_{1}+\omega_{2},\omega_{2}]$ we can write this integral 
+    \begin{align*}
+        \int_{[0,\omega_{1}]}g(z)dz + \int_{[\omega_{1}+\omega_{2},\omega_{2}]}g(z)dz &= \int_{[0,\omega_{1}]}g(z)dz - \int_{[\omega_{2},\omega_{1}+\omega_{2}]}g(z)dz \\ 
+        &= \int_{[0,\omega_{1}]}\frac{zf'(z)}{f(z)}dz - \int_{[0,\omega_{1}]}\frac{(z+\omega_{2})f'(z+\omega_{2})}{f(z+\omega_{2})}dz \\
+        &= \omega_{2}\int_{[0,\omega_{1}]}\frac{f'(z)}{f(z)}dz
+    \end{align*}
+    where we know that $f(z)=f(z+\omega_{2}), f'(z)=f'(z+\omega_{2})$ with $f'(z)$ elliptic by \Cref{prop: elliptic functions form a field}. In particular, this an integer multiple of $\omega_{2}$. Arguing similarly, we can see that 
+    $$\int_{[\omega_{1},\omega_{1}+\omega_{2}]}g(z)dz + \int_{[\omega_{2},0]}g(z)dz = \omega_{1}\int_{[0,\omega_{2}]}\frac{f'(z)}{f(z)}dz$$
+    which is also an integer multiple of $\omega_{1}$, giving the claim.  
+\end{proof}
+We return to a consideration of the field of elliptic functions more generally. 
+\begin{proposition}\label{prop: fk is elliptic}
+    Let $\Omega$ be a lattice.\marginpar{Proposition 3.1} The function 
+    $$f_{k}(z)=\sum_{\omega\in\Omega}\frac{1}{(z-\omega)^{k}}$$
+    is a nonconstant elliptic function for $k\geq 3$. 
+\end{proposition}
+\begin{proof}
+    The function is elliptic by inspection so it remains to show that the function is locally uniformly convergent. For this, fix $r>0$ and consider the disc $B_{2r}=\{z\in\CC:|z|<2r\}$ and note that $|\Omega\cap B_{2r}|<\infty$ by discreteness of $\Omega$. For any $z$ with $|z|<r$ and $\omega$ with $|\omega|>2r$ we have $\frac{|\omega|}{2}\leq|\omega|-|z|\leq|\omega-z|$ so we have 
+    $$\sum_{|\omega|\geq 2r}\frac{1}{|z-\omega|^{k}}\leq 2^{k}\sum_{\omega\in\Omega\setminus\{0\}}\frac{1}{|\omega|^{k}}$$
+    where the latter is convergent by \Cref{prop: absolute convergence of lattice sum}, giving the claim. 
+\end{proof}
+This allows us to produce elliptic functions of orders at least 3. A natural question arises if there are elliptic functions of lower orders. By \Cref{prop: residue sum is zero} it is clear that elliptic functions of order 1 are not possible. Though, as it turns out, elliptic functions of order 2 will play an important role in the theory. 
+
+We can rearrange the equation $f_{3}(z)$ as 
+\begin{equation}\label{eqn: f3z rearranged}
+    f_{3}(z)-\frac{1}{z^{3}}=\sum_{\omega\in\Omega\setminus\{0\}}\frac{1}{(z-\omega)^{3}}
+\end{equation}
+and we note that this function has poles at all $\Omega\setminus\{0\}$ with residue zero. As such, we can form the integral $\int_{0}^{z}\sum_{\omega\in\Omega\setminus\{0\}}\frac{1}{(w-\omega)^{3}}dw$ which by convergence of the sum is given by 
+$$\sum_{\omega\in\Omega\setminus\{0\}}\int_{0}^{z}\frac{1}{(w-\omega)^{3}}dw=-\frac{1}{2}\sum_{\omega\in\Omega\setminus\{0\}}\left(\frac{1}{(z-\omega)^{2}}-\frac{1}{\omega^{2}}\right)$$
+and similarly $\int_{0}^{z}\frac{1}{w^{3}}dw=-\frac{1}{2z^{2}}$ so we have by (\ref{eqn: f3z rearranged}) that 
+$$\int f_{3}(z)dz=-\frac{1}{2z^{2}}-\frac{1}{2}\sum_{\omega\in\Omega\setminus\{0\}}\left(\frac{1}{(z-\omega)^{2}}-\frac{1}{\omega^{2}}\right).$$
+This yields the Weierstrass $\wp$-function. 
+\begin{definition}[Weierstrass $\wp$-Function]\label{def: Weierstrass P-function}
+    Let $\Omega$ be a lattice. The Weierstrass $\wp$-function of $\Omega$ is given by 
+    $$\wp(z)=\frac{1}{z^{2}}+\sum_{\omega\in\Omega\setminus\{0\}}\left(\frac{1}{(z-\omega)^{2}}-\frac{1}{\omega^{2}}\right)$$
+\end{definition}
+Moreover, this function has the expected properties. 
+\begin{proposition}\label{prop: orders of weierstrass P-function}
+    Let $\Omega$ be a lattice. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\wp(z)$ is elliptic of order 2 and 
+        \item $\wp'(z)$ is elliptic of order 3. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+    $\wp(z)$ is of order 2 by construction, with double poles at the lattice points. We now show it is elliptic. Noting that $\wp'(z+\omega)-\wp(z)=0$ we have that $\wp(z+\omega)-\wp(z)=C_{\omega}$ where $C_{\omega}$ is a constant depending on $\omega\in\Omega$. For the basis $\omega_{1},\omega_{2}$ of $\Omega$ we can consider for $z=-\frac{\omega_{i}}{2}$ that $\wp(\frac{\omega_{i}}{2})-\wp(-\frac{\omega_{i}}{2})=C_{\omega_{i}}$ but $\wp$ is even so $C_{\omega_{i}}=0$ for $i\in\{1,2\}$ showing that it is elliptic. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    This follows from the discussion above, for the Weierstrass $\wp$-function arises as an integral of $f_{3}(z)$ which is an elliptic function of order 3. 
+\end{proof}
+The Weierstrass $\wp$-function is extremely important to the study of elliptic functions, since every elliptic function can be written as a rational function in $\wp,\wp'$. We first prove the following preparatory lemma. 
+\begin{lemma}\label{lem: ellitpic function with poles only in lattice is polynomial in Weierstrass}
+    Let $\Omega$ be a lattice and $f(z)$ elliptic with respect to $\Omega$ with poles, if any, in $\Omega$. Then $f(z)=\sum_{i=0}^{n}a_{i}\wp(z)^{i}$ for $a_{i}\in\CC$. 
+\end{lemma}
+\begin{proof}
+    If $f(z)$ is a constant, we are done. Otherwise, we can take the Laurent series expansion of $f(z)$ around the origin which is of the form $\frac{a_{-2n}}{z^{2n}}+\dots$ since $f$ is even. Now note that $f(z)-\frac{a_{-2n}}{\wp(z)^{n}}$ is even and elliptic with a pole of order at most $2n-2$. Thus, repeating this process finitely many times, we eventually arrive at a constant function where we can arrive at the desired claim by multiplying the expressions by $\wp(z)^{2n}$ to clear denominators.  
+\end{proof}
+Using the above lemma, we can in fact show that it suffices to use a rational function in $\wp(z)$ multiplied by $\wp'(z)$. 
+\begin{proposition}\label{prop: elliptic functions in terms of Weierstrass}
+    Let $\Omega$ be a lattice and $f(z)$ elliptic with respect to $\Omega$. Then $f(z)$ can be written as the product of $\wp'(z)$ and a rational function in $\wp(z)$. \marginpar{Proposition 3.2} 
+\end{proposition}
+\begin{proof}
+    Note that if $f(z)$ is an elliptic function of odd order, then $f(z)/\wp(z)$ is an elliptic function of even order. So to prove the claim, it suffices to treat the case of $f(z)$ an elliptic function of even order. 
+
+    Let $f(z)$ be even with poles $a_{1},\dots,a_{n}$ in $P_{\Omega}\setminus\{0\}$. Noting that $\wp(z)-\wp(a_{i})$ vanishes for all $a_{i}$, the function $(\wp(z)-\wp(a_{i}))^{m_{i}}f(z)$ will have pole nowhere in $P_{\Omega}\setminus\{0\}$ for $n_{i}$ sufficiently large. Then observing that $f(z)\prod_{i=1}^{n}(\wp(z)-\wp(a_{i}))^{m_{i}}$ is an even elliptic function with poles only at lattice points. Thus by \Cref{lem: ellitpic function with poles only in lattice is polynomial in Weierstrass}, it can be written as a polynomial in $\wp(z)$ allowing us to rewrite $f(z)$ as the quotient of this polynomial by the product $\prod_{i=1}^{n}(\wp(z)-\wp(a_{i}))^{m_{i}}$, that is, as a rational function in $\wp(z)$. 
+\end{proof}
+\begin{remark}
+    The expression of an ellitpic function in terms of $\wp(z),\wp'(z)$ is not unique. 
+\end{remark}
+Consider the elliptic function $\wp'(z)^{2}$. This is an even elliptic function of order 6 with poles on $\Omega$. By \Cref{lem: ellitpic function with poles only in lattice is polynomial in Weierstrass}, we can write this as a degree 3 polynomial in $\wp(z)$, say $a_{0}+a_{1}\wp(z)+a_{2}\wp(z)^{2}+a_{3}\wp(z)^{3}$ with $a_{i}\in\CC$. The coefficients $a_{i}$, however, are in fact highly structured and can be deduced from the lattice. 

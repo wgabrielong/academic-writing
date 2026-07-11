@@ -1,0 +1,121 @@
+\section{Lecture 11 -- 14th November 2024}\label{sec: lecture 11}
+Recall the analytic continuation result of \Cref{prop: holomorphic extensions over polyannuli}. We will build up to showing a more general analogue that allows us to extend a holomorphic function on the complement of a compact set $U\setminus K\subseteq\CC^{n}$ to $U\subseteq\CC^{n}$ known as Hartogs' Kugelsatz. Hartogs' original proof relied on Cauchy's integral formula paired with intricate geometric arguments. We provide a simplified proof that uses more technology. In particular, we continue our discussion of holomorphic maps. 
+
+\begin{definition}[Holomorphic Jacobian]\label{def: holomorphic Jacobian}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ be open sets and $f:U\to V$ a holomorphic map. The holomorphic Jacobian is defined to be the matrix 
+    $$J^{\Hol}_{f}(z)=\begin{bmatrix}
+        \frac{\partial f_{1}}{\partial z_{1}}(\tau) & \dots & \frac{\partial f_{1}}{\partial z_{n}}(\tau) \\
+        \vdots & \ddots & \vdots \\
+        \frac{\partial f_{m}}{\partial z_{1}}(\tau) & \dots & \frac{\partial f_{m}}{\partial z_{n}}(\tau)
+    \end{bmatrix}\in\CC^{m\times n}$$
+    and $\tau\in U$. 
+\end{definition}
+We consider some examples. 
+\begin{example}
+    Let $U\subseteq\CC^{n}$ be open and $\id_{U}:U\to U$ be the holomorphic identity map. The holomorphic Jacobian $J^{\Hol}_{\id_{U}}$ is the identity matrix.  
+\end{example}
+Formation of the Jacobian is a linear operation. 
+\begin{proposition}\label{prop: jacobian of composite is product}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m},W\subseteq\CC^{k}$ be open sets and $f:U\to V,g:V\to W$ holomorphic maps. Then $J^{\Hol}_{g\circ f}=J^{\Hol}_{g}\times J^{\Hol}_{f}$. 
+\end{proposition}
+\begin{proof}
+    We compute, denoting the coordinates on $V$ by $w_{1},\dots,w_{m}$, we have 
+    \begin{align*}
+        J_{g}^{\Hol}(f(\tau))\times J_{f}^{\Hol}(\tau) &= \begin{bmatrix}
+            \frac{\partial g_{1}}{\partial w_{1}}(f(\tau)) & \dots & \frac{\partial g_{1}}{\partial w_{m}}(f(\tau)) \\
+            \vdots & \ddots & \vdots \\
+            \frac{\partial g_{k}}{\partial w_{1}}(f(\tau)) & \dots & \frac{\partial g_{k}}{\partial w_{m}}(f(\tau))
+        \end{bmatrix}\begin{bmatrix}
+            \frac{\partial f_{1}}{\partial z_{1}}(\tau) & \dots & \frac{\partial f_{1}}{\partial z_{n}}(\tau) \\
+            \vdots & \ddots & \vdots \\
+            \frac{\partial f_{m}}{\partial z_{1}}(\tau) & \dots & \frac{\partial f_{m}}{\partial z_{n}}(\tau)
+        \end{bmatrix} \\
+        &= \begin{bmatrix}
+            \sum_{r=1}^{m}\frac{\partial g_{1}}{\partial w_{r}}(f(\tau))\cdot\frac{\partial f_{r}}{\partial z_{1}}(\tau) & \dots & \sum_{r=1}^{m}\frac{\partial g_{1}}{\partial w_{r}}(f(\tau))\cdot\frac{\partial f_{r}}{\partial z_{n}}(\tau) \\
+            \vdots & \ddots & \vdots \\
+            \sum_{r=1}^{m}\frac{\partial g_{k}}{\partial w_{r}}(f(\tau))\cdot\frac{\partial f_{r}}{\partial z_{1}}(\tau) & \dots & \sum_{r=1}^{m}\frac{\partial g_{k}}{\partial w_{r}}(f(\tau))\cdot\frac{\partial f_{r}}{\partial z_{n}}(\tau)
+        \end{bmatrix} \\
+        &= \begin{bmatrix}
+            \frac{\partial(g_{1}\circ f)}{\partial z_{1}}(\tau) & \dots & \frac{\partial (g_{1}\circ f)}{\partial z_{n}}(\tau) \\
+            \vdots & \ddots & \vdots \\
+            \frac{\partial(g_{k}\circ f)}{\partial z_{1}}(\tau) & \dots & \frac{\partial (g_{k}\circ f)}{\partial z_{n}}(\tau)
+        \end{bmatrix}\\
+        &= J^{\Hol}_{f\circ g}(\tau)
+    \end{align*}
+    as desired. 
+\end{proof}
+We can define biholomorphisms which will be the appropriate notion of invertible maps in complex analysis of several variables. 
+\begin{definition}[Biholomorphism]\label{def: biholomorphism}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ and $f:U\to V$ a holomorphic map. $f$ is a biholomorphism if $f^{-1}$ exists and is holomorphic.\marginpar{Definition 2.1}
+\end{definition}
+A complex function $f:U\to V$ can be written as $u+iv$ where $u,v:\RR^{2n}\to\RR^{2m}$. We can use this to produce the real Jacobian of the complex-valued function $f$. 
+\begin{definition}[Real Jacobian]\label{def: real Jacobian}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ and $f:U\to V$ a differentiable map. For $f=u+iv$ with $u,v:\RR^{2n}\to\RR^{2m}$, the real Jacobian of $f$ is defined as 
+    $$J^{\RR}_{f}(\tau)=\begin{bmatrix}
+        J_{u,x}(\tau) & J_{u,y}(\tau) \\ J_{v,x}(\tau) & J_{v,y}(\tau)
+    \end{bmatrix}\in\CC^{2m\times 2n}.$$
+\end{definition}
+We can also define the complex Jacobian using Wirtinger derivatives and their conjugates. 
+\begin{definition}[Complex Jacobian]\label{def: complex Jacobian}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ and $f:U\to V$ a differentiable map. The complex Jacobian of $f$ is defined as 
+    $$J^{\CC}_{f}(\tau)=\begin{bmatrix}
+        J_{f,z}(\tau) & J_{\overline{f},z}(\tau) \\ J_{f,\overline{z}}(\tau) & J_{\overline{f},\overline{z}}(\tau)
+    \end{bmatrix}\in\CC^{2m\times 2n}.$$
+\end{definition}
+The holomorphic, real, and complex Jacobians are related in the following way. We omit the linear-algebraic proofs. 
+\begin{proposition}\label{prop: ranks and determinants of real and complex Jacobians}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ and $f:U\to V$ a differentiable map. Then $\mathrm{rank}(J_{f}^{\RR}(\tau))=\mathrm{rank}(J_{f}^{\CC}(\tau))$ and $\det(J_{f}^{\RR})=\det(J_{f}^{\CC})$.\marginpar{}
+\end{proposition}
+If $f$ is holomorphic and in particular a biholomorphism, we can say more. 
+\begin{proposition}\label{prop: biholomorphism and orientation preservation}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ and $f:U\to V$ a biholomorphism. Then $\det(J_{f}^{\CC})=|\det(J_{f}^{\Hol})|$.\marginpar{Proposition 2.2}
+\end{proposition}
+We will show that a holomorphic map is a biholomorphism when it is bijective on sets. This is not true for differentiable maps. We set out some preparations for the theorem. 
+\begin{proposition}\label{prop: invertible holomorphic Jacobian implies biholomorphic}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ and $f:U\to V$ a biholomorphism such that $J_{f}^{\Hol}(z)$ is invertible for all $z$. Then $f$ is biholomorphic.\marginpar{Proposition 2.4} 
+\end{proposition}
+\begin{proof}
+    Note that $J_{f}^{\RR}(z)$ is everywhere regular showing the existence of a real differentiable inverse $f^{-1}$ by the implicit function theorem. It remains to show $f^{-1}$ is holomorphic. We can compute the complex Jacobian of $f^{-1}$ which we write as $\begin{bmatrix}
+        A & B \\ C & D
+    \end{bmatrix}$ and since $f$ is holomorphic we have that its complex Jacobian is block diagonal $\begin{bmatrix}
+        M & 0 \\ 0 & \overline{M}
+    \end{bmatrix}$, we have the product 
+    $$\begin{bmatrix}
+        M & 0 \\ 0 & \overline{M}
+    \end{bmatrix}\begin{bmatrix}
+        A & B \\ C & D
+    \end{bmatrix}=\id$$
+    showing $B,C=0$ and thus $f^{-1}$ is holomorphic. 
+\end{proof}
+We make some further recollections from analysis and differential topology. 
+\begin{theorem}[Implicit Function]\label{thm: implicit function}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ and $f:U\times V\to\CC^{m}$ a holomorphic map. If $f(0,0)=0$ and the holomorphic Jacobian $J^{\Hol}_{f,w}(0)$ is regular in the variables $w$ on $V$ then there exist open subsets $U_{1}\subseteq U,V_{1}\subseteq V$ and a holomorphic map $\phi:U_{1}\to V_{1}$ such that $f(z,w)=0$ if and only if $w=\phi(z)$.\marginpar{Proposition 2.5} 
+\end{theorem}
+\begin{theorem}[Submanifold]\label{thm: submanifold}
+    Let $A\subseteq\CC^{n}$, $a\in A$, $1\leq k\leq n$. The following are equivalent:\marginpar{Proposition 2.6}
+    \begin{enumerate}[label=(\alph*)]
+        \item There is a neighborhood $U$ of $a$, a neighborhood $V$ of $0\in\CC^{k}$, and a holomorphic homeomorphism $\phi:V\to\CC^{n}$ such that $\phi(V)=A\cap U$ and $J_{\phi}^{\Hol}$ is of rank $k$. 
+        \item There exists a neighborhood $U$ of $a$ and a holomorphic function $f:U\to\CC^{n-k}$ such that $U\cap A=\{z\in U:f(z)=0\}$ and $J^{\Hol}_{f}$ is of rank $n-k$. 
+        \item There exists a neighborhood $U$ of $a$ and $W\subseteq\CC^{m}$ of 0 and a holomorphic map $\phi:U\to W$ such that $\phi(A\cap U)=\{w\in W:w_{k+1}=\dots=w_{m}=0\}$. 
+    \end{enumerate}
+\end{theorem}
+In analogy to differential topology, we have the following definition. 
+\begin{definition}[Locally Analytic Submanifold]\label{def: locally analytic submanifold}
+    Let $A\subseteq\CC^{n}$, $a\in A$, $1\leq k\leq n$. $A$ is a locally analytic submanifold of dimension $k$ if one and thus all of the following conditions hold:\marginpar{Definition 2.2}
+    \begin{enumerate}[label=(\alph*)]
+        \item There is a neighborhood $U$ of $a$, a neighborhood $V$ of $0\in\CC^{k}$, and a holomorphic homeomorphism $\phi:V\to\CC^{n}$ such that $\phi(V)=A\cap U$ and $J_{\phi}^{\Hol}$ is of rank $k$. 
+        \item There exists a neighborhood $U$ of $a$ and a holomorphic function $f:U\to\CC^{n-k}$ such that $U\cap A=\{z\in U:f(z)=0\}$ and $J^{\Hol}_{f}$ is of rank $n-k$. 
+        \item There exists a neighborhood $U$ of $a$ and $W\subseteq\CC^{m}$ of 0 and a holomorphic map $\phi:U\to W$ such that $\phi(A\cap U)=\{w\in W:w_{k+1}=\dots=w_{m}=0\}$. 
+    \end{enumerate}
+\end{definition}
+This definition globalizes. 
+\begin{definition}[Analytic Submanifold]\label{def: analytic submanifold}
+    Let $A\subseteq\CC^{n}$, $a\in A$, $1\leq k\leq n$. $A$ is an analytic manifold of dimension $k$ if it is a locally analytic submanifold of dimension $k$ for all $a\in A$.\marginpar{Definition 2.3} 
+\end{definition}
+We will require the subsequent lemma to prove the desired result. 
+\begin{lemma}\label{lem: hypersurfaces are locally analytic submanifolds at a point}
+    Let $U\subseteq\CC^{n}$ open, $f:U\to\CC$ a holomorphic function, and $M=\{z\in U:f(z)=0\}\subseteq U$. If $M$ is nonempty, there is a point $a\in M$ such that $M$ is a locally analytic manifold of dimension $n-1$.\marginpar{Lemma 2.7}
+\end{lemma}
+\begin{proof}
+    We proceed by cases. Let $a\in M$ and suppose $\nabla f(a)\neq0$. Then \Cref{thm: submanifold} (a) applies showing it is a locally analytic submanifold. Otherwise, we can take sufficiently many derivatives such that the derivative is nonzero -- all derivatives being zero implies the function is identically zero. Now let $\Lambda=\{r\in\NN:D^{\alpha}f\equiv0, |\alpha|\leq r\}$. This set is finite since the function is zero if all derivatives vanish. Now choose $\lambda\in\Lambda$ maximal so that there is a point $a\in M$ and $D^{\beta}f$ with $|\beta|=\lambda$ and $\nabla(D^{\beta}(f))(a)\neq0$. So $M_{0}=\{a\in M:D^{\beta}f(a)=0\}$ is a locally analytic submanifold of dimension $n-1$. We show that $M=M_{0}$ close to $a$. By \Cref{thm: submanifold}, we can take new coordinates on $M_{0}$ such that $M_{0}=\{z_{n}=0\}$ and $a=0$ and consider a holomorphic homeomorphism $\phi:V\to \CC^{n}$ for $V$ an open neighborhood of $a$ by $\phi(z',z_{n})$ where $\phi(0,z_{n})\neq0$ for $z_{n}\neq0$ which has a zero of order $k$ in $z_{n}=0$. By continuity of zeroes for ramilies of holomorphic functions, $\phi(z',z_{n})$ must have $k$ zeroes for $z'$ close to 0. But $M\subseteq M_{0}$  implies that all these zeroes are in $M_{0}$ so $M$ satisfies $z_{n}=0$ and is thus a locally analytic manifold of dimension $n-1$. 
+\end{proof}

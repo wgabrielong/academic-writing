@@ -1,0 +1,256 @@
+\section{Lecture 5 -- 21st October 2024}\label{sec: lecture 5}
+We begin with a discussion of cohomology. Recall from \Cref{prop: sections does not preserve exactness} that the functor $\Gamma(X,-):\Sh(X)\to\AbGrp$ from Abelian sheaves on $X$ to the category of Abelian groups is not exact. Cohomology seeks to measure the extent to which exactness fails. We will do this by extending the functor $\Gamma(X,-)$ to a derived functor $H^{i}(X,-)$\marginpar{Also $R^{i}\Gamma(X,-)$.} that takes short exact sequences of sheaves to long exact sequences of Abelian groups in such a way that is compatible with morphisms of chain complexes (ie. short exact sequences). More precisely for a commuting diagram 
+$$% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcRmNhbCJdLFsyLDAsIlxcR2NhbCJdLFszLDAsIlxcSGNhbCJdLFs0LDAsIjAiXSxbMCwxLCIwIl0sWzEsMSwiXFxGY2FsJyJdLFsyLDEsIlxcR2NhbCciXSxbMywxLCJcXEhjYWwnIl0sWzQsMSwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdLFs1LDZdLFs2LDddLFs3LDhdLFs4LDldLFsxLDZdLFsyLDddLFszLDhdXQ==
+\begin{tikzcd}
+	0 & \Fcal & \Gcal & \Hcal & 0 \\
+	0 & {\Fcal'} & {\Gcal'} & {\Hcal'} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}$$
+we would expect the derived functor to induce a commuting diagram of long exact sequences
+$$% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxkb3RzIl0sWzEsMCwiSF57aX0oWCxcXEZjYWwpIl0sWzIsMCwiSF57aX0oWCxcXEdjYWwpIl0sWzMsMCwiSF57aX0oWCxcXEhjYWwpIl0sWzQsMCwiXFxkb3RzIl0sWzAsMSwiXFxkb3RzIl0sWzEsMSwiSF57aX0oWCxcXEZjYWwnKSJdLFsyLDEsIkhee2l9KFgsXFxHY2FsJykiXSxbMywxLCJIXntpfShYLFxcSGNhbCcpIl0sWzQsMSwiXFxkb3RzIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzUsNl0sWzYsN10sWzcsOF0sWzEsNl0sWzIsN10sWzMsOF0sWzgsOV1d
+\begin{tikzcd}
+	\dots & {H^{i}(X,\Fcal)} & {H^{i}(X,\Gcal)} & {H^{i}(X,\Hcal)} & \dots \\
+	\dots & {H^{i}(X,\Fcal')} & {H^{i}(X,\Gcal')} & {H^{i}(X,\Hcal')} & \dots.
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}$$
+\begin{example}
+    Let $X=\CC\setminus\{0\}$ and consider the exact sequence of sheaves 
+    $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiXFx1bmRlcmxpbmV7XFxaWn0iXSxbMywwLCJcXE9jYWxfe1h9Il0sWzUsMCwiXFxPY2FsX3tYfV57XFx0aW1lc30iXSxbNiwwLCIwIl0sWzAsMV0sWzEsMl0sWzIsMywiZlxcbWFwc3RvXFxleHAoMlxccGkgaSBmKSJdLFszLDRdXQ==
+    \begin{tikzcd}
+        0 & {\underline{\ZZ}} && {\Ocal_{X}} && {\Ocal_{X}^{\times}} & 0. 
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-4]
+        \arrow["{f\mapsto\exp(2\pi i f)}", from=1-4, to=1-6]
+        \arrow[from=1-6, to=1-7]
+    \end{tikzcd}$$
+    This induces a long exact sequence in cohomology 
+    $$0\to H^{0}(X,\underline{\ZZ})\to H^{0}(X,\Ocal_{X})\to H^{0}(X,\Ocal_{X}^{\times})\to H^{1}(X,\underline{\ZZ})\to H^{1}(X,\Ocal_{X})=0$$
+    where the vanishing of $H^{1}(X,\Ocal_{X})$ follows from $X$ being Steinian. We can explicitly compute $H^{0}(X,\underline{\ZZ})=\ZZ$ since $X$ is connected and $H^{1}(X,\underline{\ZZ})=\ZZ$ can be computed directly with some work. Alternatively, one can appeal to the agreement of sheaf and singular cohomology and the latter as the Abelianlization of $\pi_{1}(X)=\ZZ$ which is $\ZZ$. 
+\end{example}
+We develop the theory in the generality of additive $\delta$-functors between Abelian categories. 
+\begin{definition}[$\delta$-Functor]\label{def: delta functor}
+    Let $\Asf,\Bsf$ be Abelian categories. A $\delta$-functor from $\Asf\to\Bsf$ consists of the data of 
+    \begin{itemize}
+        \item additive functors $H^{i}:\Asf\to\Bsf$ for $i\geq0$, and 
+        \item for any short exact sequence $0\to A_{1}\to A_{2}\to A_{3}\to 0$ in $\Asf$ a morphism $\delta^{i}:H^{i}(A_{3})\to H^{i+1}(A_{1})$ in $\Bsf$.
+    \end{itemize}
+    satisfying the following properties:
+    \begin{itemize}
+        \item For all short exact sequences $0\to A_{1}\to A_{2}\to A_{3}\to 0$ in $\Asf$, the induced sequence 
+        $$% https://q.uiver.app/#q=WzAsNyxbMCwwLCIwIl0sWzEsMCwiSF57MH0oQV97MX0pIl0sWzIsMCwiSF57MH0oQV97Mn0pIl0sWzMsMCwiSF57MH0oQV97M30pIl0sWzEsMSwiSF57MX0oQV97MX0pIl0sWzIsMSwiSF57MX0oQV97Mn0pIl0sWzMsMSwiXFxkb3RzIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNCwiXFxkZWx0YV57MH0iLDFdLFs0LDVdLFs1LDZdXQ==
+        \begin{tikzcd}
+            0 & {H^{0}(A_{1})} & {H^{0}(A_{2})} & {H^{0}(A_{3})} \\
+            & {H^{1}(A_{1})} & {H^{1}(A_{2})} & \dots
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow["{\delta^{0}}"{description}, from=1-4, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+        \end{tikzcd}$$
+        is a long exact sequence in $\Bsf$. 
+        \item Any morphism of short exact sequences
+        $$% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkFfezF9Il0sWzIsMCwiQV97Mn0iXSxbMywwLCJBX3szfSJdLFs0LDAsIjAiXSxbMCwxLCIwIl0sWzEsMSwiQV97MX0nIl0sWzIsMSwiQV97Mn0nIl0sWzMsMSwiQV97M30nIl0sWzQsMSwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdLFs1LDZdLFs2LDddLFs3LDhdLFs4LDldLFsxLDZdLFsyLDddLFszLDhdXQ==
+        \begin{tikzcd}
+            0 & {A_{1}} & {A_{2}} & {A_{3}} & 0 \\
+            0 & {A_{1}'} & {A_{2}'} & {A_{3}'} & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-2, to=2-2]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=1-3, to=2-3]
+            \arrow[from=1-4, to=1-5]
+            \arrow[from=1-4, to=2-4]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+            \arrow[from=2-4, to=2-5]
+        \end{tikzcd}$$
+        induces a morphism of long exact sequences 
+        $$% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiMCJdLFsxLDAsIkheezB9KEFfezF9KSJdLFsyLDAsIkheezB9KEFfezJ9KSJdLFszLDAsIkheezB9KEFfezN9KSJdLFs0LDAsIkheezF9KEFfezF9KSJdLFswLDEsIjAiXSxbMSwxLCJIXnswfShBX3sxfScpIl0sWzIsMSwiSF57MH0oQV97Mn0nKSJdLFszLDEsIkheezB9KEFfezN9JykiXSxbNCwxLCJIXnsxfShBX3sxfScpIl0sWzUsMCwiXFxkb3RzIl0sWzUsMSwiXFxkb3RzIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzUsNl0sWzYsN10sWzcsOF0sWzgsOV0sWzEsNl0sWzIsN10sWzMsOF0sWzQsMTBdLFs0LDldLFs5LDExXV0=
+        \begin{tikzcd}
+            0 & {H^{0}(A_{1})} & {H^{0}(A_{2})} & {H^{0}(A_{3})} & {H^{1}(A_{1})} & \dots \\
+            0 & {H^{0}(A_{1}')} & {H^{0}(A_{2}')} & {H^{0}(A_{3}')} & {H^{1}(A_{1}')} & \dots.
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-2, to=2-2]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=1-3, to=2-3]
+            \arrow[from=1-4, to=1-5]
+            \arrow[from=1-4, to=2-4]
+            \arrow[from=1-5, to=1-6]
+            \arrow[from=1-5, to=2-5]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+            \arrow[from=2-4, to=2-5]
+            \arrow[from=2-5, to=2-6]
+        \end{tikzcd}$$
+    \end{itemize}
+\end{definition}
+The functors defining cohomology will arise as a special class of $\delta$-functors, known as universal $\delta$-functors. 
+\begin{definition}[Universal $\delta$-Functor]\label{def: universal delta functor}
+    A $\delta$-functor $(H^{i})_{i\geq0}:\Asf\to\Bsf$ is universal if for any other $\delta$-functor $(\widetilde{H}^{i})_{i\geq0}$ and any natural transformation $H^{0}\Rightarrow \widetilde{H}^{0}$, there exists a unique natural transformation $H^{i}\Rightarrow\widetilde{H}^{i}$ for $i\geq 1$ such that for all short exact sequences $0\to A_{1}\to A_{2}\to A_{3}\to 0$ in $\Asf$ the induced diagram 
+    $$% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiMCJdLFsxLDAsIkheezB9KEFfezF9KSJdLFsyLDAsIkheezB9KEFfezJ9KSJdLFszLDAsIkheezB9KEFfezN9KSJdLFs0LDAsIkheezF9KEFfezF9KSJdLFswLDEsIjAiXSxbMSwxLCJcXHdpZGV0aWxkZXtIfV57MH0oQV97MX0pIl0sWzIsMSwiXFx3aWRldGlsZGV7SH1eezB9KEFfezJ9KSJdLFszLDEsIlxcd2lkZXRpbGRle0h9XnswfShBX3szfSkiXSxbNCwxLCJcXHdpZGV0aWxkZXtIfV57MX0oQV97MX0pIl0sWzUsMCwiXFxkb3RzIl0sWzUsMSwiXFxkb3RzIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzUsNl0sWzYsN10sWzcsOF0sWzgsOV0sWzEsNl0sWzIsN10sWzMsOF0sWzQsMTBdLFs0LDldLFs5LDExXV0=
+    \begin{tikzcd}
+        0 & {H^{0}(A_{1})} & {H^{0}(A_{2})} & {H^{0}(A_{3})} & {H^{1}(A_{1})} & \dots \\
+        0 & {\widetilde{H}^{0}(A_{1})} & {\widetilde{H}^{0}(A_{2})} & {\widetilde{H}^{0}(A_{3})} & {\widetilde{H}^{1}(A_{1})} & \dots
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=1-5, to=1-6]
+        \arrow[from=1-5, to=2-5]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=2-5, to=2-6]
+    \end{tikzcd}$$
+    is commutative. 
+\end{definition}
+\begin{remark}
+    Note that if we fix the functor $H^{0}$, then any universal $\delta$-functor will be unique. 
+\end{remark}
+We now introduce effacable functors which will provide a way to produce universal $\delta$-functors. 
+\begin{definition}[Effacable Functor]\label{def: effacable functor}
+    Let $F:\Asf\to\Bsf$ be a functor between Abelian categories. $F$ is effacable if for each object $A$ of $\Asf$, there exists an object $A'$ of $\Asf$ and a monomorphism $\varphi:A\to A'$ such that $F(\varphi)$ is the zero morphism. 
+\end{definition}
+\begin{remark}
+    In practice, we can often take $F(A')$ to be the zero object. 
+\end{remark}
+The following result is due to Grothendieck in his famed ``T\^{o}hoku'' paper \cite{Tohoku}. 
+\begin{theorem}[Grothendieck]\label{thm: Grothendieck tohoku effacable implies universal}
+    If $(H^{i})_{i\geq0}:\Asf\to\Bsf$ is a $\delta$-functor between Abelian categories such that $H^{i}$ is effacable for $i\geq 1$ then $(H^{i})_{i\geq0}$ is a universal $\delta$-functor. 
+\end{theorem}
+\begin{remark}
+    We will typically be considering the extension of a left exact additive functor between Abelian categories $F:\Asf\to\Bsf$, that is, where $H^{0}=F$, in which case we will denote $H^{i}$ as $R^{i}F$, the $i$th right derived functor of $F$. 
+\end{remark}
+Cohomology is generally defined in terms of injective resolutions. 
+\begin{definition}[Injective Object]\label{def: injective object}
+    Let $\Asf$ be an Abelian category. An object $I$ of $\Asf$ is injective if for all monomorphisms $A\hookrightarrow A'$ there exists a morphism $A\to I$ making the diagram 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQSciXSxbMCwxLCJJIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyXSxbMSwyLCJcXGV4aXN0cyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \begin{tikzcd}
+        A && {A'} \\
+        I
+        \arrow[hook, from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow["\exists", dashed, from=1-3, to=2-1]
+    \end{tikzcd}$$
+    commute. 
+\end{definition}
+\begin{remark}
+    Note that the map $A'\to I$ need not be unique. 
+\end{remark}
+\begin{definition}[Injective Resolution]\label{def: injective resolutions}
+    Let $\Asf$ be an Abelian category and $A$ an object of $\Asf$. An injective resolution of $A$ is a long exact sequence 
+    $$0\to A\to I_{0}\to I_{1}\to\dots$$
+    with $I_{j}$ injective for all $j\geq0$. 
+\end{definition}
+\begin{definition}[Enough Injectives]\label{def: enough injectives}
+    Let $\Asf$ be an Abelian category. $\Asf$ has enough injectives if each object $A$ admits an injective resolution. 
+\end{definition}
+As a step towards defining cohomology, we make the following construction. 
+\begin{proposition}\label{prop: derived functor of additive left exact functor}
+    Let $F:\Asf\to\Bsf$ be an additive left exact functor between Abelian categories with $\Asf$ having enough injectives. For $A$ an object of $\Asf$ with injective resolution $I_{\bullet}$, set 
+    $$R^{i}F(A)=\frac{\ker\left(F(I_{i})\to F(I_{i+1})\right)}{\img\left(F(I_{i-1})\to F(I_{i})\right)}.$$
+    Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $R^{0}F(A)=F(A)$, and 
+        \item the formation of $R^{i}F(A)$ is independent of choice of the injective resolution. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+    $R^{0}F(A)=\ker(F(I_{0})\to F(I_{1}))$ but since $F$ is left exact, we have that $0\to F(A)\to F(I_{0})\to F(I_{1})$ is exact, where the kernel of $F(I_{0})\to F(I_{1})$ is $F(A)$. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    Let $A$ be an object of $\Asf$ and $I_{\bullet},I_{\bullet}'$ injective resolutions of $A$. The universal property of injective objects induces a diagram 
+    $$% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiMCJdLFswLDEsIjAiXSxbMSwwLCJBIl0sWzEsMSwiQSJdLFsyLDAsIklfezB9Il0sWzMsMCwiSV97MX0iXSxbNCwwLCJJX3syfSJdLFs1LDAsIlxcZG90cyJdLFsyLDEsIklfezB9JyJdLFszLDEsIklfezF9JyJdLFs0LDEsIklfezJ9JyJdLFs1LDEsIlxcZG90cyJdLFswLDJdLFsyLDRdLFs0LDVdLFs1LDZdLFs2LDddLFsxLDNdLFszLDhdLFs4LDldLFs5LDEwXSxbMiwzXSxbNCw4XSxbMTAsMTFdLFs2LDEwXSxbNSw5XV0=
+    \begin{tikzcd}
+        0 & A & {I_{0}} & {I_{1}} & {I_{2}} & \dots \\
+        0 & A & {I_{0}'} & {I_{1}'} & {I_{2}'} & \dots
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=1-5, to=1-6]
+        \arrow[from=1-5, to=2-5]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=2-5, to=2-6]
+    \end{tikzcd}$$
+    and dually from $I_{\bullet}'\to I_{\bullet}$. This induces morphisms in $\Bsf$
+    $$% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiMCJdLFswLDEsIjAiXSxbMSwwLCJGKEEpIl0sWzEsMSwiRihBKSJdLFsyLDAsIkYoSV97MH0pIl0sWzMsMCwiRihJX3sxfSkiXSxbNCwwLCJGKElfezJ9KSJdLFs1LDAsIlxcZG90cyJdLFsyLDEsIkYoSV97MH0nKSJdLFszLDEsIkYoSV97MX0nKSJdLFs0LDEsIkYoSV97Mn0nKSJdLFs1LDEsIlxcZG90cyJdLFswLDJdLFsyLDRdLFs0LDVdLFs1LDZdLFs2LDddLFsxLDNdLFszLDhdLFs4LDldLFs5LDEwXSxbMiwzXSxbNCw4XSxbMTAsMTFdLFs2LDEwXSxbNSw5XV0=
+    \begin{tikzcd}
+        0 & {F(A)} & {F(I_{0})} & {F(I_{1})} & {F(I_{2})} & \dots \\
+        0 & {F(A)} & {F(I_{0}')} & {F(I_{1}')} & {F(I_{2}')} & \dots
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=1-5, to=1-6]
+        \arrow[from=1-5, to=2-5]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=2-5, to=2-6]
+    \end{tikzcd}$$
+    and moreover for each $i$ there are unique morphisms $\ker(F(I_{i})\to F(I_{i+1}))\to\ker(F(I_{i}')\to F(I_{i+1}'))$ and $\img\left(F(I_{i-1})\to F(I_{i})\right)\to\img\left(F(I_{i-1}')\to F(I_{i}')\right)$ induced by the universal property of kernels and images, respectively. This in turn induces a unique map between the quotients $\frac{\ker(F(I_{i})\to F(I_{i+1}))}{\img\left(F(I_{i-1})\to F(I_{i})\right)}\to\frac{\ker(F(I_{i}')\to F(I_{i+1}'))}{\img\left(F(I_{i-1}')\to F(I_{i}')\right)}$. Applying the map to the map bewteen resolutions $I_{\bullet}'\to I_{\bullet}$ we get a unique map in the opposite direction and verifying that these are two-sided inverses yields the claim. 
+\end{proof}
+\begin{definition}[Right Derived Functor of Left Exact Functor]\label{def: right derived functor of left exact functor}
+    Let $F:\Asf\to\Bsf$ be an additive left exact functor between Abelian categories with $\Asf$ having enough injectives. The $i$th right derived functor $R^{i}F$ is given by 
+    $$A\mapsto\frac{\ker\left(F(I_{i})\to F(I_{i+1})\right)}{\img\left(F(I_{i-1})\to F(I_{i})\right)}$$
+    for some injective resolution $I_{\bullet}$ of $A$. 
+\end{definition}
+\begin{remark}
+    This is well-defined by \Cref{prop: derived functor of additive left exact functor} (ii). 
+\end{remark}
+The construction of the right derived functor of a left exact functor returns the zero object of $\Bsf$ when evaluated on an injective object of $\Asf$. 
+\begin{lemma}\label{lem: vanishing of higher derived image of injective object}
+    Let $F:\Asf\to\Bsf$ be an additive left exact functor between Abelian categories with $\Asf$ having enough injectives. If $A$ is an injective object of $\Asf$ then $R^{i}F(A)=0$ for $i\geq 1$.   
+\end{lemma}
+\begin{proof}
+    An injective resolution is given by $0\to A\to A\to 0$, in particular $I_{0}=A$ and $I_{i}=0$ for $i\geq 1$ giving the claim. 
+\end{proof}
+We will be most interested in the following cases, where we note here that the category of sheaves of Abelian groups on a topological space has enough injectives \cite[\href{https://stacks.math.columbia.edu/tag/01DL}{Tag 01DL}]{stacks-project}. 
+\begin{definition}[Sheaf Cohomology]\label{def: sheaf cohomology}
+    Let $X$ be a topological space and $\Fcal$ a sheaf of Abelian groups on $X$. The $i$th sheaf cohomology group of $\Fcal$ is given by $R^{i}\Gamma(X,\Fcal)$. 
+\end{definition}
+\begin{definition}[Derived Pushforward]\label{def: derived pushforward}
+    Let $f:X\to Y$ be a continuous map between topological spaces and $\Fcal$ a sheaf on $X$. The $i$th derived pushforward of $\Fcal$ is given by the sheaf $R^{i}f_{*}\Fcal$. 
+\end{definition}
+\begin{remark}
+    Both the global sections functor and direct image functor are left exact as shown in \Cref{prop: sections does not preserve exactness,prop: left exactness of direct image}.
+\end{remark}

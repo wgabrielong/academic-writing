@@ -1,0 +1,137 @@
+\section{Lecture 16 -- 2nd December 2024}\label{sec: lecture 16}
+We discuss some ``cancellation'' properties of morphisms of schemes.\marginpar{For this, we follow \cite[\S 11.1]{Vakil}.} 
+\begin{proposition}[Cancellation for Morphisms of Schemes]\label{prop: cancellation property for morphisms}
+    Let P be a property of schemes preserved by base change and composition. Consider a diagram of schemes 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzIsMCwiWSJdLFsxLDEsIloiXSxbMCwyLCJnIiwyXSxbMCwxLCJmIl0sWzEsMiwiaCJdXQ==
+    \begin{tikzcd}
+        X && Y \\
+        & Z
+        \arrow["f", from=1-1, to=1-3]
+        \arrow["h"', from=1-1, to=2-2]
+        \arrow["g", from=1-3, to=2-2]
+    \end{tikzcd}$$
+    where $h$ is in P and the diagonal morphism induced by $g$ is in P. Then $f$ is in P. 
+\end{proposition}
+\begin{proof}
+    We consider the diagram 
+    $$% https://q.uiver.app/#q=WzAsNyxbMCwwLCJYXFxjb25nIFhcXHRpbWVzX3tZfVkiXSxbNiwwLCJZXFx0aW1lc197Wn1aXFxjb25nIFkiXSxbMCwxLCJZIl0sWzIsMSwiWVxcdGltZXNfe1p9WSJdLFs0LDEsIlgiXSxbNiwxLCJaIl0sWzMsMCwiWFxcdGltZXNfe1p9WSJdLFswLDEsImYiLDAseyJjdXJ2ZSI6LTN9XSxbMCw2XSxbNiwxXSxbMCwyXSxbMiwzXSxbNiwzXSxbNiw0XSxbMSw1XSxbNCw1XV0=
+    \begin{tikzcd}
+        {X\cong X\times_{Y}Y} &&& {X\times_{Z}Y} &&& {Y\times_{Z}Z\cong Y} \\
+        Y && {Y\times_{Z}Y} && X && Z
+        \arrow[from=1-1, to=1-4]
+        \arrow["f", curve={height=-18pt}, from=1-1, to=1-7]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-4, to=1-7]
+        \arrow[from=1-4, to=2-3]
+        \arrow[from=1-4, to=2-5]
+        \arrow[from=1-7, to=2-7]
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=2-5, to=2-7]
+    \end{tikzcd}$$
+    with Cartesian squares induced by the diagonal base change theorem. Both $Y\to Y\times_{Z}Y$ and $X\to Z$ lie in P and thus so does their composite. 
+\end{proof}
+As a corollary, we can deduce the following results about morphisms. 
+\begin{corollary}\label{corr: cancellation for separatedness}
+    If $g\circ f$ is a separated morphism then $f$ is a separated morphism. 
+\end{corollary}
+\begin{proof}
+    It suffices to show that the diagonals of separated morphisms are separated. But closed immersions are separated giving the claim. 
+\end{proof}
+\begin{corollary}\label{corr: cancellation for properness}
+    If $g\circ f$ is a proper morphism, $g$ a separated morphism, and $f$ a quasicompact morphism then $f$ is a proper morphism. 
+\end{corollary}
+\begin{proof}
+    Since $g$ is separated, the diagonal morphism is a closed immersion and hence finite. In particular, $g$ is proper. Applying the proposition yields the claim. 
+\end{proof}
+We consider the valuative criteria for separatedness and properness. Recall the following. 
+\begin{definition}[Valuation]\label{def: valuation}
+    Let $K$ be a field and $\Gamma$ a totally ordered Abelian group. A valuation on a field $K$ is a map $\nu:K^{\times}\to\Gamma$ such that 
+    \begin{enumerate}[label=(\roman*)]
+        \item $\nu(xy)=\nu(x)+\nu(y)$,
+        \item $\nu(0)=\infty$, and
+        \item $\nu(x+y)=\min\{\nu(x),\nu(y)\}$.
+    \end{enumerate}
+\end{definition}
+A valued field allows us to produce a ring of $\nu$-integers. 
+\begin{definition}[Valuation Ring]\label{def: valuation ring}
+    Let $K$ be a field with valuation $\nu$. The valuation ring of $K$ is the ring
+    $$\Ocal_{\nu}=\{x\in K:\nu(x)\geq0\}.$$
+\end{definition}
+\begin{remark}
+    $\spec(\Ocal_{\nu})=\{\eta,\mfrak_{\nu}\}$ where $\mfrak_{\nu}=\{x\in K:\nu(x)>0\}$.  
+\end{remark}
+The results are as follows.
+\begin{theorem}[Valuative Criterion for Separatedness]\label{thm: valuative criterion for separatedness}
+    Let $f:X\to Y$ be a finite type morphism of schemes and $Y$ locally Noetherian. Then $f$ is separated if and only if for all diagrams 
+    $$% https://q.uiver.app/#q=WzAsNCxbMiwwLCJYIl0sWzIsMSwiWSJdLFswLDAsIlxcc3BlYyhLKSJdLFswLDEsIlxcc3BlYyhBKSJdLFswLDEsImYiXSxbMiwwXSxbMiwzXSxbMywxXSxbMywwLCJcXGxlcTEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+        {\spec(K)} && X \\
+        {\spec(A)} && Y
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow["f", from=1-3, to=2-3]
+        \arrow["\leq1"{description}, dashed, from=2-1, to=1-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    with $A$ a discrete valuation ring with fraction field $K$ there exists at most one map $\spec(A)\to X$ making the diagram commute. 
+\end{theorem}
+This is reflected in the well-examined example of the affine line with doubled origin. 
+\begin{example}
+    Let $X$ be the affine line with doubled origin and consider the diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMiwwLCJYIl0sWzIsMSwiXFxBXnsxfV97a30iXSxbMCwwLCJcXHNwZWMoayh0KSkiXSxbMCwxLCJcXHNwZWMoa1t0XV97KHQpfSkiXSxbMiwwXSxbMiwzXSxbMywxXSxbMCwxLCJmIl1d
+    \begin{tikzcd}
+        {\spec(k(t))} && X \\
+        {\spec(k[t]_{(t)})} && {\A^{1}_{k}.}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow["f", from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    Writing $\A^{1}_{k}$ as $\spec(k[x])$, there are two maps along the bottom $(x)\mapsto(0)$ and $(x)\mapsto(t)$, each of which induce a lift to $X$. In particular, there is more than one map $\spec(k[t]_{(t)})$ making the diagram commute, which agrees with $X$ not being separated. 
+\end{example}
+In the case of properness, we have the following. 
+\begin{theorem}[Valuative Criterion for Properness]\label{thm: valuative criterion for properness}
+    Let $f:X\to Y$ be a finite type morphism of schemes and $Y$ locally Noetherian. Then $f$ is proper if and only if for all diagrams 
+    $$% https://q.uiver.app/#q=WzAsNCxbMiwwLCJYIl0sWzIsMSwiWSJdLFswLDAsIlxcc3BlYyhLKSJdLFswLDEsIlxcc3BlYyhBKSJdLFswLDEsImYiXSxbMiwwXSxbMiwzXSxbMywxXSxbMywwLCJcXGV4aXN0cyEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+        {\spec(K)} && X \\
+        {\spec(A)} && Y
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow["f", from=1-3, to=2-3]
+        \arrow["{\exists!}"{description}, dashed, from=2-1, to=1-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    with $A$ a discrete valuation ring with fraction field $K$ there exists a unqiue map $\spec(A)\to X$ making the diagram commute. 
+\end{theorem}
+\begin{example}
+    Consider the square 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHNwZWMoayh0KSkiXSxbMCwxLCJcXHNwZWMoa1t0XV97KHQpfSkiXSxbMiwwLCJcXEFeezF9X3trfSJdLFsyLDEsIlxcc3BlYyhrKSJdLFswLDJdLFsyLDNdLFswLDFdLFsxLDNdXQ==
+    \begin{tikzcd}
+        {\spec(k(t))} && {\A^{1}_{k}} \\
+        {\spec(k[t]_{(t)})} && {\spec(k)}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    where taking $\A^{1}_{k}=\spec(k[x])$, the map $(x)\mapsto(t^{-1})$ along the top does not extend to the discrete valuation ring, verifying that $\A^{1}_{k}$ is not proper. 
+\end{example}
+We now turn to a discussion of sheaves of modules, which we discuss in the generality of ringed spaces. 
+\begin{definition}[Modules over the Structure Sheaf]\label{def: OX modules}
+    Let $X$ be a ringed space. A sheaf of Abelian groups $\Fcal$ on $X$ is a sheaf of $\Ocal_{X}$-modules if for all $U\subseteq V$ the diagram with vertical maps restrictions and horizontal maps the $\Ocal_{X}$ action
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE9jYWxfe1h9KFUpXFx0aW1lc1xcRmNhbChVKSJdLFsyLDAsIlxcRmNhbChVKSJdLFsyLDEsIlxcRmNhbChWKSJdLFswLDEsIlxcT2NhbF97WH0oVilcXHRpbWVzXFxGY2FsKFYpIl0sWzAsMV0sWzEsMl0sWzAsM10sWzMsMl1d
+    \begin{tikzcd}
+        {\Ocal_{X}(U)\times\Fcal(U)} && {\Fcal(U)} \\
+        {\Ocal_{X}(V)\times\Fcal(V)} && {\Fcal(V)}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    commutes. 
+\end{definition}
+Naturally, one defines the morphisms of sheaves of $\Ocal_{X}$-modules to be defined as morphisms of Abelian groups between $\Ocal_{X}$-modules compatible with the action of $\Ocal_{X}$. These form an Abelian category $\Mod_{\Ocal_{X}}$ as shown in \cite[\href{https://stacks.math.columbia.edu/tag/01AF}{Tag 01AF}]{stacks-project}. 
+\begin{remark}
+    The forgetful functor $\Mod_{\Ocal_{X}}\to\Sh(X,\AbGrp)$ is faithful but not full -- being a morphism of $\Ocal_{X}$-modules requires compatiblility with the $\Ocal_{X}$ action beyond being a morphism of Abelian groups. 
+\end{remark}

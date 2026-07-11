@@ -1,0 +1,94 @@
+\section{Lecture 19 -- 13th December 2024}\label{sec: lecture 19}
+Let us recall the following definition from category theory. 
+\begin{definition}[Split Monomorphism]\label{def: split surjection}
+    Let $\Csf$ be a category and $f:A\to B$ a monomorphism. $f$ is a split monomorphism if there exists $s:B\to A$ such that $f\circ s=\id_{B}$. 
+\end{definition}
+The inclusion of both $\bigwedge^{b}V$ and $\Sym^{b}V$ into $T^{0,b}V$ are of this type. 
+\begin{lemma}\label{lem: inclusion of symmetric and alternating tensors are split}
+    The inclusions $\bigwedge^{b}V\hookrightarrow T^{0,b}V$ and $\Sym^{b}V\hookrightarrow T^{0,b}V$ are split via the maps 
+    $$\alpha\mapsto\frac{1}{b!}\sum_{\sigma\in S_{b}}\mathrm{sign}(\sigma)\alpha_{\sigma}\text{ and }\alpha\mapsto\frac{1}{b!}\sum_{\sigma}\alpha_{\sigma}$$
+    with $\alpha_{\sigma}$ the permutation of the inputs of $\alpha$ by $\sigma$. 
+\end{lemma}
+\begin{proof}
+    The composite maps 
+    $$\bigwedge^{b}V\hookrightarrow T^{0,b}V\twoheadrightarrow\bigwedge^{b}V, \Sym^{b}V\hookrightarrow T^{0,b}V\twoheadrightarrow\Sym^{b}V$$
+    are easily seen to be inclusions, from which the claim follows. 
+\end{proof}
+The preceding discussions of linear algebra can be globalized to the setting of vector bundles, as we now define. 
+\begin{definition}[Vector Bundle]\label{def: vector bundle}
+    Let $M$ be a smooth manifold. A vector bundle is the data of a smooth manifold $E$ and a smooth map $\pi:E\to M$ such that for all $p\in M$, $E_{p}=\pi^{-1}(p)$ is a $k$-dimensional real vector space and an open neighborhood $U$ of $p$ on which $\pi^{-1}(U)\cong U\times\RR^{k}$. 
+\end{definition}
+\begin{remark}
+    We will henceforth assume $\dim_{\RR}E_{p}$ is constant for all $p$. 
+\end{remark}
+\begin{example}
+    Consider the M\"{o}bius bundle on the circle $S^{1}$. This is not a trivial bundle -- of the form $S^{1}\times\RR^{k}$ for some $k$, but is locally of this form. 
+\end{example}
+We define morphisms of vector bundles as follows. 
+\begin{definition}[Morphism of Vector Bundles]\label{def: morphism of vector bundles}
+    Let $\pi:E\to M, \pi':E'\to M'$ be vector bundles over smooth manifolds $M,M'$. A moprhism of vector bundles is a pair of smooth maps $\widetilde{F}:E\to E', F:M\to M'$ such that 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFIl0sWzAsMSwiTSJdLFsyLDAsIkUnIl0sWzIsMSwiTSciXSxbMCwyLCJcXHdpZGV0aWxkZXtGfSJdLFsxLDMsIkYiLDJdLFswLDEsIlxccGkiLDJdLFsyLDMsIlxccGknIl1d
+    \begin{tikzcd}
+        E && {E'} \\
+        M && {M'}
+        \arrow["{\widetilde{F}}", from=1-1, to=1-3]
+        \arrow["\pi"', from=1-1, to=2-1]
+        \arrow["{\pi'}", from=1-3, to=2-3]
+        \arrow["F"', from=2-1, to=2-3]
+    \end{tikzcd}$$
+    commutes and $\widetilde{F}|_{E_{b}}:E_{p}\to E_{f(p)}'$ is a linear map for all $p\in M$. 
+\end{definition}
+\begin{definition}[Subbundle]\label{def: subbundle}
+    Let $\pi:E\to M$ be a vector bundle over a smooth manifold $M$. A subbundle of $E$ is the data of a vector bundle $\pi':E'\to M$ and a morphism of vector bundles $\widetilde{F}:E'\to E$ such that 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFJyJdLFswLDEsIk0nIl0sWzIsMCwiRSJdLFsyLDEsIk0iXSxbMCwyLCJcXHdpZGV0aWxkZXtGfSJdLFsxLDMsIkYiLDJdLFswLDEsIlxccGknIiwyXSxbMiwzLCJcXHBpIl1d
+    \begin{tikzcd}
+        {E'} && E \\
+        {M'} && M
+        \arrow["{\widetilde{F}}", from=1-1, to=1-3]
+        \arrow["{\pi'}"', from=1-1, to=2-1]
+        \arrow["\pi", from=1-3, to=2-3]
+        \arrow["\id_{M}"', from=2-1, to=2-3]
+    \end{tikzcd}$$
+    commutes and $E'_{p}\to E_{p}$ is an inclusion of vector spaces for all $p\in M$.
+\end{definition}
+Moreover, \Cref{def: vector bundle,def: morphism of vector bundles} allow us to define a category of vector bundles and a category of vector bundles over a fixed base. 
+\begin{definition}[Category of Vector Bundles]\label{def: category of vector bundles}
+    The category of vector bundles $\VB$ is a category with objects vector bundles and morphisms those of vector bundles. 
+\end{definition}
+\begin{definition}[Category of Vector Bundles With Fixed Base]\label{def: category of vector bundles with fixed base}
+    Let $M$ be a smooth manifold. The category of smooth vector bundles over $M$ $\VB(M)$ has objects vector bundles with base $M$ and morphisms those of vector bundles with $F=\id_{M}$. 
+\end{definition}
+\begin{remark}
+    The category of vector bundles admits a functor to the category of smooth manifolds $\SmMfld$ taking a vector bundle to its base. 
+\end{remark}
+\begin{remark}
+    There is an equivalence of categories between $\VB(*)$ the category of smooth vector bundles over a point and $\Vect_{\RR}$ the category of real vector spaces. 
+\end{remark}
+The following lemma will allow us to make a functorial construction with vector bundles -- pulling them back along morphisms. 
+\begin{lemma}\label{lem: pullbacks of vector bundles exist}
+    Let $F:M\to M'$ be a morphism of smooth manifolds and $\pi':E'\to M'$ be a vector bundle. The fibered product $M\times_{M'}E'$ exists and has the structure of a smooth vector bundle. 
+\end{lemma}
+\begin{proof}
+   Since $\pi':E'\to M'$ is surjective, $F, \pi'$ are a transversal pair, and the fibered product $M\times_{M'}E'$ exists by \Cref{thm: fibered product along transverse legs}. Denote the projection from the fibered product to $M$ by $\pi:M\times_{M'}E'\to M$. That $\pi$ is a smooth vector bundle follows from functoriality of the construction of vector bundles. 
+\end{proof}
+We now make the desired construction. 
+\begin{definition}[Pullback of Vector Bundles]\label{def: pullback of vector bundles}
+    Let $F:M\to M'$ be a morphism of smooth manifolds and $\pi':E'\to M'$ be a vector bundle. The pullback bundle $F^{*}E$ is the bundle induced by the fibered product $\pi:M\times_{M'}E'\to M$. 
+\end{definition}
+Moreover, we can construct vector bundles from gluing data. 
+\begin{lemma}\label{lem: gluing vector bundles}
+    Let $M$ be a smooth manifold, $\{U_{i}\}_{i\in I}$ an open cover of $M$, and $\{E_{i}\}_{i\in I}$ a collection of $k$-dimensional real vector spaces, and $\psi_{ij}\in\GL_{k}(\RR)$ such that the following hold:
+    \begin{enumerate}[label=(\arabic*)]
+        \item For each $i$, $\psi_{ii}:E_{i}\to E_{i}$ is $\id_{E_{i}}$. 
+        \item For each $i,j,k$, $\psi_{ik}=\psi_{jk}\circ\psi_{ij}$ on $U_{i}\cap U_{j}\cap U_{k}$. 
+    \end{enumerate}
+   There is a unqiue vector bundle $E$ on $M$ with isomorphisms $\rho_{i}:E|_{U_{i}}\to E_{i}$ such that for each $i,j$, $\rho_{j}=\psi_{ij}\circ\rho_{i}$. Moreover, every vector bundle arises in this way. 
+\end{lemma}
+\begin{proof}
+    Let $V\subseteq M$ the construction
+    $$E|_{V}=\left\{(v_{i})_{i\in I}\in\prod_{i\in I}E_{i}|_{V}:\psi_{ij}(v_{i}|_{U_{i}\cap U_{j}})=\psi_{ji}(v_{j}|_{U_{i}\cap U_{j}}), \forall i,j\in I\right\}$$
+    produces a vector bundle. For $E'$ any vector bundle on $M$, taking its associated trivializing cover $\{U_{i}'\}_{i\in I'}$ and $\psi_{ij}=\rho_{j}\circ\rho_{i}^{-1}$.  
+\end{proof}
+\begin{remark}
+    Different gluing data as in the hypothesis of \Cref{lem: gluing vector bundles} can give rise to the same vector bundle. 
+\end{remark}

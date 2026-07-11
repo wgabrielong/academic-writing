@@ -1,0 +1,114 @@
+\section{Lecture 6 -- 29th November 2024}\label{sec: lecture 6}
+We make some recollections from algebraic number theory, largely following Milne's texts. 
+\begin{definition}[Dedekind Zeta Function]\label{def: Dedekind zeta}
+    Let $\KK$ be a number field. The Dedekind zeta function is given by 
+    $$\zeta_{\KK}(s)=\sum_{\afrak\subseteq\Ocal_{\KK}}\frac{1}{\Nm(\afrak)^{s}}=\prod_{\pfrak\subseteq\Ocal_{\KK}}(1-\Nm(\pfrak)^{-s})^{-1}.$$
+\end{definition}
+As in the case of the Riemann zeta function, the Dedekind zeta function can be analytically continued to a meromorphic function on $\CC$ with simple pole at $s=1$. The class number formula gives the behavior of the function at the simple pole $s=1$. We state an adapted variant. Recall the definition of the $\Gamma$-function. 
+\begin{definition}[$\Gamma$-Function]\label{def: gamma function}
+    The $\Gamma$-function is given by 
+    $$\Gamma(s)=\int_{0}^{\infty}\frac{t^{s}e^{t}}{t}dt.$$
+\end{definition}
+We use the following normalizations 
+\begin{align*}
+    \Gamma_{\RR}(s) &= \pi^{-\frac{s}{2}}\Gamma\left(\frac{s}{2}\right) \\
+    \Gamma_{\CC}(s) &= 2(2\pi)^{-s}\Gamma(s).
+\end{align*}
+and the $L$-series 
+\begin{equation}\label{eqn: L-series}
+    L_{\KK}(s)=\Gamma_{\RR}(s)^{r_{1}}\Gamma_{\CC}(s)^{r_{2}}\zeta_{\KK}(s)
+\end{equation}
+in what follows. The class number formula states the following. 
+\begin{theorem}[Class Number Formula]\label{thm: class number formula}
+    Let $\KK$ be a number field. Then 
+    $$\lim_{s\to 1}(s-1)L_{\KK}(s)=\frac{2^{r_{1}+r_{2}}h_{\KK}}{w_{\KK}\sqrt{\Delta}}\cdot\Reg_{\KK}$$
+    where $w_{\KK}$ is the number of roots of unity, $h_{\KK}$ the class number, $\Delta$ the discriminant of $\KK$, and $r_{1},r_{2}$ the real and complex places of $\KK$, respectively.  
+\end{theorem}
+The regulator $\Reg_{\KK}$ captures the transcendental part of the special value. See \cite[\S V.2]{milneCFT} for further discussion. Additionally, by the Dirichlet unit theorem, we have the following:
+\begin{theorem}[Dirichlet Unit]\label{thm: Dirichlet unit}
+    Let $\KK$ be a number field. Then $\mathrm{rank}(\Ocal_{\KK}^{\times})=r_{1}+r_{2}-1$ where $r_{1},r_{2}$ are the real and complex places of $\KK$, respectively. 
+\end{theorem}
+In fact, we can say more. There is a map $\Ocal_{\KK}^{\times}\to\prod_{\nu|\infty}\RR$ $\alpha\mapsto(\log(|\alpha|_{\nu}))_{\nu|\infty}$ which in fact lands in the kernel of the map $\prod_{\nu|\infty}\RR\to\RR$ by summing the entries -- in particular, a map $\Ocal_{\KK}^{\times}\to\ker\left(\prod_{\nu|\infty}\RR\to\RR\right)$. But the image of the map is a lattice $\Lambda\subseteq\prod_{\nu|\infty}\RR=\RR^{r_{1}+r_{2}-1}$ and the regulator is defined as the quotient of the kernel by this lattice $\Lambda$. 
+\begin{definition}[Regulator]\label{def: regulator}
+    Let $\KK$ be a number field. The regulator of $\KK$ is the volume $$\mathrm{Vol}\left(\ker\left(\prod_{\nu|\infty}\RR\to\RR\right)/\Lambda\right)$$ where $\Lambda$ is the image of $\Ocal_{\KK}^{\times}$ in the kernel $\ker\left(\prod_{\nu|\infty}\RR\to\RR\right)$ of the sum map $\prod_{\nu|\infty}\RR\to\RR$. 
+\end{definition}
+\begin{remark}
+    In particular, the regulator is the determinant of a $(r_{1}+r_{2}-1)\times(r_{1}+r_{2}-1)$-matrix with entries of the form $\log(|\alpha|_{\nu})$ for $\alpha\in\Ocal_{\KK}^{\times}$. 
+\end{remark}
+Compare the discussion in \cite[\S 5]{milneANT}. 
+\begin{example}
+    In the case of a real quadratic field, there is a unique fundamental unit, and the regulator is just the logarithm of the absolute value of the fundamental unit. 
+\end{example}
+\begin{remark}\label{rmk: Zagier conjecture}
+    Conjecturally, it is expected for all $n\geq2$ that $L_{\KK}(n)$ is asymptotically the determinant of a matrix whose entries are renormalized $n$th polylogarithms evaluated at entries of $\KK$. 
+\end{remark}
+\marginpar{The instructor did not officially define $K$-theory at this point. Those without familiarity with $\infty$-categories should be able to proceed taking $K$-theory as an algebraic invariant of rings. A more classical discussion can be found in \cite[Ch. IV]{Weibel}.}
+The subsequent discussion will utilize the language of algebraic $K$-theory, which is an algebraic invariant of the stable $\infty$-category of perfect complexes over a fixed base ring. 
+\begin{definition}[$K$-Theory of a Ring]\label{def: K-theory of a ring}
+    Let $R$ be a commutative ring and $\mathsf{Perf}(R)$ its stable $\infty$-category of perfect complexes. The $K$-theory anima $K(R)$ is the $\infty$-categorical group completion of $\mathsf{Perf}(R)$.
+\end{definition}
+This process produces a commutative group object in $\Ani$.
+\begin{remark}
+    See \cite[\href{https://stacks.math.columbia.edu/tag/0656}{Tag 0656}]{stacks-project} for a (1-categorical) discussion of perfect complexes, and the notes of Hebestreit-Wagner \cite{HW21} and Hilman-McCandless \cite{HM24} for further discussion on algebraic $K$-theory from the $\infty$-categorical perspective. 
+\end{remark}
+The $K$-groups of the ring $R$ are then defined to be the homotopy groups of these animae.
+\begin{definition}[$K$-Groups of a Ring]\label{def: K-groups}
+    Let $R$ be a commutative ring. The $i$th $K$-group is the group $K_{i}(R)=\pi_{i}K(R)$.\marginpar{One can, with little danger think of these animae, or $\infty$-groupoids/Kan complexes, as spaces.}
+\end{definition}
+\begin{remark}
+    In the case $i=0$, this recovers the Grothendieck group of vector bundles on $\spec(R)$, the group completion of isomorphism classes of vector bundles modulo the scissor relation. 
+\end{remark}
+A result of Quillen-Borel shows the $K$-groups of rings of integers of number fields are finitely generated. 
+\begin{theorem}[Quillen-Borel, Soul\'{e}; {\cite[I.5, Thm. 6, 7]{KThyHandbook}}]\label{thm: ranks of K-groups of number fields}
+    Let $\KK$ be a number field. Then 
+    $$\mathrm{rank}(K_{2n-1}(\Ocal_{\KK}))=\begin{cases}
+        r_{2} & n\equiv0\pmod{2} \\ 
+        r_{1}+r_{2} & n\equiv1\pmod{2}, n>1
+    \end{cases}$$
+    and $K_{i}(\Ocal_{\KK})$ is torsion when $i$ is even and positive. 
+\end{theorem}
+We focus on the case $n=2$ considering $K_{3}$ of the number field. More generally, we have the following result of Borel relating the value of the $L$-series of (\ref{eqn: L-series}) can be related to certain Borel regulators. 
+\begin{definition}[Borel Regulator]\label{def: Borel regulator}
+    Let $\KK$ be a number field. The $n$-th Borel regulator $\Reg_{\KK}(n)$ is the volume of the quotient $(P_{n}/\Lambda)/(P_{n}/\Lambda')$ where $P_{n}$ is the space of primitives in $H_{n}(\mathrm{SL}(R),\RR)$, $\Lambda$ the image of $K_{n}(\Ocal_{\KK})$ in $H_{n}(\mathrm{SL}(R),\RR)$, and $\Lambda'$ the image of the symmetric space. 
+\end{definition}
+\begin{remark}
+    See \cite[\S IV.1.18.1]{Weibel} for an expanded discussion.
+\end{remark}
+These are related to values of the $L$-series as follows:
+\begin{theorem}[Borel; {\cite[\S IV.1.18.1]{Weibel}}]\label{thm: Borel regulator and L-function}
+    Let $\KK$ be a number field. The $L$-series satsifies the asymptotic formula 
+    \begin{equation}\label{eqn: L-series asymptotic formula}
+        L_{\KK}(n)\sim\Reg_{\KK}(n).
+    \end{equation}
+\end{theorem}
+To prove the conjecture of \Cref{rmk: Zagier conjecture}, it in fact suffices to understand these $K$-groups rationally -- that is, up to base change to $\QQ$. Questions of this type remain actively investigated, but we will restrict our attention to $n=2$ as previously indicated. 
+\begin{definition}[Second Pre-Bloch Group]\label{def: pre-Bloch group}
+    Let $F$ be a field. The second pre-Bloch group $\wp_{2}(F)$ is the quotient of $\QQ[F^{\times}\setminus\{1\}]$ by the $\QQ$-vector subspace generated by the five term relations of the Bloch-Wigner dilogarithm. 
+\end{definition}
+\begin{definition}[Second Bloch Group]\label{def: Bloch group}
+    The second Bloch group $B_{2}(F)$ is the kernel 
+    $$\ker\left(\wp_{2}(F)\to\bigwedge^{2}(F^{\times}\otimes_{\ZZ}\QQ)\right)$$
+    of the map $[x]\mapsto[x]\wedge[1-x]$. 
+\end{definition}
+The relation of \Cref{def: Bloch group} is closely related to Milnor $K$-theory, in particular related in the following way, which can be deduced from \cite[\S 1.5, Thm. 8]{KThyHandbook}.
+\begin{theorem}[Bloch]\label{thm: Bloch rational computation of K3}
+    Let $\KK$ be a number field. Then there are isomorphisms
+    $$K_{3}(\KK)\otimes_{\ZZ}\QQ\cong B(\KK).$$
+    Moreover, the Borel regulator map is given by the Bloch-Wigner dilogarithm. 
+\end{theorem}
+\begin{remark}
+    Conjecturally for $n\geq 2$, we would expect that we could inductively define $\wp_{n}(F)$ to be the quotient of $\QQ[F^{\times}\setminus\{1\}]$ by the $\QQ$-vector subspace generated by functional equations of the $n$th polylogarithm and relate the weight $n$ Goncharov-Zagier complex
+    \begin{equation}\label{eqn: Goncharov-Zagier complex}
+        % https://q.uiver.app/#q=WzAsNyxbMCwwLCJcXHdwX3tufShGKSJdLFsxLDAsIlxcd3Bfe24tMX0oRilcXG90aW1lc197XFxaWn0gRl57XFx0aW1lc30iXSxbMiwwLCJcXHdwX3tuLTJ9KEYpXFxvdGltZXNfe1xcWlp9XFxiaWd3ZWRnZV57Mn1GXntcXHRpbWVzfSJdLFswLDEsIlxcZG90cyJdLFsxLDEsIlxcd3BfezJ9KEYpXFxvdGltZXNfe1xcWlp9XFxiaWd3ZWRnZV57bi0yfUZee1xcdGltZXN9Il0sWzIsMSwiXFxiaWd3ZWRnZV57bn0oRl57XFx0aW1lc31cXG90aW1lc197XFxaWn1cXFFRKSJdLFszLDAsIlxcZG90cyJdLFswLDFdLFsxLDJdLFszLDRdLFs0LDVdLFsyLDZdXQ==
+        \begin{tikzcd}
+            {\wp_{n}(F)} & {\wp_{n-1}(F)\otimes_{\ZZ} F^{\times}} & {\wp_{n-2}(F)\otimes_{\ZZ}\bigwedge^{2}F^{\times}} & \dots \\
+            \dots & {\wp_{2}(F)\otimes_{\ZZ}\bigwedge^{n-2}F^{\times}} & {\bigwedge^{n}(F^{\times}\otimes_{\ZZ}\QQ)}
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+        \end{tikzcd}
+    \end{equation}
+    to the $K$-theory of the number field. 
+\end{remark}

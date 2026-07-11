@@ -1,0 +1,69 @@
+\section{Lecture 7 -- 6th December 2024}\label{sec: lecture 7}
+Let us consider the construction of algebraic $K$-theory as in \Cref{def: K-theory of a ring}. 
+
+For a commutative ring $R$, we can consider the anima $\Proj(R)$ consisting of finitely generated projective $R$-modules which lies in $\CMon(\Ani)$, the commutative monoid objects in the category of anima, under the direct sum operation. However, within $\Proj(R)$ we can consider the full subcategory spanned by the free $R$-modules $\Free(R)$ which can be obtained as $\coprod_{n\geq0}*/\GL_{n}(R)$ acting by automorphisms on free modules of rank $n$ for each $n$. The inclusion induces a map $\Free(R)^{\infty-\Grp}\to\Proj(R)^{\infty-\Grp}$ where $(-)^{\infty-\Grp}$ denotes group completion as an anima. In fact, this suffices to compute algebraic $K$-theory in strictly positive degrees. 
+\begin{proposition}\label{prop: K-theory on free modules}
+    Let $R$ be a ring. The map of anima $\Free(R)^{\infty-\Grp}\to\Proj(R)^{\infty-\Grp}$ is an isomorphism on homotopy groups for $i\geq 1$. 
+\end{proposition}
+This provides a way to compute the $K$-theory of $R$ via the homotopy, and in fact homology, of $*/\GL_{\infty}(R)$. And while \emph{a priori} this seems like an exceptionally daunting task, homological stability shows that it suffices to compute $H_{i}(*/\GL_{n}(R))$ since the map 
+$$H_{i}(*/\GL_{n})\longrightarrow H_{i}(*/\GL_{n+1})$$
+is an isomorphism for $n$ sufficiently large with respect to $i$. For $R=\Ocal_{\KK}$ for $\KK$ a number field, $K_{i}(\Ocal_{\KK})$ is a finitely generated Abelian group by a result of Borel \Cref{thm: ranks of K-groups of number fields}. Moreover, in these cases, the phenomena are well-studied as the (co)homology of arithmetic groups, which are closely connected to automorphic forms. 
+\begin{example}
+    $H_{i}(*/\SL_{2}(\ZZ))\cong H_{i}(\HH^{\pm}/\SL_{2}(\ZZ))$ where $\HH^{\pm}$ is the union of the upper and lower half plane and the action of $\SL_{2}(\ZZ)$ on $\HH^{\pm}$ by M\"{o}bius transformations. In particular, the desired homology group of $*/\SL_{n}(\ZZ)$ can be computed as the homology of an arithmetic locally symmetric space $\HH^{\pm}/\SL_{2}(\ZZ)$ which on passage to the Borel-Serre compactification is a manifold with corners. 
+
+    More generally for an arithmetic group $\Gamma$, the homology of the quotient $*/\Gamma$ can be computed as the homology of the Borel-Serre compactification of an associated arithmetic locally symmetric space which is a manifold with corners. 
+\end{example}
+We now make some recollections from condensed mathematics to the end of defining condensed $K$-theory which rseults from considering $\coprod_{n\geq0}*/\GL_{n}(\CC)$ as a condensed anima. The upshot of this approach is that it is able to preserve topological information such as local compactness, instead of treating $\GL_{n}(\CC)$ as a mere abstract group. 
+\begin{definition}[Condensed Set]\label{def: condensed set}
+    A condensed set is a sheaf of sets on the site of profinite sets and coverings given by finite families of jointly surjective maps. 
+\end{definition}
+Na\"{i}vely, one would expect that we could define the condensed $K$-theory anima $K^{\cond}(\CC)$ of $\CC$ as the sheafification of the presheaf 
+$$S\mapsto K(\mathrm{Cont}(S,\CC))$$
+where passing to homotopy groups recovers $K$-theory in some fixed degree as a condensed Abelian group. 
+\begin{remark}
+    As is typical in the condensed setting $S=*$ recovers $K(\CC)$ which is the ordinary $K$-theory anima.
+\end{remark}
+
+One notices, however that the desired homotopy groups $\CC/(2\pi i)^{n}\ZZ$ are quite similar to products of $\RR/\ZZ$ which are locally compact Abelian groups that satisfy Pontryagin duality. 
+\begin{definition}[Continuous $K$-Theory Anima]\label{def: continuous K-theory anima}
+    The continuous $K$-theory anima $K^{\cont}(\CC)$ is the Pontryagin bidual of the sheafification of the presheaf 
+    $$S\mapsto K(\mathrm{Cont}(S,\CC)).$$
+\end{definition}
+The homotopy groups of the continuous $K$-theory anima were computed by Clausen to be the following. 
+\begin{theorem}[Clausen]\label{thm: Clausen condensed k theory}
+    The homotopy groups of the continuous $K$-theory anima are given as follows:
+    $$\pi_{i}K^{\cont}(\CC)\cong\begin{cases}
+        \ZZ & i=0 \\
+        \CC/(2\pi i)^{n}\ZZ & i=2n-1 \\
+        0 & i\equiv0\pmod{2}, i>1.
+    \end{cases}$$
+\end{theorem}
+The proof of \Cref{thm: Clausen condensed k theory} boils down to the computation of condensed cohomology of $*/\GL_{n}(\CC)$ with $\RR$ or $\ZZ$-coefficients. With $\ZZ$-coefficients, the computation of the integral homology of $\coprod_{n\geq 1}*/|\GL_{n}(\CC)|$ gives topological $K$-theory $\ku$ whose homotopy groups are $\ZZ$ in all even degrees and zero otherwise. In the case of $\RR$-coefficients, this is a Lie algebra computation.
+\begin{remark}
+    Conjecturally, the $K$-theory of the liquid and gaseous complex numbers are given by 
+    $$K_{i}(\CC_{\Liq})=K_{i}(\CC_{\Gas})=\begin{cases}
+        \ZZ & i\leq 0, i\equiv0\pmod{2} \\
+        0 & i=0 \text{ or }i>0\text{ and }i\equiv0\pmod{2} \\
+        \CC/(2\pi i)^{n}\ZZ & i>0\text{ and }\equiv1\pmod{2}.
+    \end{cases}$$
+    Moreover, it is expected that this recovers periodic $K$-theory $\KU$. 
+\end{remark}
+
+One can also provide a condensed account of Beilinson's construction of $K$-theory by $\CC_{\Liq}$ or $\CC_{\Gas}$ the liquid and gaseous complex numbers, respectively. 
+
+Recall from the preceding discussion that for a field $F$, $K_{0}(F)\cong\ZZ$ classifing the dimension of finite dimensional vector spaces and $K_{1}(F)=\GL_{\infty}(F)^{\mathsf{ab}}\cong F^{\times}$. In the case of $F=\CC$, we can define $\CC^{\times}\cong K_{1}(\CC)=K_{1}^{\cont}(\CC)\cong\CC/(2\pi i)\ZZ$ where the maps are given by the exponential and the logarithm. More generally, there is a map 
+\begin{equation}\label{eqn: map to continuous k theory}
+    K_{2n-1}(\Ocal_{\KK})\to\left(\prod_{\tau:\KK\to\CC}\CC/(2\pi i)^{n}\ZZ\right)^{\Gal(\CC/\RR)}
+\end{equation}
+which is Galois equivariant under the action of complex conjugation on both $\CC$ and $(2\pi i)^{n}\ZZ$ agree, and hence lands in the Galois invariant part of the product. In particular, for a complex place the value of one embedding is already determined by the other, but for a real place there is only one term in the product which already lies in the Galois invariant part of the quotient. Now, on taking the real part if $n$ is odd, and the imaginary part if $n$ is even, the map (\ref{eqn: map to continuous k theory}) above extends to a map 
+\begin{equation}\label{eqn: extended map to continuous k-theory}
+    K_{2n-1}(\Ocal_{\KK})\to\left(\prod_{\tau:\KK\to\CC}\RR\right)^{\Gal(\CC/\RR)}.
+\end{equation}
+Depending if $n$ is even or odd, the real places may or may not contribute since real places are invariant under the Galois action. Thus the target of (\ref{eqn: extended map to continuous k-theory}) is 
+$$\begin{cases}
+    \RR^{r_{1}+r_{2}} & n\equiv1\pmod{2} \\
+    \RR^{r_{2}} & n\equiv0\pmod{2}
+\end{cases}$$
+
+
+Given a number field $\KK$, each embedding $\tau:\KK\to\CC$ gives rise to a regulator map $K_{2n-1}(\Ocal_{\KK})\to K^{\cont}_{2n-1}(\CC)\cong\CC/(2\pi i)^{n}\ZZ$. 

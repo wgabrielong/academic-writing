@@ -1,0 +1,80 @@
+\section{Lecture 5 -- 22nd November 2024}\label{sec: lecture 5}
+We continue our discussion of $q$-series and in particular a property of the modified Nahm sum considered in \Cref{corr: q-difference equation of modified 1x1 Nahm sum}.
+
+The following definition is due to Konsevich-Soibelman \cite{DTInvariants}.
+\begin{definition}[Admissable Series]\label{def: admissable series}
+    A series $f\in\ZZ((q))[[t]]$ such that $f\equiv 1\pmod{(t)}$ is admissable if it can be written as 
+    $$f=\prod_{n\geq1}\prod_{i\in\ZZ}(q^{i}t^{n};q)_{\infty}^{a_{n,i}}$$
+    such that for each $n$ only finitely many $a_{n,i}$ are nonzero. 
+\end{definition}
+\begin{remark}
+    These $a_{n,i}$'s are precisely Donaldson-Thomas invariants that arise in Gromov-Witten theory and enumerative geometry. 
+\end{remark}
+Admissable series force an algebraicity condition on the $q$, allowing $f$ to be written as an element of $\ZZ[q][[t]]$. Up to a condition on the residue of the series $f$ mod $(t)$, series in $\ZZ((q))[[t]]$ admit such an expansion. 
+\begin{proposition}
+    Let $f\in\ZZ((q))[[t]]$. If $f\equiv1\pmod{(t)}$ then $f$ admits a unique expansion as a series of the form 
+    $$f=\prod_{n\geq1}\prod_{i\in\ZZ}(q^{i}t^{n};q)_{\infty}^{a_{n,i}}.$$
+\end{proposition}
+\begin{proof}[Proof Outline]
+    This can be solved for truncated polynomials so for $f\equiv 1\pmod{(t)}$, it suffices to consider $f\equiv 1\pmod{(t^{m})}$ and solve inductively to give an expression algebraic in $t$.
+\end{proof}
+This result is in fact much more general and it can be shown that the modified Nahm sum 
+$$f_{a}(t,q)=\sum_{n\geq0}(-1)^{an}\frac{q^{\frac{1}{2}an^{2}-\frac{1}{2}an}}{(q;q)_{n}}t^{n}$$
+as previously defined is admissable. The original proof is highly involved, and we will instead offer a simpler exposition of the same result. Recall from \Cref{prop: logarithm at worst simple poles at roots of unity}, we have 
+\begin{equation}\label{eqn: modified Nahm sum as exponent of sum}
+    (q^{i}t;q)_{\infty}=\exp\left(-\sum_{\ell\geq 1}\frac{1}{\ell}\cdot\frac{q^{i\ell}t^{n\ell}}{1-q^{\ell}}\right). 
+\end{equation}
+Furthermore, $\ZZ((q))[[t]]$ is a $\lambda$-ring as we now define. 
+\begin{definition}[$\lambda$-Ring]\label{def: lambda-ring}
+    A $\lambda$-ring $A$ is a ring equipped with set maps $\lambda^{k}:A\to A$ for $0\leq k\leq\infty$ such that 
+    \begin{enumerate}[label=(\roman*)]
+        \item $\lambda^{0}(a)=1$ for all $a\in A$.
+        \item $\lambda^{1}(a)=a$ for all $a\in A$. 
+        \item $\lambda^{n}(a+b)=\sum_{i+j=n}\lambda^{i}(a)\lambda^{i}(b)$ for all $a,b\in A$. 
+    \end{enumerate}
+\end{definition}
+Such a ring admits Adams operations $\psi_{n}:\ZZ((q))[[t]]\to\ZZ((q))[[t]]$ by $t\mapsto t^{n},q\mapsto q^{n}$. The Adams operations allow us to rewrite (\ref{eqn: modified Nahm sum as exponent of sum}) as 
+\begin{equation}\label{eqn: modified Nahm sum as exponent of Adams sum}
+    \exp\left(-\sum_{\ell\geq1}\psi_{\ell}\left(\frac{q^{i}t^{n}}{1-q}\right)\right).
+\end{equation}
+We introduce the notion of the plethystic exponential.
+\begin{definition}[Plethystic Exponential]\label{def: Plethystic exponential}
+    Let $A$ be a $\lambda$-ring and $\sum_{\ell\geq 1}\frac{a_{\ell}}{\ell}$ a convergent series in $A$. The plethystic exponential is of the series is given by 
+    $$\exp\left(\sum_{\ell\geq 1}\frac{1}{\ell}\psi_{\ell}(a_{\ell})\right).$$
+\end{definition}
+Now taking 
+$$\phi(t,q)=-\sum_{n\geq1}\sum_{i\in\ZZ}a_{n,i}q^{i}t^{n}\in\ZZ((q))[[t]]$$
+we have 
+\begin{equation*}\label{eqn: adams admissable Nahm sum}
+    \prod_{n\geq1}\prod_{i\in\ZZ}(q^{i}t;q)_{\infty}=\exp\left(\sum_{\ell\geq1}\frac{1}{\ell}\psi_{\ell}\left(\frac{\phi(t,q)}{1-q}\right)\right).
+\end{equation*}
+We can define the plethystic logarithm as the inverse of the plethystic exponential and observe $\frac{\phi(t,q)}{1-q}$ is the plethystic logarithm of the modified Nahm sum $f_{a}(t,q)$. We then seek to show that this plethystic logarithm $\frac{\phi(t,q)}{1-q}\in\frac{1}{1-q}\ZZ[q^{\pm}][[t]]$ which has a single simple pole at $q=1$. Indeed, this suffices as the behavior at other roots of unity are determined by the Adams operations. 
+
+
+Observe the plethystic exponential gives an isomorphism $t\QQ[q^{\pm}][[t]]\to 1+t\QQ[q^{\pm}][[t]]$. It thus suffices to show that the plethystic logarithm of $f_{a}$ is a function that is a sum $\frac{\phi_{0}(t)}{1-q}$ with an element of $\QQ[q^{\pm}][[t]]$. 
+
+Now using the ansatz
+\begin{equation}\label{eqn: plethystic exponential ansatz}
+    f_{a}(t,q)=\exp\left(\sum_{\ell\geq 1}\frac{1}{\ell}\frac{\phi_{0}(t^{\ell})}{1-q^{\ell}}\right)g_{a}(t,q)
+\end{equation}
+we show that there exists a chioce of function $\phi_{0}(t)$ satisfying the ansatz above would imply the factor $g_{a}(t,q)\in 1+t\QQ[q^{\pm}][[t]]$ and from which the result  of showing $g_{a}(t,q)$ lying in $1+t\QQ[t^{\pm}][[t]]$ would follow by application of the Plethystic exponential. 
+
+But a choice of $\phi_{0}\in t\cdot\QQ[[t]]$ can be made such that $\sum_{\ell\geq 1}\frac{\phi_{0}(t^{\ell})}{\ell^{2}}=-V(t)$ whose plethystic exponential has leading term asymptotics agreeing with $f_{a}(t,q)$ at all roots of unity.
+
+This is gives the desired result as stated below. 
+\begin{theorem}[Kontsevich-Soibelman, Efimov]\label{thm: modified 1x1 Nahm sum is admissable}
+    The $q$-series 
+    $$f_{a}(t,q)=\sum_{n\geq0}(-1)^{an}\frac{q^{\frac{1}{2}an^{2}-\frac{1}{2}an}}{(q;q)_{n}}t^{n}$$
+    is admissable. 
+\end{theorem}
+Let us unfurl some of the consequences of \Cref{thm: modified 1x1 Nahm sum is admissable}. 
+
+To understand the $\phi_{0}(t)$ function better, we use compute its logarithmic derivative so in conjunction with \Cref{prop: V functional equation for 1x1 Nahm ansatz} we have 
+$$\sum_{\ell\geq1}\frac{(\partial^{\log}\phi_{0})(t^{\ell})}{\ell}=-\log Z(t)$$
+with $Z(t)$ is the logarithmic derivative of $V(t)$. Note that $Z(t)\in 1+t\ZZ[[t]]$ so $(\partial^{\log}\phi_{0})(t)=-\sum_{n\geq1}c_{n}t^{n}$ for $Z(t)=\prod_{n\geq1}(1-t^{n})^{c_{n}}$ for $c_{n}\in\ZZ$. This shows $n|c_{n}$. 
+\begin{example}
+    For $a=0$, $f_{1}(t,q)=(t;q)^{-1}_{\infty}$ so $Z(t)=1-t$ and $\phi_{0}(t)=\pm t$ which agrees with $V(t)$ being the dilogarithm (up to a sign). 
+\end{example}
+\begin{example}
+    In the case $a=2$ which was discussed in \Cref{sec: lecture 1}, we recover $Z(t)$ as an alternating sum of the Catalan numbers. 
+\end{example}

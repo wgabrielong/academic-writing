@@ -1,0 +1,70 @@
+\section{Lecture 4 -- 18th October 2024}\label{sec: lecture 4}
+We consider some examples of smooth manifolds in parallel to \Cref{ex: Rn is a mfld,ex: fd real vs is a mfld,ex: open subsets of Rn are mflds,ex: graphs are mflds,ex: spheres are mflds,ex: boundary of cube is mfld,ex: torus is mfld,ex: projective space is a mfld,ex: klein bottle is a mfld}. 
+\begin{example}\label{ex: Rn is a sm mfld}
+    $\RR^{n}$ is canonically a smooth manifold. The canonical atlas is the tautological chart given by the identity morphism. 
+\end{example}
+\begin{example}\label{ex: fd real vs is a sm mfld}
+    A finite dimensional $\RR$-vector space is a smooth manifold by choosing a vector space basis $B$ which induces a homeomorphism with $\RR^{n}$. Between two choices of bases, the transition maps are given by an element of $\GL_{\dim(V)}(\RR)$ which is linear and hence smooth. 
+\end{example}
+\begin{example}\label{ex: spheres are sm mflds}
+    The $n$-sphere $S^{n}\subseteq\RR^{n+1}$ is a smooth manifold. 
+\end{example}
+\begin{example}\label{ex: level sets are smooth manifolds}
+    Let $\Phi:\RR^{n+1}\to\RR$ be a smooth function and for $\lambda\in\RR$ the level set $\Phi^{-1}(\lambda)=\{x\in\RR^{n+1}:\Phi(x)=\lambda\}$ such that for all $x\in\Phi^{-1}(\lambda)$ the derivative $D\Phi(x)\neq0$ is a smooth manifold. 
+\end{example}
+\begin{example}\label{ex: products are smooth manifolds}
+    Let $M,N$ be smooth manifolds. Then their product $M\times N$ is a smooth manifold. 
+\end{example}
+\begin{example}
+    Consider again $\RR$ with the smooth structure given by a global chart $x\mapsto x^{3}$. This is a smooth manifold, albeit not one compatible with the canonical chart. 
+\end{example}
+Having defined and considered some examples of smooth manifolds, we discuss smooth maps, to the end of defining the category of smooth manifolds. 
+\begin{definition}[Smooth Maps - $\RR^{m}$]\label{def: smooth map}
+    Let $M$ be a smooth manifold. A map $f:M\to\RR^{m}$ is smooth if for all $p\in M$ there exists a chart $(U,\phi_{p})$ containing $p$ such that $f\circ\phi^{-1}:\phi(U)\to\RR^{m}$ is a smooth function. 
+\end{definition}
+This allows us to define, more generally, smooth maps between smooth manifolds. 
+\begin{definition}[Smooth Maps - Manifolds]
+    Let $M,N$ be smooth manifolds. A continuous map $f:M\to N$ is smooth if for all $p\in M$ there exists a chart $(U,\phi)$ containing $p$ and $(V,\psi)$ containing $\phi(U)$ such that $\psi\circ f\circ\phi^{-1}:\phi(U)\to\RR^{m}$ is smooth. 
+\end{definition}
+We can consider some properties of smooth maps. 
+\begin{proposition}\label{prop: smoothness is local}
+    A continuous map between smooth manifolds $f:M\to N$ is smooth if and only if each $p\in M$ has a neighborhood $U$ such that $f|_{U}$ is smooth. 
+\end{proposition}
+Moreover, we have the following. 
+\begin{proposition}\label{prop: stability properties of smooth maps}
+    Let $f:M\to N$ be a continuous map. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item If $f$ is constant, $f$ is smooth. 
+        \item If $U\subseteq M$ is open, then $U\hookrightarrow M$ is smooth. 
+        \item Smoothness is preserved by composition. 
+    \end{enumerate}
+\end{proposition}
+In particular, \Cref{prop: stability properties of smooth maps} (iii) is necessary to make the category of smooth manifolds well-defined as we soon see.  
+\begin{definition}[Diffeomorphism]\label{def: diffeomorphism}
+    Let $f:M\to N$ be a continuous map between smooth manifolds. $f$ is a diffeomorphism if $f$ is bijective with smooth inverse. 
+\end{definition}
+\begin{remark}
+    In particular, $f$ is a homeomorphism on the underlying topological manifolds. 
+\end{remark}
+Here are some examples of smooth maps. 
+\begin{example}\label{ex: linear maps are diffeomorphisms}
+    $f:\RR\to\RR$ by $x\mapsto x+2$ is a diffeomorphism. 
+\end{example}
+\begin{example}\label{ex: linear transformation is a diffeomorphism}
+    Let $A\in\GL_{n}(\RR)$. The map $\RR^{n}\to\RR^{n}$ by $x\mapsto Ax$ is a diffeomorphism. 
+\end{example}
+We can now define the category of smooth manifolds. 
+\begin{definition}[Category of Smooth Manifolds]\label{def: category of smooth manifolds}
+    The category of smooth manifolds $\SmMfld$ consists of objects smooth manifolds and morphisms smooth maps. 
+\end{definition}
+\begin{remark}
+    One can observe that diffeomorphisms are exactly the isomorphisms in the category of smooth manifolds $\SmMfld$. 
+\end{remark}
+\begin{remark}
+    The forgetful functor from smooth manifolds to topological manifolds is neither full nor essentially surjective -- there are far fewer smooth morphisms between smooth manifolds $M,N$ than there are continuous maps between the underlying topological manifolds and not every topological manifold is homeomorphic to a smooth manifold. 
+\end{remark}
+Henceforth, we will focus our attention to the study of $\SmMfld$. 
+
+\begin{remark}
+    Returning to the motivating discusion of the classification of manifolds initiated in \Cref{sec: lecture 3}, we note that classification of smooth manifolds is more manageble due to recent progress in differential geometry, though far from being trivial. 
+\end{remark}

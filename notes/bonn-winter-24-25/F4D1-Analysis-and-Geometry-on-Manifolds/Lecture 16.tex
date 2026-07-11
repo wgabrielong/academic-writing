@@ -1,0 +1,96 @@
+\section{Lecture 16 -- 3rd December 2024}\label{sec: lecture 16}
+We show that the formation of Lie brackets is natural in the following sense. 
+\begin{lemma}\label{lem: naturality of Lie brackets}
+    Let $M,N$ be smooth manifolds and $F:M\to N$ a smooth map. Let $X_{1},X_{2}\in\Xfrak(M),Y_{1},Y_{2}\in\Xfrak(N)$ with $X_{i}$ $F$-related to $Y_{i}$ for $i\in\{1,2\}$. Then $[X_{1},X_{2}]$ and $[Y_{1},Y_{2}]$ are $F$-related. 
+\end{lemma}
+\begin{proof}
+    Let $f\in C^{\infty}(N)$ and consider $X_{1}X_{2}(f\circ F)$ which by $F$-relatedness yields $X_{1}((Y_{2}f)\circ F)=(Y_{1}Y_{2}f)\circ F$ and similarly $X_{2}X_{1}(f\circ F)$ which by $F$-relatedness and an analogous calculation yields $X_{2}X_{1}(f\circ F)=(Y_{2}Y_{1}f)\circ F$. Thus in the Lie bracket we have 
+    \begin{align*}
+        [X_{1},X_{2}](f\circ F) &= (X_{1}X_{2}-X_{2}X_{1})(f\circ F) \\
+        &= (Y_{1}Y_{2}-Y_{2}Y_{1})(f)\circ F \\
+        &= [Y_{1},Y_{2}](f)\circ F
+    \end{align*}
+    showing $F$-relatedness, as desired. 
+\end{proof}
+We now consider coordinates on vector fields, in analogy to coordinates on the tangent bundle \Cref{def: coordinates on smooth manifold}. Recall that on a smooth manifold $M$ we have coordinates $\partial_{x_{i}}$ on the tangent bundle $TM$ which are the preimages of $i$th coordinate functions of a chart $(U,\phi)$ on $M$ under the canonical identification of the Euclidean space with its tangent bundle. 
+\begin{lemma}\label{lem: coordinate vector fields are smooth}
+    Let $M$ be a smooth manifold. The map $M\to TM$ by $p\mapsto (\partial_{x_{i}})_{p}$ defines a smooth vector field on an open set $U\subseteq M$. 
+\end{lemma}
+\begin{proof}
+    This is a coarse section by inspection, and smoothness follows from the smoothness of charts and projection maps. 
+\end{proof}
+\Cref{lem: coordinate vector fields are smooth} justifies the following definition. 
+\begin{definition}[Coordinate Vector Field]\label{def: coordinate vector field}
+    Let $M$ be a smooth manifold. The section $p\mapsto(\partial_{x_{i}})_{p}$ defines the coordinate vector field $\partial_{x_{i}}$. 
+\end{definition}
+Using this, we can define frames. 
+\begin{definition}[Local Frame]\label{def: local frame}
+    Let $M$ be a smooth $m$-manifold and $X^{1},\dots,X^{m}\in\Xfrak(M)$ be vector fields. $(X^{1},\dots,X^{m})$ is a local frame at $p$ if the tangent vectors $X^{1}_{p},\dots,X^{m}_{p}$ span $T_{p}M$. 
+\end{definition}
+\begin{definition}[Global Frame]\label{def: global frame}
+    Let $M$ be a smooth $m$-manifold and $X^{1},\dots,X^{m}\in\Xfrak(M)$ be vector fields. $(X^{1},\dots,X^{m})$ is a global frame if the tangent vectors $X^{1}_{p},\dots,X^{m}_{p}$ span $T_{p}M$ for all $p\in M$. 
+\end{definition}
+As expected, being a local frame is a local condition. 
+\begin{lemma}\label{lem: local frame is local}
+    Let $M$ be a smooth $m$-manifold and $X^{1},\dots,X^{m}$ a local frame at $p\in M$. Then there exists an open subset $U\subseteq M$ containing $p$ such that $(X^{1},\dots,X^{m})$ is a global frame on $U$. 
+\end{lemma}
+\begin{proof}
+    The $(X^{1},\dots,X^{m}_{p})$ considered as a matrix is of full rank, and by openness of the full rank condition in $p$ and \Cref{lem: subset of matrices of full rank is open} shows that there exists such $U$. 
+\end{proof}
+\begin{example}
+    The vector fields $\partial_{x_{i}}$ is a form a global frame, though not all vector fields arise as coordinate vector fields -- that is, admit a representation as a coordinate vector field for some chart. 
+\end{example}
+Now define integral curves. 
+\begin{definition}[Integral Curve]\label{def: integral curve}
+    Let $M$ be a smooth manifold and $X\in\Xfrak(M)$. An integral curve for $X$ is a curve $\gamma:(a,b)\to M$ with $(a,b)\subseteq\RR$ containing zero and such that $d\gamma_{t}(\partial_{t})=X_{\gamma(t)}$.  
+\end{definition}
+\begin{definition}[Starting Point]\label{def: starting point}
+    Let $M$ be a smooth manifold and $\gamma:(a,b)\to M$ an integral curve for $X\in\Xfrak(M)$. The starting point of $\gamma$ is $\gamma(0)\in M$. 
+\end{definition}
+To describe integral curves of \Cref{def: integral curve} more explicitly, we consider the diagram 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwxLCIoYSxiKSJdLFsyLDEsIk0iXSxbMCwwLCJUXFxSUj1UKGEsYikiXSxbMiwwLCJUTSJdLFswLDEsIlxcZ2FtbWEiLDJdLFsyLDMsImRcXGdhbW1hIl0sWzMsMV0sWzIsMF0sWzAsMiwiXFxwYXJ0aWFsX3t0fSIsMCx7ImN1cnZlIjotMX1dLFswLDMsIlxcZG90e1xcZ2FtbWF9Il1d
+\begin{tikzcd}
+	{T\RR=T(a,b)} && TM \\
+	{(a,b)} && M.
+	\arrow["{d\gamma}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow["{\partial_{t}}", curve={height=-6pt}, from=2-1, to=1-1]
+	\arrow["{\dot{\gamma}}", from=2-1, to=1-3]
+	\arrow["\gamma"', from=2-1, to=2-3]
+\end{tikzcd}$$
+For a fixed vector field $X\in\Xfrak(M)$, an integral curve is a curve in $M$ that ``flows along'' the vector field in the sense that for each time $t$, the derivative of the curve $\dot{\gamma}(t)$ at a time $t$ is precisely the vector $X_{\gamma(t)}$ -- the element of $T_{\gamma(t)}M$ corresponding to $X_{\gamma(t)}$. 
+
+\begin{example}
+    Let $M=\RR^{2}$ and consider the vector field $\partial_{x}$ which associates to each point $(x,y)\in\RR^{2}$ the vector $(1,0)\in\RR^{2}=T_{p}\RR^{2}$ for all $p\in\RR^{2}$. The integral curves are curves of the form $t\mapsto p+t(1,0)$ with starting point $p$.  
+\end{example}
+\begin{example}
+    Let $M=\RR^{2}$ and consider the vector field $x\partial_{y}-y\partial_{x}$ which associates to each point $(x,y)$ the vector $(-y, x)$. Suppose that $\gamma:\RR\to\RR^{2}$ is an integral curve. Given as a component function, $\gamma$ necessarily satisfies $\dot{\gamma}^{1}(t)=-\gamma^{2}(t)$ and $\dot{\gamma}^{2}(t)=\gamma^{1}(t)$. For $p=(a,b)$ this system of ordinary differential equations is satisfied by the path $t\mapsto(a\cos(t)-b\sin(t), a\sin(t)+b\cos(t))$. 
+\end{example}
+More generally, the existence of integral curves is given by the solution to a system of ordinary differential equations. 
+\begin{theorem}[Existence-Uniqueness Theorem for Integral Curves]\label{thm: existence-uniqueness theorem integral curves}
+    Let $M$ be a smooth $m$-manifold and $X\in\Xfrak(M)$. For $p\in M$ there is an open interval $J\subseteq\RR$ containing 0 and an integral curve $\gamma:J\to M$ with starting point $p$. Moreover, $\gamma$ is unique. 
+\end{theorem}
+\begin{proof}
+    Let $M\subseteq\RR^{n}$ be open and we solve the system of differential equations 
+    $$\begin{cases}
+        \dot{\gamma}^{1}(t)=X^{1}_{\gamma(t)} \\
+        \vdots \\
+        \dot{\gamma}^{m}(t)=X^{m}_{\gamma(t)}
+    \end{cases}$$
+    which exists and is unique by the Picard-Lindel\"{o}f existence-uniqueness theorem for solutions to a system of differential equations. 
+\end{proof}
+The construction of integral curves is preserved under $F$-related vector fields. 
+\begin{lemma}\label{lem: integral curves preserved by F-related fields}
+    Let $F:M\to N$ be a morphism of smooth manifolds, $X\in\Xfrak(M), Y\in\Xfrak(N)$ with $X,Y$ $F$-related. Then $F$ takes integral curves of $X$ to integral curves of $Y$. 
+\end{lemma}
+\begin{proof}
+    Let $\gamma:(a,b)\to M$ be an integral curve. We compute $(F\circ \gamma)'(t)=dF_{\gamma(t)}\dot{\gamma}(t)$ which by $F$-relatedness is $Y_{F\circ\gamma(t)}$ as desired. 
+\end{proof}
+We conclude with the following definition. 
+\begin{definition}[Complete Vector Field]\label{def: complete integral curve}
+    Let $M$ be a smooth manifold and $X\in\Xfrak(M)$ a vector field. $X$ is a complete vector field if for all $p\in M$ the maximal integral curve at $p$ is defined on all of $\RR$. 
+\end{definition}
+\begin{example}
+    The vector field $\partial_{x}$ on $M=\RR\setminus\{0\}$ is an incomplete vector field. For $p=-1$ in $\RR$, teh integral curve starting at $p$ is the map $t\mapsto-1+t$ which is only defined on $(-\infty,1)$. 
+\end{example}

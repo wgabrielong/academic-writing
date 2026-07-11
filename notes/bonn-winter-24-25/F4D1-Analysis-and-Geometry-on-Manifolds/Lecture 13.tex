@@ -1,0 +1,58 @@
+\section{Lecture 13 -- 22nd November 2024}\label{sec: lecture 13}
+We contiue our discussion of measure theory on manifolds and introduce Sard's theorem and consequences. 
+\begin{lemma}\label{lem: image measure zero}
+    Let $M,N$ be smooth manifolds and $F:M\to N$ a smooth map. If $A\subseteq M$ is of measure zero then $F(A)\subseteq M$ has measure zero. 
+\end{lemma}
+\begin{proof}
+    Let $\{(U_{\alpha},\phi_{\alpha})\}_{\alpha\in\Acal}$ be a countable atlas for $M$. We want to show that any chart $(V,\psi)$ on $N$ is such that $\psi(V\cap F(A))$ is measure zero which will imply the result by \Cref{prop: measure zero on each chart implies measure zero}. 
+
+    Without loss of generality, let $F(A)\subseteq V$. Note $\psi(F(A))$ is a countable union of the sets $\psi((F\circ\phi_{\alpha}^{-1}\circ\phi_{\alpha})(A\cap U_{\alpha}))$. Note that each of these is measure zero by \Cref{lem: images of measure zero are measure zero} since each of the maps are smooth and their union is measure zero by \Cref{lem: measurable sets}. 
+\end{proof}
+We now state Sard's theorem after introducing the requisite language. 
+\begin{definition}[Critical Point]\label{def: critical point}
+    Let $M,N$ be smooth manifolds and $F:M\to N$ a smooth map. $p\in M$ is a critical point of $F$ if the differential $dF_{p}:T_{p}M\to T_{F(p)}N$ is not surjective. 
+\end{definition}
+\begin{definition}[Critical Value]\label{def: critical value}
+    Let $M,N$ be smooth manifolds and $F:M\to N$ a smooth map. $q\in N$ is a critical value of $F$ if $F^{-1}(q)$ contains a critical point of $F$. 
+\end{definition}
+\begin{remark}
+    This recovers the notion of critical points from multivariate calculus. 
+\end{remark}
+Sard's theorem is stated as follows. 
+\begin{theorem}[Sard]\label{thm: sard}
+    Let $M,N$ be smooth manifolds and $F:M\to N$ a smooth map. The set of critical values of $F$ is a measure zero subset of $N$. 
+\end{theorem}
+Deferring the proof, let us consider some examples. 
+\begin{example}
+    Let $M$ be a smooth manifold and $F:M\to\RR$ a smooth map by $p\mapsto0$ for all $p\in M$. Then the set of critical points of $M$ is full measure -- consisting of all of $M$ -- but the set of critical values is measure zero, being $\{0\}\subseteq\RR^{n}$. 
+\end{example}
+In fact, we can show that images of smooth maps between smooth manifolds have measure zero when the dimension of the source is strictly less than the dimension of the target. 
+\begin{corollary}\label{corr: image of measure zero by dimension}
+    Let $M,N$ be smooth $m,n$-manifolds, respectively, and $F:M\to N$ a smooth map. If $m<n$ then $F(M)\subseteq N$ is of measure zero. 
+\end{corollary}
+\begin{proof}
+    Since $m<n$, the differential $dF_{(-)}$ is never surjective so every point of $M$ is a critical point and every point of the image is a critical value, which is of measure zero by \Cref{thm: sard}.
+\end{proof}
+In fact, Sard's theorem allows us to show the strong Whitney embedding theorem. 
+\begin{lemma}\label{lem: projection lemma}
+    Let $M$ be an $M$-submanifold of $\RR^{n}$, $\RR^{n-1}=\{(x_{1},\dots,x_{n})\in\RR^{n}:x_{n}=0\}$, $v\in\RR^{n}\setminus\RR^{n-1}$, and $\pi_{v}:\RR^{n}\to\RR^{n-1}$ the projection with kernel $v\cdot\RR$. If $n>2m+1$ then there is a dense set of vectors $v\in\RR^{n}\setminus\RR^{n-1}$ such that $\pi_{v}|_{M}$ is an injective immersion into $\RR^{n-1}$. 
+\end{lemma}
+\begin{proof}
+    Note that $\pi_{v}|_{M}$ is injective if and only if for all $p\in M$, $T_{p}M\cap\ker(d\pi_{v})=p$ and is an immersion if and only if for all $p\in M$, $T_{p}M\cap\ker(d\pi_{v})$ is trivial, which is equivalent to $T_{p}M$ not containing $v$. 
+
+    Consider the diagonal $\Delta\subseteq M\times M$ and the zero section of the tangent bundle $0_{M}$. Consider maps 
+    \begin{align*}
+        \alpha: (M\times M)\setminus\Delta&\to\RR\PP^{n-1}\\
+        (p,q)&\mapsto[p-q] \\
+        \beta: TM\setminus 0_{M}&\to\RR\PP^{n-1}\\
+        (p,w)&\mapsto[w]
+    \end{align*}
+    which are the composition of a linear and a quotient map, and a projection map, respectively, and hence smooth. Since $n>2m-1$, $(M\times M)\setminus\Delta$ and $TM\setminus 0_{M}$ are both of dimension $2m$. The union of the images has measure zero by \Cref{corr: image of measure zero by dimension}
+\end{proof}
+We now show the strong Whitney embedding theorem. 
+\begin{theorem}[Strong Whitney Embedding]\label{thm: strong Whitney embedding}
+    Let $M$ be a compact smooth $m$-manifold. $M$ admits an embedding into $\RR^{2m+1}$. 
+\end{theorem}
+\begin{proof}
+    By \Cref{thm: Whitney embedding}, $M$ admits an embedding into $\RR^{N}$ for sone $N$ large. But iteratively applying \Cref{lem: projection lemma}, we can consider the image of $M$ under the successive smooth embeddings to $\RR^{2m+1}$. 
+\end{proof}

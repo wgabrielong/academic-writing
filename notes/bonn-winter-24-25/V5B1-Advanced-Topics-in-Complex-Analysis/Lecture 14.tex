@@ -1,0 +1,62 @@
+\section{Lecture 14 -- 26th November 2024}\label{sec: lecture 14}
+We now show the Weierstrass preparation theorem. 
+\begin{theorem}[Weierstrass Preparation]\label{thm: Weierstrass preparation}
+    Let $U\subseteq\CC^{n}$ be open and $D_{R}(0)=D\subseteq\CC$ a disc. If $f:U\times D\to\CC$ is holomorphic of and of order $k$ with respect to the coordinate $w$ on $D$ then there are functions $e(z,w)$ holomorphic nonvanishing on $U\times D$ and $\omega(z,w)$ holomorphic on $U\times D$ of the form $w^{k}+a_{k-1}(z)w^{k-1}+\dots+a_{1}(z)w+a_{0}(z)$ such that $f(z,w)=e(z,w)\cdot\omega(z,w)$.
+\end{theorem}
+\begin{proof}
+    Take $r$ such that $f|_{U\times K}$ on the annulus $K=K(r,R)$ satisfies the hypotheses for \Cref{prop: pre-Weierstrass preparation}. As such, taking $h(z,w),c(z)$ such that $w^{k}e^{h(z,w)}=c(z)\cdot f(z,w)$. Now applying the Laurent decomposition \Cref{prop: Laurent decomposition} we get $h(z,w)=h_{0}(z,w)+h_{\infty}(z,w)$ with $h_{0},h_{\infty}$ holomorphic on $|w|<R,|w|>r$, respectively, and $\lim_{w\to\infty}h_{\infty}(z,w)=0$. 
+
+    We have 
+    $$f(z,w)=\frac{w^{k}e^{h_{0}(z,w)+h_{\infty}(z,w)}}{c(z)}=\frac{w^{k}e^{h_{0}(z,w)}}{c(z)}e^{h_{\infty}(z,w)}.$$
+    Taking $e(z,w)=\frac{e^{h_{0}}(z,w)}{c(z)}$, we have 
+    $$f(z,w)=e(z,w)e^{h_{\infty}(z,w)}.$$
+    Moreover, since $\lim_{w\to\infty}h_{\infty}(z,w)=0$, $\lim_{w\to\infty}e^{h_{\infty}(z,w)}=1$ for fixed $z$. We can thus write 
+    $$e^{h_{\infty}(z,w)}=1+\sum_{m=1}^{\infty}a_{m}(z)w^{-m}$$
+    and decomposing the sum we have 
+    \begin{align*}
+        w^{k}e^{h_{\infty}(z,w)}&=w^{k}\left(\sum_{m=1}^{k}a_{m}(z)w^{-m}\right)+w^{k}\cdot\sum_{m=k+1}^{\infty}a_{m}(z)w^{-m}\\
+        &=\omega(z,w)+\mathcal{R}_{\infty}(z,w)
+    \end{align*}
+    where the summand $\omega(z,w)=w^{k}\left(\sum_{m=1}^{k}a_{m}(z)w^{-m}\right)$ of the desired form. To prove the result, it suffices to show that $\mathcal{R}_{\infty}(z,w)$ is of the desired form. 
+
+    Now we have 
+    $$0=\frac{f(z,w)}{e(z,w)}-\omega(z,w)-\mathcal{R}_{\infty}(z,w)=\mathcal{R}_{0}(z,w)-\mathcal{R}_{\infty}(z,w)$$
+    where by uniqueness of Laurent decompositions on the annulus as $\omega(z,w)$ has the same zeroes as $f$. 
+\end{proof}
+We now consider some special types of functions in the convergent power series ring $\CC\{z_{1},\dots,z_{n}\}$. 
+\begin{definition}[Regular of Fixed Order]\label{def: regular of fixed order}
+    Let $f\in\CC\{z_{1},\dots,z_{n}\}$. $f$ is $z_{n}$-regular of order $k$ if $f(0,z_{n})$ is not identically zero and has a zero of order $k$ at $z_{n}=0$.\marginpar{Definition 4.1} 
+\end{definition}
+The Weierstrass theorem shows that zeroes of holomorphic functions are highly structured. 
+\begin{lemma}\label{lem: regular transformations}
+    If $f$ a holomorphic function on an open neighborhood $U$ around the origin and vanishing at the origin in $\CC^{n+1}$, then there exists a linear change of coordinates $T$ such that $f\circ T$ is $z_{n}$ regular of some order.\marginpar{Lemma 4.5}
+\end{lemma}
+\begin{proof}
+    Consider a complex line $L$ on which $f$ is not identically zero. Setting this line $L$ as the $w$-coordinate, we get that $f$ vanishes at $w=0$. 
+\end{proof}
+\begin{example}
+    $f(z_{1},z_{2})$ is neither $z_{1}$ nor $z_{2}$-regular. But under the transformation $z_{1}=u_{1},z_{2}=u_{1}+u_{2}$, we have that $f(u_{1},u_{2})=u_{1}^{2}+u_{1}u_{2}$ is $u_{1}$-regular of order 2. 
+\end{example}
+\begin{lemma}\label{lem: order k function}
+    Let $f$ be a $z_{n}$-regular function of order $k$. There are constants $0<r', 0<r<R$ such that $f$ converges on $D_{r'}(0)\times D_{R}(0)\subseteq\CC^{n-1}\times\CC$, has no zeroes outside the disc $D_{r'}(0)\times D_{r}(0)\subseteq\CC^{n-1}\times\CC$, and $f(z',z_{n})$ is of order $k$ with respect to $z_{n}$.\marginpar{Lemma 4.6}
+\end{lemma}
+\begin{proof}
+    This is a direct application of \Cref{thm: Weierstrass preparation} as the function $f(0,z_{n})$ has an order $k$ zero at the origin. 
+\end{proof}
+More generally, we can define Weierstrass polynomials as follows. 
+\begin{definition}[Weierstrass Polynomial]\label{def: Weierstrass polynomials}
+    A Weierstrass polynomial of order $k$ is a function in $(z_{1},\dots,z_{n-1},z_{n})=(z',z_{n})$ given by 
+    $$\omega(z',z_{n})=z_{n}^{k}+a_{k-1}(z')z_{n}^{k-1}+\dots+a_{1}(z')z_{n}+a_{0}(z')$$
+    where $a_{k}(0)=0$. 
+\end{definition}
+We will require the following result about $z_{n}$-regular functions of order $k$ in the following exposition. 
+\begin{theorem}[Weierstrass Formal]\label{thm: euclidean division for formal power series}
+    Let $f$ be a $z_{n}$-regular function of order $k$. For each $g\in\CC\{z_{1},\dots,z_{n}\}$, there exists a unique decomposition $g=qf+r$ where $q\in\CC\{z_{1},\dots,z_{n}\}$ and $r\in\CC\{z_{1},\dots,z_{n-1}\}[z_{n}]$ of degree smaller than $k$ in $z_{n}$.\marginpar{Theorem 4.8}
+\end{theorem}
+\begin{proof}
+    By the Weierstrass preparation theorem, we can write $f=e\omega$ for $\omega$ a Weierstrass polynomial of order $k$. Up to setting $g=g/e$, we can take $f$ to be a Weierstrass polynomial. Now consider $g/\omega$ and let $r,R,r'$ be such that $g/\omega$ is holomorphic on $D_{r'}(0)\times K(r,R)$, the product of a disc and annulus. By the Laurent decomposition \cref{prop: Laurent decomposition}, we can write $\frac{g}{\omega}=q+h$ where $q,h$ are holomorphic in $D_{r'}(0)\times D_{R}(0)$ and $D_{r'}(0)\times K(r,R)$, respectively. Now recalling $\omega$ is given as $z_{n}^{k}+a_{k-1}(z')z_{n}^{k-1}+\dots+a_{1}(z')z_{n}+a_{0}(z')$,\marginpar{Once again denoting $z'$ for the coordinates $z_{1},\dots,z_{n-1}$.} we have that for $h(z',z_{n})=\sum_{m=1}^{\infty}c_{m}(z')z_{n}^{-m}$, the product $\omega h$ is given by
+    $$\omega h=b_{1}(z')z_{n}^{k-1}+\dots+b_{0}(z')+\sum_{m=1}^{\infty}b_{m}(z')z_{n}^{-m}.$$
+    Writing $r(z',z_{n})=b_{1}(z')z_{n}^{k-1}+\dots+b_{0}(z'),\mathcal{R}(z',z_{n})=\sum_{m=1}^{\infty}b_{m}(z')z_{n}^{-m}$, we have $g=q\omega+r(z',z_{n})+\mathcal{R}(z',z_{n})$ and it remains to show the latter summand vanishes. 
+
+    Rewriting this $0=-g+q\omega+r(z',z_{n})+\mathcal{R}(z',z_{n})$, we have that $-g+q\omega+r$ is holomorphic on $D_{r'}(0)\times D_{R}(0)$ and $\mathcal{R}(z',z_{n})$ is holomorphic outside $D_{r}(0)$ and hence the above is the Laurent decomposition of the zero function showing $\mathcal{R}(z',z_{n})$ vanishes. Uniqueness of $q,r$ follows from uniqueness of the Laurent decomposition. 
+\end{proof}

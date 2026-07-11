@@ -1,0 +1,317 @@
+\section{Lecture 2 -- 18th October 2024}\label{sec: lecture 2}
+Let us revisit the $q$-Pochhammer function as an example of Nahm sums, and in particular to consider the asymptotic behavior of these rings as $q$ approaches roots of unity. Indeed, the study of such phenomena is precisely the study of the Habiro ring. 
+
+We consider the theory of $q$-calculus and some of its more modern incarnations. The following table summarizes the analogy.
+
+\begin{table}[h]\label{table: q-calculus comparison}
+    \begin{tabular}{c c c}
+        \textbf{Classical} & \textbf{$q$-deformed} & \textbf{$q$-deformed (adapted)}\\
+        $\nabla:\ZZ[t]\to\ZZ[t]$ & $\nabla_{q}:\ZZ[q][t]\to\ZZ[q][t]$ & $\nabla_{q}':\ZZ[q][t]\to\ZZ[q][t]$ \\
+        $f(t)\mapsto\lim_{h\to 0}\frac{f(t)-f(t+h)}{h}$ & $f(t)\mapsto\frac{f(t)-f(qt)}{t-qt}$ & $f(t)\mapsto\frac{f(t)-f(qt)}{t}$\\
+        $t^{n}\mapsto nt^{n-1}$ & $t^{n}\mapsto \frac{1-q^{n}}{1-q}\cdot t^{n-1}=[n]_{q}t^{n-1}$ & $t^{n}\mapsto (1-q^{n})t^{n-1}$\\
+    \end{tabular}
+    \caption{Comparison between classical calculus and two variants of $q$-calculus.}
+\end{table}
+The $q$-deformed construction recovers the classical case as $q\to1$, but the adapted $q$-deformed variant often works better since the lack of $(1-q)$-factors ``treats all roots of unity the same,'' unlike in the classical $q$-deformed variant which ``singles out the first root of unity.''
+
+Note that $\nabla$ is coordinate independent as a local operator, but $\nabla_{q}$ is not, and multiplication by $q$ is information that needs to be remembered. However, despite these issues, $q$-de Rahm cohomology groups turn out to be coordinate independent after $(q-1)$-adic completion, as implied by the theory of prismatic cohomology as developed in \cite{PrismsPrismatic}. In the $\nabla_{q}'$-variant, however, this coordinate independence does not hold as shown by Wagner in \cite{WagnerMSThesis} (vis. \cite{WagnerQWittQHodge}), but recent work of Meyer-Wagner shows the theory does still hold at some level of generality \cite{MeyerWagner}.
+
+Let us now consider $q$-integration, to the end of considering solutions to $q$-difference equations. Classically, $\nabla f(t)=f(t)$ with initial value $f(0)=1$ yields the power series $f(t)=\sum_{n\geq0}\frac{t^{n}}{n!}=\exp(t)$. In the $q$-deformed setting, we have the following. 
+\begin{proposition}\label{prop: q-deformed exponential}
+    The $q$-difference equation with $\nabla_{q}f(t)=f(t)$ with initial value $f(0)=1$ has solution $f(t)=\sum_{n\geq0}\frac{t^{n}}{[n]_{q}!}$ where $[n]_{q}!=\frac{(q;q)_{n}}{(1-q)^{n}}$.
+\end{proposition}
+\begin{proof}
+    This can be verified by a direct computation:
+    \begin{align*}
+        \nabla_{q}f(t) &= \sum_{n\geq0}\frac{[n]_{q}t^{n-1}}{[n]_{q}!} \\
+        &=\sum_{n\geq0}\frac{t^{n-1}}{[n-1]_{q}!} = f(t)
+    \end{align*}
+    which satisfies the initial value condition by inspection. 
+\end{proof}
+Similarly in the case of adapted $q$-deformations, we have the following. 
+\begin{proposition}\label{prop: adapted q-deformed exponential}
+    The $q$-difference equation with $\nabla_{q}'f(t)=f(t)$ with initial value $f(0)=1$ has solution $f(t)=\sum_{n\geq0}\frac{t^{n}}{(q;q)_{n}}$. 
+\end{proposition}
+\begin{proof}
+    Computing as above:
+    \begin{align*}
+        \nabla_{q}'f(t) &= \sum_{n\geq0}\frac{(1-q^{n})t^{n-1}}{(q;q)_{n}} \\
+        &=\sum_{n\geq0}\frac{t^{n-1}}{(q;q)_{n-1}}
+    \end{align*}
+    which once again, by observation, satisfies the initial value condition. 
+\end{proof}
+\begin{remark}
+    We will primarily focus on the adapted variant $\nabla_{q}'$. 
+\end{remark}
+\begin{remark}
+    The above are examples of Nahm sums of \Cref{def: Nahm sum} for the case $N=1$ and $A=0$. 
+\end{remark}
+In the adapted variant, $f(t)$ can be described similarly.  
+\begin{proposition}\label{prop: Pochhammer as exponential}
+    The $q$-difference equation with $\nabla_{q}'f(t)=f(t)$ with initial value $f(0)=1$ has solution $f(t)=(t;q)_{\infty}^{-1}$.
+\end{proposition}
+\begin{proof}
+    Given $f(t)=\frac{f(t)-f(qt)}{t}$ we have that $(1-t)f(t)=f(qt)$ and thus 
+    \begin{equation}\label{eqn: q Pochhammer expansion of exponential}
+        f(t) = (1-t)f(qt)
+    \end{equation} Applying the same manipulation to $f(qt)=\frac{f(qt)-f(q^{2}t)}{qt}$ we have $f(qt)=(1-qt)f(q^{2}t)$ which by induction and substituting into (\ref{eqn: q Pochhammer expansion of exponential}) we get $f(t)=(t;q)_{\infty}^{-1}$, yielding the claim. 
+\end{proof}
+This gives an expression for $(t;q)_{\infty}^{-1}$. 
+\begin{corollary}\label{corr: expansion of t q Pochhammer}
+    There is an equality
+    $$(t;q)_{\infty}^{-1}=\sum_{n\geq0}\frac{t^{n}}{(q;q)_{n}}$$
+    in $\ZZ[q^{\pm},\frac{1}{1-q},\frac{1}{1-q^{2}}, \dots][[t]]$.
+\end{corollary}
+\begin{proof}
+    This is immediate from \Cref{prop: adapted q-deformed exponential,prop: Pochhammer as exponential}.
+\end{proof}
+We are interested in two phenomena:
+\begin{itemize}
+    \item the asymptotics as $q\to 1$ recovering the classical theory, and 
+    \item the asymptotics at roots of unity. 
+\end{itemize}
+One immediately observes that these functions have poles at roots of unity, but their logarithms converge as power series in $t$ with coefficients in $\QQ(q)$. We show the logarithm of $(t;q)_{\infty}^{-1}$ has at worst simple poles at roots of unity. 
+\begin{proposition}\label{prop: logarithm at worst simple poles at roots of unity}
+    There is an equality 
+    \begin{equation}\label{eqn: expresssion of logarithm of q exponential}
+        \log(t;q)_{\infty}^{-1}=\sum_{\ell\geq1}\frac{1}{\ell(1-q^{\ell})}\cdot t^{\ell}
+    \end{equation}
+    in $\QQ(q)[[t]]$. As such, $\log(t;q)_{\infty}^{-1}$ has at worst simple poles at all roots of unity. 
+\end{proposition}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        \log(t;q)_{\infty}^{-1} &= \sum_{n\geq0}\log(1-q^{n}t)^{-1} \\
+        &= \sum_{n\geq0}\sum_{\ell\geq1}\frac{q^{n\ell}t^{\ell}}{\ell}&& \log(1-x)^{-1}=\sum_{\ell\geq1}\frac{x^{\ell}}{\ell} \\
+        &= \sum_{\ell\geq1}\left(\sum_{n\geq0}q^{n\ell}\right)\frac{t^{\ell}}{\ell} \\
+        &= \sum_{\ell\geq1}\left(\frac{1}{1-q^{\ell}}\right)\frac{t^{\ell}}{\ell} && \text{sum of geom. series} \\
+        &= \sum_{\ell\geq1}\frac{1}{\ell(1-q^{\ell})}t^{\ell}
+    \end{align*}
+    giving the first claim. 
+
+    For the second claim, observe that the denominator of (\ref{eqn: expresssion of logarithm of q exponential}) vanishes at order at most 1 at roots of unity, yielding the proposition. 
+\end{proof}
+We now consider the behavior at $q=1$, and to that end we consider $\log(t;q)_{\infty}^{-1}$ as an element of $\frac{1}{q-1}\QQ[[q-1,t]]$. To simplify computations, we make the variable change $q=\exp(h)$ and writing our power series in $\frac{1}{h}\QQ[[h,t]]$ since $\log(q)=\log(1-(q-1))=h$ with $\log(q)$ in $\QQ[[q^{-1}]]$ and understand the asymptotic behavior by writing equations as power series in the variable $h$. To that end, we recall the following definitions. 
+\begin{definition}[Bernoulli Number]\label{def: Bernoulli number}
+    Let $n\geq0$. The $n$th Bernoulli number $B_{n}$ is the $n$th coefficient in the power series expansion 
+    $$-\frac{x}{1-e^{x}}=\sum_{n\geq0}\frac{B_{n}}{n!}x^{n}\in\QQ[[x]].$$
+\end{definition}
+\begin{definition}[Polylogarithm]\label{def: polylogarithm}
+    Let $n\in\ZZ$. The $n$th polylogarithm is the function
+    $$\Li_{n}(x)=\sum_{\ell\geq1}\frac{x^{\ell}}{\ell^{n}}\in\QQ[[x]].$$
+\end{definition}
+Let us consider some elementary properties of the polylogarithm. 
+\begin{lemma}\label{lem: polylogarithm differential equation}
+    The $n$th polylogarithm satisfies the differential equation $\nabla\Li_{n}(t)=\frac{1}{t}\Li_{n-1}(t)$ with initial condition $\Li_{n}(0)=0$. 
+\end{lemma}
+\begin{proof}
+    We compute
+    $$ \nabla\Li_{n}(t)=\sum_{\ell\geq1}\frac{\ell t^{\ell-1}}{\ell^{n}}=\sum_{\ell\geq1}\frac{t^{\ell-1}}{\ell^{n-1}}$$
+    so multiplying by $t$ we have 
+    $$t\cdot\nabla\Li_{n}(t)=\sum_{\ell\geq 1}\frac{t^{\ell}}{\ell^{n-1}}= \Li_{n-1}(t)$$
+    so $\frac{1}{t}\Li_{n-1}(t)=\Li_{n}(t)$ with the intial condition holding since $\sum_{\ell\geq1}\frac{0^{\ell}}{\ell^{n}}=0$. 
+\end{proof}
+The some small values of the polylogarithm are given below \cite{Polylogarithm}. 
+
+\begin{table}[h]\label{table: polylogarithm values}
+    \begin{align*}
+        \Li_{-2}(t)&=\frac{t(t+1)}{(1-t)^{3}} && \Li_{-1}(t)=\frac{t}{1-t} \\
+        \Li_{0}(t)&=\frac{t}{1-t} && \Li_{1}(t)=-\log(1-t)
+    \end{align*}
+    \caption{Values of $\Li_{n}(t)$ for $-2\leq n\leq 1$.}
+\end{table}
+
+\begin{lemma}\label{lem: form of negative polylogarithms}
+    $\Li_{n}(t)\in t\cdot\ZZ[t,\frac{1}{1-t}]$ for $n\leq 0$. 
+\end{lemma}
+\begin{proof}
+    $\Li_{0}(t)$ satisfies this by Table \ref{table: polylogarithm values}. We proceed by induction, supposing that $\Li_{-k}(t)\in t\cdot\ZZ[t,\frac{1}{1-t}]$, we have by \Cref{lem: polylogarithm differential equation} that $\Li_{-k-1}(t)=t\cdot\nabla\Li_{-k}(t)$. The induction hypothesis implies $\Li_{-k}(t)$ is a $\ZZ$-linear combination of elements of the form $\frac{t^{a}}{(1-t)^{b}}$ so by the quotient rule, the derivative lies in $\ZZ[t,\frac{1}{1-t}]$ which suffices by the discussion above. 
+\end{proof}
+Elements of in the ring $t\cdot\ZZ[t,\frac{1}{1-t}]$ behave especially nicely with respect to exponentiation. 
+\begin{lemma}\label{lem: behavior of nonpositive dilogarithms under exponentials}
+    Let $A$ be a ring of characteristic 0. If $f(x)\in t\cdot A[t,\frac{1}{1-t}][[x]]$ then $\exp(f)$ admits a power series expansion in $\mathrm{Frac}(A)[t,\frac{1}{1-t}][[x]]$ as $x\to 0$. 
+\end{lemma}
+\begin{proof}
+    Let us write $f(x)=\sum_{n\geq0}c_{n}(t)x^{n}$ with $c_{n}(t)\in t\cdot A[t,\frac{1}{1-t}]$ depending on $n$. We compute
+    \begin{align*}
+        \exp(f) &= \exp\left(\sum_{n\geq0}c_{n}(t)x^{n}\right) \\
+        &= \prod_{n\geq0}\exp(c_{n}(t)x^{n}) \\
+        &= \prod_{n\geq0}\sum_{k\geq0}\frac{c_{n}(t)^{k}}{k!}x^{nk}.
+    \end{align*}
+    However, for any fixed $N$, the coefficient of $x^{N}$ is a polynomial combination of terms $\frac{c_{n}(t)^{k}}{k!}$ where $n\leq N, k\leq N$ of which there are only finitely many, in particular given by some restriction of $\prod_{0\leq n\leq N}\sum_{0\leq k\leq N}\frac{c_{n}(t)^{k}}{k!}$ which lies in $\mathrm{Frac}(A)[t,\frac{1}{1-t}]$ since each term does. 
+\end{proof}
+
+With this language in hand, we deduce an asymptotic result about the Pochhammer symbol $(t;q)_{\infty}$. 
+\begin{proposition}\label{prop: asymptotics q t Pochhammer at 1}
+    The $q$-Pochhammer symbol $(t;q)_{\infty}$ satisfies the asymptotic formula
+    \begin{equation}\label{eqn: asymptotics of q t Pochhammer at 1}
+        (t;q)_{\infty}\sim\exp\left(\frac{\Li_{2}(t)}{h}\right)\cdot\sqrt{1-t}\cdot O(h)
+    \end{equation}
+    as $q\to 1$ with $O(h)\in\QQ[t,\frac{1}{1-t}][[h]]$. 
+\end{proposition}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        \frac{t^{\ell}}{\ell(1-q^{\ell})} &= \frac{t^{\ell}}{\ell(1-e^{h\ell})} && q^{\ell}=(e^{h})^{\ell}=e^{h\ell}\\
+        &= \frac{h\ell}{1-e^{h\ell}}\cdot\frac{t^{\ell}}{h\ell^{2}} \\
+        &= -\sum_{k\geq0}\frac{B_{k}}{k!}(h\ell)^{k}\cdot\frac{t^{\ell}}{h\ell^{2}} && \frac{h\ell}{1-e^{h\ell}}=-\sum_{k\geq0}\frac{B_{k}}{k!}(h\ell)^{k} \\
+        &= -\sum_{k\geq0}\left(\frac{t^{\ell}}{h\ell^{2}}\cdot\frac{B_{k}}{k!}\cdot(h\ell)^{k}\right)
+    \end{align*}
+    so applying this to $\log(t;q)_{\infty}^{-1}$, we have by \Cref{prop: logarithm at worst simple poles at roots of unity} that
+    \begin{align*}
+        -\log(t;q)_{\infty}^{-1} &= -\sum_{\ell\geq1}\frac{t^{\ell}}{\ell(1-q^{\ell})} \\ 
+        &= \sum_{\ell\geq1}\left(\sum_{k\geq0}\frac{t^{\ell}}{h\ell^{2}}\cdot\frac{B_{k}}{k!}\cdot(h\ell)^{k}\right)&& \text{as above} \\
+        &= \sum_{k\geq0}\left(\sum_{\ell\geq1}\frac{t^{\ell}}{\ell^{2-k}}\right)\frac{B_{k}}{k!}\cdot h^{k-1} && \\
+        &= \sum_{k\geq0}\Li_{2-k}(t)\cdot\frac{B_{k}}{k!}\cdot h^{k-1} && \Li_{2-k}(t)=\sum_{\ell\geq1}\frac{t^{\ell}}{\ell^{2-k}}.
+    \end{align*}
+    We write this as 
+    $$\Li_{2}(t)\cdot B_{0}\cdot\frac{1}{h} + \Li_{1}(t)\cdot B_{1}+\sum_{k\geq2}\Li_{2-k}(t)\cdot\frac{B_{k}}{k!}\cdot h^{k-1}.$$
+    Note here that the third summand is a power series in $h$ with coefficients in $\QQ[t,\frac{1}{1-t}]$. Exponentiating, we get, up to constants, 
+    $$\exp\left(\frac{\Li_{2}(t)}{h}\right)\cdot\sqrt{1-t}\cdot O(h)$$
+    where the second factor follows from $B_{0}=\frac{1}{2}$ and $\exp(-\frac{1}{2}\log(1-t))=\sqrt{1-t}$, and the third factor from applying \Cref{lem: behavior of nonpositive dilogarithms under exponentials} to the observation above. 
+\end{proof}
+\begin{remark}
+    Something similar to \Cref{prop: asymptotics q t Pochhammer at 1} is true for all Nahm sums. 
+\end{remark}
+\begin{remark}
+    It is crucial here to do the expansion in terms of $h$ in order to get a simple result. Doing a power series expansion in other variables will necessitate the use of much more complicated functions. 
+\end{remark}
+
+
+
+The proofs we have encountered thus far have largely centered around explicit computation, yielding qualitative descriptions of the expansions. The qualitative features of the higher order terms $a_{i}(t)$ of (\ref{eqn: asymptotics of q t Pochhammer at 1}) can in fact be defined recursively by integrating lower order terms. The fact that the integrals of these rational functions remain rational without introducing exotic functions hints at the existence of additional underlying structure to these Nahm sums that may allow qualitative behavior to be deduced without explicit computation.
+
+Returning to the broader discussion at hand, \Cref{prop: adapted q-deformed exponential} suggests that $(t;q)_{\infty}^{-1}$ is the $q$-analogue of the exponential function, and recovering the classical exponential as $q\to 1$, but the behavior we have deduced above is indeed much more complicated. This arises as a consequence of working with $\nabla_{q}'$ in place of $\nabla_{q}$.
+
+To show the asymptotics at other roots of unity, we will require Bernoulli polynomials. 
+\begin{definition}[Bernoulli Polynomial]\label{def: Bernoulli polynomial}
+    Let $n\geq0$. The $n$th Bernoulli polynomial $B_{n}(t)$ is the $n$th coefficient in the power series expansion 
+    $$-\frac{xe^{tx}}{1-e^{x}}=\sum_{n\geq0}\frac{B_{n}(t)}{n!}x^{n}\in\QQ[t][[x]].$$
+\end{definition}
+We state some elementary properties of Bernoulli polynomials.  
+\begin{lemma}\label{lem: properties of Bernoulli polynomials}
+    The Bernoulli polynomials satisfy the following identities:
+    \begin{enumerate}[label=(\roman*)]
+        \item $B_{n}(0)=B_{n}$, 
+        \item $B_{n}(t+1)-B_{n}(t)=nt^{n-1}$, and 
+        \item $B_{n}(k)=B_{k}+n\cdot\sum_{i=0}^{k-1}i^{n-1}$ for $k\in\NN$. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (i)]
+    This is immediate from the definition. We have $-\frac{xe^{0\cdot x}}{1-e^{x}}=-\frac{x}{1-e^{x}}$ recovering \Cref{def: Bernoulli number}. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    The finite difference formula follows from 
+    \begin{align*}
+        \sum_{n\geq0}\left(B_{n}(t+1)-B_{n}(t)\right)\frac{x^{n}}{t!}&= \frac{xe^{(t+1)x}-xe^{tx}}{e^{x}-1} \\
+        &= \frac{xe^{tx}(e^{x}-1)}{(e^{x}-1)} \\
+        &= xe^{tx} \\
+        &= \sum_{n\geq0}\frac{t^{n}}{n!}x^{n+1} && e^{tx}=\sum_{n\geq0}\frac{t^{n}}{n!}x^{n} \\
+        &= \sum_{n\geq0}(nt^{n-1})\cdot\frac{x^{n}}{n!} 
+    \end{align*}
+    where the equality is given termwise. 
+\end{proof}
+\begin{proof}[Proof of (iii)]
+    Rearranging (ii) we get the recursion $B_{n}(t+1)=nt^{n-1}+B_{n}(t)$ so by induction for any natural number $k$ we have
+    \begin{align*}
+        B_{n}(k)=B_{n}(0)+n\sum_{i=0}^{k-1}i^{n-1}
+    \end{align*}
+    as desired. 
+\end{proof}
+
+We list the first few Bernoulli polynomials \cite{BernoulliPolynomial}. 
+\begin{table}[h]\label{table: Bernoulli polynomials}
+    \begin{align*}
+        B_{0}(t)&=1 && B_{1}(t)=t-\frac{1}{2} \\
+        B_{2}(t)&=t^{2}-t+\frac{1}{6} && B_{3}(t)=t^{3}-\frac{3}{2}t^{2}+\frac{1}{2}t\\
+        B_{4}(t)&=t^{4}-2t^{3}+t^{2}-\frac{1}{30} && B_{5}(t)=t^{5}-\frac{5}{2}t^{4}+\frac{5}{3}t^{3}+\frac{1}{6}t
+    \end{align*}
+    \caption{Bernoulli polynomials $B_{n}(t)$ for $0\leq n\leq 5$.}
+\end{table}
+
+We now treat the asymptotics at other roots of unity, taking $q=\zeta_{m}\exp(h)$ where $\zeta_{m}$ is a primitive $m$th root of unity. 
+
+\begin{lemma}\label{lem: summand expansion at roots of unity}
+    Let $\zeta_{m}$ be a primitive $m$th root of unity and $q=\zeta_{m}\exp(h)$. Then 
+    \begin{equation}\label{eqn: summand expansion at roots of unity}
+        \frac{1}{\ell(1-q^{\ell})}\cdot t^{\ell} = -\sum_{n\geq0}\frac{t^{\ell}}{\ell^{2-n}}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\cdot B_{n}\left(\frac{i}{m}\right)\right)\frac{m^{n-1}}{n!}h^{n-1}.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        \frac{1}{1-q^{\ell}} &=\frac{1}{1-\zeta_{m}^{\ell}e^{h\ell}} \\
+        &= \frac{1}{1-(\zeta_{m}^{\ell}e^{h\ell})^{m}}\sum_{i=1}^{m-1}(\zeta_{m}^{\ell}e^{h\ell})^{i} && \frac{1}{1-x}=\frac{1+x+\dots+x^{m-1}}{1-x^{m}}
+    \end{align*}
+    so for each summand of (\ref{eqn: expresssion of logarithm of q exponential}) in \Cref{prop: logarithm at worst simple poles at roots of unity}, we have 
+    \begin{align*}
+        \frac{t^{\ell}}{\ell(1-q^{\ell})}&=\frac{t^{\ell}}{\ell}\cdot\frac{1}{1-(\zeta_{m}^{\ell}e^{h\ell})^{m}}\sum_{i=0}^{m-1}(\zeta_{m}^{\ell}e^{h\ell})^{i} \\
+        &= \sum_{i=0}^{m-1}\frac{\zeta_{m}^{i\ell}e^{ih\ell}}{\ell(1-\zeta_{m}^{m\ell}e^{mh\ell})}\cdot t^{\ell} \\
+        &= \sum_{i=0}^{m-1}\frac{\zeta_{m}^{i\ell}e^{ih\ell}}{\ell(1-e^{mh\ell})}\cdot t^{\ell} && \zeta_{m}^{m\ell}=1 \\
+        &= \sum_{i=0}^{m-1}\frac{\zeta_{m}^{i\ell}e^{\frac{i}{m}x}}{1-e^{x}}\cdot \frac{t^{\ell}}{\ell} && x=mh\ell \\
+        &= \frac{t^{\ell}}{\ell}\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\left(\frac{e^{\frac{i}{m}x}}{1-e^{x}}\right) \\
+        &= \frac{t^{\ell}}{\ell}\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\cdot\frac{1}{x}\left(\frac{xe^{\frac{i}{m}x}}{1-e^{x}}\right) \\
+        &= \frac{t^{\ell}}{\ell}\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\frac{1}{x}\left(-\sum_{n\geq0}\frac{B_{n}(\frac{i}{m})}{n!}x^{n}\right) && \text{\Cref{def: Bernoulli polynomial}} \\
+        &= -\frac{t^{\ell}}{\ell}\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\left(\sum_{n\geq0}\frac{B_{n}(\frac{i}{m})}{n!}x^{n-1}\right) \\
+        &= -\frac{t^{\ell}}{\ell}\sum_{n\geq0}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\cdot B_{n}\left(\frac{i}{m}\right)\right)\frac{x^{n-1}}{n!} \\
+        &= -\frac{t^{\ell}}{\ell}\sum_{n\geq0}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\cdot B_{n}\left(\frac{i}{m}\right)\right)\frac{m^{n-1}h^{n-1}\ell^{n-1}}{n!} && x=mh\ell\\
+        &= -\sum_{n\geq0}\frac{t^{\ell}}{\ell^{2-n}}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\cdot B_{n}\left(\frac{i}{m}\right)\right)\frac{m^{n-1}}{n!}h^{n-1}
+    \end{align*}
+    giving an expression of the power series in terms of $h$. 
+\end{proof}
+We will require the following statements in the subsequent discussion 
+\begin{lemma}\label{lem: dilogarithm roots of unity sum}
+    The dilogarithm satisfies the identity 
+    \begin{equation}\label{eqn: dilogarithm roots of unity sum}
+        \frac{1}{m^{n-1}}\cdot\Li_{n}(t^{m}) = \sum_{i=0}^{m-1}\Li_{n}(\zeta_{m}^{i}t)
+    \end{equation}
+    for $m,n\in\NN$. 
+\end{lemma}
+\begin{proof}
+    We have 
+    \begin{align*}
+        \sum_{i=0}^{m-1}\Li_{n}(\zeta_{m}^{i}t) &= \sum_{i=0}^{m-1}\left(\sum_{\ell\geq1}\frac{(\zeta_{m}^{i}t)^{\ell}}{\ell^{n}}\right) \\
+        &= \sum_{\ell\geq 1}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\right)\frac{t^{\ell}}{\ell^{n}}
+    \end{align*}  
+    and now noting 
+    $$\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}=\begin{cases}
+        m & m|\ell \\
+        0 & m\nmid\ell
+    \end{cases}$$
+    the summands above vanish if $\ell$ is not a multiple of $m$ so the sum is in fact given by the sum over $m$-multiples
+    $$\sum_{\ell\geq1}\frac{mt^{m\ell}}{(m\ell)^{n}}=\frac{1}{m^{n-1}}\sum_{\ell\geq1}\frac{t^{m\ell}}{\ell^{n}}=\frac{1}{m^{n-1}}\cdot\Li_{n}(t^{m}).$$
+\end{proof}
+We recover the behavior $q\to\zeta_{m}$ as $h\to0$ so applying the expansion of \Cref{lem: summand expansion at roots of unity} to \Cref{prop: logarithm at worst simple poles at roots of unity}, we get an asymptotic result as above. 
+\begin{proposition}\label{prop: asymptotics of q t Pochhammer at root of unity}
+    The $q$-Pochhammer symbol $(t;q)_{\infty}$ satisfies the asymptotic formula
+    \begin{equation}\label{eqn: asymptotics of q t Pochhammer at root of unity}
+        (t;q)_{\infty}\sim\exp\left(\frac{\Li_{2}(t^{m})}{m^{2}h}\right)\cdot\frac{\sqrt{1-t^{m}}}{\prod_{i=0}^{m-1}\cdot\left(1-\zeta_{m}t\right)^{i/m}}\cdot O(h)
+    \end{equation}
+    as $q\to \zeta_{m}$ with $\zeta_{m}$ a primitive $m$th root of unity and $O(h)\in\QQ(\zeta_{m})[t,\frac{1}{1-t^{m}}][[h]]$.
+\end{proposition}
+\begin{proof}
+    We compute  
+    \begin{align*}
+        -\log(t;q)_{\infty}^{-1} &= -\sum_{\ell\geq1}\frac{1}{\ell(1-q^{\ell})}\cdot t^{\ell} \\
+        &= \sum_{\ell\geq1}\left(\sum_{n\geq0}\frac{t^{\ell}}{\ell^{2-n}}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\cdot B_{n}\left(\frac{i}{m}\right)\right)\frac{m^{n-1}}{n!}h^{n-1}\right)&& \text{by }(\ref{eqn: summand expansion at roots of unity}) \\
+        &=\sum_{n\geq0}\left(\sum_{\ell\geq 1}\frac{t^{\ell}}{\ell^{2-n}}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}B_{n}\left(\frac{i}{m}\right)\right)\right)\frac{m^{n-1}}{n!}h^{n-1}
+    \end{align*}
+    by observation, the terms for $n\geq 2$ are power series in $h$, and so too is its exponent, so it remains to consider the first two terms of the series given by 
+    \begin{align*}
+        \left(\sum_{\ell\geq 1}\frac{t^{\ell}}{\ell^{2-n}}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}B_{0}\left(\frac{i}{m}\right)\right)\right)\frac{1}{mh}&=\left(\sum_{\ell\geq 1}\frac{t^{\ell}}{\ell^{2-n}}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\right)\right)\frac{1}{mh}  && B_{0}(t)=1 \\
+        &= \left(\sum_{\ell'\geq1}\frac{mt^{m\ell'}}{(m\ell')^{2}}\right)\frac{1}{mh} \\
+        &=\frac{1}{m^{2}}\left(\sum_{\ell'\geq1}\frac{t^{m\ell'}}{\ell'^{2}}\right)\frac{1}{h} \\
+        &= \frac{1}{m^{2}h}\Li_{2}(t^{m})
+    \end{align*}
+    and 
+    \begin{align*}
+        \sum_{\ell\geq 1}\frac{t^{\ell}}{\ell^{2-n}}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}B_{1}\left(\frac{i}{m}\right)\right)&= \sum_{\ell\geq 1}\frac{t^{\ell}}{\ell^{2-n}}\left(\sum_{i=0}^{m-1}\zeta_{m}^{i\ell}\left(\frac{i}{m}-\frac{1}{2}\right)\right) && \text{Table \ref{table: Bernoulli polynomials}}\\
+        &= \sum_{i=0}^{m-1}\frac{i}{m}\left(\sum_{\ell\geq1}\frac{(\zeta_{m}^{i}t)^{\ell}}{\ell}\right)-\frac{1}{2}\sum_{\ell\geq1}\left(\sum_{i=0}^{\infty}\zeta_{m}^{i\ell}\right) \\
+        &= \sum_{i=0}^{m-1}\frac{i}{m}\Li_{1}(\zeta_{m}^{i}t) + \frac{1}{2}\log(1-t^{m}) \\
+        &= \frac{1}{2}\log(1-t^{m})+\sum_{i=0}^{m-1}\frac{i}{m}\log(1-\zeta_{m}^{i}t)
+    \end{align*}
+    respectively. Exponentiating, we get, up to constants, 
+    $$\exp\left(\frac{\Li_{2}(t^{m})}{m^{2}h}\right)\cdot\frac{\sqrt{1-t^{m}}}{\prod_{i=0}^{m-1}\cdot\left(1-\zeta_{m}t\right)^{i/m}}\cdot O(h).$$
+\end{proof}
+Qualitatively, this is quite similar to the asymptotic expansion gleaned in (\ref{eqn: asymptotics of q t Pochhammer at 1}) albeit with a more complicated factor of $O(h)$. In more general settings, the factor of $O(h)$ is the \'{e}tale regulator maps on algebraic $K$-theory and becomes increasingly difficult to understand. 
+% The expansion property of n\geq 2 terms should be able to be gleaned using the different approach outlined by grouping the Pochhammer symbol by residue classes modulo m. If q= \zeta_{m}\exp(h) so q^m is close to 1 and know the asymptotics of (q^i t; q^m)_{\infty}. 

@@ -1,0 +1,129 @@
+\section{Lecture 1 -- 8th October 2024}\label{sec: lecture 1}
+We first set the following conventions to be used throughout these notes:
+\begin{itemize}
+    \item Let $X$ be a topological space. A neighborhood of a point $p\in X$ is an open set $U\subseteq X$ containing $p$. 
+    \item For $p=(p_{1},\dots,p_{n})\in\RR^{n}$ and $r\in\RR_{\geq0}$, $B_{r}(p)=\{x\in\RR^{n}:|x-p|^{2}<r\}$ is the open ball of radius $r$ centered at $p$. 
+\end{itemize}
+We begin with a review of point set topology. 
+
+Recall the definition of locally Euclidean spaces. 
+\begin{definition}[Locally Euclidean Space]\label{def: locally Euclidean space}
+    Let $X$ be a topological space. $X$ is locally euclidean if each point $x\in X$ has a neighborhood homeomorphic to $\RR^{n}$ for some fixed $n$. 
+\end{definition}
+\begin{remark}
+    Note that the definition above does not permit topological spaces with points $x,y\in X$ such that $x$ admits a neighborhood homeomorphic to $\RR^{n}$ and $y$ admits a neighborhood homeomorphic to $\RR^{m}$ for $m\neq n$. 
+\end{remark}
+On a locally Euclidean topological space, we can take the neighborhoods homeomorphic to $\RR^{n}$ and consider open subsets of such neighborhoods which also possess a map to $\RR^{n}$. 
+\begin{definition}[Chart]\label{def: chart}
+    Let $X$ be a locally Euclidean topological space. A chart $(U,\phi)$ consists of an open set $U\subseteq X$ and a continuous map $\phi:U\to\RR^{n}$ that is a homeomorphism onto its image. 
+\end{definition}
+Given a point $x\in X$ and a neighborhood, we can consider charts with a prescribed image $\phi(x)\in\RR^{n}$. An especially nice case is when $\phi(x)=0\in\RR^{n}$.
+\begin{definition}[Centered Chart]\label{def: centered chart}
+    Let $X$ be a locally Euclidean topological space. A chart $(U,\phi)$ is centered at $x\in U$ if $\phi(x)=0\in\RR^{n}$. 
+\end{definition}
+In fact, one can show that locally Euclidean topological spaces have charts centered at $x$ for all points $x\in X$. 
+\begin{proposition}\label{prop: locally euclidean and centered charts}
+    Let $X$ be a topological space. The following are equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item $X$ is locally Euclidean. 
+        \item For any point $x\in X$, there is a chart centered at $x$ with image the unit ball of $\RR^{n}$. 
+        \item For any point $x\in X$, there is a chart centered at $x$ with image $\RR^{n}$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    (b)$\Longleftrightarrow$(c) by composing appropriately with the homeomorphism $B_{1}(0)\to\RR^{n}$ by fixing the origin and the map on the complement defined by $x\mapsto\frac{1}{1-\Vert x\Vert}$. Furthermore (c)$\Rightarrow$(a) since (c) is a homeomorphisms of a neighborhood to $\RR^{n}$ are in particular continuous maps to $\RR^{n}$ homeomorphic onto its image. 
+    
+    It remains to show (a)$\Rightarrow$(b). Consider a chart $(U,\phi)$. For $x\in U$, we can consider the map $U\to\RR^{n}$ by $y\mapsto y-\phi(x)$ yielding a chart centered at $x$. By scaling this map by some $\lambda\in\RR_{>0}$ we can consider a map $\widetilde{\phi}$ by $y\mapsto \lambda y-\lambda\phi(x)$ with image containing $B_{1}(0)$. Restriction to the preimage of $B_{1}(0)$ under $\widetilde{\phi}$ yields a chart centered at $x$ with image the unit ball $(U|_{\widetilde{\phi}^{-1}(B_{1}(0))}, \widetilde{\phi})$. 
+\end{proof}
+We now introduce the notion of Hausdorff spaces, which include the spaces of concern in this course, as well as a large proportion of spaces one will encounter over the course of one's mathematical life. 
+\begin{definition}[Hausdorff]\label{def: Hausdorff}
+    Let $X$ be a topological space. $X$ is Hausdorff if for any two distinct points $x,x'\in X$ there exist open neighborhoods $U,U'$ of $x,x'$, respectively, such that $U\cap U'=\emptyset$. 
+\end{definition}
+\begin{example}
+    Euclidean space $\RR^{n}$ is Hausdorff. 
+\end{example}
+\begin{example}
+    CW complexes are Hausdorff. 
+\end{example}
+\begin{example}\label{ex: R by units is not Hausdorff}
+    Let $X$ be the topological space given by the set $\{0,1\}$ and open sets $\emptyset, \{0\}, \{0,1\}$. This space is not Hausdorff since the points 0 and 1 cannot be separated by open sets. This space is in fact the quotient space $\RR/\RR^{\times}$ with $\RR^{\times}$ acting on $\RR$ by multiplication. 
+\end{example}
+\begin{remark}
+    As suggested by \Cref{ex: R by units is not Hausdorff}, quotient spaces are the prototypical example of non-Hausdorff spaces. 
+\end{remark}
+We can show the following properties of Hausdorff spaces. 
+\begin{proposition}\label{prop: properties of Hausdorff spaces}
+    Let $X$ be a Hausdorff topological space. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item Compact sequences have unique limits. 
+        \item Compact subsets are closed. 
+        \item One-point subsets are closed. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (a)]
+    Suppose to the contrary that there is a sequence $\{x_{i}\}_{i=1}^{\infty}$ with limit points $x,x'$ distinct. Since $X$ is Hausdorff, we can take open neighborhoods $U,U'$ of $x,x'$, respectively, such that $U\cap U'=\emptyset$. However we can take $N$ large we have both $x_{i}\in U$ and $x_{i}\in V$, a contradiction as $U,U'$ are disjoint. 
+\end{proof}
+\begin{proof}[Proof of (b)]
+    Let $K\subseteq X$ be compact. We want to show that its complement $X\setminus K$ is open. Let $x\in X\setminus K$. Since $X$ is Hausdorff, we can consider a neighborhood $V_{y}$ for each $y\in K$ disjoint from (possibly varying) neighborhoods $U_{y}$ of $x$. Since $K$ is compact, $K$ is covered by finitely many $V_{y}$'s say $V_{y_{1}},\dots,V_{y_{n}}$ and set $U=\bigcap_{i=1}^{n}U_{y_{i}}$. Note that each $U_{y_{i}}$ is an open set of $X$ containing $x$ in the complement of $V_{y_{i}}$ in $X$ and as such their intersection contains $x$ and is in the complement of $K$. As such, any $x\in X\setminus K$ admits an open neighborhood disjoint from $K$ showing $K$ is closed.
+\end{proof}
+\begin{proof}[Proof of (c)]
+    This is immediate from (b), for one-point sets are compact. 
+\end{proof}
+We now discuss bases and covers of topological spaces. 
+\begin{definition}[Basis for a Topological Space]\label{def: basis of topological space}
+    Let $X$ be a topological space. A collection $\Bcal$ of arbitrary subsets of $X$ is a basis of $X$ if for any $p\in X$ and any neighborhood $U$ of $p$ there exists an element of $B$ containing $p$ and contained in $U$. 
+\end{definition}
+It can be shown that any open set of a topological space can be written as a union of basis sets. 
+\begin{proposition}\label{lem: basis iff every open is a union of elements}
+    Let $X$ be a topological space and $\Bcal$ an arbitrary collection of subsets of $X$. $\Bcal$ is a basis of $X$ if and only if every open set of $X$ can be written as a union of sets of $\Bcal$. 
+\end{proposition}
+\begin{proof}
+    $(\Rightarrow)$ Suppose $\Bcal$ is a basis of $X$ and let $U\subseteq X$ be open. For $x\in U$ consider $V_{x}\in\Bcal$ containing $x$ but contained in $U$ where we have $U=\bigcup_{x\in U}V_{x}$, writing $U$ as a union of basis sets. 
+
+    $(\Leftarrow)$ Suppose for each open $U\subseteq X$ we can write $U=\bigcup_{i\in I}V_{i}$. As such, for each point $x\in U$ there is some $V_{i}$ contained in $U$ containing $X$ thus forming a basis. 
+\end{proof}
+We want to focus our attention on topological spaces that are appropriately ``small'' by imposing size conditions on the basis. 
+\begin{definition}[Second Countable Space]\label{def: second countable space}
+    Let $X$ be a topological space. $X$ is a second countable space if $X$ admits a countable basis $\Bcal$.
+\end{definition}
+The countability property is preserved under the following conditions. 
+\begin{proposition}\label{prop: second countability preserved}
+    Let $X$ be a topological space. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item If $X$ is second countable, then any subspace of $X$ with the subspace topology is second countable. 
+        \item If $\{U_{i}\}_{i\in I}$ is a countable open cover of $X$ with each each $U_{i}$ second countable then $X$ is countable. 
+        \item If $X$ is locally Euclidean and $\{K_{i}\}_{i=1}^{\infty}$ is a sequence of compact subsets such that $X=\bigcup_{i=1}^{\infty}K_{i}$ then $X$ is second countable. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+    For $Y\subseteq X$ a subspace with the induced topology, we seek to produce a countable basis for $Y$. Let $\mathcal{B}$ be a countable basis for $X$ and $\mathcal{B}'=\{\overline{V}=V\cap Y| V\in\mathcal{B}\}$ which is countable since it is cardinality is at most that of $\mathcal{B}$ which is countable by hypothesis. We show $\mathcal{B}'$ is a basis for $Y$.  Let $\overline{U}\subseteq Y$ be open so $\overline{U}=U\cap Y$ for some $U\subseteq X$ open by definition of the subspace topology. Let $y\in\overline{V}$ and note that since $\mathcal{B}$ is a basis for $X$, there is a set $V$ of $\mathcal{B}$ contained in $U$ with $y\in V$ giving a set $V\cap Y=\overline{V}\in\mathcal{B}'$ that is contained in $\overline{U}$ hence producing a basis for $Y$. 
+  \end{proof}
+  \begin{proof}[Proof of (ii)]
+    Let $\{U_{i}\}_{i\in I}$ be a countable open cover of $X$ and for some fixed $i\in I$ consider $\{U_{ij}\}_{j\in J_{i}}$ a countable basis for $U_{i}$. Note that $\{U_{ij}\}_{i\in I, j\in J_{i}}$ is countable, a countable union of countable sets which we seek to show is a basis for $X$. We show that any open $V\subseteq X$ can be written as a union of some $U_{ij}$'s. Since the $U_{i}$'s are open in $X$, we can set $V_{i}=U_{i}\cap V$ which are open in $U_{i}$. As we have shown in class, $V_{i}$ can be written as a union $V_{i}=\bigcup_{j\in J_{i}'}U_{ij}$ for fixed $i$ and $J_{i}'\subseteq J_{i}$ and we have $V=\bigcup_{i\in I, j\in J_{i}'}U_{ij}$ expressing an open of $X$ as a union of elements of $\{U_{ij}\}_{i\in I, j\in J_{i}}$ making $\{U_{ij}\}_{i\in I, j\in J_{i}}$ basis of $X$ which we have shown to be countable above. 
+  \end{proof}
+  \begin{proof}[Proof of (iii)]
+    For each $K_{i}$ consider an open cover of $K_{i}$ by open sets $\{U_{ij}\}_{j\in J_{i}}$ hoemeomorphic to $\RR^{n}$ which exist by $X$ being locally Euclidean. Without loss of generality, we can consider this cover to be finite taking $\{U_{ij}\}_{j=1}^{m}$ since $K_{i}$ is compact. Each $U_{ij}$ has basis given by preimages of the countable basis of open balls in $\RR^{n}$ by taking balls of rational radius centered at rational points endowing each $U_{ij}$ with a countable basis. Thus each $K_{i}$ has a countable basis by taking finite unions over the countable bases of $U_{ij}$ for $j\in J_{i}$ and $X$ has countable basis by taking countable union over the countable bases of each $K_{i}$ as desired. 
+  \end{proof}
+\begin{remark}
+    The property of being second countable is not preserved under arbitrary quotients, though this holds when the quotient map is open. 
+\end{remark}
+We can describe the second countability property in terms of covers. 
+\begin{proposition}\label{prop: second countability via covers}
+    Let $X$ be a topological space. If $X$ is second countable then any open cover of $X$ admits a countable subcover. 
+\end{proposition}
+\begin{proof}
+    Let $\Bcal$ be a countable basis for $X$ and $\{U_{i}\}_{i\in I}$ an open cover of $X$. Consider $\widetilde{\Bcal}$ consisting of those basis elements of $X$ contained in some $U_{i}$. Note that $\widetilde{\Bcal}$ is a cover of $X$ since for any point $x\in U_{i}$ there is an element of $\Bcal$ containing $x$ contained in $U_{i}$. For each $V\in\widetilde{\Bcal}$ of which there are countably many, consider $U_{V}\in\{U_{i}\}_{i\in I}$ such that $V\subseteq U_{V}$. These form a cover of $X$ indexed by a countable set $\widetilde{\Bcal}$ giving the claim. 
+\end{proof}
+We also introduce the following notion of compact exhaustability. 
+\begin{definition}[Compact Exhaustability]\label{def: compact exhaustability}
+    Let $X$ be a topological space. $X$ is compactly exhaustible if there exists a sequence of compact subsets $\{K_{i}\}_{i=1}^{\infty}$ of $X$ such that $K_{i}\subseteq K_{i+1}^{\circ}$ and $X=\bigcup_{i=1}^{\infty}K_{i}$.
+\end{definition}
+The condition of compact exhaustability is satisfied under relatively mild hypotheses. 
+\begin{proposition}\label{prop: locally euclidean Hausdorff second countable implies compactly exhaustible}
+    Let $X$ be a topological space. If $X$ is locally Euclidean, Hausdorff, and second countable, $X$ admits an exhaustion by compact subsets. 
+\end{proposition}
+\begin{proof}
+    We first note that since $X$ is locally Euclidean, it admits a basis $\Bcal$ of open subsets having compact closure: for each chart $(U,\phi)$ we can take some $x\in U$ and set the image of the chart to be centered at $x$ homeomorphic onto the open unit ball by \Cref{prop: locally euclidean and centered charts} and produce a countable basis of the ball by smaller balls wich have compact closure. By taking preimages, we can consider the countable union of countable balls with compact closures inducing the respective property for each open of $X$. 
+ 
+    Furthermore, since $X$ is second countable, it is covered -- up to a choice of bijection of the countable indexing set with the natural numbers -- by countably many sets $\{U_{i}\}_{i=1}^{\infty}$ with compact closure. Suppose $K_{1}=\overline{U_{1}}$. We proceed by induction and suppose that there are compact sets $K_{1},\dots,K_{m}$ such that $U_{i}\subseteq K_{i}$ for each $i$ and $K_{i}\subseteq K_{i+1}^{\circ}$ for $2\leq i\leq m-1$. Since $K_{m}$ is compact, there is some $N_{m}\geq m+1$ large such that $K_{m}\subseteq U_{1}\cup\dots\cup U_{N_{m}}$. If $K_{m+1}=\overline{U_{1}}\cup\dots\cup\overline{U_{N_{m}}}$ then $K_{m+1}$ is closed and thus compact with interior containing $K_{m}$ giving the claim. 
+\end{proof}

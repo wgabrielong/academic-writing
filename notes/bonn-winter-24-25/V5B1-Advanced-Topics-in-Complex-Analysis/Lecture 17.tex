@@ -1,0 +1,120 @@
+\section{Lecture 17 -- 5th December 2024}\label{sec: lecture 17}
+We prove the Bochner-Martinelli integral formula. 
+\begin{theorem}[Bochner-Martinelli Integral Formula]\label{thm: Bochner-Martinelli integral}
+    Let $G\subseteq\CC^{n}$ be a bounded domain with smooth boundary. If $f$ is a continuously differentiable function on the boundary $\partial G$ then 
+    $$f(\tau)=\int_{\partial G}f(w)\beta(w,\tau)-\int_{G}\overline{\partial}f(w)\wedge \beta(w,\tau)$$
+    for all $\tau\in G$.\marginpar{Theorem 1.2}
+\end{theorem}
+\begin{proof}
+    For fixed $\tau\in G$ and $r>0$ sufficiently small that $\overline{B_{r}(\tau)}\subsetneq G$. We have by Stokes' theorem and \Cref{lem: Bochner-Martinelli computation}
+    \begin{align*}
+        \int_{\partial G}f(w)\beta(w,\tau)-\int_{\partial B_{r}(\tau)}f(w)B(w,z)&=\int_{G\setminus\overline{B_{r}(\tau)}}\dform(f(w)\beta(w,\tau))\\
+        &=\int_{G\setminus\overline{B_{r}(\tau)}}\overline{\partial}f(w)\wedge \beta(w,\tau).
+    \end{align*}
+    Note further that 
+    $$\lim_{r\to 0}\int_{G\setminus\overline{B_{r}(\tau)}}\overline{\partial}f(w)\wedge \beta(w,\tau)=\int_{G}\overline{\partial}f(w)\wedge \beta(w,\tau)$$
+    so we can rearrange the equations above to observe 
+    $$\int_{\partial B_{r}(\tau)}f(w)\beta(w,\tau)=f(\tau)\int_{\partial B_{r}(\tau)}\beta(w,\tau)-\int_{\partial B_{r}(\tau)}(f(w)-f(\tau))\beta(w,\tau).$$ 
+    To prove the result, we show $\int_{\partial B_{r}(\tau)}\beta(w,\tau)=1$ and that the second summand of the expression above vanishes.
+
+    For the first claim, we apply Stokes' theorem once more, and recall that the volume of $B_{r}(\tau)$ is $\frac{\pi^{n}}{n!}r^{2n}$ and compute 
+    \footnotesize
+    \begin{align*}
+        \int_{\partial B_{r}(\tau)}\beta(w,\tau) &= \int_{\partial B_{r}(\tau)}\frac{(n-1)!}{(2\pi i)^{n}}\sum_{j=1}^{n}\frac{\overline{w_{j}}-\overline{z_{j}}}{\Vert w-\tau\Vert^{2n}}\dform\overline{w_{1}}\wedge\dform w_{1}\wedge\dots\wedge\dform w_{j-1}\wedge\dform w_{j}\wedge \dform\overline{w_{j+1}}\wedge\dots\wedge\dform\overline{w_{n}}\wedge\dform w_{n} \\
+        &= \frac{(n-1)!}{r^{2n}(2\pi i)^{n}}\int_{\partial B_{r}(\tau)}\sum_{j=1}^{n}(\overline{w_{j}}-\overline{z_{j}})\dform\overline{w_{1}}\wedge\dform w_{1}\wedge\dots\wedge\dform w_{j-1}\wedge\dform w_{j}\wedge \dform\overline{w_{j+1}}\wedge\dots\wedge\dform\overline{w_{n}}\wedge\dform w_{n} \\
+        &=\frac{(n-1)!}{r^{2n}(2\pi i)^{n}}\int_{B_{r}(\tau)}\dform\left(\sum_{j=1}^{n}(\overline{w_{j}}-\overline{z_{j}})\dform\overline{w_{1}}\wedge\dform w_{1}\wedge\dots\wedge\dform w_{j-1}\wedge\dform w_{j}\wedge \dform\overline{w_{j+1}}\wedge\dots\wedge\dform\overline{w_{n}}\wedge\dform w_{n}\right) \\
+        &= \frac{(n-1)!}{r^{2n}(2\pi i)^{n}}\int_{B_{r}(\tau)}n\cdot\dform\overline{w_{1}}\wedge\dform w_{1}\wedge\dots\wedge\dform w_{j}\wedge \dform\overline{w_{j+1}} \\
+        &= \frac{(n-1)!}{r^{2n}(2\pi i)^{n}}\int_{B_{r}(\tau)}n(2i)^{n}\dform V \\
+        &= 1
+    \end{align*}
+    \large
+    For the second claim, the computation above yields
+    \footnotesize
+    \begin{align*}
+        &\frac{(n-1)!}{r^{2n}(2\pi i)^{n}}\left(\int_{B_{r}(\tau)}n\cdot\dform\overline{w_{1}}\wedge\dform w_{1}\wedge\dots\wedge\dform w_{n}\wedge \dform\overline{w_{n}}\right)\\
+        &\hspace{1cm}+\frac{(n-1)!}{r^{2n}(2\pi i)^{n}}\int_{B_{r}(\tau)}\sum_{j=1}\partial_{\overline{w_{j}}}f(w)(\overline{w_{j}}-\overline{\tau_{j}})\cdot\dform\overline{w_{1}}\wedge\dform w_{1}\wedge\dots\wedge\dform w_{n}\wedge \dform\overline{w_{n}}.
+    \end{align*}
+    \large
+    By boundedness of $U$, $|f(w)-f(\tau)|\leq C\Vert w-\tau\Vert$ and $|\partial_{\overline{w_{j}}}f(w)(\overline{w_{j}}-\overline{z_{j}})|\leq C\Vert w-z\Vert$ for some large constant $C$. So for all $w\in\partial B_{r}(\tau)$, the quantities $|f(w)-f(\tau)|,|\partial_{\overline{w_{j}}}f(w)(\overline{w_{j}}-\overline{z_{j}})|$ are bounded above by $Cr$ so 
+    $$\left|\int_{\partial B_{r}(\tau)}(f(w)-f(\tau))\beta(w,\tau)\right|\leq\frac{(n-1)!}{r^{2n}(2\pi)^{n}}\left(2\int_{B_{r}(\tau)}n\cdot 2^{n}Cr\dform V\right)=2Cr$$
+    which vanishes as $r\to0$ proving the claim. 
+\end{proof}
+\begin{remark}
+    Note that the Bochner-Martinelli kernel is not a holomorphic form. 
+\end{remark}
+The Bochner-Martinelli integral formula allows us to prove Hartogs' so-called ``Kugelsatz,'' allowing us to extend holomorphic functions over compact domains. For this, we will require the following lemmata, only one of which we prove. 
+\begin{lemma}\label{lem: Kugelsatz lemma 1}
+    Let $G\subseteq\CC^{n}$ be a domain and $\beta(w,z)$ the Bochner-Martinelli kernel on $G$ and $f$ continuously differentiable on $\partial G$. Then $\overline{\partial}_{z}\beta(w,z)=-\overline{\partial}_{w}\beta_{1}(w,z)$ where\marginpar{Lemma 1.5}
+    $$\beta_{1}(w,z)=(n-1)\beta(w,z)\wedge(\overline{\partial}_{w}\beta)^{n-2}\wedge\overline{\partial}_{z}\beta\cdot\left(\frac{1}{2\pi i}\right)^{n}\frac{1}{\Vert w-z\Vert^{2n}}.$$
+\end{lemma}
+\begin{proof}
+    See \cite[\S 4, Prop. 4.9]{Range}.
+\end{proof}
+\begin{lemma}\label{lem: Kugelsatz lemma 2}
+    Let $G\subseteq\CC^{n}$ and $f$ holomorphic on $\partial G$. Then 
+    $$F(z)=\int_{\partial G}f(w)B(w,z)$$
+    is holomorphic in $z$ for $z\notin\partial G$.\marginpar{Lemma 1.6}
+\end{lemma}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        \overline{\partial}_{z}F(z) &= \int_{\partial G}f(w)\overline{\partial}_{z}B(w,z) \\
+        &= -\int_{\partial G}f(w)\overline{\partial}_{w}\beta_{1}(w,z) \\
+        &= -\int_{\partial G}\overline{\partial}_{w}(f(w)\beta_{1}(w,z)) \\
+        &=  -\int_{\partial G}\dform_{w}(f(w)\beta_{1}(w,z)) \\
+        &= 0
+    \end{align*}
+    as desired.
+\end{proof}
+In turn:
+\begin{theorem}[Hartogs' Kugelsatz]\label{thm: Kugelsatz}
+    Let $U\subseteq\CC^{n}$ be an open, $K\subseteq U$ compact, and $U\setminus K$ connected. If $n\geq 2$ and $f$ is holomorphic on $U\setminus K$ then $f$ extends holomorphically to $U$. 
+\end{theorem}
+\begin{proof}
+    Let $G\subsetneq U$ be a domain and $G_{0}$ a subdomain of $G$ fully containing $K$. By hypothesis $f$ is holomorphic in $G\setminus\overline{G_{0}}$ and by the Bochner-Martinelli integral formula \Cref{thm: Bochner-Martinelli integral}, we have 
+    $$f(z)=\int_{\partial G}f(w)\beta(w,z)-\int_{\partial G_{0}}f(w)\beta(w,z).$$
+    Denoting the integrals $F_{1}(z),F_{2}(z)$, respectively, $F_{1}$ is holomorphic for all $z\notin\partial G$ by \Cref{lem: Kugelsatz lemma 2} and $F_{2}$ holomorphic for all $z\notin G_{0}$. In particular, $F_{1}$ is also holomorphic on all of $G$ and thus holomorphic in $K$ and $F_{2}(z)\to0$ as $|z|\to\infty$. 
+
+    Since $n\geq 2$, there exist hyperplanes that do not meet $G_{0}$ on which $F_{2}$ is zero, showing $F_{2}$ is zero by the identity theorem \Cref{thm: multivariate identity} and $F_{1}$ is a holomorphic extension of $f$ since it coincides with $f$ on $G\setminus\overline{G_{0}}$ once again using the identity theorem. 
+\end{proof}
+
+We now return to a consideration of the multivariate Cauchy-Riemann equations, in particular considering their role in producing holomorphic functions corresponding to fixed differential form data. 
+
+The motivating problem is the existence of holomorphic functions satisfying Cousin-I distributions. 
+\begin{definition}[Cousin-I Distribution]\label{def: Cousin-I distribution}
+    Let $U\subseteq\CC^{n}$ be open. A Cousin-I distribution on $U$ is given by $\{(U_{i},f_{i})\}_{i\in I}$ where $\{U_{i}\}_{i\in I}$ form an open cover of $U$, $f_{i}\in\Kcal(U_{i})$ holomorphic such that $f_{i}-f_{j}$ is holomorphic on $U_{ij}=U_{i}\cap U_{j}$.
+\end{definition}
+A solution to the Cousin-I problem is a meromorphic function compatible with the data of a Cousin-I distribution in the following sense. 
+\begin{definition}[Solution to Cousin-I Problem]
+    Let $U\subseteq\CC^{n}$ be open and $\{(U_{i},f_{i})\}_{i\in I}$ be a Cousin-I distribution on $U$. A solution to the Cousin-I problem is a meromorphic function $f\in\Kcal(U)$ such that $f|_{U_{i}}-f_{i}$ is holomorphic for all $i\in I$. 
+\end{definition}
+Solutions to problems of this type are constructed by finidng a smooth solution and ``altering'' it to a holomorphic solution by solving a $\overline{\partial}$-equation.
+
+We discuss a sequence of reductions for this problem, first recalling the following notions from the theory of smooth manifolds. 
+\begin{definition}[Partition of Unity]\label{def: partition of unity}
+    Let $U\subseteq\RR^{n}$ be open and $\{U_{i}\}_{i\in I}$ a locally finite open cover of $U$ such that each $U_{i}$ is relatively compact in $U$. A partition of unity $\{\psi_{i}\}_{i\in I}$ subordinate to the cover $\{U_{i}\}_{i\in I}$ is the data of smooth functions $\psi_{i}:U_{i}\to \RR$ such that $\mathrm{supp}(\psi_{i})\subseteq U_{i}$ and $\sum_{i\in I}\psi_{i}(x)=1$ for all $x\in U$. 
+\end{definition}
+Partitions of unity exist for open sets of $\CC^{n}$. 
+\begin{proposition}\label{prop: partitions of unity exist}
+    Let $U\subseteq\RR^{n}$ be open and $\{U_{i}\}_{i\in I}$ a locally finite open cover of $U$ such that each $U_{i}$ is relatively compact in $U$. There exists a partition of unity $\{\psi_{i}\}_{i\in I}$ subordinate to the cover $\{U_{i}\}_{i\in I}$. 
+\end{proposition}
+A proof of \Cref{prop: partitions of unity exist} can be found in \cite[\S 2]{LeeSM}. Note in particular that holomorphic phenomena are in particular smooth which justifies their use in what follows. 
+
+\begin{proposition}\label{prop: equivalent Cousin-I distributions}
+    Let $U\subseteq\CC^{n}$ be open and $\{(U_{i},f_{i})\}_{i\in I},\{(V_{j},g_{j})\}_{j\in J}$ be Cousin-I distributions such that their union is a Cousin-I distribution. If $f\in\Kcal(U)$ is a solution to the Cousin-I distribution $\{(U_{i},f_{i})\}_{i\in I}$ then $f$ is a solution to the Cousin-I distribution $\{(V_{j},g_{j})\}_{j\in J}$ as well. 
+\end{proposition}
+\begin{proof}
+    Let $f\in\Kcal(U)$ be a solution to the Cousin-I problem for the distribution $\{(U_{i},f_{i})\}_{i\in I}$ and $\{\psi_{j}\}_{j\in J}$ be a partition of unity subordinate to the cover $\{V_{j}\}_{j\in J}$. We want to show that $f|_{V_{j}}-g_{j}\in\Ocal(V_{j})$ for all $j\in J$. For this, we note that $V_{j}$ admits a cover by $\{U_{i}\cap V_{j}\}_{i\in I}$ on which $f_{i}|_{U_{i}\cap V_{j}}-g_{j}|_{U_{i}\cap V_{j}}$ is holomorphic so $f_{i}\psi_{j}-g_{j}$ is holomorphic on all $V_{j}$ and similarly $f-f_{i}|_{U_{i}\cap V_{j}}$ is holomorphic for all $U_{i}\cap V_{j}$ and all $i\in I$ with fixed $j\in J$ which extends holomorphically to $f|_{V_{j}}-f_{i}\psi_{j}$ on $V_{j}$ But their sum is $f|_{V_{j}}-g_{j}$ and holomorphic as it is the finite sum of holomorphic functions by local finiteness of the cover. 
+\end{proof}
+This motivates the following definition. 
+\begin{definition}[Equivalent Cousin-I Distributions]
+    Let $U\subseteq\CC^{n}$ be open and $\{(U_{i},f_{i})\}_{i\in I},\{(V_{j},g_{j})\}_{j\in J}$ be Cousin-I distributions. $\{(U_{i},f_{i})\}_{i\in I},\{(V_{j},g_{j})\}_{j\in J}$ are equivalent Cousin-I distributions if their union is a Cousin-I distribution. 
+\end{definition}
+
+This reduces solving the Cousin-I problem to the following. 
+\begin{proposition}\label{prop: Cousin-I is CR01}
+    Let $U\subseteq\CC^{n}$ be open and $f\in C^{\infty}(U)$, $f=\sum_{j=1}^{n}f_{j}\dform\overline{z_{j}}$, and there exists $u$ a smooth function such that $\overline{\partial}u=f$ and $\overline{\partial}f=0$. Then the Cousin-I problem admits a solution.\marginpar{Proposition 1}
+\end{proposition}
+\begin{proof}
+    Let $\{(U_{i},f_{i})\}_{i\in I}$ be a Cousin-I distribution as above and set $g_{i}=\sum_{j\in I}\phi_{j}f_{ji}$ which is defined on $U_{i}$. Note that on $U_{ik}$ the difference $g_{i}-g_{k}$ is given by $f_{ik}$ as expected and that $\overline{\partial}g_{i}-\overline{\partial}g_{j}=0$. We can define function $f$ as in the hypothesis of the theorem by taking $f|_{U_{i}}=\overline{\partial}g_{i}$ which statisfies the hypothesis by inspection and admits a solution $u$ to the Cousin-I problem. 
+\end{proof}

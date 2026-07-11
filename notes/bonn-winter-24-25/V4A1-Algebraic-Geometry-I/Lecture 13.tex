@@ -1,0 +1,151 @@
+\section{Lecture 13 -- 22nd November 2024}\label{sec: lecture 13}
+Following \Cref{ex: non-isomorphic as schemes over the base}, we consider the following. 
+\begin{example}
+    Note that $\pi,e^{\pi}$ are algebraically independent -- there does not exist a polynomial $F\in\QQ[x_{1},x_{2}]$ where $F(\pi,e^{\pi})=0$. Let $X=\PP^{1}_{\CC}\setminus\{0,1,\infty,\pi\}$ considered as a $\CC$-scheme. Let $\sigma\in\Aut(\QQ(\pi,e^{\pi}))$ be the element of the automorphism group $\pi\mapsto e^{\pi},e^{\pi}\mapsto\pi$ considered as an automorphism of $\CC$. We can compute $X_{\sigma}=\PP^{1}_{\CC}\setminus\{0,1,\infty,e^{\pi}\}$. Any isomorphism of $X_{\sigma}$ and $X$ as a $\CC$-scheme would be induced by a linear fractional transformation defining an automorphism of $\PP^{1}_{\CC}$, but this would produce an algebraic dependence between $\pi,e^{\pi}$, a contradiction. 
+\end{example}
+For those more arithmetically minded, we can use the language of rational points of \Cref{def: rational points} to understand Galois actions on schemes. 
+\begin{proposition}\label{prop: map from Galois group to automorphisms of scheme}
+    Let $X$ be a $k$-scheme and $K/k$ a Galois extension with Galois group $G$. There exists a group homomorphism $G\to\Aut_{k}(X_{K})$. 
+\end{proposition}
+\begin{proof}
+    Consider the diagram 
+    $$% https://q.uiver.app/#q=WzAsNixbMywxLCJYIl0sWzMsMiwiXFxzcGVjKGspIl0sWzEsMiwiXFxzcGVjKEspIl0sWzEsMSwiWF97S30iXSxbMCwwLCJYX3tLfSJdLFswLDIsIlxcc3BlYyhLKSJdLFs1LDIsIlxcc2lnbWEiLDJdLFsyLDFdLFswLDFdLFszLDJdLFszLDBdLFs0LDBdLFs0LDVdLFs0LDMsIlxcZXhpc3RzISIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \begin{tikzcd}
+        {X_{K}} \\
+        & {X_{K}} && X \\
+        {\spec(K)} & {\spec(K)} && {\spec(k)}
+        \arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+        \arrow[from=1-1, to=2-4]
+        \arrow[from=1-1, to=3-1]
+        \arrow[from=2-2, to=2-4]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-4, to=3-4]
+        \arrow["\sigma"', from=3-1, to=3-2]
+        \arrow[from=3-2, to=3-4]
+    \end{tikzcd}$$
+    where the $X_{K}$ of the upper-left corner is obtained by the fibered product over the $\spec(K)$ of the lower-left corner. The diagram commutes since $\sigma|_{k}$ is the identity and the unique morphism induced by the universal property of the fibered product is an isomorphism of $X_{K}$ to itself as $k$-schemes as its structure as a $k$-scheme is unchanged under $\sigma$. 
+\end{proof}
+Such methods were used by Weil to understand $\FF_{q}$-points of algebraic varieties by considering fixed points of the action of $\Gal(\overline{\FF_{q}}/\FF_{q})$ on $X(\overline{\FF_{q}})$. 
+
+The language of fibered products also allow us to describe graphs and diagonals, the latter of which will play a key role in definitions of properties of schemes. 
+\begin{definition}[Graph Morphism]\label{def: graph morphism}
+    Let $f:X\to Y$ be a morphism of $S$-schemes. The graph of $f$ is the unique morphism $X\to X\times_{S}Y$ induced by the diagram 
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwxLCJYXFx0aW1lc197U31ZIl0sWzMsMSwiWCJdLFsxLDIsIlkiXSxbMywyLCJTIl0sWzAsMCwiWCJdLFsyLDNdLFsxLDNdLFswLDFdLFswLDJdLFs0LDEsIlxcaWRfe1h9IiwwLHsiY3VydmUiOi0xfV0sWzQsMiwiZiIsMix7ImN1cnZlIjoxfV0sWzQsMCwiXFxleGlzdHMhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \begin{tikzcd}
+        X \\
+        & {X\times_{S}Y} && X \\
+        & Y && S.
+        \arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+        \arrow["{\id_{X}}", curve={height=-6pt}, from=1-1, to=2-4]
+        \arrow["f"', curve={height=6pt}, from=1-1, to=3-2]
+        \arrow[from=2-2, to=2-4]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-2, to=3-4]
+    \end{tikzcd}$$
+\end{definition}
+\begin{definition}[Diagonal Morphism]\label{def: diagonal morphism}
+    Let $X$ be an $S$-scheme. The diagonal morphism $\Delta_{X/S}$ is the unique morphism $X\to X\times_{S}X$ induced by the diagram 
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwxLCJYXFx0aW1lc197U31YIl0sWzMsMSwiWCJdLFsxLDIsIlgiXSxbMywyLCJTIl0sWzAsMCwiWCJdLFsyLDNdLFsxLDNdLFswLDFdLFswLDJdLFs0LDEsIlxcaWRfe1h9IiwwLHsiY3VydmUiOi0xfV0sWzQsMiwiXFxpZF97WH0iLDIseyJjdXJ2ZSI6MX1dLFs0LDAsIlxcZXhpc3RzISIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \begin{tikzcd}
+        X \\
+        & {X\times_{S}X} && X \\
+        & X && S.
+        \arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+        \arrow["{\id_{X}}", curve={height=-6pt}, from=1-1, to=2-4]
+        \arrow["{\id_{X}}"', curve={height=6pt}, from=1-1, to=3-2]
+        \arrow[from=2-2, to=2-4]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-2, to=3-4]
+    \end{tikzcd}$$
+\end{definition}
+\begin{remark}
+    In particular, the diagonal morphism \Cref{def: diagonal morphism} is the graph \Cref{def: graph morphism} of $\id_{X}$. 
+\end{remark}
+\begin{remark}
+    The absolute variants of \Cref{def: graph morphism,def: diagonal morphism} can be recovered by taking $S=\spec(\ZZ)$. 
+\end{remark}
+The name ``diagonal'' is justified by the followng example. 
+\begin{example}\label{ex: A1 is separated}
+    Let $k$ be a field $X=\A^{1}_{k},S=\spec(k)$. The diagonal map $\A^{1}_{k}\to \A^{1}_{k}\times_{k}\A^{1}_{k}\cong\A^{2}_{k}$ is induced by the ring map $k[x_{1},x_{2}]=k[x_{1}]\otimes_{k}k[x_{2}]\to k[x]$ with kernel $x_{1}-x_{2}$ whose vanishing locus is the diagonal line in $\A^{2}_{k}$. 
+\end{example}
+While in the above example the diagonal had a closed image, this is not always the case. The collection of schemes where this is satisfied are precisely the separated schemes. 
+\begin{definition}[Separated Scheme]\label{def: separated scheme}
+    Let $X$ be an $S$-scheme. $X$ is separated if the image of $\Delta_{X/S}$ is closed. 
+\end{definition}
+\begin{remark}
+    This will be the analogue of Hausdorffness in the setting of schemes. 
+\end{remark}
+\begin{example}
+    \Cref{ex: A1 is separated} shows that $\A^{1}_{k}$ is a separated $k$-scheme. On the other hand, the affine line with doubled origin \Cref{ex: doubled origin} is not separated. 
+\end{example}
+Before considering properties of morphisms of schemes, we consider stability properties of morphisms under certain operations. Thus far, we have only seen fibered products, and the appropriate notion is defined as follows. 
+\begin{definition}[Stable Under Base Change]\label{def: stable under base change}
+    Let P be a property of morphisms of schemes. The property P is stable under base change if for all $f:X\to Y$ with the property P, and all diagrams Cartesian diagrams 
+    $$% https://q.uiver.app/#q=WzAsNCxbMiwwLCJYIl0sWzIsMSwiWSJdLFswLDAsIlgnIl0sWzAsMSwiWSciXSxbMiwzLCJmJyIsMl0sWzMsMV0sWzAsMSwiZiJdLFsyLDBdXQ==
+    \begin{tikzcd}
+        {X'} && X \\
+        {Y'} && Y
+        \arrow[from=1-1, to=1-3]
+        \arrow["{f'}"', from=1-1, to=2-1]
+        \arrow["f", from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    $f'$ has the property $P$. 
+\end{definition}
+
+We now turn to properties of schemes. We first consider topological properties -- properties determined by the map of underlying topological spaces. 
+\begin{definition}[Open Morphism]\label{def: open morphism}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is an open morphism if for all $U\subseteq X$ open, $f(U)\subseteq Y$ is open. 
+\end{definition}
+\begin{definition}[Closed Morphism]\label{def: closed morphism}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is an closed morphism if for all $Z\subseteq X$ closed, $f(Z)\subseteq Y$ is closed.
+\end{definition}
+\begin{definition}[Dominant]\label{def: dominant morphism}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is a dominant morphism if $f(X)\subseteq Y$ is dense. 
+\end{definition}
+\begin{remark}
+    If $Y$ is integral, and thus with a unique geometric point $\eta$, a morphism $f:X\to Y$ is dense if $\eta\in f(X)$. 
+\end{remark}
+\begin{definition}[Quasicompact Morphism]\label{def: quasicompact morphism}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is a quasicompact morphism if for all $V\subseteq Y$ quasicompact, $f^{-1}(V)\subseteq X$ is quasicompact. 
+\end{definition}
+\begin{remark}
+    It can be shown that quasicompactness of \Cref{def: quasicompact morphism} can be verified on affine schemes. 
+\end{remark}
+\begin{definition}[Quasifinite Morphism]\label{def: quasifinite}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is a quasifinite morphism if for all $y\in Y$, $f^{-1}(y)$ is a finite set. 
+\end{definition}
+We can now consider some properties of locally ringed spaces.
+\begin{definition}[Open Immersion]\label{def: open immerrsion}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is an open immersion if there exists some $V\subseteq Y$ open such that $f$ factors over the isomorphism of schemes $X\cong V$.  
+\end{definition}
+\begin{definition}[Closed Immersion]\label{def: closed immersion}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is a closed immersion if there exists some $W\subseteq Y$ closed such that $f$ factors over the isomorphism of schemes $X\cong W$. 
+\end{definition}
+\begin{definition}[Immersion]\label{def: immersion}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is an immersion if there exists a closed subscheme $W\subseteq Y$ and an open subscheme $V\subseteq W$ such that $f$ factors over the isomorphism $X\cong V$. 
+\end{definition}
+\begin{example}
+    Let $X=\A^{1}_{k}\setminus\{0\}=D(x)=\spec(k[x^{\pm}])$. THe inclusion to $\A^{2}_{k}$ by $k[x_{1},x_{2}]\to k[x_{1}^{\pm}]$ taking $x_{1}\mapsto x_{1},x_{2}\mapsto0$ is an immersion taking $W=V(x_{2})$ and $V=W\setminus\{0\}$. 
+\end{example}
+\begin{remark}
+    If $f$ is an immersion, it factors as a closed followed by an open immersion. 
+\end{remark}
+Finally, we turn to scheme-theoretic properties. 
+\begin{definition}[Locally Finite Type Morphism]\label{def: locally finite type}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is locally of finite type if there exists an affine open cover $\{V_{j}\}_{j\in J}$ and each affine open covering $\{U_{ij}\}_{i\in I_{j}}$ of $f^{-1}(V_{j})$, $\Gamma(U_{ij},\Ocal_{X})$ is a finite type $\Gamma(V_{j},\Ocal_{Y})$-algebra. 
+\end{definition}
+\begin{definition}[Finite Type Morphism]\label{def: finite type}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is of finite type if there exists an affine open cover $\{V_{j}\}_{j\in J}$ such that each $f^{-1}(V_{j})$ has a finite cover $\{U_{ij}\}_{i=1}^{n_{j}}$ and $\Gamma(U_{ij},\Ocal_{X})$ is a finite type $\Gamma(V_{j},\Ocal_{Y})$-algebra.
+\end{definition}
+\begin{definition}[Affine Morphism]\label{def: affine morphism}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is an affine morphism if there exists an open cover $\{V_{j}\}_{j\in J}$ of $Y$ such that $f^{-1}(V_{j})$ is affine for all $j$. 
+\end{definition}
+\begin{definition}[Finite Morphism]\label{def: finite morphism}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is a finite morphism if it is an affine morphism and there exists an open cover $\{V_{j}\}_{j\in J}$ of $Y$ such that $\Gamma(f^{-1}(V_{j}),\Ocal_{X})$ is a finite module over $\Gamma(V_{j},\Ocal_{Y})$. 
+\end{definition}
+\begin{remark}
+    A number of these conditions on morphisms imply others. The condition for ``existence of an affine open cover'' can often be replaced by ``for all open covers'' using \Cref{lem: affine communication}.
+\end{remark}

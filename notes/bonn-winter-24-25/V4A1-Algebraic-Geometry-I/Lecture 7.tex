@@ -1,0 +1,80 @@
+\section{Lecture 7 -- 28th October 2024}\label{sec: lecture 7}
+We continue our discussion of \v{C}ech cohomology and its relation to derived functor cohomology. We first define a sheaf-variant of \v{C}ech cohomology. 
+\begin{definition}[\v{C}ech Complex of Sheaves]\label{def: Cech complex of sheaves}
+    Let $X$ be a topological space, $\{U_{i}\}_{i\in I}$ a cover of $X$ with $I$ a totally ordered set, and $\Fcal$ a sheaf on $X$. The \v{C}ech complex of sheaves 
+    $$\Ccal^{0}(\{U_{i}\}_{i\in I},\Fcal)\to\Ccal^{1}(\{U_{i}\}_{i\in I},\Fcal)\to\Ccal^{2}(\{U_{i}\}_{i\in I},\Fcal)\to\dots$$
+    is the chain complex of sheaves on $X$ with 
+    $$\Ccal^{p}(\{U_{i}\}_{i\in I},\Fcal)=j_{*}\left(\prod_{i_{0}<i_{1}<\dots<i_{p}}\Fcal|_{U_{i_{0}}\cap\dots\cap U_{i_{p}}}\right)$$
+    for $j:U_{i_{0}}\cap\dots\cap U_{i_{p}}\hookrightarrow X$ the inclusion map, and differentials those induced by taking sections on open sets. 
+\end{definition}
+\begin{remark}
+    As such, $\Ccal^{\bullet}(\{U_{i}\}_{i\in I},\Fcal)$ is a complex of sheaves on $X$ with the property that $\Gamma(X,\Ccal^{p}(\{U_{i}\}_{i\in I},\Fcal))=C^{p}(\{U_{i}\}_{i\in I},\Fcal)$. 
+\end{remark}
+This complex is in fact a long exact sequence of sheaves. 
+\begin{proposition}\label{prop: Cech complex of sheaves is a long exact sequence}
+    Let $X$ be a topological space, $\{U_{i}\}_{i\in I}$ a cover of $X$ with $I$ a totally ordered set, and $\Fcal$ a sheaf on $X$. The \v{C}ech complex of sheaves 
+    $$\Ccal^{0}(\{U_{i}\}_{i\in I},\Fcal)\to\Ccal^{1}(\{U_{i}\}_{i\in I},\Fcal)\to\Ccal^{2}(\{U_{i}\}_{i\in I},\Fcal)\to\dots$$
+    is a long exact sequence of sheaves on $X$. 
+\end{proposition}
+\begin{proof}
+    See \cite[Lem. 4.2]{Hartshorne}. 
+\end{proof}
+The formation of this complex behaves as expected on flasque sheaves. 
+\begin{proposition}
+    Let $X$ be a topological space, $\{U_{i}\}_{i\in I}$ a cover of $X$ with $I$ a totally ordered set, and $\Fcal$ a flasque sheaf on $X$. Then $\check{H}^{p}(\{U_{i}\}_{i\in I},\Fcal)=0$ for $p>0$. 
+\end{proposition}
+\begin{proof}
+    For $\Fcal$ flasque, $\Ccal^{\bullet}(\{U_{i}\}_{i\in I},\Fcal)$ is a complex of flasque sheaves by construction so $\check{H}^{p}(\{U_{i}\}_{i\in I},\Fcal)=R^{i}\Gamma(X,\Ccal^{\bullet}(\{U_{i}\}_{i\in I},\Fcal))=0$.
+\end{proof}
+We anre now prepared to show the comparison theorem with derived functor cohomology. 
+\begin{theorem}\label{thm: Cech to derived functor comparison}
+    Let $X$ be a topological space, $\{U_{i}\}_{i\in I}$ a cover of $X$ with $I$ a totally ordered set, and $\Fcal$ a sheaf on $X$. There is a functorial comparison morphism $\check{H}^{i}(\{U_{i}\}_{i\in I},\Fcal)\to H^{i}(X,\Fcal)$ for all $i$. 
+\end{theorem}
+\begin{proof}
+    Using the long exact sequence with the \v{C}ech complex of sheaves $0\to\Fcal\to\Ccal^{0}(\{U_{i}\}_{i\in I},\Fcal)\to\Ccal^{1}(\{U_{i}\}_{i\in I},\Fcal)\to\dots$ and an injective resolution $0\to\Fcal\to\Ical_{0}\to\Ical_{1}\to\dots$, the universal property of injective objects induces canonical maps $\Ccal^{i}(\{U_{i}\}_{i\in I},\Fcal)\to\Ical_{i}$ descending to a canonical map on cohomology. 
+\end{proof}
+In the case where a certain condition on higher cohomology is satisfied -- and as we will show holds in the case of schemes -- this functorial comparison morphism is an isomorphism. 
+\begin{proposition}\label{prop: comparison between Cech and derived functor cohomology is an isomorphism}
+    Let $X$ be a topological space, $\{U_{i}\}_{i\in I}$ a cover of $X$ with $I$ a totally ordered set. If $\Fcal$ a sheaf on $X$ such that $H^{p}(U_{i}\cap U_{j},\Fcal)=0$ for all $i,j\in I$ and $p\geq 1$ then there is an isomorphism $\check{H}^{i}(\{U_{i}\}_{i\in I},\Fcal)\cong H^{i}(X,\Fcal)$.
+\end{proposition}
+\begin{proof}
+    Let $\Fcal$ be such a sheaf, in which case $R^{p}\Gamma(X,\Ccal^{k}(\{U_{i}\}_{i\in I},\Fcal))=0$ for $p>0, k\geq0$ and the result follows from \Cref{thm: Cech to derived functor comparison}. 
+\end{proof}
+We can also define a cover-independent variant of \v{C}ech cohomology as follows. 
+\begin{definition}[Refinement of Cover]\label{def: refinement of cover}
+    Let $X$ be a topological space and $\{U_{i}\}_{i\in I}$ and $\{V_{j}\}_{j\in J}$ be two covers of $X$. The cover $\{V_{j}\}_{j\in J}$ refines $\{U_{i}\}_{i\in I}$ if there is an order-preserving function $\rho:J\to I$ such that $V_{j}\subseteq U_{\rho(j)}$. 
+\end{definition}
+Note that for a refinement $\{V_{j}\}_{j\in J}$ of $\{U_{i}\}_{i\in I}$ the termwise map on \v{C}ech complexes 
+$$\prod_{\rho^{-1}(j_{0})<\dots<\rho^{-1}(j_{p})}\Fcal(U_{\rho^{-1}(j_{0})}\cap\dots\cap U_{\rho^{-1}(j_{p})})\to\prod_{j_{0}<\dots<j_{p}}\Fcal(U_{j_{0}}\cap\dots\cap U_{j_{p}})$$
+inducing a map on cohomology $\check{H}^{p}(\{U_{i}\}_{i\in I},\Fcal)\to\check{H}^{p}(\{V_{j}\}_{j\in J},\Fcal)$. Absolute \v{C}ech cohomology is defined by passage to colimits on refinements of covers. 
+\begin{definition}[Absolute \v{C}ech Cohomology]\label{def: absolute Cech cohomology}
+    Let $X$ be a topological space and $\Fcal$ a sheaf on $X$. The absolute \v{C}ech cohomology $\check{H}^{p}(X,\Fcal)$ is given by 
+    $$\colim_{\substack{\{U_{i}\}_{i\in I}\to\{V_{j}\}_{j\in J} \\ \{V_{j}\}_{j\in J} \text{ refines } \{U_{i}\}_{i\in I}}}\check{H}^{p}(\{U_{i}\}_{i\in I},\Fcal).$$
+\end{definition}
+\begin{remark}
+    It is often the case that \v{C}ech cohomology with respect to a cover is not equivalent to derived functor cohomology, but absolute \v{C}ech cohomology is.
+\end{remark}
+\begin{remark}\label{rmk: cech and derived functor in degree 1}
+    It can be shown that derived functor cohomology agrees with absolute \v{C}ech cohomology in degree 1, that is, $\check{H}^{1}(X,\Fcal)\cong H^{1}(X,\Fcal)$, though not in general. 
+\end{remark}
+
+We are now prepared to define schemes, which we will exhibit as a special class of ringed spaces. 
+\begin{definition}[Ringed Space]\label{def: ringed space}
+    A ringed space $(X,\Ocal_{X})$ consists of a topological space $X$ and a sheaf of rings $\Ocal_{X}$ on $X$ known as the structure sheaf on $X$. 
+\end{definition}
+\begin{definition}[Morphism of Ringed Spaces]\label{def: morphism of ringed spaces}
+    A morphism of ringed spaces $(f,f^{\sharp}):(X,\Ocal_{X})\to (Y,\Ocal_{Y})$ is the data of a continuous map $f:X\to Y$ and a morphism $f^{\sharp}:\Ocal_{Y}\to f_{*}\Ocal_{X}$ of sheaves of rings on $Y$. 
+\end{definition}
+\begin{remark}
+    Note that $f_{*}\Ocal_{X}$ is automatically a sheaf of rings on $Y$ with no need for sheafification since $\Ocal_{X}$ is a sheaf on $X$ (cf. \Cref{def: direct image sheaf}). 
+\end{remark}
+\begin{remark}
+    In many cases the induced map on sheaves $f^{\sharp}$ is obvious from the morphism $f$ and will be left implicit. 
+\end{remark}
+Let us consider some examples. 
+\begin{example}\label{ex: holomorphic functions on open subspace of complex vector space}
+    Let $V$ be a $\CC$-vector space and $U\subseteq V$ open. The sheaf of holomorphic functions on $U$ endows $U$ with the structure of a ringed space with the natural restriction maps. 
+\end{example}
+\begin{example}\label{ex: sheaves of continuous functions are ringed spaces}
+    Let $f:X\to Y$ be a continuous map of topological spaces. There is a natural map $C_{Y}\to f_{*}C_{X}$ of sheaves of continuous functions on $Y$ by composition, taking a function $g$ continuous on $V\subseteq Y$ to the function $g\circ f\in C_{X}(f^{-1}(V))$.
+\end{example}

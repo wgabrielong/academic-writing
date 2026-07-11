@@ -1,0 +1,22 @@
+\section{Lecture 18 -- 10th December 2024}\label{sec: lecture 18}
+We first show that problems of the type in \Cref{prop: Cousin-I is CR01} can be solved. These are known as distributions of type $(0,1)$ since it is a linear combination of degree 1 antiholomorphic forms. 
+\begin{theorem}\label{thm: solubility of CR01}
+    Let $G\subseteq\CC^{n}$ be a bounded domain with smooth boundary for $n\geq 2$ and $f=\sum_{j=1}^{n}f_{j}\dform\overline{z_{j}}$ such that $\overline{\partial}f=0$. Then 
+    $$u(z)=-\int_{G}f(w)\wedge B(w,z)$$
+    is smooth and satisfies $\overline{\partial}u=f$. 
+\end{theorem}
+\begin{proof}
+    By boundedness of $G$, the integral defining $u$ exists and is given by a $\CC$-linear combination of 
+    $$u_{j}(z)=\int_{G}\frac{f_{j}(w)(\overline{w_{j}}-\overline{z_{j}})}{\Vert w-z\Vert^{2n}}\dform V(w)=\int_{G}\frac{f_{j}(w)(z+y)\overline{y_{j}}}{\Vert y\Vert^{2n}}\dform V(y)$$
+    with the second equality following by translation and denoting $y=w-z$. Now letting $L_{z}$ be a differential operator with constant coefficients, we have 
+    $$L_{z}u=\int_{G}\frac{L_{z}f_{j}(z+y)\overline{y_{j}}}{\Vert y\Vert^{2n}}\dform V(w)=\int_{G}\frac{L_{w}f_{j}(w)(\overline{w_{j}}-\overline{z_{j}})}{\Vert w-z\Vert^{2n}}\dform V(w).$$
+    Taking $u(z)=-\int_{G}f(w)\wedge B(w,z)$, we have $u(z)$ as a $\CC$-linear combination of the $u_{j}$'s and thus $u$ is smooth. It remains to show that $\overline{\partial}u=f$ for which it suffices that $\partial_{\overline{z_{j}}}u=f_{j}$. But we get 
+    \begin{align*}
+        \partial_{\overline{z_{1}}}u &=-\int_{G}\partial_{\overline{w_{1}}}f\wedge B(w,z) \\
+        &= -\int_{G}\left(\partial_{\overline{w_{1}}}f_{1}\cdot\dform\overline{w_{1}}+\dots+\partial_{\overline{w_{1}}}f_{1}\cdot\dform\overline{w_{n}}\right)\wedge B(w,z) \\
+        &= -\int\overline{\partial}f_{1}\wedge B(w,z) \\
+        &= f_{1}(z)
+    \end{align*}
+    with the final equality following from \Cref{thm: Bochner-Martinelli integral}. Analogous computations hold for $\partial_{\overline{z_{j}}}u$. Moreover, $u$ is holomorphic outside a large ball so $u\to0$ as $\Vert z\Vert\to\infty$ so $u$ vanishes identically away from the origin, showing compact support of $u$. 
+\end{proof}
+This result in fact implies \Cref{thm: Kugelsatz} and shows that \Cref{thm: solubility of CR01} which does not hold for $n=1$. 

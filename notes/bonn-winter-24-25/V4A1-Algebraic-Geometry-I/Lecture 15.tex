@@ -1,0 +1,84 @@
+\section{Lecture 15 -- 29th November 2024}\label{sec: lecture 15}
+Following \Cref{prop: affine communication for locally finite type}, we can prove the same generalization for the property of an affine morphism. 
+\begin{proposition}\label{prop: affine communication for affine}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is an affine morphism if and only if for all $V\subseteq Y$ affine, $f^{-1}(V)$ is affine. 
+\end{proposition}
+\begin{proof}
+    We apply \Cref{lem: affine communication} to the property ``has affine preimage.'' For $\spec(A)\subseteq Y$ with affine preimage $f^{-1}(\spec(A))=\spec(B)$, $f^{-1}(\spec(A_{f}))=\spec(B_{\varphi(f)})$ for $\varphi:A\to B$ the induced morphism of rings. Similarly for $(f_{1},\dots,f_{n})=A$, $(\varphi(f_{1}),\dots,\varphi(f_{n}))=B$ so $\spec(B)$ is covered by $\spec(B_{\varphi(f_{i})})$. 
+\end{proof}
+As a corollary, affine morphisms to $\spec(A)$ imply that the source is affine. 
+\begin{corollary}\label{corr: affine morphism to affine target is affine source}
+    If $f:X\to \spec(A)$ is an affine morphism then $X$ is an affine scheme.  
+\end{corollary}
+\begin{proof}
+    This is immediate from the definitions: $\spec(A)$ is itself affine so $f^{-1}(\spec(A))=X$ is affine. 
+\end{proof}
+\begin{corollary}\label{corr: finite is affine and finite type}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is finite if and only if for all $V\subseteq Y$ affine, $f^{-1}(V)$ is affine and $\Gamma(f^{-1}(V),\Ocal_{X})$ is finite type over $\Gamma(V,\Ocal_{Y})$. 
+\end{corollary}
+\begin{proof}
+    This is immediate from \Cref{prop: affine communication for locally finite type,prop: affine communication for affine}. 
+\end{proof}
+We now discuss separated and proper morphisms, the former first being introduced as \Cref{def: separated scheme}. In fact several types of morphisms we have already encountered can be seen to be separated. To do so, we utilize the following lemma. 
+\begin{proposition}\label{prop: affine implies separated}
+    If $f:X\to Y$ is an affine morhpism then $f$ is a separated morphism. 
+\end{proposition}
+\begin{proof}
+    Let $\{V_{j}\}_{j\in J}$ be an affine open cover of $Y$ and $\{U_{j}\}_{j\in J}$ an open affine cover of $Y$ with $U_{j}=f^{-1}(V_{j})$. The $U_{j}\times_{V_{j}}U_{j}$ form an affine cover of $X\times_{Y}X$ and each $U_{j}\to U_{j}\times_{V_{j}}U_{j}$ is closed and thus $X\to X\times_{Y}X$ is closed as well. 
+\end{proof}
+\begin{proposition}\label{prop: open and closed immersions are separated}
+    If $f:X\to Y$ is an open immersion or closed immersion, then $f$ is a separated morphism. 
+\end{proposition}
+\begin{proof}
+    Both open and closed immersions are monomorphisms, in which case $X\to X\times_{Y}X$ is an isomorphism and hence closed. 
+\end{proof}
+\begin{definition}[Proper Morphism]\label{def: proper morphism}
+    Let $f:X\to Y$ be a morphism of schemes. $f$ is proper if it is separated, of finite type, and universally closed. 
+\end{definition}
+\begin{example}
+    $\A^{1}_{k}\to\spec(k)$ is separated and closed but not universally closed. It is thus not proper. To see that it is not universally closed, consider the base change along the map $\A^{1}_{k}\to\A^{1}_{k}$. 
+\end{example}
+\begin{example}
+    $\PP^{1}_{k}\to\spec(k)$ is proper. 
+\end{example}
+Separatedness and properness are preserved under composition. 
+\begin{proposition}
+    Separatedness and properness are preserved under composition. 
+\end{proposition}
+\begin{proof}
+    More generally for a diagram of schemes 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYX3sxfSJdLFswLDIsIlhfezJ9Il0sWzIsMSwiWiJdLFsxLDEsIlkiXSxbMCwzXSxbMywyXSxbMSwzXV0=
+    \begin{tikzcd}
+        {X_{1}} \\
+        & Y & Z \\
+        {X_{2}}
+        \arrow[from=1-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=3-1, to=2-2]
+    \end{tikzcd}$$
+    there is a Cartesian diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYX3sxfVxcdGltZXNfe1l9WF97Mn0iXSxbMCwxLCJYX3sxfVxcdGltZXNfe1p9WF97Mn0iXSxbMiwwLCJZIl0sWzIsMSwiWVxcdGltZXNfe1p9WSJdLFswLDJdLFsyLDNdLFswLDFdLFsxLDNdXQ==
+    \begin{tikzcd}
+        {X_{1}\times_{Y}X_{2}} && Y \\
+        {X_{1}\times_{Z}X_{2}} && {Y\times_{Z}Y.}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    Taking $X_{1}=X_{2}=X$ and a composite $X\to Y\to Z$ we have 
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwxLCJYXFx0aW1lc197WX1YIl0sWzEsMiwiWFxcdGltZXNfe1p9WCJdLFszLDEsIlkiXSxbMywyLCJZXFx0aW1lc197Wn1ZIl0sWzAsMCwiWCJdLFswLDJdLFsyLDNdLFswLDFdLFsxLDNdLFs0LDEsIiIsMix7ImN1cnZlIjoxfV0sWzQsMiwiIiwyLHsiY3VydmUiOi0xfV0sWzQsMCwiXFxleGlzdHMhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \begin{tikzcd}
+        X \\
+        & {X\times_{Y}X} && Y \\
+        & {X\times_{Z}X} && {Y\times_{Z}Y}
+        \arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+        \arrow[curve={height=-6pt}, from=1-1, to=2-4]
+        \arrow[curve={height=6pt}, from=1-1, to=3-2]
+        \arrow[from=2-2, to=2-4]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-2, to=3-4]
+    \end{tikzcd}$$
+    where we have that $X\times_{Y}X\to X\times_{Z}X$ is closed by $Y\to Y\times_{Z}Y$ closed by separatedness and preservation of closed immersions under base change. So the map $X\to X\times_{Z}X$ is also closed showing it is separated. Additionally, being of finite type and universally closed is preserved under base change so properness is preserved under base change as well. 
+\end{proof}

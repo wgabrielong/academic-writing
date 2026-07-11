@@ -1,0 +1,34 @@
+\section{Lecture 10 -- 17th January 2025}\label{sec: lecture 10}
+Observe that we can consider the ring of integers Nahm number field in the relative setting over $\ZZ[t_{1},\dots,t_{N}]$ and develop a notion of the relative Habiro ring as follows. Let
+\begin{equation}\label{eqn: pre-relative Habiro}
+    R=\frac{\ZZ\left[t_{1},\dots,t_{N},z_{1},\dots,z_{N}, \frac{1}{\Delta},\frac{1}{z_{1}(1-z_{1})},\dots,\frac{1}{z_{N}(1-z_{N})}\right]}{\left(1-z_{i}=(-1)^{A_{ii}}t_{i}z_{1}^{A_{i1}}\dots z_{N}^{A_{iN}}\right)}
+\end{equation}
+of \Cref{eqn: number field of Nahm equation} as a ring over $\ZZ[t_{1},\dots,t_{N}]$. We seek a relative Habiro ring $\Hcal_{R/\ZZ[t_{1},\dots,t_{N}]}$ and an invertible module over this ring such that our Nahm sums are sections of this line bundle. 
+
+Recall that for $R=\ZZ[t,\frac{1}{1-t}]$ as discussed in \Cref{sec: lecture 9}, we can define relative motivic cohomology $H^{i}(\ZZ(n)(R/\ZZ[t^{\pm}]))$ where there is a map 
+$$\nabla^{\log}_{t}:H^{1}(\ZZ(2)(R/\ZZ[t^{\pm}]))\longrightarrow H^{1}(\ZZ(1)(R/\ZZ[t^{\pm}]))=R[1/t]^{\times}/t^{\ZZ}$$
+taking $-\Li^{\mathrm{univ}}_{2}(t)$ to $[\frac{1}{1-t}]$. Under ``de Rham realization,'' the diloagarithm class goes to $-\log(1-t)$, but this is precisely the (logarithmic) differential equation that defines the dilogarithm as a power series. 
+\begin{remark}
+    More generally, for $R$ as in (\ref{eqn: pre-relative Habiro}), there is a canonical class $V^{\univ}\in H^{1}\left(\ZZ(2)(R/\ZZ[t_{1},\dots,t_{N}])\right)$ and whose logarithmic derivative under any $\nabla^{\log}_{t_{i}}$ is the class $z_{i}$ for all $1\leq i\leq N$. 
+\end{remark}
+
+More generally, motivic cohomology has multiple realizations such as de Rham, Betti, \'{e}tale, and even prismatic cohomology. And while the de Rham realization recovers the classical dilogarithm, we can show that the \'{e}tale realization also gives rise to information appearing in asymptotic expansions of Nahm sums. In particular, it will explain the factor $\prod_{i=0}^{m-1}(1-\zeta_{m}t)^{i/m}$ at the expansion of Nahm sums at $m$th roots of unity \Cref{thm: Nahm sum asymptotics at roots of unity}.
+
+For $R$ a ring, motivic cohomology admits Betti and \'{e}tale realizations
+\begin{align*}
+    H^{i}(R,\ZZ(n))&\longrightarrow H^{i}_{\mathsf{sing}}(\spec(R)(\CC),\ZZ) \\
+    H^{i}(R,\ZZ(n))&\longrightarrow H^{i}_{\mathsf{\acute{e}t}}(\spec(R[1/m]),\ZZ/m\ZZ(n))
+\end{align*}
+We can describe this explicitly for first cohomology $i=1$ in motivic weight $n=1$. 
+\begin{itemize}
+    \item (de Rham Realization) Takes $f\in R^{\times}$ to the $\ZZ$-torsor of choices of the logarithm $\log(f)$. 
+    \item (\'{E}tale Realization) Recalling that $\ZZ/m\ZZ(1)\cong\mu_{m}$, the realization takes $f$ to the torsor of choices of $m$th roots of $f$, which is well-defined up to an $m$th root of unity. 
+\end{itemize}
+Analogous constructions can be made for relative motivic cohomology. In relative motivic cohomology, the same constructions yield maps
+\begin{align*}
+    H^{i}(\ZZ(n)(R/\ZZ[t^{\pm}]))&\longrightarrow H^{i}_{\mathsf{sing}}\left(\spec(R)(\CC)\times_{(\CC^{\times})}\CC,\ZZ\right) \\
+    H^{i}(\ZZ(n)(R/\ZZ[t^{\pm}]))&\longrightarrow H^{i}_{\mathsf{\acute{e}t}}\left(\spec(R[1/m, t^{1/m}]),\ZZ/m\ZZ(n)\right)
+\end{align*}
+but the objects live only over appropriate covers of the spaces $\spec(R)(\CC),\spec(R[\frac{1}{m}])$ obtained after extracting the logarithm of $t$, respectively. In the first case, the fibered product is taken over the map above and the $\exp:\CC\to(\CC^{\times})^{N}$. This reinforces the intuition that relative motivic cohomology should one where the contribution of the motivic cohomology of $\ZZ[t^{\pm}]$ is ignored, and this is done in singular cohomology by extracting logarithms. Similarly in the \'{e}tale setting, we consider the space $\spec(R[1/m, t^{1/m}])$ which plays the role of the unviersal cover in the \'{e}tale algebraic setting. 
+
+We consider the realization of the universal dilogarithm $\Li_{2}^{\univ}$ in this setting. Recall from \Cref{lem: dilogarithm as integral on split plane} and \Cref{thm: analytic continuation for dilogarithm} that the function $\Li_{2}(t)+\log(t)\log(1-t)$ is a well-defined function $\CC\setminus(2\pi i)\ZZ\to\CC/(2\pi i)^{2}\ZZ$. Note that there is an isomorphism $\CC^{\times}\setminus\{1\}\times_{\CC^{\times}}\CC$ with $\CC\setminus(2\pi i)\ZZ$ by taking the logarithm. The $\ZZ$-torsor obtained by the map on relative motivic cohomology is the given by the $\ZZ$-torsor of choices of liftings of $\CC/(2\pi i)^{2}\ZZ$ to $\CC$, and moreover is related to the Beilinson-Deligne cohomology. In this framework, it can be seen that the Betti realization of the diloagarithm is a well-defined function on $\CC\setminus(2\pi i)\ZZ$ with at most simple poles at $(2\pi i)\ZZ$, and residues $\pm(2\pi i)n$ at $2\pi i n$. In particular, the diloagarithm realizes to a $\ZZ$-local system on $\CC\setminus(2\pi i)\ZZ$ whose mononodromy around $2\pi i n$ is $n$. Similarly, the \'{e}tale realization produces a $\ZZ/m\ZZ$ local system on $\mathbb{A}^{1}_{\ZZ[\frac{1}{m},\zeta_{m}]}\setminus\mu_{m}$. But this local system must be compatible with the Betti realization, so the monodromy at each $\zeta_{m}^{i}$ is congruent to $i\pmod{m}$ and trivial at zero. But this is sufficient data to determine to determine the torsor, forcing the \'{e}tale realization to be precisely the product $\prod_{i=0}^{m-1}(1-\zeta_{m}t)^{i/m}$ alluded to above, and which is the cyclic quantum dilogarithm. This also recovers a construction of Calegari-Garoufalidis-Zagier. 

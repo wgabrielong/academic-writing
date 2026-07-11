@@ -1,0 +1,110 @@
+\section{Lecture 4 -- 22nd October 2024}\label{sec: lecture 4}
+Following our previous dicussion, we seek to express $\wp'(z)^{2}$ the elliptic function of order 6 in terms of a degree 3 polynomial in $\wp(z)$ with coefficients determined by the lattice. In particular, we have the following theorem. 
+\begin{theorem}\label{thm: Weierstrass differential equation}
+    Let $\Omega$ be a lattice. \marginpar{Theorem 3.4}Then the Weierstrass $\wp$-function of $\Omega$ satisfies the nonlinear differential equation
+    \begin{equation}\label{eqn: Weierstrass differential equation}
+        \wp'(z)^{2}=4\wp(z)^{3}-g_{2}(\Omega)\wp(z)-g_{3}(\Omega)
+    \end{equation}
+    where $g_{2}(\Omega)=60\sum_{\omega\in\Omega\setminus\{0\}}\frac{1}{\omega^{4}}$ and $g_{3}(\Omega)=140\sum_{\omega\in\Omega\setminus\{0\}}\frac{1}{\omega^{6}}$.
+\end{theorem}
+\begin{proof}
+    We take Laurent expansions of $\wp(z),\wp'(z)^{2},\wp(z)^{3}$ to observe 
+    \begin{align*}
+        \wp(z) &= \frac{1}{z^{2}}+c_{2}z^{2}+c_{4}z^{4}+\dots \\
+        \wp'(z)^{2} &= \frac{4}{z^{6}}-8c_{2}z+4c_{4}z^{3}+\dots \\
+        \wp(z)^{3} &= \frac{1}{z^{6}} +3c_{2}\frac{1}{z^{2}} + 3c_{4}+\dots
+    \end{align*}
+    where we compute 
+    $$\wp'(z)-4\wp(z)^{3}=-20c_{2}\frac{1}{z^{2}}-28c_{4}+\dots$$
+    and iterating the process once more to use $\wp(z)$ write the pole of order 2 that 
+    $$\wp'(z)^{2}-4\wp(z)^{3}+20c_{2}\wp(z)=28c_{4}+\dots$$
+    where we now note that the function on the right is a holomorphic elliptic function and hence $28c_{4}$ itself. Rearranging, we yield $\wp'(z)^{2}=4\wp(z)^{3}-20c_{2}\wp(z)-28c_{4}$. To find $c_{2},c_{4}$ in terms of the lattice, we write $h(z)=\wp(z)-\frac{1}{z^{2}}=\sum_{\omega\in\Omega\setminus\{0\}}\left(\frac{1}{(z-\omega^{2})}-\frac{1}{\omega^{2}}\right)$ so taking the derivative we get $h^{(m)}(z)=(-1)^{m}(m-1)!\sum_{\omega\in\Omega\setminus\{0\}}\frac{1}{(z-\omega)^{m+2}}$. Now noting that $(2m)!c_{2m}=h^{(2m)}(0)$ we conclude that $c_{2m}=(2m+1)\sum_{\omega\in\Omega\setminus\{0\}}\frac{1}{\omega^{2m+2}}$ giving the claim. 
+\end{proof}
+We deduce the following as an immediate corollary. 
+\begin{corollary}
+    Let $\Omega$ be a lattice with Weierstrass function $\wp(z)$. Then 
+    \begin{enumerate}[label=(\roman*)]
+        \item $2\wp'(z)\wp''(z)=12\wp(z)^{2}\wp'(z)- g_{2}(\Omega)$. 
+        \item $\wp''(z)=12\wp(z)\wp'(z)$. 
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    This follows from a direct computation of the derivative of the function (\ref{eqn: Weierstrass differential equation}) in \Cref{thm: Weierstrass differential equation}.
+\end{proof}
+The field of elliptic functions with respect to a lattice $\Omega$ can be explicitly described as follows. 
+\begin{theorem}\label{thm: description of field of elliptic functions}
+    Let $\Omega$ be a lattice. Then the field of elliptic functions $K(\Omega)$ with respect to $\Omega$ is isomorphic to 
+    $$\CC(X)[Y]/(Y^{2}-4X^{3}+g_{2}(\Omega)X+g_{3}(\Omega)).$$
+\end{theorem}
+\begin{proof}
+    By \Cref{prop: elliptic functions in terms of Weierstrass}, the map $\CC(X)[Y]$ by $X\mapsto\wp(z), Y\mapsto\wp'(z)$ is surjective with kernel given by the relation imposed by the differential equation of \Cref{thm: Weierstrass differential equation}. 
+\end{proof}
+In particular, this algebraically realizes the field of elliptic functions as a degree 2 extension of the field of rational functions on $\CC$. 
+
+By \Cref{prop: residue sum is zero}, we know that elliptic functions satisfy strong constraints on their zeroes and poles. However, given a set of zeroes and poles alongside their multiplicities, it is unclear if the inverse problem can be solved -- constructing an elliptic function with those zeroes and poles. This, however, turns out to be possible, and will necessitate the development of the theory of elliptic modular functions. 
+
+We begin with the following lemma, which produces an example of such a function. 
+\begin{lemma}\label{lem: Weierstrass zeta function}
+    Let $\Omega$ be a lattice. The function 
+    $$f(z)=\frac{1}{z}+\sum_{\omega\in\Omega\setminus\{0\}}\left(\frac{1}{z-\omega}+\frac{1}{\omega}+\frac{z}{\omega^{2}}\right)$$
+    is convergent with derivative $-\wp(z)$. 
+\end{lemma}
+\begin{proof}
+    This function arises as the integral $\int_{0}^{z}\wp(w)dw$ and can be seen to be convergent using the termwise estimate 
+    $$\left|\frac{1}{z-\omega}+\frac{1}{\omega}+\frac{z}{\omega^{2}}\right|\leq\frac{|z|^{2}}{|\omega^{3}|\left(1-\frac{|z|}{|\omega|}\right)}\leq\frac{2|z|^{2}}{|\omega|^{3}}$$
+    with the rightmost term convergent by \Cref{prop: absolute convergence of lattice sum}. 
+\end{proof}
+This is the Weierstrass $\zeta$ function. 
+\begin{definition}[Weierstrass $\zeta$-Function]\label{def: Weierstrass zeta function}
+    Let $\Omega$ be a lattice.\marginpar{Definition 4.1} The Weierstrass $\zeta$-function of $\Omega$ is given by 
+    $$\zeta(z)=\frac{1}{z}+\sum_{\omega\in\Omega\setminus\{0\}}\left(\frac{1}{z-\omega}+\frac{1}{\omega}+\frac{z}{\omega^{2}}\right).$$
+\end{definition}
+Continuing along this line, we consider the the primitive of $\log\zeta(z)$. 
+\begin{lemma}\label{lem: Weierstrass sigma function}
+    Let $\Omega$ be a lattice. The function 
+    $$f(z)=z\prod_{\omega\in\Omega\setminus\{0\}}\left(1-\frac{z}{\omega}\right)\exp\left(\frac{z}{\omega}+\frac{z^{2}}{2\omega^{2}}\right)$$
+    has derivative $\log\zeta(z)$. 
+\end{lemma}
+\begin{proof}
+    The logarithm of the product is given by $\sum_{\omega\in\Omega\setminus\{0\}}\left(\log\left(1-\frac{z}{\omega}\right)+\frac{z}{\omega}+\frac{z^{2}}{\omega^{2}}\right).$ Note that this is equal to $\int_{0}^{z}(\zeta(w)-\frac{1}{w})dw=\log\left(\frac{f(z)}{z}\right)$ and thus $\zeta(z)-\frac{1}{z}=\frac{\sigma'(z)}{\sigma(z)}-\frac{1}{z}$ as desired. 
+\end{proof}
+This is the Weierstrass $\sigma$-function. 
+\begin{definition}[Weierstrass $\sigma$-Function]\label{def: Weierstrass sigma function}
+    Let $\Omega$ be a lattice.\marginpar{Definition 4.1} The Weierstrass $\sigma$-function of $\Omega$ is given by 
+    $$\sigma(z)=z\prod_{\omega\in\Omega\setminus\{0\}}\left(1-\frac{z}{\omega}\right)\exp\left(\frac{z}{\omega}+\frac{z^{2}}{2\omega^{2}}\right).$$
+\end{definition}
+The following property of the $\zeta$ and $\sigma$ functions will be used to construct an elliptic function given a compatible set of zeroes and poles with multiplicities. 
+\begin{proposition}\label{prop: properties of zeta and sigma functions}
+    Let $\Omega$ be a lattice and $\zeta(z),\sigma(z)$ the Weierstrass $\zeta$ and $\sigma$ functions with respect to $\Omega$. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\zeta(z+\omega_{i})=\zeta(z)+\eta_{i}$ for $\omega_{i}$ a generating element of the lattice and $\eta_{i}$ some constant depending on $\omega_{i}$. 
+        \item $\sigma(z+\omega_{i})=\sigma(z)\exp(\eta_{i}z+c_{i})$ for $\omega_{i}$ a generating element of the lattice, $\eta_{i}$ the constant depending on $\omega_{i}$ identified above, and $c_{i}$ some other constant depending on $\omega_{i}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+    We know the derivative of $\zeta(z+\omega_{i})-\zeta(z)$ is given by $-\wp(z+\omega_{i})+\wp(z)=0$ so integrating, we have $\zeta(z+\omega_{i})=\zeta(z)+\eta_{i}$ for some constant $\omega_{i}$. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    From $\frac{\sigma'(z)}{\sigma(z)}=\zeta(z)$ we have 
+    $$\frac{\sigma'(z+\omega_{i})}{\sigma(z+\omega)}=\zeta(z+\omega_{i})=\zeta(z)+\eta_{i}=\frac{\sigma'(z)}{\sigma(z)}+\eta_{i}$$
+    so integrating, we get $\sigma(z+\omega_{i})=\sigma(z)\exp(\eta_{i}z+c_{i})$, as desired. 
+\end{proof}
+We can now prove the desired result. 
+\begin{theorem}\label{thm: construction of elliptic function with given zeroes and poles}
+    Let $\Omega$ be a lattice, $a_{1},\dots,a_{n},a_{n+1},\dots,a_{\ell}$ points in the interior of the fundamental period parallelogram $P_{\Omega}$ labeled by natural numbers $m_{1},\dots,m_{n},m_{n+1},\dots,m_{\ell}$ such that 
+    $$\left(\sum_{i=1}^{n}m_{i}a_{i}\right)-\left(\sum_{i=n+1}^{\ell}m_{i}a_{i}\right)=0.$$
+    Then there exists an elliptic function $f(z)$ with respect to $\Omega$ with zeroes at $a_{1},\dots,a_{n}$ and poles at $a_{n+1},\dots,a_{\ell}$ of multiplicities $m_{1},\dots,m_{n}$ and $m_{n+1},\dots,m_{\ell}$, respectively. 
+\end{theorem}
+\begin{proof}
+    The function 
+    $$f(z)=\frac{\prod_{i=1}^{n}\sigma(z-a_{i})^{m_{i}}}{\prod_{i=n+1}^{\ell}\sigma(z-a_{i})^{m_{i}}}$$
+    suffifces. By construction of $\sigma(z)$, this function is meromorphic with the desired zeroes and poles. To see that it is periodic, we note 
+    $$f(z+\omega_{j})=f(z)\exp(A_{j})$$
+    where
+    $$A_{i}=\sum_{i=1}^{n}m_{i}(\eta_{j}(z-a_{i})+c_{j})-\sum_{i=n+1}^{\ell}m_{i}(\eta_{j}(z-a_{i})+c_{j})$$
+    which is zero modulo $\Omega$ by \Cref{prop: properties of zeta and sigma functions} (ii). 
+\end{proof}
+We conclude with the following remark.
+\begin{remark}
+    A lattice can be normalized to have $\Omega=\langle1,\tau\rangle$ with $\tau$ having positive imaginary part. Can define another function $\Theta(z,\tau)=\sum_{n\in\ZZ}\exp(\pi i\tau n^{2}+2\pi i n z + \pi i n)$ which is known as the $\Theta$-function of the lattice $\Omega$. Further exposition of this function can be found in a standard graduate text on complex analysis, but we will not discuss these functions in the course. 
+\end{remark}

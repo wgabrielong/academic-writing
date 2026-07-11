@@ -1,0 +1,71 @@
+\section{Lecture 8 -- 5th November 2024}\label{sec: lecture 8}
+We continue towards our proof of the prime number theorem by estimating the ratio $\frac{\vartheta(x)}{x}$. 
+\begin{lemma}\label{lem: boundedness of theta function ratio}
+    The function $\frac{\vartheta(x)}{x}$ is bounded on $[1,\infty)$. 
+\end{lemma}
+\begin{proof}
+    Consider the binomial coefficient $\binom{2k}{k}$. Let $k$ be a postive integer. If $k<p<2k$, then $p|\binom{2k}{k}$ since writing the factorial as 
+    $$\binom{2k}{k}=\frac{(2k)\dots(k+1)}{k!}$$
+    we have that $p$ is in the numerator, but not canceled out by the denominator as $p$ is prime. In particular, this holds for each $p$ for $k<p<2k$ so we have 
+    $$\prod_{k<p<2k}p\leq\binom{2k}{k}\leq 2^{2k}$$
+    where the second inequality follows from $\sum_{r=0}^{2k}\binom{2k}{r}=2^{2k}$. Passing to the logarithm, we have 
+    $$\sum_{k<p\leq 2k}\log(p)\leq 2k\cdot\log(2).$$
+    Taking $k=2^{\ell-1}$ for some $\ell$, we obtain 
+    $$\sum_{p\leq 2^{\ell}}\log(p)\leq2^{\ell+1}\log(2)$$
+    by summing inequalities of the above form. Noting for any $x\in\RR_{\geq0}$ an $\ell$ such that $2^{\ell-1}<x\leq 2^{\ell}$ we have 
+    \begin{align*}
+        \vartheta(x) &\leq \sum_{p\leq 2^{\ell}}\log(p) \\
+        &\leq 2^{\ell+1}\log(2) \\
+        &\leq 4x\log(2)
+    \end{align*}
+    giving $\frac{\vartheta(x)}{x}\leq 4\log(2)$ hence the claim. 
+\end{proof}
+Recalling the construction of the Mellin transform from \Cref{def: Mellin transform}, we show the following. 
+\begin{lemma}\label{lem: mellin tranfsormation of theta function}
+    The Mellin transform $\Mcal_{\vartheta(x)}(s)$ of the Theta function $\vartheta(x)$ is given by 
+    $$\Mcal_{\vartheta(x)}(s)=\sum_{p\text{ prime}}\frac{\log(p)}{p^{s}}=-\frac{\zeta'(s)}{\zeta(s)}-\sum_{p\text{ prime}}\frac{\log(p)}{p^{s}(p^{s}-1)}$$
+    for $\RE(s)>1$. 
+\end{lemma}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        \Mcal_{\vartheta(x)}(s)&=s\int_{1}^{\infty}\vartheta(x)x^{-s-1}dx \\
+        &= \sum_{n=1}^{\infty}s\int_{n}^{n+1}\vartheta(x)x^{-s-1}dx && \vartheta\text{ constant on interval}\\
+        &= \sum_{n=1}^{\infty}s\vartheta(n)\int_{n}^{n+1}x^{-s-1}dx && \vartheta(x)=\vartheta(n)\text{ on interval }[n,n+1] \\
+        &= \sum_{n=1}^{\infty}s\vartheta(n)\left(\frac{x^{-s}}{-s}|_{s=n}^{n+1}\right) \\
+        &= \sum_{n=1}^{\infty}\vartheta(n)\left(n^{-s}-(n+1)^{-s}\right)
+    \end{align*}
+    where we note this is convergent for $\RE(s)>1$. Taking $\RE(s)>2$ we can decompose the sum 
+    \begin{align*}
+        &=\sum_{n=1}^{\infty}\vartheta(n)n^{-s} - \sum_{n=1}^{\infty}\vartheta(n)(n+1)^{-s} \\ 
+        &=\sum_{n=1}^{\infty}\vartheta(n)n^{-s} - \sum_{n=2}^{\infty}\vartheta(n-1)n^{-s} && \text{changing index of summation in 2nd sum} \\
+        &= \sum_{n=1}^{\infty}(\vartheta(n)-\vartheta(n-1))n^{-s}
+    \end{align*}
+    but noting
+    $$\vartheta(n)-\vartheta(n-1)=\begin{cases}
+        \log(n) & n \text{ prime}\\
+        0 & \text{otherwise}
+    \end{cases}$$
+    the above expression simplifies to $\sum_{p\text{ prime}}\frac{\log(p)}{p^{s}}$. Since this also converges for $\RE(s)>1$, the identity theorem \Cref{thm: identity theorem} allows us to extend this function to agree with $\Mcal_{\vartheta(x)}(s)$ on this halfspace. 
+    
+    For the second equality, we consider the logarithmic derivative of $\zeta(s)$ as an Euler product in \Cref{thm: zeta function by infinite products} to observe 
+    \begin{align*}
+        -\frac{\zeta'(s)}{\zeta(s)} &= \sum_{p\text{ prime}}\frac{p^{-s}\log(p)}{1-p^{-s}} \\
+        &= \sum_{p\text{ prime}}\frac{\log(p)}{p^{s}-1}
+    \end{align*}
+    with 
+    $$\sum_{p\text{ prime}}\frac{\log(p)}{p^{s}-1}-\sum_{p\text{ prime}}\frac{\log(p)}{p^{s}(p^{s}-1)}=\sum_{p\text{ prime}}\frac{\log(p)}{p^{s}}$$
+    giving the claim. 
+\end{proof}
+In summary, we have the following. 
+\begin{proposition}\label{prop: Mellin transform of theta function minus x}
+    The Mellin transform $\Mcal_{\vartheta(x)-x}(s)$ of the function $\vartheta(x)-x$ is given by 
+    \begin{equation*}\label{eqn: Mellin transformation of theta x minus x}
+        \Mcal_{\vartheta(x)-x}(s)=-\frac{\zeta'(s)}{\zeta(s)}-1-\frac{1}{s-1}-\sum_{p\text{ prime}}\frac{\log(p)}{p^{s}(p^{s}-1)}
+    \end{equation*}
+    for $\RE(s)\geq1$. 
+\end{proposition}
+\begin{proof}
+    The equality follows from \Cref{lem: Mellin transform of x} and the second equality of \Cref{lem: mellin tranfsormation of theta function}. The domain of defnition can be extended to the closed halfspace $\RE(s)\geq 1$ since the summation term of (\ref{eqn: Mellin transformation of theta x minus x}) converges for $\RE(s)>\frac{1}{2}$ and the pole of $\zeta(s)$ at $s=1$ of order 1 is negated by the sum with the Mellin transform of $x$, so the function admits a holomorphic extension to an open neighborhood of the closed halfspace $\RE(s)\geq 1$.
+\end{proof}
+ To conclude the proof of the prime number theorem, we will provide an estimate of this function by extending the domain of definition for the Mellin transform to the closed halfspace $\RE(s)\geq 1$. 

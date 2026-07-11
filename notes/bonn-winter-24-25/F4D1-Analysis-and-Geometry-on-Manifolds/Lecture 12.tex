@@ -1,0 +1,91 @@
+\section{Lecture 12 -- 19th November 2024}\label{sec: lecture 12}
+We prove that fibered products exist over a diagram with legs given by transverse maps. We first recall the following topological statement. 
+\begin{proposition}\label{prop: fibered product of Hausdorff spaces is closed and proper}
+    Let $X,Y,Z$ be Hausdorff spaces and $f:X\to Z,g:Y\to Z$ continuous maps. Then $X\times_{Z}Y$ is a closed subset of $X\times Y$ and the inclusion map $X\times_{Z}Y\hookrightarrow X\times Y$ is a proper map. 
+\end{proposition}
+We now begin the proof in earnest. 
+\begin{theorem}\label{thm: fibered product along transverse legs}
+    Let $M_{1},M_{2},N$ be smooth manifold and $f_{1}:M_{1}\to N, f_{2}:M_{2}\to N$ smooth maps. If $f_{1}$ is transverse to $f_{2}$ then $M_{1}\times_{N}M_{2}$ admits a smooth embedding into $M_{1}\times M_{2}$. In particular, $M_{1}\times_{N}M_{2}$ is a smooth manifold. 
+\end{theorem}
+\begin{proof}
+    Note that smooth manifolds are Hausdorff so \Cref{prop: fibered product of Hausdorff spaces is closed and proper} implies the inclusion into the product is proper, and it thus suffices to verify that the inclusion is an immersion as it is injective being defined as subset of the product in \Cref{def: fibered product}. Let $\Delta$ be the set 
+    $$\Delta=\left\{(x,y,z_{1},z_{2}):z_{1}=z_{2}\right\}\subseteq M_{1}\times M_{2}\times N\times N$$
+    and 
+    $$W=\left\{(x,y,z_{1},z_{2}):f(x)=z_{1},g(y)=z_{2}\right\}\subseteq M_{1}\times M_{2}\times N\times N.$$
+    By definition, $W\cap\Delta$ can be identificed with the fiber product $M_{1}\times_{N}M_{2}$. In particular, the constructions induce the commutative diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJXXFxjYXBcXERlbHRhIl0sWzAsMSwiTV97MX1cXHRpbWVzX3tOfU1fezJ9Il0sWzQsMCwiTV97MX1cXHRpbWVzIE1fezJ9XFx0aW1lcyBOXFx0aW1lcyBOIl0sWzIsMSwiTV97MX1cXHRpbWVzIE1fezJ9Il0sWzEsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwzLCJpIiwyXSxbMiwzLCJcXHBpIl0sWzAsMl0sWzAsMSwiXFx3ciIsMl1d
+    \begin{tikzcd}
+        {W\cap\Delta} &&&& {M_{1}\times M_{2}\times N\times N} \\
+        {M_{1}\times_{N}M_{2}} && {M_{1}\times M_{2}}
+        \arrow[from=1-1, to=1-5]
+        \arrow["\wr"', from=1-1, to=2-1]
+        \arrow["i"', from=1-1, to=2-3]
+        \arrow["\pi", from=1-5, to=2-3]
+        \arrow[hook, from=2-1, to=2-3]
+    \end{tikzcd}$$
+    where we wish to show that the inclusion of the top row is a smooth embedding which would imply $i$ and thus the inclusion of the fibered product is smooth by \Cref{lem: transversality is a manifold}. For this, we show that $W$ and $\Delta$ are transverse. Let $(x,y,z_{1},z_{2})\in M_{1}\times M_{2}\times N\times N$. We have $T_{p}W=\{(v,w,df_{x}(v),df_{y}(w))\}\subseteq T_{x}M_{1}\times T_{y}M_{2}\times T_{z_{1}}N\times T_{z_{2}}N$ and $T_{p}\Delta=\{(v',w',u,u)\}\subseteq T_{x}M_{1}\times T_{y}M_{2}\times T_{z_{1}}N\times T_{z_{2}}N$. For $T_{(a,b,c,d)}(M_{1}\times M_{2}\times N\times N)$ we exhibit a solution for the system 
+    \begin{align*}
+        a &= v + v'\\
+        b &= w + w'\\
+        c &= u+df_{x}(v) \\
+        d &= u+dg_{y}(w)
+    \end{align*}
+     for some $(v,w,df_{x}(v),dg_{y}(v))\in T_{p}W$ and $(v',w',u,u)\in T_{p}\Delta$. But the solution to $c-d=df_{x}(v)-dg_{y}(w)$ has a solution by the transversality hypothesis, and thus so does $c+d=2u +df_{x}(v)+dg_{y}(w)$ by taking a suitable tangent vector in $T_{z_{1}}N$ and thus so too do the equations $a-v=v',b-w=w'$ showing the equation can indeed be solved. The map is injective as the vanishing of the first two coordinates imply the vanishing of all coordinates in the image. 
+
+    
+    The second statement follows from the first by \Cref{lem: smooth submanifold recipe}. 
+\end{proof}
+We now discuss some measure theory with the goal of building up towards Sard's theorem. Recall that a rectangle is a set of the form 
+$$\prod_{i=1}^{n}(a_{i}-\varepsilon_{i},a_{i}+\varepsilon_{i})$$
+for $(a_{1},\dots,a_{n})\in\RR^{n},(\varepsilon_{1},\dots,\varepsilon_{n})\in\RR^{n}_{>0}$ which has volume $\prod_{i=1}^{\infty}2\varepsilon_{i}$
+\begin{definition}[Set of Measure Zero]\label{def: set of measure zero}
+    A subset $S\subseteq\RR^{n}$ is of measure zero if for any $\varepsilon>0$ there exists a countable family of rectangles $\{C_{i}\}_{i=1}^{\infty}$ such that $S\subseteq\bigcup_{i=1}^{\infty}C_{i}$ and $\sum_{i=1}^{\infty}\mathrm{vol}(C_{i})<\varepsilon$. 
+\end{definition}
+Some elementary properties of measurable sets in $\RR^{n}$ are as follows. 
+\begin{lemma}\label{lem: measurable sets}
+    \begin{enumerate}[label=(\roman*)]
+        \item Let $A,B\subseteq\RR^{n}$. If $A\subseteq B\subseteq\RR^{n}$ and $B$ has measure zero then $A$ has measure zero as well. 
+        \item If $A\subseteq\RR^{n}$ is countable union of measure zero subsets, then $A$ has measure zero as well. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (i)]
+    $A$ can be covered by a subcollection of cubes, the volume of which can be made arbitrarily small since the volume can be made arbitrarily small for $B$. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    The measure of a countable union of measurable sets is at most the sum of the measures of each subset, each of which can be made arbitrarily small. 
+\end{proof}
+Being measure zero on ``slices'' in fact implies being measure zero. 
+\begin{lemma}\label{lem: measure zero slices imply measure zero space}
+    Let $A\subseteq\RR^{n}$ be compact. If $A\cap (\{c\}\times\RR^{n-1})\subseteq\RR^{n}$ has measure zero in $\RR^{n-1}$ for each $c\in\RR$ then $A$ has measure zero in $\RR^{n}$. 
+\end{lemma}
+\begin{proof}
+    Let $[a,b]\subseteq\RR$ such that $A\subseteq[a,b]\times\RR^{n-1}$ and for each $c\in\RR$, let $A_{c}\subseteq\RR^{n-1}$ be the compact subset $\{x\in\RR^{n-1}:(c,x)\in A\}$. For some fixed $\delta>0$, there is a cover of $A_{c}$ by finitely many rectangles of dimension $n-1$ with total volume less than $\delta$. Let $U_{c}\subseteq\RR^{n-1}$ be the union of the cubes for fixed $c$. Since $A$ is compact, there is an open interval $J_{c}$ of $\RR$ containing $c$ such that $A\cap (J_{c}\times\RR^{n-1})$ is contained in $J_{c}\times U_{c}$. If not, there would be a sequence of points $(c_{i},x_{i})$ in $A$ and $c_{i}\to c$ but $x_{i}\notin U_{c}$ that on passage to a convergent subsequence produecs a sequence converging to $A_{c}\setminus U_{c}$ contradicting $A_{c}\subseteq U_{c}$. 
+
+    Now the intervals $J_{c}$ form an open cover of $[a,b]$ and by compactness of this interval it suffices to consider a cover of the interval by $J_{c_{1}},\dots,J_{c_{m}}$ which on shrinking the intersections can be taken to have total length at most $2|b-a|$. Thus $A$ is contained in $(J_{c_{1}}\times U_{c_{1}})\cup\dots(J_{c_{m}}\times U_{c_{m}})$ which is of volume at most $2\delta|b-a|$ which can be made arbitrarily small, yielding the claim. 
+\end{proof}
+\begin{corollary}\label{corr: graph has measure zero}
+    Let $A\subseteq\RR^{n}$ be a countable union of compact subsets and $f: A\to\RR$ a continuous function. Then the graph $\{(x,y)\in A\times\RR:f(x)=y\}$ is a measure zero subset of $\RR^{n+1}$. 
+\end{corollary}
+\begin{proof}
+    We argue by induction on the cardinality of the union. If $A$ is compact, then this follows immediately from \Cref{lem: measure zero slices imply measure zero space}. Suppose it holds for $m$. Then for each of $K_{1},\dots,K_{m}$, the graph of $K_{i}$ has measure zero and the graph of $A$ is the union of these graphs which is zero by \Cref{lem: measurable sets} (ii). 
+\end{proof}
+Images of measure zero sets under smooth maps are measure zero. 
+\begin{lemma}\label{lem: images of measure zero are measure zero}
+    Let $A\subseteq\RR^{n}$ be a subset and $f:A\to\RR^{n}$ be a smooth map. If $A$ is measure zero then $f(A)$ is measure zero. 
+\end{lemma}
+\begin{proof}
+    Without loss of generality, we can consider a collection of balls $\{U_{p}\}_{p\in A}$ where the extension $\widetilde{f}_{p}$ of $f$ at $p$ restricts to $f$ on $U_{p}\cap A$. In particular, $A\subseteq\bigcup_{p\in A}U_{p}$ and by \Cref{prop: second countability via covers} we can consider a countable subcover $\{U_{i}\}_{i=1}^{\infty}$ of the union of the $U_{p}$'s. It suffices to prove that $F(A\cap U_{i})$ is of measure zero. 
+
+    Note that $\overline{U}_{i}$ is compact so there is a constant $Q$ such that $|f(x)-f(y)|<Q|x-y|$ for all $x,y\in\overline{U}_{i}$. Now fixing $\delta>0$, we can cover $A\cup\overline{U_{i}}$ by a countable union of rectangles $C_{j}$ with total volume at most $\delta$ but by the inequality above, the diameter of $F(\overline{U}_{i}\cap C_{j})$ is at most a $\lambda$-multiple of the diameter of $C_{j}$ where $\lambda$ can be made smaller than some large natural multiple of $Q$. So $f(A\cap\overline{U}_{i})$ is contained in a countable union of balls of diameter at most $\lambda$-times of the diameter of $C_{j}$ which is bounded above by a constant multiple of $\delta$ which can then be made arbitrarily small. 
+\end{proof}
+We can generalize our discussion on Euclidean space to manifolds. 
+\begin{definition}[Measure Zero Subset]\label{def: measure zero subset of manifold}
+    Let $M$ be a smooth manifold and $A\subseteq M$ a subset. $A$ is of measure zero if for all smooth charts $(U_{\alpha},\phi_{\alpha})$ containing $A$, $\phi_{\alpha}(A\cap U_{\alpha})$ has measure zero in $\RR^{n}$. 
+\end{definition}
+The converse holds. 
+\begin{proposition}\label{prop: measure zero on each chart implies measure zero}
+    Let $M$ be a smooth $m$-manifold and $A\subseteq M$ a subset. If there is a collection of charts $\{(U_{\alpha},\phi_{\alpha})\}_{\alpha\in\Acal}$ where $A\subseteq\bigcup_{\alpha\in\Acal}U_{\alpha}$ and $\phi_{\alpha}(A\cap U_{\alpha})\subseteq\RR^{m}$ of measure zero for each $\alpha$ then $A\subseteq M$ is of measure zero. 
+\end{proposition}
+\begin{proof}
+    It suffices to show that for any smooth chart $(\psi,V)$, $\psi(A\cap V)$ is of measure zero. We can write $\psi(A\cap V)$ as $\bigcup_{\alpha\in\Acal}\psi(A\cap U_{\alpha}\cap V)$ but we have $\psi(A\cap U_{\alpha}\cap V)$ is the image of $\phi_{\alpha}(A\cap U_{\alpha}\cap V)$ under the smooth map $\RR^{m}\to\RR^{m}$ given by $\psi\circ\phi^{-1}$ so each $\psi(A\cap U_{\alpha}\cap V)$ is measure zero by \Cref{lem: images of measure zero are measure zero} and the union is measure zero by \Cref{lem: measurable sets}. 
+\end{proof}

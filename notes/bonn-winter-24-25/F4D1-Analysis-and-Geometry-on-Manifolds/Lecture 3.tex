@@ -1,0 +1,45 @@
+\section{Lecture 3 -- 15th October 2024}\label{sec: lecture 3}
+To the end of motivating the forthcoming discussion of smooth manifolds, we turn to an exposition about  properties of general topological manifolds. 
+
+The classification of one-dimensional manifolds is extremely simple, and is given as follows. 
+\begin{theorem}\label{thm: classification of 1-dim manifolds}
+    If $M$ is a topological manifold of dimension 1, then $M$ is homeomorphic to $\RR$ or to $S^{1}$. 
+\end{theorem}
+Permitting manifolds with boundary, we have the following. 
+\begin{theorem}\label{thm: classification of 1-dim manifolds with boundary}
+    If $M$ is a topological manifold with boundary of dimension 1, then $M$ is homeomorphic to one of $\RR$, $S^{1}$, $[0,1]$, or $[0,1)$. 
+\end{theorem}
+The case of compact connected 2-manifolds is also well-known. 
+\begin{theorem}\label{thm: classification of 2-dim manifolds}
+    If $M$ is a compact connected topological manifold of dimension 2, then $M$ is homeomorphic to $S^{2}$, a connected sum of tori $\TT^{2}$, or a connected sum of real projective planes $\RR\PP^{2}$. 
+\end{theorem}
+In the cases of dimension at least three, the classification theory is extremely poorly understood, and in fact provably so. 
+
+The theory of smooth manifolds refines the theory of topological manifolds, and as such allows us to say more about them. We begin by introducing some basic notions that illustrate the local theory of smooth manifolds via charts and atlases. 
+\begin{definition}[Smooth Function]\label{def: smooth function}
+    Let $U\subseteq\RR^{n}$ be an open subset. A function $f=(f_{1},\dots,f_{m}):U\to\RR^{m}$ is smooth if each $f_{i}$ admits all continuous partial derivatives of all orders. 
+\end{definition}
+\begin{remark}
+    Smooth functions are at times denoted $C^{\infty}$ functions, in contrast to continuous functions which are denoted by $C^{0}$. 
+\end{remark}
+In other words, for all multiindices $\alpha\in\NN^{n}$, the partial derivative $\partial_{x^{\alpha}}f_{i}=\partial_{x_{1}}^{\alpha_{1}}\dots\partial_{x_{n}}^{\alpha_{n}}f_{i}$ exists and is continuous. 
+
+Smooth manifolds are defined in terms of smooth atlases that are built out of smoothly compatible charts. 
+\begin{definition}[Smoothly Compatible Charts]\label{def: smoothly compatible charts}
+    Let $M$ be a topological manifold. A pair of charts $(U_{1},\phi_{1})$ and $(U_{2},\phi_{2})$ are smoothly compatible if the transition function $\phi_{2}\circ\phi_{1}^{-1}:\phi_{1}(U_{1}\cap U_{2})\to\phi_{2}(U_{1}\cap U_{2})$ is a smooth function $\RR^{n}\to\RR^{n}$. 
+\end{definition}
+We can now define smooth atlases. 
+\begin{definition}[Smooth Atlas]\label{def: smooth atlas}
+    Let $M$ be a topological manifold. A smooth atlas $\Acal$ on $M$ consists of the data of pairwise smoothly compatible charts $(U_{\alpha},\phi_{\alpha})$ such that $\bigcup_{\alpha\in\Acal}U_{\alpha}=M$. 
+\end{definition}
+On a fixed topological manifold, however, there may be multiple choices of smooth atlases. This is somewhat remedied by the following. 
+\begin{definition}[Equivalent Atlases]\label{def: equivalent atlases}
+    Let $M$ be a topological manifold and $\Acal,\Acal'$ two smooth atlases on $M$. $\Acal$ and $\Acal'$ are equivalent smooth atlases if $\Acal\cup\Acal'$ is a smooth atlas. 
+\end{definition}
+We finally arrive at the definition of a smooth manifold. 
+\begin{definition}[Smooth Manifold]\label{def: smooth manifold}
+    A smooth manifold $M$ consists of the data of a topological manifold $M$ and an equivalence class of smooth atlases $[\Acal]$ on $M$. 
+\end{definition}
+\begin{remark}
+    Smooth atlases naturally have an ordering by containment, and one can show using Zorn's lemma that an atlas is contained in a maximal atlas. In practice, however, it is rarely useful to work with the maximal atlas. 
+\end{remark}

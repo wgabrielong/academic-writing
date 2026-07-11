@@ -1,0 +1,104 @@
+\section{Lecture 22 -- 7th January 2025}\label{sec: lecture 22}
+We seek to extract information about a smooth manifold $M$ from its space of $k$-forms $\Omega^{k}(M)$. 
+\begin{definition}[Form of a Function]\label{def: form of a function}
+    Let $M$ be a smooth manifold and $f\in C^{\infty}(M)$. $df\in\Omega^{1}(M)$ is defined to be $df_{p}(v)=v(f)$ for $v\in T_{p}M$ and all $p\in M$. 
+\end{definition}
+We can in fact show that on local coordinate charts and $f$ a coordinate function $x_{i}$, the $dx_{i}$ are dual to $\partial_{x_{i}}\in TM$. 
+\begin{lemma}\label{lem: dual coordinates on Rn}
+    Let $f:\RR^{n}\to\RR$ be a smooth function. With respect to the canonical identification $T\RR^{n}\cong\RR^{n}\times\RR^{n}$, $df=(\partial_{x_{1}}f,\dots,\partial_{x_{n}}f)$. 
+\end{lemma}
+\begin{proof}
+    It suffices to observe that $df_{p}((\partial x_{i})_{p})=(\partial_{x_{i}})_{p}(f)=(\partial_{x_{i}}f)(p)$ since the coordinate vector field $(\partial_{x_{i}})_{p}$ is represented by the path at $p$ in direction $e_{i}$ the $i$th basis vector. 
+\end{proof}
+This is also compatible with the notation for differentials. 
+\begin{lemma}\label{lem: notation for differentials}
+    Let $M,N$ be smooth manifolds and $F:M\to N,f:N\to\RR$ be smooth maps. Then $F^{*}(df)=d(f\circ F)$ in $\Omega^{1}(M)$. 
+\end{lemma}
+\begin{proof}
+    Let $v\in T_{p}M$ for some $p\in M$. We compute 
+    $$F^{*}(df)_{p}(v)=df_{F(p)}(dF(v))=(dF_{p}(v))(f)=v(f\circ F)=d(f\circ F)(v)$$
+    as desired. 
+\end{proof}
+\begin{corollary}\label{corr: form of smooth function is smooth}
+    Let $M$ be a smooth manifold. If $f:M\to\RR$ is smooth, then $df$ is smooth. 
+\end{corollary}
+\begin{proof}
+    Let $(\phi,U)$ be a local chart on $M$ on which $f|_{U}$ is locally given by $f\circ\phi^{-1}\circ \phi$ but $df=d((f\circ\phi^{-1})\circ\phi)=\phi^{-1}d(f\circ\phi^{-1})$ with the equalities by \Cref{lem: notation for differentials,lem: dual coordinates on Rn}, respectively. 
+\end{proof}
+We now turn to a discussion of line and path integrals. 
+\begin{definition}[Line Integral]\label{def: line integral}
+    Let $\omega\in\Omega^{1}([a,b])$ where $\omega=f(t)\cdot dt$ be a 1-form on a closed interval $[a,b]\subseteq\RR$. The line integral $\int_{a}^{b}\omega$ is defined to be $\int_{a}^{b}f(t)dt$. 
+\end{definition}
+This can be generalized to path intervals on manifolds. 
+\begin{definition}[Path Integral]\label{def: path integral}
+    Let $M$ be a smooth manifold, $\omega\in \Omega^{1}(M)$, and $\gamma:[a,b]\to M$ a path. Then the path integral $\int_{\gamma}\omega$ is defined to be $\int_{a}^{b}\gamma^{*}\omega$. 
+\end{definition}
+The definition of \Cref{def: path integral} is invariant under reparametrization of a path. 
+\begin{lemma}\label{lem: invariance under reparametrization}
+    Let $\sigma:[c,d]\to[a,b]$ be an endpoint-preserving function with positive derivative. Then $\int_{c}^{d}(\gamma\circ\sigma)^{*}\omega=\int_{a}^{b}\gamma^{*}\omega$. 
+\end{lemma}
+\begin{proof}
+    We have that $(\gamma\circ\sigma)^{*}\omega=\sigma^{*}(\gamma^{*}\omega)$ so it suffices to show $\int_{c}^{d}\sigma^{*}\eta=\int_{a}^{b}\eta$ for $\eta\in\Omega^{1}([a,b])$. But 
+    $$\int_{c}^{d}\sigma^{*}\eta=\int_{c}^{d}f(\sigma(t))\sigma'(t)dt=\int_{a}^{b}f(s)ds$$
+    writing $\eta=f(t)dt$ and the univaraite chain rule in the second quantity. 
+\end{proof}
+We can show the following for line integrals on manifolds. 
+\begin{lemma}\label{lem: line integrals on manifolds computation}
+    Let $M$ be a smooth manifold, $f:M\to\RR$ smooth, and $\gamma:[a,b]\to M$ a path. Then $\int_{a}^{b}\gamma^{*}df=\int_{a}^{b}(f\circ\gamma)dt$. 
+\end{lemma}
+\begin{proof}
+    This is an immediate corollary of \Cref{lem: notation for differentials} for $F=\gamma$. 
+\end{proof}
+From this we deduce that integrals of forms over closed paths vanish. 
+\begin{corollary}\label{corr: differential of function have trivial closed path integral}
+    Let $M$ be a smooth manifold, $f:M\to\RR$ smooth, and $\gamma$ a closed path on $M$. Then $\int_{\gamma}df=0$. 
+\end{corollary}
+\begin{proof}
+    Apply \Cref{lem: line integrals on manifolds computation} to observe that the path integral is computed as a trivial definite integral. 
+\end{proof}
+The following example shows there are 1-forms not necessarily of the form $df$ for $f\in C^{\infty}(M)$ on a smooth manifold $M$. 
+\begin{example}\label{ex: loop integral of 1-form}
+    Let 
+    $$\omega=\frac{x}{x^{2}+y^{2}}dx+\frac{y}{x^{2}+y^{2}}dy\in\Omega^{1}(M)$$
+    and $\gamma:[0,2\pi]\to M$ by $t\mapsto(\cos(t),\sin(t))$ which is a closed path traversing the unit circle. We compute 
+    $$\int_{\gamma}\omega=\int_{0}^{2\pi}\frac{\cos(t)\cdot d(\sin(t))-\sin(t)\cdot d(\cos(t))}{\cos^{2}(t)+\sin^{2}(t)}=\int_{0}^{2\pi}\frac{\cos^{2}(t)+\sin^{2}(t)}{1}dt=2\pi.$$
+    This is not $df$ for $f\in C^{\infty}(\RR^{2}\setminus\{0\})$ since the integrals of such forms are zero by \Cref{corr: differential of function have trivial closed path integral}. 
+\end{example}
+We can define special types of 1-forms as follows. We will later generalize these to arbitrary differential forms. 
+\begin{definition}[Exact 1-Form]\label{def: exact 1-form}
+    Let $M$ be a smooth manifold and $\omega\in\Omega^{1}(M)$. $\omega$ is exact if $\omega=df$ for $f\in C^{\infty}(M)$. 
+\end{definition}
+\begin{definition}[Closed 1-Form]\label{def: closed 1-form}
+    Let $M$ be a smooth manifold and $\omega\in\Omega^{1}(M)$. $\omega$ is closed if $\partial_{x_{i}}\omega^{j}=\partial_{x_{j}}\omega^{i}$ on a local chart of $M$. 
+\end{definition}
+Evidently any exact 1-form is a closed 1-form by Clariault's theorem on commutativity of partial derivatives, but closed forms are not necessarily exact for $\omega$ as in \Cref{ex: loop integral of 1-form} is an example of such. 
+
+On open balls of Euclidean spaces, the converse holds. 
+\begin{proposition}[Poincar\'{e} Lemma]\label{prop: poincare lemma}
+    Let $\omega\in\Omega^{1}(B_{1}(0))$ for $B_{1}(0)\subseteq\RR^{n}$. $\omega$ is a closed 1-form if and only if it is an exact 1-form. 
+\end{proposition}
+\begin{proof}
+    $(\Rightarrow)$ Let $\gamma_{x}$ be the straight line path from origin to $x\in B_{1}(0)$ by $t\mapsto tx$. Let $\omega=\omega^{1}dx_{1}+\dots+\omega^{n}dx_{n}$ and 
+    $$f(x)=\int_{0}^{1}\left(\sum_{i=1}^{n}\omega^{i}(tx)x_{i}\right)dt.$$
+    We compute 
+    \begin{align*}
+        (\partial x_{j}f)(x)&=\partial_{x_{j}}\left(\int_{0}^{1}\left(\sum_{i=1}^{n}\omega^{i}(tx)x_{i}\right)dt\right)\\
+        &=\int_{0}^{1}\left(\sum_{i=1}^{n}\partial x_{j}\omega^{i}(tx)\cdot t\cdot x_{i}+\omega^{j}(tx)\right)dt \\
+        &= \int_{0}^{1}\left(\sum_{i=1}^{n}\partial x_{i}\omega^{j}(tx)\cdot t\cdot x_{i}+\omega^{j}(tx)\right)dt && \text{closedness}\\
+        &= \int_{0}^{1}\frac{d}{dt}(t\omega^{j}(tx))dt \\
+        &= t\omega^{j}(x)|_{t=0}^{t=1} \\
+        &= \omega^{j}(x)
+    \end{align*}
+    so $df=\omega$ showing the form is exact. 
+
+    $(\Leftarrow)$ Any exact 1-form is closed by the preceding discussion. 
+\end{proof}
+We conclude with the following linear algebraic construction. 
+\begin{definition}[Evaluation of Element of $\bigwedge^{k}V^{*}$]\label{def: evaluation of wedge k V star}
+    Let $\varepsilon^{1},\dots,\varepsilon^{n}$ be a basis of $V^{*}$ with $V$ an $n$-dimensional $\RR$-vector space. Let $I=(i_{1},\dots,i_{k})$ be an increasing sequence. For $\varepsilon^{I}\in\bigwedge^{k}V^{*}$, its evaluation on $v_{1},\dots,v_{k}\in V$ is given by 
+    $$\varepsilon^{I}(v_{1},\dots,v_{k})=\det\left(\begin{bmatrix}
+        \varepsilon^{i_{1}}(v_{1}) & \dots & \varepsilon^{i_{k}}(v_{1}) \\
+        \vdots & \ddots & \vdots \\
+        \varepsilon^{i_{1}}(v_{k}) & \dots & \varepsilon^{i_{k}}(v_{k})
+    \end{bmatrix}\right).$$
+\end{definition}

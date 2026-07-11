@@ -1,0 +1,97 @@
+\section{Lecture 10 -- 11th November 2024}\label{sec: lecture 10}
+We prove the statement alluded to in \Cref{rmk: locally Noetherian is Zariski local property}, and more generally consider properties of schemes where the existence of an affine cover with that property implies each affine subset of the scheme has the property.\marginpar{In lecture, \cite[Prop. II.3.2]{Hartshorne} was proven. We take a more general approach via the ``Affine Communication Lemma'' presented in \cite[\S 5.3]{Vakil} and \cite[\href{https://stacks.math.columbia.edu/tag/01OH}{Tag 01OH}]{stacks-project}.}
+
+The key technical step in the proof of the affine communication lemma is to produce open subsets of intersections that are basis elements of affine schemes. 
+\begin{lemma}\label{lem: simultaneously distinguished opens}
+    Let $X$ be a scheme and $\spec(A),\spec(B)\subseteq X$. Then $\spec(A)\cap\spec(B)$ is the union of open sets that are simultaneously basis elements of the Zariski topologies on $\spec(A),\spec(B)$. 
+\end{lemma}
+\begin{proof}
+    Let $\pfrak\in\spec(A)\cap\spec(B)$. Noting that the intersection $\spec(A)\cap\spec(B)$ is open in both $\spec(A)$ and $\spec(B)$, there exists a basis open $\spec(A_{f})$ of $\spec(A)$ in $\spec(A)\cap\spec(B)$ containing $\pfrak$. Arguing similarly, we can take $\spec(B_{g})$ a basis open of $\spec(B)$ containing $\pfrak$ in $\spec(A_{f})$, the latter an open of $\spec(A)\cap\spec(B)$ and hence one of $\spec(B)$. As such, the section $g\in\Gamma(\spec(B),\Ocal_{X})$ restricts to $g'\in\Gamma(\spec(A_{f}),\Ocal_{X})=A_{f}$ and the primes on which $g$ and $g'$ vanish are the same so 
+    $$\spec(B_{g})=\spec(A_{f})\setminus\{[\pfrak]:g'\in\pfrak\}=\spec((A_{f})_{g'})$$
+    where we note that if $g'\in A_{f}$ of the form $h/f^{n}$ for some $h\in A$ then $\spec((A_{f})_{g'})=\spec(A_{ah})$, giving the claim. 
+\end{proof}
+The affine communication lemma can then be inferred as follows. 
+\begin{lemma}[Affine Communication Lemma]\label{lem: affine communication}
+    Let $X$ be a scheme and P a property of affine open subschemes of $X$ such that both the following conditions hold:
+    \begin{enumerate}[label=(\roman*)]
+        \item For any $\spec(A)\subseteq X$ with property P, $D(f)$ has property P for all $f\in A$. 
+        \item If $f_{1},\dots,f_{n}$ generate $A$ and each $D(f_{i})$ has property P then so does $\spec(A)$. 
+    \end{enumerate}
+    If there is an affine open cover $\{U_{i}\}_{i\in I}$ of $X$ where each $U_{i}$ has P for all $i\in I$ then every affine subset of $X$ has the property P. 
+\end{lemma}
+\begin{proof}
+    Let $\{U_{i}\}_{i\in I}$ be an affine open cover of $X$ such that each $U_{i}$ has the property P. Let $V\subseteq X$ be another affine open subset. The $\{U_{i}\cap V\}_{i\in I}$ form an open cover of $V$. \Cref{lem: simultaneously distinguished opens} implies each $U_{i}\cap V$ can be covered by affines $\{T_{j}\}_{j\in J}$ that are simultaneously distinguished in $\Gamma(U_{i},\Ocal_{X}|_{U_{i}})$ and $\Gamma(V,\Ocal_{X}|_{V})$. By (i), each of the $T_{j}$ have P and for $T_{j}=D(g_{j})\subseteq\spec(\Gamma(V,\Ocal_{Y}|_{V}))$ we have that the $\{D(g_{j})\}_{j\in J}$ covering $V$ so $V$ has P by (ii). 
+\end{proof}
+It thus suffices to show that the property of being locally Noetherian satisfies the hypotheses of \Cref{lem: affine communication}. 
+\begin{proposition}\label{prop: all affine opens are Noetherian}
+    Let $X$ be a locally Noetherian scheme. Then every $U\subseteq X$ affine open is the spectrum of a Noetherian ring. 
+\end{proposition}
+\begin{proof}
+    The hypothesis (i) of \Cref{lem: affine communication} is clear since the property of being Noetherian is preserved under localization. For (ii), let $(f_{1},\dots,f_{n})=A$ and $\afrak\subseteq A$ an ideal and $\varphi_{i}:A\to A_{f_{i}}$ the localization maps for each $i$. We show $\afrak=\bigcap_{i=1}^{n}\varphi_{i}^{-1}\left(\varphi_{i}(\afrak)A_{f_{i}}\right)$. The containment $\afrak\subseteq\bigcap_{i=1}^{n}\varphi_{i}^{-1}\left(\varphi_{i}(\afrak)A_{f_{i}}\right)$ holds on the level of sets. Conversely given some $b\in A$ contained in $\bigcap_{i=1}^{n}\varphi_{i}^{-1}\left(\varphi_{i}(\afrak)A_{f_{i}}\right)$ so $\varphi_{i}(b)=\frac{a_{i}}{f_{i}^{n_{i}}}$ in $A_{f_{i}}$ with $a_{i}\in A$ and $n_{i}>0$. Let $N=\max_{1\leq i\leq n}\{n_{i}\}$ and up to multiplication by $\frac{f_{i}^{N-n_{i}}}{f_{i}^{N-n_{i}}}$ we have $\varphi_{i}(b)=\frac{a_{i}}{f_{i}^{N}}$ with $a_{i}\in A$. By definition of localization, there is $m_{i}$ such that $f_{i}^{m_{i}}(f_{i}^{N}-a_{i})=0$ and arguing as before, taking $M=\max_{1\leq i\leq n}\{m_{i}\}$ and multiplying these expressions by $f_{i}^{M-m_{i}}$ for ecah $i$ we get $f_{i}^{M+N}b\in\afrak$for each $i$. Now since $(f_{1},\dots,f_{N})=1$ we have $1=\sum_{i=1}^{n}c_{i}f_{i}^{N+M}$ for $c_{i}\in A$ where we now wrtie $b=\sum_{i=1}^{n}c_{i}f_{i}^{N+M}b\in\afrak$ showing the desired equality $\afrak\subseteq\bigcap_{i=1}^{n}\varphi_{i}^{-1}\left(\varphi_{i}(\afrak)A_{f_{i}}\right)$. 
+
+    Now for any ascending chain of ideals in $A$, we can consider the image of that chain under $\varphi_{i}$ in $A_{f_{i}}$ but these eventually stabilize at some $T_{i}$ and the preceding discussion shows that the chain in $A$ stabilizes at $\max_{1\leq i\leq n}\{T_{i}\}$. 
+\end{proof}
+This implies the following corollary. 
+\begin{corollary}\label{corr: affine locally Noetherian is spectrum of Noetherian ring}
+    If $\spec(A)$ is locally Noetherian then $A$ is a Noetherian ring. 
+\end{corollary}
+\begin{proof}
+    This is \Cref{prop: all affine opens are Noetherian} for $X=U=\spec(A)$. 
+\end{proof}
+\begin{remark}
+    There is a notion of a Noetherian topological space. If a scheme is Noetherian, so is its underlying space, but not conversely. 
+\end{remark}
+We can also state more properties of schemes that are defined in terms of the structure sheaf. 
+\begin{definition}[Reduced Scheme]\label{def: reduced scheme}
+    Let $X$ be a scheme. $X$ is reduced if $\Ocal_{X}(U)$ is a reduced ring for all $U\subseteq X$ open. 
+\end{definition}
+\begin{definition}[Integral Scheme]\label{def: integral scheme}
+    Let $X$ be a scheme. $X$ is integral if $\Ocal_{X}(U)$ is an integral domain for all $U\subseteq X$ open. 
+\end{definition}
+\begin{remark}
+    An integral scheme has all stalks integral domains, but not conversely. $\spec(k)\coprod\spec(k)$ is integral on each stalk with sections $k$, but has global sections $k\times k$ which is not integral. 
+\end{remark}
+\begin{example}
+    The ring of dual nubmers \Cref{ex: dual numbers} is neither reduced nor integral. 
+\end{example}
+Though, in fact, integrality implies reducedness. 
+\begin{proposition}\label{prop: integral implies reduced}
+    Let $X$ be a scheme. If $X$ is integral, then $X$ is reduced. 
+\end{proposition}
+\begin{proof}
+    Every integral domain is reduced since every nilpotent is a zerodivisor. 
+\end{proof}
+\begin{example}
+    The union of coordinate axes in $\A^{2}_{k}$ given by $\spec(k[x,y]/(xy))$ is reduced but not integral.  
+\end{example}
+We can say more after showing the followign lemma. 
+\begin{lemma}\label{lem: points where stalk is not in maximal ideal is open}
+    Let $X$ be a scheme and $f\in\Gamma(X,\Ocal_{X})$, and define $X_{f}$ to be the subset of points $p\in X$ such that the stalk $f_{p}$ of $f$ at $p$ is not contained in the maximal ideal of the ring $\Ocal_{X,p}$. If $U=\spec(B)$ is an affine open subscheme of $X$ and if $\overline{f}\in B=\Gamma(U,\Ocal_{X}|_{U})$ is the restriction of $f$, then $U\cap X_{f}=D(\overline{f})$ and $X_{f}$ is open in $X$.
+\end{lemma}
+\begin{proof}
+    We have 
+    $$p\in X_{f}\cap U\Longleftrightarrow f_{p}\notin\mfrak_{X,p}\Longleftrightarrow \overline{f}_{p}\notin\mfrak_{U,p}\Longleftrightarrow p\in D(\overline{f}).$$
+    Furthermore, $X_{f}$ is open as it is the union of affine opens $\spec(B_{\overline{f}})$ open in $\spec(B)$ which cover $X$ -- ie. $X_{f}$ is locally open in the subspace topology, hence open in the subspace topology. 
+\end{proof}
+\begin{proposition}
+    Let $X$ be a scheme. $X$ is integral if and only if $X$ is irreducible and reduced. 
+\end{proposition}
+\begin{proof}
+    $(\Rightarrow)$ Integrality implies reducedness by \Cref{prop: integral implies reduced}. Suppose to the contrary that $X$ is reducible, in which case there are nonempty open subsets $U_{1},U_{2}$ such that $X=U_{1}\coprod U_{2}$ and $U_{1}\cap U_{2}=\emptyset$. Then $\Ocal_{X}(U_{1}\coprod U_{2})=\Ocal_{X}(U_{1})\times\Ocal_{X}(U_{2})$ which is not integral, a contradiction. 
+
+    $(\Leftarrow)$ Suppose $X$ is irredicuble and reduced so there exists $U\subseteq X$ nonempty open and $s_{1},s_{2}\in\Ocal_{X}(U)$ with $s_{1}s_{2}=0$. We want to show that one of $s_{1},s_{2}$ is 0. By \Cref{lem: points where stalk is not in maximal ideal is open}, we have that $X_{i}=\{x\in U:s_{i,x}\in\mfrak_{x}\}\subseteq U$ is closed. For all $x\in U$, $(s_{1}s_{2})_{x}=0$ implies $(s_{1})_{x}(s_{2})_{x}=0$ so one of $(s_{1})_{x},(s_{2})_{x}\in\mfrak_{x}$ with $X_{1}\cup X_{2}=U$. Since $X$ is irreducible so too is $U$ so take $X_{1}=U$ and for $\spec(A)\subseteq U$ open, we can define $t=s_{1}|_{\spec(A)}$. Thus for all $x\in U$, and in particular all $x\in\spec(A)$, $t_{x}\in\mfrak_{x}$ and all prime ideals of $A$ contain $t$ so $t$ is in the nilradical and zero because $X$ is reduced. This shows that $s_{1}|_{\spec(A)}=0$, but then $s_{1}=0$ by the sheaf condition. 
+\end{proof}
+\begin{corollary}
+    If $X$ is an integral scheme then there is a unique point $x\in X$ such that $\overline{\{x\}}=X$. 
+\end{corollary}
+\begin{proof}
+    By hypothesis $A$ is an integral domain for $\spec(A)\subseteq X$. Taking $(0)\in\spec(A)$ we have that its closure is all of $X$ by irreducibility. For uniqueness we can consider some affine open contained in $\spec(A)$ and repeat the argument to see that $(0)$ is the generic point. 
+\end{proof}
+We now discuss closed subschemes. Note that open subschemes of affine schemes are not necessarily affine. 
+\begin{example}
+    $\A^{n}_{k}\setminus\{0\}$ is an open subscheme of an affine scheme but not itself affine for $n\geq2$. 
+\end{example}
+We now state the definiton of a closed subscheme. 
+\begin{definition}[Closed Subscheme]\label{def: closed subscheme}
+    Let $X$ be a scheme. A closed subscheme is a closed locally ringed subspace $i:Z\hookrightarrow X$ such that there exists a sheaf of ideals $\Ical_{Z}\subset\Ocal_{X}$ with $\Ocal_{X}/\Ical_{Z}\cong i_{*}\Ocal_{Z}$. 
+\end{definition}

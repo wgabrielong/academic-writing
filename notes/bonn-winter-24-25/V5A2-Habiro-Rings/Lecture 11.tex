@@ -1,0 +1,53 @@
+\section{Lecture 11 -- 24th January 2025}\label{sec: lecture 11}
+We return to a consideration of the asymptotics of general Nahm sums 
+$$f_{a}(t,q)=\sum_{n\geq0}\frac{q^{\frac{1}{2}an^{2}}}{(q;q)_{n}}t^{n}$$
+for $a\in\NN$ even. By \Cref{thm: Nahm sum asymptotics at roots of unity}, we have, substituting $\varepsilon=-h$ that 
+$$f_{a}(t,q)\sim \exp\left(-\frac{V(t^{m})}{m^{2}\varepsilon}\right)\cdot O(\varepsilon)$$
+with $O(h)\in\QQ(\zeta_{m})[t][[\varepsilon]]$ and
+$$V(t)=-\Li_{2}(1-Z(t))-\frac{a}{2}\log(Z(t))^{2}$$
+and $Z(t)$ satisfying the ansatz $1-Z(t)=t\cdot Z(t)^{a}$. Note that by $a$ even, the $(-1)^{a}$ factor becones irrelevant. 
+
+We want to understand the series $O(h)$, and in particular to show that it lies in the ideal
+$$\frac{\sqrt{\delta(t^{m})}}{\sqrt[m]{\varepsilon_{m}}}\cdot R_{m}[h]$$
+and $R_{m}= R\otimes_{\QQ[t]}\QQ(\zeta_{m})[t]$ along the map $t\mapsto t^{m}$ for 
+$$R=\QQ\left[t,z,\frac{1}{z(1-z)\delta}\right]/(1-z=tz^{a})$$
+$\delta=z+a(1-z)$. 
+
+Generally, there are three methods for computing asymptotic expansions:
+\begin{itemize}
+    \item (KWB Method) Divide by the exponential prefactor $\exp\left(-\frac{V(t^{m})}{m^{2}h}\right)$ and get a $q$-difference equation for the remaining factor $g_{a}(t,q)$ which can be solved by iterative integration which yields an algebraic function at each step. 
+    \item Write 
+    $$f_{a}(t,q)=\frac{1}{(q;q)_{\infty}}\sum_{n\in\ZZ}(q^{n+1};q)_{\infty}q^{\frac{1}{2}an^{2}}t^{n}$$
+    as $q\to 1$. It can be shown that this quantity is well-approximated by the integral over $\RR$ under an appropriate reparametrization. 
+    \item (Meinardus' Method) Write $f_{a}(t,q)$ as the contour integral over $S^{1}$
+    $$f_{a}(t,q)=\int_{S^{1}}\left(\sum_{n\in\ZZ}q^{\frac{1}{2}an^{2}}(z^{a}x)^{-n}\right)((1-z)x,q)^{-1}_{\infty}\frac{dx}{x}$$
+    which is convergent as when $t$ is small, $z$ is close to 1 so the second factor is convergent and the $\Theta$-function of the first factor is also convergent. 
+\end{itemize} 
+\begin{remark}
+    The second and third methods above treat $f_{a}(t,q)$ as holomorphic functions on the open disc $|q|<1$ and compute asymptotics of $f_{a}(t,q)$ as a complex analytic function. 
+\end{remark}
+The latter two methods, which rely on complex analysis allow us to leverage the property of the $\Theta$-function which relates the asymptotics as $q\to\zeta_{m}$ to the asymptotics as $q\to i\infty$. 
+\begin{proposition}\label{prop: modularity of Theta function}
+    If $A,B\in\CC$ such that $\mathrm{Re}(A)>0$ then 
+    $$\sum_{n\in\ZZ}\exp\left(-\frac{1}{2}An^{2}-Bn\right)=\sqrt{\frac{2\pi}{A}}\sum_{n\in\ZZ}\exp\left(\frac{1}{2}\cdot\frac{(B+2\pi i n)^{2}}{A}\right).$$
+\end{proposition}
+\begin{proof}
+    Apply Poisson summation which states for functions with all derivatives decaying at $\infty$ satisfy
+    $$\sum_{n\in\ZZ}f(n)=\sum_{n\in\ZZ}\widehat{f}(n)$$
+    where $\widehat{f}$ denotes the Fourier transform to $f(x)=\exp\left(-\frac{1}{2}Ax^{2}+Bx\right)$. 
+
+    We have 
+    \footnotesize
+    \begin{align*}
+        \int_{\RR}\exp\left(-\frac{1}{2}Ax^{2}+Bx\right)\exp(2\pi i xy)dy &= \int_{\RR}\exp\left(-\frac{1}{2}Ax^{2}-(B+2\pi i y)x\right)dy \\
+        &= \int_{\RR}\exp\left(-\frac{1}{2}A\left(\frac{B+2\pi i y}{A}\right)^{2}+\frac{1}{2}\left(\frac{(B+2\pi i y)^{2}}{A}\right)\right)dy \\
+        &= \exp\left(\frac{1}{2}\frac{(B+2\pi i y)^{2}}{A}\right)\int_{\RR}\exp\left(-\frac{1}{2}Ax^{2}\right)dx \\
+        &= \exp\left(\frac{1}{2}\frac{(B+2\pi i y)^{2}}{A}\right)\sqrt{\frac{2\pi}{A}}
+    \end{align*}
+    \normalsize
+    as desired. 
+\end{proof}
+Recall that for $R$ as above, we have $R_{m}=R\otimes_{\QQ[t]}\QQ(\zeta_{m})[t^{1/m}]$ and a class $V^{\mathrm{univ}}$ in $H^{1}(\ZZ(2)(R/\ZZ[t]))$ whose \'{e}tale realization is a class in $H^{1}_{\mathsf{\acute{e}t}}(R_{m},\ZZ/m\ZZ(2))$ where $\ZZ/m\ZZ(2)\cong\mu_{m}$ so $H^{1}_{\mathsf{\acute{e}t}}(R_{m},\ZZ/m\ZZ(2))\cong R_{m}^{\times}/(R_{m}^{\times})^{m}$, a $\mu_{m}$-torsor. This produces a $\mathbb{G}_{m}$-torsor after base-change, that is, a line bundle $L_{m}$ on $R_{m}[[h]]$.
+\begin{theorem}
+    The $q$-difference equation defining $f_{a}(t,q)$ admits a unique solution 1 modulo $t$ in the module $L_{m}$ over $R_{m}[[h]]$. 
+\end{theorem}

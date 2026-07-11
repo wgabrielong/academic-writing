@@ -1,0 +1,150 @@
+\section{Lecture 3 -- 14th October 2024}\label{sec: lecture 3}
+Let us return to the example of the spectrum of a commutative ring as discussed in \Cref{prop: structure presheaf on spec A}. 
+\begin{proposition}\label{prop: structure presheaf on spec A is a sheaf}
+    Let $A$ be a ring. Consider the association
+    $$U\mapsto \left\{s:U\to\coprod_{\pfrak\in U}A_{\pfrak}:\substack{\forall\pfrak\in U, s(\pfrak)\in A_{\pfrak} \text{ and } \\ \exists U'\subseteq X, p\in U'\subseteq U, \exists a,b\in A \text{ s.t. }b\notin\qfrak \forall\qfrak\in U', s(\qfrak)=\frac{a}{b}\in A_{\qfrak}}\right\}$$
+    and for $V\subseteq U\subseteq X$ the forgetful maps. This association defines a sheaf of rings on $\spec(A)$.
+\end{proposition}
+\begin{proof}
+    This was already shown to be a presheaf in \Cref{prop: structure presheaf on spec A}, which is a sheaf since it satisfies the local compatibility condition of \Cref{def: sheafification}.  
+\end{proof}
+We shall denote this ring $\Ocal_{\spec(A)}$, and its sections admit a more explicit description as follows. 
+\begin{proposition}\label{prop: sections of OspecA}
+    Let $A$ be a ring with spectrum $\spec(A)$ and structure sheaf $\Ocal_{\spec(A)}$. Then: 
+    \begin{enumerate}[label=(\roman*)]
+        \item $\Ocal_{\spec(A),\pfrak}\cong A_{\pfrak}$ for all prime ideals $\pfrak\subseteq A$. 
+        \item $\Ocal_{\spec(A)}(D(f))\cong A_{f}$ for $D(f)=\{\pfrak\subseteq A:f\notin\pfrak\}\subseteq\spec(A)$ and all $f\in A$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+    Note that there is a natural homomorphism $\Ocal_{\spec(A),\pfrak}\to A_{\pfrak}$ by $s\mapsto s(\pfrak)$ which is in $A_{\pfrak}$ by hypothesis. 
+    
+    This map is surjective since each element of $A_{\pfrak}$ is of the form $\frac{a}{b}$ for $b\in A\setminus\pfrak$. As such $D(b)$ gives an open neighborhood of $\pfrak$ and $\frac{a}{b}$ is an element defining a section of $\Ocal_{\spec(A)}(D(b))$ whose value at $\pfrak$ is exactly $\frac{a}{b}$ giving surjectivity. 
+    
+    For injectivity, let $U\subseteq\spec(A)$ be an open set containing $\pfrak$ and $s,s'\in\Ocal_{\spec(A)}(U)$ such that $s(\pfrak)=s'(\pfrak)$. Taking $U$ to be sufficiently small, we have that $s=\frac{a}{b},s'=\frac{a'}{b'}$ for $a,a'\in A$ and $b,b'\in A\setminus\pfrak$. Since these elements are equivalent in the localization, there exists $c\in A\setminus\pfrak$ such that $c(ab'-a'b)=0$ in $A$. So $s=s'$ in all $A_{\qfrak}$ for $b,b',c\notin\qfrak$. But this is precisely $D(b)\cap D(b')\cap D(c)$ containing $\pfrak$ so $s=s'$ in a neighborhood of $\pfrak$ and thus give the same stalk showing injectivity, and that the map is an isomorphism. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    We now define a homomorphism $A_{f}\to\Ocal_{\spec(A)}(D(f))$ by $\frac{a}{f^{n}}\mapsto (\frac{a}{f^{n}}\mapsto (\frac{a}{f^{n}})_{\pfrak\in D(f)})$. 
+    
+    We first show the map is injective. Suppose there is some $\frac{a}{f^{n}},\frac{a'}{f^{n'}}$ mapping to the same element in $A_{\pfrak}$ for all $\pfrak\in D(f)$. So for each such $\pfrak$ there is $c_{\pfrak}\in A\setminus\pfrak$ such that $c_{\pfrak}(af^{n'}-a'f^{n})=0$ in $A$. Now note that $\Ann(af^{n'}-a'f^{n})\not\subseteq\pfrak$ for any $\pfrak\in D(f)$ since $\Ann(af^{n'}-a'f^{n})$ contains $c_{\pfrak}\in A\setminus\pfrak$. As such, $V(\Ann(af^{n'}-a'f^{n}))\subseteq V(f)=\spec(A)\setminus D(f)$ from which we conclude that $f\in\sqrt{\Ann(af^{n'}-a'f^{n})}$ and there is some $N$ large such that $f^{N}(af^{n'}-a'f^{n})=0$ showing injectivity. 
+
+    For surjectivity, take $s\in\Ocal_{\spec(A)}(D(f))$ with $s:D(f)\to\coprod_{\pfrak\in D(f)}A_{\pfrak}$ such that for all $\pfrak\in D(f)$ we have that $s(\pfrak)\in A_{\pfrak}$ and there exists $U\subseteq D(f)$ containing $\pfrak$ and $a,b\in A$ such that $b\neq\qfrak$ for all $\qfrak\in U$ and $s(\qfrak)=\frac{a}{b}\in A_{\qfrak}$. Let $\{U_{i}\}_{i\in I}$ be an open cover of $U$ on which $s$ has image $\frac{a_{i}}{b_{i}}$ with $b_{i}\notin\pfrak$ for all $\pfrak\in U_{i}$. Since distinguished opens form a basis for the open sets of the Zariski topology on $\spec(A)$, we can take $U_{i}=D(r_{i})$ with $D(r_{i})\subseteq D(b_{i})$. We thus have $V((b_{i}))\subseteq V((r_{i}))$ and thus $\sqrt{(r_{i})}\subseteq\sqrt{(b_{i})}$. In particular, $r_{i}^{n}=cb_{i}$ for some $c$ so we can write $a_{i}b_{i}=ca_{i}r_{i}^{n}$ and since $D(r_{i})=D(r_{i}^{n})$ we can assume that $D(f)$ is covered by $D(r_{1}),\dots,D(r_{m})$ given quasicompactness of the spectrum of a ring on which $s$ is given by $\frac{a_{i}}{r_{i}}$. Now on $D(r_{i})\cap D(r_{j})=D(r_{i}r_{j})$ we have the image of $s$ given by both $\frac{a_{i}}{r_{i}}$ and $\frac{a_{j}}{r_{j}}$ giving $(h_{i}h_{j})^{N}(h_{j}a_{i}-h_{i}a_{j})=0$. Rewriting this equation and picking $N$ large, we have that $\frac{a}{f^{n}}=\frac{a_{i}}{r_{i}}$ on $D(r_{i})$ giving surjectivity and the claim. 
+\end{proof}
+We return to some generalities on sheaf theory, and discuss the kernel, cokernel, and image sheaves. This is easiest to do in the case of the kernel as justified by the following lemma. 
+\begin{lemma}\label{lem: presheaf kernel is a sheaf}
+    Let $X$ be a topological space and $\phi:\Fcal\to\Gcal$ a morphism of sheaves of Abelian groups on $X$. The association 
+    $$U\mapsto\ker(\Fcal(U)\to\Gcal(U))$$
+    is a sheaf on $X$. 
+\end{lemma}
+\begin{proof}
+    For $\{U_{i}\}_{i\in I}$ an open cover of $U$, we have the following diagram 
+    $$% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGtlcihcXHBoaV97VX0pIl0sWzAsMSwiXFxwcm9kX3tpXFxpbiBJfVxca2VyKFxccGhpX3tVX3tpfX0pIl0sWzAsMiwiXFxwcm9kX3tpLGpcXGluIEl9XFxrZXIoXFxwaGlfe1Vfe2l9XFxjYXAgVV97an19KSJdLFsyLDAsIlxcRmNhbChVKSJdLFsyLDEsIlxccHJvZF97aVxcaW4gSX1cXEZjYWwoVV97aX0pIl0sWzIsMiwiXFxwcm9kX3tpLGpcXGluIEl9XFxGY2FsKFVfe2l9XFxjYXAgVV97an0pIl0sWzQsMCwiXFxHY2FsKFUpIl0sWzQsMSwiXFxwcm9kX3tpXFxpbiBJfVxcR2NhbChVX3tpfSkiXSxbNCwyLCJcXHByb2Rfe2ksalxcaW4gSX1cXEdjYWwoVV97aX1cXGNhcCBVX3tqfSkiXSxbMCwzXSxbMyw2XSxbNiw3XSxbNyw4XSxbNCw1XSxbMSwyXSxbMCwxXSxbMSw0XSxbNCw3XSxbMyw0XSxbMiw1XSxbNSw4XV0=
+    \begin{tikzcd}
+        {\ker(\phi_{U})} && {\Fcal(U)} && {\Gcal(U)} \\
+        {\prod_{i\in I}\ker(\phi_{U_{i}})} && {\prod_{i\in I}\Fcal(U_{i})} && {\prod_{i\in I}\Gcal(U_{i})} \\
+        {\prod_{i,j\in I}\ker(\phi_{U_{i}\cap U_{j}})} && {\prod_{i,j\in I}\Fcal(U_{i}\cap U_{j})} && {\prod_{i,j\in I}\Gcal(U_{i}\cap U_{j})}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=1-5]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-5, to=2-5]
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=2-1, to=3-1]
+        \arrow[from=2-3, to=2-5]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=2-5, to=3-5]
+        \arrow[from=3-1, to=3-3]
+        \arrow[from=3-3, to=3-5]
+    \end{tikzcd}$$
+    realizing $\Fcal(U),\Gcal(U)$ as the kernels of the maps between the products in the lower-right corner. As such, we have the descent condition. 
+\end{proof}
+This defines the sheaf kernel. 
+\begin{definition}[Sheaf Kernel]\label{def: sheaf kernel}
+    Let $X$ be a topological space and $\phi:\Fcal\to\Gcal$ a morphism of sheaves on $X$. The sheaf kernel $\ker(\phi)$ is the sheaf
+    $$U\mapsto\ker(\Fcal(U)\to\Gcal(U)).$$ 
+\end{definition}
+However, in the case of the cokernel and the image, the na\"{i}vely defined presheaf is often not a sheaf as illustrated by the following example. 
+\begin{example}
+    Let $X=\{0,1\}$ with the discrete topology, $G$ an Abelian group, and $\Fcal=\Gcal=\underline{G}$. Define a morphism of sheaves $\phi:\Fcal\to\Gcal$ which is the identity on $G$ over $X$ but the trivial map over any proper open subset of $X$. The cokernel is then 0 over $X$ but $G$ over any proper open subset of $X$ so the sheaf condition does not hold. 
+\end{example}
+As such, the definition of the cokernel and image necessitates sheafification. 
+\begin{definition}[Sheaf Cokernel]\label{def: sheaf cokernel}
+    Let $X$ be a topological space and $\phi:\Fcal\to\Gcal$ a morphism of sheaves of Abelian groups on $X$. The sheaf cokernel is the sheafification of the presheaf cokernel 
+    $$U\mapsto\coker(\Fcal(U)\to\Gcal(U)).$$
+\end{definition}
+\begin{definition}[Sheaf Image]\label{def: sheaf image}
+    Let $X$ be a topological space and $\phi:\Fcal\to\Gcal$ a morphism of sheaves of Abelian groups on $X$. The sheaf image is the sheafification of the presheaf image 
+    $$U\mapsto\img(\Fcal(U)\to\Gcal(U)).$$
+\end{definition}
+Evidently these are sheaves. We show they satisfy the expected universal properties. 
+\begin{proposition}\label{prop: coker and im satisfy universal properties}
+    Let $X$ be a topological space and $\phi:\Fcal\to\Gcal$ a morphism of sheaves of Abelian groups on $X$. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item For any sheaf $\Gcal'$ admitting a morphism from $\Gcal$ such that the composite $\Fcal\to\Gcal\to\Gcal'$ is the zero morphism, there is a unique morphism making the diagram 
+        $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEZjYWwiXSxbMiwwLCJcXEdjYWwiXSxbNCwwLCJcXGNva2VyKFxccGhpKSJdLFs0LDEsIlxcR2NhbCciXSxbMCwxLCJcXHBoaSIsMix7ImxhYmVsX3Bvc2l0aW9uIjo3MH1dLFsxLDJdLFswLDIsIjAiLDAseyJjdXJ2ZSI6LTJ9XSxbMCwzLCIwIiwyLHsiY3VydmUiOjF9XSxbMSwzXSxbMiwzLCJcXGV4aXN0cyEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+        \begin{tikzcd}
+            \Fcal && \Gcal && {\coker(\phi)} \\
+            &&&& {\Gcal'}
+            \arrow["\phi"'{pos=0.7}, from=1-1, to=1-3]
+            \arrow["0", curve={height=-12pt}, from=1-1, to=1-5]
+            \arrow["0"', curve={height=6pt}, from=1-1, to=2-5]
+            \arrow[from=1-3, to=1-5]
+            \arrow[from=1-3, to=2-5]
+            \arrow["{\exists!}", dashed, from=1-5, to=2-5]
+        \end{tikzcd}$$
+        commute. 
+        \item For any sheaf $\Gcal'$ admitting a morphism from $\Fcal$ and a monomorphism to $\Gcal$, there exists a unique morphism making the diagram 
+        $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEZjYWwiXSxbMiwwLCJcXGltZyhcXHBoaSkiXSxbNCwwLCJcXEdjYWwiXSxbMiwxLCJcXEdjYWwnIl0sWzAsM10sWzMsMl0sWzEsMl0sWzAsMV0sWzEsMywiXFxleGlzdHMhIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMiwiXFxwaGkiLDAseyJjdXJ2ZSI6LTJ9XV0=
+        \begin{tikzcd}
+            \Fcal && {\img(\phi)} && \Gcal \\
+            && {\Gcal'}
+            \arrow[from=1-1, to=1-3]
+            \arrow["\phi", curve={height=-12pt}, from=1-1, to=1-5]
+            \arrow[from=1-1, to=2-3]
+            \arrow[from=1-3, to=1-5]
+            \arrow["{\exists!}", dashed, from=1-3, to=2-3]
+            \arrow[from=2-3, to=1-5]
+        \end{tikzcd}$$
+        commute. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+    By definition the map from $\Fcal$ to the presheaf cokernel is the zero map inducing the solid diagram 
+    $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXEZjYWwiXSxbMiwwLCJcXEdjYWwiXSxbNCwwLCJcXGNva2VyX3tcXFBTaH0oXFxwaGkpIl0sWzUsMCwiXFxjb2tlcihcXHBoaSk9XFxjb2tlcl97XFxQU2h9KFxccGhpKV57XFwjfSJdLFs1LDEsIlxcR2NhbCciXSxbMCwxLCJcXHBoaSJdLFsxLDJdLFswLDIsIjAiLDEseyJjdXJ2ZSI6LTJ9XSxbMCwzLCIwIiwxLHsiY3VydmUiOi01fV0sWzAsNF0sWzEsNF0sWzIsNCwiXFxleGlzdHMhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNCwiXFxleGlzdCEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiwzXV0=
+    \begin{tikzcd}
+        \Fcal && \Gcal && {\coker_{\PSh}(\phi)} & {\coker(\phi)=\coker_{\PSh}(\phi)^{\#}} \\
+        &&&&& {\Gcal'}
+        \arrow["\phi", from=1-1, to=1-3]
+        \arrow["0"{description}, curve={height=-12pt}, from=1-1, to=1-5]
+        \arrow["0"{description}, curve={height=-30pt}, from=1-1, to=1-6]
+        \arrow[from=1-1, to=2-6]
+        \arrow[from=1-3, to=1-5]
+        \arrow[from=1-3, to=2-6]
+        \arrow[from=1-5, to=1-6]
+        \arrow["{\exists!}"{description}, dashed, from=1-5, to=2-6]
+        \arrow["{\exists!}", dashed, from=1-6, to=2-6]
+    \end{tikzcd}$$
+    which extends to the one above by the universal property of sheafification since $\Gcal'$ is a sheaf. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    Arguing similarly, $\img_{\PSh}(\phi)$ fits into $\Fcal\to\img_{\PSh}(\phi)\to\Gcal$ where the morphism to $\Gcal'$ is induced by the universal property of sheafification. 
+\end{proof}
+With this language in mind, we want to be able to discuss isomorphisms of sheaves. We define these via monomorphisms and epimorphisms of sheaves. 
+\begin{proposition}
+    Let $X$ be a topological space and $\phi:\Fcal\to\Gcal$ a morphism of sheaves of Abelian groups on $X$. The following are equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\phi$ is a monomorphism. 
+        \item $\ker(\phi)$ is the zero sheaf. 
+        \item For all $U\subseteq X$, $\phi_{U}$ is injective. 
+        \item For all $x\in X$, $\phi_{x}$ is injective. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    (a)$\Leftrightarrow$(b) Suppose $\phi$ is a monomorphism. The map $\ker(\phi)\to\Fcal$ necessarily factors through the zero object but for any $U\subseteq X$ we have $\ker(\phi_{U})\hookrightarrow\Fcal(U)\to\ker(\phi)(U)=0$ showing that $\ker(\phi)=0$. Conversely, for $\ker(\phi)=0$, the universal property for the zero object implies that $\phi$ is a monomorphism. 
+
+    (b)$\Leftrightarrow$(c) Since the sheaf kernel agrees with the presheaf kernel as a presheaf by \Cref{lem: presheaf kernel is a sheaf} we have that $\phi_{U}$ injective implies $\ker(\phi)(U)=\ker(\phi_{U})=0$ which glues to $\ker(\phi)=0$. 
+
+    (c)$\Rightarrow$(d) taking colimits is left exact so the kernel of $\phi_{x}$ is $\ker(\phi)_{x}$ which is zero. 
+    
+    (d)$\Rightarrow$(c) Supposing that $\phi_{x}$ is injective for all $x$, we can take germs and find sufficiently small neighborhoods gluing to $U$ to show $\phi_{U}$ is injective. 
+\end{proof}

@@ -1,0 +1,114 @@
+\section{Lecture 15 -- 29th November 2024}\label{sec: lecture 15}
+Recall that for $M$ a smooth manifold, the tangent bundle \Cref{def: tangent bundle} is a smooth manifold by \Cref{prop: tangent bundle is smooth manifold}. 
+\begin{definition}[Vector Field]\label{def: vector field}
+    Let $M$ be a smooth manifold. A smooth vector field $X$ on $M$ is a smooth map $X:M\to TM$ such that $\pi\circ X=\id_{M}$. 
+\end{definition}
+\begin{remark}
+    In particular, $X$ is a smooth section of the vector bundle. We can also consider arbitrary sections which will be known as rough vector fields. 
+\end{remark}
+In other words, $X$ is the assignment of a tangent vector $v\in T_{p}M$ to each $p\in M$.
+\begin{example}
+    We have that $T_{p}\RR^{n}=\RR^{n}$ so $T\RR^{n}=\RR^{n}\times\RR^{n}$ so a smooth section is just a smooth map that is the identity on the first coordinate. 
+\end{example} 
+\begin{example}
+    The vector field $\partial_{x_{i}}$ is the vector field of the $i$th coordinate for each point of a smooth manifold $M$. 
+\end{example}
+\begin{example}
+    There is a canonical vector field $0_{M}$ on a smooth manifold $M$ that is the zero tangent vector for each $p\in M$. 
+\end{example}
+In fact, we can show that the collection of all possible smooth vector fields assemble into a vector space. 
+\begin{lemma}\label{lem: smooth vector fields form a vector space}
+    Let $M$ be a smooth manifold and $\Xfrak(M)$ the collection of all smooth vector fields. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\Xfrak(M)$ is a $\RR$-vector space. 
+        \item $\Xfrak(M)$ is a module over $C^{\infty}(M)$. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (i)]
+    These extend over the pointwise operations on vector spaces. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    A smooth section can be represented by a tuple of $m$-smooth functions which naturally inherits a module action by $C^{\infty}(M)$.
+\end{proof}
+This leads to the following definition. 
+\begin{definition}[Space of Vector Fields]\label{def: space of vector fields}
+    Let $M$ be a smooth manifold. $\Xfrak(M)$ is the $\RR$-vector space of smooth vector fields on $M$. 
+\end{definition}
+Given a smooth map $F:M\to N$, we can relate vector fields on $M,N$ in the following way. 
+\begin{definition}[$F$-Related]\label{def: F-related}
+    Let $M,N$ be smooth manifolds, $F:M\to N$ a smooth map, and $X,Y$ smooth vector fields on $M,N$. $X$ and $Y$ are $F$-related if the diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwxLCJNIl0sWzIsMSwiTiJdLFswLDAsIlRNIl0sWzIsMCwiVE4iXSxbMywxLCJcXHBpX3tOfSIsMl0sWzIsMywiZEYiXSxbMiwwLCJcXHBpX3tNfSJdLFswLDEsIkYiLDJdLFsxLDMsIlkiLDIseyJjdXJ2ZSI6MX1dLFswLDIsIlgiLDAseyJjdXJ2ZSI6LTF9XV0=
+    \begin{tikzcd}
+        TM && TN \\
+        M && N
+        \arrow["dF", from=1-1, to=1-3]
+        \arrow["{\pi_{M}}", from=1-1, to=2-1]
+        \arrow["{\pi_{N}}"', from=1-3, to=2-3]
+        \arrow["X", curve={height=-6pt}, from=2-1, to=1-1]
+        \arrow["F"', from=2-1, to=2-3]
+        \arrow["Y"', curve={height=6pt}, from=2-3, to=1-3]
+    \end{tikzcd}$$
+    commutes. 
+\end{definition}
+\begin{remark}
+    As suggested by the name, the relationship between vector fields is not only dependent on the manifolds but also on the smooth map $F$. 
+\end{remark}
+We can also produce a vector field on the target manifold given a vector field on the source in a construction known as pushing forward. 
+\begin{definition}[Pushforward Vector Field]\label{def: pushforward vector field}
+    Let $F:M\to N$ be a diffeomorphism between smooth manifolds and $X$ is a vector field on $M$. The pushforward vector field is the vector field $F_{*}X$ such that the diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwxLCJNIl0sWzIsMSwiTiJdLFswLDAsIlRNIl0sWzIsMCwiVE4iXSxbMywxLCJcXHBpX3tOfSIsMl0sWzIsMywiZEYiXSxbMiwwLCJcXHBpX3tNfSJdLFswLDEsIkYiLDJdLFsxLDMsIkZfeyp9WCIsMix7ImN1cnZlIjoxfV0sWzAsMiwiWCIsMCx7ImN1cnZlIjotMX1dXQ==
+    \begin{tikzcd}
+        TM && TN \\
+        M && N
+        \arrow["dF", from=1-1, to=1-3]
+        \arrow["{\pi_{M}}", from=1-1, to=2-1]
+        \arrow["{\pi_{N}}"', from=1-3, to=2-3]
+        \arrow["X", curve={height=-6pt}, from=2-1, to=1-1]
+        \arrow["F"', from=2-1, to=2-3]
+        \arrow["{F_{*}X}"', curve={height=6pt}, from=2-3, to=1-3]
+    \end{tikzcd}$$
+    commutes. 
+\end{definition}
+\begin{remark}
+    More explicitly, for each point $p\in M$, $(F_{*}X)_{p}=dF_{F^{-1}(p)}(X_{F^{-1}(p)})$.
+\end{remark}
+Given that tangent spaces can be understood in terms of derivations, so too can vector fields. 
+\begin{lemma}\label{lem: smooth vector fields and functions}
+    Let $M$ be a smooth manifold.
+    \begin{enumerate}[label=(\roman*)]
+        \item If $X$ is a smooth tangent field on $M$ then $Xf$ is a smooth function. 
+        \item If $X$ is a coarse vector field and $Xf$ is smooth for all $f\in C^{\infty}(M)$ then $X$ is smooth. 
+    \end{enumerate}
+\end{lemma}
+Generalizing \Cref{def: derivation}, we have the following. 
+\begin{definition}[Derivation]\label{def: generalized derivation}
+    Let $M$ be a smooth manifold. A derivation is a map $X:C^{\infty}(M)\to C^{\infty}(M)$ if for all $f,g\in C^{\infty}(M)$,
+    $$X(fg)=f\cdot X(g)+g\cdot X(f).$$
+\end{definition}
+We show that derivations arise from vector fields in the following sense. 
+\begin{proposition}\label{prop: all derivations are vector fields}
+    Let $M$ be a smooth manifold and $X$ a smooth vector field on $M$. Then the map $f\mapsto X(f)$ is a derivation and each derivation arises in this way. 
+\end{proposition}
+\begin{proof}
+    For all $p\in M$ we have $X(fg)(p)=f(p)X(g)(p)+g(p)X(f)(p)=f(p)X(g(p))+g(p)X(f(p))$ so the map is a derivation. Now for a derivation $Y:C^{\infty}(M)\to C^{\infty}(M)$ we can produce a vector field $Y(f)$ for all $f\in C^{\infty}(M)$ but this is a smooth vector field by \Cref{lem: smooth vector fields and functions}. 
+\end{proof}
+We can also consider vector fields as elements of a Lie algebra. 
+\begin{definition}[Lie Bracket]\label{def: Lie bracket}
+    Let $M$ be a smooth manifold and $X,Y$ smooth vector fields on $M$. The Lie bracket $[X,Y]$ is a map $C^{\infty}(M)\to C^{\infty}(M)$ by $f\mapsto (XY)(f)-(YX)(f)$. 
+\end{definition}
+This in fact defines a derivation, making $[X,Y]$ a smooth vector field. 
+\begin{lemma}\label{lem: Lie bracket is a smooth vector field}
+    The action of the Lie bracket defines a derivation on $C^{\infty}(M)$. 
+\end{lemma}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        [X,Y](f,g) &= (XY)(fg) - (YX)(fg) \\
+        &= X(f\cdot Y(g)+g\cdot Y(f)) - Y(f\cdot X(g)+ g\cdot X(f)) \\
+        &= X(f)\cdot Y(g) + f\cdot (XY)(g) + g\cdot (XY)(f) + X(f)\cdot X(g) \\
+        &\hspace{1cm}-Y(f)\cdot X(g) - f(YX)(g) - g(YX)(f) - X(f)\cdot Y(g)\\
+        &= f((XY)-(YX))(g)-g((XY)-(YX))(f) \\
+        &= f\cdot [X,Y](g) + g\cdot [Y,X](f)
+    \end{align*}
+    as desired. 
+\end{proof}

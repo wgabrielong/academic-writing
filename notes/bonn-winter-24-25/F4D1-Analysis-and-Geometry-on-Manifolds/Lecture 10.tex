@@ -1,0 +1,66 @@
+\section{Lecture 10 -- 12th November 2024}\label{sec: lecture 10}
+We state and prove the slice theorem. 
+\begin{theorem}[Slice]\label{thm: slice}
+    Let $M$ be a smooth $n$-manifold and $S\subseteq M$ a subset such that for all $p\in S$ there exists a chart $(V,\psi)$ of $M$ satisfying 
+    $$\psi(U\cap S)=\left\{(x_{0},\dots,x_{k},x_{k+1},\dots,x_{m})\in\RR^{m}:\substack{x_{k+1}=c_{k+1},\dots,x_{m}=c_{m}\\c_{j}\in\RR\text{ constant}}\right\}.$$
+    Then $S$ admits a smooth structure making it a smooth submanifold of $M$. 
+\end{theorem}
+\begin{proof}
+    $S$ is second countable and Hausdorff under the subspace topology. $S$ is also locally Euclidean under the restriction of $\psi$ to the first $k$ coordinates. $S$ is therefore a topological submanifold. Let $\pi:\RR^{m}\to\RR^{k}$ be the projection onto the first $k$ coordinates and $(U,\psi)$ a chart of $M$. Note that $\psi(V)=(\pi\circ\phi)(U\cap S)$ and in particular $\phi(U\cap S)$ is the interesction of the $\phi(U)$ with some slice of $\RR^{n}$ which is a diffeomorphism since projection maps are diffeomorphisms and has an invese given by $\phi|_{U\cap S}\circ\psi^{-1}$. This shows the inclusion map is a topological embedding. 
+
+    To get a smooth structure on $S$, we verify that the charts are smoothly compatible. But $\phi$ is smooth in the first $k$ coordinates because $\phi$ is and constant in the remaining hence infinitely diferentiable. This shows that the transition functions as the composition of two such maps is smooth. 
+\end{proof}
+\begin{remark}
+    Recall the discussion of level sets in \Cref{ex: level sets are smooth manifolds}. Using the slice slice theorem, $\varphi^{-1}(0)\subseteq\RR^{n+1}$ is a smooth submanifold for $\Phi:\RR^{n+1}\to\RR$ with $d\Phi$ nonzero on $\varphi^{-1}(0)$. 
+\end{remark}
+\begin{lemma}\label{lem: smooth factorizations}
+    Let $F:M\to N$ be a smooth map that factors through the inclusion $S\hookrightarrow N$ as a continuous map. Then $F:M\to S$ is smooth. 
+\end{lemma}
+\begin{proof}
+    By \Cref{thm: slice} on $N$, there is a commutative diagram of the form 
+    $$% https://q.uiver.app/#q=WzAsNixbMCwwLCJTIl0sWzIsMCwiVSJdLFswLDEsIk4iXSxbMiwxLCJWIl0sWzQsMCwiXFxwaGkoVSlcXHN1YnNldGVxXFxSUl57a30iXSxbNCwxLCJcXHBzaShWKVxcc3Vic2V0ZXFcXFJSXntufSJdLFswLDIsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMywyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFsxLDNdLFsxLDQsIlxcc2ltIl0sWzMsNSwiXFxzaW0iLDJdLFs0LDVdXQ==
+    \begin{tikzcd}
+        S && U && {\phi(U)\subseteq\RR^{k}} \\
+        N && V && {\psi(V)\subseteq\RR^{n}}
+        \arrow[hook, from=1-1, to=2-1]
+        \arrow[hook', from=1-3, to=1-1]
+        \arrow["\sim", from=1-3, to=1-5]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-5, to=2-5]
+        \arrow[hook', from=2-3, to=2-1]
+        \arrow["\sim"', from=2-3, to=2-5]
+    \end{tikzcd}$$  
+    So taking charts on $S$ to be $U\subseteq S$ such that $F^{-1}(U)\subseteq M$ is open and charts the composition of $\mu\circ F^{-1}:U\to\RR^{m}$ for $(W,\mu)$ a chart of $M$ and $W$ containing $F^{-1}(U)$, $F$ being a smooth map to $M$ implies that the charts are smoothly compatible producing a smooth map $F:M\to S$. 
+\end{proof}
+This lemma shows that the smooth structure produced in \Cref{thm: slice} is unique. 
+\begin{proposition}\label{prop: unique smooth structure}
+    Let $M$ be a smooth $n$-manifold and $S\subseteq M$ smooth $k$-submanifold such that for all $p\in S$ there exists a chart $(V,\psi)$ of $M$ satisfying 
+    $$\psi(U\cap S)=\left\{(x_{0},\dots,x_{k},x_{k+1},\dots,x_{m})\in\RR^{m}:\substack{x_{k+1}=c_{k+1},\dots,x_{m}=c_{m}\\c_{j}\in\RR\text{ constant}}\right\}.$$
+    Then the smooth structure on $S$ is unique. 
+\end{proposition}
+\begin{proof}
+    For $S'$ the same space with a possibly different smooth structure, we have maps
+    $$% https://q.uiver.app/#q=WzAsNixbMCwwLCJTJyJdLFsyLDAsIlMiXSxbNCwwLCJOIl0sWzAsMSwiUyJdLFsyLDEsIlMnIl0sWzQsMSwiTiJdLFswLDEsIlxcaWRfe1N9Il0sWzEsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw0LCJcXGlkX3tTfSJdLFs0LDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV1d
+    \begin{tikzcd}
+        {S'} && S && N \\
+        S && {S'} && N
+        \arrow["{\id_{S}}", from=1-1, to=1-3]
+        \arrow[hook, from=1-3, to=1-5]
+        \arrow["{\id_{S}}", from=2-1, to=2-3]
+        \arrow[hook, from=2-3, to=2-5]
+    \end{tikzcd}$$
+    and the smooth structure on $S$ is equivalent to that on $S'$ by \Cref{lem: smooth factorizations}.
+\end{proof}
+We discuss a weak variant of Whitney's embedding theorem. We will return to a more general variant of this theorem with the language of Sard's theorem in hand. 
+\begin{theorem}[Whitney Embedding]\label{thm: Whitney embedding}
+    Let $M$ be a compact smooth $m$-manifold. $M$ admits an embedding into $\RR^{N}$ for $N>>0$. 
+\end{theorem}
+\begin{proof}
+    Let $B_{1},\dots,B_{k}$ be a finite open cover of $M$ and without loss of generality consider charts $(U_{i},\phi_{i})$ for $1\leq i\leq k$ such that $\overline{U_{i}}\subseteq B_{i}$ and $\phi(U_{i})=B_{1}(0)\subseteq\RR^{m}$. Let $\rho_{i}:M\to\RR$ be cutoff functions for $\overline{U_{i}}\subseteq B_{i}$ in the sense of \Cref{def: cutoff functions} and which exist by \Cref{lem: existence of cutoff functions}. Define a map $F:M\to\RR^{mk+k}$ by 
+    $$p\mapsto\left(\rho_{1}(p)\phi_{1}(p),\dots,\rho_{k}(p)\phi_{k}(p),\rho_{1}(p),\dots,\rho_{k}(p)\right)$$
+    here noting that $\phi$ are functions to $\RR^{m}$ and hence contribute an $m$-tuple to the above. 
+
+    This is injective as if $F(p)=F(q)$ then $\rho_{i}(p)=\rho_{i}(q)$ for all $1\leq i\leq k$ in which case $\phi_{i}(p)=\phi_{i}(q)$ for all $1\leq i\leq k$ showing $p=q$ since $\phi_{i}$ is a homeomorphism. 
+
+    To show it is an immersion, for any $v\in T_{p}(M)$ we know $dF_{p}(v)=0$ implies $v(\rho_{i})=0$ for all $i$ and thus $\rho_{i}(p)(d\phi_{i})_{p}(v)=0$ for all $i$. So $(d\phi_{i})_{p}(v)=0$ since and $\phi_{i}$ is a diffeomorphism $v=0$ too and thus giving injectivity of the tangent space. 
+\end{proof} 

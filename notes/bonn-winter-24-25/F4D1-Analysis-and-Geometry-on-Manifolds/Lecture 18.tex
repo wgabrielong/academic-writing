@@ -1,0 +1,48 @@
+\section{Lecture 18 -- 10th December 2024}\label{sec: lecture 18}
+We show the desired result, that Lie derivatives can be computed in terms of Lie brackets. 
+\begin{proposition}\label{prop: Lie derivatives as Lie brackets}
+    Let $M$ be a smooth manifold and $X,Y\in\Xfrak(M)$ smooth vector fields. Then $\Lcal_{X}Y=[X,Y]$. 
+\end{proposition}
+\begin{proof}
+    It suffices to show that $(\Lcal_{Y}X)_{p}=[X,Y]_{p}$. We consider three cases: where $p$ is a nonvanishing point of $X$, $p$ is in the support of $X$, and $p$ is outside the support of $X$. 
+
+    In the first case, \Cref{lem: canonical form for a smooth vector field} allows us to choose $\partial_{x_{1}}$ as the coordinate representation for $X$ in which case the flow is given by $\theta_{t}(u)=(u^{1}+t,u^{2},\dots,u^{n})$ and for each fixed $t$, the Jacobian of $d(\theta_{-t})_{\theta_{t}(x)}$ is the identity and an explicit computation gives the pointwise equality. 
+
+    In the second case if $p$ is in the support of $X$ the claim holds by the above. Otherwise $X$ is zero at $p$ so $\theta_{t}$ is the identity on a neighborhood of $p$ for all $p$ so the Lie derivative is zero as well, which agrees with the Lie bracket. 
+\end{proof}
+Moreover, we can show the following result for local frames. 
+\begin{theorem}\label{thm: local frame canonical form}
+    Let $M$ be a smooth $m$-manifold and let $X^{1},\dots,X^{m}\in\Xfrak(M)$ be a local frame at $p$. There exists a chart $(U,\phi)$ around $p$ such that $X^{i}=\partial_{x_{i}}$ if and only if $[X^{i},X^{j}]=0$ near $p$ for all $i,j$. 
+\end{theorem}
+\begin{proof}
+    $(\Rightarrow)$ is clear since coordinate vector fields commute. 
+    
+    $(\Leftarrow)$ is the construction of \Cref{lem: canonical form for a smooth vector field}.
+\end{proof}
+As a prelude to a discussion of vector bundles, we make some recollections on linear algebra. 
+
+We fix a field $\RR$ and consider the category $\Vect^{\mathsf{fd}}_{\RR}$ of finite dimensional $\RR$-vector spaces and morphisms linear maps. This category has especially nice properties as we now describe. 
+\begin{theorem}\label{thm: fdVect is Ab closed sym monoidal}
+    The category $\Vect^{\mathsf{fd}}_{\RR}$ is a closed symmetric monoidal Abelian category. 
+\end{theorem}
+To be more explicit, all finite limits and colimits exist, implying the existence of kernels and cokernels, the category is preserved under finite direct sums which agree with finite coproducts, and admits a tensor product which satisfies the tensor-hom adjunction. 
+\begin{definition}[Tensor]\label{def: tensor}
+    Let $V\in \Vect^{\mathsf{fd}}_{\RR}$. A tensor of type $(a,b)$ over $V$ is an element of 
+    $$\underbrace{V\otimes\dots\otimes V}_{a\text{ times}}\otimes\underbrace{V^{\vee}\otimes\dots\otimes V^{\vee}}_{b\text{ times}}.$$
+\end{definition}
+This leads us to the definition of alternating and symmetric tensors. 
+\begin{definition}[Alternating Tensor]\label{def: alternating tensor}
+    Let $V\in \Vect^{\mathsf{fd}}_{\RR}$ and $\alpha\in T^{0,b}V$. $\alpha$ is an alternating tensor if the induced map $V\times\dots\times V\to\RR$ is such that 
+    $$\alpha(x_{1},\dots,x_{i},\dots,x_{j},\dots,x_{b})=(-1)^{j-i}\alpha(x_{1},\dots,x_{j},\dots,x_{i},\dots,x_{b}).$$
+\end{definition}
+\begin{definition}[Symmetric Tensor]\label{def: symmetric tensor}
+    Let $V\in \Vect^{\mathsf{fd}}_{\RR}$ and $\alpha\in T^{0,b}V$. $\alpha$ is a symmetric tensor if the induced map $V\times\dots\times V\to\RR$ is such that 
+    $$\alpha(x_{1},\dots,x_{b})=\alpha(x_{\sigma(1)},\dots,x_{\sigma(b)})$$
+    for all permutations $\sigma\in S_{b}$.
+\end{definition}
+\begin{definition}[Space of Alternating Tensors]\label{def: space of alternating tensors}
+    The space of alternating tensors $\bigwedge^{b}V\subseteq T^{0,b}V$ is the linear subspace consisting of alternating tensors. 
+\end{definition}
+\begin{definition}[Space of Symmetric Tensors]\label{def: space of symmetric tensors}
+    The space of alternating tensors $\Sym^{b}V\subseteq T^{0,b}V$ is the linear subspace consisting of symmetric tensors.
+\end{definition}

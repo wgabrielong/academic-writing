@@ -1,0 +1,71 @@
+\section{Lecture 17 -- 7th December 2024}\label{sec: lecture 17}
+We begin with a discussion of flows. 
+\begin{definition}[Flow Domain]\label{def: flow domain}
+    Let $M$ be a smooth manifold. A flow domain is an open set $\Dcal\subseteq\RR\times M$ such that for all $p\in M$
+    $$\Dcal^{(p)}=\{t\in\RR:(t,p)\in\Dcal\}\subseteq\RR$$
+    is an open interval containing $0$. 
+\end{definition}
+More explicitly, $\Dcal$ admits two projection maps 
+$$% https://q.uiver.app/#q=WzAsMyxbMSwwLCJcXERjYWwiXSxbMCwxLCJcXFJSIl0sWzIsMSwiTSJdLFswLDFdLFswLDJdXQ==
+\begin{tikzcd}
+	& \Dcal \\
+	\RR && M
+	\arrow[from=1-2, to=2-1]
+	\arrow[from=1-2, to=2-3]
+\end{tikzcd}$$
+where the condition states that the fiber of the projection map $\Dcal\to M$ over $p\in M$ is an open interval of $\RR$ containing 0. 
+\begin{definition}[Flow]\label{def: flow}
+    Let $M$ be a smooth manifold and $\Dcal$ a flow domain. A flow is a map $\Psi:\Dcal\to M$ such that $\Psi(0,p)=p$ and $\Psi(t,\Psi(s,p))=\Psi(s+t,p)$ when $s,t,s+t\in\Dcal^{(p)}$. 
+\end{definition}
+\begin{remark}
+    Note that for fixed $t$, $\Psi(t,-)=\Psi_{t}:M\to M$ is a diffeomorphism as it is smooth with smooth inverse $\Psi(-t,-):M\to M$ and for fixed $p\in M$, $\psi(-,p)=\Psi^{(p)}:\Dcal^{(p)}\to M$ is a path in $M$ as $\Dcal^{(p)}$ is an interval in $\RR$ containing 0. 
+\end{remark}
+We can recover smooth vector fields from flows. 
+\begin{lemma}\label{lem: smooth vector field of a flow}
+    Let $M$ be a smooth manifold, $\Dcal$ a flow domain, and $\Psi:\Dcal\to M$ a flow. The map $p\mapsto \frac{d}{dt}|_{t=0}\Psi^{(p)}(t)$ defines a smooth vector field $X^{\Psi}$ on $M$ such that $\Psi^{(p)}:\Dcal^{(p)}\to M$ are integral curves of $X^{\Psi}$ starting at $p$.  
+\end{lemma}
+\begin{proof}
+    By \Cref{lem: smooth vector fields and functions} suffices to show that for all smooth functions $f\in C^{\infty}(M)$ that $X^{\Psi}f$ is smooth. We then compute for $p\in M$ that $X^{\Psi}f(p)=X^{\Psi}_{p}f=\frac{d}{dt}|_{t=0}(f\circ\Psi^{(p)}(t))=\partial_{t}(f\circ\Psi)(0,p)$ which is a smooth vector field by inspection. 
+
+    To show that $\Psi^{(p)}$ are the integral curves of $X^{\Psi}$ we fix some $t_{0}\in\Dcal^{(p)}, f\in C^{\infty}(M)$ and $q=\Psi(t_{0},p)$. We then compute 
+    \begin{align*}
+        X^{\Psi}_{q}f &= \Psi^{(q)}(0)f \\
+        &= \frac{d}{dt}|_{t=0}f(\Psi^{(q)}(t)) \\
+        &= \frac{d}{dt}|_{t=0}f(\Psi(t,\Psi(t_{0},p))) \\
+        &= \frac{d}{dt}|_{t=0}f(\Psi(t+t_{0},p)) \\
+        &= \frac{d}{dt}|_{t=0}f(\Psi^{(p)}(t+t_{0})) \\
+        &= \dot{\Psi}^{(p)}(t_{0})f
+    \end{align*}
+    as desired. 
+\end{proof}
+We now show the main result on flows. 
+\begin{theorem}[Flow]\label{thm: flow}
+    Let $M$ be a smooth manifold and $X\in\Xfrak(M)$ a smooth vector field. There exists a unique flow domain $\Dcal$ and a unqiue flow $\Psi:\Dcal\to M$ such that $X^{\Psi}=X$ and $\Psi^{(p)}:\Dcal^{(p)}\to M$ are the maximal integral curves of $X$. 
+\end{theorem}
+\begin{proof}
+    To define $\Psi$, we take $(t,p)\in\Dcal$ to $\gamma^{(p)}$ the unique integral curve starting at $p$, the existence of which is given by \Cref{thm: existence-uniqueness theorem integral curves}. This satisfies the hypotheses of \Cref{lem: smooth vector field of a flow} which gives the desired construction. 
+\end{proof}
+
+We now turn to a discussion of the Lie derivative, which seeks to generalize derivatives of functions on an arbitrary manifold. 
+\begin{definition}[Lie Derivative]\label{def: Lie derivative}
+    Let $M$ be a smooth manifold and $X,Y\in\Xfrak(M)$ smooth vector fields. The Lie derivative of $Y$ with respect to $X$ at a point $p\in M$ is given by 
+    $$\lim_{t\to0}(\Lcal_{X}Y)_{p}=\frac{d}{dt}|_{t=0}\left(\frac{Y_{p+tX_{p}}-Y_{p}}{t}\right).$$
+\end{definition}
+This in fact defines a smooth vector field. 
+\begin{lemma}\label{lem: Lie derivative is a smooth vector field}
+    Let $M$ be a smooth manifold and $X,Y\in\Xfrak(M)$ smooth vector fields. The Lie derivative $\Lcal_{X}Y$ of $Y$ with respect to $X$ is a smooth vector field. 
+\end{lemma}
+\begin{proof}
+    Let $\theta$ be the flow for $X$ and for $p\in M$, let $(U,\phi)$ be a smooth chart of $M$ containing $p$. Let $J\subseteq\RR$ be an open interval containing 0 and $U_{0}\subseteq U$ containing $p$ such that $\theta(J_{0}\times U_{0})\subseteq U$. For $(t,q)\in J_{0}\times U_{0}$, the Jacobian matrix of the differential is given by 
+    $$(d\Psi_{-t})_{\Psi(t,x)}=(\partial_{x_{i}}\Psi^{j}(-t,x))_{1\leq i,j\leq n}.$$
+    As such, we have $d\Psi_{-t}Y_{\Psi(t,x)}=(\partial_{x_{i}}\Psi^{j}(-t,x))_{1\leq i,j\leq n}$ giving the claim. 
+\end{proof}
+We will in fact show that the Lie derivative can be computed in terms of the Lie bracket, for which we will require the following lemma. 
+\begin{lemma}\label{lem: canonical form for a smooth vector field}
+    Let $M$ be a smooth manifold and let $X\in\Xfrak(M)$ a smooth vector field. If $X_{p}\neq0$ for some $p\in M$ then there exists a chart $(U,\phi)$ around $p$ with respect to which $X=\partial_{x_{1}}$.
+\end{lemma}
+\begin{proof}
+    Let $(U,\phi)$ be a chart around $p$ with coordinates $(x_{1},\dots,x_{m})$ and let $S$ be the hypersurface defined by $x_{j}=0$ for $X^{j}_{p}\neq0$ with $X$ the vector field as above. Shrinking $S$ such that $X$ is nowhere tangent to $S$ the flowout theorem \cite[Thm. 9.20]{LeeSM} implies that there is a flow domain $\Ocal_{\delta}\subseteq\RR\times S$ such that the flow of $X$ restricts to a diffeomorphism $\Phi$ from $\Ocal_{\delta}$ to an open subset $W\subseteq M$ containing $S$. 
+
+    There is a product neighborhood $(-\varepsilon,\varepsilon)\subseteq W_{0}$ of $(0,p)$ in $\Ocal_{\delta}$. Now taking a smooth local parametrization $X:\Omega\to S$ with image contained in $W_{0}$ and $\Omega$ open in $\RR^{m-1}$ with coordinates $x_{2},\dots,x_{n}$. It follows that the map $\Psi:(-\varepsilon,\varepsilon)\times\Omega\to M$ by $\Psi(t,x_{2},\dots,x_{n})=\Phi(t,X(x_{2},\dots,x_{m}))$ iwhich is a diffeomprhpism onto a neighborhood of $p$ in $M$. Moreover this map pushes $\partial_{t}$ to itself with $\Phi_{*}(\partial_{t})=X$ so $\Psi_{*}(\partial_{t})=X$ with $\Psi$ a smooth coordinate chart with the desired representation. The claim follows by relabeling. 
+\end{proof}

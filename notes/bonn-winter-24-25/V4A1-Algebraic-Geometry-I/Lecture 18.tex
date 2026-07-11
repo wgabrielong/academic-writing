@@ -1,0 +1,41 @@
+\section{Lecture 18 -- 9th December 2024}\label{sec: lecture 18}
+We have the following property for the cohomology of quasicoherent sheaves on affine schemes, which will allow us to compute the cohomology of quasicoherent sheaves on separated and in particular projective or proper schemes using \v{C}ech cohomology by \Cref{prop: comparison between Cech and derived functor cohomology is an isomorphism}. For this, we will need to show that any injective module gives rise to a flasque sheaf. 
+\begin{lemma}\label{lem: injective implies flasque}
+    Let $I$ be an injective $A$-module for some ring $A$. Then $\widetilde{I}$ is a flasque $\Ocal_{\spec(A)}$-module on $\spec(A)$. 
+\end{lemma}
+\begin{proof}
+    We want to show that for $V,U$ opens of $\spec(A)$ and $V\subseteq U$ that $\widetilde{I}(U)\to\widetilde{I}(V)$ is a surjection. Now recall for $j_{!}$ the extension by zero functor, we have for $V,U$ as above $0\to j_{!}\Ocal_{V}\to j_{!}\Ocal_{U}$ exact, abusing notation and letting $j$ denoting both inclusions. Now noting 
+    $$\Hom_{\Mod_{\Ocal_{\spec(A)}}}(j_{!}\Ocal_{V},\widetilde{I})=\widetilde{I}(V)\text{ and }\Hom_{\Mod_{\Ocal_{\spec(A)}}}(j_{!}\Ocal_{U},\widetilde{I})=\widetilde{I}(U)$$
+    we have by injectivity of $I$ and the exactness property of the functor $\widetilde{(-)}$ \Cref{prop: fully faithful exact modules on affine schemes} that 
+    $$\Hom_{\Mod_{\Ocal_{\spec(A)}}}(j_{!}\Ocal_{U},\widetilde{I})=\widetilde{I}(U)\to\Hom_{\Mod_{\Ocal_{\spec(A)}}}(j_{!}\Ocal_{V},\widetilde{I})=\widetilde{I}(V)\to0$$
+    is exact. In particular $\widetilde{I}(U)\to\widetilde{I}(V)$ is surjective, as desired. 
+\end{proof}
+\begin{proposition}\label{prop: vanishing of higher cohomology on affines}
+    If $\Fcal\in\QCoh(\spec(A))$ then $H^{i}(\spec(A), \Fcal)=0$ for $i\geq 1$. 
+\end{proposition}
+\begin{proof}
+    For $\Fcal$ a quasicoherent sheaf, we can produce an injective resolution 
+    $$0\to\Gamma(\spec(A),\Fcal)\to I\to I/\Gamma(\spec(A),\Fcal)\to0.$$
+    By exactness of $\widetilde{(-)}$, the first cohomology vanishes. 
+\end{proof}
+\begin{remark}
+    The property of \Cref{prop: vanishing of higher cohomology on affines} in fact characterizes affineness of schemes. 
+\end{remark}
+We now turn to the proj construction whcih will be a global procedure for producing proper schemes. We make some recollections from graded commutative algebra. 
+\begin{definition}[Graded Ring]\label{def: graded ring}
+    A graded ring is a ring $A_{\bullet}=\bigoplus_{d\geq0}A_{d}$ such that each $A_{d}$ is an additive subgroup of $A$ and $a_{d}\cdot a_{e}\in A_{d+e}$ for $a_{d}\in A_{d},a_{e}\in A_{e}$. 
+\end{definition}
+\begin{remark}
+    $A_{0}$ contains $0_{A}$ and $1_{A}$. Most cases of interest will have that $A_{0}$ a field. 
+\end{remark}
+One special ideal of $A_{\bullet}$ is the irrelevant ideal. 
+\begin{definition}[Irrelevant Ideal]\label{def: irrelevant ideal}
+    Let $A_{\bullet}$ be a graded ring. The irrelevant ideal of $A_{\bullet}$ is the ideal $A_{+}=\bigoplus_{d\geq 1}A_{d}$. 
+\end{definition}
+We introduce some further notation that relates to graded rings. 
+\begin{definition}[Homogeneous Element]\label{def: homogeneous element}
+    Let $A_{\bullet}$ be a graded ring. A homogeneous element is an element $a\in A_{\bullet}$ such that $a\in A_{d}$ for some $d$. 
+\end{definition}
+\begin{definition}[Homogeneous Ideal]\label{def: homogeneous element}
+    Let $A_{\bullet}$ be a graded ring. A homogeneous ideal $I_{\bullet}\subseteq A_{\bullet}$ is an ideal of $A_{\bullet}$ with homogeneous elements. 
+\end{definition}

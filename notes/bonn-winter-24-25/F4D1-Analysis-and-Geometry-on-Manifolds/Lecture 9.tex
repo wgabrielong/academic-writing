@@ -1,0 +1,78 @@
+\section{Lecture 9 -- 8th November 2024}\label{sec: lecture 9}
+\Cref{prop: immersions and submersions are local} shows that immersions and submersions are local conditions. The rank theorem implies that there exist coordinates such that the induced map on tangent spaces is the projection to the first $n$ coordinates or the inclusion of the first $m$ coordinates in the case of submersions and immersions, respectively. 
+\begin{theorem}[Rank]\label{thm: rank theorem}
+    Let $M,N$ be smooth $m,n$ manifolds, respectively, and $F:M\to N$ a smooth map of constant rank $r$. Then, there exist charts $(U,\phi)$ around $p$ and $(V,\psi)$ around $F(p)$ with $F(U)\subseteq V$ such that $\psi\circ F\circ \phi^{-1}:\phi(U)\to\psi(V)$ is of the form 
+    $$(x_{1},\dots,x_{r},x_{r+1},\dots,x_{m})\mapsto(x_{1},\dots,x_{r},0,\dots,0)$$
+    as a map $\RR^{m}\to\RR^{n}$. 
+\end{theorem}
+\begin{proof}
+    Without loss of generality, we can reduce to the case $M=U\subseteq\RR^{m},N=V\subseteq\RR^{n}$ and by assumption we have that a rank $r=\min\{m,n\}$ submatrix of the Jacobian matrix of $F$ is invertible. Up to rearranging coordinates, we can assume the matrix $(\partial_{x_{i}}F_{j}(p))_{1\leq i,j\leq r}$ is invertible. 
+
+    Now labeling coordinates on the source $(x_{1},\dots,x_{r},y_{1},\dots,y_{m-r})$ and on the target $(v_{1},\dots,v_{r},w_{1},\dots,w_{n-r})$ we can decompose $F=F(x,y)$ as $Q(x,y)$ and $R(x,y)$ where $Q:\RR^{m}\to\RR^{r}$ and $R:\RR^{m}\to\RR^{n-r}$ onto the $v$ and $w$ coordinates, respectively. The above shows that $(\partial_{x_{i}}Q_{j}(p))_{1\leq i,j\leq r}$ is invertible. 
+
+    Note that for $\phi:U\to\RR^{m}$ we have $d\phi_{(0,0)}$ given by the block matrix 
+    $$\begin{bmatrix}
+        \partial_{x_{i}}Q_{j} & \partial_{y_{i}}Q_{j} \\
+        0 & \id_{(n-r)\times(n-r)}
+    \end{bmatrix}$$
+    and thus invertible. The inverse function then implies that there are connected open neighborhoods $U_{0}\subseteq U$ and $\widetilde{U_{0}}$ of $(0,0)\in\RR^{m}$ on which $\phi|_{U_{0}}:U_{0}\to\widetilde{U_{0}}$ is a diffeomorphism. Up to further restriction, we can take $\widetilde{U_{0}}$ to be an open cube $(-\varepsilon,\varepsilon)^{m}$. Decompose the inverse function similarly with $\phi^{-1}(x,y)=(A(x,y),B(x,y))$ where $A:\widetilde{U_{0}}\to\RR^{r}, B:\widetilde{U_{0}}\to\RR^{m-r}$ onto the $x$ and $y$ coordinates, respectively. Computing the composition, we have 
+    \begin{align*}
+        (\phi\circ\phi^{-1})(x,y) &= \phi(A(x,y),B(x,y)) \\
+        &= \left(Q(A(x,y),B(x,y)),B(x,y)\right)
+    \end{align*}
+    showing $B(x,y)=y$ and thus $\phi^{-1}(x,y)=(A(x,y),y), Q(A(x,y),y)=x$. 
+
+    We now compute $F\circ\phi^{-1}$ given by 
+    \begin{align*}
+        (F\circ\phi^{-1})(x,y) &= (Q(A(x,y),y),R(A(x,y),y))
+    \end{align*}
+    where we write $\widetilde{R}:U_{0}\to\RR^{n-r}$ the map given by $R(A(x,y),y)$. We can compute the Jacobian $d(F\circ\phi^{-1})$ at $x,y$ to be given by the matrix 
+    $$\begin{bmatrix}
+        \id_{r\times r} & 0 \\
+        \partial_{x_{i}}\widetilde{R}_{j} & \partial_{y_{i}}\widetilde{R}_{j}
+    \end{bmatrix}.$$
+    Note that $F\circ\phi^{-1}$ is a diffeomorphism and hence of rank $r$ since composition with a diffeomorphism preserves rank, so the matrix above is of rank $r$, implying the submatrix $\partial_{y_{i}}\widetilde{R_{j}}$ is the zero $(n-r)\times(n-r)$ matrix. In particular, $\widetilde{R}(x,y)$ does not depend on $y$. Writing $\widetilde{R}(x,y)$ as $S(x)$, we have $(F\circ\phi^{-1})(x,y)=(x,S(x))$. 
+
+    We can now consider a subset $V_{0}\subseteq V$ where 
+    $$V_{0}=\{(v,w)\in V:(F\circ\phi^{-1})^{-1}(v,w)\in\widetilde{U_{0}}\}=\{(v,w)\in V:(v,0)\in\widetilde{U_{0}}\}$$
+    with the latter equality from $(F\circ\phi^{-1})(x,y)=(x,S(x))$. We thus have $F(U_{0})\subseteq V_{0}$. Now taking $\psi:V_{0}\to\RR^{n}$ to be $(v,w)\mapsto(v, w-S(v))$ which is a diffeomorphism as it is coordinatewise smooth and with inverse $(v,w)\mapsto(v,w+S(v))$ so $(V_{0},\psi)$ is a smooth chart and 
+    $$(\psi\circ F\circ\phi^{-1})(x,y) = \psi(x, S(x)) = (x,S(x)-S(x))=(x,0)$$
+    as desired.
+\end{proof}
+We now turn to a discussion of submanifolds. 
+\begin{definition}[Submanifold]\label{def: submanifold}
+    Let $M$ be a topological manifold. A subset $S\subseteq M$ is a topological submanifold if $S$ is a topological manifold in the subspace topology. 
+\end{definition}
+\begin{example}
+    $S^{n}$ is a submanifold of $\RR^{n+1}$. 
+\end{example}
+\begin{example}
+    The union of the coordinate axes in $\RR^{2}$ is not a submanifold. 
+\end{example}
+This specializes to smooth manifolds in the following way. 
+\begin{definition}[Smooth Submanifold]\label{def: smooth submanifold}
+    Let $M$ be a smooth manifold. A topological submanifold $S\subseteq M$ is a smooth submanifold if $S$ admits a smooth structure such that the inclusion $S\hookrightarrow M$ is a smooth map. 
+\end{definition}
+\begin{remark}
+    Any open submanifold of a smooth manifold $M$ is a smooth submanifold. 
+\end{remark}
+The subsequent lemma produces a number of examples. 
+\begin{lemma}\label{lem: smooth submanifold recipe}
+    Let $M,N$ be smooth $m,n$ manifolds, respectively, and $F:M\to N$ a smooth map that is an embedding. Then $F(M)$ admits a unique smooth structure making it a smooth submanifold. 
+\end{lemma}
+\begin{proof}
+    Since $f$ is an embedding, it is a homeomorphism onto its image in the subspace topology. In particular, $F(M)$ is a topological submanifold of $N$. We can define a smooth atlas on $F(M)$ by taking $(F(U),\phi\circ F^{-1})$ over all charts $(U,\phi)$ of $M$. Since $F$ is a diffeomorphism on its image, any two charts $(U,\phi),(U',\phi')$ on $M$ are smoothly compatible by considering $\phi\circ F\circ F^{-1}\circ\phi'^{-1}=\phi\circ\phi'^{-1}$ which is smooth as $\phi,\phi',\phi'^{-1}$ are smooth.
+
+    To see uniqueness, if $\Acal'$ is another smooth atlas on $F(M)$ for which $F$ is a diffeomorphism, its preimage must agree with the smooth atlas on $M$ showing that they are equivalent atlases. 
+\end{proof}
+We now restrict attention to embedded submanifolds. Recall the definiton of properness from point set topology. 
+\begin{definition}[Proper]\label{def: proper map}
+    Let $f:X\to Y$ be a continuous map between topological spaces. $f$ is proper if for all $K\subseteq Y$ compact, $f^{-1}(K)\subseteq X$ is compact. 
+\end{definition}
+This allows us to define embedded submanifolds. 
+\begin{definition}[Embedded Submanifold]\label{def: embedded submanifold}
+    Let $M$ be a topological manifold and $S$ a submanifold of $M$. $S$ is an embedded submanifold if the inclusion $S\hookrightarrow M$ is proper. 
+\end{definition}
+\begin{example}
+    The inclusion $S^{n}\setminus\{N\}\hookrightarrow\RR^{n+1}$ is not an embedded submanifold. 
+\end{example}

@@ -1,0 +1,156 @@
+\section{Lecture 4 -- 18th October 2024}\label{sec: lecture 4}
+Continuing the discussion of properties of morphisms of sheaves, we characterize epimorphisms and isomorphisms. 
+\begin{proposition}\label{prop: equivalent conditions on epimorphisms}
+    Let $X$ be a topological space and $\phi:\Fcal\to\Gcal$ a morphism of sheaves of Abelian groups on $X$. The following are equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\phi$ is an epimorphism. 
+        \item $\coker(\phi)$ is the zero sheaf. 
+        \item For all $x\in X$, $\phi_{x}$ is surjective. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \todo{To do.}
+\end{proof}
+These conditions are implied by surjectivity of $\phi_{U}:\Fcal(U)\to\Gcal(U)$. 
+\begin{proposition}\label{prop: surjective implies epimorphisms}
+    Let $X$ be a topological space and $\phi:\Fcal\to\Gcal$ a morphism of sheaves of Abelian groups on $X$. If $\phi_{U}:\Fcal(U)\to\Gcal(U)$ is surjective for all $U\subseteq X$ open then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\phi$ is an epimorphism. 
+        \item $\coker(\phi)$ is the zero sheaf. 
+        \item For all $x\in X$, $\phi_{x}$ is surjective. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \todo{To do.}
+\end{proof}
+This allows us to characterize isomorphisms in the category of sheaves via their stalks. 
+\begin{corollary}\label{corr: isomorphism of sheaves}
+    Let $X$ be a topological space and $\phi:\Fcal\to\Gcal$ a morphism of sheaves of Abelian groups on $X$. The following are equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\phi$ is an isomorphism. 
+        \item For all $x\in X$, $\phi_{x}$ is an isomorphism. 
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    By the definition of sheaves as compatible germs, we have (a)$\Rightarrow$(b). 
+
+    Conversely, for all open neighborhoods $U\subseteq X$ we have a commutative diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEZjYWwoVSkiXSxbMiwwLCJcXEdjYWwoVSkiXSxbMiwxLCJcXEdjYWxfe3h9Il0sWzAsMSwiXFxGY2FsX3t4fSJdLFszLDJdLFsxLDJdLFswLDNdLFswLDFdXQ==
+    \begin{tikzcd}
+        {\Fcal(U)} && {\Gcal(U)} \\
+        {\Fcal_{x}} && {\Gcal_{x}.}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    We first show injectivity. Suppose that there is $s\in\Fcal(U)$ such that $\phi_{U}(s)=0$ in $\Gcal(U)$. Thus for all $x\in U$ the germ $\phi_{U}(s)_{x}$ of $\phi_{U}(s)$ at $x$ is zero thus $\phi_{x}$ is injective. But since $\Fcal$ is a sheaf, $s=0$ in $\Fcal(U)$. For surjectivity, suppose there is some $t\in\Gcal(U)$ which on shrinking to sufficiently small neighborhoods has germ $t_{x}$ with preimage $s_{x}$ since $\phi_{x}$ is an isomorphism and in particular surjective. The open set on which $s_{x}$ is a representative section glues to a section in the preimage of $t$ defined over $U$ since injectivity implies that these preimages agree on overlaps. 
+\end{proof}
+These properties of morphisms of sheaves have a natural extension in the consideration of complexes. 
+\begin{definition}[Exact]\label{def: exact}
+    Let $X$ be a topological space and $\Fcal,\Gcal,\Hcal$ be sheaves of Abelian groups on $X$ fitting into a diagram 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEZjYWwiXSxbMSwwLCJcXEdjYWwiXSxbMiwwLCJcXEhjYWwiXSxbMCwxLCJcXHBoaSJdLFsxLDIsIlxccHNpIl1d
+    \begin{tikzcd}
+        \Fcal & \Gcal & \Hcal.
+        \arrow["\phi", from=1-1, to=1-2]
+        \arrow["\psi", from=1-2, to=1-3]
+    \end{tikzcd}$$
+    The diagram is exact at $\Gcal$ if $\img(\phi)=\ker(\psi)$. 
+\end{definition}
+\begin{definition}[Short Exact Sequence]\label{def: short exact sequence}
+    Let $X$ be a topological space and $\Fcal,\Gcal,\Hcal$ be sheaves of Abelian groups on $X$ fitting into a diagram 
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwwLCJcXEZjYWwiXSxbMiwwLCJcXEdjYWwiXSxbMywwLCJcXEhjYWwiXSxbMCwwLCIwIl0sWzQsMCwiMCJdLFswLDEsIlxccGhpIl0sWzEsMiwiXFxwc2kiXSxbMywwXSxbMiw0XV0=
+    \begin{tikzcd}
+        0 & \Fcal & \Gcal & \Hcal & 0.
+        \arrow[from=1-1, to=1-2]
+        \arrow["\phi", from=1-2, to=1-3]
+        \arrow["\psi", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}$$
+    The diagram is a short exact sequence if $\img(\phi)=\ker(\psi)$.
+\end{definition}
+One fundamental operation on sheaves, however, does not preserve short exact sequences. 
+\begin{proposition}\label{prop: sections does not preserve exactness}
+    Let $X$ be a topological space and 
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwwLCJcXEZjYWwiXSxbMiwwLCJcXEdjYWwiXSxbMywwLCJcXEhjYWwiXSxbMCwwLCIwIl0sWzQsMCwiMCJdLFswLDEsIlxccGhpIl0sWzEsMiwiXFxwc2kiXSxbMywwXSxbMiw0XV0=
+    \begin{tikzcd}
+        0 & \Fcal & \Gcal & \Hcal & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["\phi", from=1-2, to=1-3]
+        \arrow["\psi", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}$$
+    a short exact sequence of sheaves on $X$. Then 
+    $$% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXEdhbW1hKFgsXFxGY2FsKSJdLFsyLDAsIlxcR2FtbWEoWCxcXEdjYWwpIl0sWzMsMCwiXFxHYW1tYShYLFxcSGNhbCkiXSxbMCwwLCIwIl0sWzMsMF0sWzAsMV0sWzEsMl1d
+    \begin{tikzcd}
+        0 & {\Gamma(X,\Fcal)} & {\Gamma(X,\Gcal)} & {\Gamma(X,\Hcal)}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+    \end{tikzcd}$$
+    is exact. 
+\end{proposition}
+\begin{proof}
+    \todo{To do.}
+\end{proof}
+\begin{remark}
+    In particular, the final morphism fails to be surjective. 
+\end{remark}
+However, as we have seen before, an exactness condition can be deduced on stalks. 
+\begin{proposition}\label{prop: exactness on stalks}
+    Let $X$ be a topological space and 
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwwLCJcXEZjYWwiXSxbMiwwLCJcXEdjYWwiXSxbMywwLCJcXEhjYWwiXSxbMCwwLCIwIl0sWzQsMCwiMCJdLFswLDEsIlxccGhpIl0sWzEsMiwiXFxwc2kiXSxbMywwXSxbMiw0XV0=
+    \begin{tikzcd}
+        0 & \Fcal & \Gcal & \Hcal & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}$$
+    a diagram of sheaves on $X$. The following are equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item $$% https://q.uiver.app/#q=WzAsNSxbMSwwLCJcXEZjYWwiXSxbMiwwLCJcXEdjYWwiXSxbMywwLCJcXEhjYWwiXSxbMCwwLCIwIl0sWzQsMCwiMCJdLFswLDEsIlxccGhpIl0sWzEsMiwiXFxwc2kiXSxbMywwXSxbMiw0XV0=
+    \begin{tikzcd}
+        0 & \Fcal & \Gcal & \Hcal & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}$$
+    is a short exact sequence of sheaves on $X$. 
+    \item For all $x\in X$ the diagram 
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwwLCJcXEZjYWwiXSxbMiwwLCJcXEdjYWwiXSxbMywwLCJcXEhjYWwiXSxbMCwwLCIwIl0sWzQsMCwiMCJdLFswLDEsIlxccGhpIl0sWzEsMiwiXFxwc2kiXSxbMywwXSxbMiw0XV0=
+    \begin{tikzcd}
+        0 & \Fcal_{x} & \Gcal_{x} & \Hcal_{x} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}$$
+    is a short exact sequence of Abelian groups. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \todo{To do.}
+\end{proof}
+In summary, we can deduce the following theorem. 
+\begin{theorem}\label{thm: sheaves of Abelian groups form an Abelian category}
+    Let $X$ be a topolgoical space. The category $\Sh(X)$ of sheaves of Abelian groups on $X$ is an Abelian category. 
+\end{theorem}
+\begin{proof}
+    \todo{To do.}
+\end{proof}
+Let us now consider how these sheaf categories behave with respect to continuous maps of topological spaces. 
+\begin{definition}[Direct Image Sheaf]\label{def: direct image sheaf}
+    Let $f:X\to Y$ be a continuous map of topological spaces and $\Fcal$ a sheaf of Abelian groups on $X$. The direct image sheaf $f_{*}\Fcal$ is the sheaf on $Y$ given by $V\mapsto f_{*}\Fcal(V)=\Fcal(f^{-1}(V))$. 
+\end{definition}
+\begin{definition}[Inverse Image Sheaf]\label{def: inverse image sheaf}
+    Let $f:X\to Y$ be a continuous map of topological spaces and $\Gcal$ a sheaf of Abelian groups on $Y$. The inverse image sheaf $f^{-1}\Gcal$ is the sheaf on $X$ given by $U\mapsto(\colim_{f(U)\subseteq V}\Gcal(V))^{\#}$. 
+\end{definition}
+This data amalgamates into a functor in the evident way. Moreover, we can show the following exactness properties. 
+\begin{proposition}\label{prop: exactness of inverse image}
+    Let $f:X\to Y$ be a continuous map of topological spaces. Then $f^{-1}:\Sh(Y)\to\Sh(X)$ is an exact functor. 
+\end{proposition}
+\begin{proposition}\label{prop: left exactness of direct image}
+    Let $f:X\to Y$ be a continuous map of topological spaces. Then $f^{*}:\Sh(X)\to\Sh(Y)$ is a left exact functor. 
+\end{proposition}

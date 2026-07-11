@@ -1,0 +1,154 @@
+\section{Lecture 7 -- 31st October 2024}\label{sec: lecture 7}
+We turn to the study of analytic number theory, and in particular the prime number theorem. Recall Riemann's zeta function. 
+\begin{definition}[Riemann Zeta Function]\label{def: Riemann zeta function}
+    The Riemann zeta function is defined as the infinite sum 
+    $$\zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^{s}}.$$
+\end{definition}
+\begin{remark}
+    $\zeta(s)$ converges for $\RE(s)>1$: $n^{-s}=e^{-s\log(n)}$ here taking the real logarithm, so $|n^{-s}|=n^{-\RE(s)}$ and the series converges -- in fact, uniformly -- on $\RE(s)>1$. 
+\end{remark}
+We now define the Mellin transform which will be a crucial construction, which will be justified by the following lemma. 
+\begin{lemma}\label{lem: Mellin transform existence conditions}
+    Let $f:[1,\infty)\to\RR$ be a locally integrable function such that $|f(x)|\leq C\cdot x^{k}$ for some constant $C$ and $k\in\NN$. Then the integral $\int_{1}^{\infty}f(x)x^{-s-1}dx$ exists for $\RE(s)>k$. 
+\end{lemma}
+\begin{proof}
+    For $s$ such that $\RE(s)>k$ we have that $|f(x)|x^{-s-1}\leq C\cdot x^{k-s-1}$ where $\RE(k-s-1)<0$ so the function is bounded above by $C$, giving the claim. 
+\end{proof}
+\begin{remark}
+    Recall that a locally integrable function is a function where the integral over any finite interval exists. 
+\end{remark}
+\begin{definition}[Mellin Transform]\label{def: Mellin transform}
+    Let $f:[1,\infty)\to\RR$ be a locally integrable function such that $|f(x)|\leq C\cdot x^{k}$ for some constant $C$ and $k\in\NN$. The Mellin transform of $f$ is given by 
+    $$\Mcal_{f}(s)=s\int_{1}^{\infty}f(x)x^{-s-1}dx.$$
+\end{definition}
+The Mellin transform for the function $x$ and the Gauss bracket will play a key role in estimating the distribution of primes. 
+\begin{lemma}\label{lem: Mellin transform of x}
+    The Mellin transform of $f(x)=x$ is given by $1+\frac{1}{s-1}$. 
+\end{lemma}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        s\int_{1}^{\infty}x\cdot x^{-s-1}dx &= s\int_{1}^{\infty}x^{-s}dx \\
+        &= \frac{s}{s-1}.
+    \end{align*}
+\end{proof}
+We now define the Gauss bracket and compute its Mellin transform. 
+\begin{definition}[Gauss Bracket]\label{def: Gauss bracket}
+    The Gauss bracket $[x]$ is given by the largest integer at most $x$. 
+\end{definition}
+\begin{lemma}\label{lem: Mellin transform of Gauss bracket}
+    The Mellin transform of the Gauss bracket $f(x)=[x]$ is given by the Riemann zeta function $\zeta(s)$. 
+\end{lemma}
+\begin{proof}
+    We compute 
+    \begin{align*}
+        s\int_{1}^{\infty}[x]x^{-s-1}dx &= \sum_{n=1}^{\infty}s\int_{n}^{n+1}[x]x^{-s-1}dx \\
+        &= \sum_{n=1}^{\infty}ns\int_{n}^{n+1}x^{-s-1}dx \\
+        &= \sum_{n=1}^{\infty}ns\left(\frac{x^{-s}}{-s}\mid^{n+1}_{x=n}\right) \\
+        &= \sum_{n=1}^{\infty}n(n^{-s}-(n+1)^{-s})
+    \end{align*}
+    note the series covnerges for $\RE(s)>2$ where we decompose the sum 
+    \begin{align*}
+        \sum_{n=1}^{\infty}n(n^{-s}-(n+1)^{-s}) &= \sum_{n=1}^{\infty}n^{1-s}-\sum_{n=1}^{\infty}(n+1-1)(n+1)^{-s} \\
+        &= \sum_{n=1}^{\infty}n^{1-s} - \sum_{n=2}^{\infty}n^{1-s} + \sum_{n=2}^{\infty}n^{-s} \\
+        &= 1+(\zeta(s)-1) \\
+        &= \zeta(s)
+    \end{align*}
+    as desired. 
+\end{proof}
+From this, we can deduce the Mellin transform $\Mcal_{[x]-x}(s)$. 
+\begin{proposition}\label{prop: Mellin transform of bracket minus x}
+    The Mellin transform of the difference $[x]-x$ is given by 
+    $$\Mcal_{[x]-x}(s)=\zeta(s)-\frac{1}{s-1}-1$$
+    on $\RE(s)>1$ and is meromorphic in that halfspace with pole at $s=1$ with residue 1.\marginpar{Theorem 1}
+\end{proposition}
+\begin{proof}
+    For $\RE(s)>2$ the statement follows from \Cref{lem: Mellin transform of x,lem: Mellin transform of Gauss bracket} and noting that $\frac{s}{s-1}=\frac{1}{s-1}+1$, and extends to $\RE(s)>1$ by the identity theorem \Cref{thm: identity theorem} as the functions agree in the right halfspace $\RE(s)>2$ but are holomorphic for $\RE(s)>1$ away from the pole at 1. The function $\frac{1}{s-1}$ is the sole contributor to the residue at 1 and has residue 1 by inspection. 
+\end{proof}
+The Riemann zeta function admits an alternative description via infinite products. 
+\begin{theorem}\label{thm: zeta function by infinite products}
+    The Riemann zeta function $\zeta(s)$ is equal to the infinite product $\prod_{p\text{ prime}}\frac{1}{1-p^{-s}}$ for $\RE(s)>1$.\marginpar{Theorem 2} 
+\end{theorem}
+\begin{proof}
+    The convergence of the sum $\sum_{n=1}^{\infty}\frac{1}{n^{s}}$ implies the convergence of the product since it contains $\sum_{p\text{ prime}}\frac{1}{p^{s}}$ is a subsequence. Now let $\Pcal_{k}\subseteq\Pcal$ be the finite set of the first $k$ primes and consider the restricted product $\prod_{p\in\Pcal_{k}}\frac{1}{1-p^{-s}}$ which is equal to $\prod_{\Pcal_{k}}\sum_{m=0}^{\infty}\frac{1}{(p^{m})^{s}}$. Moreover since the product and sum are absoltuely convergent, we can rewrite this as $\sum_{n\in S_{k}}\frac{1}{n^{s}}$ where $S$ is the set of natural numbers with all factors in $\Pcal_{k}$. Passing to the limit as $k\to\infty$, we get the claim. 
+\end{proof}
+\begin{remark}
+    This already implies that there are infinitely many primes, since if not we would have a finite product equalling a divergent harmonic series, a contradiction. 
+\end{remark}
+We also show the following structure result for zeroes of the Riemann zeta function of real part 1. 
+\begin{theorem}\label{thm: no zeroes at real part 1}
+    The Riemann zeta function $\zeta(s)$ has no zeroes with $\RE(s)=1$.\marginpar{Theorem 3}
+\end{theorem}
+\begin{proof}
+    Suppose to the contrary there is a zero $s$ with $\RE(s)=1$, say of the form $1+ti$. Consider the function 
+    $$F(s)=\zeta(s)^{3}\zeta(s+it)^{4}\zeta(s+2it).$$
+    Observe that if $\zeta(1+it)=0$ then at the pole of $\zeta(s)$ at $s=1$ is canceled by the zero of order four in the second factor. The function $F(s)$ thus vanishes at $s=1$ and is holomorphic in a neighborhood around that point. Passing to logarithms, we have that $\lim_{s\to 1}\log|F(s)|=-\infty$. 
+
+    Now consider the product expression of \Cref{thm: zeta function by infinite products} where we compute 
+    \begin{align*}
+        \log|\zeta(s)| &= \RE\left(\sum_{p\text{ prime}}\log(1-p^{-s})^{-1}\right) \\
+        &= \RE\left(\sum_{p\text{ prime}}\sum_{n=1}^{\infty}\frac{1}{n\cdot p^{ns}}\right) \\
+        &= \RE\left(\sum_{n=1}^{\infty}\frac{a_{n}}{n^{s}}\right)
+    \end{align*}
+    where the coefficient $a_{n}$ is given by 
+    $$a_{n}=\begin{cases}
+        \frac{1}{r} & n = p^{r} \\
+        0 & n\neq p^{r}
+    \end{cases}$$
+    where on substituting to our sum we have for $s>1$ real
+    \begin{align*}
+        \log|F(s)| &= 3\log|\zeta(s)| + 4\log|\zeta(s+ti)| + \log|\zeta(s+2ti)| \\
+        &=  \sum_{n=1}^{\infty}a_{n}\RE\left(3n^{-s}+ 4n^{-s-ti}+n^{-s-2ti}\right) \\
+        &= \sum_{n=1}^{\infty}\frac{a_{n}}{n^{s}}\left(3+4cos(t\cdot\log(n))+cos(2t\cdot log(n))\right)
+    \end{align*}
+    where we note that $\frac{a_{n}}{n^{s}}\geq0$ and 
+    \begin{align*}
+        3+4\cos(t\cdot\log(n))+\cos(2t\cdot \log(n))&=3+4\cos(t\cdot\log(n))+2\cos^{2}(t\cdot \log(n))-1\\
+        &=2(1+\cos(t\cdot\log(n)))^{2}
+    \end{align*}
+    which is also positive. In particular $\lim_{s\to 1}\log|F(s)|\neq-\infty$, a contradiction.
+\end{proof}
+We now introduce some language relating to the prime number theorem. 
+\begin{definition}[Prime Counting Function]\label{def: prime counting function}
+    The prime counting function $\pi(x)$ is the number of primes at most $x$. 
+\end{definition}
+\begin{definition}[Theta Function]\label{def: theta function}
+    The theta function is given by 
+    $$\vartheta(x)=\sum_{p\text{ prime}, p\leq x}\log(p).$$
+\end{definition}
+The prime number theorem concerns the asymptotics of $\pi(x)$, though it is often easier to consider $\vartheta(x)$. These are linked by the following result. 
+\begin{proposition}\label{prop: equivalence of PNT limits}
+    The existence of the following limits are equivalent 
+    \begin{enumerate}[label=(\alph*)]
+        \item $\lim_{x\to\infty}\frac{\pi(x)\cdot\log(x)}{x}$
+        \item $\lim_{x\to\infty}\frac{\vartheta(x)}{x}$
+    \end{enumerate}
+    and they are equal if they exist. 
+\end{proposition}
+\begin{proof}
+    $\left(\frac{\vartheta(x)}{x}\leq\frac{\pi(x)\log(x)}{x}\right)$ Observe 
+    \begin{align*}
+        \vartheta(x)&=\sum_{p\text{ prime, } p\leq x}\log(p)\\
+        &\leq \sum_{p\text{ prime, } p\leq x}\frac{\log(x)}{\log(p)}\cdot\log(p)\\
+        &=\log(x)\sum_{p\text{ prime, } p\leq x}1=\pi(x)\log(x).
+    \end{align*}
+
+    $\left(\frac{\pi(x)\log(x)}{x}\leq\frac{\vartheta(x)}{x}\right)$ Conversely, we can estimate for $1<y<x$
+    \begin{align*}
+        \pi(x) &= \pi(y)+\sum_{p\text{ prime, } y<p\leq x}1 \\
+        &\leq \pi(y)+\frac{1}{\log(y)}\sum_{p\text{ prime, } y<p\leq x}\log(p) \\
+        &y+\frac{1}{\log(y)}\vartheta(x).
+    \end{align*}
+    We now have 
+    $$\frac{\pi(x)\log(x)}{x}\leq\frac{y\log(x)}{x}+\frac{\log(x)}{\log(y)}\frac{\vartheta(x)}{x}.$$
+    Taking $y=\frac{x}{(\log(x))^{2}}$ we yield 
+    $$\frac{\pi(x)\log(x)}{x}\leq\frac{1}{\log(x)}+\frac{\log(x)}{\log(x)-2\log(\log(x))}\frac{\vartheta(x)}{x}$$
+    where we have 
+    \begin{align*}
+        \lim_{x\to\infty}\frac{1}{\log(x)} &= 0 \\
+        \lim_{x\to\infty}\frac{\log(x)}{\log(x)-2\log(\log(x))}&= 1
+    \end{align*}
+    giving the first claim. 
+
+    The second claim follows immediately from the inequalities.
+\end{proof}

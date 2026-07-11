@@ -1,0 +1,91 @@
+\section{Lecture 1 -- 11th October 2024}\label{sec: lecture 1}
+This course will cover complex analysis in one or more variables with a view towards both number theory and algebraic geometry. 
+
+Recall the following definition. 
+\begin{definition}[Affine Regular Quadric]\label{def: affine regular quadric}
+    An affine regular quadric is a set\marginpar{Definition 1.1\\\\Marginal notes will follow the numbering from lecture.}  
+    $$Q=\{(u,v)\in\CC^{2}:v^{2}=f(u)\}\subseteq\CC^{2}$$
+    where $f(u)$ is a univariate polynomial of degree 2 with distinct zeroes.
+\end{definition}
+We can apply a linear coordinate transformation to express the quadric $Q$ in an especially nice form. 
+\begin{proposition}\label{prop: existence of canonical form}
+    There exists a linear change of coordinates such that $Q$ is given by the set $\{(u,v)\in\CC^{2}:u^{2}+v^{2}=1\}\subseteq\CC^{2}$.\marginpar{Proposition 1.1}
+\end{proposition}
+A quadric given in the above form is said to be in normal form. 
+\begin{definition}[Normal Form of Quadric]\label{def: normal form quadric}
+    An affine regular quadric $Q\subseteq\CC^{2}$ is said to be in normal form if it is given by $\{(u,v)\in\CC^{2}:u^{2}+v^{2}=1\}\subseteq\CC^{2}$.
+\end{definition}
+From a first course in complex analysis, we have that $\cos^{2}(z)+\sin^{2}(z)=1$ for all $z\in\CC$ and hence for an affine regular quadric in normal form $Q$, there is a map $h:\CC\to Q$ by $z\mapsto(\cos(z),\sin(z))$. 
+\begin{proposition}\label{prop: holomorphic parameterization}
+    Let $Q$ be an affine regular quadric in normal form. The map $h:\CC\to Q$ by $z\mapsto(\cos(z),\sin(z))$ is holomorphic.\marginpar{Proposition 1.2} 
+\end{proposition}
+\begin{proof}
+    It suffices to see that the coordinate functions $z\mapsto\sin(z), z\mapsto\cos(z)$ are themselves holomorphic.
+\end{proof}
+We can also find a rational parametrization. Choose a point $(0,1)\in Q$. For $z\in\CC$, we can consider the complex line $v=zu+1$ which intersects $Q$ at one other point where $v^{2}=(zu+1)^{2}$. Since the quadric is in normal form, we have $v^{2}=1-u^{2}$ so expanding we have $1-u^{2}=z^{2}u^{2}+2zu+1$ which is a univariate quadratic equation in $u$ with $z$ fixed as above. Rearranging the equation, we get $(1+z^{2})u^{2}+2zu=0$ and since we already know the intersection point $(0,1)\in Q$ we consider the case when $u\neq0$ so $(1+z^{2})u+2z=0$ and thus $u=\frac{-2z}{1+z^{2}}$. Substituting for $v$, and making similar computations, we can see $v=\frac{1-z^{2}}{1+z^{2}}$. In fact, we have the following result. 
+\begin{proposition}\label{prop: injective on complement of pm i}
+    Let $Q$ be an affine regular quadric in normal form. The rational map $\CC\to Q$ by $z\mapsto\left(\frac{-2t}{1+t^{2}},\frac{1-t^{2}}{1+t^{2}}\right)$ is injective and extends to a holomorphic map $\widehat{\CC}\setminus\{\pm i\}\to Q$.\marginpar{Proposition 1.3} 
+\end{proposition} 
+\begin{proof}
+    The map is injective since a univariate equation of the form $(1+z^{2})u^{2}+2zu=0$ identified in the preceding discussion has a unique nonzero root depending on $z$. Furthermore, this function can be seen to be meromorphic as it is a rational function and is hence holomorphic away from its poles which are $\pm i$. 
+\end{proof}
+We can compactify the quadric by embedding it in projective space instead of $\CC^{2}$. 
+\begin{definition}[Complex Projective Plane]\label{def: complex projective plane}
+    The complex projective plane $\CC\PP^{2}$ is given by 
+    $$\left\{(z_{0},z_{1},z_{2})\in\CC^{3}\setminus\{(0,0,0)\}\right\}/\sim$$
+    where $(z_{0},z_{1},z_{2})\sim(z_{0}', z_{1}', z_{2}')$ if and only if there exists $\lambda\in\CC^{*}$ such that $z_{0}=\lambda z_{0}', z_{1}=\lambda z_{1}', z_{2}=\lambda z_{2}'$. 
+\end{definition}
+We will write these equivalence classes as $[z_{0}:z_{1}:z_{2}]$. 
+
+There is a map $\iota_{0}:\CC^{2}\to\CC\PP^{2}$ by $(u,v)\mapsto[1:u:v]$ realizing $\CC\PP^{2}$ as $\iota_{0}(\CC^{2})\cup\{z_{0}=0\}$, that is, by adjoining a $\CC\PP^{1}$ at infinity. The closure of image $\widehat{Q}$ of $Q$ under $\iota$ consists of $z_{0}^{2}=z_{1}^{2}+z_{2}^{2}$ where we have $\widehat{Q}=\iota_{0}(Q)\cup\{[0:1:\pm i]\}$ which also extends to a rational parametrization by $[t_{0}:t_{1}]\mapsto[t_{0}^{2}+t_{1}^{2}:-2t_{0}t_{1}:t_{0}^{2}-t_{1}^{2}]$ rendering the diagram 
+$$% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXENDIl0sWzAsMSwiXFxDQ1xcUFBeezF9Il0sWzIsMSwiXFx3aWRlaGF0e1F9Il0sWzQsMSwiXFxDQ1xcUFBeezJ9Il0sWzIsMCwiUSJdLFs0LDAsIlxcQ0NeezJ9Il0sWzAsNF0sWzQsNV0sWzUsM10sWzAsMV0sWzEsMl0sWzIsM10sWzQsMl1d
+\begin{tikzcd}
+	\CC && Q && {\CC^{2}} \\
+	{\CC\PP^{1}} && {\widehat{Q}} && {\CC\PP^{2}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=1-5]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-5, to=2-5]
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=2-3, to=2-5]
+\end{tikzcd}$$
+commutative. We have the following. 
+\begin{proposition}\label{prop: compactified quadric is homeomorphic to P1}
+    The map $[t_{0}:t_{1}]\mapsto[t_{0}^{2}+t_{1}^{2}:-2t_{0}t_{1}:t_{0}^{2}-t_{1}^{2}]$ defines a homeomorphism $\CC\PP^{1}\to\widehat{Q}$.\marginpar{Proposition 1.4}
+\end{proposition}
+\begin{proof}
+    On $\widehat{Q}$ the map admits an inverse $[z_{0}:z_{1}:z_{2}]\mapsto [-z_{0}-z_{2}:z_{1}]$.  
+\end{proof}
+This shows that $\widehat{Q}$ is topologically a sphere. 
+
+We now consider the case of cubics. 
+\begin{definition}[Affine Regular Cubic]\label{def: affine regular cubic}
+    An affine regular cubic is a set\marginpar{Definition 1.2} 
+    $$K=\{(u,v)\in\CC^{2}:v^{2}=f(u)\}\subseteq\CC^{2}$$
+    where $f(u)$ is a univariate polynomial of degree 3 with disctinct zeroes. 
+\end{definition}
+This too admits a normal form. 
+\begin{proposition}\label{prop: existence of normal form for cubics}
+    There exists a linear change of coordinates such that $K$ is given by the set $\{(u,v)\in\CC^{2}:v^{2}=4u^{3}-g_{2}u-g_{3}\}$ with $4u^{3}-g_{2}u-g_{3}$ having three distinct roots.
+\end{proposition}
+\begin{proof}
+    Suppose $f(u)=a_{3}u^{3}+a_{2}u^{2}+a_{1}u+a_{0}$. The desired transformation is given by $u\mapsto \sqrt[3]{\frac{1}{4}}\cdot\left(\frac{1}{\sqrt[3]{a_{3}}}+\frac{a_{2}}{3\sqrt[3]{a_{3}^{2}}}\right)$.
+\end{proof}
+For $u_{1},u_{2},u_{3}$ the roots of $4u^{3}-g_{2}u-g_{3}$ as above, we can solve this depressed cubic equation and observe that $g_{2}$ and $g_{3}$ are given by symmetric polynomials in the $u_{1},u_{2},u_{3}$. In fact, $u_{1}+u_{2}+u_{3}=0, -4(u_{1}u_{2}+u_{1}u_{3}+u_{2}u_{3})=g_{2}, 4u_{1}u_{2}u_{3}=g_{3}$. We can then write the discriminant of this polynomial as 
+$$16(u_{1}-u_{2})^{2}(u_{2}-u_{3})^{2}(u_{3}-u_{1})^{2}=g_{2}^{3}-27g_{3}^{2}.$$
+This defines an elliptic curve which is a well-studied object in number theory and arithmetic geometry. 
+
+Analogously to the case of quadrics, we can pass to the projective closure $\widehat{K}$ given by the equation $z_{0}z_{2}^{2}=4z_{1}^{3}-g_{2}z_{0}^{2}z_{1}-g_{3}z_{0}^{3}$ which is a homogeneous polynomial obtained as the one-point compactification of the regular affine cubic $K$ at the point $[0:1:0]$.
+
+This hints at a more general problem of finding rational parametrizations of interesting subsets of $\CC^{n}$ which as Galois theory suggests is not possible in general, nor is it so in the case of cubics. Though the study of cubics will give rise to the theory of elliptic functions. 
+
+As before, we can define a quartic. 
+\begin{definition}[Affine Regular Quartic]\label{def: affine regular quartic}
+    An affine regular quartic is a set\marginpar{Definition 1.3} 
+    $$H=\{(u,v)\in\CC^{2}:v^{2}=f(u)\}\subseteq\CC^{2}$$
+    where $f(u)$ is a univariate polynomial of degree 4 with disctinct zeroes.
+\end{definition}
+Without loss of generality, we can take $f(u)$ to be monic and of the form $u\prod_{i=2}^{4}(u-a_{i})$ by translation. Letting $x=\frac{1}{u}$ we have $v^{2}=\frac{1}{x}\prod_{i=2}^{4}(\frac{1}{x}-a_{i})$ and multiplying with $x^{4}$ we can set $x^{4}v^{2}=(1-a_{2}x)(1-a_{3}x)(1-a_{4}x)$ and again taking $x^{4}v^{2}=y^{2}$ that $y^{2}:(1-a_{2}x)(1-a_{3}x)(1-a_{4}x)$ which is a cubic in $x$ with distinct zeroes that we can put in the Weierstrass normal form for cubics as in \Cref{prop: existence of normal form for cubics} which reduces the study of quartics to the study of cubics. The first part of the course will focus on elliptic functions and their connections to number theory. 
+
+Returning to the discussion of the cubic above, we can note that the construction of \Cref{prop: injective on complement of pm i} on restriction to $\QQ$ recovers the rational points on the circle\marginpar{Proposition 2.1} and by normalizing recover Pythagorean triples, those $(a,b,c)\in\NN$ pairwise coprime such that $a^{2}+b^{2}=c^{2}$.\marginpar{Definition 2.1} 

@@ -1,0 +1,105 @@
+\section{Lecture 2 -- 11th October 2024}
+We continue our discussion of topological manifolds in general and bases and covers in particular. 
+\begin{definition}[Locally Finite]\label{def: locally finite}
+    Let $X$ be a topological space and $\Ccal$ a collection of subsets of $X$. $\Ccal$ is locally finite if for every $x\in X$ there exists a neighborhood $U$ of $X$ such that $U$ intersects only finitely many elements of $\Ccal$. 
+\end{definition}
+\begin{example}
+    Let $X=\RR$ in the usual topology and $\Ccal=\{(a-1, a+1): a\in\ZZ\}$. This is locally finite since every sufficiently small ball will intersect at most two elements in $\Ccal$. 
+\end{example}
+\begin{example}
+    Let $X=\RR$ in the usual topology and $\Ccal=\{(a-1,a+1):a\in\QQ\}$. This is not locally finite since $\QQ$ is dense in $\RR$. 
+\end{example}
+We can now define paracompactness in terms of a refinement condition. 
+\begin{definition}[Refinement]\label{def: refinement}
+    Let $X$ be a topological space and $\{U_{i}\}_{i\in I}$ an open cover of $X$. A cover $\{V_{j}\}_{j\in J}$ is a refinement of $\{U_{i}\}_{i\in I}$ if for all elements $U_{i}$ there is some $V_{j}\subseteq U_{i}$.
+\end{definition}
+\begin{definition}[Paracompact]\label{def: paracompact}
+    Let $X$ be a topological space. $X$ is paracompact if each cover of $X$ has a refinement by a locally finite cover. 
+\end{definition}
+This is a weaker condition than compactness but still captures a number of desirable properties. 
+\begin{lemma}\label{lem: hausdorff and compact exhaustion is paracompact}
+    Let $X$ be a Hausdorff topological space admitting a compact exhaustion. Then for any basis $\Bcal$ of $X$, any open cover admits a locally finite subcover by basis elements. In particular, $X$ is paracompact. 
+\end{lemma}
+\begin{proof}
+    By assumption, there is a sequence $\{K_{i}\}_{i=1}^{\infty}$ of compact sets with $K_{i}\subseteq K_{i+1}^{\circ}$ and $\bigcup_{i=1}^{\infty}K_{i}=X$. Let $\{U_{j}\}_{j\in J}$ be an open cover. For $m\in\ZZ$, set $V_{m}=K_{m+1}\setminus K_{m}^{\circ}$ for $m\geq0$ and $\emptyset$ otherwise. First note that the $V_{m}$ are compact as it is a closed set of a compact set and that $\bigcup_{m\in\ZZ}V_{m}=X$, and that $V_{m}\cap V_{m-1}=\partial K_{m}$ is compact it being a closed subset of a compact space. Further noting that $\{U_{j}\cap K_{m+1}^{\circ}\cap K_{m-1}^{c}\}_{j\in J}$ forms an open cover of $V_{j}$. Moreover, since $\Bcal$ is a basis, we can find a refinement of this cover by basis elements $W_{1},\dots,W_{n}$. This cover suffices as it is a refinement of $\{U_{j}\}_{j\in J}$ and is locally finite since for any $x\in X$ we have that $x\in V_{m}$ for some $m$ and thus $x\in K_{m+2}^{\circ}\cap K_{m-1}^{c}$ hence intersecting only finitely many of the $W$'s. 
+
+    The latter claim follows immediately from the former. 
+\end{proof}
+From this, we conclude the following corollary. 
+\begin{corollary}\label{corr: manifolds are paracompact}
+    If $X$ is a locally Euclidean, Hausdorff, and second countable topological, then $X$ is paracompact. 
+\end{corollary}
+\begin{proof}
+    This follows from previous results. Being locally Euclidean and second countable implies compact exhaustion by \Cref{prop: locally euclidean Hausdorff second countable implies compactly exhaustible}, which in turn implies paracompactness by \Cref{lem: hausdorff and compact exhaustion is paracompact}. 
+\end{proof}
+% Comparison for theories of manifolds. 
+We can now begin a discussion of topological manifolds. 
+\begin{definition}[Topological Manifold]\label{def: topological manifold}
+    A topological space $M$ is a topological manifold if it is locally Euclidean, Hausdorff, and second countable. 
+\end{definition}
+\begin{remark}
+    The Hausdorffness condition is required here to ensure the collection of objects we are considering is not too large. 
+\end{remark}
+These objects naturally assemble into a category, in fact a full subcategory of the category of topological spaces. 
+\begin{definition}[Category of Topological Manifolds]\label{def: category of topological manifolds}
+    The category of topological manifolds $\Mfld$ consists of objects topological manifolds and morphisms continuous maps. 
+\end{definition}
+\begin{remark}\label{rmk: mfld is a full subcategory}
+    Fullness as a subcategory follows from the definition, and as such equivalences in $\Mfld$ are homeomorphisms. 
+\end{remark}
+We have already encountered a number of examples. 
+\begin{example}\label{ex: Rn is a mfld}
+    $\RR^{n}$ is a topological manifold. 
+\end{example}
+\begin{example}\label{ex: fd real vs is a mfld}
+    A finite-dimensional $\RR$-vector space is a topological manifold under the metric topology. 
+\end{example}
+\begin{example}\label{ex: open subsets of Rn are mflds}
+    Any open subset of $\RR^{n}$ is a topological manifold. 
+\end{example}
+\begin{example}\label{ex: graphs are mflds}
+    Let $U\subseteq\RR^{n}$ open and $f:U\to\RR^{m}$ be a continuous function. Set $\Gamma(f)=\{(x,y)\in U\times\RR^{m}:f(x)=y\}$. Then $\Gamma(f)$ is a manifold. 
+\end{example}
+\begin{example}\label{ex: spheres are mflds}
+    The $n$-sphere $S^{n}\subseteq\RR^{n+1}$ is a smooth manifold. 
+\end{example}
+\begin{example}\label{ex: boundary of cube is mfld}
+    Let $C^{n}$ be the boundary of the $n$-cube. Then $C^{n}$ is homeomorphic to the sphere $S^{n}$ and hence a manifold. 
+\end{example}
+\begin{example}\label{ex: torus is mfld}
+    Let $\TT^{n}=\RR^{n}/\ZZ^{n}$ with the quotient topology be the $n$-torus. Then $\TT^{n}$ is a manifold. 
+\end{example}
+\begin{example}\label{ex: projective space is a mfld}
+    Real projective space $\RR\PP^{n}$ is a manifold. 
+\end{example}
+\begin{example}\label{ex: klein bottle is a mfld}
+    The Klein bottle is a manifold. 
+\end{example}
+\begin{remark}
+    The examples of \Cref{ex: projective space is a mfld,ex: klein bottle is a mfld} are examples of non-orientable manifolds. 
+\end{remark}
+We can also define manifolds with boundary, where charts are taken to be homeomorphic to the upper-half space. 
+\begin{definition}[Upper-Half Space]\label{def: upper-half space}
+    The upper-half space $\HH^{n}$ is given by 
+    $$\HH^{n}=\{(x_{1},\dots,x_{n})\in\RR^{n}:x_{n}\geq0\}.$$
+\end{definition}
+Manifolds with boundary are then defined as follows. 
+\begin{definition}[Manifold with Boundary]\label{def: manifold with boundary}
+    A topological space $M$ is a manifold with boundary if it is Hausdorff, second countable, and each point has a neighborhood homeomorphic to an open subset of $\HH^{n}$. 
+\end{definition}
+\begin{remark}
+    As such, every manifold is a manifold with boundary, translating the image of charts such that it does not intersect $x_{1}=\dots=x_{n}=0$ in $\HH^{n}$. 
+\end{remark}
+\begin{example}
+    $\HH^{n}$ is a manifold with boundary. 
+\end{example}
+\begin{example}
+    $S^{n}\cap\HH^{n+1}$ is a manifold with boundary, and is in fact homeomorphic to the closed unit disc. 
+\end{example}
+Interior and boundary points of manifolds with boundary are defined as follows. 
+\begin{definition}[Interior Point]\label{def: interior point}
+    Let $M$ be a manifold with boundary. A point $x\in M$ is an interior point if it has a neighborhood homeomorphic to $\RR^{n}$. 
+\end{definition}
+\begin{definition}[Boundary Point]\label{def: boundary point}
+    Let $M$ be a manifold with boundary. A point $x\in M$ is an interior point if it does not have a neighborhood homeomorphic to $\RR^{n}$. 
+\end{definition}

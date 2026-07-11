@@ -1,0 +1,120 @@
+\section{Lecture 23 -- 10th January 2025}\label{sec: lecture 23}
+We can consider the construction of \Cref{def: evaluation of wedge k V star} in a special case to make it more explicit. 
+\begin{example}
+    Let $v=(v_{1},v_{2},v_{3}),w=(w_{1},w_{2},w_{3}),z=(z_{1},z_{2},z_{3})\in\RR^{3}$ and $\varepsilon^{123}\in\bigwedge^{3}(\RR^{3})^{*}$. 
+    $$\varepsilon^{123}(v,w,z)=\det\left(\begin{bmatrix}
+        v_{1} & w_{1} & z_{1} \\ v_{2} & w_{2} & z_{2} \\ v_{3} & w_{3} & z_{3}
+    \end{bmatrix}\right).$$
+\end{example}
+We further deduce some properties of this construction. 
+\begin{lemma}\label{lem: properties of dual basis construction}
+    Let $V$ be a finite-dimensional $\RR$-vector space with basis $\{e_{1},\dots,e_{n}\}$ and dual basis $\{\varepsilon^{1},\dots,\varepsilon^{n}\}$. Let $I=(i_{1},\dots,i_{k})$ be a multiindex. Then: 
+    \begin{enumerate}[label=(\roman*)]
+        \item If $I$ has a repeated index, then $\varepsilon^{I}=0$. 
+        \item If $J=I_{\sigma}$ is a permutation of $I$ by the symmetric group of order $k$ then $\varepsilon^{J}=\mathrm{sgn}(\sigma)\varepsilon^{I}$. 
+        \item Given $J=(j_{1},\dots,j_{k})$ another multiindex of length $k$, $\varepsilon^{I}(e_{j_{1}},\dots,e_{j_{k}})$ is given by the determinant 
+        $$\det\left(\begin{bmatrix}
+            \delta_{i_{1}j_{1}} & \dots & \delta_{i_{1}j_{k}} \\ 
+            \vdots & \ddots & \vdots \\ 
+            \delta_{i_{k}j_{1}} & \dots & \delta_{i_{k}j_{k}}
+        \end{bmatrix}\right).$$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Up to a choice of isomorphism $V\cong\RR^{n}$, the properties are immediate from the definition of the construction \Cref{def: evaluation of wedge k V star} via determinants. 
+\end{proof}
+As a corollary, we deduce that the space $\bigwedge^{k}V^{*}$ has a basis given by wedges of dual bases along increasing indices. 
+\begin{lemma}\label{lem: basis by increasing}
+    Let $V$ be a finite-dimensional $\RR$-vector space with basis $\{e_{1},\dots,e_{n}\}$ and dual basis $\{\varepsilon^{1},\dots,\varepsilon^{n}\}$. The vector space $\bigwedge^{k}V^{*}$ has a basis given by $\varepsilon^{I}$ where $I$ is an increasing multiindex of length $k$. 
+\end{lemma}
+\begin{proof}
+    By \Cref{lem: properties of dual basis construction}, a permutation preserves the factors of the wedge product up to a sign, so we can always use a permutation to consider elements of the desired form. 
+\end{proof}
+Once again considering the case of $\RR^{3}$, we can give a basis of $\bigwedge^{2}(\RR^{3})^{*}$ explicitly. 
+\begin{example}
+    A basis of $\bigwedge^{2}(\RR^{3})^{*}$ is given by $\{\varepsilon^{12},\varepsilon^{13},\varepsilon^{23}\}$. 
+\end{example}
+We seek to endow $\Omega^{\bullet}(M)=\bigoplus_{k\geq0}\Omega^{k}(M)$ with the structure of an algebra over $C^{\infty}(M)=\Omega^{0}(M)$. This is done via the construction of the wedge product which we first construct locally on $\bigwedge^{\bullet}V^{*}=\bigoplus_{k\geq0}\bigwedge^{k}V^{*}$.  
+\begin{definition}[Exterior Product]\label{def: exterior product}
+    Let $V$ be a finite-dimensional vector space. Given $\omega_{1}\in\bigwedge^{k_{1}}V^{*},\omega_{2}\in\bigwedge^{k_{2}}V^{*}$, the exterior product is given by 
+    $$\omega_{1}\wedge\omega_{2}=\frac{(k+\ell)!}{k!\ell!}\mathrm{Alt}(\omega_{1}\otimes\omega_{2})\in\bigwedge^{k_{1}+k_{2}}V^{*}.$$
+\end{definition}
+Recall that the $\mathrm{Alt}(-)$ construction makes an arbitrary tensor an alternating one by \Cref{lem: inclusion of symmetric and alternating tensors are split}.
+In the case of a finite-dimensional real vector space, the wedge product can be computed fairly explicitly. 
+\begin{lemma}\label{lem: exterior product as concatenation}
+    Let $V$ be a finite-dimensional $\RR$-vector space with basis $\{e_{1},\dots,e_{n}\}$ and dual basis $\{\varepsilon^{1},\dots,\varepsilon^{n}\}$. For $\varepsilon^{I}\in\bigwedge^{|I|}V^{*},\varepsilon^{J}\in\bigwedge^{|J|}V^{*}$, $\varepsilon^{I}\wedge\varepsilon^{J}=\varepsilon^{IJ}$ where $IJ$ is the concatenation of the multiindices $I$ and $J$. 
+\end{lemma}
+We can now deduce some properties of the exterior product. 
+\begin{proposition}\label{prop: properties of exterior product}
+    Let $V$ be a finite-dimensional vector space. Let $\omega,\omega',\xi,\xi'\in\bigwedge^{\bullet}V^{*}$ be forms of fixed degree. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $(a\cdot\omega+a'\cdot\omega')\wedge\xi=a\cdot\omega\wedge\xi+a'\cdot\omega'\wedge\xi$. 
+        \item $\omega\wedge(\omega'\wedge\xi)=(\omega\wedge\omega')\wedge\xi$. 
+        \item $\omega\wedge\xi=(-1)^{|\omega|\cdot|\xi|}\xi\wedge\omega$. 
+        \item For a multiindex $I=(i_{1},\dots,i_{k})$ and a basis $\{\varepsilon^{1},\dots,\varepsilon^{n}\}$ of $V^{*}$, $$\varepsilon^{I}=\varepsilon^{i_{1}}\wedge\dots\wedge\varepsilon^{i_{k}}.$$ 
+        \item Given $\omega^{1},\dots,\omega^{k}\in V^{*}$, $v_{1},\dots,v_{k}\in V$, we have 
+        $$(\omega^{1}\wedge\dots\wedge\omega^{k})(v_{1},\dots,v_{k})=\det\left(\begin{bmatrix}
+            \omega^{1}(v_{1}) & \dots & \omega^{1}(v_{k}) \\
+            \vdots & \ddots & \vdots \\ 
+            \omega^{k}(v_{1}) & \dots & \omega^{k}(v_{k})
+        \end{bmatrix}\right).$$
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+    The exterior product is defined using linear operations \Cref{def: exterior product} hence is bilinear. 
+\end{proof}
+\begin{proof}[Proof of (ii)]
+    Fixing a dual basis of $V$, this is clear from \Cref{lem: exterior product as concatenation}. 
+\end{proof}
+\begin{proof}[Proof of (iii)]
+    Once again after a choice of basis, this is clear from \Cref{lem: exterior product as concatenation} and \Cref{lem: properties of dual basis construction} (ii). 
+\end{proof}
+\begin{proof}[Proof of (iv)]
+    In the case $k=2$, this is immediate from \Cref{lem: exterior product as concatenation}, and the general case follows by induction. 
+\end{proof}
+\begin{proof}[Proof of (v)]
+    If $\omega^{i}$ are basis elements, then this follows from (d) and the construction of $\varepsilon^{I}$, from which the general case can be obtained by extending multilinearly. 
+\end{proof}
+This construction globalizes to differential forms using the omnibus linear algebra theorem \Cref{def: omnibus linear algebra}. 
+\begin{definition}[Algebra of Forms]\label{def: algebra of forms}
+    Let $M$ be a smooth manifold. The exterior algebra of forms on $M$ is given by $\Omega^{\bullet}(M)=\bigoplus_{k\geq0}\bigwedge^{k}\Omega^{1}(M)$ with operation $-\wedge-$.  
+\end{definition}
+Let us look at a few examples. 
+\begin{example}
+    Let $M=\RR$, $\Omega^{0}(\RR)=C^{\infty}(\RR)$, and $\Omega^{1}(M)$ consists of expressions of the form $f(x)\cdot dx$ for $f\in C^{\infty}(M)$. 
+\end{example}
+\begin{example}
+    Let $M=\RR^{3}$. $\Omega^{2}(M)$ is the vector space of elements of the form $f_{12}(x)\cdot dx_{1}\wedge dx_{2}+f_{13}(x)\cdot dx_{1}\wedge dx_{3}+f_{23}(x)\cdot dx_{2}\wedge dx_{3}$. 
+\end{example}
+This construction is in fact functorial and compatible with pullback. 
+\begin{proposition}\label{prop: functoriality of forms}
+    Let $F:M\to N$ be a smooth map between smooth manifolds and $F^{*}:\Omega^{k}(N)\to\Omega^{k}(M)$ the pullback of $k$-forms. $F^{*}$ has the following properties:
+    \begin{enumerate}[label=(\roman*)]
+        \item $F^{*}$ is linear. 
+        \item $F^{*}(\omega\wedge\omega')=F^{*}(\omega)\wedge F^{*}(\omega')$. 
+        \item If $y_{1},\dots,y_{n}$ are local coordinates on $N$, 
+        $$F^{*}\left(\sum_{I}\omega_{I}\cdot dy_{1}\wedge\dots\wedge dy_{n}\right)=\sum_{I}(\omega_{I}\circ F)\cdot dF^{i_{1}}\wedge\dots\wedge dF^{i_{k}}.$$
+        \item If $\dim(M)=\dim(N)$ and $x_{1},\dots,x_{m}$ and $y_{1},\dots,y_{m}$ coordinates on $M,N$, respectively, then 
+        $$F^{*}(v\cdot dy_{1}\wedge\dots\wedge dy_{m})=\det(dF)\cdot(v\circ F)\cdot dx_{1}\wedge\dots\wedge dx_{m}.$$
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i) and (ii)]
+    This is immediate from the omnibus linear algebra theorem \Cref{def: omnibus linear algebra}. 
+\end{proof}
+\begin{proof}[Proof of (iii)]
+    This holds for 1-forms by (ii) and \Cref{lem: notation for differentials}. 
+\end{proof}
+\begin{proof}[Proof of (iv)]
+    This is immediate from (iii) and noting that $$(dF^{1}\wedge\dots\wedge dF^{n})(\partial_{x_{1}},\dots,\partial_{x_{n}})=\det(dF).$$ 
+\end{proof}
+\begin{remark}
+    The generalised operator $d$ produces a chain complex 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJDXntcXGluZnR5fShNKSJdLFsyLDAsIlxcT21lZ2FeezJ9KE0pIl0sWzEsMCwiXFxPbWVnYV57MX0oTSkiXSxbMywwLCJcXGRvdHMiXSxbMCwyLCJkIl0sWzIsMSwiZCJdLFsxLDMsImQiXV0=
+    \begin{tikzcd}
+        {C^{\infty}(M)} & {\Omega^{1}(M)} & {\Omega^{2}(M)} & \dots
+        \arrow["d", from=1-1, to=1-2]
+        \arrow["d", from=1-2, to=1-3]
+        \arrow["d", from=1-3, to=1-4]
+    \end{tikzcd}$$
+    whose cohomology, surprisingly, computes $\RR$-singular cohomology of $M$. This is the content of the de Rham comparison theorem. 
+\end{remark}

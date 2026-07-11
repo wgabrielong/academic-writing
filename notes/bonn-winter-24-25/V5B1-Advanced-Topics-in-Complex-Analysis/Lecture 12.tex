@@ -1,0 +1,65 @@
+\section{Lecture 12 -- 19th November 2024}\label{sec: lecture 12}
+We complete the proof of Osgood's theorem alluded to in \Cref{sec: lecture 11}.
+\begin{theorem}[Osgood]\label{thm: Osgood}
+    Let $U\subseteq\CC^{n},V\subseteq\CC^{m}$ and $f:U\to V$ a bijective holomorphic map. Then $f$ is a biholomorphism. 
+\end{theorem}
+\begin{proof}
+    We proceed by induction on dimension of the source. If $n=1$ then the open mapping theorem implies that $f$ is an open map so $f^{-1}$ is defined, continuous, and bijective. $V(f')$ is discrete if it is nonempty and the Riemann extension theorem implies that the inverse can be extended to a holomorphic function. 
+
+    Assume the statement holds for maps from open subsets of $\CC^{n-1}$ to $V\subseteq\CC^{m}$. We show that $J_{f}^{\Hol}(z)$ is either regular or nonzero. Let $\tau$ be a point where $J_{f}^{\Hol}(\tau)$ is not the zero matrix. Up to permuting the coordinates in both source and target, we can assume that the lower right corner of the matrix is nonzero. Using the implicit function theorem \Cref{thm: implicit function}, we can introduce new coordinates $w_{1}=z_{1},\dots,w_{n-1}=z_{n-1}$ and $w_{n}=f_{m}(z_{1},\dots,z_{n})$ so that $f=(g_{1},\dots,g_{m-1},w_{n})$ where the $g_{j}$ are functions of $w_{1},\dots,w_{n-1}$. We can now consider $$\widetilde{f}=(g_{1}(w_{1},\dots,w_{n-1},0),\dots,g_{m-1}(w_{1},\dots,w_{m-1},0))$$ which is bijective and by the inductive hypothesis has $J_{\widetilde{f}}^{\Hol}(0)$ regular with nonzero determinant. This gives us an expression of the Jacobian determinant of $f$ as a block diagonal with $J_{\widetilde{f}}^{\Hol}(0)$ in the upper left corner and 1 in the lower right corner. But these determinants agree, so $J_{f}^{\Hol}(0)$ is nonzero. 
+
+    Now consider $h(z)=\det(J_{f}^{\Hol}(z))$ which is a holomorphic function in $U$. Assume $V(f)\subseteq M$ is nonempty where $M=V(J_{f}^{\Hol}(z))$. By \Cref{lem: hypersurfaces are locally analytic submanifolds at a point}, there is $\tau$ suc that $M$ is an $n-1$ dimensional local analytic submanifold so $J_{f}^{\Hol}(z)=0$ for all $z\in M\cap U_{\tau}$ where $U_{\tau}$ is a sufficiently small neighborhood of $\tau$. So $f$ is constant on $M\cap U_{\tau}$ and thus not injective, a contradiction. 
+\end{proof}
+We now recall the definition and some elementary properties of differential forms. Proofs can be found in \cite{LeeSM} for the real theory and \cite{LeeCM} for the complex theory. In
+\begin{definition}[Tangent Vector]\label{def: tangent vector}
+    Let $x_{0}\in\RR^{n}$, $S(x_{0})$ the set of functions in a neighborhood of $x_{0}$, and $D(x_{0})$ the subset of differentiable functions. A tangent vector is a map $D:D(x_{0})\to\RR$ is a tangent vector if $D(1)=0$ and $D(gf)=0$ for all $g\in S(x_{0}),f\in D(x_{0})$ such that $f(x_{0})=g(x_{0})=0$. 
+\end{definition}
+These maps naturally form a vector space. 
+\begin{proposition}\label{prop: Leibniz rule and tangent space}
+    Let $x_{0}\in\RR^{n}$. If $D$ is a tangent vector and $f,g\in D(x_{0})$ then $D(fg)=g(x_{0})D(f)+f(x_{0})D(g)$. Furthermore, the tangent vectors form a vector space with basis $\frac{\partial}{\partial x_{1}},\dots,\frac{\partial}{\partial x_{n}}$. 
+\end{proposition}
+This leads to the following definitions. 
+\begin{definition}[Tangent Space]\label{def: real tangent space}
+    Let $x_{0}\in\RR^{n}$. The tangent space $T_{x_{0}}\RR^{n}$ is the $\RR$-vector space of tangent vectors at $x_{0}$. 
+\end{definition}
+\begin{definition}[Cotangent Space]\label{def: real cotangent space}
+    Let $x_{0}\in\RR^{n}$. The cotangent space $(T_{x_{0}}\RR^{n})^{\vee}$ is the dual of the tangent space. 
+\end{definition}
+Since the tangent space is itself a vector space, we can define linear forms on it. 
+\begin{definition}[Total Differential]\label{def: total differential}
+    Let $x_{0}\in\RR^{n}$ and $f\in D(x_{0})$ a differentiable function at $x_{0}$. The total differential $d$ is the map $T_{x_{0}}\RR^{n}\to\RR$ by $D\mapsto D(f)$. 
+\end{definition}
+\begin{remark}\label{rmk: basis of cotangent space}
+    Total differentials of coordinate functions $dx_{j}$ form a basis of $(T_{x_{0}}\RR^{n})^{\vee}$ dual to the basis $\frac{\partial}{\partial x_{j}}$ of $T_{x_{0}}\RR^{n}$. As such, each cotangent vector $v$ can be written as $\sum_{i=1}^{n}a_{i}(x)dx_{i}$ where $a_{i}(x)$ are functions on $\RR^{n}$. A cotangent vector is continuous/differentiable/integrable if all the constituent $a_{i}$s are so. 
+\end{remark}
+\begin{definition}[Pfaffian Form]\label{def: Pfaffian form}
+    Let $M\subseteq\RR^{n}$ be an open subset. A Pfaffian form is the data of a cotangent vector $D_{x_{0}}\in (T_{x_{0}}M)^{\vee}$ for all $x_{0}\in M$. 
+\end{definition}
+The Pfaffian forms naturally form a module $E^{1}(M)$ over the ring of functions $E^{0}(M)$. Taking the exterior algebra, we can define $E^{p}(M)=\bigwedge^{p}E^{1}(M)$ and write $E(M)=\bigoplus_{p=0}^{n}E^{p}(M)$. 
+\begin{definition}[Differential $p$-Form]\label{def: differential p-form}
+    Let $M\subseteq\RR^{n}$ be open. A differential $p$-form on $M$ is an element of $E^{p}(M)=\bigwedge^{p}E^{1}(M)$.
+\end{definition}
+Note a $p$-form can be written as 
+$$\sum_{1\leq i_{1}<i_{2}<\dots<i_{p}\leq n}f_{i_{1},\dots,i_{p}}\cdot dx_{i_{1}}\wedge dx_{i_{2}}\wedge\dots\wedge dx_{i_{p}}$$
+with $f_{i_{1},\dots,i_{p}}\in E^{0}(M)$ so we can define the differential of a $p$-form as the $p+1$-form 
+$$\sum_{1\leq i_{1}<i_{2}<\dots<i_{p}\leq n}df_{i_{1},\dots,i_{p}}\cdot dx_{i_{1}}\wedge dx_{i_{2}}\wedge\dots\wedge dx_{i_{p}}.$$
+
+These transform with respect to maps $\RR^{n}\to\RR^{m}$ as follows. 
+\begin{proposition}\label{prop: pullback of differential forms}
+    Let $U\subseteq\RR^{n},V\subseteq\RR^{m}$ be open and $f:U\to V$ be a continuous map. Let $g\in E^{p}(V)$
+    $$g=\sum_{0\leq i_{1}<i_{2}<\dots<i_{p}\leq m}g_{i_{1},\dots,i_{p}}\cdot dx_{i_{1}}\wedge dx_{i_{2}}\wedge\dots\wedge dx_{i_{p}}$$
+    and 
+    $$g\circ f=\sum_{0\leq i_{1}<i_{2}<\dots<i_{p}\leq m}(g_{i_{1},\dots,i_{p}}\circ f)\cdot dg_{i_{1}}\wedge dg_{i_{2}}\wedge\dots\wedge dg_{i_{p}}.$$
+    If $f$ and the $g_{i_{1},\dots,i_{p}}$ are differentiable then $d(g)\circ f=d(g\circ f)$.
+\end{proposition}
+Of special concern to us will be differential $n$-forms in $n$-dimensional objects. 
+\begin{definition}[Integration over Differential Form]\label{def: integration over differential form}
+    Let $f$ be an $n$-form on a measurable subset $M$ of $\RR^{n}$. Then 
+    $$\int_{M}f=\int_{M}f_{1,\dots,n}(x)dx$$
+    where $f=f_{1,\dots,n}(x)\cdot dx_{1}\wedge dx_{2}\wedge\dots\wedge dx_{n}$. 
+\end{definition}
+In the complex setting the constructions and results carry over verbatim. However, instead of merely treating differentiable functions, we also consider holomorphic functions and thus holomorphic differential forms. These are defined as follows. 
+\begin{definition}[Holomorphic Differential Form]\label{def: holomorphic differential form}
+    Let $U\subseteq\CC^{n}$ be open. A differential 1-form $f$ on $U$ is holomorphic if $\partial_{\overline{z_{j}}}f\cdot d\overline{z_{j}}=0$ for all $j$ and 
+    $$f=\sum_{j=1}^{n}\partial_{z_{j}}f\cdot dz_{j}+\sum_{j=1}^{n}\partial_{\overline{z_{j}}}d\overline{z_{j}}.$$
+\end{definition}

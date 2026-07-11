@@ -1,0 +1,80 @@
+\section{Lecture 12 -- 31st January 2025}\label{sec: lecture 12}
+Recall from \Cref{thm: Nahm sum asymptotics at roots of unity} and the discussion of the first part of \Cref{sec: lecture 11} that we have 
+$$f_{a}(t,q)\sim\exp\left(-\frac{V(t)}{m^{2}\varepsilon}\right)g_{a,m}(t,q)$$
+a convergent series on the open unit disc. We can consider asymptotics as $q\to\zeta_{m}$ setting $q=\zeta_{m}\exp(-\varepsilon)$ and $g_{a,m}(t,q)\in\QQ(\zeta_{m})[t][[\varepsilon]]$. We consider the \'{e}tale $\ZZ[t]$-algebra 
+$$R=\ZZ\left[t,z,\frac{1}{\delta}\right]/(1-z=(-1)^{a}tz^{a})$$
+with $\delta=z+a(1-z)$ and set 
+$$R_{m}=R[\zeta_{m},t^{1/m}]\text{ and }S_{m}=R_{m}\left[\frac{1}{2},\sqrt{\delta}\right]$$
+we can show the following theorem. 
+\begin{theorem}\label{thm: power series of Nahm expansion at roots of unity}
+    Let $f_{a}(t,q)$ be a Nahm sum with power series term $g_{a,m}(t,q)$ as $q\to\zeta_{m}$. Then 
+    $$g_{a,m}(t^{1/m},q)\in\frac{\sqrt{\delta}}{\sqrt[m]{\varepsilon_{m}}}R_{m}\left[\frac{1}{m}\right][[\varepsilon]]\subseteq\frac{\sqrt{\delta}}{\sqrt[m]{\varepsilon_{m}}}S_{m}\left[\frac{1}{m}\right][[\varepsilon]]$$
+    where $\delta=z+a(1-z)$ and $\varepsilon_{m}\in H^{1}(R_{m},\mu_{m})\cong R_{m}^{\times}/(R_{m}^{\times})^{m}$ is the modulo $m$ regulator of the relative motivic cohomology class $V^{\univ}\in H^{1}\left(\ZZ(2)(R/\ZZ[t])\right).$
+\end{theorem}
+Moreover, each $\mu_{m}$-torsor naturally gives rise to a $\GG_{m}$-torsor which by canonical deformation over nilpotents gives rise to a line bundle $L_{m}$ over $\spec\left(R_{m}[\frac{1}{m}][[\varepsilon]]\right)$ and by change $L_{m}'$ over $\spec\left(S_{m}[\frac{1}{m}][[\varepsilon]]\right)$ for each $\varepsilon_{m}$. Sections of these line bundles are elements of the module $\frac{1}{\sqrt[m]{\varepsilon_{m}}}R_{m}[\frac{1}{m}][[\varepsilon]]$. 
+
+Geometrically, we want to consider restricting scalars from $(S_{m}\otimes\QQ)[[q-\zeta_{m}]]\cong(S_{m}\otimes\QQ)[[\varepsilon]]$ to $S_{m}[[q-\zeta_{m}]]\cong S_{m}[[\varepsilon]]$. We do so by considering the $p$-integral case comparing the expansions at $q=1$ and $q=\zeta_{p}$ and the ways in which they determine each other. 
+
+Fix a prime $p>3$ and consider the embedding $\QQ\to\QQ_{p}$, where we have $\widehat{R}=R_{p}^{\wedge},\widehat{S}=S_{p}^{\wedge}$ are the $p$-adic completions of $R,S$, respectively. We obtain $\widehat{R_{m}}=\widehat{R}\widehat{\otimes}_{\ZZ_{p}\langle t\rangle}\ZZ_{p}\langle\zeta_{p^{m}},t^{1/p^{m}}\rangle,\widehat{S_{m}}=\widehat{S}\widehat{\otimes}_{\ZZ_{p}\langle t\rangle}\ZZ_{p}\langle\zeta_{p^{m}},t^{1/m}\rangle$ analogously. Passing to the limit, we have 
+$$\widehat{R_{\infty}}=\lim_{m}\widehat{R_{m}}$$
+which is an integral perfectoid ring over $R_{\infty}^{0}=\ZZ_{p}\langle\zeta_{p^{\infty}},t^{1/p^{\infty}}\rangle$. In this setting, we can consider the tilt $R_{\infty}^{0,\flat}=\lim_{x\mapsto x^{p}}(\ZZ_{p}\langle\zeta_{p},t^{1/p^{m}}\rangle/p), \widehat{R_{\infty}}^{\flat}=\lim_{x\mapsto x^{p}}(\widehat{R_{\infty}}/p)$. 
+\begin{example}
+    Consider $\ZZ_{p}\langle\zeta_{1/p^{\infty}}\rangle$. The tilt $\ZZ\langle\zeta_{p^{\infty}}\rangle^{\flat}$ contains the element $(\overline{1},\overline{\zeta_{p}},\overline{\zeta_{p^{2}}},\dots)=\varepsilon$ and we can produce an isomorphism $\ZZ\langle\zeta_{p^{\infty}}\rangle^{\flat}\cong\FF_{p}[[(\varepsilon-1)^{1/p^{\infty}}]]$.
+\end{example}
+Per the previous example, there is a map $\ZZ_{p}\langle \zeta_{p^{\infty}}\rangle^{\flat}\mapsto R_{\infty}^{0,\flat}$ taking the element $\varepsilon$ to $(t,t^{1/p},t^{1/p^{2}},\dots)$ which we denote $t^{\flat}$. 
+
+In $p$-adic Hodge theory, we also have the $A_{\inf}(-)$ construction taking a ring to the ring of its $p$-typical Witt vectors. We have $A_{\inf}(\ZZ_{p}\langle\zeta_{p^{\infty}}\rangle)\cong\ZZ_{p}\langle q^{1/p^{\infty}}\rangle^{\wedge}_{(q-1)}, A_{\inf}(R^{0}_{\infty})\cong\ZZ_{p}\langle q^{1/p^{\infty}},[t^{\flat}]^{1/p^{\infty}}\rangle^{\wedge}_{(q-1)}$. These rings are still defined by the Nahm equation, replacing $t$ by the Teichm\"{u}ller lift $[t^{\flat}]$ of $t$. This gives the pushout diagram 
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXFpaX3twfVxcbGFuZ2xlIHEsXFx3aWRldGlsZGV7dH1cXHJhbmdsZV57XFx3ZWRnZX1feyhxLTEpfSJdLFswLDEsIlxcWlpfe3B9XFxsYW5nbGUgcSxcXHdpZGV0aWxkZXt0fSx6XFxyYW5nbGUvKDEtej0oLTEpXnthfVxcd2lkZXRpbGRle3R9el57YX0pIl0sWzIsMCwiQV97XFxpbmZ9KFJeezB9X3tcXGluZnR5fSkiXSxbMiwxLCJBX3tcXGluZn1cXGxlZnQoXFx3aWRlaGF0e1Jfe1xcaW5mdHl9fVxccmlnaHQpIl0sWzEsM10sWzAsMl0sWzIsM10sWzAsMV1d
+\begin{tikzcd}
+	{\ZZ_{p}\langle q,\widetilde{t}\rangle^{\wedge}_{(q-1)}} && {A_{\inf}(R^{0}_{\infty})} \\
+	{\ZZ_{p}\langle q,\widetilde{t},z\rangle/(1-z=(-1)^{a}\widetilde{t}z^{a})} && {A_{\inf}\left(\widehat{R_{\infty}}\right)}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+and where the map $\ZZ_{p}\langle q,\widetilde{t}\rangle^{\wedge}_{(q-1)}\to A_{\inf}(R^{0}_{\infty})$ is by $\widetilde{t}\mapsto[t^{\flat}]$. On specializations this diagram gives rise to the commutative cube 
+$$% https://q.uiver.app/#q=WzAsOCxbMSwxLCJcXFpaX3twfVxcbGFuZ2xlIHEsXFx3aWRldGlsZGV7dH1cXHJhbmdsZV57XFx3ZWRnZX1feyhxLTEpfSJdLFsxLDIsIlxcWlpfe3B9XFxsYW5nbGUgcSxcXHdpZGV0aWxkZXt0fSx6XFxyYW5nbGUvKDEtej0oLTEpXnthfVxcd2lkZXRpbGRle3R9el57YX0pIl0sWzMsMSwiQV97XFxpbmZ9KFJeezB9X3tcXGluZnR5fSkiXSxbMywyLCJBX3tcXGluZn1cXGxlZnQoXFx3aWRlaGF0e1Jfe1xcaW5mdHl9fVxccmlnaHQpIl0sWzAsMCwiXFxaWl97cH1cXGxhbmdsZVxcemV0YV97cF57bX19LHReezEvcF57bX19XFxyYW5nbGUiXSxbMCwzLCJcXHdpZGVoYXR7Ul97bX19Il0sWzQsMCwiUl57MH1fe1xcaW5mdHl9Il0sWzQsMywiXFx3aWRlaGF0e1Jfe1xcaW5mdHl9fSJdLFsxLDNdLFswLDJdLFsyLDNdLFswLDFdLFswLDQsInE9XFx6ZXRhX3twXnttfX0sdD10XnsxL3Bee219fSIsMix7ImxhYmVsX3Bvc2l0aW9uIjoyMH1dLFsyLDYsInE9XFx6ZXRhX3twXnttfX0sW3Ree1xcZmxhdH1dXFxtYXBzdG8gdF57MS9wXnttfX0iLDAseyJsYWJlbF9wb3NpdGlvbiI6MH1dLFszLDddLFs2LDddLFs0LDZdLFs1LDddLFs0LDVdLFsxLDVdXQ==
+\begin{tikzcd}
+	{\ZZ_{p}\langle\zeta_{p^{m}},t^{1/p^{m}}\rangle} &&&& {R^{0}_{\infty}} \\
+	& {\ZZ_{p}\langle q,\widetilde{t}\rangle^{\wedge}_{(q-1)}} && {A_{\inf}(R^{0}_{\infty})} \\
+	& {\ZZ_{p}\langle q,\widetilde{t},z\rangle/(1-z=(-1)^{a}\widetilde{t}z^{a})} && {A_{\inf}\left(\widehat{R_{\infty}}\right)} \\
+	{\widehat{R_{m}}} &&&& {\widehat{R_{\infty}}}
+	\arrow[from=1-1, to=1-5]
+	\arrow[from=1-1, to=4-1]
+	\arrow[from=1-5, to=4-5]
+	\arrow["{q=\zeta_{p^{m}},t=t^{1/p^{m}}}"'{pos=0.2}, from=2-2, to=1-1]
+	\arrow[from=2-2, to=2-4]
+	\arrow[from=2-2, to=3-2]
+	\arrow["{q=\zeta_{p^{m}},[t^{\flat}]\mapsto t^{1/p^{m}}}"{pos=0}, from=2-4, to=1-5]
+	\arrow[from=2-4, to=3-4]
+	\arrow[from=3-2, to=3-4]
+	\arrow[from=3-2, to=4-1]
+	\arrow[from=3-4, to=4-5]
+	\arrow[from=4-1, to=4-5]
+\end{tikzcd}$$
+where the map $\widehat{R_{m}}\to\widehat{R_{\infty}}$ takes $z$ to a Frobenius twist thereof. 
+
+In fact, there is a line bundle on $\ZZ_{p}\langle q,\widetilde{t},z\rangle/(1-z=(-1)^{a}\widetilde{t}z^{a})$ given by 
+
+interpolating the line bundles $L_{m}$ over $\widehat{R_{m}}[\frac{1}{p}][[q-\zeta_{p^{m}}]]$ such that the Nahm sum is a section of $L_{m}$ for each $m$. 
+\begin{proposition}\label{prop: elements define line bundle}
+    The set of all $g_{a}(t,q)\in\widehat{R}[\frac{1}{p}][[q-1]]$ with constant coefficient 1 at $q=1$ such that 
+    $$\log\left(g_{a,1}(t^{p},q^{p})\right)-p\cdot\log\left(g_{a,1}(t,q)\right)\in -\frac{V(t^{p})-p^{2}\cdot V(t)}{p\log(q)}+\frac{p}{q-1}\widehat{R}[[q-1]]$$
+    defines a line bundle $L_{1}$ over $\widehat{R}[[q-1]]$ that is canonically trivialized under base change to $\widehat{R}[\frac{1}{p}][[q-1]]$.
+\end{proposition}
+\begin{theorem}
+    $g_{a,1}(t,q)$ is an element of $\sqrt{\delta}\widehat{R}[\frac{1}{p}][[q-1]]$. 
+\end{theorem}
+\begin{proof}
+    This follows from the admissability of $f_{a}(t,q)$ as a series as in \Cref{thm: modified 1x1 Nahm sum is admissable}.
+\end{proof}
+\begin{theorem}
+    The base change of the line bundle $L_{1}$ of \Cref{prop: elements define line bundle} along the map $\widehat{R}[[q-1]]\to\widehat{R_{m}}[\frac{1}{p}][[q-\zeta_{p^{m}}]]$ recovers the line bundle $L_{m}$.
+\end{theorem}
+This suggests a $p$-adic compatibility of the de Rham and \'{e}tale realizations of $V^{\univ}$. 
+\begin{theorem}
+    Mapping $g_{a,1}(t,q)$ under this comparison of line bundles one recovers the asymptotics of $g_{a,m}(t^{1/m},q)$.
+\end{theorem}
+
+Aspirationally, for any scheme $S$ we would expect a theory of $S$-families of shtukas which are vector bundles over a complicated (analytic) stack $\spec(\ZZ)\times S$ and where motives over $S$ are examples of such shtukas. These line bundles that $q$-series-like Nahm sums ought be sections of live over $S\times\spec(\ZZ)$. Snappy. 

@@ -1,0 +1,86 @@
+\section{Lecture 11 -- 15th November 2024}\label{sec: lecture 11}
+We begin our discussion of transversality. 
+\begin{definition}[Transverse Submanifolds at a Point]\label{def: transverse submanifolds at a point}
+    Let $M$ be a smooth manifold and $S,S'$ submanifolds of $M$. $M$ and $M'$ are transverse at $p\in S\cap S'$ if the subspaces $T_{p}S$ and $T_{p}S'$ span $T_{p}M$. 
+\end{definition}
+\begin{definition}[Transverse Submanifolds]\label{def: transverse submanifolds}
+    Let $M$ be a smooth manifold and $S,S'$ submanifolds of $M$. $S$ and $S'$ are transverse submanifolds $S$ -- $S\pitchfork S'$ -- if they are transverse at each point $p\in S\cap S'$. 
+\end{definition}
+\begin{example}
+    The union of coordinate axes in $\RR^{2}$ is transverse. 
+\end{example}
+\begin{example}
+    The generic intersection of a circle and a line is transverse. 
+\end{example}
+\begin{example}
+    A line tangent to a circle is not transverse, as the tangent spaces at the intersection point is just the line, while the tangent space of $\RR^{2}$ at that point is $\RR^{2}$. 
+\end{example}
+Transverse intersections behave especially nicely, insofar as their intersections are smooth submanifolds. On the other hand, non-transverse intersections might not even be a topological manifold. 
+\begin{example}\label{ex: graph of crossing lines}
+    Let $f:\RR^{2}\to\RR$ by $f(x,y)=x^{2}-y^{2}$ and $g(x,y)=0$. Let $S$ be the graph of $f$ in $\RR^{3}$ given by $\{(x,y,z)\in\RR^{3}:z=f(x,y)\}$ and $S'$ the graph of $g$ in $\RR^{3}$ given by $\{(x,y,z)\in\RR^{3}:z=g(x,y)=0\}$. The intersection $S\cap S'$ is given by $\{(x,y,z)\in\RR^{3}:x^{2}-y^{2}=z=0\}$ which is two lines intersecting transversely in $\RR^{3}$ and not a topological manifold. 
+\end{example}
+We now show the lemma. 
+\begin{lemma}\label{lem: transversality is a manifold}
+    Let $M$ be a smooth manifold and $S,S'$ submanifolds of $M$. If $S,S'$ are transverse, then $S\cap S'$ is a smooth submanifold. 
+\end{lemma}
+\begin{proof}
+    By composing with a chart centered around zero in $\RR^{m}$ and the slice \Cref{thm: slice}, it suffices to show that the intersection is a smooth submanifold ina  neighborhood of 0. Using the rank theorem \ref{thm: rank theorem}, after possibly shrinking $U$, that $S=f^{-1}(0)$ for $f:U\to\RR^{m-\dim(S)}$ and $S'=g^{-1}(0)$ for $g:U\to\RR^{m-\dim(S')}$ with $f,g$ of full rank. 
+
+    Consider $H:U\to\RR^{m-\dim(S)}\oplus\RR^{m-\dim(S')}$ by $p\mapsto(f(p),g(p))$. It suffices to show that $H$ is surjective, where injectivity follows from $S,S'$ being submanifolds. We first observe that $H^{-1}(0)=f^{-1}(0)\cap g^{-1}(0)=S\cap S'$. To see the surjectivity of $H$ at the origin, note that $T_{0}S+ T_{0}S'\to T_{0}U$ is a linear isomorphism since $S,S'$ are transverse and that there is a map $dH_{0}:T_{0}U\to\RR^{m-\dim(S)}\oplus\RR^{m-\dim(S')}$ fitting into 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJUX3swfVNcXG9wbHVzIFRfezB9UyciXSxbMCwxLCJUX3swfVUiXSxbMiwwLCJUX3swfVMvKFRfezB9U1xcY2FwIFRfezB9UycpXFxvcGx1cyBUX3swfVMnLyhUX3swfVNcXGNhcCBUX3swfVMnKSJdLFsyLDEsIlxcUlJee20tXFxkaW0oUyl9XFxvcGx1c1xcUlJee20tXFxkaW0oUycpfSJdLFsxLDNdLFsyLDMsIihkZl97MH0sZGdfezB9KSJdLFswLDJdLFswLDEsIlxcd3IiLDJdXQ==
+    \begin{tikzcd}
+        {T_{0}S+ T_{0}S'} && {T_{0}S/(T_{0}S\cap T_{0}S')\oplus T_{0}S'/(T_{0}S\cap T_{0}S')} \\
+        {T_{0}U} && {\RR^{m-\dim(S)}\oplus\RR^{m-\dim(S')}}
+        \arrow[from=1-1, to=1-3]
+        \arrow["\wr"', from=1-1, to=2-1]
+        \arrow["{(df_{0},dg_{0})}", from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    The top horizontal map is well-defined as if $v+w=v'+w'$ then $v-v'=w-w'$ is in $T_{0}S\cap T_{0}S'$. It remains to show the right vertical map is surjective, we show in particular it is an isomorphism. Observe the map is injective as as the kernels of $df_{0},dg_{0}$ in $T_{0}S,T_{0}S'$ is exactly the intersection. We then consider the short exact sequence 
+    $$% https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiVF97MH1TXFxjYXAgVF97MH1TJyJdLFsyLDAsIlRfezB9U1xcb3BsdXMgVF97MH1TJyJdLFszLDAsIlRfezB9VSJdLFs0LDAsIjAiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMyw0XV0=
+    \begin{tikzcd}
+        0 & {T_{0}S\cap T_{0}S'} & {T_{0}S\oplus T_{0}S'} & {T_{0}U} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}$$
+    where the maps are $v\mapsto (v,v)$ and $(a,b)\mapsto a-b$. Computing the dimensions, $\dim(T_{0}S\cap T_{0}S')+m=\dim(S)+\dim(S')$ and thus $\dim(T_{0}S/(T_{0}S\cap T_{0}S'))=\dim(S')-(\dim(S)+\dim(S')-m)=m-\dim(S)$ and similarly $\dim(T_{0}S'/(T_{0}S\cap T_{0}S'))=\dim(S)-(\dim(S)+\dim(S')-m)=m-\dim(S')$ showing that the final map is surjective. The claim follows. 
+\end{proof}
+We can generalize transversality of manifolds to transversality of maps. This is motivated by the goal of producing fibered products in the category of smooth manifolds. 
+\begin{definition}[Fibered Product]\label{def: fibered product}
+    Let $f:X\to Z, g:Y\to Z$ be continuous maps of topological spaces. The fibered product $X\times_{Z}Y$ is given by 
+    $$\{(x,y)\in X\times Y:f(x)=g(y)\in\ZZ\}\subseteq X\times Y$$
+    with the subspace topology on the product. 
+\end{definition}
+\begin{remark}
+    \Cref{def: fibered product} implies the universal property of fibered products. For all topological spaces $W$ making the solid diagram commute 
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwxLCJYXFx0aW1lc197Wn1ZIl0sWzEsMiwiWSJdLFszLDEsIlgiXSxbMywyLCJaIl0sWzAsMCwiVyJdLFsyLDMsImYiXSxbMSwzLCJnIiwyXSxbMCwxXSxbMCwyXSxbNCwxLCIiLDAseyJvZmZzZXQiOjEsImN1cnZlIjoyfV0sWzQsMiwiIiwwLHsiY3VydmUiOi0xfV0sWzQsMCwiXFxleGlzdHMhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \begin{tikzcd}
+        W \\
+        & {X\times_{Z}Y} && X \\
+        & Y && Z
+        \arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+        \arrow[curve={height=-6pt}, from=1-1, to=2-4]
+        \arrow[shift right, curve={height=12pt}, from=1-1, to=3-2]
+        \arrow[from=2-2, to=2-4]
+        \arrow[from=2-2, to=3-2]
+        \arrow["f", from=2-4, to=3-4]
+        \arrow["g"', from=3-2, to=3-4]
+    \end{tikzcd}$$
+    there is a unique map $W\to X\times_{Z}Y$ making the entire diagram commute. 
+\end{remark}
+Note that neither the categories $\Mfld$ of \Cref{def: category of topological manifolds} nor $\SmMfld$ of \Cref{def: category of smooth manifolds} admit fibered products. 
+\begin{example}
+    In the setup of \Cref{ex: graph of crossing lines}, the fibered product $S\times_{\RR^{3}}S'$ is the union of transversely intersecting lines in $\RR^{3}$ which is not a topological manifold even though $S,S'$ are topological and even smooth manifolds (cf. \Cref{ex: graphs are mflds}).
+\end{example}
+Extending \Cref{def: transverse submanifolds at a point,def: transverse submanifolds}, we can define transverse maps as follows. 
+\begin{definition}[Transverse Maps at a Point]\label{def: transverse maps at a point}
+    Let $M_{1},M_{2},N$ be smooth manifolds and $F:M_{1}\to N,G:M_{2}\to N$ be smooth maps. $F$ and $G$ are transverse at $F(p_{1})=F(p_{2})\in N$ if $\mathrm{im}(dF_{p_{1}})+\mathrm{im}(dG_{p_{2}})$ spans $T_{q}N$. 
+\end{definition}
+\begin{definition}[Transverse Maps]\label{def: transverse maps}
+    Let $M_{1},M_{2},N$ be smooth manifolds and $F:M_{1}\to N,G:M_{2}\to N$ be smooth maps. $F$ and $G$ are transverse -- $F\pitchfork G$ -- if it is transverse at all $q\in Z$. 
+\end{definition}
+\begin{remark}
+    Transversality of maps generalizes transversality of manifolds by taking $F:S\to M, G:S'\to M$ for smooth submanifolds $S,S'\subseteq M$. 
+\end{remark}

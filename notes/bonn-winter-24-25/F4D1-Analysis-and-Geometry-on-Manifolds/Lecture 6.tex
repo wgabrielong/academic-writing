@@ -1,0 +1,87 @@
+\section{Lecture 6 -- 25th October 2024}\label{sec: lecture 6}
+We consider some applications of partitions of unity. 
+\begin{definition}[Bump Function]\label{def: bump function}
+    Let $X$ be a topological space and $A,U\subseteq X$ be a closed and open subspace, respectively. A bump function for $A$ supported in $U$ is a function $\psi:X\to\RR$ such that $\psi|_{A}\equiv1$ and $\supp(\psi)\subseteq U$. 
+\end{definition}
+Using partitions of unity, we can construct a bump function supported on any clsoed subset of a smooth manifold. 
+\begin{proposition}\label{prop: existence of bump functions on smooth manifolds}
+    Let $M$ be a smooth manifold, $A\subseteq M$ closed and $U\subseteq M$ an open neighborhood of $A$. There exists a smooth bump function for $A$ supported in $U$. 
+\end{proposition}
+\begin{proof}
+    Let $U$ be as above and $V=M\setminus A$. These form an open cover $\{U,V\}$ of $M$. By \Cref{thm: existence of partitions of unity}, there exists a partition of unity $\psi_{U},\psi_{V}$ subordinate to this cover. $\psi_{U}$ suffices since $\psi_{V}\equiv0$ on $A$ and $\psi_{U}+\psi_{V}\equiv 1$ so it is idenitcally 1 on $A$.
+\end{proof}
+We also make the following definition, allowing us to consider smooth functions on a closed subset of a smooth manifold. 
+\begin{definition}[Smooth Function on Closed Subset]\label{def: smooth on closed}
+    Let $M,N$ be smooth manifolds and $A\subseteq M$ a closed subset. A continuous map $f:M\to N$ is smooth on $A$ if it admits a smooth extension in an open neighborhood of each $x\in A$. 
+\end{definition}
+\begin{remark}
+    Recall from \Cref{def: smooth functions on upper half space} that we require that for each $x\in A$ there is an open neighborhood $U_{x}$ of $x$ such that $\widetilde{f}:U_{x}\to N$ is smooth and $\widetilde{f}|_{U_{x}\cap A}=f|_{U_{x}\cap A}$. 
+\end{remark}
+In particular, we can construct smmooth functions from a closed set of a smoth manifold to $\RR^{m}$ whose support is contained in an fixed open neighborhood of $A$. 
+\begin{proposition}\label{prop: smooth function on closed with fixed support}
+    Let $M$ be a smooth manifold, $A\subseteq M$ closed, and $f:A\to\RR^{m}$ a smooth function. For $U\subseteq M$ containing $A$, there exists a smooth extension $\widetilde{f}:M\to\RR^{m}$ such that $\widetilde{f}|_{A}=f$ and $\supp(\widetilde{f})\subseteq U$. 
+\end{proposition}
+\begin{proof}
+    For each $x\in A$ consider a neighborhood $W_{x}\subseteq U$ containing $x$. By hypothesis, there exists $\widetilde{f}_{x}:W_{x}\to\RR^{m}$ such that $\widetilde{f}_{x}|_{W_{x}\cap A}=f|_{W_{x}\cap A}$. Now note that $\{W_{p}\}_{p\in A}\cup\{M\setminus A\}$ is an open cover of $M$. Let $\{\psi_{x}\}_{x\in A}\cup\{\psi_{M\setminus A}\}$ be a partition of unity subordinate to the cover. Set $\widetilde{f}(y)=\sum_{x\in A}\widetilde{f}_{x}(y)\psi_{x}(y)$. Observe that since $\{\supp(\psi_{x})\}_{x\in A}$ is locally finite, only fintely many terms of the sum are nonzero in a neighborhood of any point of $M$ showing $\widetilde{f}$ is smooth. Additionally, if $y\in A$ then $\psi_{M\setminus A}(y)=0$ and thus $\widetilde{f}(y)=\psi_{M\setminus A}(y)+\sum_{x\in A}\widetilde{f}_{x}(y)\psi_{x}(y)=f(y)$ showing $\widetilde{f}$ is an extension of $f$. Finally, the condition on the support holds as $\supp(\psi_{x})\subseteq U$ for each $p$
+\end{proof}
+\begin{remark}
+    \Cref{prop: smooth function on closed with fixed support} fails in the category of topological manifolds. Take $A=S^{1}\subseteq\RR^{2}$ and $f:S^{1}\to S^{1}$ the identity map. $f$ does not admit a continuous extension to $\RR^{2}$ obstructed by the homotopy groups. 
+\end{remark}
+Partitions of unity can also be used to construct smooth functions with prescribed properties. One example of this is in exhaustion functions. 
+\begin{definition}[Exhaustion Function]\label{def: exhaustion function}
+    Let $X$ be a topological space. An exhaustion function $f:X\to\RR$ is a continuous function such that for all $c\in\RR$ $f^{-1}((-\infty,c])\subseteq X$ is open. 
+\end{definition}
+\begin{remark}
+    This recovers the notion of an exhaustion by compact sets indexing over the natural numbers. 
+\end{remark}
+\begin{example}
+    $f:\RR\to\RR$ by $x\mapsto x^{2}$ has closed and hence compact preimage. 
+\end{example}
+\begin{example}
+    $f:\RR\to\RR$ by $x\mapsto x$ is a non-example since the preimage of $(-\infty,c]$ which is $(-\infty,c]$ is non-compact. 
+\end{example}
+It can be shown that every smooth manifold admits a smooth exhaustion function. 
+\begin{proposition}\label{prop: existence of smooth exhaustion function}
+    If $M$ is a smooth manifold, $M$ admits a smooth positive exhaustion function. 
+\end{proposition}
+\begin{proof}
+    Let $\{U_{i}\}_{i=1}^{\infty}$ be a countable open cover having compact closure and $\{\psi_{i}\}_{i=1}^{\infty}$ a partition of unity subordinate to this cover. Set $f(x)=\sum_{i=1}^{\infty}i\cdot\psi_{i}(x)$. $f$ is smooth since only finitely many terms of the sum are nonzero in the neighborhood of any point and positive by construcion. 
+
+    To show that $f$ is an exhaustion function, we have for any $c\in\RR$ and a natural number $N>c$ that $f^{-1}((-\infty,c])$ is a closed subset of the compact set $f^{-1}((-\infty,N])=\bigcup_{i=1}^{N}\overline{U_{i}}$ and hence compact. If $x\notin\bigcup_{i=1}^{N}\overline{U_{i}}$ then 
+    $$f(x)=\sum_{i=N+1}^{\infty}i\psi_{i}(x)\geq\sum_{i=N+1}^{\infty}N\psi_{i}(x)=N\sum_{i=1}^{\infty}\psi_{i}(x)=N>c$$
+    showing that $x\notin f^{-1}((-\infty,c])$ and conversely if $f(x)\leq c$ then $x\in\bigcup_{i=1}^{N}\overline{U_{i}}$ showing that $f^{-1}((-\infty,c])\subseteq \bigcup_{i=1}^{N}\overline{U_{i}}$ yielding the claim.  
+\end{proof}
+The construction of exhaustion functions is closely linked to the fact that any closed subset of a smooth manifold can be obtained as the preimage of 0 of a smooth function $f:M\to\RR$. We deduce the general case as a consequence of the following lemma. 
+\begin{lemma}\label{lem: closed subset is level set of Rn}
+    Let $A\subseteq\RR^{n}$ be a closed subset. There exists a nonnegative smooth function $f:\RR^{n}\to\RR$ such that $f^{-1}(0)=A$. 
+\end{lemma}
+\begin{proof}
+    Let $\{B_{r_{i}}(x_{i})\}_{i=1}^{\infty}$ be a countable open cover of $M\setminus A$ by balls. By \Cref{lem: existence of cutoff functions}, there exists a cutoff function $H$ that is equal to 1 on $\overline{B_{1/2}(0)}$ and supported in $B_{1}(0)$.  Now for each $i$, let $C_{i}\geq 1$ be a constant such that $C_{i}>\sup_{x\in\RR^{n}}\{\partial^{\alpha}H:|\alpha|\leq i\}$. We show
+    $$f(x)=\sum_{i=1}^{\infty}\frac{r_{i}^{i}}{2^{i}C_{i}}H\left(\frac{x-x_{i}}{r_{i}}\right)$$
+    suffices. 
+
+    First note that each term $\frac{r_{i}^{i}}{2^{i}C_{i}}H\left(\frac{x-x_{i}}{r_{i}}\right)$ is bounded by $\frac{1}{2^{i}}$ since $r_{i}<1$ and that the sequence $\sum_{i=1}^{\infty}\frac{1}{2^{i}}$ converges so the function is continuous. To see that $f$ is smooth, we proceed by induction on the hypothesis that partial derivatives of order up to $k$ exist and are continuous. Noting that an order $k+1$ partial derivative is of the form 
+    $$\partial^{\alpha}\left(\frac{r^{i}}{2^{i}C_{i}}H\left(\frac{x-x_{i}}{r_{i}}\right)\right)=\frac{r^{i}}{2^{i}C_{i}}\partial^{\alpha}\left(H\left(\frac{x-x_{i}}{r_{i}}\right)\right)$$
+    which is once again bounded above by $\frac{1}{2^{i}}$ by construction of $H$ so repeating the argument above, this is continuous showing $f$ is smooth. 
+\end{proof}
+We deduce the following general statement. 
+\begin{theorem}\label{thm: closed subset is level set of smooth manifold}
+    Let $M$ be a smooth manifold and $A\subseteq M$ closed. There exists a nonnegative smooth function $f:M\to\RR$ such that $f^{-1}(0)=A$. 
+\end{theorem}
+\begin{proof}
+    Let $M$ be a smooth manifold as stated and $A\subseteq M$ closed. Let $(\phi_{\alpha},U_{\alpha})_{\alpha\in\Acal}$ be an atlas of $M$. Without loss of generality, we can take $\phi_{\alpha}(U_{\alpha})=\RR^{n}$ for some fixed $n$. Furthermore, $A\cap U_{\alpha}$ is closed in the subspace topology of $U_{\alpha}$ and thus has closed image $\phi_{\alpha}(A\cap U_{\alpha})\subseteq\phi_{\alpha}(U_{\alpha})=\RR^{n}$. By \Cref{lem: closed subset is level set of Rn} there are functions $f_{\alpha}:\RR^{n}\to[0,\infty)$ such that $f^{-1}_{\alpha}(0)=\phi_{\alpha}(A\cap U_{\alpha})$. Moreover, the functions $f_{\alpha}\circ\phi_{\alpha}:U_{\alpha}\to\RR$ are smooth since they are the composite of smooth functions. It remains to glue these $f_{\alpha}\circ\phi_{\alpha}$ into a smooth function $M\to[0,\infty)$. Let $(\psi_{\alpha})_{\alpha\in\Acal}$ be a partition of unity subordinate to the cover $\{U_{\alpha}\}_{\alpha\in\Acal}$. We show that the function $f(x)=\sum_{\alpha\in\Acal}\left(\psi_{\alpha}(x)\cdot(f_{\alpha}\circ\phi_{\alpha})(x)\right)$ which is smooth as the product and sum of smooth functions. We have $A=f^{-1}(0)$ since the summand $\psi_{\alpha}(x)\cdot (f_{\alpha}\circ\phi_{\alpha})(x)$ is zero if and only if $x\in A\cap U_{\alpha}$ and undefined on the complement $M\setminus U_{\alpha}$ so preimage of 0 is given by the union of the component functions.
+\end{proof}
+Having discussed partitions of unity, a central technical tool in the study of smooth manifolds, we begin a consideration of tangent vectors. 
+\begin{definition}[Tangent Space]\label{def: tangent space}
+    Let $M$ be a smooth manifold and $x\in M$. The tangent space $T_{x}M$ of $M$ at $x$ is the set of equivalence classes of smooth curves $\gamma:(-\varepsilon,\varepsilon)\to M$ such that $\gamma(0)=x$ where $\gamma\sim\gamma'$ if and only if for every smooth function $f$ defined near $p$ there is an equality $(f\circ\gamma)'(0)=(f\circ\gamma')'(0)$. 
+\end{definition}
+\begin{remark}
+    This more abstract definition may seem quite foreign to those encountered in single and multivariable calculus. However, providing an embedding-independent description of tangent spaces is required for a study of smooth manifolds in the appropriate generality. 
+\end{remark}
+The formation of these tangent spaces behave well with respect to smooth maps. 
+\begin{definition}[Differential of a Smooth Map]\label{def: differential of a smooth map}
+    Let $f:M\to N$ be a morphism of smooth manifolds. The differential of $f$ at $x$ is the map $df_{x}:T_{x}M\to T_{f(x)}N$ by $[\gamma]\mapsto[f\circ\gamma]$. 
+\end{definition}
+\begin{remark}
+    The map is well-defined and in fact functorial. 
+\end{remark}

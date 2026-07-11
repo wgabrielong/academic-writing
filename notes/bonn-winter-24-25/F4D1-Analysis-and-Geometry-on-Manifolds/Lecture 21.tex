@@ -1,0 +1,63 @@
+\section{Lecture 21 -- 20th December 2024: Some Riemannian Geometry}\label{sec: lecture 21}
+We begin with the following definition.\marginpar{Some of the material covered on this day has been placed in the preceding \Cref{sec: lecture 20}.}
+\begin{definition}[Inner Product]\label{def: inner product}
+    Let $V$ be a finite-dimensional real vector space. An inner product is a bilinear map $g\in\Sym^{2}(V)$ which is symmetric and positive semidefinite. 
+\end{definition}
+This globalizes to Riemannian metrics. 
+\begin{definition}[Riemannian Metric]\label{def: Riemannian metric}
+    Let $M$ be a smooth manifold. A Riemannian metric on $M$ is a section $g\in\Gamma(M,\Sym^{2}(T^{*}M))$ such that for all $p\in M$, $g_{p}$ is an inner product. 
+\end{definition}
+In other words, a Riemannian metric is a smoothly varying metric on the tangent space of a smooth manifold. 
+\begin{definition}[Riemannian Manifold]\label{def: Riemannian manifold}
+    A Riemannian manifold is a pair $(M,g)$ consisting of a smooth manifold $M$ and a Riemannian metric $g$. 
+\end{definition}
+\begin{remark}
+    We can replace $TM$ by a vector bundle $E$ and consider metrics on $E$ as sections $g\in\Sym^{2}(E^{\vee})$ such that $(E_{p},g_{p}(-,-))$ is an inner product for each $p\in M$. 
+\end{remark}
+Note that on $\RR^{n}$, we have a frame $dx_{1},\dots,dx_{n}$ on $T^{*}\RR^{n}$, the bundle $\Sym^{2}(T^{*}M)$ admits a global frame by $\{dx_{i}\otimes dx_{j}\}_{1\leq i,j\leq n}$ hence any section $\sigma$ of this vector bundle can be written as $\sigma=\sum_{1\leq i,j\leq n}\sigma_{i,j}\cdot dx_{i}\otimes dx_{j}$ where $\sigma_{i,j}:\RR^{n}\to\RR$. $\sigma$ is symmetric if $\sigma_{i,j}=\sigma_{j,i}$ for all pairs $1\leq i,j\leq n$ in which case it is represented by a symmetric matrix. 
+\begin{example}\label{ex: Euclidean metric on Rn}
+    On $\RR^{n}$, $g_{0}=\sum_{i=1}^{n}dx_{i}\otimes dx_{j}=\sum_{i=1}^{n}\delta_{ij}\cdot dx_{i}\otimes dx_{j}$ is the Euclidean metric on $\RR^{n}$. 
+\end{example}
+We make the following definitions for constructions on Riemannian manifolds. 
+\begin{definition}[Length of Tangent Vector]\label{def: length of tangent vector}
+    Let $(M,g)$ be a Riemannian manifold. The length of a tangent vector $v\in T_{p}M$ is $|v|_{g}=g_{p}(v,v)^{1/2}$. 
+\end{definition}
+\begin{definition}[Angle Between Tangent Vectors]\label{def: angle between tangent vectors}
+    Let $(M,g)$ be a Riemannian manifold. The angle between two nonzero tangent vectors $v,w\in T_{p}M$ is the unique $\theta\in(0,\pi)$ such that $\cos(\theta)=\frac{g_{p}(v,w)}{|v|_{g}\cdot |w|_{g}}$. 
+\end{definition}
+\begin{definition}[Orthogonal Tangent Vectors]\label{def: orthogonal tangent vectors}
+    Let $(M,g)$ be a Riemannian manifold. Two nonzero tangent vectors $v,w\in T_{p}M$ are orthogonal if the angle between them is zero. 
+\end{definition}
+In the space of $\RR^{n}$, this specializes to the following. 
+\begin{example}
+    If $M=\RR^{n}$ and $g=g_{0}$ the Euclidean metric as in \Cref{ex: Euclidean metric on Rn}, then \Cref{def: length of tangent vector,def: angle between tangent vectors,def: orthogonal tangent vectors} coincide with the definitions that arise in linear algebra and Euclidean geometry. 
+\end{example}
+In this way, we see the endowment of a smooth manifold with a Euclidean metric as a way to do geometry on an arbitrary smooth manifold. 
+\begin{definition}[Length of Curve]\label{def: length of curve}
+    Let $(M,g)$ be a Euclidean manifold and $\gamma:[a,b]\to M$ a curve. The length of the curve is defined to be the integral $L_{g}(\gamma)=\int_{a}^{b}|\dot{\gamma}(t)|dt$. 
+\end{definition}
+\begin{remark}
+    $|\dot{\gamma}(t)|$ is the pushforward of $\partial_{t}$ along $\gamma$. 
+\end{remark}
+\begin{definition}[Geodesic Length]\label{def: geodesic length}
+    Let $(M,g)$ be a Riemannian manifold and $p,q\in M$. The distance between $p$ and $q$ is 
+    $$\inf_{\{\gamma:[a,b]\to M:\gamma(a)=p,\gamma(b)=q\}}L_{g}(\gamma).$$
+\end{definition}
+It can in fact be shown that the length is independent of the parametrization, hence making the manifold $(M,g)$ a metric space with the geodesic length \Cref{def: geodesic length} as the metric. 
+
+More generally, the construction of \Cref{ex: Euclidean metric on Rn} globalizes. 
+\begin{theorem}\label{thm: existence of Riemannian metric}
+    Let $M$ be a smooth manifold. There exists a Riemannian metric $g$ on $M$, making $(M,g)$ a Riemannian manifold. 
+\end{theorem}
+This allows us to deduce the following corollary. 
+\begin{corollary}
+    Let $M$ be a smooth manifold. The space of Riemannian metrics on $M$ is convex and nonempty, hence contractible. 
+\end{corollary}
+Moreover, using the fact that inner products restrict on vector subspaces, we can show that pullbacks define Riemannian metrics. 
+\begin{lemma}\label{lem: immersions pullback is metric}
+    Let $i:M\to N$ be an immersion. If $g$ is a Riemannian metric on $N$, then $i^{*}g$ is a Riemannian metric on $M$. 
+\end{lemma}
+We conclude with the Gram-Schmidt process for Riemannian manifolds.\marginpar{As commented by the instructor, this proposition is most naturally placed here.} 
+\begin{proposition}[Gram-Schmidt for Riemannian Manifolds]\label{prop: Gram-Schmidt for Riemannian manifolds}
+    Let $(M,g)$ be a Riemannian manifold. Given $p\in M$, there is a local orthonormal frame on a neighborhood $U$ of $p$ such that for all $q\in U$ and $e_{1},\dots,e_{n}\in\Gamma(U,TM)$, $g_{q}(e_{i},e_{j})=\delta_{ij}$. 
+\end{proposition}

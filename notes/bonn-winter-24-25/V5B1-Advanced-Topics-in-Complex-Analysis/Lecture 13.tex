@@ -1,0 +1,90 @@
+\section{Lecture 13 -- 21st November 2024}\label{sec: lecture 13}
+We consider power series in several complex variables. 
+\begin{definition}[Multivariate Complex Power Series]\label{def: multivariate complex power series}
+    The multivariate complex power series ring is the ring $\CC[z_{1},\dots,z_{n}]$ with $f\in\CC[[z_{1},\dots,z_{n}]]$ of the form 
+    $$f=\sum_{\alpha\in\ZZ_{\geq0}^{n}}c_{\alpha}z^{\alpha}.$$
+\end{definition}
+\begin{remark}
+    Here we use multi-index notation, where $c_{\alpha}$ is a constant depending on $\alpha=(\alpha_{1},\dots,\alpha_{n})$ and $z^{\alpha}=z_{1}^{\alpha_{1}}\dots z_{n}^{\alpha_{n}}$. 
+\end{remark}
+\begin{remark}
+    We can also write $f$ as an infinite sum of homogeneous polynomials of fixed degree. 
+\end{remark}
+Convergence is defined as follows. 
+\begin{definition}[Series Convergence]\label{def: convergence}
+    Let $\sum_{\alpha\in\ZZ_{\geq0}^{n}}c_{\alpha}$ is an infinite sum and $\tau\in\CC^{n}$. The sum converges to $\tau$ if for all $\varepsilon>0$, there exists a finite subset $J\subseteq\ZZ_{\geq0}^{n}$ such that
+    $$\left|\tau-\sum_{\alpha\in J_{0}}c_{\alpha}\right|<\varepsilon$$
+    for all $J_{0}\subseteq J$.\marginpar{Definition 3.1}
+\end{definition}
+\begin{definition}[Formal Power Series Convergence]\label{def: formal power series convergence}
+    Let $f\in\CC[[z_{1},\dots,z_{n}]]$. $f$ is a convergent power series if there exists $\tau\in\CC^{n}\setminus\{0\}$ such that the series $\sum_{\alpha\in\ZZ_{\geq0}^{n}}c_{\alpha}\tau^{\alpha}$ is convergent in the sense of \Cref{def: convergence}.
+\end{definition}
+\begin{definition}[Ring of Convergent Power Series]\label{def: ring of formal power series}
+    The ring of convergent power series is the subring $\CC\{z_{1},\dots,z_{n}\}\subseteq\CC[[z_{1},\dots,z_{n}]]$ consisting of convergent power series.\marginpar{Definition 3.2}
+\end{definition}
+We can provide a sufficient criterion for convergence. 
+\begin{proposition}\label{prop: sufficient conditions for convergence}
+    Let $f(z)=\sum_{\alpha\in\ZZ_{\geq0}^{n}}c_{\alpha}z^{\alpha}$ be a formal complex power series and $\tau\in\CC^{n}\setminus\{0\}$ such that $|c_{\alpha}\tau^{\alpha}|$ is bounded. Then $f(z)$ is uniformly convergent for all $z\in B_{|\tau|}(0)$.\marginpar{Proposition 3.1} 
+\end{proposition}
+\begin{proof}
+    For any $z\in B_{|\tau|}(0)$, we have $|z|=\lambda|\tau|$ for some $0<\lambda<1$. Thus by boundedness of $|c_{\alpha}z^{\alpha}|\leq|c_{\alpha}\tau^{\alpha}|\cdot\lambda^{|\alpha|}$ and the claim follows from $\sum_{\alpha\in\ZZ_{\geq0}^{n}}\lambda^{|\alpha|}$ being convergent. 
+\end{proof}
+More generally, we can write holomorphic functions as a convergent power series in the following way. 
+\begin{theorem}\label{thm: power series expansion of holomorphic functions}
+    Let $f$ be a holomorphic function on a polydisc $D_{r}(\tau)$. Then 
+    $$f(z)=\sum_{\alpha\in\ZZ_{\geq0}^{n}}\frac{\partial^{\alpha}f}{\alpha!}(z-\tau)^{\alpha}.$$
+    for $z\in D_{r}(\tau)$.\marginpar{Theorem 3.3}
+\end{theorem}
+\begin{proof}
+    We have that $z\mapsto\frac{1}{w - z}$ can be written as a geometric series $\sum_{\alpha\in\ZZ_{\geq0}^{n}}\frac{(z-\tau)^{\alpha}}{(w-\tau)^{\alpha+1}}$ which is uniformly convergent for $w$ on the boundary of a proper sub-polydisc by \Cref{prop: sufficient conditions for convergence}. Now applying Cauchy's integral formula \Cref{thm: multivariate cauchy integral}, we can interchange integration and summation to yield 
+    $$f(z)=\sum_{\alpha\in\ZZ_{\geq0}^{n}}\left(\frac{1}{(2\pi i)^{n}}\int_{\partial T_{r'}(\tau)}\frac{f(w)}{(w-\tau)^{\alpha+1}}dw\right)(z-\tau)^{\alpha}$$ 
+    but the integral is precisely the partial derivative, which was the claim. 
+\end{proof}
+We now build up to the definition of the structure sheaf on $\CC^{n}$. 
+\begin{definition}[Germ of Functions]\label{def: germ}
+    Let $z\in\CC^{n}$. The ring of germs $\Ocal_{z}$ at $z$ is given by equivalence classes of functions $f$ holomorphic in a neighborhood of $z$ under the pointwise operations where $f\sim g$ if and only if there exists an open set $V\subseteq U_{f}\cap U_{g}$ of the neighborhoods $U_{f},U_{g}$ on which $f,g$ are holomorphic, respectively, on which $f|_{V}=g|_{V}$.\marginpar{Definition 3.3}
+\end{definition}
+We can define the structure sheaf as the disjoint union of these rings. 
+\begin{definition}[Structure Sheaf]\label{def: structure sheaf}
+    The structure sheaf $\Ocal$ on $\CC^{n}$ is given by $\coprod_{z\in\CC^{n}}\Ocal_{z}$.\marginpar{Definition 3.4 \& 3.6} 
+\end{definition}
+There is an evident map $p:\Ocal\to\CC^{n}$ by $(f,z)\mapsto z$. 
+\begin{definition}[Continuous Section of Structure Sheaf]\label{def: continuous section}
+    Let $U\subseteq\CC$. A continuous section of $\Ocal$ over $U$ is a continuous function $\sigma:U\to\Ocal$ such that $\sigma(z)\in\Ocal_{z}$ and there exists a holomorphic function $f$ on $U$ such that $\sigma(z)=f_{z}$ for all $z\in U$.\marginpar{Definiton 3.5}
+\end{definition}
+\begin{remark}
+    The definition above allows us to endow $\Ocal$ with the structure of a topological space with basis elements given by $\sigma(U)$ for $U\subseteq\CC^{n}$
+\end{remark}
+Let us return to more general considerations of holomorphic functions. 
+\begin{proposition}\label{prop: Laurent decomposition}
+    Let $U\subseteq\CC^{n}$ be open, $K\subseteq\CC$ an annulus around the origin of internal and external radii $r,R$, respectively, and $f:U\times K\to \CC$ a holomorphic function. There exist unique holomorphic functions $f_{0}$ on $U\times D_{R}(0)$ and $f_{\infty}$ on $U\times(\CC\setminus\overline{D_{r}(0)})$ such that $f=f_{0}+f_{\infty}$ and $\lim_{w\to\infty}f_{\infty}(z,w)=0$.\marginpar{Proposition 4.1}
+\end{proposition}
+\begin{proof}
+    We can write 
+    $$f(z,w)=\frac{1}{2\pi i}\int_{|u|=R'}\frac{f(z,u)}{u-w}du - \frac{1}{2\pi i}\int_{|u|=r'}\frac{f(z,u)}{u-w}du$$
+    for $r'<|w|<R'$ which are holomorphic in $z$ and $w$ in $|w|<R'$ and $|w|>r'$, respectively. We can take $$\widetilde{f}(z)=\begin{cases}
+        f_{0}(z,w) & |w|< R \\ -f_{\infty}(z,w) & |w|>r
+    \end{cases}$$
+    which is an entire function that goes to 0 as $w\to\infty$. Thus $\widetilde{f}$ is an entire function limiting to 0 as $w\to\infty$ showing uniqueness. 
+\end{proof}
+We can also count the number of zeroes with respect to $w$. 
+\begin{proposition}\label{prop: zero counting}
+    Let $U\subseteq\CC^{n}$ be open, $K\subseteq\CC$ an annulus around the origin of internal and external radii $r,R$, respectively, and $f:U\times K\to \CC$ a holomorphic function. If $f$ has no zeroes in $K$ then the number of zeroes of $f(z,w)$ as a function of $w$ is independent of $z$. 
+\end{proposition}
+\begin{proof}
+    The number of zeroes of $f(z,w)$ as a function of $w$ is given by the integral 
+    $$\frac{1}{2\pi i}\int_{\partial D_{r}(0)}\frac{f_{w}(z,w)}{f(z,w)}dw$$
+    which is continuous in $z$ and integer-valued, and thus constant. 
+\end{proof}
+We conclude with a statement highly reminiscent of the Weierstrass preparation lemma, which we will soon prove. 
+\begin{proposition}\label{prop: pre-Weierstrass preparation}
+    Let $U\subseteq\CC^{n}$ be open, $K\subseteq\CC$ an annulus around the origin of internal and external radii $r,R$, respectively, and $f:U\times K\to \CC$ a holomorphic function with $k$ zeroes in $w$. If $f$ has no zeroes in $K$ then there exists a nonzero function $c$ on $U$ and a holomorphic function $h$ on $U\times K$ such that 
+    $$w^{k}e^{h(z,w)}=c(z)f(z,w).$$
+\end{proposition}
+\begin{proof}
+    For each $z\in U$, the function $w\mapsto\frac{f(z,w)}{w^{k}}=g(z,w)$ admits a holomorphic logarithm with respect to $w$. Thus $\frac{g_{w}(z,w)}{g(z,w)}$ has a holomorphic logarithm with respect and we have $h(z,w)=\int_{u}^{w}\frac{g_{u}(z,u)}{g(z,u)}du$ on $U\times K$ which is holomorphic on $K$ and depends holomorphically on $z,w$. 
+
+    We can take the derivative with respect to $w$ given by 
+    $$\frac{g(z,w)e^{h(z,w)}\frac{g_{w}(z,w)}{g(z,w)}-e^{h(z,w)}g_{w}(z,w)}{g(z,w)^{2}}=\frac{e^{h(z,w)}}{g(z,w)}$$
+    and thus for any $z\in U$ there is a constant $c(z)$ such that $e^{h(z,w)}=c(z)g(z,w)$ which on substituting $g(z,w)=\frac{f(z,w)}{w^{k}}$ yields the claim. 
+\end{proof}

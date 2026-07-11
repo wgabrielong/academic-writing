@@ -1,0 +1,131 @@
+\section{Lecture 8 -- 4th November 2024}\label{sec: lecture 8}
+We continue our discussion of ringed spaces. We continue with some examples, following \Cref{ex: holomorphic functions on open subspace of complex vector space,ex: sheaves of continuous functions are ringed spaces}. 
+\begin{example}
+    Let $X,Y$ be differentiable manifolds and $f:X\to Y$ a differentiable map. There is a natural map $f^{\sharp}:C^{\mathrm{diff}}_{Y}\to f_{*}C^{\mathrm{diff}}_{X}$ taking a differentiable function $g$ on $V\subseteq Y$ to the differentiable function $g\circ f\in C_{X}(f^{-1}(V))$ making $(f,f^{\sharp})$ a morphism of ringed spaces. 
+\end{example}
+\begin{example}
+    Let $X,Y$ be complex manifolds and $f:X\to Y$ a holomorphic map. There is a natural map $f^{\sharp}:C^{\mathrm{diff}}_{Y}\to f_{*}C^{\mathrm{diff}}_{X}$ taking a holomorphic function $g$ on $V\subseteq Y$ to the holomorphic function $g\circ f\in C_{X}(f^{-1}(V))$ making $(f,f^{\sharp})$ a morphism of ringed spaces.
+\end{example}
+We discuss the following example after introducing some basic notions in algebraic geometry. 
+\begin{definition}[Affine Algebraic Set]\label{def: affine algebraic set}
+    Let $k$ be an alegbraically closed field. $X\subseteq k^{n}$ is an affine algebraic set if there exists $\afrak\subseteq k[x_{1},\dots,x_{n}]$ such that for all $f(x)=0$ for all $f(x)\in\afrak$ and all $x\in X$. 
+\end{definition}
+\begin{example}\label{ex: affine algebraic sets}
+    Let $k$ be an algebraically closed field and $X\subseteq k^{n}$ an affine algebraic set. $X$ can be endowed with the Zariski topology. $X$ has the structure of a ringed space where $\Ocal_{X}(U)$ for $U\subseteq X$ open consists of the set of functions $g:U\to k$ such that for all $x\in U$ there exists an open neighborhood $V\subseteq U$ containing $x$ and polynomials $g_{1}(x),g_{2}(x)\in k[x_{1},\dots,x_{n}]$ where for all $y\in V$, $g(y)=\frac{g_{1}(y)}{g_{2}(y)}$. This produces a ringed space $(X,\Ocal_{X})$ for each affine algebraic set, and functions of the type described above are continuous in the Zarkiski topology (here taking $k$ in the Zariski topology as well). 
+\end{example}
+\begin{example}
+    Let $X,Y$ be affine algebraic sets considered as ringed spaces following \Cref{ex: affine algebraic sets}. For $f:X\to Y$ a continuous map between affine algebraic sets, there is an induced map $f^{\sharp}:\Ocal_{Y}\to f_{*}\Ocal_{X}$ when $f$ is regular, that is, for all opens $U\subseteq X$ and $g:V\to k$ in $\Ocal_{Y}(V)$ the composite 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJmXnstMX0oVikiXSxbMiwwLCJWIl0sWzQsMCwiayJdLFsxLDIsImciXSxbMCwxLCJmIl1d
+    \begin{tikzcd}
+        {f^{-1}(V)} && V && k
+        \arrow["f", from=1-1, to=1-3]
+        \arrow["g", from=1-3, to=1-5]
+    \end{tikzcd}$$
+    is regular on $f^{-1}(V)\subseteq X$. 
+\end{example}
+Schemes are in fact examples of locally ringed spaces, and we first turn to a discussion of this more abstract setting. 
+\begin{definition}[Locally Ringed Space]\label{def: locally ringed space}
+    A ringed space $(X,\Ocal_{X})$ is a locally ringed space if for all points $x\in X$ the stalk $\Ocal_{X,x}$ is a local ring. 
+\end{definition}
+To discuss examples, we require the following lemma from commutative algebra. 
+\begin{lemma}\label{lem: complement of ideal invertible implies ideal is unique maximal}
+    Let $A$ be a commutative ring and $\afrak\subseteq A$ an ideal. If $a$ is invertible for all $a\in A\setminus\afrak$ then $\afrak$ is the unique maximal ideal of $A$. 
+\end{lemma}
+\begin{proof}
+    Each element of $A\setminus\mfrak$ generates $A$ as an ideal, in particular, is not contained in any proper maximal ideal. 
+\end{proof}
+\begin{example}
+    Let $X$ be a topological space and $C_{X}$ its sheaf of continuous functions. For each $x\in X$, the stalk $C_{X,x}$ contains a prime ideal $\pfrak_{x}$ consisting of functions vanishing at $x$. This ideal is in fact the unique maximal ideal of $C_{X,x}$ since if $f\in C_{X,x}\setminus\pfrak_{x}$ then there exists a neighborhood $V$ around $x$ on which $f$ is continuous. We can consider $V\setminus f^{-1}(0)\subseteq V$ open, since $f^{-1}(0)$ is closed on which $f$ is nonzero. $f$ is invertible on this open so the germ $f$ is invertible, and maximality and uniqueness follow from \Cref{lem: complement of ideal invertible implies ideal is unique maximal}. 
+\end{example}
+\begin{remark}
+    Differentiable manifolds, complex manifolds, and affine algebraic sets can be argued to be locally ringed spaces in the same way. 
+\end{remark}
+Morphisms of locally ringed spaces will be local ring homomorphisms on stalks. 
+\begin{definition}[Local Ring Homomorphism]\label{def: local ring homomorphism}
+    Let $A,B$ be local rings and $\varphi:A\to B$ be a homomorphism of rings. $\varphi$ is a local ring homomorphism of $\varphi^{-1}(\mfrak_{B})=\mfrak_{A}$. 
+\end{definition}
+\begin{remark}
+    The containment $\varphi^{-1}(\mfrak_{B})\subseteq\mfrak_{A}$ always holds. 
+\end{remark}
+\begin{example}
+    Let $A$ be a local integral domain. The map $A\to\mathrm{Frac}(A)$ is a ring homomorphism between local rings but not a local ring homomorphism, for example $\ZZ_{(p)}\to\QQ$.
+\end{example}
+We can now define morphisms of locally ringed spaces. 
+\begin{definition}[Morphism of Locally Ringed Spaces]\label{def: morphism of locally ringed spaces}
+    Let $(X,\Ocal_{X}),(Y,\Ocal_{Y})$ be locally ringed spaces. A morphism of ringed spaces $(f,f^{\sharp}):(X,\Ocal_{X})\to (Y,\Ocal_{Y})$ is a morphism of locally ringed spaces if for all $x\in X$ the induced map $f^{\sharp}_{x}:\Ocal_{Y,f(x)}\to (f_{*}\Ocal_{X})_{f(x)}=\Ocal_{X,x}$ is a local ring homomorphism. 
+\end{definition}
+This phenomena is captured in morphisms of spectra of rings. 
+\begin{proposition}\label{prop: morphism of rings induces morphism of local rings}
+    Let $\varphi:A\to B$ be a ring homomorphism and $\qfrak\subseteq B$ with $\pfrak=\varphi^{-1}(\qfrak)\subseteq A$. Then $A_{\pfrak}\to B_{\qfrak}$ is a local ring homomorphism. 
+\end{proposition}
+\begin{proof}
+    An element of $A_{\pfrak}\setminus \pfrak A_{\pfrak}$ is of the form $a/a'$ where $a,a'\in A\setminus\pfrak$ so its image $b/b'=\varphi(a)/\varphi(a')$ is such that $b,b'\in B\setminus\qfrak$ and hence invertible. 
+\end{proof}
+Now for a long awaited definition, we can define affine schemes. 
+\begin{definition}[Affine Scheme]\label{def: affine scheme}
+    An affine scheme is a locally ringed space $(X,\Ocal_{X})$ isomorphic to $(\spec(A),\Ocal_{\spec(A)})$ as a locally ringed spaec for some ring $A$.  
+\end{definition}
+We consider some examples. 
+\begin{example}
+    $\spec(\ZZ)$ has stalks given by $\ZZ_{(p)}$ for positive primes $p$ and $\QQ$ over $(0)$. 
+\end{example}
+\begin{example}
+    Let $k$ be a field. $\spec(k)=\{*\}$ with global sections $k$. 
+\end{example}
+\begin{example}
+    $\spec(A[x_{1},\dots,x_{n}])$ for a ring $A$. 
+\end{example}
+\begin{example}\label{ex: affine scheme over DVR}
+    $\spec(A)$ for a discrete valuation ring $A$. Affine schemes of this type can be used to test certain properties of morphisms of schemes. 
+\end{example}
+\begin{example}\label{ex: dual numbers}
+    $\spec(k[\varepsilon]/(\varepsilon^{2}))$ consists of two points as a topological space, one closed point and one generic point. This scheme can be used to test local properties of schemes. 
+\end{example}
+\begin{remark}
+    Note that \Cref{ex: affine scheme over DVR,ex: dual numbers} have the same topological space, but have quite different properties as schemes. Grothendieck's insight was that keeping track of the sheaves of rings preserves very important information that goes missing when only considering the underlying topological spaces. 
+\end{remark}
+We can now define schemes more generally. 
+\begin{definition}[Scheme]\label{def: scheme}
+    A scheme is a locally ringed space $(X,\Ocal_{X})$ such that for each $x\in X$ there exists an open set $U\subseteq X$ with $x\in U$ with $(U,\Ocal_{X}|_{U})$ an affine scheme. 
+\end{definition}
+\begin{remark}
+    By the condition of admitting neighborhoods around every point that are affine schemes, schemes are naturally locally ringed spaces. 
+\end{remark}
+Scheme and affine schemes form natural subcategories of locally ringed spaces. 
+\begin{definition}[Category of Affine Schemes]\label{def: category of affine schemes}
+    The category of affine schemes $\mathsf{Aff}$ has objects affine schemes and morphisms those of locally ringed spaces. 
+\end{definition}
+\begin{definition}[Category of Schemes]\label{def: category of schemes}
+    The category of schemes $\Sch$ has objects schemes and morphisms those of locally ringed spaces. 
+\end{definition}
+By definiton, we have $\mathsf{Aff},\Sch$ as full subcategories of the category of locally ringed spaces $\LRS$ with objects locally ringed spaces and morphisms those of locally ringed spaces in the sense of \Cref{def: morphism of locally ringed spaces}. Summing up, we have 
+$$\mathsf{Aff}\hookrightarrow\Sch\hookrightarrow\LRS\hookrightarrow\RS,$$
+here denoting $\RS$ the category of ringed spaces with objects ringed spaces and morphisms those of ringed spaces in the sense of \Cref{def: morphism of ringed spaces}. Note, however, that $\LRS$ is not a full subcategory of $\RS$, and in this way being a locally ringed space is a structure of a ringed space.\marginpar{See \cite{nLabStructure}.}
+\begin{example}
+    Let $A$ be a local integral domain and $A\to\mathrm{Frac}(A)$ the inclusion inducing the map of affine schemes $\spec(\mathrm{Frac}(A))\to\spec(A)$. This is a morphism of locally ringed spaces as $\Ocal_{\spec(A),(0)}\to (f_{*}\Ocal_{\spec(\mathrm{Frac}(A))})_{(0)}$ is just the morphism $\mathrm{Frac}(A)\to\mathrm{Frac}(A)$. 
+\end{example}
+\begin{example}
+    Let $X=Y=\RR^{n}$ and $C_{X},C_{Y}^{\mathrm{diff}}$ the sheaves of continuous and differentiable functions on $X,Y$, respectively. There is a natural map $(f,f^{\sharp}):(X,C_{X})\to (Y,C_{Y}^{\mathrm{diff}})$ with $f$ the identity and $f^{\sharp}$ the inclusion of $C_{Y}^{\mathrm{diff}}\to C_{X}$ since the direct image $f_{*}C_{X}$ under the identity is just $C_{X}$. Note that this is a homeomorphism of topological spaces but not an isomorphism of locally ringed spaces. 
+\end{example}
+\begin{example}
+    Let $X=Y=\CC^{n}$ and $\Ocal_{X},\Ocal_{Y}$ the sheaves of holomorphic and regular functions on $X,Y$, respectively. There is a natural map $(f,f^{\sharp}):(X,\Ocal_{X})\to (Y,\Ocal_{Y})$ with $f$ the identity and $f^{\sharp}$ the inclusion of regular functions into holomorphic functions. Note that here $f$ is not a homeomorphism of the underlying topological spaces as $X$ and $Y$ have the analytic and Zariski topologies, respectively, which are not equivalent. The map remains continuous as the Zariski topology is coarser than the analytic one. 
+\end{example}
+\begin{example}
+    Let $X=\CC^{n}$, $\Ocal_{X}$ the sheaf of holomorphic functions on $X$, $Y=\A^{n}_{\CC}$ an affine scheme with structure sheaf $\Ocal_{\A^{n}_{\CC}}$. Hilbert's Nullstellensatz gives an equivalence between $\mathrm{mSpec}(\CC[x_{1},\dots,x_{n}])$ and $\CC^{n}$ which induces a natural map $\CC^{n}\to\A^{n}_{\CC}$ which is once again continuous as the Zariski topology is coarser than the analytic topology. There is a natural morphism of sheaves taking a function $s:U\to\coprod_{\pfrak\in U}\CC[x_{1},\dots,x_{n}]_{\pfrak}$ to 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCIoVVxcY2FwIFxcbWF0aHJte21TcGVjfShcXENDW3hfezF9LFxcZG90cyx4X3tufV0pKSJdLFsyLDAsIlxcY29wcm9kX3tcXHBmcmFrXFxpbiBVfVxcQ0NbeF97MX0sXFxkb3RzLHhfe259XV97XFxwZnJha30iXSxbNCwwLCJcXENDIl0sWzEsMl0sWzAsMSwicyJdXQ==
+    \begin{tikzcd}
+        {(U\cap \mathrm{mSpec}(\CC[x_{1},\dots,x_{n}]))} && {\coprod_{\pfrak\in U}\CC[x_{1},\dots,x_{n}]_{\pfrak}} && \CC
+        \arrow["s", from=1-1, to=1-3]
+        \arrow[from=1-3, to=1-5]
+    \end{tikzcd}$$
+    which induces a morphism of locally ringed spaces since $s(\mfrak)\in A_{\mfrak}$ with $A_{\mfrak}$ local and implied by the diagram 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXENDIl0sWzAsMSwiQV97XFxtZnJha30iXSxbMiwwLCJBX3tcXG1mcmFrfS9cXG1mcmFrIEFfe1xcbWZyYWt9Il0sWzAsMiwiXFxzaW0iXSxbMSwyXSxbMCwxXV0=
+    \begin{tikzcd}
+        \CC && {A_{\mfrak}/\mfrak A_{\mfrak}} \\
+        {A_{\mfrak}}
+        \arrow["\sim", from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=2-1, to=1-3]
+    \end{tikzcd}$$
+    commuting. 
+\end{example}

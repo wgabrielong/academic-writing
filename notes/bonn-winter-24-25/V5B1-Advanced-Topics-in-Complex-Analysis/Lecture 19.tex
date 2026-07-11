@@ -1,0 +1,50 @@
+\section{Lecture 19 -- 12th December 2024}\label{sec: lecture 19}
+We want to consider the $\overline{\partial}$-equation more generally. 
+\begin{theorem}\label{thm: smooth solution to 0-1 forms}
+    Let $G\subseteq\CC^{n}$ be a bounded domain with smooth boundary, $f\in C^{1}(\overline{G})$, and 
+    $$u(z)=\frac{1}{2\pi i}\int_{G}\frac{f(w)}{w-z}\dform w\wedge\dform z.$$
+    Then $\overline{\partial}u=f$ on $G$.\marginpar{Theorem 3.2}
+\end{theorem}
+\begin{proof}
+    Let $\tau\in G$ and $D_{r}(\tau)\subseteq G$. Consider an indicator function $\chi:G\to\RR$ such that 
+    $$\chi(z)=\begin{cases}
+        1 & z\in D_{r}(\tau) \\
+        0 & z\notin U
+    \end{cases}$$
+    for $U$ an open neighborhood of $\overline{D_{r}(\tau)}$. We then compute 
+    $$u(z)=\frac{1}{2\pi i}\int_{\CC}\frac{\chi(w)f(w)}{w-z}\dform w\wedge\dform\overline{w}+\frac{1}{2\pi i}\int_{G}\frac{(1-\chi(w))f(w)}{w-z}\dform w\wedge\dform\overline{w}.$$
+    by \Cref{thm: Bochner-Martinelli integral}. In particular the second summand is holomorphic in $z$. Letting teh first summand be $u_{1}(z)$ and $z\in D_{r}(\tau)$ we have $\overline{\partial}u=\overline{\partial} u_{1}=\chi(z)f(z)=f(z)$ on $G$. 
+\end{proof}
+We now show that each form of type $(0,q)$ arises as the antiholomorphic differential of a form of type $(0,q-1)$. This is the statement of the Dolbeault lemma. We proceed using the following lemma. 
+\begin{lemma}\label{lem: Dolbeault lemma preparation}
+    Let $D_{r}(\tau)$ be a polydisc and $f$ a smooth $(0,q)$-form on $D_{r}(\tau)$ such that $\overline{\partial}f=0$. Then there exists a smooth $(0,q-1)$-form $u$ on $D_{r'}(\tau)$ with $r'<r$ having relatively compact closure such that $\overline{\partial}u=f$. 
+\end{lemma}
+\begin{proof}
+    Let $D_{r''}(\tau)\subseteq D_{r'}(\tau)$ and $D_{r'}(\tau)\subseteq D_{r}(\tau)$ be polydiscs with relatively compact closure. Define $E_{k}$ to be the set of smooth $(0,s)$-forms 
+    $$E_{k}=\left\{f=\sum_{|J|=s}f_{J}\dform\overline{z}^{J}:f_{J}=0\text{ if }l\in J, l>k\right\}.$$
+    We induct over $k$. 
+
+    Note if $f\in E_{0}$ then $f$ is identically 0 and each form lies in $E_{n}$. For the base case, observe that if $f$ is a $(0,1)$-form on $D_{r'}(\tau)$ with $\overline{\partial}f=0$ wtih $f\in E_{0}$ we are done. Now suppose the assumption holds for $E_{k-1}$ where we can write 
+    $$f=\sum_{|J|=s}f_{J}\dform\overline{z}^{J}=\dform\overline{z_{k}}\wedge g+h$$
+    with $g,h\in E_{k-1}$. We can compute to observe $0=\overline{\partial}f=-\dform\overline{z_{k}}=-\dform\overline{z}^{k}\wedge\overline{\partial}g+\overline{\partial}h$ where in particular $\dform\overline{z_{k}}\wedge\overline{\partial}g=\overline{\partial}h$. Now let 
+    $$g=\sum_{|T|=q-1}g_{T}\dform\overline{z}^{T}.$$
+    We have that $g_{T}$ are holomorphic in $z_{k+1},\dots,z_{n}$ since if $\partial_{\overline{z_{l}}}g_{T}\neq0$ or some $l>k$ then $\dform\overline{z_{l}}$ is one of the summands of $\overline{\partial }g$ and thus $\dform\overline{z}^{K}\wedge\overline{\partial}g$ has $\dform\overline{z}^{K}\wedge\dform\overline{z_{l}}$ as a summand but $\overline{\partial}h$ does not, giving the claim. Now using \Cref{thm: smooth solution to 0-1 forms}, we can set $\widetilde{g}_{T}$ to be the $(0,1)$-forms for the problem $\overline{\partial}\widetilde{g}_{T}=g_{T}$ which are holomorphic in $z_{k+1},\dots,z_{n}$ by the preceding discussion. We then set 
+    $$\widetilde{g}=\sum_{|T|=s-1}\widetilde{g}_{T}\dform\overline{z}^{T}$$
+    and compute 
+    \begin{align*}
+        \overline{\partial}\widetilde{g} &= \sum_{|T|=s-1}\sum_{l=1}^{n}\partial_{\overline{z_{l}}}\widetilde{g}_{T}\cdot\dform\overline{z_{l}}\wedge\dform\overline{z}^{T}\\
+        &= h_{1}+\overline{\partial}\overline{z_{k}}\wedge g
+    \end{align*}
+    with $g,h\in E_{k-1}$ so taking $u$ such that $\overline{\partial}u=h-h_{1}$ we have $f=\overline{\partial}g+\overline{\partial}u$ as desired. 
+\end{proof}
+We can now show the Dolbeault lemma in general. 
+\begin{theorem}[Dolbeault Lemma]\label{thm: Dolbeault lemma}
+    Let $D_{r}(\tau)\subseteq\CC^{n}$ be a polydisc, $f$ a smooth $(0,q)$-form on $D_{r}(\tau)$ such that $\overline{\partial}f=0$. Then there exists a smooth $(0,q-1)$-form $u$ on $D_{r}(\tau)$ such that $\overline{\partial}u=f$.\marginpar{Theorem 3.3}
+\end{theorem}
+\begin{proof}
+    Let $D_{r_{0}}(\tau)\subseteq D_{r_{1}}(\tau)\subseteq\dots$ be a sequence of polydiscs each $D_{r_{t}}(\tau)$ having compact closure in $D_{r_{t+1}}(\tau)$ and $D_{r}(\tau)=\bigcup_{t=0}^{\infty}D_{r_{t}}(\tau)$. We proceed by induction on the index $t$. 
+
+    By \Cref{lem: Dolbeault lemma preparation}, there exist functions $u_{0}$ smooth on $D_{r_{0}}(\tau)$ satisfying $\overline{\partial}u_{0}=f$ on $D_{r_{0}}(\tau)$. Now suppose that there are functions $u_{0},\dots,u_{l}$ which are $(0,q-1)$-forms on $D_{r_{\lambda}}(\tau)$ for $0\leq\lambda\leq l$ such that $\overline{\partial}u_{\lambda}=f$ on $D_{r_{\lambda}}(\tau)$ and $u_{\lambda}=u_{\lambda-1}$ on $D_{r_{\lambda-2}}(\tau)$. We can then construct $u'_{l+1}$ on $D_{r_{l+1}}(\tau)$ such that $\overline{\partial}u_{l+1}'=f, \overline{\partial}(u_{l+1}'-u_{l})=0$ on $D_{r_{l}}(\tau)$. 
+
+    We can thus find $h$ on $D_{r_{l-1}}(\tau)$ such that $\overline{\partial}h=u_{l+1}'+u_{l}$ with $h$ smooth on $D_{r_{l+1}}(\tau)$ and taking $u_{l+1}=u_{l+1}'-\overline{\partial}h$ we have $\overline{\partial}u_{l+1}=f$. We can then take $u=\lim_{l\to\infty}u_{l}$ which is a solution on all of $D_{r}(\tau)$. The case $q=1$ follows by estimating using the Taylor development and bounding the growth differences on polydiscs. 
+\end{proof}

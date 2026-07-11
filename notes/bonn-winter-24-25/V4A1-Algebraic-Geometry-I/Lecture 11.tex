@@ -1,0 +1,68 @@
+\section{Lecture 11 -- 15th November 2024}\label{sec: lecture 11}
+Extending the correspondence between radical ideals and closed algebraic subsets, we have an equivalence between closed subschemes and ideals of a ring. In particular, the generality schemes provides allows us to treat all ideals instead of just radical ideals. 
+\begin{proposition}\label{prop: closed subschemes are ideals}
+    Let $A$ be a ring and $\spec(A)$ be a ring. There is a bijection between ideals of $A$ and closed subschemes of $\spec(A)$. 
+\end{proposition}
+\begin{proof}
+    The maps are given by $\afrak\mapsto\spec(A/\afrak)$ and $Z\mapsto\ker(\Ocal_{\spec(A)}(\spec(A))\to i_{*}\Ocal_{Z}(\spec(A)))$ where $\afrak=\ker(\Ocal_{\spec(A)}(\spec(A))\to i_{*}\Ocal_{\spec(A/\afrak)}(\spec(A)))$. Conversely for $Z\subseteq X$ closed, let $\afrak_{Z}=\ker(\Ocal_{\spec(A)}(\spec(A))\to i_{*}\Ocal_{Z}(\spec(A)))$ so we have an exact sequence $0\to\afrak_{Z}\to A\to \Ocal_{Z}(Z)$ for any $f\in A$ mapping to $g\in Y$, exactness of localization we have $0\to\afrak_{Z,f}\to A_{f}\to\Ocal_{Z}(Z_{g})=\Ocal_{Z}(Z)_{g}$ so $\afrak_{Z}$ is an ideal sheaf where sections on $D(f)$ are $\afrak_{Z,f}=\afrak_{Z}\otimes_{A}A_{f}$ which satisfies the property of the ideal sheaf of $Z$ so $Z$ is $\spec(A/\afrak_{Z})$. 
+\end{proof}
+We now discuss fibered products of schemes. This will lead to the construction of the category of $S$-schemes and $k$-schemes when $S=\spec(k)$. 
+\begin{definition}[Fibered Product]\label{def: fibered product}
+    Let $f:X\to S, g:Y\to S$ be morphisms of schemes. The fibered product, if it exists, is a scheme $X\times_{S}Y$ with maps $\pr_{X}:X\times_{S}Y\to X, \pr_{Y}:X\times_{S}Y\to Y$ such that for all schemes $Z$ with maps to $X,Y$ that agree on $S$ 
+    $$% https://q.uiver.app/#q=WzAsNSxbMSwxLCJYXFx0aW1lc197U31ZIl0sWzMsMSwiWCJdLFsxLDIsIlkiXSxbMywyLCJTIl0sWzAsMCwiWiJdLFswLDEsIlxccHJfe1h9Il0sWzAsMiwiXFxwcl97WX0iLDJdLFsxLDNdLFsyLDNdLFs0LDIsIiIsMix7ImN1cnZlIjoyfV0sWzQsMSwiIiwyLHsiY3VydmUiOi0xfV0sWzQsMCwiXFxleGlzdHMhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \begin{tikzcd}
+        Z \\
+        & {X\times_{S}Y} && X \\
+        & Y && S
+        \arrow["{\exists!}"{description}, dashed, from=1-1, to=2-2]
+        \arrow[curve={height=-6pt}, from=1-1, to=2-4]
+        \arrow[curve={height=12pt}, from=1-1, to=3-2]
+        \arrow["{\pr_{X}}", from=2-2, to=2-4]
+        \arrow["{\pr_{Y}}"', from=2-2, to=3-2]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-2, to=3-4]
+    \end{tikzcd}$$
+    there is a unique morphism $Z\to X\times_{S}Y$ making the diagram commute. 
+\end{definition}
+We will eventually show that the fibered product of any two schemes over any base exists. We begin in the affine case with the following preparatory statement which extends \Cref{prop: affine schemes is antiequivalent to rings}.\marginpar{We learned of this argument from Ben Steffan's notes.}
+\begin{proposition}\label{prop: maps from ring to global sections of general scheme}
+    There is a bijection 
+    $$\Mor_{\Ring}(A,\Gamma(X,\Ocal_{X}))\to\Mor_{\Sch}(X,\spec(A))$$
+    for all rings $A$ and schemes $X$. 
+\end{proposition}
+\begin{proof}
+    Let $\{\spec(B_{i})\}_{i\in I}$ be an affine open cover of $X$ and $\{\spec(B_{ijk})\}_{k\in K_{ij}}$ be an affine open cover of $\spec(B_{i})\cap\spec(B_{j})$. Now note the sequence 
+    $$% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHByb2Rfe2ksalxcaW4gSX1cXE1vcl97XFxTY2h9KFxcc3BlYyhCX3tpfSksXFxzcGVjKEEpKSJdLFswLDAsIlxcTW9yX3tcXFNjaH0oWCxcXHNwZWMoQSkpIl0sWzEsMSwiXFxwcm9kX3tpLGpcXGluIEksIGtcXGluIEtfe2lqfX1cXE1vcl97XFxTY2h9KFxcc3BlYyhCX3tpamt9KSxcXHNwZWMoQSkpIl0sWzAsMV0sWzEsMF0sWzMsMiwiIiwyLHsib2Zmc2V0IjotMX1dLFszLDIsIiIsMCx7Im9mZnNldCI6MX1dXQ==
+    \begin{tikzcd}
+        {\Mor_{\Sch}(X,\spec(A))} & {\prod_{i,j\in I}\Mor_{\Sch}(\spec(B_{i}),\spec(A))} \\
+        {} & {\prod_{i,j\in I, k\in K_{ij}}\Mor_{\Sch}(\spec(B_{ijk}),\spec(A))}
+        \arrow[from=1-1, to=1-2]
+        \arrow[shift left, from=2-1, to=2-2]
+        \arrow[shift right, from=2-1, to=2-2]
+    \end{tikzcd}$$
+    is an equalizer since a morphism of schemes $X\to\spec(A)$ is determined by morphisms on the open cover $\{\spec(B_{i})\}_{i\in I}$ which agree on the intersections $\spec(B_{i})\cap\spec(B_{j})$ and hence in particular on the affine subschemes of intersections $\spec(B_{ijk})$. Applying \Cref{prop: affine schemes is antiequivalent to rings}, we have by passing to global sections 
+    $$% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHByb2Rfe2ksalxcaW4gSX1cXE1vcl97XFxSaW5nfShBLEJfe2l9KSJdLFswLDAsIlxcTW9yX3tcXFJpbmd9KEEsXFxHYW1tYShYLFxcT2NhbF97WH0pKSJdLFsxLDEsIlxccHJvZF97aSxqXFxpbiBJLCBrXFxpbiBLX3tpan19XFxNb3Jfe1xcUmluZ30oQSxCX3tpamt9KSJdLFswLDFdLFsxLDBdLFszLDIsIiIsMix7Im9mZnNldCI6LTF9XSxbMywyLCIiLDAseyJvZmZzZXQiOjF9XV0=
+    \begin{tikzcd}
+        {\Mor_{\Ring}(A,\Gamma(X,\Ocal_{X}))} & {\prod_{i,j\in I}\Mor_{\Ring}(A,B_{i})} \\
+        {} & {\prod_{i,j\in I, k\in K_{ij}}\Mor_{\Ring}(A,B_{ijk})}
+        \arrow[from=1-1, to=1-2]
+        \arrow[shift left, from=2-1, to=2-2]
+        \arrow[shift right, from=2-1, to=2-2]
+    \end{tikzcd}$$
+    by the sheaf property on $X$.  
+\end{proof}
+We deduce that taking the spectrum of global sections is the left ajdoint of the inclusion of affine schemes to schemes. 
+\begin{corollary}\label{corr: spectra of global sections is left adjoint of the inclusion}
+    The functor $X\mapsto\spec(\Gamma(X,\Ocal_{X}))$ is left adjoint to the inclusion $\mathsf{AffSch}\to\Sch$. 
+\end{corollary}
+\begin{proof}
+    From \Cref{prop: affine schemes is antiequivalent to rings,prop: maps from ring to global sections of general scheme}, we have a bijection $$\Mor_{\mathsf{AffSch}}(\spec(\Gamma(X,\Ocal_{X})),\spec(A))\to\Mor_{\Sch}(X,\spec(A))$$
+    for all rings $A$ and schemes $X$.  
+\end{proof}
+We can show that fibered products over diagrams of affine schemes are just spectra of tensor products of rings. 
+\begin{proposition}\label{prop: fibered products of affine schemes}
+    Let $\spec(A)\to\spec(R),\spec(B)\to\spec(R)$. Then the fibered product $\spec(A)\times_{\spec(R)}\spec(B)$ is canonically isomorphic to $\spec(A\otimes_{R}B)$. 
+\end{proposition}
+\begin{proof}
+    \Cref{corr: spectra of global sections is left adjoint of the inclusion} shows that the inclusion $\mathsf{AffSch}\to\Sch$ is a right adjoint and thus the functor preserves limits and in particular fibered products. The fibered product as an affine scheme, if it exists, will agree with the fibered product in $\Sch$. Under the antiequivalence of $\mathsf{AffSch}$ and $\Ring$ in \Cref{prop: affine schemes is antiequivalent to rings}, the fibered product in $\mathsf{AffSch}$ is computed as a pushout in $\Ring$ which is exactly the tensor product. 
+\end{proof}
