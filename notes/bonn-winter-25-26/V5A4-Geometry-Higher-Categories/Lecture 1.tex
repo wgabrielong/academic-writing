@@ -1,0 +1,184 @@
+\section{Lecture 1 -- 17th October 2025}\label{sec: lecture 1}
+It is generally observed that there is a duality between geometry and algebra. Consider the following examples: 
+\begin{enumerate}
+    \item (Gelfand-Naimark Duality) The category of complex Hausdorff spaces and commutative Banach $\CC^{*}$-algebras are antiequivalent -- the duality takes a compact Hausdorff space $X$ to $\Cont(X,\CC)$ the ring of continuous $\CC$-valued functions on it, and conversely a commutative Banach $\CC^{*}$-algebra to $\Hom(A,\CC)$. 
+    \item (Stone Duality) The category of totally disconnected Hausdorff spaces and Boolean algebras are antiequivalent -- the duality takes a totally disconnected Hausdorff space $X$ to $\Cont(X,\FF_{2})$, and conversely a Boolean algebra $A$ to its Zariski spectrum $\spec(A)$ which is equivalent to $\Hom(A,\FF_{2})$.   
+    \item (Classical Algebraic Geometry) Let $k$ be an algebraically closed field. The category of affine $k$-varieties and integral $k$-algebras of finite type are antiequivalent -- the duality takes an affine $k$-variety $X$ to its ring of regular functions $\Ocal_{X}$, and conversely an integral finite type $k$-algebra $A$ to its maximal spectrum $\mathrm{mSpec}(A)$. 
+    \item (Scheme Theory) The category of affine schemes and commutative rings are antiequivalent -- the duality takes an affine scheme $X$ to its ring of global secitions $\Gamma(X,\Ocal_{X})$, and conversely a commutative ring $A$ to its Zariski spectrum $\spec(A)$. 
+\end{enumerate}
+Already points (3) and (4) suggest defects to the theory -- we often want to consider all $k$-varieties, or all schemes, which the algebra fails to capture. This fails even in simple examples. 
+\begin{example}\label{ex: P1}
+    Let $k$ be a field. $\Gamma(\PP^{1}_{k},\Ocal_{\PP^{1}_{k}})=k$ and $\Gamma(\spec(k),\Ocal_{\spec(k)})=k$ so the algebra-side of the dictionary is unable to distinguish between $\PP^{1}_{k}$ and a point $\spec(k)$. 
+\end{example}
+Observe that the category of schemes is obtained by gluing, or formally adjoining colimits, to affine schemes. In fact, the duality of (4) can be extended to the following schema:
+\begin{equation}\label{eqn: schemes}
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXFNjaCJdLFszLDAsIlxcbWF0aHNme0FmZn0iXSxbNiwwLCJcXG1hdGhzZntDUmluZ30iXSxbMiwxLCJcXHRleHR7Zm9ybWFsbHkgZHVhbH0iLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJhcnJvd2hlYWQifX19XSxbMSwwLCJcXHRleHR7YWRqb2luaW5nIGNvbGltaXRzfSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV1d
+    \begin{tikzcd}
+        \Sch &&& {\mathsf{Aff}} &&& {\mathsf{CRing}}
+        \arrow["{\text{adjoining colimits}}"', hook', from=1-4, to=1-1]
+        \arrow["{\text{formally dual}}"', tail reversed, from=1-7, to=1-4]
+    \end{tikzcd}
+\end{equation}
+And, in more modern words, the adjoining of these colimits can be phrased in terms of taking sheaves of sets with respect to some Grothendieck topology on $\mathsf{Aff}$ -- or, equivalently, $\mathsf{CRing}$. Namely, there is an equivalence of categories between the category of schemes and the category of locally representable sheaves of sets on $\mathsf{Aff}$ in the Zariski topology. 
+
+The theory of moduli in classical algebraic geometry already leads to an enhancement of the above schema. Looked at with the correct lens, we ought seek to capture not just an algebro-geometric object itself, but also its automorphisms. This leads us to the theory of stacks, which is obtained as follows: 
+\begin{equation}\label{eqn: algebraic stacks}
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhzZntBbGdTdGt9Il0sWzMsMCwiXFxtYXRoc2Z7QWZmfSJdLFs2LDAsIlxcbWF0aHNme0NSaW5nfSJdLFsyLDEsIlxcdGV4dHtmb3JtYWxseSBkdWFsfSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6ImFycm93aGVhZCJ9fX1dLFsxLDAsIlxcdGV4dHtzaGVhdmVzIG9mIGdyb3Vwb2lkc30iLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dXQ==
+    \begin{tikzcd}
+        {\mathsf{AlgStk}} &&& {\mathsf{Aff}} &&& {\mathsf{CRing}}
+        \arrow["{\text{sheaves of groupoids}}"', hook', from=1-4, to=1-1]
+        \arrow["{\text{formally dual}}"', tail reversed, from=1-7, to=1-4]
+    \end{tikzcd}
+\end{equation}
+here taking $\mathsf{AlgStk}$ to be the category of all sheaves of groupoids with respect to, say, the fpqc topology on $\mathsf{Aff}$, within which we can isolate the categories of Deligne-Mumford and Artin stacks as those satisfiying additional representability-type conditions. As both this and the previous example illustrate, the specification of a Grothendieck topology is the prescription of a gluing where we identify the colimits that we want to see as identical. More generally, we can think of geometric objects as objects of a certain topos on a site formally dual to certain algebraic objects.
+
+In some sense, this perspective of geometric objects as objects of a topos is better than that of looking at the geometric objects themselves. 
+\begin{example}\label{ex: BG}
+    Let $G$ be a group. $BG=[*/G]$ is nontrivial as an algebraic stack, but its underlying topological space is a point. 
+\end{example}
+The preceding example already leads to an interesting example of a duality between our new sense of geometry and categories. 
+\begin{example}[Tannaka Duality]\label{ex: Tannaka duality}
+    Let $k$ be an algebraically closed field. There is an equivalence of categories between classifying spaces of affine group schemes over $k$ and Tannakian categories -- compactly generated symmetric monoidal exact $k$-linear categories such that all compact objects are dualizable with endomorphisms of the unit given by $k$. 
+\end{example}
+A more modern perspective on Tannaka duality studies the functor taking a scheme $X$ to its category of quasicoherent sheaves $\QCoh(X)$. We state the most general results established at the level of spectral algebraic stacks, which are as follows. 
+\begin{theorem}[Bhatt--Halpern-Leinster; {\cite[Thm. 1.4]{BHL}}]\label{thm: Tannaka BHL}
+    Let $X$ be a Noetherian spectral algebraic stack with quasi-affine diagonal. Then for any affine spectral scheme $S$, the the association $f\mapsto f^{*}$ gives a fully faithful embedding $\Mor_{\mathsf{SpStk}}(S,X)$ into the functor category of strongly symmetric monoidal colimit-preserving functors $\Dscr(X)$ to $\Dscr(S)$. 
+\end{theorem}
+\begin{theorem}[Stefanich; {\cite[Thm. 1.0.3]{StefanichTD}}]
+    Let $X$ be a quasicompact spectral geometric stack with quasiaffine diagonal and $Y$ any spectral geometric stack. Then the association $f\mapsto f^{*}$ provides an equivalence between the animae of maps from $Y$ to $X$ and the animae of strongly symmetric monoidal colimit-preserving functors from the connective objects of $\QCoh(X)$ to the connective objects of $\QCoh(Y)$. 
+\end{theorem}
+
+The preceding results then suggest that one could establish a duality between (algebraic) geometry and category theory, categorifying the dualities discussed at the begining of this lecture. In particular, one asks the following question:
+\begin{question}
+    Can one produce a theory of algebraic geometry from stable presentably symmetric monoidal categories $\Cscr\in\PrL_{\St}$? 
+\end{question}
+Observe there are many categories in $\PrL_{\St}$, some of them poorly ``algebraically behaved'' such as the categories associated to the theory of Faltings' almost mathematics and categories of a functional-analytic nature where one the algebraic tensor product must be completed. Examples of the latter type of categories include the ind-Banach spaces of Ben-Bassat, et. al. and analytic rings of Clausen-Scholze. 
+
+Consider the generalization of the schema of (\ref{eqn: schemes}) and (\ref{eqn: algebraic stacks}) first considered by Deligne. 
+\begin{question}
+    Fix $\Cscr$ a symmetric monoidal category. Can one do algebraic geometry ``relative to $\Cscr$''
+    \begin{equation}\label{eqn: relative algebraic geometry}
+        % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhzZntTdGt9X3tcXENzY3J9Il0sWzMsMCwiXFxtYXRoc2Z7QWZmfV97XFxDc2NyfSJdLFs2LDAsIlxcQ0FsZyhcXENzY3IpIl0sWzIsMSwiXFx0ZXh0e2Zvcm1hbGx5IGR1YWx9IiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn19fV0sWzEsMCwiXFx0ZXh0e3NoZWF2ZXMgb2YgZ3JvdXBvaWRzfSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV1d
+        \begin{tikzcd}
+            {\mathsf{Stk}_{\Cscr}} &&& {\mathsf{Aff}_{\Cscr}} &&& {\CAlg(\Cscr)}
+            \arrow["{\text{sheaves of groupoids}}"', hook', from=1-4, to=1-1]
+            \arrow["{\text{formally dual}}"', tail reversed, from=1-7, to=1-4]
+        \end{tikzcd}
+    \end{equation}
+    by declaring the category of $\Cscr$-affine schemes $\mathsf{Aff}_{\Cscr}$ to be formally dual to the full subcategory spanned by the commutative algebra objects of $\Cscr$ and form a category of $\Cscr$-stacks by taking sheaves of groupoids with respect to an appropriate Grothendieck topology? 
+\end{question} 
+\begin{remark}
+    Already one can define the spectrum of a commutative algebra object of a symmetric monoidal category, following work of Balmer \cite{Balmer}.  
+\end{remark}
+In the functional analytic contexts previously discussed, the above analogy gives rise to a good notion of (higher) analytic geometry. In particular, the notion allows for the definition of quasicoherent sheaves in settings where this was not previously possible and finiteness hypotheses were required. Even better, we can work internal to $\PrL_{\St}$ as for each $A\in\CAlg(\Cscr)$ for $\Cscr$ symmetric monoidal (and some hypotheses on $\Cscr$), $\Mod_{A}\in\CAlg(\PrL_{\St})$. 
+\begin{equation}\label{eqn: GR}
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCI/PyJdLFszLDAsIlxcbWF0aHNme0FmZn1eezF9Il0sWzYsMCwiXFxDQWxnKFxcUHJMX3tcXFN0fSkiXSxbMiwxLCJcXHRleHR7Zm9ybWFsbHkgZHVhbH0iLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJhcnJvd2hlYWQifX19XSxbMSwwLCJcXHRleHR7c2hlYXZlcyBvZiBncm91cG9pZHN9IiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XV0=
+    \begin{tikzcd}
+        {??} &&& {\mathsf{Aff}^{1}} &&& {\CAlg(\PrL_{\St})}
+        \arrow["{\text{sheaves of groupoids}}"', hook', from=1-4, to=1-1]
+        \arrow["{\text{formally dual}}"', tail reversed, from=1-7, to=1-4]
+    \end{tikzcd}
+\end{equation}
+In this setting, Gaitsgory-Rozenblyum have already established the appropriate notion of 1-affine stacks as the formal dual of stable presentably symmetric monoidal categories, but it is more difficult to establish what the correct notion of geometry is here. Two main issues arise: 
+\begin{itemize}
+    \item The geometry here seems uncontrollable as there are too many examples. 
+    \item There is not any reason a good notion of duality should hold \emph{a priori} as taking quasicoherent sheaves might not see enough information. 
+\end{itemize}
+In fact, we can observe that the ``stackier'' an object gets, the less the category of quasicoherent sheaves sees. 
+\begin{example}\label{ex: B2Gm}
+    Let $B^{2}\GG_{m}=[*/[*/\GG_{m}]]$. There is an equivalence of derived categories of quasicoherent sheaves $\Dscr(B^{2}\GG_{m})\simeq\Dscr(*)$ to the derived category of quasicoherent sheaves on the point. 
+\end{example}
+The object $B^{2}\GG_{m}$ considered in \Cref{ex: B2Gm} is not very exotic --- it is closely related to the theory of Brauer groups and Azumaya algebras. Recall that maps $X\to B^{2}\GG_{m}$ for classical schemes classify Azumaya algebras $\Acal$ which can equivalently be considered as elements of the Brauer group. To any Azumaya algebra $\Acal$, we can consider its category of modules $\Mod_{\Acal}(\QCoh(X))$ which is a locally trivial $\QCoh(X)$-linear category. 
+
+More generally, we can consider the association $A\mapsto\PrL_{A}=\Mod_{\Dscr(A)}(\PrL)$ where $\Dscr(A)$ is the derived ($\infty$-)category of the (animated) ring $A$ and by descent define $X\mapsto\PrL_{X}=\Mod_{\Dscr(X)}(\PrL)$ which satisfies $\End_{\PrL_{X}}(1)=\Dscr(X)$. 
+
+This captures some higher information that we wish to see. 
+\begin{example}
+    There exists a tautological invertible object in $\PrL_{B^{2}\GG_{m}}$ such that for any $f:X\to B^{2}\GG_{m}$ classifying an Azumaya algebra $\Acal$, the invertible object of $\PrL_{B^{2}\GG_{m}}$ pulls back to a distinguished invertible object in $\Mod_{\Acal}(\Dscr(X))$. 
+\end{example}
+However, this is at times not enough. 
+\begin{example}
+    $\PrL_{B^{2}\GG_{m}}\simeq\PrL_{\Dscr(*)}$ which follows formally from \Cref{ex: B2Gm}. 
+\end{example}
+
+The solution, then, is to work with presentable $(\infty,n)$-categories, which were first defined by Stefanich \cite{StefanichPrL}, and further developed by Aoki \cite{AokiPrL}. First recall the following variation of a definition of Lurie. 
+\begin{definition}[$\kappa$-Presentable $\infty$-Category]\label{def: presentable}
+    Let $\kappa$ be a regular cardinal. The category of $\kappa$-presentable $\infty$-categories is the category with objects $\kappa$-compactly generated presentable $\infty$-categories and morphisms those colimit preserving functors preserving $\kappa$-compact objects. 
+\end{definition}
+A key insight, then, is that the category of $\kappa$-presentable categories is a commutative algebra in itself. 
+\begin{proposition}[Aoki; {\cite[Prop. 2.3]{AokiPrL}}]\label{prop: contains itself as CAlg}
+    Let $\kappa$ be a regular cardinal. Then $\PrL_{\kappa}$ is an object of $\CAlg(\PrL_{\kappa})$. 
+\end{proposition}
+By iteratively taking module categories, we can make the following definition. 
+\begin{definition}[$\kappa$-Presentable $(\infty,n)$-Category]\label{def: presentable infinity n}
+    Let $\kappa$ be a regular cardinal. Set $1\PrL$ to be $\PrL$ and define inductively for $n\geq 1$ 
+    \begin{equation}\label{eqn: nPrL}
+        (n+1)\PrL_{\kappa}=\Mod_{n\PrL_{\kappa}}(\PrL_{\kappa}).
+    \end{equation}
+\end{definition}
+\begin{remark}
+    In most cases, it suffices to consider $\kappa=\omega$ which gives rise to compactly generated presentable categories. We will at most need to work with $\omega_{1}$-presentable categories which includes, for example, the category of sheaves on the unit interval. 
+\end{remark}
+\begin{convention}\label{conv: convention}
+    We will henceforth work $\omega_{1}$-small, surpressing all $\omega_{1}$'s from the notation. 
+\end{convention}
+Using that for a geometric object $X$ we can make a similar definition. 
+\begin{definition}[$\kappa$-Presentable $X$-Linear $(\infty,n)$-Category]\label{def: presentable infinity n linear}
+    Let $X$ be a geometric object and $\Dscr(X)$ its category of quasicoherent sheaves. Set $0\PrL_{X}=\Dscr(X)$ and define recursively for $n\geq 1$
+    \begin{equation}\label{eqn: X-linear}
+        (n+1)\PrL_{X}=\Mod_{n\PrL_{X}}(\PrL). 
+    \end{equation}
+\end{definition}
+\begin{remark}
+    Note the difference in indexing convention: $\PrL_{X}$ being a module category over $\Dscr(X)$ is a presentable $(\infty,2)$-category and more generally $n\PrL_{X}\in(n+1)\PrL$. 
+\end{remark}
+In particular, for any geometric object $X$, we can define a sequence $$\Dscr(X), \PrL_{X},2\PrL_{X},\dots$$ where $\End_{(n+1)\PrL_{X}}(1)\simeq n\PrL_{X}$, that is, endomorphisms of the unit object of each category recovers the immediately preceding category in the sequence. This motivates the notion of a Stefanich ring. 
+\begin{definition}[Stefanich Ring]\label{def: Stefanich ring}\marginpar{The instructor remarks that this is a mild generalization of commutative rings.}
+    A Stefanich ring is a sequence $(A_{0},A_{1},\dots)$ where $A_{0}\in\CAlg(\Sp)$ and $A_{n}\in\CAlg(n\PrL)$ for each $n\geq 1$ such that there are symmetric monoidal equivalences $\End_{A_{n}}(1)\simeq A_{n-1}$. 
+\end{definition}
+Denote $\St\Ring$ to be the category of Stefanich rings with morphisms those that make the obvious ladder-shaped diagram commute. 
+\begin{remark}
+    This notion was previously introduced by Stefanich under the name of categorical spectrum, where taking endomorphisms of the unit at each stage can be thought of as a delooping operation. The instructor has adopted this nomenclature to avoid confusion with the Zariski spectrum and related constructions. 
+\end{remark}
+\begin{example}\label{ex: analytic stacks}
+    Recall that an analytic ring is a pair $(A^{\rhd},\Mod_{A})$ where $A^{\rhd}$ is an animated condensed ring and $\Mod_{A}\subseteq\Mod_{A^{\rhd}}$ a full subcategory of $\Mod_{A^{\rhd}}$ which contains $A^{\rhd}$ and satisfies certain additional properties. A morphism of analytic rings is a morphism of condensed rings $A^{\rhd}\to B^{\rhd}$ such that the restriction of scalars functor $\Mod_{B}\to\Mod_{A^{\rhd}}$ has essential image in $\Mod_{A}$. Analytic rings form an evident category, so we can define the category of analytic stacks to be the category $\PSh(\mathsf{AnRing},\Ani)[W^{-1}]$, the localization of the presheaf category at morphisms that induce isomorphisms on all Stefanich rings. 
+\end{example}
+\begin{remark}\label{rmk: analytic stacks}
+    \Cref{ex: analytic stacks} resolves an error in the definition of an analytic stack as presented in \cite{AnalyticStacks}. 
+\end{remark}
+
+While there are still too many examples to consider explicity within $\St\Ring$, the issue of duality completely dissapears within this new formalism of Stefanich rings. 
+\begin{theorem}[Scholze-Stefanich]\label{thm: Gest is topos}
+    The category $\St\Ring^{\Opp}$ is\footnote{Modulo minor technicalities.} an $(\infty,1)$-topos. 
+\end{theorem}
+\begin{remark}
+    For usual derived and animated rings, the ``Grothendieck topology'' here is closely related to the notion of descendability as established by Matthew \cite{MatthewDescendability}. 
+\end{remark}
+\begin{definition}[Gestalten]\label{def: Gestalten}
+    The category $\Gest$ of Gestalten\footnote{The instructor chose this name with Stefanich due to its German meaning as ``shape'' or ``form''. They consider it fortuitous that the English meaning as ``a whole more than a sum of its parts'' also captures what they envision for this theory.} (sg. Gestalt) is the topos $\St\Ring^{\Opp}$. 
+\end{definition}
+Note that for any $A\in\CAlg(\Sp)$ we can form its Gestalt $$\Gest(A)=(A,\Mod_{A},\PrL_{A},\dots)$$ which is an object of the topos $\Gest$ of Gestalten, and thus can be thought of as a geometric object, following the dictum of thinking of objects of topoi as geometric.  
+
+Moreover, many theories such as analytic stacks (and thus the geometric theories it captures) as well as classical/derived/spectral algebraic goemetry embed into $\Gest$, albeit not fully faithfully. This is a feature and not a bug, as we would expect certain morphisms of geometric objects to be identified in $\Gest$. 
+\begin{example}\label{ex: wild Betti}
+    Let $\mathbb{W}$ be the wild Betti sheaves of \cite{ScholzeWildBetti}. Its Gestalt $\Gest(\mathbb{W})$ has a nontrivial $(\RR_{>0})_{\mathsf{Betti}}$-torsor over $\Gest(\mathbb{S})$, where $(\RR_{>0})_{\mathsf{Betti}}$ is the Betti stack of $\RR_{>0}$. 
+\end{example}
+In fact, for $\Cscr$ a known category of geometric objects and $\Dscr$ a six-functor formalism thereon, it is oftentimes the case that $\Dscr$ factors over certain analytic stacks
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXENzY3IiXSxbMiwwLCJcXFByTF97XFxTdH0iXSxbMSwxLCJcXG1hdGhzZntBblN0a30iXSxbMSwyLCJcXEdlc3QiXSxbMCwzLCIiLDIseyJjdXJ2ZSI6MX1dLFszLDEsIiIsMix7ImN1cnZlIjoxfV0sWzAsMSwiXFxEc2NyIl0sWzAsMiwiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzIsMSwiXFxRQ29oIiwxXSxbMiwzXV0=
+\begin{tikzcd}
+	\Cscr && {\PrL_{\St}} \\
+	& {\mathsf{AnStk}} \\
+	& \Gest
+	\arrow["\Dscr", from=1-1, to=1-3]
+	\arrow[dotted, from=1-1, to=2-2]
+	\arrow[curve={height=6pt}, from=1-1, to=3-2]
+	\arrow["\QCoh"{description}, from=2-2, to=1-3]
+	\arrow[from=2-2, to=3-2]
+	\arrow[curve={height=6pt}, from=3-2, to=1-3]
+\end{tikzcd}$$
+It is true, however, that any six-functor formalism will factor over Gestalten, as illustrated by (a retelling of) the following result of Aoki in conjunction with the notion that motivic homotopy theory $\mathsf{SH}$ is in some sense the initial six-functor formalism. 
+\begin{theorem}[Aoki]\label{thm: Aoki SH}
+    Let $\mathsf{SH}$ be Morel-Voevodsky's motivic stable homotopy theory. $\Gest(\mathsf{SH})$ admits a moduli-theoretic description such that $X\to\Gest(\mathsf{SH})$ corresponds to a ringgestalt (ring object in $\Gest$) $\Rcal$ such that $\Rcal$ is 1-affine in the sense of Gaitsgory-Ryozenblum, cohomologically smooth, contractible, and admits a stratification. 
+\end{theorem}
+
+This course will seek to show that this is indeed a workable definition, and to study some examples. 
