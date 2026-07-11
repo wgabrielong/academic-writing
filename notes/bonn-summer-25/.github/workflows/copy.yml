@@ -1,0 +1,67 @@
+name: copy pdfs to web branch
+
+on:
+  workflow_run:
+    workflows: ["build pdf"]
+    types:
+      - completed
+
+jobs:
+  copy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Copy PDFs to web branch
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Git config
+        run: |
+          git config user.email "gabriel_ong@ieee.org"
+          git config user.name "Gabriel Ong"
+
+      - name: Create or switch to web branch safely
+        run: |
+          git fetch origin
+          if git show-ref --verify --quiet refs/remotes/origin/web; then
+            git checkout web || git checkout -b web origin/web
+          else
+            git checkout --orphan web
+            git rm -rf .
+            echo "<!DOCTYPE html><html><body><h1>Initialized Web Branch</h1></body></html>" > index.html
+            touch .nojekyll
+            git add .
+            git commit -m "Initialize web branch"
+            git push origin web
+          fi
+
+      - name: Clean existing files
+        run: |
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          git add -A
+          git commit -m "Clean old files" || echo "Nothing to clean"
+
+      - name: Fetch and copy all PDFs from build branch
+        run: |
+          git fetch origin build
+          mkdir -p temp
+          git --work-tree=temp checkout origin/build -- .
+          echo "Fetched PDF files from build branch:"
+          find temp -name "*.pdf"
+          echo "Copying..."
+          find temp -name "*.pdf" | while read filepath; do
+            target_path="./${filepath#temp/}"
+            mkdir -p "$(dirname "$target_path")"
+            cp "$filepath" "$target_path"
+          done
+
+      - name: Add .nojekyll and timestamp to trigger rebuild
+        run: |
+          touch .nojekyll
+          date > .build_timestamp
+
+      - name: Commit and push new content
+        run: |
+          git add .
+          git commit -m "Update PDFs and trigger GitHub Pages rebuild" || echo "No changes to commit"
+          git push origin web

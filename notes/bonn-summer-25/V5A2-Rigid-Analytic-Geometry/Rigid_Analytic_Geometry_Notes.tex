@@ -1,0 +1,65 @@
+\documentclass{amsart}
+\usepackage[margin=1.5in]{geometry} 
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{accents}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+\input{shortcuts.tex}
+\setlength{\headheight}{40pt}
+
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}
+  \begin{proof}[Solution]}
+  {\end{proof}}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\usepackage{amsmath, amssymb, tikz, amsthm, csquotes, multicol, footnote, tablefootnote, biblatex, wrapfig, float, quiver, mathrsfs, cleveref, enumitem, upgreek, stmaryrd, marginnote, todonotes}
+\addbibresource{refs.bib}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\numberwithin{equation}{section}
+\setuptodonotes{color=blue!20, size=tiny}
+\begin{document}
+\large
+\title[Rigid Analytic Geometry -- Bonn, Summer 2025]{V5A2 -- Rigid Analytic Geometry \\ Summer Semester 2025}
+\author{Wern Juin Gabriel Ong}
+\address{Universit\"{a}t Bonn, Bonn, D-53113}
+\email{wgabrielong@uni-bonn.de}
+\urladdr{https://wgabrielong.github.io/}
+\maketitle
+\section*{Preliminaries}
+These notes roughly correspond to the course \textbf{V5A2 - Rigid Analytic Geometry} taught by Prof. Jens Franke at the Universit\"{a}t Bonn in the Summer 2025 semester. These notes are \LaTeX-ed after the fact with significant alteration and are subject to misinterpretation and mistranscription. Use with caution. Any errors are undoubtedly my own and any virtues that could be ascribed to these notes ought be attributed to the instructor and not the typist. These notes assume knowledge of the course on the same topic held in the Winter 2024-25 semester. 
+
+The author thanks Maria Stroe for scribing in the author's absence. 
+\tableofcontents
+\include{Lecture 1}
+\include{Lecture 2}
+\include{Lecture 3}
+\include{Lecture 4}
+\include{Lecture 5}
+\include{Lecture 6}
+\include{Lecture 7}
+\include{Lecture 8}
+\include{Lecture 9}
+\include{Lecture 10}
+\include{Lecture 11}
+\newpage
+\printbibliography
+\end{document}
