@@ -17,9 +17,9 @@ directly in the browser.
 
 ## Talks
 
-- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/talk-notes/argos-arc-topology/main.pdf) The Arc Topology on Berkovich Spaces — ARGOS Seminar, Winter 2024/25
-- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/talk-notes/infinity-seminar-yoneda-colimits/main.pdf) The Yoneda Lemma and (Co)Limits — Student Seminar on ∞-Categories, Winter 2024/25
-- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/talk-notes/kleine-at-decalage/main.pdf) Décalage I — Kleine AT, Talk 3
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/talk-notes/argos-arc-topology/main.pdf) The Arc Topology on Berkovich Spaces — ARGOS Seminar, Winter 2024/25
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/talk-notes/infinity-seminar-yoneda-colimits/main.pdf) The Yoneda Lemma and (Co)Limits — Student Seminar on ∞-Categories, Winter 2024/25
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/talk-notes/kleine-at-decalage/main.pdf) Décalage I — Kleine AT, Talk 3
 
 ## Papers
 
