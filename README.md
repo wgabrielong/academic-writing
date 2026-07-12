@@ -9,11 +9,11 @@ directly in the browser.
 
 ## Notes
 
-- [Rigid_Analytic_Geometry_Notes.pdf](https://wgabrielong.github.io/academic-writing/notes/bonn-summer-25/V5A2-Rigid-Analytic-Geometry/Rigid_Analytic_Geometry_Notes.pdf)
-- [Habiro_Cohomology_Notes.pdf](https://wgabrielong.github.io/academic-writing/notes/bonn-summer-25/V5A4-Habiro-Cohomology/Habiro_Cohomology_Notes.pdf)
-- [Habiro_Rings_Notes.pdf](https://wgabrielong.github.io/academic-writing/notes/bonn-winter-24-25/V5A2-Habiro-Rings/Habiro_Rings_Notes.pdf)
-- [A Primer on Prismatic Cohomology](https://wgabrielong.github.io/academic-writing/notes/prismatic-primer/main.pdf)
-- [Notes on ∞-Categories](https://wgabrielong.github.io/academic-writing/notes/infinity-categories/main.pdf)
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/bonn-summer-25/V5A2-Rigid-Analytic-Geometry/Rigid_Analytic_Geometry_Notes.pdf) V5A2 — Rigid Analytic Geometry
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/bonn-summer-25/V5A4-Habiro-Cohomology/Habiro_Cohomology_Notes.pdf) V5A4 — Habiro Cohomology
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/bonn-winter-24-25/V5A2-Habiro-Rings/Habiro_Rings_Notes.pdf) V5A2 — The Habiro Ring of a Number Field
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/prismatic-primer/main.pdf) A Primer on Prismatic Cohomology
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/infinity-categories/main.pdf) Notes on ∞-Categories
 
 ## Papers
 
