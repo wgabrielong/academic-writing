@@ -15,6 +15,12 @@ directly in the browser.
 - [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/prismatic-primer/main.pdf) A Primer on Prismatic Cohomology
 - [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/infinity-categories/main.pdf) Notes on ∞-Categories
 
+## Talks
+
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/talk-notes/argos-arc-topology/main.pdf) The Arc Topology on Berkovich Spaces — ARGOS Seminar, Winter 2024/25
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/talk-notes/infinity-seminar-yoneda-colimits/main.pdf) The Yoneda Lemma and (Co)Limits — Student Seminar on ∞-Categories, Winter 2024/25
+- [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/talk-notes/kleine-at-decalage/main.pdf) Décalage I — Kleine AT, Talk 3
+
 ## Papers
 
 Coming soon — `papers/` will follow the same layout and be linked here the
