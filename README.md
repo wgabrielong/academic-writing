@@ -26,6 +26,14 @@ directly in the browser.
 Coming soon — `papers/` will follow the same layout and be linked here the
 same way once added.
 
+## Typos
+
+Typos — and the occasional sign error — are basically guaranteed. If you
+spot one, a pull request with the fix is very welcome (just edit the
+relevant `.tex` file under `notes/` or `talk-notes/`); if you'd rather
+not touch LaTeX yourself, opening an issue describing it works just as
+well.
+
 ## License
 
 [Creative Commons Attribution 4.0](LICENSE)
