@@ -7,6 +7,14 @@ directly in the browser.
 
 [![build pdfs](https://github.com/wgabrielong/academic-writing/actions/workflows/build-pdfs.yml/badge.svg)](https://github.com/wgabrielong/academic-writing/actions/workflows/build-pdfs.yml)
 
+## Typos
+
+Typos — and the occasional sign error — are basically guaranteed. If you
+spot one, a pull request with the fix is very welcome (just edit the
+relevant `.tex` file under `notes/` or `talk-notes/`); if you'd rather
+not touch LaTeX yourself, opening an issue describing it works just as
+well.
+
 ## Notes
 
 - [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/notes/bonn-summer-25/V5A2-Rigid-Analytic-Geometry/Rigid_Analytic_Geometry_Notes.pdf) V5A2 — Rigid Analytic Geometry
@@ -25,14 +33,6 @@ directly in the browser.
 
 Coming soon — `papers/` will follow the same layout and be linked here the
 same way once added.
-
-## Typos
-
-Typos — and the occasional sign error — are basically guaranteed. If you
-spot one, a pull request with the fix is very welcome (just edit the
-relevant `.tex` file under `notes/` or `talk-notes/`); if you'd rather
-not touch LaTeX yourself, opening an issue describing it works just as
-well.
 
 ## License
 
