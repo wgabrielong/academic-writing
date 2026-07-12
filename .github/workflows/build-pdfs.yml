@@ -1,0 +1,148 @@
+name: build pdfs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "**.tex"
+      - "**.bib"
+      - "**.sty"
+      - "**.cls"
+      - "**.bst"
+      - "**.png"
+      - "**.svg"
+      - "**.jpg"
+      - "**.jpeg"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-pdfs
+  cancel-in-progress: false
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      has_targets: ${{ steps.set-matrix.outputs.has_targets }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine changed files
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "all=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          before="${{ github.event.before }}"
+          if [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$before" 2>/dev/null; then
+            echo "all=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "all=false" >> "$GITHUB_OUTPUT"
+            git diff --name-only "$before" "${{ github.sha }}" > /tmp/changed_files.txt
+          fi
+
+      # A "root" document is any .tex file with its own \documentclass; everything
+      # it \input/\include's lives alongside it, so that directory is the rebuild scope.
+      - name: Build matrix of root documents to compile
+        id: set-matrix
+        run: |
+          set -e
+          all="${{ steps.changed.outputs.all }}"
+          include="["
+          first=true
+          while IFS= read -r root; do
+            dir=$(dirname "$root")
+            build=false
+            if [ "$all" = "true" ]; then
+              build=true
+            elif grep -q "^${dir}/" /tmp/changed_files.txt; then
+              build=true
+            fi
+            if [ "$build" = "true" ]; then
+              file=$(basename "$root")
+              name=$(echo "$root" | sed 's/[^A-Za-z0-9]/-/g')
+              if [ "$first" = true ]; then first=false; else include+=","; fi
+              include+="{\"root\":\"$root\",\"dir\":\"$dir\",\"file\":\"$file\",\"name\":\"$name\"}"
+            fi
+          done < <(grep -rl '\\documentclass' . --include='*.tex' | sed 's#^\./##' | sort)
+          include+="]"
+
+          if [ "$include" = "[]" ]; then
+            echo "has_targets=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_targets=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "matrix={\"include\":$include}" >> "$GITHUB_OUTPUT"
+          echo "Targets: $include"
+
+  build:
+    needs: detect
+    if: needs.detect.outputs.has_targets == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.detect.outputs.matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Tectonic bundle
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Tectonic
+          key: tectonic-${{ runner.os }}
+
+      - name: Set up Tectonic
+        uses: wtfjoke/setup-tectonic@v4
+        with:
+          biber-version: "latest"
+
+      - name: Compile ${{ matrix.root }}
+        working-directory: ${{ matrix.dir }}
+        run: tectonic "${{ matrix.file }}"
+
+      - name: Stage PDF
+        run: |
+          out="artifact/${{ matrix.dir }}"
+          mkdir -p "$out"
+          cp "${{ matrix.dir }}/$(basename "${{ matrix.file }}" .tex).pdf" "$out/"
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-${{ matrix.name }}
+          path: artifact/**
+
+  deploy:
+    needs: [detect, build]
+    if: needs.detect.outputs.has_targets == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download all PDFs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: pdf-*
+          path: github-deploy
+          merge-multiple: true
+
+      - name: Deploy to build branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./github-deploy
+          publish_branch: build
+          keep_files: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
