@@ -15,6 +15,7 @@ on:
       - "**.svg"
       - "**.jpg"
       - "**.jpeg"
+      - "pages/**"
 
 permissions:
   contents: write
@@ -29,6 +30,7 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       has_targets: ${{ steps.set-matrix.outputs.has_targets }}
+      pages_changed: ${{ steps.pages.outputs.changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,6 +50,17 @@ jobs:
           else
             echo "all=false" >> "$GITHUB_OUTPUT"
             git diff --name-only "$before" "${{ github.sha }}" > /tmp/changed_files.txt
+          fi
+
+      - name: Check for site asset changes
+        id: pages
+        run: |
+          if [ "${{ steps.changed.outputs.all }}" = "true" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          elif grep -q "^pages/" /tmp/changed_files.txt; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
       # A "root" document is any .tex file with its own \documentclass; everything
@@ -136,18 +149,24 @@ jobs:
 
   deploy:
     needs: [detect, build]
-    if: needs.detect.outputs.has_targets == 'true'
+    if: always() && (needs.detect.outputs.has_targets == 'true' || needs.detect.outputs.pages_changed == 'true')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Download all PDFs
+        if: needs.detect.outputs.has_targets == 'true'
         uses: actions/download-artifact@v4
         with:
           pattern: pdf-*
           path: github-deploy
           merge-multiple: true
+
+      - name: Add site assets (favicon, landing page)
+        run: |
+          mkdir -p github-deploy
+          cp -r pages/. github-deploy/
 
       - name: Deploy to build branch
         uses: peaceiris/actions-gh-pages@v4
