@@ -163,17 +163,38 @@ jobs:
           path: github-deploy
           merge-multiple: true
 
-      - name: Add site assets (favicon, landing page)
-        run: |
-          mkdir -p github-deploy
-          cp -r pages/. github-deploy/
-
-      - name: Deploy to build branch
+      # build stays a plain PDF cache (mirrors notes/ and talk-notes/, nothing
+      # else) so it's obvious what's in it. Only touched when a document
+      # actually changed this run.
+      - name: Deploy PDFs to build branch
+        if: needs.detect.outputs.has_targets == 'true'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./github-deploy
           publish_branch: build
           keep_files: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+
+      # web is what GitHub Pages actually serves: build's current PDFs plus
+      # the favicon/landing page from pages/. Rebuilt fresh from build every
+      # run (not incremental) since build itself is already the source of
+      # truth for "every PDF as of now".
+      - name: Checkout current build branch
+        uses: actions/checkout@v4
+        with:
+          ref: build
+          path: web-deploy
+
+      - name: Overlay site assets onto web-deploy
+        run: cp -r pages/. web-deploy/
+
+      - name: Deploy combined site to web branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web-deploy
+          publish_branch: web
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
