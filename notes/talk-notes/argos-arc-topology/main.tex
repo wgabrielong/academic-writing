@@ -1,0 +1,367 @@
+\documentclass{amsart}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{accents}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{euscript}
+\usepackage[bbgreekl]{mathbbol}
+\DeclareSymbolFontAlphabet{\mathbb}{AMSb} % to ensure \mathbb does not change
+\DeclareSymbolFontAlphabet{\mathbbl}{bbold}
+\input{shortcuts.tex}
+\setlength{\headheight}{40pt}
+
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}
+  \begin{proof}[Solution]}
+  {\end{proof}}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\usepackage{amsmath, amssymb, tikz, amsthm, csquotes, multicol, footnote, tablefootnote, biblatex, wrapfig, float, quiver, mathrsfs, cleveref, enumitem, upgreek, todonotes}
+\addbibresource{refs.bib}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{aside}[theorem]{Aside}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\numberwithin{equation}{section}
+
+\setuptodonotes{color=blue!20, size=tiny}
+
+
+\begin{document}
+\large
+\title[The Arc Topology on Berkovich Spaces -- ARGOS -- 21st October 2024]{The Arc Topology on Berkovich Spaces \\ ARGOS Seminar, Winter 2024/25 -- 21st October 2024}
+\author{Wern Juin Gabriel Ong}
+\address{Universit\"{a}t Bonn, Bonn, D-53113}
+\email{wgabrielong@uni-bonn.de}
+\urladdr{https://wgabrielong.github.io/}
+\maketitle
+\begin{abstract}
+  These are the author's notes for a talk in the Winter 2024/25 ARGOS seminar on ``Berkovich Motives and Motivic Geometrization of Local Langlands'' as organized by Prof. Peter Scholze. We discuss the arc-topology on the site of Banach rings and some relevant examples.
+\end{abstract}
+\section*{Remarks on the Document}
+With the manuscript being released as \cite{BerkovichArxiv}, I am making my notes for my ARGOS talk on the manuscript publicly availible. Numberings may differ from the ArXiV manuscript and any errors are undoubtedly mine.
+\section{Recollections}\label{sec: recollections}
+The exposition here is based largely on the forthcoming manuscript of Scholze \cite{BerkovichMotives} and references to other sources will be made clear when they arise.
+
+Recall that last week we saw:
+\begin{itemize}
+  \item Berkovich geometry as an ``analytic enhancement'' of algebraic geometry.
+  \begin{itemize}
+    \item Not only considering (non) vanishing of functions, but also their size.
+    \item Building blocks are seminormed rings. We can get a seminormed ring from a regular ring by taking a discrete seminorm.
+    \item Seminormed and Banach rings have nice categorical properties.
+  \end{itemize}
+  \item We are considering objects $\Mcal(A)$ for some seminormed ring $A$ with morphisms $\Mcal(B)\to\Mcal(A)$ induced by maps of Banach/seminormed rings $A\to B$ by composition.
+  \begin{itemize}
+    \item While these objects are compact Hausdorff spaces, their maps are only induced by maps on compatible norms -- this is something to be careful of.
+  \end{itemize}
+  \item Technical tools for algebra with Banach rings:\marginpar{Few Archimedean Banach fields.}
+  \begin{itemize}
+    \item (Gelfand Mazur Theorem) The only Archimedean Banach fields are $\RR$ and $\CC$.
+    \item (Gelfand Transform) There is a map of Banach Rings
+    $$A\to\prod^{\BanRing}_{x\in\Mcal(A)}K(x).$$
+  \end{itemize}
+  \item Banach ring adjectives:
+  \begin{itemize}
+    \item Uniform rings where the Gelfand transform is an isometric embedding.
+    \item Analytic rings where the completed residue fields are non-discrete.
+    \item Introduce more adjectives today.
+  \end{itemize}
+\end{itemize}
+Conventions:
+\begin{itemize}
+  \item I will at times speak of the category of affine Berkovich spaces so that we have a familiar analogue spaces to play the role of affine schemes, but this will play no formal role in the talk.
+  \begin{itemize}
+    \item This is a category with underlying objects compact Hausdorff spaces but far fewer morphisms.
+  \end{itemize}
+  \item We will ignore set-theoretic issues.
+  \begin{itemize}
+    \item These can arise in some of the constructions that will be made, eg. Stone-\v{C}ech compactification.\marginpar{Stone-\v{C}ech compactification ``='' taking power sets.}
+    \item Fix is to work with uncountable strong limit cardinal $\kappa$, ie. $\kappa$ uncountable such that $\lambda<\kappa\Rightarrow 2^{\lambda}<\kappa$.
+  \end{itemize}
+\end{itemize}
+\section{The Arc Site}\label{sec: arc site}
+We have already seen that the affine Berkovich spectra $\Mcal(A)$ are nice geometric spaces. As Grothendieck's philosophy of motives suggests, we can study these spaces by associating to each space some linear-algebaic invariant that specializes to known cohomology theories.
+\begin{figure}[h]\label{fig: motives}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da2735575299279114]
+\draw    (190,135) -- (248,135) ;
+\draw [shift={(250,135)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da893455562798176]
+\draw    (390,135) -- (498.28,71.02) ;
+\draw [shift={(500,70)}, rotate = 149.42] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da18088373004562164]
+\draw    (390,135) -- (498.02,120.27) ;
+\draw [shift={(500,120)}, rotate = 172.23] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da7298659474150333]
+\draw    (390,135) -- (498.09,169.39) ;
+\draw [shift={(500,170)}, rotate = 197.65] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+% Text Node
+\draw (120,135) node   [align=left] {\begin{minipage}[lt]{95.2pt}\setlength\topsep{0pt}
+\begin{center}
+{\scriptsize ``Affine Berkovich Spaces''}\\{\scriptsize Banach Rings}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (320,135) node   [align=left] {\begin{minipage}[lt]{95.2pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize ``Linear Algebraic Category''}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (560,70) node   [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+\begin{center}
+{\scriptsize Cohomology Theory}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (560,120) node   [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+\begin{center}
+{\scriptsize Cohomology Theory}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (560,195) node   [align=left] {\begin{minipage}[lt]{81.6pt}\setlength\topsep{0pt}
+\begin{center}
+.\\.\\.\\.
+\end{center}
+
+\end{minipage}};
+
+
+\end{tikzpicture}
+\caption{Motivating motives.}
+\end{figure}
+
+But we want these to be more than mere assosciations of a linear algebraic invariants to these objects but for these to be compatible with morphisms in this category behave well under constructions like six-functor formalisms.
+\marginpar{ie. contravariant in spaces but covariant in rings. Will make this explicit in the definition of arc sheaves.} So we want this to be a functor. And since we also want to leverage descent arguments, we want to make this a site and study sheaves on this site. So much to say that we will want to define a site structure on these affine Berkovich spaces -- in fact, we will define the site on the underlying Banach rings.
+
+However, deciding on a Grothendieck topology for the site is often tricky business, as illustrated by the following example.\newpage
+\begin{example}\label{ex: etale cohomology}
+  Let $X$ be a smooth and irreducible variety over $\CC$\marginpar{This is \underline{not} the small Zariski site with covering families jointly surjective open embeddings.} with its usual site structure on $\Opens_{X}$ and $X_{\mathsf{\acute{e}t}}$ the \'{e}tale site on $X$. Abusing notation, let $\Fcal$ be a constant sheaf associated to a finite Abelian group in the (contextually clear) topology under consideration. On one hand, $\Fcal$ is flasque on $X$ so $H^{i}(X,\Fcal)=0$ for $i\geq 1$ but $H^{i}(X_{\mathsf{\acute{e}t}},\Fcal)$ may be nonzero. In fact, there is an isomorphism $H^{i}(X^{\mathsf{an}},\Fcal)\cong H^{i}(X_{\mathsf{\acute{e}t}},\Fcal)$ where $X^{\mathsf{an}}$ is the complex analytification of $X$ -- complex points with complex topology.\marginpar{Refining the topology makes sheaves better behaved.}
+\end{example}
+We will be working with the following fine Grothendieck topology on the category of Banach rings $\BanRing$.
+\marginpar{Coverings are families of \underline{ring} maps satisfying a condition on \underline{spaces}. Note that there are many more morphisms $\Mcal(B)\to\Mcal(A)$ as spaces than there are ones induced by Banach ring maps.\\\\ Why is this fine? \\\\ Given some covering family $\{\Mcal(B_{i})\to\Mcal(A)\}_{i\in I}$ adding any morphism with source $A$ produces another larger covering family that sheaves have to satisfy descent along.}
+\begin{definition}[Arc Coverings]\label{def: arc coverings}
+  Let $A$ be a Banach ring. A family of morphisms of Banach rings with fixed source $\{A\to B_{i}\}_{i\in I}$ is an arc cover if there is a finite subset $J\subseteq I$ such that the map
+  $$\coprod_{i\in J}\Mcal(B_{i})\longrightarrow\Mcal(A)$$
+  is surjective map of compact Hausdorff spaces.
+\end{definition}
+Let us first verify this is a site before making a few remarks about these coverings. The fact that this is a site follows from the following fact.
+\begin{fact}[Properties of Seminormed Rings]\label{fact: properties of seminormed rings}
+  In the category of Banach rings, the following holds:
+  \begin{itemize}
+    \item If $B\leftarrow A\to C$ is a pushout diagram of Banach rings, then $\Mcal(B\otimes_{A}C)\to\Mcal(B)\times_{\Mcal(A)}\Mcal(C)$ is a surjective map of compact Hausdorff spaces.
+    \item If $(A_{i})_{i\in I}$ is a filtered diagram of Banach rings then the induced map of compact Hausdorff spaces
+    $$\Mcal(\colim_{i\in I}A_{i})\longrightarrow\lim_{i\in I^{\Opp}}\Mcal(A_{i})$$
+    is a homeomorphism.
+  \end{itemize}
+\end{fact}
+A proof can be found in standard expositions of the theory of Berkovich geometry -- see, for example, \cite[Lem 2.3.12]{KedlalaLiu} and \cite[Prop. 2.1.13]{Jonsson715}, respectively.
+
+From the above, we can easily deduce that the arc topology endows $\BanRing$ with a site structure. In fact, we can say more, insofar as $\BanRing$ is a site with especially nice objects.
+\begin{proposition}\label{prop: qcqs site}
+  The category $\BanRing$ with coverings given by arc covers forms a site where all objects are quasicompact and quasiseparated.
+\end{proposition}
+\begin{proof}
+  Isomorphisms are evidently covers as they induce homeomorphisms on Berkovich spectra. Covers are local since for $\{A\to A_{i}\}_{i\in I}, \{A_{i}\to A_{ij}\}_{j\in J_{i}}$ with $\overline{I},\overline{J_{i}}$ the finite indexing sets we have a cover $\coprod_{i\in\overline{I}}\coprod_{j\in\overline{J_{i}}}\Mcal(A_{ij})\to\Mcal(A)$ . Finally covers are preserved by base change since taking Berkovich spectra is commutes with finite products and surjectivity is preserved by base change.
+
+  Since the topology is finitary, quaiscompactness and quasiseparatedness follow by definition.
+\end{proof}
+To say a few more words about this site: this is an analogue of the arc site as defined by Bhatt and Matthew in their paper of the same name \cite{ArcTopology} that studied rank 1 valuations instead of valuations of possibly higher rank in the setting of schemes and adic spaces -- this mirrors our discussion as Berkovich spectra only capture rank 1 valuations.\marginpar{We studied maps to the non-negative reals, not an arbitrary value group.}
+
+While the arc topology is somewhat easy to understand, it can be difficult to do things explicitly in many cases. However, we have an easy way to produce arc covers by analytic Banach rings that we encountered last time -- those Banach rings with all completed residue fields non-discrete.
+\begin{example}[Analytic Ring Covers]\label{ex: analytic ring}
+  Let $A$ be a Banach ring and consider the ring $A\langle T^{\pm}\rangle_{1/2}$ of Laurent series in $T$ obtained by formally adjoining a topologically nilpotent unit with $$\Vert T\Vert_{A\langle T^{\pm}\rangle_{1/2}}=\Vert T^{-1}\Vert_{A\langle T^{\pm}\rangle_{1/2}}=\frac{1}{2}.$$ This is an arc cover since multiplicative seminorms on $A\langle T^{\pm}\rangle_{1/2}$ restrict to ones on $A$ inducing a surjection $\Mcal(A\langle T^{\pm}\rangle_{1/2})\to\Mcal(A)$. Moreover, $A\langle T^{\pm}\rangle_{1/2}$ is analytic since the norm on the quotient of $A$ by the kernel of the seminorm has elements with valuation not 0,1 and this norm extends to the completion of the fraction field showing it is non discrete.
+\end{example}
+In fact, we will be able to produce covers of Banach rings by families successively nicer Banach rings that we will soon encounter. So having defined a site structure on Banach rings, we can turn to a discussion of sheaves.
+\section{Arc Sheaves}\label{sec: arc sheaves}
+Arc sheaves are in some ways the easiest sheaves to define on affine Berkovich spaces, obtained by sheafifying the ``homs to'' functor on affine Berkovich spaces, but we will take the equvialent perspective of sheafifying the ``homs from'' functor on Banach rings to avoid conflating morphisms of these affine Berkovich spaces to morphisms of their underlying compact Hausdorff spaces.
+\begin{definition}[Arc Sheaves]\label{def: arc sheaves}
+  Let $A$ be a Banach ring. The arc sheaf $\Mcal_{\arc}(A)$ on $\BanRing^{\Opp}$ is the sheaffification of the representable presheaf of sets $B\mapsto\Hom_{\BanRing}(A,B)$.\marginpar{Really co(pre)sheaf, but I shall avoid that for simplicity.}
+\end{definition}
+Just to spell everything out explicitly, fix a Banach ring $R$ and let $A\to B$ be an arc cover and $\Mcal(B)\to\Mcal(A)$ the corresponding (surjective) map of affine Berkovich spaces. A sheaf on affine Berkovich spaces would take sections over $\Mcal(A)$ to ones over $\Mcal(B)$ or sections over $A$ to sections over $B$ in $\BanRing$.
+\begin{figure}[h]\label{fig: arc sheaves and variance}
+  $$% https://q.uiver.app/#q=WzAsNixbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDAsIlxcTWNhbF97XFxhcmN9KFIpKEEpPVxcSG9tX3tcXEJhblJpbmd9KFIsQSlee1xcc2hhcnB9Il0sWzIsMSwiXFxNY2FsX3tcXGFyY30oUikoQik9XFxIb21fe1xcQmFuUmluZ30oUixCKV57XFxzaGFycH0iXSxbNCwwLCJcXE1jYWwoQSkiXSxbNCwxLCJcXE1jYWwoQikiXSxbMCwxXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsyLDNdLFs0LDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNSwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzUsNF1d
+  \begin{tikzcd}
+    A && {\Mcal_{\arc}(R)(A)=\Hom_{\BanRing}(R,A)^{\sharp}} && {\Mcal(A)} \\
+    B && {\Mcal_{\arc}(R)(B)=\Hom_{\BanRing}(R,B)^{\sharp}} && {\Mcal(B)}
+    \arrow[maps to, from=1-1, to=1-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-3, to=2-3]
+    \arrow[maps to, from=1-5, to=1-3]
+    \arrow[maps to, from=2-1, to=2-3]
+    \arrow[from=2-5, to=1-5]
+    \arrow[maps to, from=2-5, to=2-3]
+  \end{tikzcd}$$
+  \caption{Not to get mixed up with opposites...}
+\end{figure}
+\newpage
+Let's also spell out the sheaf condition explicitly for $R$ Banach with arc sheaf $\Mcal_{\arc}(R)$ and an arc cover $\{A\to B_{i}\}_{i\in I}$ where we have that the sequence
+\begin{figure}[h]\label{fig: sheafification, explicitly}
+  \footnotesize
+  $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEhvbV97XFxCYW5SaW5nfShSLEEpXntcXHNoYXJwfSJdLFsxLDAsIlxccHJvZF97aVxcaW4gSX1cXEhvbV97XFxCYW5SaW5nfShSLEJfe2l9KV57XFxzaGFycH0iXSxbMiwwLCJcXHByb2Rfe2ksalxcaW4gSX1cXEhvbV97XFxCYW5SaW5nfShSLEJfe2l9XFxvdGltZXNfe0F9Ql97an0pXntcXHNoYXJwfSJdLFsxLDIsIiIsMSx7Im9mZnNldCI6LTF9XSxbMCwxXSxbMSwyLCIiLDEseyJvZmZzZXQiOjF9XV0=
+  \begin{tikzcd}
+    {\Hom_{\BanRing}(R,A)^{\sharp}} & {\prod_{i\in I}\Hom_{\BanRing}(R,B_{i})^{\sharp}} & {\prod_{i,j\in I}\Hom_{\BanRing}(R,B_{i}\otimes_{A}B_{j})^{\sharp}}
+    \arrow[from=1-1, to=1-2]
+    \arrow[shift left, from=1-2, to=1-3]
+    \arrow[shift right, from=1-2, to=1-3]
+  \end{tikzcd}$$
+  \normalsize
+  \caption{The sheaf condition, ``explicitly.''}
+\end{figure}
+
+is an equalizer. In general it is hard to describe what sheafification is explicitly since the covers in this site can be so large \cite{Email} -- this is something we will return to in the coming weeks.
+
+Abstractly, the fineness of the site structure suggests that we should expect very few sheaves. As such, in the setting of arc sheaves, which are just sheafifications of representable presheaves, the neccessity to descend over such large covers makes it reasonable to expect that arc sheafification erases the distinctions between different Banach rings, leading to the phenomenon where Banach rings that we might think of as quite distinct give rise to equivalent arc sheaves. Here is a recipe for detecting these equivalences of arc sheaves.
+\begin{proposition}\label{prop: a sufficient condition for arc sheaves}
+  Let $A\to B$ be an arc cover and $B\cong (B\otimes_{A}B)^{\wedge}_{u}$ an isomorphism between $B$ and the unifom completion of the tensor product. Then $\Mcal_{\arc}(A)$ and $\Mcal_{\arc}(B)$ are isomorphic as arc sheaves.
+\end{proposition}
+\begin{proof}
+  There is a surjection of arc sheaves $\Mcal_{\arc}(B)\to\Mcal_{\arc}(A)$ and since sheafification preserves limits, the arc cover $B\otimes_{A}B\to(B\otimes_{A}B)^{\wedge}_{u}$ induces a surjection of arc sheaves $\Mcal_{\arc}(B)=\Mcal_{\arc}((B\otimes_{A}B)^{\wedge}_{u})\to\Mcal_{\arc}(B)\times_{\Mcal_{\arc}(A)}\Mcal_{\arc}(B)$ inducing
+  $$% https://q.uiver.app/#q=WzAsNSxbMSwxLCJcXE1jYWxfe1xcYXJjfShCKVxcdGltZXNfe1xcTWNhbF97XFxhcmN9KEEpfVxcTWNhbF97XFxhcmN9KEIpIl0sWzEsMiwiXFxNY2FsX3tcXGFyY30oQikiXSxbMywxLCJcXE1jYWxfe1xcYXJjfShCKSJdLFszLDIsIlxcTWNhbF97XFxhcmN9KEEpIl0sWzAsMCwiXFxNY2FsX3tcXGFyY30oQikiXSxbMSwzXSxbMiwzXSxbMCwxXSxbMCwyXSxbNCwwLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCwxLCIiLDIseyJjdXJ2ZSI6NH1dLFs0LDIsIiIsMix7ImN1cnZlIjotMn1dXQ==
+  \begin{tikzcd}
+    {\Mcal_{\arc}(B)} \\
+    & {\Mcal_{\arc}(B)\times_{\Mcal_{\arc}(A)}\Mcal_{\arc}(B)} && {\Mcal_{\arc}(B)} \\
+    & {\Mcal_{\arc}(B)} && {\Mcal_{\arc}(A)}
+    \arrow[dashed, from=1-1, to=2-2]
+    \arrow[curve={height=-12pt}, from=1-1, to=2-4]
+    \arrow[curve={height=24pt}, from=1-1, to=3-2]
+    \arrow[from=2-2, to=2-4]
+    \arrow[from=2-2, to=3-2]
+    \arrow[from=2-4, to=3-4]
+    \arrow[from=3-2, to=3-4]
+  \end{tikzcd}$$
+  where the curved arrows are isomorphisms. Isomorphisms decompose such that the dotted arrow is a monomorphism and the projection map is an epimorphism, but the diagonal map is also a surjection of arc sheaves as previously indicated, and hence an isomorphism. The map to the diagonal being an isomorphism implies $\Mcal_{\arc}(B)\to\Mcal_{\arc}(A)$ is also an injection, and hence an isomorphism.
+\end{proof}
+Concretely, we can consider the following examples.
+\begin{example}[Functions on the Disc]\label{ex: complex functions}
+  Let $A$ be the ring of continuous functions on the closed complex unit disc $\overline{D}$ that are open on the interior $D$ under the supremum norm. We can show that $\Mcal(A)$ is the closed unit disc itself with each point defining a seminorm by evaluation. There is a natural inclusion map $A\to B=C^{0}(\Mcal(A),\CC)$ and $B$ is isomorphic to the uniform completion of $B\otimes_{A}B$. So arc sheafification doesn't see the difference between $A$ and $B$.
+\end{example}
+\begin{example}[Direct Perfection]\label{ex: perfection}
+  Let $A=\FF_{p}((t))$ under the $t$-adic norm $\Vert t\Vert_{\FF_{p}((t))}=\frac{1}{p}$ and consider $\colim_{\varphi}^{\BanRing}A=A_{\perf}=\FF_{p}((t^{1/p^{\infty}}))=\{\sum_{i\in\ZZ[1/p]}a_{i}t^{i}\}$ the completed completion of $\cup_{n\geq1}\FF_{p}((t^{1/p^{n}}))$.\marginpar{The Frobenius is a map of Banach rings because the norms of elements get smaller in higher $t$-powers.} There is an isomorphism $A_{\perf}\cong(A_{\perf}\otimes_{A}A_{\perf})^{\wedge}_{u}$ so there is an equivalence of arc sheaves $\Mcal_{\arc}(A)\cong\Mcal_{\arc}(A_{\perf})$.
+\end{example}
+The notions we have introduced thus far, in conjunction with the definition of arc sheaves as above, set up a nice parallel with condensed mathematics. To summarize:
+\begin{center}
+  \begin{tabular}{c|c|c}
+    \textbf{Thing} & \textbf{Berkovich Motives} & \textbf{Condensed Mathematics} \\\hline
+    Category & $\BanRing$ & compact Hausdorff spaces $\CHaus$ \\\hline
+    Site & arc topology & finite families of jointly surjective maps \\\hline
+    Sheaves & arc sheaves & $X\in\CHaus$ is a condensed set by \\
+    & & $S\mapsto\Hom_{\Top}(S,X)$ for $S\in\CHaus$.
+  \end{tabular}
+\end{center}
+However, in condensed mathematics, we can in fact work with the smaller site of profinite sets as opposed to all compact Hausdorff spaces. A natural question to ask if we can restrict arc sheaves to a smaller site as in this setting. To that end, we make the following definitions.
+\begin{definition}[Totally Disconnected Banach Ring]\label{def: totally disconnected Banach ring}
+  A Banach ring is totally disconnected if it is analytic, uniform, and $\Mcal(A)$ is a profinite set.\marginpar{ie. $K(x)$ is non-discrete for all $x$, and the seminorm is power-multiplicative.}
+\end{definition}
+\begin{definition}[Strictly Totally Disconnected Banach Ring]\label{def: strictly totally disconnected Banach ring}
+  A Banach ring is strictly totally disconnected if it is totally disconnected and for all $x\in\Mcal(A)$ the Banach field $K(x)$ is algebraically closed.
+\end{definition}
+There's an easy way to produce Banach rings of this type.
+Here's a recipe for making Banach rings of this type.
+\begin{proposition}\label{prop: product of Banach fields}
+  Let $\{K_{i}\}_{i\in I}$ be a collection of non-discrete Banach fields and consider
+  $$A=\prod_{i\in I}^{\BanRing}K_{i}.$$
+  Then:
+  \begin{enumerate}[label=(\roman*)]
+    \item The canonical map $\coprod_{i\in I}\Mcal(K_{i})\to\Mcal(A)$ induces a homeomorphism from the Stone-\v{C}ech compactification\marginpar{Filters are collections of nonempty subsets. These are naturally ordered by inclusion, with ultraproducts being maximal with respect to this inclusion.}
+    $$\beta\left(\coprod_{i\in I}\Mcal(K_{i})\right)\longrightarrow\Mcal(A).$$
+    \item For any $x\in\Mcal(A)$, the Banach field $K(x)$ is a corresponding completed Banach ultraproduct of the Banach fields $K_{i}$.
+    \item $A$ is totally disconnected and is furthermore strictly totally disconnected if all the $K_{i}$ are algebraically closed.
+  \end{enumerate}
+\end{proposition}
+First recall the following definitons.
+\begin{definition}[Filter]\label{def: filter}
+  A filter on $I$ is a collection of nonempty subsets $\Phi$ of $I$ such that if $A\in\Phi$ and $B\subseteq A$ then $B\in\Phi$ and if $A,B\in\Phi$ then $A\cap B\in\Phi$.
+\end{definition}
+\begin{definition}[Ultrafilter]\label{def: ultrafilter}
+  An ultrafilter is a maximal filter with respect to the natural ordering on filters by inclusion.
+\end{definition}
+\begin{remark}
+  The construction here should use that for the Stone-\v{C}ech compactification outlined in \cite[\S 3.2]{ultracategories}.
+\end{remark}
+But the Gelfand transform already gives us a nice way to map our rings to products of fields, which produces arc covers by strictly totally disconnected Banach rings.
+\begin{corollary}\label{corr: basis for arc topology}
+  There is a basis for the arc topology given by strictly totally disconnected Banach rings.
+\end{corollary}
+\begin{proof}
+  Without loss of generality, we can just find a cover of an analytic ring since covers compose, and we always have covers by analytic rings.
+
+  For $A$ analytic, consider the Gelfand transform
+  $$A\longrightarrow\prod_{x\in\Mcal(A)}^{\BanRing}K(x)$$
+  with $K(x)$ non-discrete which extends to a map
+  $$A\longrightarrow\prod_{x\in\Mcal(A)}^{\BanRing}\widehat{\overline{K(x)}}.$$
+  If $K(x)$ was Archimedean, then $\widehat{\overline{K(x)}}=\overline{K(x)}=\CC$ and otherwise in the non-Archimedean setting the completion of the algebraic closure remains algebraically closed. This is an arc cover under the map taking $\Mcal(\widehat{\overline{K(x)}})$ to $x$ and strictly totally disconnected by the previous proposition.
+\end{proof}
+This shows that the sheaf theory on Banach rings is completely controlled by the sheaf theory on strictly totally disconnected Banach rings. More concretely:
+\begin{itemize}
+  \item The topos on Banach rings is obtained by right Kan extension from strictly totally disconnected Banach rings.
+  \item Every arc sheaf is obtained as a colimit of arc sheaves of strictly totally disconnected Banach rings.
+\end{itemize}
+We can in fact say more, showing that the topology is subcanonical on these strictly totally disconnected objects.
+\begin{theorem}\label{thm: subcanonical arc topology on strictly totally disconnecteds}
+  The arc topology is subcanonical on restriction strictly totally disconnected Banach rings -- every representable presheaf is a sheaf.
+\end{theorem}
+One place where our approach thus far bears fruit is in the study of perfectoid spaces, where subcanonicality holds under less stringent hypotheses. Let us recall the definition of a perfectoid ring.
+\begin{definition}[Perfectoid Ring]\label{def: perfectoid ring}
+  Let $A$ be a uniform Banach ring,
+  $$A^{\circ}=\{a\in A:\Vert a^{n}\Vert_{A}<\infty, \forall n\in\NN\}$$
+  its set of power bounded elements, and $p$ a prime. $A$ is perfectoid if
+  \begin{enumerate}[label=(\roman*)]
+    \item $A$ has a topologically nilpotent unit $\varpi$ such that $\varpi^{p}$ divides $p$ in $A^{\circ}$ and
+    \item The Frobenius $\varphi:A^{\circ}/(\varpi)\to A^{\circ}/(\varpi^{p})$ is surjective.
+  \end{enumerate}
+\end{definition}
+In this case, we need not pass all the way to strictly totally disconnected Banach rings to get subcanonicality, and the desired property already holds on perfectoid Banach rings with $\Vert p\Vert_{A}<1$.
+\begin{theorem}
+  The arc topology is subcanonical on restriction to perfectoid Banach rings with $\Vert p\Vert_{A}<1$.
+\end{theorem}
+We conclude by revisiting \Cref{ex: perfection} from earlier.
+\begin{example}\label{ex: subcanonical perfectoid}
+  Let $A$ be the ring $\FF_{p}((t))$ with direct completed perfection $A_{\perf}=\FF_{p}((t^{1/p^{\infty}}))$. This is a non-Archimedean perfectoid ring and thus
+  $$\Mcal_{\arc}\left(\FF_{p}((t^{1/p^{\infty}}))\right)=\Hom_{\mathsf{BanPerfd}}\left(\FF_{p}((t^{1/p^{\infty}})),-\right).$$
+\end{example}
+For another example of a perfectoid ring that is not a field, consider the following.
+\begin{example}\label{ex: subcanonical perfectoid ring}
+  The ring
+  $$\QQ_{p}\langle t^{1/p^{\infty}}\rangle=\left(\bigcup_{n\in\NN}\ZZ_{p}[t^{1/p^{n}}]\right)^{\wedge}_{p}\left[\frac{1}{p}\right]$$
+  is perfectoid.
+\end{example}
+\section{Acknowledgements}
+I thank P. Scholze for giving me the opportunity to speak in the ARGOS seminar and for discussing his manuscript with me. I also thank D. Bowman, Z. Cai, and J. Mann for discussions of the material and feedback on my practice talk.
+\newpage
+\printbibliography
+\end{document}
+
+Better to reverse the logic a little. First assume $A$ is an algebraically closed field and whenever you have a cover the map $A\to B$ equalizes the coprojections to $(B\otimes_{A}B)^{\wedge}_{u}$. Can always replace $B$ by some algebra over it because of general nonsense so take $B$ a field as well. Show it is an equalizer. If there is any element in the equalizer that is not already in the field, then we can replace this by the field generated by that element. Because it will give a subalgebra but it will still be the equalizer. So assume this new field is generated by one extra element as a field, but then because we understand Berkovich discs, it must be one of these residue fields. So we can explicitly understand what happens.
+
+And now in general you have an equalizer for some $A$ but $A$ always decomposes into some product based on the open and closed subsets of $\Mcal(A)$ but then somehow we can treat all of the objects in the equalizer sequence as sheaves on the profinite set where to an open and closed subset we can associate the sequence for the corresponding direct factor. In the situation of open and closed subsets, we just have a retrac/direct sum, and we can consider everything as a sheaf on this profinite set and by the case of fields you know that you have isomorphisms on the completed stalks and in particular this means that the Berkovich spectrum of the equalizer $A'$ maps to $\Mcal(A)$ but because we understand the completed stalks we know that fibers must be points and they must have the same residue field and it follows that $A'$ is also strictly totally disconnected

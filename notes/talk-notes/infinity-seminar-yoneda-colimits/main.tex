@@ -1,0 +1,317 @@
+\documentclass{amsart}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{accents}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{euscript}
+\usepackage[bbgreekl]{mathbbol}
+\DeclareSymbolFontAlphabet{\mathbb}{AMSb} % to ensure \mathbb does not change
+\DeclareSymbolFontAlphabet{\mathbbl}{bbold}
+\input{shortcuts.tex}
+\setlength{\headheight}{40pt}
+
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}
+  \begin{proof}[Solution]}
+  {\end{proof}}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\usepackage{amsmath, amssymb, tikz, amsthm, csquotes, multicol, footnote, tablefootnote, biblatex, wrapfig, float, quiver, mathrsfs, cleveref, enumitem, upgreek, todonotes}
+\addbibresource{refs.bib}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{aside}[theorem]{Aside}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{pseudodef}[theorem]{Pseudodefinition}
+\newtheorem{pseudoprop}[theorem]{Pseudoproposition}
+\numberwithin{equation}{section}
+
+\setuptodonotes{color=blue!20, size=tiny}
+
+
+\begin{document}
+\large
+\title[The Yoneda Lemma and (Co)Limits]{The Yoneda Lemma and (Co)Limits \\ Student Seminar on $\infty$-Categories, Winter 2024/25 \\ 6th December 2024}
+\author{Wern Juin Gabriel Ong}
+\address{Universit\"{a}t Bonn, Bonn, D-53113}
+\email{wgabrielong@uni-bonn.de}
+\urladdr{https://wgabrielong.github.io/}
+\maketitle
+\begin{abstract}
+  These are the author's notes for a talk in the student seminar on $\infty$-categories organized by Jonas Heintze in the 2024/25 Winter Semester on the Yoneda lemma and (co)limits.
+\end{abstract}
+\section*{Preliminaries}
+We largely follow Wagner's notes \cite{Wagner} in \Cref{sec: descent,sec: Yoneda,sec: adjoint functors,sec: colimits}, refering additionally to \cite{Youcis} in \Cref{sec: descent}. \Cref{sec: constructions with slices and joins} provides an alternative (perhaps more conventional) definition of limits and colimits.
+
+\subsection*{Acknowledgements} I would be remiss not to express my thanks to Jonas for giving me the opportunity to speak in his seminar. I also thank Sam Brinkerhoff for his feedback on a preliminary version of \Cref{sec: descent}.
+
+I first learned much of this material from a course given by Prof. M. Hopkins while visiting Harvard in the Fall of 2023, and have benefited greatly from conversations about things $\infty$-categorical with numerous individuals -- in particular the fellow participants at the 2024 Park City Mathematics Institute and my classmates here in Bonn.
+\section{An Application of Straightening-Unstraigtening: Stacks}\label{sec: descent}
+The content of this section is an expanded and intiuitionistic variant of \cite[\S 5.7]{Wagner} using \cite{Youcis}. Everything in this section should be taken with heavy skepticism.
+
+We consider an application of the straightening-unstraightening correspondence to the theory of algebraic stacks, a generalization of schemes. The reader unfamiliar with algebraic stacks should be able to replace ``scheme'' with a sufficiently reasonable category of geometric spaces, or skip immediately to \Cref{sec: Yoneda}.
+
+One place where stacks arise is in the consideration of moduli problems -- ie. the construction of parameter spaces for schemes of a certain sort. Let $X$ be a scheme and $G$ a group scheme acting on $X$.\marginpar{Note that any discrete group can be made into a group scheme by taking finite disjoint unions of $\spec(\ZZ)$.} One is often motivated to study the ``quotient'' $[X/G]$, but this may not exist in the category of schemes.
+
+Grothendieck's functor of points perspective tells us that we should instead study the collection of maps to the scheme of interest -- that is, functors $\Sch^{\Opp}\to\Sets$. We can expand this to the study of functors $\Sch^{\Opp}\to\Grpd$, taking sets as groupoids with the only morphisms given by identities. Whatever $[X/G]$ may be, it admits a morphism from $X$ with fibers given by $G$-orbits and any $Y\to X$ descends to a map $[X/G]$ if $G$ acts trivially on $Y$ and the map $Y\to X$ is $G$-equivariant. We would thus expect a close connection between the following:
+\begin{itemize}
+  \item $[X/G]$.
+  \item (Nice) schemes $Y$ with a map to $X$ ``sufficiently compatible'' with the $G$-action.
+  \item (Pre)sheaves on $\Sch_{X}$ ``sufficiently compatible'' with the $G$-action.
+\end{itemize}
+
+Taking the third perspective, the desiderata above is summarized in the construction of $G$-torsors, which we omit. As it turns out, for each $X$-scheme $Y$, there is a groupoid of $G$-torsors over $Y$ that assembles into a right fibration $\mathsf{E}\to\Sch_{/X}$ -- the fiber over each $X$-scheme $Y$ is the groupoid of $G$-torsors over $Y$. The straightening of this right fibration is a functor $\Sch_{/X}^{\Opp}\to\Grpd$ which produces the ``correct'' representing functor for $[X/G]$ whose $Y$-valued points are $G$-bundles on $Y$ with an equivariant map to $X$.\marginpar{More precisely, after passing to nerves and taking $\Grpd$ as a $(2,1)$-truncated $(\infty,1)$-category.}
+\section{The Yoneda Lemma}\label{sec: Yoneda}
+This section, modulo opposites, follows \cite[\S 5.3]{Wagner} fairly closely.
+
+The 1-categorical Yoneda lemma tells us that for a category $\Csf$ and $A\in\Csf$ that $\Mor_{\Fun(\Csf^{\Opp},\Sets)}(h_{A},F)\leftrightarrow F(A)$ as sets. Running everything through the $\infty$-dictionary, we would expect that $\Mor_{\Fun(\Cscr^{\Opp},\Ani)}(h_{x},F)\simeq F(x)$. This is in fact true, but the proof is a fair amount more involved than in the 1-categorical case since composition being ``on the nose'' forces certain choices that one can check gives the right answer. Unfortunately the fact that compositions are only defined up to homotopy in the quasicategorical setting means that the proof does not generalize. The upshot is that the straightening-unstraightening correspondence gives the right amount of rigidity for things to work out.
+
+To show the Yoneda lemma, we will use the following result as a black box.
+\begin{lemma}[{\cite[Thm. 5.19, Lem. 5.20]{Wagner}}]\label{lem: homotopy pullbacks}
+  Let $\Cscr$ be a quasicategory, $x\in\Cscr$ and $\Escr\to\Cscr$ any right fibration over $\Cscr$. The diagram
+  \begin{equation}\label{eqn: general pullback}
+    % https://q.uiver.app/#q=WzAsNCxbMiwwLCJcXEZ1bihcXENzY3Jfey94fSxcXENzY3IpIl0sWzIsMSwiXFxDc2NyIl0sWzAsMCwiXFxGdW4oXFxDc2NyX3sveH0sXFxFc2NyKSJdLFswLDEsIlxcRXNjciJdLFsyLDBdLFswLDFdLFsyLDNdLFszLDFdXQ==
+    \begin{tikzcd}
+      {\Fun(\Cscr_{/x},\Escr)} && {\Fun(\Cscr_{/x},\Cscr)} \\
+      \Escr && \Cscr
+      \arrow[from=1-1, to=1-3]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-3, to=2-3]
+      \arrow[from=2-1, to=2-3]
+    \end{tikzcd}
+  \end{equation}
+  is homotopy Cartesian and restricts to the homotopy Cartesian diagram
+  \begin{equation}\label{eqn: pullback on cores}
+    % https://q.uiver.app/#q=WzAsNCxbMiwwLCJcXG1hdGhybXtjb3JlfVxcRnVuKFxcQ3Njcl97L3h9LFxcQ3NjcikiXSxbMCwwLCJcXG1hdGhybXtjb3JlfVxcRnVuKFxcQ3Njcl97L3h9LFxcRXNjcikiXSxbMCwxLCJcXG1hdGhybXtjb3JlfShcXEVzY3IpIl0sWzIsMSwiXFxtYXRocm17Y29yZX0oXFxDc2NyKSJdLFsxLDJdLFsyLDNdLFsxLDBdLFswLDNdXQ==
+\begin{tikzcd}
+	{\mathrm{core}\Fun(\Cscr_{/x},\Escr)} && {\mathrm{core}\Fun(\Cscr_{/x},\Cscr)} \\
+	{\mathrm{core}(\Escr)} && {\mathrm{core}(\Cscr)}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}
+  \end{equation}
+  on cores.
+\end{lemma}
+With everything we have set up so far, we can prove the Yoneda lemma.\marginpar{As always, $h_{x}=\Mor_{\Cscr}(-,x)$. \\\\ This here is the opposite of \cite[Thm. 5.19]{Wagner}.}
+\begin{theorem}[Yoneda; {\cite[Thm. 5.19]{Wagner}}]\label{thm: Yoneda}
+  Let $\Cscr$ be a quasicategory, $x\in\Cscr$, and $F:\Cscr^{\Opp}\to\Ani$ a functor. There is an equivalence of animae
+  $$\Mor_{\Fun(\Cscr^{\Opp},\Ani)}(h_{x},F)\longrightarrow F(x).$$
+\end{theorem}
+\begin{proof}[Proof Outline]
+  Let $F$ be as above and $p:\Escr\to\Cscr$ its (right/Cartesian) unstraightening. Under this construction, the representable functor $h_{x}$ unstraightens to the source functor $s:\Cscr_{/x}\to\Cscr$. We get equivalences of animae
+  \begin{align*}
+    \Mor_{\Fun(\Cscr^{\Opp},F)}(h_{x},F) &\simeq \Mor_{\mathsf{RFib}(\Cscr)}([s:\Cscr_{/x}\to\Cscr],[p:\Escr\to\Cscr]) \\
+    &\simeq \Mor_{\Cat_{\infty/\Cscr}}([s:\Cscr_{/x}\to\Cscr],[p:\Escr\to\Cscr])
+  \end{align*}
+  where the inclusion $\mathsf{RFib}(\Cscr)\to\Cat_{\infty/\Cscr}$ is fully faithful.\marginpar{That $\mathsf{RFib}(\Cscr)\to\Cat_{\infty/\Cscr}$ is fully faithful is morally expected as being a right fibration is a property of quasicategories over $\Cscr$.}
+
+  By \cite[Corr. 5.15]{Wagner}, the diagram\marginpar{The point inclusion on the right picks out $s$.}
+  \begin{equation}\label{eqn: yoneda homotopy cartesian}
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE1vcl97XFxDYXRfe1xcaW5mdHkvXFxDc2NyfX0oW3M6XFxDc2NyX3sveH1cXHRvXFxDc2NyXSxbcDpcXEVzY3JcXHRvXFxDc2NyXSkiXSxbMCwxLCJcXE1vcl97XFxDYXRfe1xcaW5mdHl9fShcXENzY3Jfey94fSxcXEVzY3IpIl0sWzIsMSwiXFxNb3Jfe1xcQ2F0X3tcXGluZnR5fX0oXFxDc2NyX3sveH0sXFxDc2NyKSJdLFsyLDAsIioiXSxbMCwzXSxbMywyXSxbMCwxXSxbMSwyXV0=
+    \begin{tikzcd}
+      {\Mor_{\Cat_{\infty/\Cscr}}([s:\Cscr_{/x}\to\Cscr],[p:\Escr\to\Cscr])} && {*} \\
+      {\Mor_{\Cat_{\infty}}(\Cscr_{/x},\Escr)} && {\Mor_{\Cat_{\infty}}(\Cscr_{/x},\Cscr)}
+      \arrow[from=1-1, to=1-3]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-3, to=2-3]
+      \arrow[from=2-1, to=2-3]
+    \end{tikzcd}
+  \end{equation}
+  is homotopy Cartesian. By pasting with the square (\ref{eqn: pullback on cores}), we extend this to
+  $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE1vcl97XFxDYXRfe1xcaW5mdHkvXFxDc2NyfX0oW3M6XFxDc2NyX3sveH1cXHRvXFxDc2NyXSxbcDpcXEVzY3JcXHRvXFxDc2NyXSkiXSxbMCwxLCJcXGNvcmUoXFxDc2NyKSJdLFsyLDEsIlxcbWF0aHJte2NvcmV9KFxcQ3NjcikiXSxbMiwwLCIqIl0sWzAsM10sWzMsMl0sWzAsMV0sWzEsMl1d
+  \begin{tikzcd}
+    {\Mor_{\Cat_{\infty/\Cscr}}([s:\Cscr_{/x}\to\Cscr],[p:\Escr\to\Cscr])} && {*} \\
+    {\mathrm{core}(\Escr)} && {\mathrm{core}(\Cscr).}
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=2-1, to=2-3]
+  \end{tikzcd}$$\marginpar{Recall here $\Mor_{\Cat_{\infty}}(-,-)$ is computed as $\mathrm{core}\Fun(-,-)$ and the right arrow picks out $x\in\mathrm{core}(\Cscr)$.}
+  Right fibrations are in particular isofibrations (vis. \cite[\href{https://kerodon.net/tag/01GP}{Tag 01GP}]{kerodon}) and thus $\mathrm{core}(\Escr)\to\mathrm{core}(\Cscr)$ is a Kan fibration so by model category theory \cite[Cons. 5.12]{Wagner} -- which states that pullbacks along diagrams with one leg a Kan fibration agrees with the pullback in quasicategories -- implies that $\Mor_{\Fun(\Cscr^{\Opp},F)}(h_{x},F)$ is given by the fibered product $\mathrm{core}(\Escr)\times_{\mathrm{core}(\Cscr)}\{x\}$. We can then compute
+  \begin{align*}
+    \mathrm{core}(\Escr)\times_{\mathrm{core}(\Cscr)}\{x\} &\cong \mathrm{core}(\Escr\times_{\Cscr}\{x\}) && \text{(\ref{eqn: general pullback}) restricts to (\ref{eqn: pullback on cores})} \\
+    &\cong \Escr\times_{\Cscr}\{x\} && \text{pullback over (\ref{eqn: yoneda homotopy cartesian}) pasted with (\ref{eqn: general pullback})} \\
+    &\simeq F(x)
+  \end{align*}
+  as desired.
+\end{proof}
+Moreover, this construction gives a fully faithful embedding of $\Cscr$ into $\Fun(\Cscr^{\Opp},\Ani)$.
+\begin{proposition}[{\cite[Corr. 5.27]{Wagner}}]\label{prop: Yoneda is fully faithful}
+  The Yoneda embedding $\Cscr\to\Fun(\Cscr^{\Opp},\Ani)$ by $x\mapsto\Mor_{\Cscr}(-,x)$ is fully faithful.
+\end{proposition}
+\begin{proof}
+  Full faithfullness is a formal consequence of \Cref{thm: Yoneda}, but that this is induced by the Yoneda embedding is not \emph{prima facie} evident. Doing so requires the twisted arrow construction of \cite[\S 5.21]{Wagner}, which we omit.
+\end{proof}
+\section{Adjoint Functors}\label{sec: adjoint functors}
+This section follows \cite[\S 6.1]{Wagner} fairly closely.
+\begin{definition}[Right Adjoint Object; {\cite[Def. 6.1]{Wagner}}]\label{def: right adjoint object}
+  Let $L:\Cscr\to\Dscr$ be a functor of quasicategories and fix $y\in\Dscr$. An object $x\in\Cscr$ is a right adjoint object to $y$ under $L$ if there exists an equivalence $\Mor_{\Cscr}(-,x)\simeq\Mor_{\Dscr}(L(-),y)$ in $\Fun(\Cscr^{\Opp},\Ani)$.
+\end{definition}
+\begin{definition}[Right Adjoint; {\cite[Def. 6.1]{Wagner}}]\label{def: right adjoint}
+  Let $L:\Cscr\to\Dscr$ be a functor of quasicategories. A functor $R:\Dscr\to\Cscr$ is a right adjoint of $L$ if there exists an equivalence $\Mor_{\Cscr}(-,R(-))\simeq\Mor_{\Dscr}(L(-),-)$ in $\Fun(\Cscr^{\Opp}\times\Dscr,\Ani)$.\marginpar{As usual, we will write $L\dashv R$.}
+\end{definition}
+It turns out, we can assemble a right adjoint from right adjoint objects.
+\begin{lemma}[Pointwise Right Adjoints; {\cite[Lem. 6.2]{Wagner}}]\label{lem: pointwise adjunctions}
+  Let $L:\Cscr\to\Dscr$ be a functor of quasicategories. $L$ admits a right adjoint $R$ if and only if each $y\in\Dscr$ admits a right adjoint object $x\in\Cscr$.
+\end{lemma}
+%\begin{proof}
+  %$(\Rightarrow)$ If $R:\Dscr\to\Cscr$ is a right adjoint to $L$ then $R(y)$ is a right adjoint to $y$ for each $y\in\Dscr$.
+
+  %$(\Leftarrow)$ Suppose that each $y$ has a right adjoint object. We get a functor $\overline{R}:\Dscr\to\Fun(\Cscr^{\Opp},\Ani)$ taking $y$ to a functor $\Mor_{\Cscr}(-,\overline{R}(y))\simeq\Mor_{\Dscr}(L(-),y)$ but this lies in the image of the Yoneda embedding, which is antiequivalent to $\Cscr$ so on passage to representing objects, this gives the desired functor $R:\Dscr\to\Cscr$.
+%\end{proof}
+We have already seen examples of adjoints.
+\begin{example}[Adjoints to $\Ani\hookrightarrow\Cat_{\infty}$; {\cite[Ex. 6.3]{Wagner}}]\label{ex: adjoints of animae inclusion}
+  The inclusion of animae to $\infty$-categories admits both a left and right adjoint. The right adjoint is given by the restriction to the core functor $\mathrm{core}:\Cat_{\infty}\to\Ani$ and the left adjoint is given by localization at all non-isomorphisms.
+\end{example}
+\begin{remark}\label{rmk: adjoints}\marginpar{This insight is deeply indebted to Mike Hopkins who once remarked in class something along the lines of ``there are two types of mathematical objects -- ones good for mapping into and ones good for mapping out of.''}
+  The adjunction behavior of \Cref{ex: adjoints of animae inclusion} should not seem out of hand.
+  \begin{itemize}
+    \item (That $\mathrm{core}$ is a right adjoint) Forgetful functors are typically right adjoints.
+    \item (That localization is the left adjoint) Localization/group completion has a universal property of ``mapping from.'' Compare, for example, the universal property of group completion or ring localization in the 1-categorical case.
+  \end{itemize}
+\end{remark}
+As in the 1-categorical case, we can produce units and counits which turn out to be necessary and sufficient for the existence of adjoints as in the case of 1-categories.
+\begin{proposition}[{\cite[Cons. 6.4, Lem. 6.5]{Wagner}}]\label{prop: triangle identities}
+  Let $L:\Cscr\to\Dscr,R:\Dscr\to\Cscr$ be functors between quasicategories. $L$ is a left adjoint to $R$ if and only if there are natural transformations $u:\id_{\Cscr}\Rightarrow R\circ L, c:L\circ R\Rightarrow\id_{\Dscr}$ and equivalences $i_{L}:L\to L,i_{R}:R\to R$ making the diagrams
+  $$% https://q.uiver.app/#q=WzAsNixbMCwwLCJMIl0sWzIsMCwiTFxcY2lyYyBSXFxjaXJjIEwiXSxbMiwxLCJMIl0sWzMsMCwiUiJdLFs1LDAsIlJcXGNpcmMgTFxcY2lyYyBSIl0sWzUsMSwiUiJdLFswLDEsIkx1Il0sWzEsMiwiY0wiXSxbMCwyLCJpX3tMfSIsMl0sWzMsNSwiaV97Un0iLDJdLFszLDQsInVSIl0sWzQsNSwiUmMiXV0=
+  \begin{tikzcd}
+    L && {L\circ R\circ L} & R && {R\circ L\circ R} \\
+    && L &&& R
+    \arrow["Lu", from=1-1, to=1-3]
+    \arrow["{i_{L}}"', from=1-1, to=2-3]
+    \arrow["cL", from=1-3, to=2-3]
+    \arrow["uR", from=1-4, to=1-6]
+    \arrow["{i_{R}}"', from=1-4, to=2-6]
+    \arrow["Rc", from=1-6, to=2-6]
+  \end{tikzcd}$$
+  commute.
+\end{proposition}
+When working with $\infty$-categories it is often useful to restrict our attention to functors between $\infty$-categories which are left (resp. right) adjoints. This leads to the following definition.
+\begin{definition}[$\Cat_{\infty}^{\Lsf},\Cat_{\infty}^{\Rsf}$; {\cite[Corr. 6.8]{Wagner}}]\label{def: category with left and right adjoints}
+  The $\infty$-category $\Cat_{\infty}^{\Lsf}$ (resp. $\Cat_{\infty}^{\Rsf}$) is the $\infty$-category by zero simplices $\infty$-categories and mapping animae the core $\mathrm{core}\Fun^{\Lsf}(\Cscr,\Dscr)$ of those functors $\Cscr\to\Dscr$ which are left adjoints (resp. $\mathrm{core}\Fun^{\Rsf}(\Cscr,\Dscr)$ which are right adjoints).
+\end{definition}
+This yields the following -- perhaps abtruse -- result that will play an important role in defining $\catPr^{\Lsf}$ which plays a key role in $\infty$-categorical algebra.\marginpar{This will be discussed in the talk on presentable and accessible $\infty$-categories in a few weeks. \\\\ In particular, computations in $\catPr^{\Lsf}$ are often done ``by passage to right adjoints.''}
+\begin{proposition}[{\cite[Corr. 6.8 (b)]{Wagner}}]\label{prop: reflections CatL to CatR}
+  There is an equivalence of $\infty$-categories betewen $\Cat_{\infty}^{\Lsf}$ and $(\Cat_{\infty}^{\Rsf})^{\Opp}$ which it is the identity on objects and taking left adjoints to their right adjoints.
+\end{proposition}
+\section{(Co)Limits in $\infty$-Categories}\label{sec: colimits}
+This section follows \cite[\S 6.1]{Wagner} fairly closely.
+\begin{definition}[Colimit; {\cite[Def. 6.9]{Wagner}}]\label{def: colimit}
+  Let $F:\Iscr\to\Cscr$ be a functor between quasicategories. A colimit $\colim F$ of $F$ is a left adjoint object of $F$ under the constant functor $\Cscr\to\Fun(\Iscr,\Cscr)$.
+\end{definition}\marginpar{Ie. taking $x\in\Cscr$ to the functor that returns $x$ on each $i\in\Iscr$. This is a ``left'' thing because colimits are good for ``mapping from'' as in the philosophical sidebar of \Cref{rmk: adjoints} above.}
+\begin{definition}[Limit; {\cite[Def. 6.9]{Wagner}}]\label{def: limit}
+  et $F:\Iscr\to\Cscr$ be a functor between quasicategories. A colimit $\lim F$ of $F$ is a right adjoint object of $F$ under the constant functor $\Cscr\to\Fun(\Iscr,\Cscr)$.
+\end{definition}
+Let us unpack why this is reasonable. Being a left adjoint object, dual to \Cref{def: right adjoint object}, implies that there is an equivalence of animae
+\begin{equation}\label{eqn: colimit animae equivalence}
+  \Mor_{\Cscr}(\colim F, y)\simeq\Mor_{\Fun(\Iscr,\Cscr)}(F,\mathrm{const}(y)).
+\end{equation}
+Loosely, we can think of morphisms $F\to\mathrm{const}(y)$ in $\Fun(\Iscr,\Cscr)$ as maps from $F(i)\to y$ for each $i\in\Iscr$ compatible with the morphisms in $\Iscr$ -- indeed, this is exactly what happens in 1-categories (vis. eg. \cite[\href{https://stacks.math.columbia.edu/tag/001I}{Tag 001I}]{stacks-project}). The equivalence of the left and right hand side of (\ref{eqn: colimit animae equivalence}) captures the desired universal property:
+\begin{itemize}
+  \item Any compatible system of maps from the $\Ical$-indexed diagram $F$ in $\Cscr$ to $y$ factors uniquely over the colimit $\colim F$.
+\end{itemize}
+One readily makes an analogous argument for limits under passage to opposites, realizing them as the ``universal object over diagrams'' in an appropriate sense. We will provide a description of limits and colimits solidifiying this intuition in \Cref{sec: constructions with slices and joins}.
+
+Adjoint functors behave with limits and colimits in an expected manner.
+\begin{lemma}[LAPC/RAPL; {\cite[Lem. 6.11]{Wagner}}]\label{lem: RAPL and LAPC}
+  Let $F:\Cscr\to\Dscr$ be a functor of $\infty$-categories. If $F$ is a left adjoint (resp. is a right adjoint) then $F$ preserves colimits (resp. preserves limits).
+\end{lemma}
+Moreover, it turns out that limits and colimits in $\Cat_{\infty}$ can be computed in terms of straightenings and unstraightenings. For this, we use the following results as a black box.
+\begin{lemma}[Pointwise Limits; {\cite[Lem. 6.12]{Wagner}}]\label{lem: pointwise limits}
+  Let $\Cscr,\Dscr,\Iscr$ be quasicategories such that $\Dscr$ has all $\Iscr$-indexed limits. Then the functor quasicategory $\Fun(\Cscr,\Dscr)$ has all $\Iscr$-indexed limits and
+  $$\mathrm{ev}_{x}:\Fun(\Cscr,\Dscr)\longrightarrow\Fun(\{x\},\Dscr)$$
+  preserves $\Iscr$-indexed colimits.
+\end{lemma}
+\begin{lemma}[{\cite[Lem. 6.15]{Wagner}}]\label{lem: hom animae preserve pullbacks}
+  Let $\Cscr$ be a quasicategory. The functor $\Cat_{\infty}\to\Ani$ by $\Dscr\mapsto\Mor_{\Cat_{\infty}}(\Cscr,\Dscr)=\mathrm{core}\Fun(\Cscr,\Dscr)$ preserves pullbacks.
+\end{lemma}
+Limits and colimits in $\Cat_{\infty}$ are given by straightenings and unstraightenings as follows.
+\begin{proposition}[{\cite[Lem. 6.14]{Wagner}}]\label{prop: limits and colimits via straightening}
+  Let $F:\Iscr\to\Cat_{\infty}$ be a functor with coCartesian unstraightening $p:\Escr\to\Iscr$. Then
+  $$\colim F\simeq\Escr[\{\text{coCartesian edges}\}^{-1}]\text{ and }\lim F=\Fun_{\Iscr}^{\mathsf{coCart}}(\Iscr,\Escr).$$\marginpar{Ie. the limit is given by coCartesian sections of $p$, resp. the localization at all non-isomorphisms.}
+  Furthermore, if $F$ is $\Ani$-valued, then the limit and colimit are given by
+  $$\colim F\simeq|\Escr|\text{ and }\lim F=\Mor_{\Cat_{\infty/\Iscr}}(\Iscr,\Escr).$$
+\end{proposition}
+\begin{proof}[Proof Outline]
+  Considering the case of colimits, let $F$ be $\Ani$-valued. Under the straightening-unstraightening correspondence, we have
+  $$\Mor_{\Fun(\Iscr,\Ani)}(F,\mathrm{const}(-))\simeq\Mor_{\mathsf{LFib}(\Iscr)}(\Escr,\mathrm{Un}(\mathrm{const}(-)))$$
+  but noting that the unstraightening of a constant functor $\mathrm{const}(x)$ is the projection $\{x\}\times\Iscr\to\Iscr$. As such we can compute
+  \begin{align*}
+    \Mor_{\mathsf{LFib}(\Iscr)}(\Escr,-\times\Iscr) &\simeq \Mor_{\Cat_{\infty/\Iscr}}(\Escr,-\times\Iscr) && \text{(i)}\\
+    &\simeq \Mor_{\Cat_{\infty}}(\Escr,-\times\Iscr)\times_{\Mor_{\Cat_{\infty}}(\Escr,\Iscr)}\{p\} && \text{(ii)}\\
+    &\simeq \left(\Mor_{\Cat_{\infty}}(\Escr,-)\times\Mor_{\Cat_{\infty}}(\Escr,\Iscr)\right)\times_{\Mor_{\Cat_{\infty}}(\Escr,\Iscr)}\{p\} && \text{(iii)} \\
+    &\simeq \Mor_{\Cat_{\infty}}(\Escr,-) && \text{(iv)}
+  \end{align*}
+  where
+  \begin{enumerate}[label=(\roman*)]
+    \item The inclusion $\mathsf{LFib}(\Iscr)\to\Cat_{\infty/\Iscr}$ is fully faithful. This is reasonable because being a left fibration is a property. (Cf. the sidebar of (\ref{eqn: yoneda homotopy cartesian})).
+    \item Pointwise computation of colimits in functor categories \Cref{lem: pointwise limits} allow us to reduce this to a result on homotopy pullbacks shown last week \cite[Corr. 5.15]{Wagner}.
+    \item This uses the product-map adjunction in combination with the fact that forgetting to animae preserves pullbacks \Cref{lem: hom animae preserve pullbacks}.
+    \item The fibered product $\Mor_{\Cat_{\infty}}(\Escr,\Iscr)\times_{\Mor_{\Cat_{\infty}}(\Escr,\Iscr)}\{p\}$ is just $\{p\}$.
+  \end{enumerate}
+  Now localization at non-isomorphisms is left adjoint to the inclusion as in \Cref{ex: adjoints of animae inclusion} and $|\Escr|$ satisfies the desired universal property, giving the claim.
+\end{proof}
+\section{Excursus: Some Handwaving with Slices}\label{sec: constructions with slices and joins}\marginpar{This is indeed the way the author first learned about (co)limits in $\infty$-categories.}
+This section largely follows Hopkins' course (and associated non-public notes) \cite{Hopkins} on which the author's course notes \cite{Ong} are based. This is also how things were originally defind by Joyal. Some of these constructions will also be revisited in the proof of the adjoint functor theorem.
+
+Let us recall the slice construction of \cite[\S 2.11]{Wagner}. The slice under quasicategory is given by the Cartesian square\marginpar{I am playing a bit fast and loose here. See the discussion in Wagner's notes, but everything is justified via the equivalences between slices and ``fat slices.''}
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXENzY3Jfey94fSJdLFswLDEsIlxce3hcXH1cXHRpbWVzXFxDc2NyIl0sWzIsMCwiXFxtYXRocm17QXJyfShcXENzY3IpIl0sWzIsMSwiXFxDc2NyXFx0aW1lc1xcQ3Njci4iXSxbMiwzLCIocyx0KSJdLFswLDFdLFsxLDNdLFswLDJdXQ==
+\begin{tikzcd}
+	{\Cscr_{x/}} && {\mathrm{Arr}(\Cscr)} \\
+	{\{x\}\times\Cscr} && {\Cscr\times\Cscr.}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{(s,t)}", from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+Dually, the slice over quasicategory is given by the Cartesian square
+$$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXENzY3Jfe3gvfSJdLFswLDEsIlxcQ3NjclxcdGltZXMgXFx7eFxcfSJdLFsyLDAsIlxcbWF0aHJte0Fycn0oXFxDc2NyKSJdLFsyLDEsIlxcQ3NjclxcdGltZXNcXENzY3IuIl0sWzIsMywiKHMsdCkiXSxbMCwxXSxbMSwzXSxbMCwyXV0=
+\begin{tikzcd}
+	{\Cscr_{/x}} && {\mathrm{Arr}(\Cscr)} \\
+	{\Cscr\times \{x\}} && {\Cscr\times\Cscr.}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{(s,t)}", from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}$$
+Slice constructions allow us to define initial and terminal objects.
+\begin{definition}[Initial/Terminal Objects]\label{def: initial and terminal objects}
+  Let $\Cscr$ be a quasicategory. An object $x\in\Cscr$ is initial (resp. terminal) if $\Cscr_{x/}\to\Cscr$ (resp. $\Cscr_{/x}\to\Cscr)$ is a trivial fibration.\marginpar{$\Cscr_{x/}\to\Cscr,\Cscr_{/x}\to\Cscr$ are left and right fibrations, resp. \\\\ Also recall that trivial fibrations are the right notions of uniqueness in $\infty$-land.}
+\end{definition}
+This should be believable because commutativity of the diagram gives structure maps $x\to y$ in $\Cscr_{x/}$ or $y\to x$ in $\Cscr_{/x}$ for fixed $x$.
+\begin{lemma}\label{lem: initial and terminal }
+  Let $\Cscr$ be a quasicategory. The full subcategory spanned by initial or final objects are either empty or contractible animae.
+\end{lemma}
+Now let's suppose we can construct slices not just over individual objects of a quasicategory but over the image of a functor $\Iscr\to\Cscr$ -- ie. that exhibit an $\Iscr$-indexed diagram as initial or final presented as a system of maps to/from objects of the diagram, compatible with morphisms in the diagram -- and moreover that this is in fact a quasicategory. This can be done by writing down explicit simplicial sets.
+
+To wit, for $F:\Iscr\to\Cscr$ a functor of quasicategories,
+\begin{itemize}
+  \item $\Cscr_{\Iscr/}$ is the quasicategory of cocones parametrizing objects under the $\Iscr$-indexed diagram.
+  \item $\Cscr_{/\Iscr}$ is the quasicategory of cones parametrizing objects over the $\Iscr$-indexed diagram.
+\end{itemize}
+This allows us to very easily define limits and colimits.
+\begin{definition}[(Co)limit]\label{def: colimits II}
+  Let $F:\Iscr\to\Cscr$ be a functor of quasicategories. A colimit of $F$ is an initial object of the slice quasicategory $\Cscr_{\Iscr/}$ (resp. a limit of $F$ is a final object of the slice quasicategory $\Cscr_{/\Iscr}$).
+\end{definition}
+\newpage
+\printbibliography
+\end{document}
