@@ -103,8 +103,20 @@ jobs:
 
       - name: Set up Tectonic
         uses: wtfjoke/setup-tectonic@v4
-        with:
-          biber-version: "latest"
+
+      # Tectonic's current bundle ships a biblatex.sty that emits .bcf control-file
+      # version 3.8; biber's GitHub-released versions (2.18+, installable via the
+      # action above) expect 3.9+ and reject it (tectonic-typesetting/tectonic#1267,
+      # still open upstream). Biber 2.17 is the exact match (BCF_VERSION = 3.8 in
+      # its source) but was never packaged as a GitHub Release, only tagged, so
+      # fetch its official binary from SourceForge instead.
+      - name: Install Biber 2.17 (matches Tectonic's bundled biblatex)
+        run: |
+          curl -fsSL -o /tmp/biber.tar.gz "https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/2.17/binaries/Linux/biber-linux_x86_64.tar.gz/download"
+          tar -xzf /tmp/biber.tar.gz -C /tmp
+          chmod +x /tmp/biber
+          sudo mv /tmp/biber /usr/local/bin/biber
+          biber --version
 
       - name: Compile ${{ matrix.root }}
         working-directory: ${{ matrix.dir }}
