@@ -15,9 +15,6 @@ directly in the browser.
 - [A Primer on Prismatic Cohomology](https://wgabrielong.github.io/academic-writing/notes/prismatic-primer/main.pdf)
 - [Notes on ∞-Categories](https://wgabrielong.github.io/academic-writing/notes/infinity-categories/main.pdf)
 
-The rest of `notes/` still builds and publishes as PDFs in their
-respective subfolders; they're just not linked here.
-
 ## Papers
 
 Coming soon — `papers/` will follow the same layout and be linked here the
