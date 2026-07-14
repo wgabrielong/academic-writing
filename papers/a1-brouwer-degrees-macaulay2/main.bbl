@@ -1,0 +1,122 @@
+\begin{thebibliography}{10}
+
+\bibitem{AK}
+D.~Agostini and M.~Kummer.
+\newblock Secant varieties of curves, {U}lrich bundles and the arithmetic
+  writhe, 2023.
+\newblock \href{https://arxiv.org/abs/2307.07543}{arXiv:2307.07543} [math.AG].
+
+\bibitem{BW}
+T.~Bachmann and K.~Wickelgren.
+\newblock Euler classes: six-functors formalism, dualities, integrality and
+  linear subspaces of complete intersections.
+\newblock {\em J. Inst. Math. Jussieu}, 22(2):681--746, 2023.
+
+\bibitem{Braz-expos}
+T.~Brazelton.
+\newblock An introduction to {$\mathbb{A}^1$}-enumerative geometry.
+\newblock In {\em Homotopy theory and arithmetic geometry---motivic and
+  {D}iophantine aspects}, volume 2292 of {\em Lecture Notes in Math.}, pages
+  11--47. Springer, Cham, 2021.
+
+\bibitem{BMP}
+T.~Brazelton, S.~McKean, and S.~Pauli.
+\newblock B\'{e}zoutians and the {$\mathbb A^1$}-degree.
+\newblock {\em Algebra Number Theory}, 17(11):1985--2012, 2023.
+
+\bibitem{EL}
+D.~Eisenbud and H.~I. Levine.
+\newblock An algebraic formula for the degree of a {$C^{\infty }$} map germ.
+\newblock {\em Ann. of Math. (2)}, 106(1):19--44, 1977.
+\newblock With an appendix by Bernard Teissier, ``Sur une in\'{e}galit\'{e} \`a
+  la Minkowski pour les multiplicit\'{e}s''.
+
+\bibitem{M2}
+D.~R. Grayson and M.~E. Stillman.
+\newblock Macaulay2, a software system for research in algebraic geometry.
+\newblock Available at \url{http://www2.macaulay2.com}.
+
+\bibitem{Khim}
+G.~N. Him\v{s}ia\v{s}vili.
+\newblock The local degree of a smooth mapping.
+\newblock {\em Sakharth. SSR Mecn. Akad. Moambe}, 85(2):309--312, 1977.
+
+\bibitem{JPP}
+A.~{Jaramillo Puentes} and S.~Pauli.
+\newblock A quadratically enriched correspondence theorem, 2024.
+\newblock \href{https://arxiv.org/abs/2309.11706}{arXiv:2309.11706} [math.AG].
+
+\bibitem{KSLW}
+J.~L. Kass, M.~Levine, J.~P. Solomon, and K.~Wickelgren.
+\newblock A quadratically enriched count of rational curves, 2023.
+\newblock \href{https://arxiv.org/abs/2307.01936}{arXiv:2307.01936} [math.AG].
+
+\bibitem{KW-EKL}
+J.~L. Kass and K.~Wickelgren.
+\newblock The class of {E}isenbud-{K}himshiashvili-{L}evine is the local
+  {$\mathbf{A}^1$}-{B}rouwer degree.
+\newblock {\em Duke Math. J.}, 168(3):429--469, 2019.
+
+\bibitem{CubicKW}
+J.~L. Kass and K.~Wickelgren.
+\newblock An arithmetic count of the lines on a smooth cubic surface.
+\newblock {\em Compos. Math.}, 157(4):677--709, 2021.
+
+\bibitem{KC}
+P.~Koprowski and A.~Czoga{\l}a.
+\newblock Computing with quadratic forms over number fields.
+\newblock {\em J. Symbolic Comput.}, 89:129--145, 2018.
+
+\bibitem{KR}
+P.~Koprowski and B.~Rothkegel.
+\newblock The anisotropic part of a quadratic form over a number field.
+\newblock {\em J. Symbolic Comput.}, 115:39--52, 2023.
+
+\bibitem{Lam}
+T.~Y. Lam.
+\newblock {\em Introduction to quadratic forms over fields}, volume~67 of {\em
+  Graduate Studies in Mathematics}.
+\newblock American Mathematical Society, Providence, RI, 2005.
+
+\bibitem{Levine}
+M.~Levine.
+\newblock Aspects of enumerative geometry with quadratic forms.
+\newblock {\em Doc. Math.}, 25:2179--2239, 2020.
+
+\bibitem{McKean}
+S.~McKean.
+\newblock An arithmetic enrichment of {B}\'{e}zout's {T}heorem.
+\newblock {\em Math. Ann.}, 379(1--2):633--660, 2021.
+
+\bibitem{MH}
+J.~Milnor and D.~Husemoller.
+\newblock {\em Symmetric bilinear forms}, volume Band 73 of {\em Ergebnisse der
+  Mathematik und ihrer Grenzgebiete [Results in Mathematics and Related
+  Areas]}.
+\newblock Springer-Verlag, New York-Heidelberg, 1973.
+
+\bibitem{Morel}
+F.~Morel.
+\newblock {\em {$\mathbb{A}^1$}-algebraic topology over a field}, volume 2052
+  of {\em Lecture Notes in Mathematics}.
+\newblock Springer, Heidelberg, 2012.
+
+\bibitem{Pauli}
+S.~Pauli.
+\newblock Computing {$\mathbb{A}^1$}-{E}uler numbers with {M}acaulay2.
+\newblock {\em Res. Math. Sci.}, 10(3):Paper No. 26, 14 pp., 2023.
+
+\bibitem{Pauli-expos}
+S.~Pauli and K.~Wickelgren.
+\newblock Applications to {$\mathbb{A}^1$}-enumerative geometry of the
+  {$\mathbb{A}^1$}-degree.
+\newblock {\em Res. Math. Sci.}, 8(2):Paper No. 24, 29 pp., 2021.
+
+\bibitem{BS}
+B.~Sturmfels.
+\newblock {\em Solving systems of polynomial equations}, volume~97 of {\em CBMS
+  Regional Conference Series in Mathematics}.
+\newblock Published for the Conference Board of the Mathematical Sciences,
+  Washington, DC; by the American Mathematical Society, Providence, RI, 2002.
+
+\end{thebibliography}

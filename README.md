@@ -31,8 +31,10 @@ well.
 
 ## Papers
 
-Coming soon — `papers/` will follow the same layout and be linked here the
-same way once added.
+- [![pdf preprint](https://img.shields.io/badge/pdf-preprint-blue)](https://wgabrielong.github.io/academic-writing/papers/unstable-a1-brouwer-degrees-macaulay2/main.pdf) Transfers and Unstable Degrees in the 𝔸¹-Brouwer Degrees Package for Macaulay2 — with Stephanie Atherton, Somak Dutta, Jordy Lopez Garcia, Joel Louwsma, Yuyuan Luo, and Ruzho Sagarayaj. [arXiv:2511.12765](https://arxiv.org/abs/2511.12765)
+- [![pdf paper](https://img.shields.io/badge/pdf-paper-green)](https://wgabrielong.github.io/academic-writing/papers/highly-tangent-lines-hypersurfaces/main.pdf) Quadratic Counts of Highly Tangent Lines to Hypersurfaces — with Stephen McKean and Giosuè Muratore. *Math. Nachr.* **298** (2025), 3460–3475. [doi:10.1002/mana.70048](https://doi.org/10.1002/mana.70048)
+- [![pdf paper](https://img.shields.io/badge/pdf-paper-green)](https://wgabrielong.github.io/academic-writing/papers/a1-brouwer-degrees-macaulay2/main.pdf) 𝔸¹-Brouwer Degrees in Macaulay2 — with Nikita Borisov, Thomas Brazelton, Frenly Espino, Thomas Hagedorn, Zhaobo Han, Jordy Lopez Garcia, Joel Louwsma, and Andrew R. Tawfeek. *J. Softw. Algebra Geom.* **14** (2024), 175–187. [doi:10.2140/jsag.2024.14.175](https://doi.org/10.2140/jsag.2024.14.175)
+- [![pdf paper](https://img.shields.io/badge/pdf-paper-green)](https://wgabrielong.github.io/academic-writing/papers/circles-tangent-to-conics/main.pdf) Real Circles Tangent to 3 Conics — with Paul Breiding, Julia Lindberg, and Linus Sommer. *Le Matematiche* **78**(1) (2023). [doi:10.4418/2023.78.1.5](https://doi.org/10.4418/2023.78.1.5)
 
 ## License
 

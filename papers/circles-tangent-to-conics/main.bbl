@@ -1,0 +1,129 @@
+\begin{thebibliography}{10}
+
+\bibitem{tensorflow2015-whitepaper}
+Mart\'{\i}n Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen,
+  Craig Citro, Greg~S. Corrado, Andy Davis, Jeffrey Dean, Matthieu Devin,
+  Sanjay Ghemawat, Ian Goodfellow, Andrew Harp, Geoffrey Irving, Michael Isard,
+  Yangqing Jia, Rafal Jozefowicz, Lukasz Kaiser, Manjunath Kudlur, Josh
+  Levenberg, Dandelion Man\'{e}, Rajat Monga, Sherry Moore, Derek Murray, Chris
+  Olah, Mike Schuster, Jonathon Shlens, Benoit Steiner, Ilya Sutskever, Kunal
+  Talwar, Paul Tucker, Vincent Vanhoucke, Vijay Vasudevan, Fernanda Vi\'{e}gas,
+  Oriol Vinyals, Pete Warden, Martin Wattenberg, Martin Wicke, Yuan Yu, and
+  Xiaoqiang Zheng.
+\newblock {TensorFlow}: Large-scale machine learning on heterogeneous systems,
+  2015.
+\newblock Software available from tensorflow.org.
+
+\bibitem{CirclesAndSpheres}
+Benjamin Alvord.
+\newblock Tangencies of circles and spheres.
+\newblock {\em Smithsonian Contributions to Knowledge}, 1855.
+
+\bibitem{Bernal2020MachineLT}
+Edgar~A. Bernal, Jonathan~D. Hauenstein, Dhagash Mehta, Margaret~H. Regan, and
+  Tingting Tang.
+\newblock Machine learning the real discriminant locus.
+\newblock {\em J. Symb. Comput.}, 115:409--426, 2020.
+
+\bibitem{BKL2022}
+Paul Breiding, Hanieh Keneshlou, and Antonio Lerario.
+\newblock {Quantitative Singularity Theory for Random Polynomials}.
+\newblock {\em International Mathematics Research Notices}, 2022(8):5685--5719,
+  10 2020.
+
+\bibitem{Certifying}
+Paul Breiding, Kemal Rose, and Sascha Timme.
+\newblock Certifying zeros of polynomial systems using interval arithmetic,
+  2021.
+
+\bibitem{breiding20203264}
+Paul Breiding, Bernd Sturmfels, and Sascha Timme.
+\newblock 3264 conics in a second.
+\newblock {\em Notices Amer. Math. Soc.}, 67(1):30--37, 2020.
+
+\bibitem{HomotopyContinuation}
+Paul Breiding and Sascha Timme.
+\newblock Homotopy{C}ontinuation.jl: A package for homotopy continuation in
+  {J}ulia, 2018.
+
+\bibitem{TangentQuadrics}
+Taylor Brysiewicz, Claudia Fevola, and Bernd Sturmfels.
+\newblock Tangent quadrics in real 3-space.
+\newblock {\em Matematiche (Catania)}, 76:355--367, 2021.
+
+\bibitem{DL2022}
+Daouda~Niang Diatta and Antonio Lerario.
+\newblock Low-degree approximation of random polynomials.
+\newblock {\em Foundations of Computational Mathematics}, 22(1):77--97, 2022.
+
+\bibitem{LinearProgram}
+Peter Dietmaier.
+\newblock {\em The Stewart-Gough Platform of General Geometry can have 40 Real
+  Postures}, pages 7--16.
+\newblock Springer Netherlands, Dordrecht, 1998.
+
+\bibitem{CommAlg}
+David Eisenbud.
+\newblock {\em Commutative Algebra}, volume 150 of {\em Graduate Texts in
+  Mathematics}.
+\newblock Springer-Verlag, 1995.
+
+\bibitem{3264AllThat}
+David Eisenbud and Joe Harris.
+\newblock {\em 3264 and All That: A Second Course in Algebraic Geometry}.
+\newblock Cambridge University Press, 2016.
+
+\bibitem{ApollonianCircles}
+Ioannis~Z. Emiris and George~M. Tzoumas.
+\newblock Algebraic study of the apollonius circle of three ellipses.
+\newblock In {\em In Proc. Europ. Works. Comp. Geom}, pages 147--150, 2005.
+
+\bibitem{Goodfellow-et-al-2016}
+Ian Goodfellow, Yoshua Bengio, and Aaron Courville.
+\newblock {\em Deep Learning}.
+\newblock MIT Press, 2016.
+\newblock \url{http://www.deeplearningbook.org}.
+
+\bibitem{PrinciplesAG}
+Phillip Griffiths and Joe Harris.
+\newblock {\em Principles of Algebraic Geometry}.
+\newblock Wiley, 1994.
+
+\bibitem{HORNIK1991251}
+Kurt Hornik.
+\newblock Approximation capabilities of multilayer feedforward networks.
+\newblock {\em Neural Networks}, 4(2):251--257, 1991.
+
+\bibitem{Adam}
+Diederik~P. Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization, 2014.
+
+\bibitem{LS2021}
+Antonio Lerario and Michele Stecconi.
+\newblock Maximal and typical topology of real polynomial singularities.
+\newblock {\em Ann. Inst. Fourier}, 2021.
+
+\bibitem{3264RealConics}
+Felice Ronga, Alberto Tognoli, and Thierry Vust.
+\newblock The number of conics tangent to five given conics: the real case.
+\newblock {\em Revista Matemática de la Universidad Complutense de Madrid},
+  10(2):391--421, 1997.
+
+\bibitem{Sommese:Wampler:2005}
+Andrew~J. Sommese and Charles~W. Wampler.
+\newblock {\em The {N}umerical {S}olution of {S}ystems of {P}olynomials
+  {A}rising in {E}ngineering and {S}cience}.
+\newblock World Scientific, 2005.
+
+\bibitem{RealSolutionsGeometry}
+Frank Sottile.
+\newblock {\em Real Solutions to Equations from Geometry}.
+\newblock University lecture series. American Mathematical Society, 2011.
+
+\bibitem{TK97}
+Anders Thorup and {Steven L.} Kleiman.
+\newblock Intersection theory and enumerative geometry. a decade in review.
+  section 3.
+\newblock volume~46, pages 332--338, 1987.
+
+\end{thebibliography}

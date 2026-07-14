@@ -1,0 +1,571 @@
+%A1BrouwerDegrees.tex
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{amsart}
+\usepackage{amssymb,framed,mathtools,pgfplots,verbatim}
+\definecolor{hot}{RGB}{65,105,225} 
+\usepackage[colorlinks=true, allcolors=hot]{hyperref}
+\usepackage[margin = 1in]{geometry}
+
+\pgfplotsset{compat=1.18}
+
+\input{lst-Macaulay2.tex}
+
+\lstset{
+numbers=none,
+frame=leftline,% comment out if you don't like the blue rectangles
+framerule=1ex,
+framesep=1ex,
+xleftmargin=2ex,
+columns=fixed,
+showstringspaces=false,
+breaklines=false,
+}
+%\newcommand{\joel}[1]{\textcolor{red}{#1}}
+%\newcommand{\tom}[1]{\textcolor{orange}{#1}}
+%\newcommand{\gabe}[1]{\textcolor{blue}{#1}}
+%\newcommand{\jordy}[1]{\textcolor{maroon}{#1}}
+
+%Environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+%Macros
+\providecommand{\A}{\mathbb{A}}
+
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\GW}{GW}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Sym}{Sym}
+
+\title{$\A^1$-Brouwer degrees in Macaulay2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Nikita Borisov} 
+\address[N.~Borisov]{Department of Mathematics\\
+         University of Pennsylvania\\ 
+         Philadelphia, PA 19104\\ 
+         USA} 
+\email{nborisov@sas.upenn.edu}
+\urladdr{https://nikita-borisov.github.io/}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Thomas Brazelton} 
+\address[T.~Brazelton]{Department of Mathematics\\ 
+         Harvard University\\ 
+         Cambridge, MA 02138\\
+         USA} 
+\email{brazelton@math.harvard.edu}
+\urladdr{https://tbrazel.github.io/}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Frenly Espino} 
+\address[F.~Espino]{Department of Mathematics\\
+         University of Pennsylvania\\ 
+         Philadelphia, PA 19104\\ 
+         USA} 
+\email{frenly@sas.upenn.edu }
+\urladdr{https://frenlye.github.io/}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Thomas Hagedorn} 
+\address[T.~Hagedorn]{Department of Mathematics and Statistics\\ 
+         The College of New Jersey\\ 
+         Ewing, NJ 08618\\ 
+         USA} 
+\email{hagedorn@tcnj.edu}
+\urladdr{https://hagedorn.pages.tcnj.edu/}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Zhaobo Han} 
+\address[Z.~Han]{University of Pennsylvania\\ 
+         Philadelphia, PA 19104\\ 
+         USA} 
+\email{zbtomhan@sas.upenn.edu}
+\urladdr{https://www.linkedin.com/in/zhaobo-han-77b1301a2/}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Jordy Lopez Garcia} 
+\address[J.~Lopez Garcia]{Department of Mathematics\\ 
+         Texas A\&M University\\ 
+         College Station, TX 77843\\ 
+         USA} 
+\email{jordy.lopez@tamu.edu}
+\urladdr{https://jordylopez27.github.io/}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Joel Louwsma} 
+\address[J.~Louwsma]{Department of Mathematics\\ 
+         Niagara University\\ 
+         Niagara University, NY 14109\\ 
+         USA} 
+\email{jlouwsma@niagara.edu}
+\urladdr{https://www.joellouwsma.com}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Wern Juin Gabriel Ong} 
+\address[W.~J.~G.~Ong]{Bowdoin College\\
+         Brunswick, ME 04011\\
+         USA}
+\email{gong@bowdoin.edu}
+\urladdr{https://wgabrielong.github.io/}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Andrew R. Tawfeek} 
+\address[A.~R.~Tawfeek]{Department of Mathematics\\ 
+         University of Washington\\ 
+         Seattle, WA 98195\\
+         USA} 
+\email{atawfeek@uw.edu}
+\urladdr{https://atawfeek.com/}
+
+\renewcommand{\shortauthors}{$\A^1$-Brouwer degrees in Macaulay2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subjclass[2020]{14F42, 14-04, 68W30, 11E04, 55M25, 14N10}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Beginning
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+We describe the \emph{Macaulay2} package \texttt{A1BrouwerDegrees} for computing local and global $\mathbb{A}^1$-Brouwer degrees and studying symmetric bilinear forms over the complex numbers, the real numbers, the rational numbers, and finite fields of characteristic not equal to~$2$. 
+\end{abstract}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Introduction  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+In $\A^1$-homotopy theory, the \emph{$\A^1$-Brouwer degree} provides an algebro-geometric analogue of the classical Brouwer degree from differential topology. Morel's $\A^1$-degree homomorphism identifies the zeroth stable stem of the motivic sphere spectrum with the \emph{Grothendieck--Witt ring} of symmetric bilinear forms over a field \cite[Corollary~1.24]{Morel}. Given an endomorphism of affine space with an isolated rational zero, work of Kass and Wickelgren~\cite{KW-EKL} identifies its local $\A^1$-Brouwer degree with the Eisenbud--Khimshiashvili--Levine signature form \cite{EL,Khim}, which was used to compute local Brouwer degrees in real differential topology. Work of Bachmann and Wickelgren~\cite{BW} extends this work, identifying the $\A^1$-Brouwer degree with a quadratic Grothendieck--Serre duality form.
+
+In \emph{$\A^1$-enumerative geometry} \cite{CubicKW,Levine} (see \cite{Braz-expos,Pauli-expos} for an overview), the $\A^1$-Brouwer degree has found a wealth of applications, recently including \cite{AK,KSLW,JPP}. For instance, via McKean's B\'ezout theorem, the $\A^1$-Brouwer degree can be understood as a quadratically enriched analogue of intersection multiplicity, often encoding deeper geometric information than was available over the algebraically closed fields -- with other invariants of the quadratic form over~$k$ capturing field-specific arithmetic data~\cite{McKean}.
+
+Recent work of the second-named author, McKean, and Pauli~\cite{BMP} provides tractable formulas for computing $\A^1$-Brouwer degrees as \emph{B\'ezoutian bilinear forms}. In the \texttt{A1BrouwerDegrees} package, we implement these methods in \emph{Macaulay2}~\cite{M2} over the fields $\mathbb{C}$, $\mathbb{R}$, $\mathbb{Q}$, and~$\mathbb{F}_q$ (for $q$ odd) and provide a suite of tools whose capabilities include:
+\begin{enumerate}
+    \item computing $\A^1$-Brouwer degrees (both local and global) for endomorphisms of affine space;\footnote{Due to~$\mathbb{R}$ being an inexact field, $\mathbb{A}^{1}$-Brouwer degrees over~$\mathbb{R}$ have to be computed over~$\mathbb{Q}$ and base-changed to~$\mathbb{R}$.}
+    \item decomposing symmetric bilinear forms into their isotropic and anisotropic parts; and
+    \item extracting invariants of symmetric bilinear forms (rank, signature, discriminant, Hasse--Witt invariants).
+\end{enumerate}
+
+\begin{remark} 
+The current scope of this package is the complex numbers, the real numbers, the rational numbers, and finite fields of characteristic not equal to~$2$, so all of our algorithms are implicitly taking place in these settings. We hope to expand the scope of these algorithms in future work.
+\end{remark}
+
+In Section~\ref{sec:GWring}, we provide a rapid introduction to the theory of symmetric bilinear forms, highlighting the capacity of our package to build forms, check isomorphisms, and decompose forms. In Section~\ref{sec:A1Degs}, we discuss local and global $\A^1$-Brouwer degrees and provide some computational examples, including quadratically enriched intersection multiplicity of real curves, the $\A^1$-Euler characteristic of the Grassmannian $\Gr(2,4)$ (following \cite[Section~8.2]{BMP}), and local computations for $27$~lines on a cubic surface (following \cite{CubicKW,Pauli}).
+
+\subsection{Software availability}
+The software documented here is available in versions 1.23 and later of \emph{Macaulay2} as the \href{https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/A1BrouwerDegrees/html/index.html}{\texttt{A1BrouwerDegrees} package}.
+
+\section{The Grothendieck--Witt ring}\label{sec:GWring}
+
+For this entire section, we assume $k$ is a field of characteristic not equal to~$2$. We say a bilinear form $\beta \colon V \times V \to k$ is \emph{symmetric} if $\beta(v,w) = \beta(w,v)$ for all $v,w\in V$. We say $\beta$ is \emph{non-degenerate} if $\beta(v,-) \colon V \to k$ is identically zero if and only if $v=0$.
+
+\begin{definition}\label{def:gram-matrix} 
+Let $\beta \colon V \times V \to k$ be a symmetric bilinear form, and choose a basis $e_1, \dots, e_n$ for~$V$. We define the \emph{Gram matrix} of~$\beta$ in the basis $\{e_i\}_{i=1}^n$ to be the symmetric matrix with entries $\beta(e_i,e_j)$. 
+\end{definition}
+
+\begin{remark}
+    Non-degeneracy of~$\beta$ is equivalent to the statement that the determinant of a Gram matrix in any basis is nonzero. A change of basis for~$V$ corresponds to the associated Gram matrices being congruent.
+\end{remark}
+
+Given two symmetric bilinear forms $\beta_i \colon V_i \times V_i \to k$ for $i=1,2$, we can define their sum and product:
+\begin{equation}\label{eqn:add-multiply-symm-bilin-forms}
+\begin{aligned}
+    (\beta_1 \oplus \beta_2) \colon (V_1 \oplus V_2 )\times (V_1 \oplus V_2) &\to k \\
+    (\beta_1 \otimes \beta_2) \colon (V_1 \otimes V_2) \times( V_1 \otimes V_2) &\to k.
+\end{aligned}
+\end{equation}
+On Gram matrices, these operations are given by direct sum and tensor product, respectively.
+
+\begin{definition}\label{def:GWk} 
+The \emph{Grothendieck--Witt ring} $\GW(k)$ is the group completion of the semiring of isomorphism classes of non-degenerate symmetric bilinear forms over~$k$. 
+\end{definition}
+
+\begin{example}
+\label{example-5}
+Any non-degenerate symmetric bilinear form over an algebraically closed field admits a basis in which its Gram matrix is the identity; therefore rank determines an isomorphism $\GW(\mathbb{C}) \cong \mathbb{Z}$. For further computations of Grothendieck--Witt rings, we refer the reader to \cite[Chapter~II]{Lam}.
+\end{example}
+
+When the field~$k$ is the complex numbers, the real numbers, the rational numbers, or a finite field (of characteristic not~$2$), we define a type called \texttt{GrothendieckWittClass} that encodes the class $[\beta]\in \GW(k)$ of a symmetric bilinear form~$\beta$. Grothendieck--Witt classes can be constructed from Gram matrices via the \texttt{makeGWClass} method.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i1}` : needsPackage "A1BrouwerDegrees";
+`\underline{\tt i2}` : M = matrix(QQ, {{1,3},{3,7}});
+`\underline{\tt o2}` : `$\texttt{Matrix}$ ${\mathbb Q}^{2}\,\longleftarrow \,{\mathbb Q}^{2}$`
+`\underline{\tt i3}` : beta = makeGWClass M
+`\underline{\tt o3}` = `$\left(\!\begin{array}{cc}
+1&3\\
+3&7
+\end{array}\!\right)$`
+`\underline{\tt o3}` : `$\texttt{GrothendieckWittClass}$`
+\end{lstlisting}
+
+Given a Grothendieck--Witt class \texttt{beta}, its underlying field can be obtained by running \texttt{getBaseField beta}, and the underlying matrix can be obtained by running either \texttt{beta.matrix} or \texttt{getMatrix beta}. Objects of type \texttt{GrothendieckWittClass} can be added and multiplied via the \texttt{addGW} and \texttt{multiplyGW} methods, respectively.
+
+\begin{example}\label{ex:labelname} 
+For any unit $a\in k^\times$, there is a symmetric bilinear form of rank one
+\begin{align*}
+    \langle a \rangle \colon k \times k &\to k \\
+    (x,y) &\mapsto axy.
+\end{align*}
+Via the change of basis $(x,y)\mapsto (bx,by)$ for any unit $b\in k^\times$, we observe that $\langle a \rangle = \langle ab^2 \rangle$. Hence the representative for a rank one form is determined only by its square class.
+\end{example}
+
+The following classical result (see \cite[Corollary I.2.4]{Lam}) implies that the forms $\langle a \rangle$ generate $\GW(k)$.
+
+\begin{theorem}\label{thm:sylvester} 
+Every class in $\GW(k)$ is represented by a diagonal Gram matrix.
+\end{theorem}
+
+A diagonal representative of a class in $\GW(k)$ can be found using the \texttt{getDiagonalClass} method. 
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i4}` : getDiagonalClass beta
+`\underline{\tt o4}` = `$\left(\!\begin{array}{cc}
+1&0\\
+0&-2
+\end{array}\!\right)$`
+`\underline{\tt o4}` : `$\texttt{GrothendieckWittClass}$`
+\end{lstlisting}
+
+We also provide methods for constructing various forms. We can construct a class corresponding to a list of diagonal entries via the \texttt{makeDiagonalForm} method. We denote by $\langle a_1,\ldots,a_n\rangle$ the direct sum of the rank one forms $\langle a_i\rangle$ for $1\le i \le n$.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i5}` : makeDiagonalForm(GF(13), (2,6))
+`\underline{\tt o5}` = `$\left(\!\begin{array}{cc}
+2&0\\
+0&6
+\end{array}\!\right)$`
+`\underline{\tt o5}` : `$\texttt{GrothendieckWittClass}$`
+\end{lstlisting}
+
+Hyperbolic forms are crucial objects of study due to their local-to-global behavior (see Theorem~\ref{thm:lgp-isotropy}), and they can be produced via the \texttt{makeHyperbolicForm} method. Similarly, Pfister forms, which are important objects of study in the world of quadratic forms \cite[Chapter~X]{Lam}, can be produced via the \texttt{makePfisterForm} method.
+
+\subsection{Verifying isomorphisms of forms}\label{subsec: isomorphisms of forms}
+Given two non-degenerate symmetric bilinear forms, a natural question is whether they represent the same element of $\GW(k)$. An easy invariant to check is whether they are defined on vector spaces of the same dimension, i.e., whether the \emph{rank} of the forms (the rank of their Gram matrices) agrees. As mentioned in Example~\ref{example-5}, since $\mathbb{C}$ is algebraically closed and every number is a square, rank completely classifies symmetric bilinear forms over the complex numbers. 
+
+Since there are two square classes over the real numbers, namely $+1$ and~$-1$, we can find a Gram matrix representative of any form which is diagonal, with only $\pm1$ appearing along the diagonal. The trace of such a Gram matrix is an invariant of the form, called the \emph{signature}. Rank and signature jointly classify symmetric bilinear forms over the real numbers.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i6}` : gamma = makeGWClass matrix(RR, {{3,0,0},{0,-4,0},{0,0,7}});
+`\underline{\tt i7}` : getSignature gamma
+`\underline{\tt o7}` = `$1$`
+\end{lstlisting}
+
+Over finite fields, the \emph{discriminant}, which is the determinant of any Gram matrix representative (valued in square classes), and the rank jointly classify symmetric bilinear forms.
+
+Over the rational numbers, the classification of symmetric bilinear forms is more complicated. The isomorphism class of a non-degenerate form $\beta$ is determined by its rank, discriminant $d_\beta\in \mathbb{Q^*}/(\mathbb{Q^*})^2$, signature (as a form over $\mathbb{R}$), and Hasse--Witt invariants at all finite primes~$p$. For a prime~$p$, the Hasse--Witt invariant \cite[III5, p.79]{MH} is defined as follows.
+\begin{definition}\label{def:labelname} 
+Given any form $\beta \cong \langle a_1, \dots, a_n \rangle \in \GW(\mathbb{Q})$, its \emph{Hasse--Witt invariant} $\varepsilon_p(\beta)$ at a prime~$p$
+is the product
+\[
+\prod_{i<j} (a_i,a_j)_p,
+\]
+where $( -,- )_p$ denotes the \emph{Hilbert symbol}
+\[
+(a,b)_p \coloneqq \begin{cases} 
+1 & \text{if } z^2 = ax^2 + by^2 \text{ has a nonzero solution in } \mathbb{Q}_p, \\
+-1 & \text{otherwise.} \end{cases}
+\]
+\end{definition}
+We can compute the Hilbert symbol $(a,b)_p$ via \texttt{getHilbertSymbol(a,b,p)} and the Hasse--Witt invariant of a form \texttt{beta} at~$p$ by \texttt{getHasseWittInvariant(beta, p)}. If $p$ is an odd prime and the $p$-adic valuations
+$\nu_p(a)$ and $\nu_p(b)$ are even, then $(a,b)_p=1$. Thus, 
+$\varepsilon_p(\beta)$ is~$1$ for almost all primes $p$ and only needs to be computed for $p=2$ and odd primes~$p$ with $\nu_p(d_\beta)$ odd.
+
+These methods together form one of our core methods \texttt{isIsomorphicForm}, which is a Boolean-valued method that determines whether two symmetric bilinear forms are isomorphic. This is done by reference to the relevant invariants over $\mathbb{C}$, $\mathbb{R}$, $\mathbb{F}_q$ (for $q$ odd), or~$\mathbb{Q}$. 
+
+\subsection{Decomposing forms}\label{subsec: decomposing forms}
+\emph{Witt's Decomposition Theorem} (see \cite[I.4.1]{Lam}) implies that any non-degenerate symmetric bilinear form decomposes into an anisotropic part and an isotropic part that is a sum of hyperbolic forms. This decomposition is crucial in simplifying an element of $\GW(k)$. While this decomposition is fairly routine over $\mathbb{C}$, $\mathbb{R}$, and~$\mathbb{F}_q$, to decompose forms over~$\mathbb{Q}$ we must implement existing algorithms from the literature. An important mathematical stepping stone is the following local-to-global principle for isotropy, a reference for which is \cite[VI.3.1]{Lam}.
+
+\begin{theorem}[Hasse--Minkowski Principle]\label{thm:lgp-isotropy}
+A form $\beta\in \GW(\mathbb{Q})$ is isotropic if and only if it is isotropic over~$\mathbb{R}$ and over~$\mathbb{Q}_p$ for all primes~$p$.
+\end{theorem}
+
+Our method \texttt{getAnisotropicDimensionQQp}, an implementation of \cite[Algorithm~8]{KC}, determines the dimension of the anisotropic part of a symmetric bilinear form over~$\mathbb{Q}_p$. The method \texttt{getAnisotropicDimension} returns the anisotropic dimension of a form defined over the real numbers, the complex numbers, a finite field, or the rational numbers.
+
+Given a form, we can therefore decompose it as
+\[
+\beta \cong \beta_a \oplus n \mathbb{H},
+\]
+where $\beta_a$ is anisotropic, $\mathbb{H}$ denotes the hyperbolic form $\langle 1,-1 \rangle$, and $n$ is the \emph{Witt index} (implemented as \texttt{getWittIndex}).
+
+The Boolean-valued method \texttt{isAnisotropic} returns whether a form is anisotropic; the method \texttt{isIsotropic} is its negation.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i8}` : alpha = makeDiagonalForm(QQ, (1,2,-3));
+`\underline{\tt i9}` : isAnisotropic alpha
+`\underline{\tt o9}` = `$\texttt{false}$`
+`\underline{\tt i10}` : isIsotropic alpha
+`\underline{\tt o10}` = `$\texttt{true}$`
+\end{lstlisting}
+
+Over~$\mathbb{Q}$, the computation of the anisotropic part of~$\beta$ is carried out inductively by reduction of the anisotropic dimension of~$\beta$, following recently published algorithms for quadratic forms over number fields by Koprowski and Rothkegel~\cite{KR}. The anisotropic part of a form can be computed via \texttt{getAnisotropicPart}.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i11}` : beta = makeDiagonalForm(QQ, (3,-3,2,5,1,-9));
+`\underline{\tt i12}` : getAnisotropicPart beta
+`\underline{\tt o12}` = `$\left(\!\begin{array}{cc}
+2&0\\
+0&5
+\end{array}\!\right)$`
+`\underline{\tt o12}` : `$\texttt{GrothendieckWittClass}$`
+\end{lstlisting}
+
+A quick string reading off the decomposition of a form can be obtained by running the \texttt{getSumDecompositionString} method.
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i13}` : getSumDecompositionString beta
+`\underline{\tt o13}` = `\ttfamily 2H + {\char 60}2{\char 62} + {\char 60}5{\char 62}`
+\end{lstlisting}
+
+\section{\texorpdfstring{$\A^1$}{A\textonesuperior}-Brouwer degrees}\label{sec:A1Degs}
+
+For the symbolic computations in this section, let $k$ be an exact field\footnote{An \emph{exact field} is a field whose elements are represented exactly by \emph{Macaulay2}, e.g., $\mathbb{Q}$ or $\mathbb{F}_q$.} of characteristic not equal to~$2$. The methods for computing $\mathbb{A}^{1}$-Brouwer degrees only work for polynomials with isolated zeros~\cite[Theorem~1.2]{BMP}.
+
+In~\cite{BMP}, the authors show that the local and global $\mathbb{A}^{1}$-Brouwer degrees of an endomorphism of affine space with isolated zeros can be expressed in terms of a bilinear form associated to the B\'{e}zoutian of the endomorphism.
+
+More explicitly, for $f_{i}\in k[x_{1},\dots,x_{n}]$, suppose $f=(f_{1},\dots,f_{n})\colon\mathbb{A}^{n}_{k}\to\mathbb{A}^{n}_{k}$ has isolated zeros. Introducing new variables $(X_{1},\dots,X_{n})$ and $(Y_{1},\dots, Y_{n})$, we can construct the matrix~$\Delta$ with entries 
+\[
+\Delta_{i,j}=\frac{f_{i}(Y_{1},\dots,Y_{j-1},X_{j},\dots,X_{n})-f_{i}(Y_{1},\dots,Y_{j},X_{j+1},\dots,X_{n})}{X_{j}-Y_{j}}.
+\]
+One can think of this matrix~$\Delta$ as a Jacobian of formal derivatives. Define $Q(f)=k[x_{1},\dots,x_{n}]/(f_{1},\dots,f_{n})$ and $Q_{p}(f)=k[x_{1},\dots,x_{n}]_{\mathfrak{m}}/(f_{1},\dots,f_{n})$ for $\mathfrak{m}$~the maximal ideal of a closed point~$p$ in the preimage of~$0$. The \emph{B\'{e}zoutian} of~$f$ is defined to be the image of $\det(\Delta)$ in the algebra $Q(f)\otimes Q(f)$ (respectively, in the local algebra $Q_{p}(f)\otimes Q_{p}(f)$). Given $a_{1},\dots,a_{m}$ a $k$-linear basis of $Q(f)$ (resp., $Q_{p}(f)$), there are $b_{i,j}\in k$ such that 
+\[
+\det(\Delta)=\sum_{1\leq i\leq j\leq m}b_{i,j}(a_{i}\otimes a_{j})
+\]
+in $Q(f)\otimes Q(f)$ (resp., $Q_{p}(f)\otimes Q_{p}(f)$). The \emph{B\'{e}zoutian bilinear form}, the symmetric bilinear form with Gram matrix given by the $b_{i,j}$, gives the global (resp., local) $\mathbb{A}^{1}$-degree \cite[Theorem~1.2]{BMP}. 
+
+In the case of the global $\mathbb{A}^{1}$-degree, a theorem of Macaulay tells us that a $k$-basis of the algebra $Q(f)$ is given by the standard monomials (see \cite[Proposition~2.1]{BS}). In the case of the local $\mathbb{A}^{1}$-degree, a $k$-basis for the local ring can be calculated via the quotient of $k[x_{1},\dots,x_{n}]$ by the saturation of $I=(f_{1},\dots,f_{n})$ at~$\mathfrak{m}$. 
+\begin{proposition}[{\cite[Proposition~2.5]{BS}}]\label{prop: local basis}
+The natural map $x_i\mapsto x_i$ defines an isomorphism of rings
+\begin{equation}\label{isomorph}
+k[x_{1},\dots,x_{n}]_{\mathfrak{m}}/I\cong k[x_{1},\dots,x_{n}]/(I:(I:\mathfrak{m}^{\infty})),
+\end{equation}
+where $I$ is an ideal of $k[x_{1},\dots,x_{n}]$ and $(I:(I:\mathfrak{m}^{\infty}))$ is the quotient of~$I$ by the saturation of~$I$ at~$\mathfrak{m}$. 
+\end{proposition}
+The 
+\texttt{getLocalAlgebraBasis(I, m)} method uses this isomorphism to find a basis of $Q_p(f)$. It 
+determines
+a $k$-basis of the right side of Equation~\eqref{isomorph} as a $k$-vector space. Proposition~\ref{prop: local basis} then gives a $k$-basis of $Q_p(f)$.
+
+These methods for computing $k$-bases for $Q(f)$ and $Q_{p}(f)$ allow us to algorithmically implement techniques to compute the global and local $\mathbb{A}^{1}$-degrees (see also \cite[Section~5A]{BMP}). 
+
+\subsection{A univariate polynomial}\label{subsec: univariate} 
+A univariate polynomial over a field~$k$ defines an endomorphism of affine space $\mathbb{A}^{1}_{k}\to\mathbb{A}^{1}_{k}$. Consider the endomorphism $f\colon\mathbb{A}^{1}_{\mathbb{Q}}\to\mathbb{A}^{1}_{\mathbb{Q}}$ defined by 
+\[
+f(x)=(x^{2}+x+1)(x-3)(x+2).
+\]
+We can compute the global degree.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i14}` : R = QQ[x];
+`\underline{\tt i15}` : f = {x^4 - 6*x^2 - 7*x - 6};
+`\underline{\tt i16}` : alpha = getGlobalA1Degree f
+`\underline{\tt o16}` = `$\left(\!\begin{array}{cccc}
+-7&-6&0&1\\
+-6&0&1&0\\
+0&1&0&0\\
+1&0&0&0
+\end{array}\!\right)$`
+`\underline{\tt o16}` : `$\texttt{GrothendieckWittClass}$`
+\end{lstlisting}
+We can also compute the local degrees at the ideals $(x^{2}+x+1)$, $(x-3)$, and $(x+2)$, respectively.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i17}` : I1 = ideal(x^2 + x + 1);
+`\underline{\tt o17}` : `$\texttt{Ideal}$ of $R$`
+`\underline{\tt i18}` : alpha1 = getLocalA1Degree(f, I1)
+`\underline{\tt o18}` = `$\left(\!\begin{array}{cc}
+-5&-7\\
+-7&-2
+\end{array}\!\right)$`
+`\underline{\tt o18}` : `$\texttt{GrothendieckWittClass}$`
+`\underline{\tt i19}` : I2 = ideal(x - 3)
+`\underline{\tt o19}` = `$\texttt{ideal}\left(x-3\right)$`
+`\underline{\tt o19}` : `$\texttt{Ideal}$ of $R$`
+`\underline{\tt i20}` : alpha2 = getLocalA1Degree(f, I2)
+`\underline{\tt o20}` = `$\left(\!\begin{array}{c}
+65
+\end{array}\!\right)$`
+`\underline{\tt o20}` : `$\texttt{GrothendieckWittClass}$`
+`\underline{\tt i21}` : I3 = ideal(x + 2);
+`\underline{\tt o21}` : `$\texttt{Ideal}$ of $R$`
+`\underline{\tt i22}` : alpha3 = getLocalA1Degree(f, I3)
+`\underline{\tt o22}` = `$\left(\!\begin{array}{c}
+-15
+\end{array}\!\right)$`
+`\underline{\tt o22}` : `$\texttt{GrothendieckWittClass}$`
+\end{lstlisting}
+We can then use the \texttt{isIsomorphicForm} method (see also Section~\ref{subsec: isomorphisms of forms}) to verify that the local $\mathbb{A}^{1}$-degrees sum to the global $\mathbb{A}^{1}$-degree.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i23}` : alpha' = addGW(alpha1,addGW(alpha2,alpha3));
+`\underline{\tt i24}` : isIsomorphicForm(alpha,alpha')
+`\underline{\tt o24}` = `$\texttt{true}$`
+\end{lstlisting}
+
+Consider the graph of $f(x)$. 
+\begin{center}
+    \begin{tikzpicture}
+    \begin{axis} [axis lines=center]
+    \addplot [domain=-3:3.7, smooth, thick] { x^4 - 6*x^2 - 7*x - 6 };
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+Following~\cite[Theorem 1.2]{McKean}, $\mathbb{A}^{1}$-degrees can be understood as enriched intersection numbers, determined by the signed volume of the parallelepiped spanned by the gradient vectors of the hypersurfaces at the intersection point. In the one-dimensional case, considering the normal vectors, we can interpret $\alpha_{2}=\langle65\rangle$, the local $\mathbb{A}^{1}$-degree at $(x-3)$, and $\alpha_{3}=\langle-15\rangle$, the local $\mathbb{A}^{1}$-degree at $(x+2)$, as signs of the derivative at these points. 
+
+\subsection{The Euler characteristic of the Grassmannian of lines in \texorpdfstring{$\mathbb{P}^{3}$}{P\textthreesuperior}}\label{subsec: Grassmannian} 
+For $k$ a field of characteristic not~$2$, let $\Gr_{k}(2,4)$ be the Grassmannian of lines in~$\mathbb{P}^{3}_{k}$. Following \cite[Example~8.2]{BMP}, we can compute the $\mathbb{A}^{1}$-Euler characteristic of the Grassmannian over $k=\mathbb{F}_{27}$ as the $\mathbb{A}^{1}$-degree of the section $\sigma\colon\mathbb{A}^{4}_{\mathbb{F}_{27}}\to\mathbb{A}^{4}_{\mathbb{F}_{27}}$ defined by\footnote{%
+There is a small error in the definition of $\sigma$ in \cite[Example~8.2]{BMP}. The second and third component functions of $\sigma$ should be swapped in order to agree with the ordered basis induced on the tangent bundle of $\Gr_k(2,4)$ as in \cite[Proposition~45]{CubicKW}. By \cite[Example~6.3]{BMP}, the overall computation is only affected by a sign.
+}
+\[
+(x_1,x_2,x_3,x_4)\mapsto(
+x_{2}-x_{1}x_{3},
+1-x_{1}x_{4},
+x_{4}-x_{1}-x_{3}^{2},
+-x_{2}-x_{3}x_{4}).
+\]
+We compute the $\mathbb{A}^{1}$-Euler characteristic as follows.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i25}` : k = GF(27);
+`\underline{\tt i26}` : x = symbol x;
+`\underline{\tt i27}` : R = k[x_1,x_2,x_3,x_4];
+`\underline{\tt i28}` : f = {x_2 - x_1*x_3, 1 - x_1*x_4, x_4 - x_1 - x_3^2, -x_2 - x_3*x_4};
+`\underline{\tt i29}` : beta = getGlobalA1Degree f
+`\underline{\tt o29}` = `$\left(\!\begin{array}{cccccc}
+0&0&0&0&0&1\\
+0&1&0&0&0&0\\
+0&0&0&-1&0&0\\
+0&0&-1&0&0&0\\
+0&0&0&0&1&0\\
+1&0&0&0&0&0
+\end{array}\!\right)$`
+`\underline{\tt o29}` : `$\texttt{GrothendieckWittClass}$`
+\end{lstlisting}
+We can subsequently use the \texttt{getSumDecompositionString} method to decompose the symmetric bilinear form~$\beta$.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i30}` : getSumDecompositionString beta
+`\underline{\tt o30}` = `\ttfamily 2H + {\char 60}1{\char 62} + {\char 60}1{\char 62}`
+\end{lstlisting}
+Our computation agrees with the result given in \cite[Example~8.2]{BMP} and shows \[\chi(\Gr_{\mathbb{F}_{27}}(2,4))=2\mathbb{H}+\langle 1\rangle + \langle 1\rangle.\]
+
+\subsection{Local geometry of some lines on the Fermat cubic surface} 
+In their pioneering paper~\cite{CubicKW}, Kass and Wickelgren give a Grothendieck--Witt class-valued count of the number of lines on a smooth cubic surface, providing an interpretation of the local $\mathbb{A}^{1}$-degree as the topological type of the line. To illustrate some features of the $\mathtt{A1BrouwerDegrees}$ package, we use it to compute the topological type of some lines on the Fermat cubic surface.
+
+Let $k$ be a field, and let $\{e_{1},e_{2},e_{3},e_{4}\}$ be the standard basis for~$k^{4}$. By \cite[Lemma~45]{CubicKW}, we can define local coordinates on $\Spec(k[y_{1},y_{2},y_{3},y_{4}])\cong\mathbb{A}_k^{4}$ around the point of $\Gr_k(2,4)$ defined by the span of $\{e_{3},e_{4}\}$ such that $y_{1},y_{2},y_{3},y_{4}$ corresponds to the span of $\{\widetilde{e}_3,\widetilde{e}_{4}\}$, where 
+\[
+\widetilde{e}_i = \begin{cases}
+    e_{i} & \text{for } i\in\{1,2\}, \\
+    e_{1}y_{1} + e_{2}y_{2} + e_{3} & \text{for } i=3, \\
+    e_{1}y_{3} + e_{2}y_{4} + e_{4} & \text{for } i=4.
+\end{cases}
+\]
+Letting $\mathcal{S}$ denote the tautological bundle over $\Gr_k(2,4)$, the above coordinates provide a trivialization of the vector bundle $\Sym^{3}\mathcal{S}^{\vee}$ over the open affine subvariety
+\[
+U\cong\Spec(k[y_{1},y_{2},y_{3},y_{4}])\subseteq\Gr_k(2,4).
+\]
+A cubic surface~$X$ defines a section $\sigma_{X}\rvert_{U}\colon U\to\Sym^{3}\mathcal{S}^{\vee}\rvert_{U}$ that vanishes on the lines on~$X$ that, when treated as affine two-dimensional subspaces of~$k^{4}$, contain $e_{3}$ and~$e_{4}$ in their span. 
+
+Let us consider the Fermat cubic surface defined by the homogeneous cubic equation $x_{0}^{3}+x_{1}^{3}+x_{2}^{3}+x_{3}^{3}$. That is, 
+\[
+X=\left\{[x_{0}:x_{1}:x_{2}:x_{3}]\in\mathbb{P}_k^{3}:x_{0}^{3}+x_{1}^{3}+x_{2}^{3}+x_{3}^{3}=0\right\}\subseteq\mathbb{P}_k^{3}.
+\]
+Working over~$\mathbb{Q}$, the lines on~$X$ are all defined over the cyclotomic extension $\mathbb{Q}(\zeta)$ for~$\zeta$ a primitive third root of unity. We can explicitly compute the $27$~lines as
+\[
+[s:t:-\zeta^{i}t:-\zeta^{j}s], [s:t:-\zeta^{i}s:-\zeta^{j}t], [s:-\zeta^{i}s: t:-\zeta^{j}t]
+\]
+for $0\leq i,j\leq 2$ and $[s:t]\in\mathbb{P}_{\mathbb{Q}}^{1}$. Note that there are only $18$~lines containing $e_{3}$ and~$e_{4}$ in their span. We thus expect the section to vanish at $18$~points. Applying Pauli's computation of sections of $\sigma_{X}\rvert_{U}\colon U\to\Sym^{3}\mathcal{S}^{\vee}\rvert_{U}$ in \cite[\S 2.2, Remark 2.7]{Pauli}, our section is of the form $\sigma_{X}\rvert_{U}=(f_{1},f_{2},f_{3},f_{4})$ where
+\begin{align*}
+    f_{1}(y_{1},y_{2},y_{3},y_{4}) &= y_{1}^{3}+y_{3}^{3}+1 \\
+    f_{2}(y_{1},y_{2},y_{3},y_{4}) &= 3y_{1}^{2}y_{2}+3y_{3}^{2}y_{4}\\
+    f_{3}(y_{1},y_{2},y_{3},y_{4}) &= 3y_{1}y_{2}^{2}+3y_{3}y_{4}^{2}\\
+    f_{4}(y_{1},y_{2},y_{3},y_{4}) &= y_{2}^{3}+y_{4}^{3}+1.
+\end{align*}
+We compute the global $\mathbb{A}^{1}$-degree, which is rank~$18$, as expected. 
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i31}` : R = QQ[y_1,y_2,y_3,y_4];
+`\underline{\tt i32}` : f = {y_1^3 + y_3^3 + 1, 
+          3*y_1^2*y_2 + 3*y_3^2*y_4, 
+          3*y_1*y_2^2 + 3*y_3*y_4^2, 
+          y_2^3 + y_4^3 + 1};
+`\underline{\tt i33}` : alpha = getGlobalA1Degree f;
+`\underline{\tt i34}` : getSumDecompositionString alpha
+`\underline{\tt o34}` = `\ttfamily 8H + {\char 60}1{\char 62} + {\char 60}1{\char 62}`
+\end{lstlisting}
+To compute the local degree, we find an isolated zero using the \texttt{minimalPrimes} method of \emph{Macaulay2}.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i35}` : I = (minimalPrimes ideal f)_0
+`\underline{\tt o35}` = `$\texttt{ideal}{}\left(y_{4},\,y_{3}+1,\,y_{2}+1,\,y_{1}\right)$`
+`\underline{\tt o35}` : `$\texttt{Ideal}$ of $R$`
+\end{lstlisting}
+We then compute the local $\mathbb{A}^{1}$-degree at this point.
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i36}` : beta = getLocalA1Degree(f, I)
+`\underline{\tt o36}` = `$\left(\!\begin{array}{c}
+81
+\end{array}\!\right)$`
+`\underline{\tt o36}` : `$\texttt{GrothendieckWittClass}$`
+`\underline{\tt i37}` : getSumDecomposition beta
+`\underline{\tt o37}` = `$\left(\!\begin{array}{c}
+1
+\end{array}\!\right)$`
+`\underline{\tt o37}` : `$\texttt{GrothendieckWittClass}$`
+\end{lstlisting}
+At the other nine minimal primes, the same calculation gives the local degrees as one copy of $\langle 1\rangle$, six copies of $\langle 3, -1\rangle$ and two copies of $\langle2, -6\rangle$. As 
+\[
+6\langle3, -1\rangle+2\langle2,-6\rangle\cong 8\mathbb{H},
+\]
+the global $\mathbb{A}^1$-degree equals the sum of the local $\mathbb{A}^1$-degrees.
+
+The local computation above indicates that the line spanned by $\{-e_{2}+e_{3},-e_{1}+e_{4}\}$ on the Fermat cubic surface is a hyperbolic line. We briefly show this agrees with the type as defined in \cite[Definition~9]{CubicKW}. 
+
+By \cite[Proposition~14]{CubicKW}, the local type of the line is equal to the resultant of the partial derivatives of the equation of the Fermat cubic surface restricted to the line. Letting $z_{1},z_{2},z_{3},z_{4}$ be the dual basis to $e_{1},e_{2},e_{3},e_{4}$ defined above, we can write the equation of the Fermat surface in terms of the dual basis via the change of basis $z_{1}\mapsto z_{1}+z_{4}, z_{2}\mapsto z_{2}+z_{3}, z_{3}\mapsto -z_{3}, z_{4}\mapsto -z_{4}$ so that the line is spanned by $e_{3}$ and $e_{4}$. 
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i38}` : needsPackage "Resultants";
+`\underline{\tt i39}` : R = QQ[z_1,z_2][z_3,z_4];
+`\underline{\tt i40}` : fermat = (z_1 + z_4)^3 + (z_2 + z_3)^3 - z_3^3 - z_4^3;
+\end{lstlisting}
+We compute the restriction of the partial derivatives of the defining equation of the Fermat cubic surface to the surface with respect to the dual basis $z_{1},z_{2}$. 
+
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i41}` : g1 = sub(diff(z_1, fermat), {z_1 => 0, z_2 => 0});
+`\underline{\tt i42}` : g2 = sub(diff(z_2, fermat), {z_1 => 0, z_2 => 0});
+\end{lstlisting}
+We then compute the resultant of these polynomials and consider it as a quadratic form over~$\mathbb{Q}$ in order to agree with the computation of the local index over~$\mathbb{Q}$.
+\begin{lstlisting}[language=Macaulay2output]
+`\underline{\tt i43}` : line_type = makeDiagonalForm(QQ, lift(resultant {g1,g2}, QQ))
+`\underline{\tt o43}` = `$\left(\!\begin{array}{c}
+81
+\end{array}\!\right)$`
+`\underline{\tt o43}` : `$\texttt{GrothendieckWittClass}$`
+`\underline{\tt i44}` : isIsomorphicForm(line_type,beta)
+`\underline{\tt o44}` = `$\texttt{true}$`
+\end{lstlisting}
+Thus this computation agrees with the local $\A^1$-degree of the associated section of $\Sym^3 \mathcal{S}^\ast$ as computed above.
+
+\section*{Acknowledgements}
+
+We would like to thank the organizers of the 2023 \emph{Macaulay2} Workshop for the opportunity to work together developing this package. The second-named author would like to thank Sabrina Pauli for helpful conversations about this work. We would also like to thank the anonymous referees for detailed comments that helped to improve both this paper and the code. The second-named author is supported by an NSF Postdoctoral Research Fellowship (DMS-2303242), and the sixth-named author is partially supported by an NSF Standard Grant of Frank Sottile (DMS-2201005).
+
+\bibliographystyle{abbrv}
+\bibliography{jsag}
+
+\end{document}
