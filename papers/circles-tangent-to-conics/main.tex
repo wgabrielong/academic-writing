@@ -540,7 +540,7 @@ For fixed parameters $p \in \RR^{18}$, denote $S$ by
 $$S=S_{\mathbb{R}}\sqcup S_{\mathbb{C}}\subseteq\mathbb{C}^{9}$$
 the solutions of our system of polynomial equations \eqref{polynomial_system} where $S_{\mathbb{R}}$ is the set of solutions with only real entries and $S_{\mathbb{C}} = S\setminus S_{\mathbb{R}}$.
 
-In the first step of the hill climbing algorithm, we select one solution $x^{*}\in S_{\mathbb{C}}$ in which we aim to decrease the $L^1$ norm $\Vert\mathrm{Im}(x^{*})\Vert_{1}$ of the vector of imaginary parts of $x^*$. The goal is to compute a step $\Delta p$ in the parameter space $\mathbb{R}^{18}$, such that the magnitude of the imaginary part of $x^{*}$ decreases as we move from $p$ to $p+\Delta p$ for some $-\varepsilon\mathbbm{1}\leq\Delta p\leq \varepsilon\mathbbm{1}$ where $\varepsilon$ is a small tolerance parameter and $\mathbbm{1}=(1,\ldots,1)^T\in\mathbb R^{18}$ is the all-one vector.
+In the first step of the hill climbing algorithm, we select one solution $x^{*}\in S_{\mathbb{C}}$ in which we aim to decrease the $L^1$ norm $\Vert\mathrm{Im}(x^{*})\Vert_{1}$ of the vector of imaginary parts of $x^*$. The goal is to compute a step $\Delta p$ in the parameter space $\mathbb{R}^{18}$, such that the magnitude of the imaginary part of $x^{*}$ decreases as we move from $p$ to $p+\Delta p$ for some $-\varepsilon\mathbf{1}\leq\Delta p\leq \varepsilon\mathbf{1}$ where $\varepsilon$ is a small tolerance parameter and $\mathbf{1}=(1,\ldots,1)^T\in\mathbb R^{18}$ is the all-one vector.
 
 
 As in the previous section we denote by $J_{x}(x;p)\in\mathbb{C}^{9\times 9}$ the Jacobian matrix of $F(x;p)$ with respect to the variables $x=(u_{1},v_{1}, \dots, s,t,r)$ evaluated at $x$ with parameters $p$.
@@ -555,7 +555,7 @@ Solving \eqref{matrixeqn} for $\Delta x$, we have that
 where $ \text{Im}(\cdot)$ denotes taking the componentwise imaginary part. Let $ \text{sign}(\cdot)$ denote the componentwise sign function.
 In order to decrease $\lVert \Delta \text{Im}(x^*) \rVert_1$, we wish to minimize
 \[ -\text{sign}(\text{Im}(x^*))^T \cdot \text{Im}(J_x(x^*;p)^{-1}\cdot J_p(x^*;p) ) \cdot \Delta p.\]
-Notice that this objective function considers a first order approximation of our system $F(x,p)$ at $(x^*,p)$, so we add the constraint $-\varepsilon\mathbbm{1}\leq\Delta p\leq \varepsilon\mathbbm{1}$ to ensure that this approximation is accurate enough.
+Notice that this objective function considers a first order approximation of our system $F(x,p)$ at $(x^*,p)$, so we add the constraint $-\varepsilon\mathbf{1}\leq\Delta p\leq \varepsilon\mathbf{1}$ to ensure that this approximation is accurate enough.
 
 
 
@@ -586,7 +586,7 @@ In summary, in the first step of our hill climbing algorithm we consider the lin
 \footnotesize
 \begin{align*}
     & \hspace{0.2cm} \min_{\Delta p} \  -\text{sign}(\text{Im}(x^*))^T \cdot \text{Im}(J_x(x^*;p)^{-1}\cdot J_p(x^*;p) ) \cdot \Delta p  \label{opt-C} \tag{Opt-$\CC$} \\
-    \text{subject to} &\hspace{0.2cm} - \epsilon \cdot \mathbbm{1} \leq \Delta p \leq \epsilon \cdot \mathbbm{1} \\
+    \text{subject to} &\hspace{0.2cm} - \epsilon \cdot \mathbf{1} \leq \Delta p \leq \epsilon \cdot \mathbf{1} \\
     &\hspace{0.2cm} \forall \ x_i, x_j \in S_{\RR}: (x_i - x_j)^T \cdot \big( J_x(x_i;p)^{-1} \cdot J_p(x_i;p) - J_x(x_j;p)^{-1} \cdot J_p(x_j;p) \big) \cdot \Delta p \geq 0\\
     &\hspace{0.2cm} \forall x_i \in S_{\CC}: \langle \Tilde{x}_i \cdot \Tilde{J}_x(x_i;p)^{-1} \cdot \Tilde{J}_p(x_i;p), \Delta p \rangle \geq 0.
 \end{align*}
@@ -645,7 +645,7 @@ We would like to maximize this function still subject to the constraints above t
 \footnotesize
 \begin{align*}
     \label{opt-R}\tag{Opt-$\RR$} &\hspace{0.2cm} \max_{\Delta p} \  (x_1 - x_2)^T \cdot \big( J_x(x_1;p)^{-1} \cdot J_p(x_1;p) - J_x(x_2;p)^{-1} \cdot J_p(x_2;p) \big) \cdot \Delta p  \\
-    \text{subject to} & \hspace{0.2cm}- \epsilon \cdot \mathbbm{1} \leq \Delta p \leq \epsilon \cdot \mathbbm{1} \\
+    \text{subject to} & \hspace{0.2cm}- \epsilon \cdot \mathbf{1} \leq \Delta p \leq \epsilon \cdot \mathbf{1} \\
     &\hspace{0.2cm} \forall \ x_i, x_j \in S_{\RR}: (x_i - x_j)^T \cdot \big( J_x(x_i;p)^{-1} \cdot J_p(x_i;p) - J_x(x_j;p)^{-1} \cdot J_p(x_j;p) \big) \cdot \Delta p \geq 0  \\
     &\hspace{0.2cm} \forall x_i \in S_{\CC}: \langle \Tilde{x}_i \cdot \Tilde{J}_x(x_i;p)^{-1} \cdot \Tilde{J}_p(x_i;p), \Delta p \rangle \geq 0
 \end{align*}
