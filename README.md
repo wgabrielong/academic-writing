@@ -29,6 +29,10 @@ well.
 - [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/talk-notes/infinity-seminar-yoneda-colimits/main.pdf) The Yoneda Lemma and (Co)Limits — Student Seminar on ∞-Categories, Winter 2024/25
 - [![pdf](https://img.shields.io/badge/pdf-Notes-green)](https://wgabrielong.github.io/academic-writing/talk-notes/kleine-at-decalage/main.pdf) Décalage I — Kleine AT, Talk 3
 
+## Seminars
+
+- [![pdf](https://img.shields.io/badge/pdf-Seminar-orange)](https://wgabrielong.github.io/academic-writing/seminars/prismatic-f-gauges/main.pdf) Reading Seminar: Prismatic *F*-Gauges — SoSe 2026
+
 ## Papers
 
 - [![pdf preprint](https://img.shields.io/badge/pdf-preprint-blue)](https://wgabrielong.github.io/academic-writing/papers/unstable-a1-brouwer-degrees-macaulay2/main.pdf) Transfers and Unstable Degrees in the 𝔸¹-Brouwer Degrees Package for Macaulay2 — with Stephanie Atherton, Somak Dutta, Jordy Lopez Garcia, Joel Louwsma, Yuyuan Luo, and Ruzho Sagarayaj. [arXiv:2511.12765](https://arxiv.org/abs/2511.12765)

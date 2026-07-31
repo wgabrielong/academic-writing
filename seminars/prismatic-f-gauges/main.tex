@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{csquotes}
+\input{preamble}
+\usepackage{caption}
+
+\captionsetup[table]{labelformat=empty}
+\makeatletter
+  \DeclareSymbolFont{ntxletters}{OML}{ntxmi}{m}{it}
+  \SetSymbolFont{ntxletters}{bold}{OML}{ntxmi}{b}{it}
+  \re@DeclareMathSymbol{\leftharpoonup}{\mathrel}{ntxletters}{"28}
+  \re@DeclareMathSymbol{\leftharpoondown}{\mathrel}{ntxletters}{"29}
+  \re@DeclareMathSymbol{\rightharpoonup}{\mathrel}{ntxletters}{"2A}
+  \re@DeclareMathSymbol{\rightharpoondown}{\mathrel}{ntxletters}{"2B}
+  \re@DeclareMathSymbol{\triangleleft}{\mathbin}{ntxletters}{"2F}
+  \re@DeclareMathSymbol{\triangleright}{\mathbin}{ntxletters}{"2E}
+  \re@DeclareMathSymbol{\partial}{\mathord}{ntxletters}{"40}
+  \re@DeclareMathSymbol{\flat}{\mathord}{ntxletters}{"5B}
+  \re@DeclareMathSymbol{\natural}{\mathord}{ntxletters}{"5C}
+  \re@DeclareMathSymbol{\star}{\mathbin}{ntxletters}{"3F}
+  \re@DeclareMathSymbol{\smile}{\mathrel}{ntxletters}{"5E}
+  \re@DeclareMathSymbol{\frown}{\mathrel}{ntxletters}{"5F}
+  \re@DeclareMathSymbol{\sharp}{\mathord}{ntxletters}{"5D}
+  \re@DeclareMathAccent{\vec}{\mathord}{ntxletters}{"7E}
+\makeatother
+\title{{\Huge \scshape Reading Seminar: Prismatic $F$-Gauges}}
+%\subtitle{ S4D2 Graduate Seminar on Topology}
+\author{ 
+Lucas Piessevaux\thanks{\href{mailto:lucas@math.uni-bonn.de}{\texttt{lucas@math.uni-bonn.de}}}, Gabriel Ong et al.}
+\date{SoSe 2026}
+
+
+
+\begin{document}
+\maketitle
+
+
+\section*{Schedule}
+
+The seminar meets at 10:15 to 12:00 on Fridays in room N0.007 (in the annex of the MZ). 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lrll}
+        \textbf{Date}  & & \textbf{Topic} & \textbf{Speaker}\\
+       17th April &-1& Filtrations & Maria Stroe\\
+       17th April &0& Motivation &  Gabriel Ong\\
+        24th April &1& Algebraic de Rham cohomology via stacks & Gabriel Ong\\
+        1st May &2& de Rham stacks and Witt vectors & Chenji Fu\\
+        8th May &3& Conjugate filtration & Tim Kuppel \\
+        29th May  &4& Prismatization in characteristic $p$ & Lucas Piessevaux \\
+        5th June &5&  Filtered prismatization and gauges & Niklas Arppe \\
+        12th June &6&Syntomification in positive characteristic & Ostap Niezhenskyi \\
+        19th June &7& More on syntomification & Jonas Heintze \\
+        26th June &8&Compact generation & Philipp Schmale\\
+        10th July &9& Serre duality & Maria Stroe \\
+        17th July &10& Prismatization in mixed characteristic & Vitus Pawig\\
+        24th July &11& Filtered Cartier--Witt divisors& Sam Brinkerhoff \\
+    \end{tabular}
+    \caption{Schedule of talks}
+\end{table}
+
+
+\section*{Syllabus}
+\subsubsection*{Talk -I: $\mathbf{A}^1/\mathbf{G}_m$ and filtrations}
+Discuss the equivalence $\mathscr{D}_{\mathrm{qc}}(\mathbf{A}^1/\mathbf{G}_m)\simeq \mathrm{Sp}^\mathrm{Fil}$, over the sphere spectrum or a commutative ring as desired. This is a prerequisite to the seminar, so this talk will be a pre-seminar talk for those who need it. The main reference is \cite{moulinos2021geometry}.
+\subsubsection*{Talk 0: Motivation and background + Talk distribution}
+Discuss Chapter 1 of \cite{bhatt2022prismatic}. The first point of this talk is to motivate the category of prismatic $F$-gauges as a suitable category of coefficients for syntomic cohomology which is of \enquote{motivic} nature, in analogy with the category of mixed Hodge modules or the cosntructible derived category of $\ell$-adic sheaves. The second point of this talk is to highlight the \enquote{geometrisation} programme followed in these notes: following ideas of Simpson, Drinfeld, Bhatt, Lurie etc., these categories of coefficients arise as the quasicoherent derived categories of the transmutation of a scheme by a certain ring stack
+
+\subsubsection*{Talk I: Algebraic de Rham cohomology via stacks }
+Discuss \cite[Section 2.2-2.4]{bhatt2022prismatic}. Note that the discussion of filtrations and $\mathbf{A}^1/\mathbf{G}_m$ can be kept brief as this is now already covered in the pre-seminar talk. Cover the technical discussion on $\mathscr{D}_\mathrm{qc}(\mathrm{B}\mathbf{G}_a)$
+ in characteristic zero and use this to construct the filtered de Rham stack in characteristic zero. Then discuss what happens in mixed characteristic and how the divided power hull of $\mathbf{G}_a$ shows up.
+\subsubsection*{Talk II: de Rham stacks and Witt vectors}
+Discuss \cite[Section 2.5-2.6]{bhatt2022prismatic}. First, construct the dr Rham stack in mixed characteristic using the results from the previous talk, and conclude by proving the crystalline miracle using the stacky perspective. Then discuss the relation to realisation of $\mathbf{G}_a^\sharp$ via Witt vectors, i.e. using the relation between divided powers and $\delta$-structures.
+\subsubsection*{Talk III: Conjugate filtration}
+Discuss \cite[Section 2.7-2.8]{bhatt2022prismatic}. Construct the conjugate filtration in characteristic $p$ using our stacky perspective and identifying the de Rham stack as a gerbe. If time permits, discuss some criteria for the splitting of this gerbe and the relation to the Deligne--Illusie theorem. Conclude by gluing together the Hodge and conjugate filtrations (not every result in this section has a full proof).
+\subsubsection*{Talk IV: Prismatization in characteristic $p$}
+Discuss \cite[Section 3.1-3.2]{bhatt2022prismatic}. This consists of some recollections on absolute prismatization over a perfect field of characteristic $p$ and the Nygaard filtration. If necessary, supplement with background material from \cite{bhatt2022absolute}.
+\subsubsection*{Talk V: Filtered prismatization and gauges}
+Discuss \cite[Section 3.3-3.4]{bhatt2022prismatic}, and note that we will skip \cite[Section 3.5]{bhatt2022prismatic}. Construt the Nygaard filtration by transmutation and use this to describe gauges over $k$.
+\subsubsection*{Talk VI: Syntomification in positive characteristic}
+Discuss \cite[Section 4.1-4.2]{bhatt2022prismatic}. Construct the syntomification in positive characteristic, and present a general discussion of its quasicoherent derived category
+\subsubsection*{Talk VII: More on syntomification}
+Building on the previous talk, discuss \cite[Section 4.3-4.4]{bhatt2022prismatic}. Discuss vector bundles on the syntomification of $k$ and proceed to define syntomic cohomology and discuss its basic properties.
+\subsubsection*{Talk VIII: Compact generation of prismatic $F$-Gauges}
+Time for an intermezzo: Discuss \cite[Section 9.1]{carmeli2025prismatic} which resolves the question in \cite[Remark 4.4.6]{bhatt2022prismatic}
+\subsubsection*{Talk IX: Serre duality}
+Discuss \cite[Section 4.5]{bhatt2022prismatic}, i.e. the proof of Serre duality on the syntomification of $\mathbf{F}_p$.
+\subsubsection*{Talk X: Prismatization in mixed characteristic}
+Generalise the constructions from the previous talks to mixed characteristic: discuss \cite[Section 5.1-5.2]{bhatt2022prismatic}. Discuss admissible $W$-modules and some of the computations that go behind this cosntruction in preparation for the next talk.
+\subsubsection*{Talk XI: Filtered Cartier--Witt divisors}
+Discuss \cite[Section 5.3-5.5]{bhatt2022prismatic} which introduces filtered Cartier--Witt divisoers over $p$-nilpotent rings. This involves a compatibility check with the previous definitions in characteristic $p$ and a more explicit description of what happens in the quasiregular semiperfectoid case.
+\printbibliography
+
+\end{document}

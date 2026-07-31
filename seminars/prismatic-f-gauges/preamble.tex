@@ -1,0 +1,296 @@
+%—————Fonts & symbols—————
+\usepackage[T1]{fontenc}
+%\usepackage{newpxtext,newpxmath}
+\usepackage{ebgaramond}
+\usepackage[ebgaramond]{newtxmath}
+\usepackage[cmintegrals,cmbraces]{newtxmath}
+\usepackage{ebgaramond-maths}
+%\setmainfont{EB Garamond}
+\usepackage{amssymb, amsthm, latexsym}
+\usepackage{floatrow}
+%\usepackage{pdfpages}
+%\usepackage{yfonts}
+%\usepackage{textgreek}
+%\usepackage{bbold}
+%\floatsetup[table]{capposition=top}
+%\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{physics}
+%\usepackage{scalerel}
+\usepackage{eucal}
+%\usepackage{eco}
+\usepackage{nicefrac}
+
+%—————Page layout—————
+\usepackage[margin=1in]{geometry}
+% \usepackage{fancyhdr}
+% \fancyhf{}
+% \fancyfoot[C]{\Thepage}
+% \pagestyle{fancy}
+\usepackage{adjustbox}
+%\usepackage{mathrsfs}
+\usepackage{multicol}
+
+%—————Bibliography & references—————
+\usepackage[backend=biber,style=ext-alphabetic,articlein=false,sorting=nyt,maxbibnames=4]{biblatex}
+\addbibresource{references.bib}
+\usepackage{hyperref}
+\usepackage{alphanum}
+\usepackage{appendix}
+
+%—————Tikz—————
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows, spy, cd, backgrounds, decorations}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}      
+\usetikzlibrary{arrows,arrows.meta}
+\tikzcdset{arrow style=tikz,diagrams={>=stealth}}
+\tikzset{
+    labl/.style={anchor=south, rotate=90, inner sep=.5mm}
+}
+\usepackage{arydshln}
+%\usepackage{graphicx}
+%\usepackage{lscape}
+%\usepackage{stmaryrd}
+%\usepackage[version = 4]{mhchem}
+%\usepackage{listings}
+%\usepackage{amsbsy}
+%\usepackage[a4paper]{geometry}
+%\usepackage{fullpage}
+%\edef\restoreparindent{\parindent=\the\parindent\relax}
+%\usepackage{parskip}
+%\restoreparindent
+%\usepackage{quoting}
+%\usepackage{ctib}
+%\usepackage{stmaryrd}
+
+%—————Shortcut symbols—————
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\H}{\mathrm{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\A}{\mathbb{A}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\del}{\partial}
+\newcommand{\cc}{\mathcal{C}}
+\newcommand{\g}{\mathfrak{g}}
+\renewcommand{\c}[1]{\tensor*{_{#1}^\wedge}\phantom{ }}
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\ad}{\mathrm{ad}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\map}{\mathrm{map}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\Grp}{\mathrm{Grp}}
+\newcommand{\Alg}{\mathrm{Alg}}
+\newcommand{\CAlg}{\mathrm{CAlg}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\Stab}{\mathrm{Stab}}
+\newcommand{\QCoh}{\mathrm{QCoh}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Tot}{\mathrm{Tot}}
+\newcommand{\Fil}{\mathrm{Fil}}
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\gr}{\mathrm{gr}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Supp}{\mathrm{Supp}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Ker}{\mathrm{ker}\ }
+\newcommand{\fib}{\mathrm{fib}}
+\newcommand{\cof}{\mathrm{cof}}
+\newcommand{\im}{\mathrm{im}\ }
+\newcommand{\coker}{\mathrm{coker}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Mfd}{\mathsf{Mfd}}
+%----------------------------------
+\newcommand{\Rng}{\mathcal{R}\mathrm{ng}}
+\newcommand{\Rings}{\mathcal{R}\mathrm{ing}}
+\newcommand{\Grps}{\mathcal{G}\mathrm{rp}}
+\newcommand{\Ab}{\mathcal{A}\mathrm{b}}
+\newcommand{\Cat}{\mathcal{C}\mathrm{at}}
+\newcommand{\Fun}{\mathcal{F}\mathrm{un}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\Sets}{{\mathcal{S}\mathrm{et}}}
+\renewcommand{\Top}{\mathcal{T}\mathrm{op}}
+\newcommand{\Kan}{\mathcal{K}\mathrm{an}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\B}{\mathrm{B}}
+\newcommand{\Syn}{\mathcal{S}\mathrm{yn}}
+\newcommand{\Shv}{\mathcal{S}\mathrm{hv}}
+\newcommand{\Stable}{\mathcal{S}\mathrm{table}}
+\newcommand{\Recoll}{\mathcal{R}\mathrm{ecoll}}
+\renewcommand{\Pr}{\mathcal{P}\mathrm{r}}
+\renewcommand{\L}{\mathrm{L}}
+\newcommand{\St}{\mathrm{St}}
+\newcommand{\R}{\mathrm{R}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Ind}{\mathrm{Ind}}
+\newcommand{\Dec}{\mathrm{D}\Acute{\mathrm{e}}\mathrm{c}}
+\newcommand{\Pro}{\mathrm{Pro}}
+\newcommand{\colim}[1]{\underset{#1}{\mathrm{colim}}\ }
+\renewcommand{\Vec}{\mathrm{Vec}}
+\newcommand{\scRng}{\mathscr{R}\mathrm{ng}}
+\newcommand{\scRing}{\mathscr{R}\mathrm{ing}}
+\newcommand{\scGrps}{\mathscr{G}\mathrm{rp}}
+\newcommand{\scAb}{\mathscr{A}\mathrm{b}}
+\newcommand{\scCat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scFun}{\mathscr{F}\mathrm{un}}
+\newcommand{\scMod}{\mathrm{Mod}}
+\newcommand{\scSets}{\mathscr{S}\mathrm{et}}
+\newcommand{\scTop}{\mathscr{T}\mathrm{op}}
+\newcommand{\scKan}{\mathscr{K}\mathrm{an}}
+\newcommand{\scSp}{\mathrm{Sp}}
+\newcommand{\scSyn}{\mathscr{S}\mathrm{yn}}
+\newcommand{\scShv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\scStable}{\mathscr{S}\mathrm{table}}
+\newcommand{\scHom}{\mathscr{H}{om}}
+\newcommand{\scExt}{\mathscr{E}{xt}}
+\newcommand{\scTor}{\mathscr{T}{or}}
+%mathcal and mathscr stuff
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+%----------------------------
+\newcommand{\scrA}{\mathscr{A}}
+\newcommand{\scrB}{\mathscr{B}}
+\newcommand{\scrC}{\mathscr{C}}
+\newcommand{\scrD}{\mathscr{D}}
+\newcommand{\scrE}{\mathscr{E}}
+\newcommand{\scrF}{\mathscr{F}}
+\newcommand{\scrG}{\mathscr{G}}
+\newcommand{\scrH}{\mathscr{H}}
+\newcommand{\scrI}{\mathscr{I}}
+\newcommand{\scrJ}{\mathscr{J}}
+\newcommand{\scrK}{\mathscr{K}}
+\newcommand{\scrL}{\mathscr{L}}
+\newcommand{\scrM}{\mathscr{M}}
+\newcommand{\scrN}{\mathscr{N}}
+\newcommand{\scrO}{\mathscr{O}}
+\newcommand{\scrP}{\mathscr{P}}
+\newcommand{\scrQ}{\mathscr{Q}}
+\newcommand{\scrR}{\mathscr{R}}
+\newcommand{\scrS}{\mathscr{S}}
+\newcommand{\scrT}{\mathscr{T}}
+\newcommand{\scrU}{\mathscr{U}}
+\newcommand{\scrV}{\mathscr{V}}
+\newcommand{\scrW}{\mathscr{W}}
+\newcommand{\scrX}{\mathscr{X}}
+\newcommand{\scrY}{\mathscr{Y}}
+\newcommand{\scrZ}{\mathscr{Z}}
+%----------------------------
+\newcommand{\Fin}{\mathbb{F}\mathrm{in}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\fin}{\text{fin}}
+\renewcommand{\map}{\text{map}}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\fra}{\mathfrak{a}}
+\newcommand{\frb}{\mathfrak{b}}
+\newcommand{\frp}{\mathfrak{p}}
+\newcommand{\frm}{\mathfrak{m}}
+\newcommand{\frq}{\mathfrak{q}}
+\newcommand{\Hr}{\tilde{H}}
+\newcommand{\Mot}{\operatorname{Mot}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\MU}{\mathrm{MU}}
+\newcommand{\BP}{\mathrm{BP}}
+\newcommand{\TMF}{\mathrm{TMF}}
+\newcommand{\MP}{\mathrm{MP}}
+\newcommand{\tmf}{\mathrm{tmf}}
+\newcommand{\KU}{\mathrm{KU}}
+\newcommand{\ku}{\mathrm{ku}}
+\newcommand{\THH}{\mathrm{THH}}
+\newcommand{\TC}{\mathrm{TC}}
+\newcommand{\TP}{\mathrm{TP}}
+\renewcommand{\op}{\mathrm{op}}
+\newcommand{\gen}[1]{{\langle #1 \rangle}}
+\newcommand{\Gal}[2]{\text{Gal}(#1/#2)}
+\makeatletter
+\newcommand{\ostar}{\mathbin{\mathpalette\make@circled\star}}
+\newcommand{\make@circled}[2]{%
+  \ooalign{$\m@th#1\smallbigcirc{#1}$\cr\hidewidth$\m@th#1#2$\hidewidth\cr}%
+}
+\newcommand{\smallbigcirc}[1]{%
+  \vcenter{\hbox{\scalebox{0.77778}{$\m@th#1\bigcirc$}}}%
+}
+\makeatother
+
+\newcommand{\heart}{\ensuremath\heartsuit}
+\newcommand{\butt}{\rotatebox[origin=c]{180}{\heart}}
+
+%—————Theorem and definition styles—————
+\newtheoremstyle{SCTheorem} % name
+        {\topsep}                       % Space above
+        {\topsep}                       % Space below
+        {\slshape\selectfont}           % Body font
+        {}                              % Indent amount
+        {\bfseries\selectfont\scshape}  % Theorem head font
+        {\textbf{.} }                   % Punctuation after theorem head
+        {.5em}                          % Space after theorem head
+        {}  % Theorem head spec (can be left empty, meaning ‘normal’)
+\newtheoremstyle{SCDef} % name
+        {\topsep}                       % Space above
+        {\topsep}                       % Space below
+        {\selectfont}                   % Body font
+        {}                              % Indent amount
+        {\bfseries\selectfont\scshape}  % Theorem head font
+        {\textbf{.} }                   % Punctuation after theorem head
+        {.5em}                          % Space after theorem head
+        {}  % Theorem head spec (can be left empty, meaning ‘normal’)
+\theoremstyle{SCTheorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{SCDef}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{remark}[theorem]{Remark}
+
+
+
+
+
+
+
+
+
+
