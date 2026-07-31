@@ -38,7 +38,7 @@ well.
 
 ## Seminars
 
-- [![pdf](https://img.shields.io/badge/pdf-Seminar-orange)](https://wgabrielong.github.io/academic-writing/seminars/prismatic-f-gauges/main.pdf) Reading Seminar: Prismatic *F*-Gauges — jointly organized with Lucas Piessevaux, SoSe 2026
+- [![pdf](https://img.shields.io/badge/pdf-Seminar-orange)](https://wgabrielong.github.io/academic-writing/seminars/prismatic-f-gauges/main.pdf) Reading Seminar: Prismatic *F*-Gauges — jointly organized with Lucas Piessevaux, Summer 2026
 
 
 ## License
