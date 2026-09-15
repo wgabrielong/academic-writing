@@ -1,0 +1,540 @@
+\section{Morphisms of analytic \texorpdfstring{$\EE_{\infty}$}{E-infinity}-rings}\label{sec: morphisms of analytic rings}
+Having built the category $\An\CAlg^{\wedge}$ of complete analytic $\EE_{\infty}$-rings in \Cref{sec: analytic rings}, we isolate the morphisms suited to the six operations. The governing requirement is compatibility with base change: scalar extension need not be tensoring with an algebra object, so restriction of scalars commutes with base change only for the steady morphisms. 
+
+Open immersions and analytically proper morphisms then furnish a suitable decomposition of a geometric setup on the opposite category of complete analytic $\EE_{\infty}$-rings $\An\Aff$, yielding the six-functor formalism. We conclude with descent of analytic modules, following L. Mann's theory of steady endofunctors \cite[\S 2.5-2.6]{MannRigid6FF}.
+\subsection{Constructing morphisms of analytic \texorpdfstring{$\EE_{\infty}$}{E-infinity}-rings}\label{subsec: constructing morphisms}
+We begin with the $\EE_{\infty}$-analogue of a construction principle of Scholze, by which a morphism of the underlying connective condensed $\EE_{\infty}$-rings promotes to a morphism of analytic $\EE_{\infty}$-rings once a compatibility on $\pi_{0}$ is imposed. The reduction to the static case is immediate.
+\begin{proposition}[{\cite[Prop. 4.5.1]{CamargoSolid}}]\label{prop: constructing morphisms of analytic rings}
+    Let $(A^{\tri},\Mod_{A}),(B^{\tri},\Mod_{B})\in\An\CAlg^{\wedge}$ and let $f: A^{\tri}\to B^{\tri}$ be a morphism in $\Cond\CAlg^{\cn}$. Suppose for all $S\in\PFin_{\NN}$ there are:
+    \begin{enumerate}[label=(\roman*)]
+        \item Morphisms $\gamma_{S}:A[S]\to B[S]|_{A^{\tri}}$ natural in $S$ such that $S\to \Omega^{\infty}B[S]$ factors as $S\to\Omega^{\infty}A[S]\to\Omega^{\infty}B[S]$ on underlying condensed animae. 
+        \item For every morphism of condensed animae $g:S\to \Omega^{\infty}A^{\tri}$ inducing morphisms $\alpha:A[S]\to A^{\tri},\beta:B[S]\to B^{\tri}$ adjoint to $g,f\circ g$ the diagram 
+        $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBW1NdIl0sWzAsMSwiQltTXXxfe0Fee1xcdHJpfX0iXSxbMiwwLCJBXntcXHRyaX0iXSxbMiwxLCJCXntcXHRyaX18X3tBXntcXHRyaX19Il0sWzAsMiwiXFxhbHBoYSJdLFsyLDMsImYiXSxbMCwxLCJcXGdhbW1hX3tTfSIsMl0sWzEsMywiXFxiZXRhIiwyXV0=
+        \begin{tikzcd}
+            {A[S]} && {A^{\tri}} \\
+            {B[S]|_{A^{\tri}}} && {B^{\tri}|_{A^{\tri}}}
+            \arrow["\alpha", from=1-1, to=1-3]
+            \arrow["{\gamma_{S}}"', from=1-1, to=2-1]
+            \arrow["f", from=1-3, to=2-3]
+            \arrow["\beta"', from=2-1, to=2-3]
+        \end{tikzcd}$$
+        in $\Mod_{A^{\tri}}$ is commutative on $\pi_{0}$.
+    \end{enumerate}
+    Then $f$ promotes to a morphism $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ in $\An\CAlg^{\wedge}$.
+\end{proposition}
+\begin{proof}
+    The morphism $f$ promotes to a morphism of analytic $\EE_{\infty}$-rings precisely when restriction of scalars $(-)|_{A^{\tri}}:\Mod_{B}\to\Mod_{A^{\tri}}$ lands in $\Mod_{A}$. The objects $B[S]$ for $S\in\PFin_{\NN}$ generate $\Mod_{B}$ under colimits and shifts by \Cref{prop: stability of A-analytic modules} (3), restriction to $\Mod_{A^{\tri}}$ preserves colimits and shifts, and $\Mod_{A}$ is closed under them, so it suffices to show $B[S]|_{A^{\tri}}\in\Mod_{A}$ for all $S\in\PFin_{\NN}$.
+
+    By \Cref{prop: t-structure on A-analytic modules} (vi) this is checked on homotopy groups: $B[S]|_{A^{\tri}}\in\Mod_{A}$ if and only if $\pi_{k}(B[S]|_{A^{\tri}})\in\Mod_{A}^{\heartsuit}$ for all $k\in\ZZ$. \Cref{prop: functorial heart invariance} identifies $\Mod_{A}^{\heartsuit}$ with the heart of the induced static analytic ring on $\pi_{0}(A^{\tri})$-modules, reducing the claim to the underlying morphism $\pi_{0}(A^{\tri})\to\pi_{0}(B^{\tri})$ of static rings, where it is the criterion of \cite[Prop. 7.12]{Condensed}, the hypotheses of which are precisely the conditions of this proposition.
+\end{proof}
+\subsection{Steady morphisms}\label{subsec: steady morphisms}
+Steadiness concerns the interaction of restriction of scalars with base change, so we first record the explicit description of pushouts in $\An\CAlg^{\wedge}$, using the colimit construction of \Cref{subsec: functoriality and colimits,subsec: completion}. Throughout, $B\otimes_{A}-:\Mod_{A}\to\Mod_{B}$ denotes the scalar extension along a morphism $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$.
+\begin{corollary}\label{cor: pushout description}
+    Let $(B^{\tri},\Mod_{B})\leftarrow(A^{\tri},\Mod_{A})\to(C^{\tri},\Mod_{C})$ be a diagram in $\An\CAlg^{\wedge}$ with pushout $(D^{\tri},\Mod_{D})$ in $\An\CAlg^{\wedge}$ as in 
+    \begin{equation}\label{eqn: pushout recognition}
+        % https://q.uiver.app/#q=WzAsNCxbMCwwLCIoQV57XFxyaGR9LFxcTW9kX3tBfSkiXSxbMCwxLCIoQ157XFxyaGR9LFxcTW9kX3tDfSkiXSxbMiwwLCIoQl57XFxyaGR9LFxcTW9kX3tCfSkiXSxbMiwxLCIoRF57XFxyaGR9LFxcTW9kX3tEfSkiXSxbMCwyXSxbMiwzXSxbMCwxXSxbMSwzXV0=
+        \begin{tikzcd}
+            {(A^{\tri},\Mod_{A})} && {(B^{\tri},\Mod_{B})} \\
+            {(C^{\tri},\Mod_{C})} && {(D^{\tri},\Mod_{D}).}
+            \arrow[from=1-1, to=1-3]
+            \arrow[from=1-1, to=2-1]
+            \arrow[from=1-3, to=2-3]
+            \arrow[from=2-1, to=2-3]
+        \end{tikzcd}
+    \end{equation}
+    Write $\widetilde{D}^{\tri}:=B^{\tri}\otimes_{A^{\tri}}C^{\tri}$ for the pushout of the underlying rings in $\Cond\CAlg^{\cn}$. Then 
+    $$\Mod_{D}=\Mod_{\widetilde{D}^{\tri}/B}\cap\Mod_{\widetilde{D}^{\tri}/C}$$
+    as subcategories of $\Mod_{\widetilde{D}^{\tri}}$, and $D^{\tri}$ is the analytification of $\widetilde{D}^{\tri}$ with respect to this analytic structure.
+\end{corollary}
+\begin{proof}
+    This follows from \Cref{prop: colimits in AnCAlg} and \Cref{cor: complete AnCAlg has colimits}. Explicitly, the pushout in $\An\CAlg$ is $(\widetilde{D}^{\tri},\Mod_{D})$ which has underlying connective condensed $\EE_{\infty}$-algebra $\widetilde{D}^{\tri}\simeq B^{\tri}\otimes_{A^{\tri}}C^{\tri}$ and module category $\Mod_{D}=\Mod_{\widetilde{D}^{\tri}/B}\cap\Mod_{\widetilde{D}^{\tri}/C}$. The colimit in $\An\CAlg^{\wedge}$ is its completion, which is $(D^{\tri},\Mod_{D})$. 
+\end{proof}
+We now introduce steady morphisms.
+\begin{definition}\label{def: steady morphism}
+    A morphism $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ in $\An\CAlg^{\wedge}$ is \emph{steady} if for all morphisms $(A^{\tri},\Mod_{A})\to(C^{\tri},\Mod_{C})$ with pushout as in (\ref{eqn: pushout recognition}) the morphism 
+    $$B\otimes_{A}(M|_{A^{\tri}})\longrightarrow(D\otimes_{C}M)|_{B^{\tri}}$$
+    is an equivalence in $\Mod_{B}$ for all $M\in\Mod_{C}$. 
+\end{definition}
+\begin{remark}\label{rmk: definition of steady maps}
+    The notion of a steady morphism was introduced in \cite[Def. 12.13]{Analytic} and the conventions we have adopted in \Cref{def: steady morphism} are in line with those in the literature \cite[Def. 2.3.16 \& Rmk. 2.3.17]{MannRigid6FF} (cf. \cite[Def. 1.17 \& Rmk. 1.18]{MikamiFFDescent}). We refer the reader to \cite[p. 102]{Analytic} for an example of a non-steady morphism. 
+\end{remark}
+The collection of steady morphisms enjoys the expected permanence properties.
+\begin{proposition}[{\cite[Prop. 2.3.19]{MannRigid6FF}}]\label{prop: permanence properties of steady morphisms}
+    The collection of steady morphisms satisfies the following permanence properties: 
+    \begin{enumerate}
+        \item (Composition) If $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B}), (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$ are steady morphisms in $\An\CAlg^{\wedge}$ then so is the composite $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$. 
+        \item (Base Change) If $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is a steady morphism and $(A^{\tri},\Mod_{A})\to (C^{\tri},\Mod_{C})$ another morphism in $\An\CAlg^{\wedge}$ the induced morphism from $(C^{\tri},\Mod_{C})$ to the pushout is steady. 
+        \item (Left Cancellation) If a composite $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$ is steady and $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is steady then so is $(B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$. 
+        \item (Colimits) If $\{(A_{i}^{\tri},\Mod_{A_{i}})\to (B_{i}^{\tri},\Mod_{B_{i}})\}_{i\in I}$ is a small diagram of steady morphisms in $\Fun([1],\An\CAlg^{\wedge})$ then so is the colimit. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    The permanence properties are \cite[Prop. 2.3.19]{MannRigid6FF} via the characterization of \cite[Prop. 2.3.18]{MannRigid6FF}. Neither of the proofs uses the animated structure, so they carry over to the light condensed $\EE_{\infty}$-setting.
+\end{proof}
+\subsection{Open immersions}\label{subsec: open immersions}
+Open immersions are the localizations of categories of analytic modules with smashing kernel -- equivalently, those whose scalar extension admits a fully faithful left adjoint satisfying the projection formula \cite[Prop. 6.5]{Complex}. We record their permanence and discuss a criterion detecting an open immersion on the induced morphism of static analytic rings under additional hypotheses.
+\begin{definition}[{\cite[Lecture VI]{Complex}}]\label{def: open immersion}
+    A morphism $j:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ in $\An\CAlg^{\wedge}$ whose scalar extension $j^{*}:\Mod_{A}\to\Mod_{B}$ has fully faithful right adjoint $j_{*}$ is an \emph{open immersion} if it satisfies either of the following equivalent conditions:
+    \begin{enumerate}[label=(\alph*)]
+        \item $j^{*}$ admits a fully faithful left adjoint $j_{\sharp}$ that satisfies the projection formula: for all $M\in\Mod_{A},N\in\Mod_{B}$ the natural morphism $j_{\sharp}(j^{*}M\otimes_{B}N)\to M\otimes_{A}j_{\sharp}N$ is an equivalence in $\Mod_{A}$. 
+        \item The kernel $\ker(j^{*}):=\{K\in\Mod_{A}:j^{*}K\simeq0\}\subseteq\Mod_{A}$ is equivalent to $\Mod_{Q}(\Mod_{A})$ for some idempotent algebra $Q\in\Idem_{A}$.
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: open immersion as categorical open immersion}
+    \Cref{def: open immersion} is the special case of \Cref{def: categorical open immersion} for the symmetric monoidal functor $B\otimes_{A}-$ in $\CAlg(\PrL_{\St})$.
+\end{remark}
+Using that the kernel of an open immersion is equivalent to the category of modules over an idempotent algebra, we show that open immersions are preserved by base change in $\An\CAlg^{\wedge}$. 
+\begin{proposition}\label{prop: pushouts along open immersions}
+    Let $j:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be an open immersion in $\An\CAlg^{\wedge}$ with $\ker(j^{*})=\Mod_{Q}(\Mod_{A})$, let $g:(A^{\tri},\Mod_{A})\to(C^{\tri},\Mod_{C})$ be a morphism in $\An\CAlg^{\wedge}$ with pushout $(D^{\tri},\Mod_{D})$ as in 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCIoQV57XFx0cml9LFxcTW9kX3tBfSkiXSxbMiwwLCIoQl57XFx0cml9LFxcTW9kX3tCfSkiXSxbMCwxLCIoQ157XFx0cml9LFxcTW9kX3tDfSkiXSxbMiwxLCIoRF57XFx0cml9LFxcTW9kX3tEfSkiXSxbMCwxLCJqIl0sWzEsMywiXFx3aWRldGlsZGV7Z30iXSxbMCwyLCJnIiwyXSxbMiwzLCJcXHdpZGV0aWxkZXtqfSIsMl1d
+    \begin{tikzcd}
+        {(A^{\tri},\Mod_{A})} && {(B^{\tri},\Mod_{B})} \\
+        {(C^{\tri},\Mod_{C})} && {(D^{\tri},\Mod_{D})}
+        \arrow["j", from=1-1, to=1-3]
+        \arrow["g"', from=1-1, to=2-1]
+        \arrow["{\widetilde{g}}", from=1-3, to=2-3]
+        \arrow["{\widetilde{j}}"', from=2-1, to=2-3]
+    \end{tikzcd}$$
+    Then $\widetilde{j}$ is an open immersion with $\ker(\widetilde{j}^{*})\simeq\Mod_{C\otimes_{A}Q}(\Mod_{C})$. 
+\end{proposition}
+\begin{proof}
+    Since $C\otimes_{A}-$ is symmetric monoidal, $\widetilde{Q}:=g^{*}Q=C\otimes_{A}Q$ is an idempotent algebra in $\Mod_{C}$ and commutativity of the pushout diagram and stability imply that $\widetilde{g}^{*}j^{*}Q\simeq\widetilde{j}^{*}g^{*}Q\simeq0$ in $\Mod_{D}$, where $\widetilde{g}:(B^{\tri},\Mod_{B})\to(D^{\tri},\Mod_{D})$ is the induced morphism. Write $I:=\fib_{A}(A^{\tri}\to Q)$ and $\widetilde{I}:=\fib_{C}(C^{\tri}\to\widetilde{Q})\simeq g^{*}I$.
+
+    The right adjoint $j_{*}$ of $j^{*}$ is scalar restriction, so it preserves small limits and colimits. We claim the essential image of $j_{*}$ is $\Escr:=\{N\in\Mod_{A}:\intHom_{A}(Q,N)\simeq0\}\subseteq\Mod_{A}$. The natural map $N\to\intHom_{A}(I,N)\simeq j_{*}j^{*}N$ of \cite[Rmk. 5.1.5 (2)]{CamargoSolid} has fiber $\intHom_{A}(Q,N)$, so for $N\in\Escr$ it is an equivalence and $N$ lies in the essential image. Conversely if $N$ is in the essential image, the unit map $N\to j_{*}j^{*}N\simeq\intHom_{A}(I,N)$ is an equivalence, so the fiber $\intHom_{A}(Q,N)$ vanishes and $N\in\Escr$. The computation $\intHom_{A^{\tri}}(Q,\intHom_{A^{\tri}}(M,N))\simeq\intHom_{A^{\tri}}(M,\intHom_{A}(Q,N))\simeq0$ for $N\in\Escr$ and $M\in\Mod_{A^{\tri}}$ shows $\Escr$ is moreover closed under internal homs from arbitrary $A^{\tri}$-modules, and the localization $L^{\Escr}$ is right $t$-exact, being the composite $j_{*}j^{*}\circ L^{A}$ of right $t$-exact functors. This defines an analytic $\EE_{\infty}$-ring structure $(A^{\tri},\Escr)$ on $A^{\tri}$ with completion $(B^{\tri},\Mod_{B})$. \Cref{cor: complete AnCAlg has colimits} shows $\An\CAlg^{\wedge}$ is a reflective subcategory of $\An\CAlg$ so the pushout $(D^{\tri},\Mod_{D})$ above is also the completion of the pushout of $(C^{\tri},\Mod_{C})\leftarrow(A^{\tri},\Mod_{A})\to(A^{\tri},\Escr)$ taken in $\An\CAlg$. \Cref{cor: pushout description} then identifies $\Mod_{D}$ with the full subcategory of $M\in\Mod_{C}$ with $g_{*}M\in \Escr$. For every $M\in\Mod_{C}$ the adjunction gives $g_{*}\intHom_{C}(\widetilde{Q},M)\simeq\intHom_{A}(Q,g_{*}M)$, so by the description of the essential image and conservativity of scalar restriction \cite[Cor. 4.2.3.2]{HA},
+    $$\Mod_{D}=\{M\in\Mod_{C}:\intHom_{C}(\widetilde{Q},M)\simeq0\}\subseteq\Mod_{C},$$
+    showing in particular that the right adjoint $\widetilde{j}_{*}$ is fully faithful.
+
+
+    By idempotence of $\widetilde{Q}$, an object $K\in\Mod_{C}$ is a $\widetilde{Q}$-module if and only if the natural map $K\to\widetilde{Q}\otimes_{C}K$ is an equivalence. By symmetric monoidality of $\widetilde{j}^{*}$, we have 
+    $$\widetilde{j}^{*}(K)\simeq\widetilde{j}^{*}(\widetilde{Q})\otimes_{D}\widetilde{j}^{*}(K)\simeq 0\otimes_{D}\widetilde{j}^{*}(K)\simeq0$$
+    showing $\Mod_{\widetilde{Q}}(\Mod_{C})\subseteq\ker(\widetilde{j}^{*})$. Conversely, suppose $\widetilde{j}^{*}(K)\simeq0$ so $\Hom_{C}(K,N)\simeq0$ for all $N\in\Mod_{D}\subseteq\Mod_{C}$. For $P\in\Mod_{C}$, $Q\otimes_{A}I\simeq0$ implies $\widetilde{Q}\otimes_{C}\widetilde{I}\simeq0$ and we have equivalences
+    $$\intHom_{C}\left(\widetilde{Q},\intHom_{C}\left(\widetilde{I},P\right)\right)\simeq\intHom_{C}\left(\widetilde{Q}\otimes_{C}\widetilde{I},P\right)\simeq0$$
+    and $\intHom_{C}(\widetilde{I},P)\in\Mod_{D}\subseteq\Mod_{C}$ so adjunction gives 
+    $$\Hom_{C}\left(K\otimes_{C}\widetilde{I},P\right)\simeq\Hom_{C}\left(K,\intHom_{C}\left(\widetilde{I},P\right)\right)\simeq0.$$
+    Taking $P=K\otimes_{C}\widetilde{I}$ we get that the identity $\id_{K\otimes_{C}\widetilde{I}}$ is zero and $K\otimes_{C}\widetilde{I}\simeq0$. Thus tensoring $K$ with the (co)fiber sequence $\widetilde{I}\to C^{\tri}\to\widetilde{Q}$ we conclude that $K\to\widetilde{Q}\otimes_{C}K$ is an equivalence, and $\ker(\widetilde{j}^{*})\subseteq\Mod_{\widetilde{Q}}(\Mod_{C})$. 
+\end{proof}
+The permanence of open immersions under base change follows from the result above, while permanence under composition and left cancellation are formal from the categorical properties. 
+\begin{proposition}\label{prop: permanence of open immersions}
+    The collection of open immersions satisfies the following permanence properties: 
+    \begin{enumerate}
+        \item (Composition) If $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B}), (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$ are open immersions in $\An\CAlg^{\wedge}$ then so is the composite $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$. 
+        \item (Base Change) If $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is an open immersion and $(A^{\tri},\Mod_{A})\to (C^{\tri},\Mod_{C})$ another morphism in $\An\CAlg^{\wedge}$ the induced morphism from $(C^{\tri},\Mod_{C})$ to the pushout is an open immersion. 
+        \item (Left Cancellation) If a composite $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$ is an open immersion and $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is an open immersion then so is $(B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Permanence under base change is established in \Cref{prop: pushouts along open immersions}. The forgetful functor from $\Cond\Sp$-linear categories preserves composition, so permanence under composition and left cancellation can be checked on underlying stable presentably symmetric monoidal categories, and thus follows from \cite[Prop. 6.5 \& Cor. 6.6]{Complex}. 
+\end{proof}
+Beyond permanence, the open immersions satisfy the base change that the six-functor formalism requires: the exceptional left adjoint $j_{\sharp}$ commutes with scalar extension along an arbitrary morphism.
+\begin{proposition}\label{prop: base change for open immersions}
+    Let $j:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be an open immersion in $\An\CAlg^{\wedge}$. For every $g:(A^{\tri},\Mod_{A})\to(C^{\tri},\Mod_{C})$ with pushout $(D^{\tri},\Mod_{D})$ in $\An\CAlg^{\wedge}$, the base change morphism $\widetilde{j}_{\sharp}\,\widetilde{g}^{*}\to g^{*}j_{\sharp}$ of functors $\Mod_{B}\to\Mod_{C}$ associated to
+    \begin{equation}\label{eqn: open immersion base change}
+        % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE1vZF97QX0iXSxbMiwwLCJcXE1vZF97Qn0iXSxbMCwxLCJcXE1vZF97Q30iXSxbMiwxLCJcXE1vZF97RH0iXSxbMSwwLCJqX3tcXHNoYXJwfVxcZGFzaHYgal57Kn0iLDIseyJvZmZzZXQiOjF9XSxbMCwxLCIiLDAseyJvZmZzZXQiOjF9XSxbMywyLCIiLDIseyJvZmZzZXQiOjF9XSxbMiwzLCJcXHdpZGV0aWxkZXtqfV97XFxzaGFycH1cXGRhc2h2XFx3aWRldGlsZGV7an1eeyp9IiwyLHsib2Zmc2V0IjoxfV0sWzAsMiwiZ157Kn0iLDJdLFsxLDMsIlxcd2lkZXRpbGRle2d9XnsqfSJdXQ==
+        \begin{tikzcd}
+            {\Mod_{A}} && {\Mod_{B}} \\
+            {\Mod_{C}} && {\Mod_{D}}
+            \arrow[shift right, from=1-1, to=1-3]
+            \arrow["{g^{*}}"', from=1-1, to=2-1]
+            \arrow["{j_{\sharp}\dashv j^{*}}"', shift right, from=1-3, to=1-1]
+            \arrow["{\widetilde{g}^{*}}", from=1-3, to=2-3]
+            \arrow["{\widetilde{j}_{\sharp}\dashv\widetilde{j}^{*}}"', shift right, from=2-1, to=2-3]
+            \arrow[shift right, from=2-3, to=2-1]
+        \end{tikzcd}
+    \end{equation}
+    is an equivalence.
+\end{proposition}
+\begin{proof}
+    From \Cref{prop: pushouts along open immersions}, $\widetilde{j}$ is an open immersion and there exists an idempotent algebra $Q\in\Idem_{A}$ such that $\ker(j^{*})\simeq\Mod_{Q}(\Mod_{A})$ and $\ker(\widetilde{j}^{*})\simeq\Mod_{\widetilde{Q}}(\Mod_{C})$, where $\widetilde{Q}:=g^{*}Q$. Write $I:=\fib_{A}(A^{\tri}\to Q)$ and $\widetilde{I}:=\fib_{C}(C^{\tri}\to\widetilde{Q})\simeq g^{*}I$.
+
+    Since $j^{*}:\Mod_{A}\to\Mod_{B}$ is essentially surjective, it suffices to show the morphism $\widetilde{j}_{\sharp}\widetilde{g}^{*}j^{*}\to g^{*}j_{\sharp}j^{*}$ of functors $\Mod_{A}\to\Mod_{C}$ is an equivalence. Using $\widetilde{g}^{*}j^{*}\simeq\widetilde{j}^{*}g^{*}$, this is the morphism $\widetilde{j}_{\sharp}\widetilde{j}^{*}g^{*}\to g^{*}j_{\sharp}j^{*}$, which the natural equivalences $j_{\sharp}j^{*}\simeq I\otimes_{A}-$ and $\widetilde{j}_{\sharp}\widetilde{j}^{*}\simeq\widetilde{I}\otimes_{C}-$ of \cite[Rmk. 5.1.5 (2)]{CamargoSolid} carry to the canonical equivalence $\widetilde{I}\otimes_{C}g^{*}(-)\simeq g^{*}(I\otimes_{A}-)$ supplied by symmetric monoidality of $g^{*}$ and $\widetilde{I}\simeq g^{*}I$, giving the claim.
+\end{proof}
+It follows that open immersions are steady morphisms. 
+\begin{corollary}\label{cor: open immersions are steady}
+    If $j:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ is an open immersion, then $j$ is steady. 
+\end{corollary}
+\begin{proof}
+    Form the pushout as in (\ref{eqn: open immersion base change}). The morphism $j$ is steady if and only if $j^{*}g_{*}\to\widetilde{g}_{*}\widetilde{j}^{*}$ is an equivalence, which follows by passing to the adjoint morphism of the equivalence $\widetilde{j}_{\sharp}\widetilde{g}^{*}\xrightarrow{\sim}g^{*}j_{\sharp}$. 
+\end{proof}
+It remains to recognize open immersions in practice. We prove a restricted form of an expectation of Peter Scholze, relayed to us by Lucas Mann, that whether a morphism is an open immersion should be detected on the heart. The recognition criterion of \Cref{subsec: detecting smashing kernel} reduces the question to the underlying static analytic rings once the analytic $\Tor$-amplitude is at most one.
+\begin{definition}\label{def: finite analytic tor-amplitude}
+    A morphism $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ in $\An\CAlg$ is said to be \emph{of analytic $\Tor$-amplitude $\leq n$} if the functor $B\otimes_{A}-:\Mod_{A}\to\Mod_{B}$ takes $\Mod_{A}^{\heartsuit}$ to $\Mod_{B,\leq n}$. 
+\end{definition}
+\begin{remark}\label{rmk: analytic tor-amplitude}
+    If $A^{\tri},B^{\tri}$ are discrete, the notion of analytic $\Tor$-amplitude differs from the $\Tor$-amplitude of the morphism of discrete rings $A^{\tri}\to B^{\tri}$ in $\Sp$ in the sense of \Cref{def: finiteness conditions of morphisms} (5). In particular, if $A^{\tri}\to B^{\tri}$ is a flat morphism (ie. of $\Tor$-amplitude $\leq0$) of animated rings, it need only be of analytic $\Tor$-amplitude $\leq 1$ \cite[Lem. 4.10]{MikamiFPPF}. 
+\end{remark}
+\begin{lemma}[{\cite[Lem. 4.8]{MikamiFPPF}}]\label{lem: tor amplitude and limits}
+    Let $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ be a morphism in $\An\CAlg^{\wedge}$ such that $B\otimes_{A}\pi_{0}(A^{\tri})\simeq\pi_{0}(B^{\tri})$. Denote by $(\pi_{0}(A^{\tri}),\Mod_{\pi_{0}(A)})\to(\pi_{0}(B^{\tri}),\Mod_{\pi_{0}(B)})$ the induced morphism of static analytic rings and suppose the functor $\pi_{0}(B)\otimes_{\pi_{0}(A)}-$ is of analytic $\Tor$-amplitude $\leq n$.
+    \begin{enumerate}
+        \item Suppose $\pi_{0}(B)\otimes_{\pi_{0}(A)}-:\Mod_{\pi_{0}(A)}\to\Mod_{\pi_{0}(B)}$ preserves countable limits. Then $B\otimes_{A}-:\Mod_{A}\to\Mod_{B}$ is of analytic $\Tor$-amplitude $\leq n$ and preserves countable limits. 
+        \item Assume further the $t$-structure on $\Mod_{A}$ is compatible with small products and $\pi_{0}(B)\otimes_{\pi_{0}(A)}-$ preserves small limits. Then $B\otimes_{A}-$ is of analytic $\Tor$-amplitude $\leq n$ and preserves small limits. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    We first show the claim concerning analytic $\Tor$-amplitude: namely, we seek to prove that $B\otimes_{A}M\in\Mod_{B,\leq n}$ for $M\in\Mod_{A}^{\heartsuit}$. Indeed such $M$ admits the structure of a $\pi_{0}(A^{\tri})$-module and we have an equivalence $\pi_{0}(B)\otimes_{\pi_{0}(A)}M\simeq B\otimes_{A}M$ and the former lies in $\Mod_{\pi_{0}(B),\leq n}$ by assumption. Now by $t$-exactness of the forgetful functor $\Mod_{\pi_{0}(B)}\to\Mod_{B}$, we have $B\otimes_{A}M\in\Mod_{B,\leq n}$ as well. By induction on the (co)fiber sequences $\pi_{k}(M)[k]\to\tau_{\leq k}M\to\tau_{\leq k-1}M$ we obtain $B\otimes_{A}-$ sends $\Mod_{A,[0,r]}$ to $\Mod_{B,[0,n+r]}$. 
+
+    We now show preservation of countable limits. The functor $B\otimes_{A}-$ is an exact and right $t$-exact left adjoint. Using exactness, we can reduce to the case of $B\otimes_{A}-$ preserving countable products, and by compatibility of the $t$-structures on $\Mod_{A},\Mod_{B}$ with countable products and the Whitehead tower in $\Mod_{A}$, it suffices to show that 
+    \begin{equation}\label{eqn: countable products}
+        B\otimes_{A}\left(\prod_{i\in I}M_{i}\right)\longrightarrow\prod_{i\in I}\left(B\otimes_{A}M_{i}\right)
+    \end{equation} 
+    is an equivalence in $\Mod_{B,\geq0}$ for countably indexed collections $\{M_{i}\}_{i\in I}\subseteq\Mod_{A,\geq0}$. Passing to Postnikov towers in $\Mod_{B}$ and applying Whitehead's theorem there, it suffices to verify 
+    $$\pi_{k}\left(\tau_{\leq m}\left(B\otimes_{A}\left(\prod_{i\in I}M_{i}\right)\right)\right)\to\pi_{k}\left(\tau_{\leq m}\left(\prod_{i\in I}\left(B\otimes_{A}M_{i}\right)\right)\right)$$
+    is an equivalence for all $m\geq0$ and $0\leq k\leq m$. Since $B\otimes_{A}-$ is right $t$-exact and the $t$-structures on $\Mod_{A},\Mod_{B}$ are compatible with countable products, the truncations $\tau_{\leq m}\left(B\otimes_{A}\left(\prod_{i\in I}M_{i}\right)\right),\tau_{\leq m}\left(\prod_{i\in I}\left(B\otimes_{A}M_{i}\right)\right)$ depend only on the truncations $\tau_{\leq m}M_{i}$: the fibers of the comparisons with the truncated system are $B\otimes_{A}\left(\prod_{i\in I}\tau_{\geq m+1}M_{i}\right)$ and $\prod_{i\in I}B\otimes_{A}\left(\tau_{\geq m+1}M_{i}\right)$ respectively, both lying in $\Mod_{B,\geq m+1}$. We may therefore assume $\{M_{i}\}_{i\in I}\subseteq\Mod_{A,[0,m]}$. Now writing $\prod_{i\in I}M_{i}$ as its finite Postnikov tower in $\Mod_{A}$, which is preserved by $B\otimes_{A}-$, we can reduce to verifying the claim for $\{M_{i}\}_{i\in I}\subseteq\Mod_{A}^{\heartsuit}$ which was assumed to hold.
+\end{proof}
+\begin{proof}[Proof of (2)]
+    The arguments given in (1) hold, replacing countable products by small ones. More precisely, the claim concerning analytic $\Tor$-amplitude follows from an identical argument to that given in (1). For the second claim, we note that it suffices to show preservation of small products. By the same reductions as in (1) for small products in place of countable ones, we can reduce to the case of $\pi_{0}(B)\otimes_{\pi_{0}(A)}-$ preserving small limits, which was assumed. 
+\end{proof}
+The lemma in hand, we obtain the recognition result. 
+\begin{proposition}\label{prop: open immersion detected on static rings}
+    Let $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be a morphism in $\An\CAlg^{\wedge}$ with $B\otimes_{A}\pi_{0}(A^{\tri})\simeq\pi_{0}(B^{\tri})$ and such that:
+    \begin{enumerate}[label=(\roman*)]
+        \item The right adjoint $(-)|_{A^{\tri}}:\Mod_{B}\to\Mod_{A}$ to scalar extension is fully faithful.
+        \item The functor $\pi_{0}(B)\otimes_{\pi_{0}(A)}-$ is of analytic $\Tor$-amplitude $\leq 1$.
+        \item The $t$-structure on $\Mod_{A}$ is compatible with small products, and the induced morphism $(\pi_{0}(A^{\tri}),\Mod_{\pi_{0}(A)})\to(\pi_{0}(B^{\tri}),\Mod_{\pi_{0}(B)})$ is an open immersion.
+    \end{enumerate}
+    Then $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ is an open immersion.
+\end{proposition}
+\begin{proof}
+    We need to show $\ker(B\otimes_{A}-)\subseteq\Mod_{A}$ is equivalent to the category of modules over some idempotent algebra. 
+
+    By (i) the restriction $(-)|_{A^{\tri}}$ is a fully faithful right adjoint to the symmetric monoidal right $t$-exact functor $B\otimes_{A}-$, so $L:=(B\otimes_{A}-)|_{A^{\tri}}$ is an $\otimes_{A}$-compatible $\pi$-stably reflective localization of the presentably symmetric monoidal $t^{+}$-bistable category $\Mod_{A}$ (cf. \Cref{def: compatible localization}). The induced morphism on static rings in (iii) is an open immersion making $\pi_{0}(B)\otimes_{\pi_{0}(A)}-$ preserve small limits, so \Cref{lem: tor amplitude and limits} (2) applies with $n=1$ by conditions (ii) and (iii) above. It follows that $B\otimes_{A}-$ preserves small limits and is of analytic $\Tor$-amplitude $\leq 1$ (cf. \Cref{def: t-amplitude}). \Cref{cor: recognition at t-amplitude 1} then reduces the claim to showing $\intHom_{A}(M, K)\in\ker(L)$ for all $M\in\Mod_{A}^{\heartsuit}$ and $K\in\ker(L)\cap\Mod_{A}^{\heartsuit}$. 
+
+    Write $L^{0}:=(\pi_{0}(B)\otimes_{\pi_{0}(A)}-)|_{\pi_{0}(A^{\tri})}$ for the induced localization. By \Cref{prop: relationship with heart} (1) and \Cref{prop: properties of pi stably reflective localizations} (3), the conservative $t$-exact scalar restriction functor induces an equivalence on the hearts $\Mod_{\pi_{0}(A)}^{\heartsuit}\to\Mod_{A}^{\heartsuit}$. A static object $N\in\Mod_{A}^{\heartsuit}$ admits the structure of a $\pi_{0}(A^{\tri})$-module for which $B\otimes_{A}N\simeq\pi_{0}(B)\otimes_{\pi_{0}(A)}N$ as in the proof of \Cref{lem: tor amplitude and limits} (1). This implies that there is an equivalence $\ker(L)\cap\Mod_{A}^{\heartsuit}\simeq\ker(L^{0})\cap\Mod_{\pi_{0}(A)}^{\heartsuit}$. Both $L, L^{0}$ are exact, right $t$-exact, preserve small colimits, and are of $t$-amplitude $\leq 1$ -- the former by the argument above and the latter by assumption. So $\ker(L)$ and $\ker(L^{0})$ admit the induced $t$-structure by \Cref{lem: homotopy detected kernels of t-amplitude less than 1 functors}. Both localizations preserve small limits, so \Cref{lem: kernel structure L limit preserving} (2) applies to each: an object of $\Mod_{A}$ lies in $\ker(L)$ if and only if each of its homotopy groups lies in $\ker(L)\cap\Mod_{A}^{\heartsuit}$, and an object of $\Mod_{\pi_{0}(A)}$ lies in $\ker(L^{0})$ if and only if each of its homotopy groups lies in $\ker(L^{0})\cap\Mod_{\pi_{0}(A)}^{\heartsuit}$.
+
+    Fix $M, K$ as above. \Cref{lem: modules inherit bistability} (2) gives an equivalence 
+    $$\intHom_{A}(M, K)\simeq\intHom_{\pi_{0}(A)}\left(\pi_{0}(A^{\tri})\otimes_{A}M, K\right)|_{A^{\tri}}.$$
+    Since $\ker(L^{0})\simeq\Mod_{Q_{0}}(\Mod_{\pi_{0}(A)})$ for some idempotent algebra $Q_{0}\in\Idem_{\pi_{0}(A)}$ by (iii), and $K$ lies in $\ker(L^{0})\cap\Mod_{\pi_{0}(A)}^{\heartsuit}$ under the agreement of kernels on the heart, \Cref{prop: idempotent recognition} (c) gives $\intHom_{\pi_{0}(A)}(\pi_{0}(A^{\tri})\otimes_{A}M, K)\in\ker(L^{0})$. Homotopy detection of $\ker(L^{0})$ places each homotopy group of $\intHom_{\pi_{0}(A)}(\pi_{0}(A^{\tri})\otimes_{A}M, K)$ in $\ker(L^{0})\cap\Mod_{\pi_{0}(A)}^{\heartsuit}$, and $t$-exactness of $(-)|_{A^{\tri}}$ then gives $\pi_{k}(\intHom_{A}(M, K))\in\ker(L)\cap\Mod_{A}^{\heartsuit}$ for all $k\in\ZZ$, so $\intHom_{A}(M, K)\in\ker(L)$, as desired. 
+\end{proof}
+\subsection{Analytically proper morphisms}\label{subsec: analytically proper morphisms}
+Complementary to the open immersions are the analytically proper morphisms, along which the target carries the analytic structure induced from the source. We establish their permanence and show that the right adjoint to scalar extension satisfies the projection formula and base change.
+\begin{definition}\label{def: analytically proper}
+    A morphism $f:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ in $\An\CAlg^{\wedge}$ is \emph{analytically proper} if $(B^{\tri},\Mod_{B})$ carries the induced analytic $\EE_{\infty}$-ring structure from $(A^{\tri},\Mod_{A})$ along $f$ in the sense of \Cref{def: induced analytic ring}, ie. $\Mod_{B}=\Mod_{B^{\tri}/A}$.
+\end{definition}
+\begin{remark}\label{rmk: analytically proper naming}
+    Analytically proper morphisms are elsewhere called proper. We retain the qualifier to distinguish them from the proper morphisms of spectral algebraic geometry \cite[Def. 5.1.2.1]{SAG} and the proper morphisms of a six-functor formalism \cite[Def. 4.6.1]{HeyerMann6FF}.
+\end{remark}
+\begin{proposition}\label{prop: permanence of analytically proper}
+    The collection of analytically proper morphisms satisfies the following permanence properties: 
+    \begin{enumerate}
+        \item (Composition) If $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B}), (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$ are analytically proper morphisms in $\An\CAlg^{\wedge}$ then so is the composite $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$. 
+        \item (Base Change) If $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is an analytically proper morphism and $(A^{\tri},\Mod_{A})\to (C^{\tri},\Mod_{C})$ another morphism in $\An\CAlg^{\wedge}$ the induced morphism from $(C^{\tri},\Mod_{C})$ to the pushout is analytically proper.
+        \item (Left Cancellation) If a composite $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$ is analytically proper and $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is analytically proper then so is $(B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    By induced structures for the constituent morphisms of the composite, a $C^{\tri}$-module is $C$-analytic if and only if its underlying $B^{\tri}$-module is $B$-analytic if and only if its underlying $A^{\tri}$-module is $A$-analytic, so $(C^{\tri},\Mod_{C})$ has the induced structure from $(A^{\tri},\Mod_{A})$ along this composite as well. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Since $p:(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is analytically proper, it is the pushout of $(A^{\tri},\Mod_{A^{\tri}})\to(B^{\tri},\Mod_{B^{\tri}})$ along $(A^{\tri},\Mod_{A^{\tri}})\to(A^{\tri},\Mod_{A})$ as in \Cref{prop: induced analytic ring structure} (2). Now let $(D^{\tri},\Mod_{D})$ be the pushout of $(C^{\tri},\Mod_{C})\leftarrow(A^{\tri},\Mod_{A})\xrightarrow{p}(B^{\tri},\Mod_{B})$. By the pasting lemma, this assembles into a diagram 
+    $$% https://q.uiver.app/#q=WzAsNixbMCwwLCIoQV57XFx0cml9LFxcTW9kX3tBXntcXHRyaX19KSJdLFsyLDAsIihCXntcXHRyaX0sXFxNb2Rfe0Jee1xcdHJpfX0pIl0sWzAsMSwiKEFee1xcdHJpfSxcXE1vZF97QX0pIl0sWzIsMSwiKEJee1xcdHJpfSxcXE1vZF97Qn0pIl0sWzAsMiwiKENee1xcdHJpfSxcXE1vZF97Q30pIl0sWzIsMiwiKERee1xcdHJpfSxcXE1vZF97RH0pIl0sWzAsMV0sWzEsM10sWzAsMl0sWzIsM10sWzIsNF0sWzQsNV0sWzMsNV1d
+    \begin{tikzcd}
+        {(A^{\tri},\Mod_{A^{\tri}})} && {(B^{\tri},\Mod_{B^{\tri}})} \\
+        {(A^{\tri},\Mod_{A})} && {(B^{\tri},\Mod_{B})} \\
+        {(C^{\tri},\Mod_{C})} && {(D^{\tri},\Mod_{D})}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+        \arrow[from=2-1, to=3-1]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=3-1, to=3-3]
+    \end{tikzcd}$$
+    where the outer rectangle is coCartesian. By \Cref{cor: pushout description} applied to the outer rectangle, a $D^{\tri}$-module is $D$-analytic if and only if its underlying $C^{\tri}$-module is $C$-analytic and its underlying $B^{\tri}$-module is $B^{\tri}$-analytic. The condition that its underlying $B^{\tri}$-module is $B^{\tri}$-analytic is vacuously satisfied since $(B^{\tri},\Mod_{B^{\tri}})$ has the trivial analytic $\EE_{\infty}$-ring structure. So $(C^{\tri},\Mod_{C})\to(D^{\tri},\Mod_{D})$ is analytically proper. 
+\end{proof}
+\begin{proof}[Proof of (3)]
+    Since $B\to C$ is a morphism of analytic $\EE_{\infty}$-rings, $\Mod_{C}\subseteq\Mod_{C^{\tri}/B}$. Conversely, let $M\in\Mod_{C^{\tri}}$ with $M|_{B^{\tri}}\in\Mod_{B}$. As $A\to B$ is a morphism, $M|_{A^{\tri}}\simeq(M|_{B^{\tri}})|_{A^{\tri}}\in\Mod_{A}$, and since $A\to C$ is analytically proper $\Mod_{C}=\Mod_{C^{\tri}/A}$, so $M\in\Mod_{C}$. Hence $\Mod_{C}=\Mod_{C^{\tri}/B}$ and $(B^{\tri},\Mod_{B})\to(C^{\tri},\Mod_{C})$ is analytically proper.
+\end{proof}
+The base change results for analytically proper morphisms rest on an identification of the unit of the pushout.
+\begin{lemma}\label{lem: unit of pushout along proper}
+    Let $p:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be an analytically proper morphism and $g:(A^{\tri},\Mod_{A})\to(C^{\tri},\Mod_{C})$ a morphism in $\An\CAlg^{\wedge}$ with pushout $(D^{\tri},\Mod_{D})$. The natural morphism $g^{*}(B^{\tri}|_{A^{\tri}})\to D^{\tri}|_{C^{\tri}}$ is an equivalence in $\Mod_{C}$.
+\end{lemma}
+\begin{proof}
+    Use the notation of \Cref{cor: pushout description}. Since $p$ is analytically proper, a $\widetilde{D}^{\tri}$-module has $B$-analytic underlying $B^{\tri}$-module if and only if its underlying $A^{\tri}$-module is $A$-analytic, so $\Mod_{\widetilde{D}^{\tri}/C}\subseteq\Mod_{\widetilde{D}^{\tri}/B}=\Mod_{\widetilde{D}^{\tri}/A}$, and \Cref{cor: pushout description} gives $\Mod_{D}=\Mod_{\widetilde{D}^{\tri}/B}\cap\Mod_{\widetilde{D}^{\tri}/C}=\Mod_{\widetilde{D}^{\tri}/C}$. 
+    
+    This identifies $\Mod_{D}$ with the category of modules in $\Mod_{C}$ over the analytified algebra $L^{C}(\widetilde{D}^{\tri}|_{C^{\tri}})\in\CAlg(\Mod_{C})$, under which the composite $\widetilde{p}_{*}\widetilde{p}^{*}$ is tensoring with $D^{\tri}|_{C^{\tri}}$. The unit of $\Mod_{D}$ has underlying $C^{\tri}$-module $D^{\tri}|_{C^{\tri}}\simeq L^{C}(\widetilde{D}^{\tri}|_{C^{\tri}})$. The factorization (\ref{eqn: scalar extension is sym mon}) for $g$ applied to $B^{\tri}|_{A^{\tri}}$ gives
+    $$g^{*}(B^{\tri}|_{A^{\tri}})\simeq L^{C}(C^{\tri}\otimes_{A^{\tri}}(B^{\tri}|_{A^{\tri}}))\simeq L^{C}(\widetilde{D}^{\tri}|_{C^{\tri}}),$$
+    whence the claim.
+\end{proof}
+This identification underlies the proof of the projection formula and base change below, and enters again in the steadiness criterion of \Cref{prop: nuclear implies steady}.
+\begin{proposition}\label{prop: analytically proper base change properties}
+    Let $p:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be an analytically proper morphism in $\An\CAlg^{\wedge}$.
+    \begin{enumerate}
+        \item The natural morphism $M\otimes_{A}p_{*}N\to p_{*}(p^{*}M\otimes_{B}N)$ is an equivalence for all $M\in\Mod_{A},N\in\Mod_{B}$. 
+        \item For every $g:(A^{\tri},\Mod_{A})\to(C^{\tri},\Mod_{C})$ with pushout $(D^{\tri},\Mod_{D})$ in $\An\CAlg^{\wedge}$ the base change morphism $g^{*}p_{*}\to\widetilde{p}_{*}\widetilde{g}^{*}$ of functors $\Mod_{B}\to\Mod_{C}$ associated to
+        $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE1vZF97QX0iXSxbMiwwLCJcXE1vZF97Qn0iXSxbMCwxLCJcXE1vZF97Q30iXSxbMiwxLCJcXE1vZF97RH0iXSxbMCwyLCJnXnsqfSIsMl0sWzEsMywiXFx3aWRldGlsZGV7Z31eeyp9Il0sWzAsMSwicF57Kn1cXGRhc2h2IHBfeyp9IiwwLHsib2Zmc2V0IjotMX1dLFsxLDAsIiIsMSx7Im9mZnNldCI6LTF9XSxbMiwzLCIiLDIseyJvZmZzZXQiOi0xfV0sWzMsMiwiXFx3aWRldGlsZGV7cH1eeyp9XFxkYXNodlxcd2lkZXRpbGRle3B9X3sqfSIsMCx7Im9mZnNldCI6LTF9XV0=
+        \begin{tikzcd}
+            {\Mod_{A}} && {\Mod_{B}} \\
+            {\Mod_{C}} && {\Mod_{D}}
+            \arrow["{p^{*}\dashv p_{*}}", shift left, from=1-1, to=1-3]
+            \arrow["{g^{*}}"', from=1-1, to=2-1]
+            \arrow[shift left, from=1-3, to=1-1]
+            \arrow["{\widetilde{g}^{*}}", from=1-3, to=2-3]
+            \arrow[shift left, from=2-1, to=2-3]
+            \arrow["{\widetilde{p}^{*}\dashv\widetilde{p}_{*}}", shift left, from=2-3, to=2-1]
+        \end{tikzcd}$$
+        is an equivalence. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Since $p:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ is analytically proper, we have $\Mod_{B^{\tri}}(\Mod_{A})\simeq\Mod_{B}$ hence the projection formula is satisfied by \cite[Cor. 4.8.5.21]{HA}. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Note that all functors $g^{*},p_{*},\widetilde{p}_{*},\widetilde{g}^{*}$ commute with colimits and $\Mod_{B}$ generated under small colimits by objects of the form $p^{*}M$ for $M\in\Mod_{A}$. Thus to show $g^{*}p_{*}\to\widetilde{p}_{*}\widetilde{g}^{*}$ is an equivalence it suffices to show the morphism $g^{*}p_{*}p^{*}\to\widetilde{p}_{*}\widetilde{g}^{*}p^{*}\simeq\widetilde{p}_{*}\widetilde{p}^{*}g^{*}$ is one. Under the equivalences $p_{*}p^{*}\simeq B^{\tri}|_{A^{\tri}}\otimes_{A}-$ and $\widetilde{p}_{*}\widetilde{p}^{*}\simeq D^{\tri}|_{C^{\tri}}\otimes_{C}-$ obtained from (1), it is carried to the canonical equivalence $g^{*}(B^{\tri}|_{A^{\tri}}\otimes_{A}-)\simeq D^{\tri}|_{C^{\tri}}\otimes_{C}g^{*}(-)$ supplied by symmetric monoidality of $g^{*}$ and \Cref{lem: unit of pushout along proper}, giving the claim.
+\end{proof}
+An analytically proper morphism need not be steady: scalar extension is tensoring with the algebra $B^{\tri}$, which need not commute with base change. When $B$ is nuclear as an $A$-module, the projection formula of \Cref{prop: preservation of nuclearity} (2), applied to each base change $g$ with $B^{\tri}|_{A^{\tri}}$ nuclear, supplies steadiness.
+\begin{proposition}\label{prop: nuclear implies steady}
+    Let $p:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be an analytically proper morphism such that $B^{\tri}|_{A^{\tri}}$ is nuclear in $\Mod_{A}$. Then $p$ is a steady morphism. 
+\end{proposition}
+\begin{proof}
+    Let $g:(A^{\tri},\Mod_{A})\to(C^{\tri},\Mod_{C})$ be a general morphism in $\An\CAlg^{\wedge}$ and consider the pushout as in the statement of \Cref{prop: analytically proper base change properties} (2). Since $p_{*}$ is conservative, it suffices to show the equivalence $p^{*}g_{*}\to\widetilde{g}_{*}\widetilde{p}^{*}$ after applying $p_{*}$. By \Cref{lem: unit of pushout along proper}, we have $g^{*}(B^{\tri}|_{A^{\tri}})\simeq D^{\tri}|_{C^{\tri}}\in\Mod_{C}$ and $g_{*}$ preserves small colimits so \Cref{prop: preservation of nuclearity} (2) applied to the adjoint pair $g^{*}\dashv g_{*}$ implies that the natural map
+    $$B^{\tri}|_{A^{\tri}}\otimes_{A}g_{*}M\longrightarrow g_{*}(D^{\tri}|_{C^{\tri}}\otimes_{C}M)\simeq g_{*}(g^{*}(B^{\tri}|_{A^{\tri}})\otimes_{C}M)$$
+    is an equivalence. Under the equivalence $p_{*}p^{*}\simeq(B^{\tri}|_{A^{\tri}})\otimes_{A}-$ of \Cref{prop: analytically proper base change properties} (1), the base change morphism $p^{*}g_{*}\to\widetilde{g}_{*}\widetilde{p}^{*}$ is taken to the projection formula above under $p_{*}$, both being the adjoint morphism of $\widetilde{g}^{*}p^{*}\simeq \widetilde{p}^{*}g^{*}$ under $g^{*}\dashv g_{*}$. In the case of the target, we compute 
+    \begin{align*}
+        g_{*}(D^{\tri}|_{C^{\tri}}\otimes_{C}M) &\simeq g_{*}\widetilde{p}_{*}\widetilde{p}^{*}M && \widetilde{p}\text{ analytically proper; \Cref{prop: permanence of analytically proper} (2)} \\
+        &\simeq p_{*}\widetilde{g}_{*}\widetilde{p}^{*}M && g_{*}\widetilde{p}_{*}\simeq p_{*}\widetilde{g}_{*} \text{ by commutativity}
+    \end{align*}
+    so $p_{*}p^{*}g_{*}\xrightarrow{\sim}p_{*}\widetilde{g}_{*}\widetilde{p}^{*}$ is an equivalence, showing $p^{*}g_{*}\xrightarrow{\sim}\widetilde{g}_{*}\widetilde{p}^{*}$ is an equivalence by conservativity, so $p$ is steady. 
+\end{proof}
+Together with \Cref{prop: permanence properties of steady morphisms}, this furnishes a supply of steady morphisms among the analytically proper ones, to which the descent theory for analytic $\EE_{\infty}$-rings will apply. 
+\subsection{Six operations on analytic \texorpdfstring{$\EE_{\infty}$}{E-infinity}-rings}\label{subsec: six operations on analytic rings}
+The open immersions and analytically proper morphisms carry the exceptional functors of a six-functor formalism on analytic $\EE_{\infty}$-rings. We recall the framework of geometric setups \cite[\S 2]{HeyerMann6FF} and exhibit the two classes as a suitable decomposition, from which the formalism follows.
+\begin{definition}\label{def: geometric setup and suitable decomposition}
+    Let $\Cscr$ be a category. 
+    \begin{enumerate}
+        \item A \emph{geometric setup} $(\Cscr,E)$ is a pair consisting of the category $\Cscr$ and a homotopy class $E$ of \emph{exceptional} morphisms satisfying the following properties:
+        \begin{enumerate}[label=(\roman*)]
+            \item $E$ contains all equivalences. 
+            \item $E$ is closed under composition and pullbacks along morphisms in $\Cscr$. 
+            \item $E$ is right cancellative in $\Cscr$: if $f:X\to Y, g:Y\to Z$ are morphisms in $\Cscr$ such that $g\circ f, g\in E$ then $f\in E$. 
+        \end{enumerate} 
+        \item A \emph{morphism of geometric setups} $(\Cscr_{1},E_{1})\to(\Cscr_{2},E_{2})$ is a functor $F:\Cscr_{1}\to\Cscr_{2}$ such that $F(E_{1})\subseteq E_{2}$ and for all diagrams $X\to Z\leftarrow Y$ in $\Cscr_{1}$ with $X\to Z$ in $E_{1}$, there is an equivalence $F(X\times_{Z}Y)\simeq F(X)\times_{F(Z)}F(Y)$ in $\Cscr_{2}$. 
+        \item A \emph{suitable decomposition} of a geometric setup $(\Cscr,E)$ is a pair of classes $I,P\subseteq E$ of morphisms such that:
+        \begin{enumerate}[label=(\roman*)]
+            \item The morphisms in $I$ and $P$ contain all equivalences in $\Cscr$ and are closed under composition and pullbacks along morphisms in $\Cscr$. 
+            \item Each morphism $f\in E$ admits a factorization as $f\simeq p\circ j$ for $p\in P, j\in I$. 
+            \item $I$ and $P$ are right cancellative in $\Cscr$. 
+            \item Each morphism in $I\cap P$ is $n$-truncated for some $n\geq-2$ (possibly depending on the morphism): some finite iterate of the diagonal morphism is an equivalence. 
+        \end{enumerate}
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: shriek functors and correspondences}
+    The notion of a geometric setup $(\Cscr,E)$ is meant to capture the idea of a category of geometric objects $\Cscr$ and a distinguished collection of morphisms $E$ for which exceptional (or $!$-able) functors exist and satisfy additional properties such as projection and base change formulae.
+\end{remark}
+We construct a suitable decomposition where we take $I$ to be the open immersions and $P$ to be the analytically proper morphisms, allowing us to define exceptional functors for those morphisms in $\An\CAlg^{\wedge}$ that factor as an analytically proper morhism followed by an open immersion. 
+\begin{definition}\label{def: exceptional morphisms of analytic rings}
+    A morphism $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ in $\An\CAlg^{\wedge}$ is \emph{exceptional} if the natural map from the induced analytic $\EE_{\infty}$-ring $(B^{\tri},\Mod_{B^{\tri}/A})\to (B^{\tri},\Mod_{B})$ is an open immersion.
+\end{definition} 
+\begin{lemma}\label{lem: geometric setup on analytic E-infinity rings}
+    Let $\An\Aff:=(\An\CAlg^{\wedge})^{\Opp}$ be the opposite category of complete analytic $\EE_{\infty}$-rings. The collection of exceptional morphisms in the sense of \Cref{def: exceptional morphisms of analytic rings} defines a geometric setup $(\An\Aff,E_{!})$ on $\An\Aff$ and the collections of open immersions $I$ and analytically proper morphisms $P$ define a suitable decomposition of the geometric setup. 
+\end{lemma}
+\begin{proof}
+    The collection of exceptional morphisms contains equivalences (as these are both open immersions and analytically proper) and is preserved under base change since the open immersions and analytically proper morphisms are by \Cref{prop: permanence of open immersions,prop: permanence of analytically proper}. To show that $(\An\Aff,E_{!})$ is a geometric setup, it remains to show closure under composition and right cancellation. For $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ exceptional and $(B^{\tri},\Mod_{B})\to(C^{\tri},\Mod_{C})$ arbitrary, we have a coCartesian square in $\An\CAlg^{\wedge}$
+    $$% https://q.uiver.app/#q=WzAsNCxbMSwwLCIoQl57XFx0cml9LFxcTW9kX3tCfSkiXSxbMCwwLCIoQl57XFx0cml9LFxcTW9kX3tCXntcXHRyaX0vQX0pIl0sWzAsMSwiKENee1xcdHJpfSxcXE1vZF97Q157XFx0cml9L0F9KSJdLFsxLDEsIihDXntcXHRyaX0sXFxNb2Rfe0Nee1xcdHJpfS9CfSkiXSxbMSwyLCJQIiwyXSxbMSwwLCJJIl0sWzAsMywiUCJdLFsyLDMsIkkiLDJdXQ==
+    \begin{tikzcd}
+        {(B^{\tri},\Mod_{B^{\tri}/A})} & {(B^{\tri},\Mod_{B})} \\
+        {(C^{\tri},\Mod_{C^{\tri}/A})} & {(C^{\tri},\Mod_{C^{\tri}/B})}
+        \arrow["I", from=1-1, to=1-2]
+        \arrow["P"', from=1-1, to=2-1]
+        \arrow["P", from=1-2, to=2-2]
+        \arrow["I"', from=2-1, to=2-2]
+    \end{tikzcd}$$
+    where the vertical morphisms are analytically proper and horizontal morphisms are open immersions by the respective permanence properties of these morphisms. Now suppose $(B^{\tri},\Mod_{B})\to(C^{\tri},\Mod_{C})$ is also exceptional. We conclude $(C^{\tri},\Mod_{C^{\tri}/A})\to(C^{\tri},\Mod_{C})$ is an open immersion as it factors as the composite of open immersions $(C^{\tri},\Mod_{C^{\tri}/A})\to(C^{\tri},\Mod_{C^{\tri}/B})\to(C^{\tri},\Mod_{C})$ showing exceptional morphisms are preserved by composition. For the left cancellative property in $\An\CAlg^{\wedge}$, let $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B}),(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})\to(C^{\tri},\Mod_{C})$ be exceptional. $(B^{\tri},\Mod_{B})\to(C^{\tri},\Mod_{C^{\tri}/B})$ is analytically proper being the base change of an analytically proper morphism and the factorization of the open immersion $(C^{\tri},\Mod_{C^{\tri}/A})\to(C^{\tri},\Mod_{C})$ above implies $(C^{\tri},\Mod_{C^{\tri}/B})\to(C^{\tri},\Mod_{C})$ is an open immersion by cancellation. This shows that the exceptional morphisms are left cancellative in $\An\CAlg^{\wedge}$ (thus right cancellative in $\An\Aff$). 
+
+    For the latter claim, the permanence properties \Cref{prop: permanence of open immersions,prop: permanence of analytically proper} and the definition of exceptional morphisms \Cref{def: exceptional morphisms of analytic rings} readily imply \Cref{def: geometric setup and suitable decomposition} (3) (i)-(iii), and (iv) holds as open immersions are monomorphisms of analytic $\EE_{\infty}$-rings. 
+\end{proof}
+A geometric setup determines an operad of correspondences on which a six-functor formalism is a lax symmetric monoidal functor. We recall the two constructions in the generality we need, referring to \cite[\S 2]{HeyerMann6FF} for the correspondence operad and to \cite{ConstructionCLL} for its universal property.
+\begin{lemma}[{\cite[Prop. 2.3.3]{HeyerMann6FF}} \& {\cite[\S 4 \& 5]{ConstructionCLL}}]\label{lem: existence of correspondence operad}
+    Let $(\Cscr,E)$ be a geometric setup. 
+    \begin{enumerate}
+        \item There exists an operad $\Corr(\Cscr,E)$ with objects those of $\Cscr$. 
+        \item Let $(I,P)$ be a suitable decomposition of $(\Cscr,E)$. There exists an 2-operad $\Corr_{I,P}(\Cscr,E)$ with underlying operad $\Corr(\Cscr,E)$. 
+    \end{enumerate}
+\end{lemma}
+A six-functor formalism assigns to each object a symmetric monoidal category and to each correspondence a pair of adjoint functors, encoded as a lax symmetric monoidal functor out of the correspondence operad. We give the definition in both the general and the presentable forms, the latter being the one realized on analytic $\EE_{\infty}$-rings.
+\begin{definition}\label{def: six-functor formalism}
+    Let $(\Cscr,E)$ be a geometric setup. 
+    \begin{enumerate}
+        \item A \emph{six-functor formalism} is a lax symmetric monoidal functor $\Dscr:\Corr(\Cscr,E)\to\widehat{\Cat}$, where we regard the very large category of large categories $\widehat{\Cat}$ as equipped with the Cartesian symmetric monoidal structure, satisfying the following additional conditions: 
+        \begin{enumerate}[label=(\roman*)]
+            \item For each $X\in \Cscr$, $\Dscr(X)$ is a closed symmetric monoidal category. 
+            \item For each $f:X\to Y$ in $\Cscr$, there is an adjoint pair $f^{*}:\Dscr(Y)\rightleftarrows\Dscr(X):f_{*}$. 
+            \item For each $f:X\to Y$ in $E$, there is an adjoint pair $f_{!}:\Dscr(X)\rightleftarrows\Dscr(Y):f^{!}$. 
+        \end{enumerate}
+        \item A \emph{presentable six-functor formalism} is a lax symmetric monoidal functor $\Dscr:\Corr(\Cscr,E)\to\PrL$ where we regard $\PrL$ as equipped with the Lurie tensor product of presentable categories.
+    \end{enumerate} 
+\end{definition}
+\begin{remark}\label{rmk: presentable is automatically 6ff}
+    Any lax symmetric monoidal functor $\Corr(\Cscr,E)\to\PrL$ pointwise admits right adjoints and automatically satisfies (i)-(iii) of \Cref{def: six-functor formalism} (1) \cite[Lem. 3.2.5]{HeyerMann6FF}. 
+\end{remark}
+The two base-change results of the preceding subsections allow us to construct a six-functor formalism on complete analytic $\EE_{\infty}$-rings, unique once refined over the decorated correspondence $2$-category of \Cref{lem: existence of correspondence operad} (2). 
+\begin{proposition}\label{prop: six-functor formalism on analytic E-infinity rings}
+    Let $(\An\Aff,E_{!}, I, P)$ be the geometric setup and suitable decomposition of \Cref{lem: geometric setup on analytic E-infinity rings} and $\mathdutchcal{Pr}^{\Lsf}$ the category $\PrL$ regarded as a 2-category with non-invertible natural transformations. There is a unique lax symmetric monoidal $2$-functor
+    $$\Corr_{I,P}(\An\Aff,E_{!})\to\mathdutchcal{Pr}^{\Lsf}$$
+    given on objects by $(A^{\tri},\Mod_{A})\mapsto\Mod_{A}$. Its underlying lax symmetric monoidal functor $\Corr(\An\Aff,E_{!})\to\PrL$ is a presentable six-functor formalism.
+\end{proposition}
+\begin{proof}
+    By \Cref{prop: base change for open immersions,prop: analytically proper base change properties}, conditions (a) and (b) of \cite[Prop. 3.3.3]{HeyerMann6FF} are satisfied, and (c) holds by \cite[Cor. 3.3.5]{HeyerMann6FF}, so the hypotheses of \cite[Thm. 5.17]{ConstructionCLL} are met. This gives the unique lax symmetric monoidal 2-functor $\Corr_{I,P}(\An\Aff,E_{!})\to\mathdutchcal{Pr}^{\Lsf}$. Its underlying functor is $\Corr(\An\Aff,E_{!})\to\PrL$, given on objects by $(A^{\tri},\Mod_{A})\mapsto\Mod_{A}$.
+\end{proof}
+This is the six-functor formalism on complete analytic $\EE_{\infty}$-rings. 
+\begin{definition}\label{def: six-functor formalism on analytic E-infinity rings}
+    The \emph{six-functor formalism on complete analytic $\EE_{\infty}$-rings} is the six-functor formalism of \Cref{prop: six-functor formalism on analytic E-infinity rings}. 
+\end{definition}
+We conclude by showing a property of this six-functor formalism. 
+\begin{proposition}\label{prop: categorical kunneth for analytic rings}
+    The functor $\An\CAlg^{\wedge}\to\CAlg(\PrL_{\Cond\Sp})$ given on objects by $(A^{\tri},\Mod_{A})\mapsto\Mod_{A}$ commutes with small colimits. 
+\end{proposition}
+\begin{proof}
+    This follows from the proof of \cite[Prop. 4.1.14]{CamargoSolid}, which does not make use of the animated structure. 
+\end{proof}
+This in particular implies that the six-functor formalism on complete analytic $\EE_{\infty}$-rings satisfies the categorical K\"{u}nneth formula. We recall the definition for presentable six-functor formalisms, then deduce the result for complete analytic $\EE_{\infty}$-rings.
+\begin{definition}\label{def: categorical Kunneth formula}
+    Let $(\Cscr,E)$ be a geometric setup and $\Dscr:\Corr(\Cscr,E)\to\PrL$ a six-functor formalism. The six-functor formalism \emph{satisfies the categorical K\"{u}nneth formula} if the underlying functor $\Dscr:\Cscr^{\Opp}\to\CAlg(\PrL)$ commutes with pushouts. 
+\end{definition}
+\begin{corollary}\label{cor: six-functor formalism on analytic E-infinity rings is kunneth}
+    The six-functor formalism on complete analytic $\EE_{\infty}$-rings satisfies the categorical K\"{u}nneth formula. 
+\end{corollary}
+\begin{proof}
+    Under the equivalences $\PrL_{\Cond\Sp}\simeq\Mod_{\Cond\Sp}(\PrL)$ and $\CAlg(\PrL_{\Cond\Sp})\simeq\CAlg(\PrL)_{\Cond\Sp/}$, the forgetful functor $\CAlg(\PrL)_{\Cond\Sp/}\to\CAlg(\PrL)$ is a left fibration \cite[\href{https://kerodon.net/tag/018F}{Tag 018F}]{kerodon}, and hence preserves and reflects connected colimits \cite[\href{https://kerodon.net/tag/02KT}{Tag 02KT}]{kerodon}. 
+\end{proof}
+\subsection{Descent}\label{subsec: descent}
+We develop a framework for descent of analytic $\EE_{\infty}$-rings, following L. Mann \cite[\S 2.5-2.8]{MannRigid6FF} and Mikami \cite[\S 2]{MikamiFFDescent}, beginning with a mild refinement of the latter's descent criterion.
+\begin{proposition}[{\cite[Lem. 2.17]{MikamiFFDescent}}]\label{prop: Mikami descent}
+    Let $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ be a steady morphism in $\An\CAlg^{\wedge}$ such that: 
+    \begin{enumerate}[label=(\roman*)]
+        \item The scalar extension functor $F:\Mod_{A}\to\Mod_{B}$ is conservative. 
+        \item $F$ preserves totalizations of $F$-split cosimplicial objects in $\Mod_{A}$. 
+    \end{enumerate}
+    Then the functor 
+    \begin{equation}\label{eqn: Cech nerve}
+        \Mod_{A}\longrightarrow\lim_{[n]\in\Delta}\Mod_{B^{\otimes_{A}(n+1)}}
+    \end{equation}
+    is an equivalence, where $\Mod_{B^{\otimes_{A}(\bullet+1)}}$ is the module category of the \v{C}ech nerve of $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ in $\An\CAlg^{\wedge}$. 
+\end{proposition}
+\begin{proof}
+    See \cite[Rmk. 2.18]{MikamiFFDescent}. We show the hypotheses of the dual of \cite[Cor. 4.7.5.3]{HA} are satisfied: $F$ is conservative and $F$ preserves totalizations of $F$-split cosimplicial objects, and for each $\alpha:[m]\to [n]$ in $\Delta$ the diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE1vZF97Ql57XFxvdGltZXNfe0F9bX19Il0sWzIsMCwiXFxNb2Rfe0Jee1xcb3RpbWVzX3tBfW0rMX19Il0sWzAsMSwiXFxNb2Rfe0Jee1xcb3RpbWVzX3tBfW59fSJdLFsyLDEsIlxcTW9kX3tCXntcXG90aW1lc197QX1uKzF9fSJdLFswLDJdLFswLDEsImReezB9Il0sWzEsM10sWzIsMywiZF57MH0iLDJdXQ==
+    \begin{tikzcd}
+        {\Mod_{B^{\otimes_{A}(m+1)}}} && {\Mod_{B^{\otimes_{A}(m+2)}}} \\
+        {\Mod_{B^{\otimes_{A}(n+1)}}} && {\Mod_{B^{\otimes_{A}(n+2)}}}
+        \arrow["{d^{0}}", from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow["{d^{0}}"', from=2-1, to=2-3]
+    \end{tikzcd}$$
+    is right adjointable. Indeed, any such diagram is coCartesian, and all morphisms are steady. The claim follows as right adjointability of such squares is precisely the definition of steadiness. 
+\end{proof}
+The criterion of \Cref{prop: Mikami descent} is sufficient but not manifestly stable under composition and base change, since the scalar extension $B\otimes_{A}-$ is tensoring with the algebra $B^{\tri}$ only when the morphism is analytically proper. 
+
+L. Mann's remedy transfers the question to the descendability of steady endofunctors of $\Mod_{A}$. We give a treatment adequate for our purposes, simplified by the light condensed setting. As the arguments of \cite[\S 2.5]{MannRigid6FF} make no use of the animated structure, they apply verbatim here.
+
+For a morphism $f:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ in $\An\CAlg^{\wedge}$, the scalar extension $f^{*}$ exhibits $\Mod_{B}$ as $\Mod_{A}$-enriched. As $\Mod_{B}$ is closed symmetric monoidal, hence enriched over itself, this $\Mod_{A}$-enrichment is $f_{*}\intHom_{B}(-,-)$.
+\begin{definition}\label{def: enriched endofunctors}
+    Let $f:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be a morphism in $\An\CAlg^{\wedge}$. 
+    \begin{enumerate}
+        \item The category $\Fun_{f}(B,A)$ of \emph{$\Mod_{A}$-enriched exact functors $\Mod_{B}\to\Mod_{A}$} is the full subcategory of $\Mod_{A}$-enriched functors $\Mod_{B}\to\Mod_{A}$ whose underlying functor is an exact functor of stable categories. 
+        \item Let $\End_{A}:=\Fun_{\id_{\Mod_{A}}}(A,A)$ be the category of \emph{$\Mod_{A}$-enriched exact endofunctors}. 
+    \end{enumerate}
+\end{definition}
+\begin{remark}[{\cite[Rmk. 2.5.3, Ex. 2.5.4, \& Lem. A.4.5]{MannRigid6FF}}]\label{rmk: enriched endofunctors}
+    The category $\Fun_{f}(B, A)$ of $\Mod_{A}$-enriched exact functors $\Mod_{B}\to\Mod_{A}$ is a stable category admitting small limits and small colimits and contains the objects 
+    $$f_{*}\intHom_{B}(M, -)\otimes_{A}N$$ 
+    for $M\in\Mod_{B},N\in\Mod_{A}$. 
+\end{remark}
+The formation of these enriched functor categories is functorial in the morphism $f$. 
+\begin{proposition}[{\cite[Lem. 2.5.6]{MannRigid6FF}}]\label{prop: endofunctor functoriality}
+    Let 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCIoQV57XFxyaGR9LFxcTW9kX3tBfSkiXSxbMiwwLCIoQl57XFxyaGR9LFxcTW9kX3tCfSkiXSxbMCwxLCIoQ157XFxyaGR9LFxcTW9kX3tDfSkiXSxbMiwxLCIoRF57XFxyaGR9LFxcTW9kX3tEfSkiXSxbMCwxLCJmIl0sWzEsMywiXFx3aWRldGlsZGV7Z30iXSxbMCwyLCJnIiwyXSxbMiwzLCJcXHdpZGV0aWxkZXtmfSIsMl1d
+    \begin{tikzcd}
+        {(A^{\tri},\Mod_{A})} && {(B^{\tri},\Mod_{B})} \\
+        {(C^{\tri},\Mod_{C})} && {(D^{\tri},\Mod_{D})}
+        \arrow["f", from=1-1, to=1-3]
+        \arrow["g"', from=1-1, to=2-1]
+        \arrow["{\widetilde{g}}", from=1-3, to=2-3]
+        \arrow["{\widetilde{f}}"', from=2-1, to=2-3]
+    \end{tikzcd}$$
+    be a commutative diagram in $\An\CAlg^{\wedge}$. There is a natural adjunction 
+    $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCIoXFx3aWRldGlsZGV7Zn0sZilee1xcbmF0dXJhbH06XFxGdW5fe2d9KEMsIEEpIl0sWzIsMCwiXFxGdW5fe1xcd2lkZXRpbGRle2d9fShELCBCKTooXFx3aWRldGlsZGV7Zn0sZilfe1xcbmF0dXJhbH0iXSxbMSwwLCJcXG1wZXJwIl0sWzAsMSwiIiwyLHsib2Zmc2V0IjotMn1dLFsxLDAsIiIsMix7Im9mZnNldCI6LTJ9XV0=
+    \begin{tikzcd}
+        {(\widetilde{f},f)^{\natural}:\Fun_{g}(C, A)} & \mperp & {\Fun_{\widetilde{g}}(D, B):(\widetilde{f},f)_{\natural}.}
+        \arrow[shift left=2, from=1-1, to=1-3]
+        \arrow[shift left=2, from=1-3, to=1-1]
+    \end{tikzcd}$$
+\end{proposition}
+\begin{remark}\label{rmk: single endofunctors}
+    For a morphism $f:(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ in $\An\CAlg^{\wedge}$, denote by $f^{\natural}:=(f,f)^{\natural}$ and $f_{\natural}:=(f,f)_{\natural}$ the adjoint pair between $\End_{A}$ and $\End_{B}$. 
+\end{remark}
+Steadiness isolates the endofunctors compatible with restriction of scalars: those $F$ for which $F\circ f_{*}$ factors again through $f_{*}$ for every $f:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$.
+\begin{definition}[{\cite[Def. 2.5.8]{MannRigid6FF}}]\label{def: steady endofunctors}
+    Let $(A^{\tri},\Mod_{A})$ be a complete analytic $\EE_{\infty}$-ring. An enriched endofunctor $F\in\End_{A}$ is a \emph{steady endofunctor} if for all $f:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$, the object $(f,\id_{\Mod_{A}})^{\natural}F\in\Fun_{f}(B, A)$ lies in the essential image of $(\id_{\Mod_{B}},f)_{\natural}:\End_{B}\to\Fun_{f}(B, A)$. 
+\end{definition}
+\begin{proposition}[{\cite[Prop. 2.5.9 \& Lem. 2.5.10]{MannRigid6FF}}]\label{prop: properties of steady endofunctors}
+    Let $f:(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ be a steady morphism in $\An\CAlg^{\wedge}$. 
+    \begin{enumerate}
+        \item $\Std_{A}$ is a subcategory of $\End_{A}$ closed under small colimits and composition, and contains functors of the form $\intHom_{A}(M,-)$ for $M\in\Mod_{A}$. 
+        \item There is an adjunction 
+        $$% https://q.uiver.app/#q=WzAsMyxbMCwwLCJmXntcXG5hdHVyYWx9OlxcU3RkX3tBfSJdLFsyLDAsIlxcU3RkX3tCfTpmX3tcXG5hdHVyYWx9Il0sWzEsMCwiXFxtcGVycCJdLFswLDEsIiIsMix7Im9mZnNldCI6LTJ9XSxbMSwwLCIiLDIseyJvZmZzZXQiOi0yfV1d
+        \begin{tikzcd}
+            {f^{\natural}:\Std_{A}} & \mperp & {\Std_{B}:f_{\natural}}
+            \arrow[shift left=2, from=1-1, to=1-3]
+            \arrow[shift left=2, from=1-3, to=1-1]
+        \end{tikzcd}$$
+        where $f_{\natural}$ is conservative and preserves small colimits restricting the one of \Cref{prop: endofunctor functoriality} and \Cref{rmk: single endofunctors}. 
+        \item For a coCartesian diagram in $\An\CAlg^{\wedge}$
+        $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCIoQV57XFxyaGR9LFxcTW9kX3tBfSkiXSxbMiwwLCIoQl57XFxyaGR9LFxcTW9kX3tCfSkiXSxbMCwxLCIoQ157XFxyaGR9LFxcTW9kX3tDfSkiXSxbMiwxLCIoRF57XFxyaGR9LFxcTW9kX3tEfSkiXSxbMCwxLCJmIl0sWzEsMywiXFx3aWRldGlsZGV7Z30iXSxbMCwyLCJnIiwyXSxbMiwzLCJcXHdpZGV0aWxkZXtmfSIsMl1d
+        \begin{tikzcd}
+            {(A^{\tri},\Mod_{A})} && {(B^{\tri},\Mod_{B})} \\
+            {(C^{\tri},\Mod_{C})} && {(D^{\tri},\Mod_{D})}
+            \arrow["f", from=1-1, to=1-3]
+            \arrow["g"', from=1-1, to=2-1]
+            \arrow["{\widetilde{g}}", from=1-3, to=2-3]
+            \arrow["{\widetilde{f}}"', from=2-1, to=2-3]
+        \end{tikzcd}$$
+        the natural morphism $g^{\natural}f_{\natural}\to\widetilde{f}_{\natural}\widetilde{g}^{\natural}$ is an equivalence of functors from $\Std_{B}$ to $\Std_{C}$. 
+    \end{enumerate}
+\end{proposition}
+\begin{remark}\label{rmk: equivalently in enriched endofunctors}
+    By \Cref{prop: properties of steady endofunctors} (1), the inclusion $\Std_{A}\hookrightarrow\End_{A}$ is exact and closed under composition and retracts. Thus the subcategory $\langle(B\otimes_{A}-)|_{A^{\tri}}\rangle$ containing $(B\otimes_{A}-)|_{A^{\tri}}$ closed under finite limits, finite colimits, retracts, and composition is formed identically in $\Std_{A}$ and in $\End_{A}$.
+\end{remark}
+We can now define descendability.
+\begin{definition}\label{def: descendable morphisms}
+    Let $f:(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ be a steady morphism in $\An\CAlg^{\wedge}$. Let $K_{f}:=\fib(\id_{\Mod_{A}}\to (B\otimes_{A}-)|_{A^{\tri}})$ in $\End_{A}$ and denote by $K_{f}^{n}$ the $n$-fold composition of $K_{f}$ with itself in $\End_{A}$. 
+    \begin{enumerate}
+        \item $f$ is \emph{descendable} if there exists some $n\geq0$ such that the natural map $K_{f}^{n}\to \id_{\Mod_{A}}$ is zero in $\End_{A}$. 
+        \item $f$ is \emph{descendable of index $n$} if $n$ is the smallest natural number such that the map $K_{f}^{n}\to \id_{\Mod_{A}}$ in (1) is zero in $\End_{A}$.
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: formation of K in Std and End}
+    By \Cref{rmk: equivalently in enriched endofunctors}, the fiber $K_{f}$, its composites $K_{f}^{n}$, and membership in $\langle(B\otimes_{A}-)|_{A^{\tri}}\rangle$ can be tested equivalently in $\Std_{A}$ and $\End_{A}$. We work with $\End_{A}$ to adhere to the conventions of Mikami's work \cite[\S 4]{MikamiFPPF}. 
+\end{remark}
+This connects to Mann's notion of descendability \cite[Def. 2.6.1]{MannRigid6FF}, itself closer to Mathew's original definition \cite[\S 3]{MatthewGalois}.
+\begin{lemma}[{\cite[Prop. 2.6.5]{MannRigid6FF}}]\label{lem: descendable equivalent}
+    Let $f:(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ be a steady morphism in $\An\CAlg^{\wedge}$. The following are equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item $f$ is descendable in the sense of \Cref{def: descendable morphisms} (1). 
+        \item $\id_{\Mod_{A}}$ is contained in the smallest full subcategory $\langle (B\otimes_{A}-)|_{A^{\tri}}\rangle$ of $\End_{A}$ containing $(B\otimes_{A}-)|_{A^{\tri}}$ closed under finite limits, finite colimits, retracts, and composition. 
+    \end{enumerate}
+\end{lemma}
+Descendability is likewise stable under composition, base change, and cancellation.
+\begin{proposition}[{\cite[Lem. 2.6.9 \& 2.6.10]{MannRigid6FF}}]\label{prop: permanence of descendable morphisms}
+    The collection of descendable morphisms satisfies the following permanence properties: 
+    \begin{enumerate}
+        \item (Composition) If $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is descendable of index $n$ and $(B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$ is descendable of index $m$ then the composite $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$ is descendable of index at most $mn$. 
+        \item (Base Change) If $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is descendable of index $n$ and $(A^{\tri},\Mod_{A})\to (C^{\tri},\Mod_{C})$ another morphism in $\An\CAlg^{\wedge}$ the induced morphism from $(C^{\tri},\Mod_{C})$ to the pushout is descendable of index at most $n$. 
+        \item (Left Cancellation) If a composite $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})\to (C^{\tri},\Mod_{C})$ is descendable of index $n$ and $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is steady then $(A^{\tri},\Mod_{A})\to (B^{\tri},\Mod_{B})$ is descendable of index at most $n$. 
+    \end{enumerate}
+\end{proposition}
+We conclude the general discussion by showing that analytic module categories descend along descendable morphisms.
+\begin{theorem}\label{thm: descent for descendable morphisms}
+    If $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ is a descendable morphism in $\An\CAlg^{\wedge}$ then analytic modules admit descent: the functor (\ref{eqn: Cech nerve}) is an equivalence. 
+\end{theorem}
+\begin{proof}
+    We verify the conditions of \Cref{prop: Mikami descent}. Let $F:\Mod_{A}\to\Mod_{B}$ be the scalar extension functor and $G:\Mod_{B}\to\Mod_{A}$ the scalar restriction functor, which is conservative, so $F$ is conservative if and only if $G\circ F$ is. Indeed, by stability, it suffices to show that the endofunctor $G\circ F$ preserves nonzero objects. Let $M\in\Mod_{A}$ be such that $(G\circ F)(M)\simeq0$. Then $H(M)\simeq0$ for all $H\in\langle G\circ F\rangle$. Picking $H$ to be $\id_{\Mod_{A}}$ gives $M\simeq0$. 
+
+    An $F$-split cosimplicial object $M^{\bullet}$ is also $G\circ F$-split, and $(G\circ F)(M^{\bullet})$ is pro-constant, thus $H(M^{\bullet})$ is pro-constant for any $H\in\langle G\circ F\rangle$. Taking $H$ to be $\id_{\Mod_{A}}$ we get that $F$ preserves the totalization of $M^{\bullet}$, as desired (cf. \cite[Ex. 3.11]{MatthewGalois}).
+\end{proof}
+Finally, we relate the scalar extension $B\otimes_{A}-$ to its induced morphism $\pi_{0}(B)\otimes_{\pi_{0}(A)}-$ on static analytic rings, reducing conservativity to the latter.
+\begin{lemma}\label{lem: conservativity of bounded below}
+    Let $(A^{\tri},\Mod_{A})\in\An\CAlg^{\wedge}$. If $f:M\to N$ is a morphism of bounded below objects in $\Mod_{A}$ and $f\otimes_{A}\id_{\pi_{0}(A^{\tri})}:M\otimes_{A}\pi_{0}(A^{\tri})\to N\otimes_{A}\pi_{0}(A^{\tri})$ is an equivalence, then so is $f$. 
+\end{lemma}
+\begin{proof}
+    This is a special case of \Cref{prop: relationship with heart} (2). 
+\end{proof}

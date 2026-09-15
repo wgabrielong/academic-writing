@@ -1,0 +1,453 @@
+\section{Discrete solid \texorpdfstring{$\EE_{\infty}$}{E-infinity}-rings}\label{sec: solid commutative rings}
+The affine building blocks of spectral algebraic geometry are the connective $\EE_{\infty}$-rings of $\Sp$. Their condensed counterparts are the discrete solid $\EE_{\infty}$-rings, analytic $\EE_{\infty}$-rings with discrete underlying rings, whose modules carry the solid structure, one in which nullsequences are summable as for the solid spectra of \Cref{subsec: solid spectra}. This generalizes the theory of Clausen--Scholze for static rings and of Rodr\'{i}guez Camargo and Hansen--Mann in the animated setting. 
+
+We construct the discrete solid $\EE_{\infty}$-ring of a connective $\EE_{\infty}$-algebra from the free case by sifted colimits, and introduce discrete spectral Huber pairs which afford a more refined structure theory of morphisms. This theory yields the exceptional functors $f_{!}\dashv f^{!}$ for morphisms of finite expansion, which, together with descent for the faithfully flat and finitely presented topology after Mikami, provide the foundation on which the six-functor formalism for spectral algebraic stacks is built.
+\subsection{The solid sphere}\label{subsec: solid sphere}
+The solid spectra of \Cref{subsec: solid spectra} assemble into an analytic $\EE_{\infty}$-ring over the sphere, the base case for the solid structures of this section.
+\begin{proposition}\label{prop: solid spectra are complete analytic}
+    The pair $(\Sph,\Cond\Sp^{\sld})$ determines a complete analytic $\EE_{\infty}$-ring structure on $\Cond\Sp$. 
+\end{proposition}
+\begin{proof}
+    By the results on solid spectra proven earlier in \Cref{thm: properties of solid spectra}, $\Cond\Sp^{\sld}$ is closed under small limits, small colimits, and extensions in $\Cond\Sp$ and is $\Cond\Sp$-linear by \cite[Thm. 13.3]{ClausenLie}. Writing $L^{\sld}:\Cond\Sp\to\Cond\Sp^{\sld}$ for the left adjoint to the inclusion, we have for $M\in\Cond\Sp_{\geq0},N\in\Cond\Sp^{\sld}_{\leq-1}$ an equivalence 
+    $$\Hom_{\Cond\Sp^{\sld}}(L^{\sld}(M),N)\simeq\Hom_{\Cond\Sp}(M,N)\simeq0$$
+    showing $L^{\sld}(M)\in\Cond\Sp^{\sld}_{\geq0}$, $L^{\sld}$ is right $t$-exact, and that the conditions of \Cref{def: analytic E-infinity ring} (1) are satisfied. 
+
+    To show that this analytic $\EE_{\infty}$-ring structure is complete, we need to show $\Sph\in\Cond\Sp^{\sld}$. By \Cref{thm: properties of solid spectra} (2) it suffices to show each homotopy group is solid. But by Serre's theorem, the homotopy groups of $\Sph$ are either $\ZZ$ or a finite Abelian group, which are solid as Abelian groups, so $\Sph\in\Cond\Sp^{\sld}$ as desired. 
+\end{proof}
+This gives the following definition. 
+\begin{definition}\label{def: solid spectra ring}
+    The \emph{solid sphere} is the analytic $\EE_{\infty}$-ring $\Sph_{\sld}:=(\Sph,\Mod_{\Sph_{\sld}})=(\Sph,\Cond\Sp^{\sld})$ of \Cref{prop: solid spectra are complete analytic}. 
+\end{definition}
+The generators of $\Mod_{\Sph_{\sld}}$ are internally compact projective, unlike the merely $\omega_{1}$-compact generators of a general analytic $\EE_{\infty}$-ring (cf. \Cref{prop: A-analytic tensor product}). 
+\begin{proposition}\label{prop: generation of solid spectra}
+    Let $\Sph_{\sld}$ be the solid sphere. 
+    \begin{enumerate}
+        \item The object $\prod_{\NN}\Sph$ is internally compact projective in $\Mod_{\Sph_{\sld}}$: $$\intHom_{\Sph_{\sld}}\left(\prod_{\NN}\Sph,-\right):\Mod_{\Sph_{\sld}}\to\Mod_{\Sph_{\sld}}$$
+        is $t$-exact and preserves small colimits. 
+        \item The objects $\Sph_{\sld}[S]$ for varying $S\in\PFin_{\NN}$ generate $\Mod_{\Sph_{\sld}}$ under small colimits and shifts. In particular, $\Mod_{\Sph_{\sld}}$ is $\omega$-presentable. 
+        \item Any compact object of $\Mod_{\Sph_{\sld}}$ is also internally compact and the compact objects are preserved by the tensor product. 
+        \item The $t$-structure on $\Mod_{\Sph_{\sld}}$ is compatible with small products. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    This is shown in \cite[Thm. 13.3]{ClausenLie}. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    The objects $\Sph_{\sld}[S]$ generate $\Mod_{\Sph_{\sld}}$ under small colimits and shifts by \Cref{prop: stability of A-analytic modules} (2). Since they are internally compact projective, and the units of $\Cond\Sp,\Mod_{\Sph_{\sld}}$ are compact projective by \Cref{prop: A-analytic tensor product}, the objects $\Sph_{\sld}[S]$ are compact projective by \Cref{lem: permanence of internal compact projectivity} (2) showing that $\Mod_{\Sph_{\sld}}$ is $\omega$-presentable. 
+\end{proof}
+\begin{proof}[Proof of (3)]
+    From \cite[Lem. 13.7]{ClausenLie}, the internally compact projective generators of $\Mod_{\Sph_{\sld}}$ are preserved by the tensor product. Since $\Mod_{\Sph_{\sld}}$ is presentably symmetric monoidal, we can write each compact object as a retract of finite colimits of the compact generators, and these operations are preserved by the tensor product, showing that the compact objects are preserved by the tensor product. These objects are furthermore internally compact by \Cref{lem: compact implies internally compact}. 
+\end{proof}
+\begin{proof}[Proof of (4)]
+    This is a special case of \Cref{prop: compact projectively generated implies product compatibility}. 
+\end{proof}
+\begin{remark}\label{rmk: generation of solid spectra}
+    In fact, $\prod_{\NN}\Sph$ is a compact projective generator of $\Mod_{\Sph_{\sld}}$. The free solid spectra on an infinite light profinite set is equivalent to $\prod_{\NN}\Sph$ and the free solid spectrum on a finite set is a finite direct sum, hence a retract of $\prod_{\NN}\Sph$. 
+\end{remark}
+The product compatibility of (4) holds more generally for any complete analytic $\EE_{\infty}$-ring admitting a morphism from $\Sph_{\sld}$.
+\begin{proposition}\label{prop: product compatibility rings under solid sphere}
+    Let $(A^{\tri},\Mod_{A})$ be a complete analytic $\EE_{\infty}$-ring. If there exists a morphism $(\Sph,\Mod_{\Sph_{\sld}})\to (A^{\tri},\Mod_{A})$ in $\An\CAlg^{\wedge}$ then the $t$-structure on $\Mod_{A}$ is compatible with small products. 
+\end{proposition}
+\begin{proof}
+    The functor $(-)|_{\Sph}:\Mod_{A}\to\Mod_{\Sph_{\sld}}$ is $t$-exact, conservative, and preserves small limits. For a collection $\{M_{i}\}_{i\in I}$ of connective objects in $\Mod_{A}$ with product $M$, we have $M|_{\Sph}\simeq\prod_{i\in I}(M_{i}|_{\Sph})$. The latter is connective by compatibility of the $t$-structure on $\Mod_{\Sph_{\sld}}$ with small products by \Cref{prop: generation of solid spectra} (4) and thus so is the former. By the properties of the forgetful functor, it follows that $M$ is connective in $\Mod_{A}$. 
+\end{proof}
+\subsection{Solid structures on discrete \texorpdfstring{$\EE_{\infty}$}{E-infinity}-rings}\label{subsec: solid E-infinity rings}
+We construct a discrete solid $\EE_{\infty}$-ring from any connective $\EE_{\infty}$-algebra in $\Sp$, regarded as a discrete object of $\Cond\CAlg^{\cn}$. As complete analytic $\EE_{\infty}$-rings are closed under sifted colimits by \Cref{prop: sifted colimits in complete} and $\CAlg^{\cn}$ is generated under sifted colimits by retracts of the free algebras by \Cref{prop: approximation by finitely presented algebras} (1), it suffices to carry out the construction on the compact projective algebras and then pass to sifted colimits.
+\begin{lemma}\label{lem: solid rings compact projective}
+    Let $A\in\CAlg^{\cn}$ be a compact projective object and regard it as a discrete object of $\Cond\CAlg^{\cn}$. Denote its module category by $\Mod_{A}$. 
+    \begin{enumerate}
+        \item Let $S\in\PFin_{\NN}$ and $S=\lim_{n}S_{n}$ a presentation of $S$ as a sequential limit of finite sets. Define $A_{\sld}[S]:=\lim_{n}A[S_{n}]$. Then $A_{\sld}[S]\simeq\prod_{I}A$ for $|I|\leq|\NN|$. 
+        \item The full subcategory $\Mod_{A_{\sld}}\subseteq\Mod_{A}$ spanned by those modules all of whose homotopy groups are $\pi_{0}(A)_{\sld}$-analytic defines a complete analytic $\EE_{\infty}$-ring structure $A_{\sld}$ which is the unique analytic $\EE_{\infty}$-ring structure on $A$ whose base change to $\pi_{0}(A)$ is $\pi_{0}(A)_{\sld}$. Moreover, there is an equivalence $\pi_{0}(A_{\sld}[S])\simeq\pi_{0}(A)_{\sld}[S]$ of static condensed $\pi_{0}(A)$-modules for all $S\in\PFin_{\NN}$. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    Note that 
+    \begin{equation}\label{eqn: free solid modules}
+        A_{\sld}[S]:=\lim_{n}A[S_{n}]\simeq\lim_{n}\prod_{S_{n}}A\simeq\lim_{n}\bigoplus_{S_{n}}A\simeq\intHom_{A}\left(\colim_{n}\prod_{S_{n}}A,A\right)
+    \end{equation} 
+    and 
+    \begin{equation}\label{eqn: continuous functions}
+        A\otimes_{\Sph}\left(\colim_{n}\prod_{S_{n}}\Sph\right)\simeq\colim_{n}\prod_{S_{n}}A\simeq\colim_{n}\bigoplus_{S_{n}}A
+    \end{equation} 
+    by $\Cond\Sp$ being presentably symmetric monoidal and exactness of the tensor product. (\ref{eqn: continuous functions}) naturally identifies with $\Cont(S,\Sph)\otimes_{\Sph}A\simeq\Cont(S, A)$ (cf. \cite[Def. 3.5.10 ff.]{HeyerMann6FF}). Thus by base-changing the equivalence $\bigoplus_{I}\Sph\xrightarrow{\sim}\Cont(S,\Sph)$ for $|I|\leq|\NN|$ in \cite[Pf. Thm. 13.3]{ClausenLie}, we get that $\bigoplus_{I}A\xrightarrow{\sim}\Cont(S, A)$ is an equivalence. Applying $\intHom_{A}(-,A)$, we obtain the desired equivalence from (\ref{eqn: free solid modules}). 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Since $A$ is compact projective in $\CAlg^{\cn}$, $\pi_{0}(A)$ is a finitely presented $\ZZ$-algebra and carries the static solid analytic $\EE_{\infty}$-ring structure $\pi_{0}(A)_{\sld}$ \cite[Thm. 5.3.2]{CamargoSolid}. By \Cref{prop: functorial heart invariance} it lifts to a unique analytic $\EE_{\infty}$-ring structure $(A,\Mod_{A_{\sld}})$ on $\Mod_{A}$ which induces $\pi_{0}(A)_{\sld}$ on base change to $\pi_{0}(A)$, spanned by those modules whose homotopy groups are $\pi_{0}(A)_{\sld}$-analytic by \Cref{prop: t-structure on A-analytic modules} (vi). It is complete as each $\pi_{k}(A)$ is a discrete, hence $\pi_{0}(A)$-solid, $\pi_{0}(A)$-module, so the unit $A$ lies in $\Mod_{A_{\sld}}$. 
+
+    For the second claim, (1) identifies $A_{\sld}[S]$ with $\prod_{I}A$ for $|I|\leq|\NN|$. Using exactness of countable products in $\Mod_{A}$, $\pi_{0}(A_{\sld}[S])\simeq\pi_{0}(\prod_{I}A)\simeq\prod_{I}\pi_{0}(A)\simeq\pi_{0}(A)_{\sld}[S]$ by \cite[Thm. 5.3.2]{CamargoSolid} once more.  
+\end{proof}
+An arbitrary connective $\EE_{\infty}$-algebra is obtained by sifted colimits.
+\begin{proposition}\label{prop: solid rings general}
+    Let $B\in\CAlg^{\cn}$ and regard it as a discrete object of $\Cond\CAlg^{\cn}$. Denote its module category by $\Mod_{B}$. Consider the diagram 
+    \begin{equation}\label{eqn: sifted colimit of cp subalgebras}
+        I:= \left\{A_{i}\to B: A_{i}\text{ compact projective in }\CAlg^{\cn}\right\}.
+    \end{equation}
+    \begin{enumerate}
+        \item The diagram $I$ of (\ref{eqn: sifted colimit of cp subalgebras}) is sifted and the natural map 
+        $$\colim_{i\in I}A_{i}\to B$$
+        is an equivalence in $\CAlg^{\cn}$. 
+        \item The colimit in $\An\CAlg^{\wedge}$ 
+        $$B_{\sld}:=\colim_{i\in I}A_{i,\sld}$$
+        defines a complete analytic $\EE_{\infty}$-ring structure on $\Mod_{B}$. 
+        \item The objects 
+        $$B_{\sld}[S]\simeq\colim_{i\in I}A_{i,\sld}[S]$$
+        for $S\in\PFin_{\NN}$ are internally compact projective in $\Mod_{B_{\sld}}$ and generate $\Mod_{B_{\sld}}$ under small colimits and shifts in $\Mod_{B}$. In particular, $\Mod_{B_{\sld}}$ is $\omega$-presentable. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Siftedness of the diagram and the equivalence follow from \Cref{prop: approximation by finitely presented algebras} (1).
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Recall from \Cref{prop: sifted colimits in complete} that complete analytic $\EE_{\infty}$-rings are closed under sifted colimits computed in analytic $\EE_{\infty}$-rings. Since each $A_{i,\sld}$ is a complete analytic $\EE_{\infty}$-ring by \Cref{lem: solid rings compact projective}, it follows that $B_{\sld}$ is a complete analytic $\EE_{\infty}$-ring as well. 
+\end{proof}
+\begin{proof}[Proof of (3)]
+    The claimed equivalence is provided by \Cref{lem: sifted colimits in AnCAlg} and $B_{\sld}$ is a complete analytic $\EE_{\infty}$-ring by \Cref{prop: sifted colimits in complete}. By \Cref{prop: stability of A-analytic modules} (3), the objects $B_{\sld}[S]$ generate $\Mod_{B_{\sld}}$ under small colimits and shifts. 
+
+    We have a map of discrete solid $\EE_{\infty}$-rings $\Sph_{\sld}\to B_{\sld}$ by \Cref{prop: constructing morphisms of analytic rings}. Adjunction then furnishes $\intHom_{B_{\sld}}(B_{\sld}[S],-)|_{\Sph}\simeq\intHom_{\Sph_{\sld}}(\Sph_{\sld}[S],(-)|_{\Sph})$. Since $(-)|_{\Sph}:\Mod_{B_{\sld}}\to\Mod_{\Sph_{\sld}}$ is conservative, $t$-exact, and preserves small colimits, internal compact projectivity of $\Sph_{\sld}[S]$ in $\Mod_{\Sph_{\sld}}$ implies the same for $B_{\sld}[S]$ in $\Mod_{B_{\sld}}$. The unit of $\Mod_{B_{\sld}}$ is compact projective by \Cref{prop: A-analytic tensor product}, so \Cref{lem: permanence of internal compact projectivity} (2) exhibits $B_{\sld}[S]$ as compact projective generators of $\Mod_{B_{\sld}}$. 
+\end{proof}
+This allows us to define discrete solid $\EE_{\infty}$-rings. 
+\begin{definition}\label{def: solid E-infinity ring}
+    \begin{enumerate}
+        \item Let $A\in\CAlg^{\cn}$. The \emph{discrete solid $\EE_{\infty}$-ring} of $A$ is the analytic $\EE_{\infty}$-ring $A_{\sld}:=(A,\Mod_{A_{\sld}})$ of \Cref{prop: solid rings general}.
+        \item The \emph{category of discrete solid $\EE_{\infty}$-rings} $\An\CAlg^{\sld}$ is the full subcategory of $\An\CAlg^{\wedge}$ spanned by discrete solid $\EE_{\infty}$-rings of connective $\EE_{\infty}$-algebras in $\Sp$. 
+    \end{enumerate}
+\end{definition}
+The formation of discrete solid $\EE_{\infty}$-rings enjoys the following functoriality. 
+\begin{lemma}\label{lem: functoriality of solid rings}
+    There is a functor $\CAlg^{\cn}\to\An\CAlg^{\wedge}$ given on objects by $A\mapsto A_{\sld}$ which is fully faithful and preserves nonempty small colimits. 
+\end{lemma}
+\begin{proof}
+    By full faithfulness of $\CAlg^{\cn}\hookrightarrow\Cond\CAlg^{\cn}$ and the adjunction of \Cref{prop: trivial is left adjoint}, \Cref{def: analytic E-infinity ring} (3) exhibits $\Mor_{\An\CAlg^{\wedge}}(A_{\sld},B_{\sld})$ as the subanima of $\Mor_{\CAlg^{\cn}}(A,B)$ spanned by those morphisms along which restriction of scalars carries $\Mod_{B_{\sld}}$ into $\Mod_{A_{\sld}}$. This condition holds for every morphism: $B_{\sld}$ is the colimit of the $C_{\sld}$ over the diagram (\ref{eqn: sifted colimit of cp subalgebras}) of all morphisms $C\to B$ from compact projective objects $C$, computed in $\An\CAlg$ by \Cref{prop: sifted colimits in complete}, so \Cref{prop: colimits in AnCAlg} shows that a $B$-module is $B_{\sld}$-analytic if and only if its restriction along every morphism from a compact projective object is analytic, and the same holds for $A$. For $M\in\Mod_{B_{\sld}}$ and any morphism $C\to A$ from a compact projective $C$, the composite $C\to A\to B$ then gives $(M|_{A})|_{C}\simeq M|_{C}\in\Mod_{C_{\sld}}$, so $M|_{A}\in\Mod_{A_{\sld}}$. The functor is therefore fully faithful. 
+
+    For colimit preservation, note first that the functor preserves sifted colimits: $\CAlg^{\cn}$ is generated under sifted colimits by its compact projective objects by \Cref{prop: approximation by finitely presented algebras} (1), and \Cref{prop: solid rings general} exhibits $A\mapsto A_{\sld}$ as the extension of its values on compact projective objects by sifted colimits, so it preserves sifted colimits \cite[Prop. 5.5.8.15]{HTT}. It remains to show preservations of binary products. Since the coproduct $\otimes_{\Sph}$ in $\CAlg^{\cn}$ preserves sifted colimits separately in each argument, it suffices to show that the functor preserves binary coproducts of compact projective objects. 
+
+    Let $B,C$ be compact projective with coproduct $D:=B\otimes_{\Sph}C$ in $\CAlg^{\cn}$. $D$ is compact projective as $\Mor_{\CAlg^{\cn}}(D,-)\simeq\Mor_{\CAlg^{\cn}}(B,-)\times\Mor_{\CAlg^{\cn}}(C,-)$ preserves sifted colimits. The embedding $\Sp\hookrightarrow\Cond\Sp$ is a symmetric monoidal left adjoint, so $D$ is also the coproduct in $\Cond\CAlg^{\cn}$ and \Cref{prop: colimits in AnCAlg} computes the coproduct of $B_{\sld}$ and $C_{\sld}$ in $\An\CAlg$ as $(D,\Mod_{D/B_{\sld}}\cap\Mod_{D/C_{\sld}})$: those $D$-modules whose underlying $B$- and $C$-modules are $B_{\sld}$- and $C_{\sld}$-analytic. This structure is complete, the homotopy groups of $D$ being discrete and hence solid as $\pi_{0}(B)$- and $\pi_{0}(C)$-modules, so it is also the coproduct in $\An\CAlg^{\wedge}$ by \Cref{cor: complete AnCAlg has colimits}. 
+
+    It remains to identify $(D,\Mod_{D/B_{\sld}}\cap\Mod_{D/C_{\sld}})$ with $D_{\sld}$. Restriction of scalars is $t$-exact and membership in $\Mod_{B_{\sld}}$, $\Mod_{C_{\sld}}$, and $\Mod_{D_{\sld}}$ is detected on homotopy groups by \Cref{lem: solid rings compact projective} (2), so both analytic structures on $\Mod_{D}$ are detected on homotopy groups and \Cref{prop: functorial heart invariance} reduces the identification to the static solid structures on $\pi_{0}(D)\cong\pi_{0}(B)\otimes_{\ZZ}\pi_{0}(C)$. A static condensed $\pi_{0}(D)$-module is $\pi_{0}(D)_{\sld}$-analytic if and only if its restrictions to $\pi_{0}(B)$ and $\pi_{0}(C)$ are $\pi_{0}(B)_{\sld}$- and $\pi_{0}(C)_{\sld}$-analytic, which is the preservation of binary coproducts by the animated solidification functor of \cite[Prop. 5.4.11]{CamargoSolid}. 
+\end{proof}
+\begin{remark}\label{rmk: solid E-infinity rings is equivalent to connective rings}
+    The functor $\CAlg^{\cn}\to\An\CAlg^{\sld}$ given on objects by $A\mapsto A_{\sld}$ is fully faithful and essentially surjective and thus an equivalence of categories. 
+\end{remark}
+\begin{remark}\label{rmk: morphisms of solid rings}
+    Since $\CAlg^{\cn}\to\An\CAlg^{\sld}$ is an equivalence of categories, any property $\Pcal$ of morphisms in $\CAlg^{\cn}$ applies unambiguously to morphisms in $\An\CAlg^{\sld}$: a morphism $A_{\sld}\to B_{\sld}$ is said to be $\Pcal$ if and only if it is the image of a morphism $A\to B$ in $\CAlg^{\cn}$ with property $\Pcal$ under the functor of \Cref{lem: functoriality of solid rings}. We recall some standard notions of morphisms of (connective) $\EE_{\infty}$-algebras in $\Sp$ in \Cref{def: finiteness conditions of morphisms}. 
+\end{remark}
+\subsection{Discrete spectral Huber pairs}\label{subsec: spectral Huber pairs}
+The discrete solid $\EE_{\infty}$-rings of \Cref{subsec: solid E-infinity rings} are refined to discrete solid Huber rings, whose extra plus-part affords finer control of the solid structure on the modules over a fixed $\EE_{\infty}$-ring and, most crucially, a convenient factorization of morphisms.
+\begin{definition}\label{def: discrete spectral Huber pair}
+    Let $A\in\CAlg^{\cn}$ be a connective $\EE_{\infty}$-algebra in $\Sp$. 
+    \begin{enumerate}
+        \item A \emph{discrete spectral Huber pair} $(A,A^{+})$ is a morphism $A^{+}\to A$ in $\CAlg^{\cn}$ such that $\pi_{0}(A^{+})\subseteq\pi_{0}(A)$ is an integrally closed subring of the static ring $\pi_{0}(A)$. 
+        \item A \emph{morphism of discrete spectral Huber pairs} $f:(A,A^{+})\to (B,B^{+})$ is a morphism $f:A\to B$ in $\CAlg^{\cn}$ such that the induced morphism on static rings $\pi_{0}(f):\pi_{0}(A)\to\pi_{0}(B)$ satisfies $\pi_{0}(f)(\pi_{0}(A^{+}))\subseteq\pi_{0}(B^{+})$. 
+        \item Denote by $\Huber$ the \emph{category of discrete spectral Huber pairs} with objects discrete spectral Huber pairs and morphisms those of discrete spectral Huber pairs in the sense of (2). 
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: adjectives discrete and spectral}
+    In what follows, we will often elide the adjective ``spectral'' when discussing the constructions of the preceding definition. 
+\end{remark}
+\begin{remark}\label{rmk: comparison with M and RC}
+    Compare the definitions of Rodr\'{i}guez Camargo \cite[\S 5.5]{CamargoSolid} and of L. Mann \cite[\S 2.9]{MannRigid6FF} where discrete animated Huber pairs are defined to be pairs consisting of an animated ring together with a distinguished subanima of elements and a distinguished static subring, respectively. 
+\end{remark}
+Discrete spectral Huber pairs give rise to complete analytic $\EE_{\infty}$-rings.
+\begin{lemma}\label{lem: Huber pairs to solid rings}
+    Let $(A,A^{+})\in\Huber$ and $(A,\Mod_{(A,A^{+})_{\sld}}):=(A,\Mod_{A/A^{+}_{\sld}})$ be the analytic $\EE_{\infty}$-ring induced from $A^{+}_{\sld}$ along $A^{+}\to A$. 
+    \begin{enumerate}
+        \item $(A,\Mod_{(A,A^{+})_{\sld}})$ is a complete analytic $\EE_{\infty}$-ring structure on $\Mod_{A}$. 
+        \item $\Mod_{(A,A^{+})_{\sld}}$ is generated under colimits and shifts by internally compact projective objects $A\otimes_{A^{+}}A^{+}_{\sld}[S]$ for $S\in\PFin_{\NN}$. In particular, $\Mod_{(A,A^{+})_{\sld}}$ is $\omega$-presentable with compact unit. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    By \Cref{prop: induced analytic ring structure}, $(A,\Mod_{(A,A^{+})_{\sld}})$ is an analytic $\EE_{\infty}$-ring structure. Completeness follows from $A$ being discrete in $\Mod_{A^{+}_{\sld}}$. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    The objects $A\otimes_{A^{+}}A^{+}_{\sld}[S]$ are internally compact projective and generate $\Mod_{(A,A^{+})_{\sld}}$ under small colimits and shifts by \Cref{prop: scalar extension preserves internal compact projectives}. The unit of $\Mod_{(A,A^{+})_{\sld}}$ is compact projective by \Cref{prop: A-analytic tensor product}, so any internally compact projective $M$ is itself compact projective, its mapping spectrum $\Hom_{(A,A^{+})_{\sld}}(M,-)\simeq\Hom_{(A,A^{+})_{\sld}}(A,\intHom_{(A,A^{+})_{\sld}}(M,-))$ being a composite of $t$-exact functors preserving small colimits. In particular the generators are compact projective, whence $\Mod_{(A,A^{+})_{\sld}}$ is $\omega$-presentable. 
+\end{proof}
+We refer to these as discrete solid Huber rings. 
+\begin{definition}\label{def: solid rings of Huber pairs}
+    Let $(A,A^{+})\in\Huber$. The \emph{discrete solid Huber ring} $(A,A^{+})_{\sld}$ of the Huber pair $(A,A^{+})$ is the complete analytic $\EE_{\infty}$-ring of \Cref{lem: Huber pairs to solid rings} (1). 
+\end{definition}
+\begin{remark}\label{rmk: Huber pairs for arbitrary plus parts}
+    For an arbitrary morphism $A^{+}\to A$ in $\CAlg^{\cn}$, we continue to write $(A,A^{+})_{\sld}$ for the analytic $\EE_{\infty}$-ring induced from $A^{+}_{\sld}$ along $A^{+}\to A$. The statement and proof of \Cref{lem: Huber pairs to solid rings} apply verbatim. This convention parallels \cite[Def. 2.9.3]{MannRigid6FF} (c) as the induced structure is invariant under passage to the integral closure of the image. 
+\end{remark}
+As with discrete solid $\EE_{\infty}$-rings in \Cref{lem: functoriality of solid rings}, the formation of discrete solid Huber rings is likewise functorial. 
+\begin{lemma}\label{lem: functoriality of Huber rings}
+    There is a functor $\Huber\to\An\CAlg^{\wedge}$ given on objects by $(A,A^{+})\mapsto(A,A^{+})_{\sld}$ which is fully faithful. 
+\end{lemma}
+\begin{proof}
+    Let $f:(A,A^{+})\to(B,B^{+})$ be a morphism in $\Huber$ and note that a $B$-module is $(B,B^{+})_{\sld}$-analytic if and only if all its homotopy groups are $\pi_{0}(B^{+})_{\sld}$-analytic. But this implies they are in particular $\pi_{0}(A^{+})_{\sld}$-analytic by the containment $\pi_{0}(f)(\pi_{0}(A^{+}))\subseteq\pi_{0}(B^{+})$. Conversely, for a map of discrete solid Huber rings $(A,A^{+})_{\sld}\to(B,B^{+})_{\sld}$, we can verify the condition that this comes from a map of discrete spectral Huber pairs on the underlying static rings: \cite[Prop. 13.16]{Analytic} shows that the image of $\pi_{0}(A^{+})$ in $\pi_{0}(B)$ is integral over $\pi_{0}(B^{+})$, and integral closedness of $\pi_{0}(B^{+})$ in $\pi_{0}(B)$ gives the containment $\pi_{0}(f)(\pi_{0}(A^{+}))\subseteq\pi_{0}(B^{+})$. 
+\end{proof}
+\begin{remark}\label{rmk: Huber to analytic ring preserves colimits}
+    In \cite[Prop. 2.9.6]{MannRigid6FF}, it is also shown that the formation of discrete solid animated Huber rings from discrete animated Huber pairs preserves nonempty small colimits. Since we do not need this result, we do not reprove its spectral analogue here.
+\end{remark}
+When $A^{+}\simeq A$, the discrete solid Huber ring $(A,A^{+})_{\sld}$ recovers the discrete solid $\EE_{\infty}$-ring $A_{\sld}$, and morphisms then factor through an analytically proper one.
+\begin{proposition}\label{prop: factorization of Huber ring maps}
+    Let $(A,A^{+})_{\sld}\to (B,B^{+})_{\sld}$ be a morphism of discrete solid Huber rings. 
+    \begin{enumerate}
+        \item The morphism admits a factorization as 
+        $$(A,A^{+})_{\sld}\to (B,A^{+})_{\sld}\to (B,B^{+})_{\sld}$$
+        where $(A,A^{+})_{\sld}\to (B,A^{+})_{\sld}$ is an analytically proper morphism. 
+        \item In particular, any morphism $A_{\sld}\to B_{\sld}$ of discrete solid $\EE_{\infty}$-rings admits a factorization 
+        $$A_{\sld}\to (B,A)_{\sld}\to B_{\sld}$$
+        where $A_{\sld}\to (B,A)_{\sld}$ is an analytically proper morphism. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Since $(A,A^{+})_{\sld}\to(B,B^{+})_{\sld}$ is a morphism of discrete solid Huber rings, \Cref{lem: functoriality of Huber rings} supplies the containment $\pi_{0}(f)(\pi_{0}(A^{+}))\subseteq\pi_{0}(B^{+})$. The factorization consists of morphisms of analytic $\EE_{\infty}$-rings with $(B,A^{+})_{\sld}$ following \Cref{rmk: Huber pairs for arbitrary plus parts}. Restriction along $A\to B$ carries $(B,A^{+})_{\sld}$-analytic modules to $(A,A^{+})_{\sld}$-analytic ones, both structures being induced from $A^{+}_{\sld}$ showing the first morphism is analytically proper. 
+
+    To identify the composite, note that we have $L^{(B,B^{+})_{\sld}}\circ L^{(B,A^{+})_{\sld}}\simeq L^{(B,B^{+})_{\sld}}$ by containment $\Mod_{(B,B^{+})_{\sld}}\subseteq\Mod_{(B,A^{+})_{\sld}}$ so the scalar extension functor of the factorization is $L^{(B,B^{+})_{\sld}}\circ L^{(B,A^{+})_{\sld}}\circ (B\otimes_{A}-)\simeq L^{(B,B^{+})_{\sld}}\circ(B\otimes_{A}-)$ which is precisely the scalar extension functor of the original morphism by \Cref{prop: scalar extension functor is symmetric monoidal}.  
+\end{proof}
+\begin{proof}[Proof of (2)]
+    This is immediate from (1). 
+\end{proof}
+\subsection{Mereology of solid modules}\label{subsec: mereology of solid modules}
+In analytic modules over a discrete solid Huber ring, nuclear objects coincide with the discrete ones. 
+\begin{proposition}[Cf. {\cite[Prop. 2.9.7]{MannRigid6FF}}]\label{prop: nuclear objects in solid Huber rings}
+    Let $\Acal:=(A,A^{+})_{\sld}$ be a discrete solid Huber ring and denote the generators $\Acal[S]:=(A,A^{+})_{\sld}[S]=A\otimes_{A^{+}}A^{+}_{\sld}[S]$ for varying light profinite sets $S\in\PFin_{\NN}$. The following conditions are equivalent for an object $M\in\Mod_{(A,A^{+})_{\sld}}=\Mod_{\Acal}$: 
+    \begin{enumerate}[label=(\alph*)]
+        \item $M$ is discrete. 
+        \item $M$ is nuclear in the sense of \Cref{def: nuclearity and trace class morphisms} (3). 
+        \item For all $N\in\Mod_{\Acal}$ and $S\in\PFin_{\NN}$, the natural morphism
+        $$\Hom_{\Acal}\left(A, \intHom_{\Acal}\left(\Acal[S],N\right)\otimes_{\Acal}M\right)\to\Hom_{\Acal}\left(\Acal[S], N\otimes_{\Acal}M\right)$$
+        is an equivalence in $\Sp$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    We show (a)$\Rightarrow$(b)$\Rightarrow$(c)$\Rightarrow$(a). 
+
+    (a)$\Rightarrow$(b) is \Cref{cor: discrete implies nuclear}. 
+
+    (b)$\Rightarrow$(c) Since $A$ is compact by \Cref{prop: A-analytic tensor product} and $P:=\Acal[S]$ (internally) compact projective by \Cref{lem: Huber pairs to solid rings} (2), the natural morphism in (c) commutes with small colimits in $M$. We may thus take $M$ to be a $\QQ_{\geq0}$-indexed colimit of compact objects along trace class morphisms $M:=\colim_{q\in\QQ_{\geq0}}M_{q}$. Choosing a factorization
+    $$A\xrightarrow{\eta_{q,q'}}M_{q}^{\vee}\otimes_{\Acal}M_{q'}\to \intHom_{\Acal}(M_{q},M_{q'})$$
+    of $f_{q,q'}:M_{q}\to M_{q'}$, we get a morphism 
+    \begin{align*}
+        \Hom_{\Acal}\left(P,N\otimes_{\Acal}M_{q}\right) &\simeq \Hom_{\Acal}\left(A,\intHom_{\Acal}\left(P,N\otimes_{\Acal}M_{q}\right)\right) \\
+        &\to \Hom_{\Acal}\left(A,\intHom_{\Acal}\left(P,N\otimes_{\Acal}M_{q}\right)\otimes_{\Acal}M_{q}^{\vee}\otimes_{\Acal}M_{q'}\right) \\
+        &\to \Hom_{\Acal}\left(A,\intHom_{\Acal}\left(P,N\otimes_{\Acal}M_{q}\otimes_{\Acal}M_{q}^{\vee}\right)\otimes_{\Acal}M_{q'}\right) \\
+        &\to \Hom_{\Acal}\left(A,\intHom_{\Acal}\left(P,N\right)\otimes_{\Acal}M_{q'}\right)
+    \end{align*}
+    where the morphisms from the second line onwards are, respectively, induced by $\eta_{q,q'}$, the canonical map $\intHom_{\Acal}(P,X)\otimes_{\Acal}Y\to\intHom_{\Acal}(P,X\otimes_{\Acal}Y)$, and the evaluation map $\ev_{M_{q}}:M_{q}\otimes_{\Acal}M_{q}^{\vee}\to A$ of $M_{q}$. This provides a diagonal filler to the diagram 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXEhvbV97XFxBY2FsfVxcbGVmdChQLE5cXG90aW1lc197XFxBY2FsfU1fe3F9XFxyaWdodCkiXSxbMCwwLCJcXEhvbV97XFxBY2FsfVxcbGVmdChBLFxcaW50SG9tX3tcXEFjYWx9XFxsZWZ0KFAsTlxccmlnaHQpXFxvdGltZXNfe1xcQWNhbH1NX3txfVxccmlnaHQpIl0sWzIsMCwiXFxIb21fe1xcQWNhbH1cXGxlZnQoQSxcXGludEhvbV97XFxBY2FsfVxcbGVmdChQLE5cXHJpZ2h0KVxcb3RpbWVzX3tcXEFjYWx9TV97cSd9XFxyaWdodCkiXSxbMiwxLCJcXEhvbV97XFxBY2FsfVxcbGVmdChQLE5cXG90aW1lc197XFxBY2FsfU1fe3EnfVxccmlnaHQpIl0sWzEsMF0sWzAsM10sWzEsMl0sWzIsM10sWzAsMiwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+        {\Hom_{\Acal}\left(A,\intHom_{\Acal}\left(P,N\right)\otimes_{\Acal}M_{q}\right)} && {\Hom_{\Acal}\left(A,\intHom_{\Acal}\left(P,N\right)\otimes_{\Acal}M_{q'}\right)} \\
+        {\Hom_{\Acal}\left(P,N\otimes_{\Acal}M_{q}\right)} && {\Hom_{\Acal}\left(P,N\otimes_{\Acal}M_{q'}\right)}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$ 
+    by its construction from $\eta_{q,q'}$ which induces an equivalence on filtered colimits by \cite[Lem. 2.16]{AokiSchwartz}.
+
+    (c)$\Rightarrow$(a) Taking $N=A$, we have 
+    $$\Hom_{\Acal}(A,P^{\vee}\otimes_{\Acal}M)\simeq\Hom_{\Acal}(P,M).$$
+    Let $p:A^{+}_{\sld}\to\Acal\simeq(A,A^{+})_{\sld}$ be the natural map of analytic $\EE_{\infty}$-rings, which is analytically proper. For $P^{\vee}:=\intHom_{\Acal}(p^{*}A^{+}_{\sld}[S],A)$ we have $p_{*}P^{\vee}\simeq \intHom_{A^{+}_{\sld}}(A^{+}_{\sld}[S],A|_{A^{+}})$ by \Cref{lem: modules inherit bistability} (2) which by $A^{+}_{\sld}$-analyticity of $A|_{A^{+}}$ and adjunction is equivalent to $\intHom_{A^{+}}(A^{+}[S],A|_{A^{+}})$. Since $A$ is discrete, $p_{*}P^{\vee}\simeq\colim_{i\in I}(A|_{A^{+}})^{\oplus |S_{i}|}$ for a presentation $S\simeq\lim_{i\in I}S_{i}$ as a sequential limit of finite sets. Since $p_{*}$ is conservative and preserves small colimits, it follows $P^{\vee}\simeq\colim_{i\in I}A^{\oplus|S_{i}|}$ and we have 
+    \begin{align*}
+        \Hom_{\Acal}\left(A,\colim_{i\in I}A^{\oplus|S_{i}|}\otimes_{\Acal}M\right) &\simeq \Hom_{\Acal}\left(A,\colim_{i\in I}M^{\oplus |S_{i}|}\right) \\
+        &\simeq \colim_{i\in I}\Hom_{\Acal}\left(A,M^{\oplus |S_{i}|}\right) \\
+        &\simeq \colim_{i\in I}\Hom_{\Acal}\left(A^{\oplus |S_{i}|},M\right)
+    \end{align*}
+    where we have used, respectively, that the tensor product preserves small colimits, that $A$ is compact in $\Mod_{\Acal}=\Mod_{(A,A^{+})_{\sld}}$, and that finite products and coproducts coincide by exactness. By the assumed equivalence and that $\Hom_{\Acal}(A^{\oplus |S_{i}|},M)\simeq M(S_{i})$, we get that $M(S)\simeq\colim_{i\in I}M(S_{i})$. This shows that the value of $M$ on a light profinite set is left Kan-extended from its values on finite sets, hence discrete (see \cite[Prop. 2.1.8 (ii)]{MannRigid6FF} and the surrounding discussion). 
+\end{proof}
+Since nuclearity is necessary for dualizability, the dualizable objects are discrete as well.
+\begin{proposition}\label{prop: solid rings are Fredholm}
+    If $(A,A^{+})_{\sld}$ is a discrete solid Huber ring, then $(A,\Mod_{(A,A^{+})_{\sld}})$ is a Fredholm analytic $\EE_{\infty}$-ring in the sense of \Cref{def: Fredholm rings}: any dualizable object is discrete. In particular, there is an equivalence of categories $\Dbl(\Mod_{(A,A^{+})_{\sld}})\simeq\Dbl(\Mod_{A}(\Sp))$. 
+\end{proposition}
+\begin{proof}
+    From \Cref{prop: nuclear objects in solid Huber rings}, the nuclear and discrete objects coincide so using \Cref{prop: dualizable iff nuclear and compact}, an object of $\Mod_{(A,A^{+})_{\sld}}$ is dualizable if and only if it is discrete and compact. By \Cref{lem: comparison functor from rigidification} (3), the embedding of discrete objects identifies with the embedding of nuclear objects, hence induces an equivalence on dualizable objects. 
+\end{proof}
+\subsection{The solid affine line}\label{subsec: solid affine line}
+We construct the solid affine line $\Sph\{T\}_{\sld}$ and factor the morphism $\Sph_{\sld}\to\Sph\{T\}_{\sld}$ into an analytically proper morphism followed by an open immersion of complete analytic $\EE_{\infty}$-rings. The open immersion is recognized through an idempotent algebra, which we construct first.
+\begin{lemma}\label{lem: solid nullsequence}
+    Let $\Sph[\NN_{\infty}]:=\cofib(\Sph[\{\infty\}]\to\Sph[\NN\cup\{\infty\}])$. 
+    \begin{enumerate}
+        \item $\Sph[\NN_{\infty}]$ admits the structure of an $\EE_{\infty}$-algebra in $\Cond\Sp$. Denote its solidification (as an $\EE_{\infty}$-algebra) by $\Sph[[q]]$. 
+        \item Let $\Sph[[q]]\{T\}:=\Sph[[q]]\otimes_{\Sph_{\sld}}\Sph\{T\}\in\Mod_{(\Sph\{T\},\Sph)_{\sld}}$ be the base change of $\Sph[[q]]$ along the morphism of discrete solid Huber rings $\Sph_{\sld}=:(\Sph,\Sph)_{\sld}\to(\Sph\{T\},\Sph)_{\sld}$. Let $\Qcal:=\cofib_{(\Sph\{T\},\Sph)_{\sld}}(\Sph[[q]]\{T\}\xrightarrow{1-qT}\Sph[[q]]\{T\})$. Then there exists a morphism $e:\Sph\{T\}\to \Qcal$ which exhibits $\Qcal$ as an idempotent $\EE_{\infty}$-algebra of $\Mod_{(\Sph\{T\},\Sph)_{\sld}}$. 
+    \end{enumerate} 
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    We use the formalism of Smith ideals (see \cite[\S 3.1]{MaoCrystalline}). The category $\Fun((\Delta^{1})^{\Opp},\Cond\Sp)$ carries the Day convolution symmetric monoidal structure induced by the maximum monoidal structure on $(\Delta^{1})^{\Opp}$, with unit $[0\to\Sph]$, and there is a symmetric monoidal equivalence with $\Fun(\Delta^{1},\Cond\Sp)$ under the pointwise structure carrying $[I\to R]$ to $[R\to\cofib(I\to R)]$ \cite[Prop. 3.1]{MaoCrystalline}. An $\EE_{\infty}$-algebra for the Day convolution structure thus determines a canonical $\EE_{\infty}$-algebra structure on the cofiber together with an $\EE_{\infty}$-algebra morphism $R\to\cofib(I\to R)$ \cite[Cor. 3.3]{MaoCrystalline}. 
+
+    The addition on $\NN$ extends to the compactification by $n+\infty=\infty=\infty+n$, and this operation is continuous, showing the subset $\{\infty\}$ is a monoid ideal making $\{\infty\}\to\NN\cup\{\infty\}$ a commutative algebra object for the Day convolution structure on $\Cond\Ani$. 
+
+    The functor $\Sph[-]:\Cond\Ani\to\Cond\Sp$ is symmetric monoidal and preserves small colimits, so it induces a symmetric monoidal functor on Day convolution categories \cite[\S 3]{StableOperads}, carrying the commutative algebra above to a Day convolution algebra $[\Sph[\{\infty\}]\to\Sph[\NN\cup\{\infty\}]]$ in $\Cond\Sp$. The preceding argument equips $\Sph[\NN_{\infty}]=\cofib(\Sph[\{\infty\}]\to\Sph[\NN\cup\{\infty\}])$ with the structure of an $\EE_{\infty}$-algebra in $\Cond\Sp$. Symmetric monoidality of solidification makes $\Sph[[q]]$ an $\EE_{\infty}$-algebra in $\Cond\Sp^{\sld}$. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    The self-map of $\Sph[[q]]\{T\}$ given by multiplication by the element $1-qT$ is a map of $\Sph\{T\}$-modules, so we can consider the cofiber $\Qcal$ as an $\Sph\{T\}$-module. Let $e:\Sph\{T\}\to \Qcal$ be the composite of the structure map $\Sph\{T\}\to\Sph[[q]]\{T\}$ of $\Sph[[q]]\{T\}$ as an $\EE_{\infty}$-algebra in $\Mod_{(\Sph\{T\},\Sph)_{\sld}}$ and the canonical map to the cofiber. It suffices by \cite[Rmk. 4.8.2.6 \& 4.8.2.9]{HA} to show that 
+    $$\Qcal\xrightarrow{\id_{\Qcal}\otimes_{(\Sph\{T\},\Sph)_{\sld}}e}\Qcal\otimes_{(\Sph\{T\},\Sph)_{\sld}}\Qcal$$ 
+    is an equivalence, where all objects are connective by compatibility of the $t$-structure with the symmetric monoidal structure. Note that the functor $\ZZ[T]\otimes_{(\Sph\{T\},\Sph)_{\sld}}-:\Mod_{(\Sph\{T\},\Sph)_{\sld}}\to\Mod_{(\ZZ[T],\ZZ)_{\sld}}$ is conservative on bounded below objects by \Cref{lem: conservativity of bounded below} so the above morphism is an equivalence if and only if it is so after base change to $(\ZZ[T],\ZZ)_{\sld}$-modules. In this case, exactness of the functor identifies $\ZZ[T]\otimes_{(\Sph\{T\},\Sph)_{\sld}}\Qcal$ with $\ZZ((T^{-1})):=\cofib_{(\ZZ[T],\ZZ)_{\sld}}(\ZZ[[q]][T]\xrightarrow{1-qT}\ZZ[[q]][T])$ which is an idempotent algebra along the base change of $e$ by \cite[(5.2.1)]{CamargoSolid}, proving the claim.   
+\end{proof}
+With this idempotent algebra in hand, the morphism to the free algebra factors through the open immersion it defines.
+\begin{proposition}\label{prop: explicit solid affine line}
+    Let $f:\Sph_{\sld}\to\Sph\{T\}_{\sld}$ be the morphism of discrete solid $\EE_{\infty}$-rings to the free $\EE_{\infty}$-algebra. 
+    \begin{enumerate}
+        \item $f$ admits a factorization as 
+        $$\Sph_{\sld}\xrightarrow{p}(\Sph\{T\},\Sph)_{\sld}\xrightarrow{j}\Sph\{T\}_{\sld}$$
+        where $p$ is analytically proper. 
+        \item There is an equivalence of categories $\ker(j^{*})\simeq\Mod_{\Qcal}(\Mod_{(\Sph\{T\},\Sph)_{\sld}})$. In particular, $j$ is an open immersion of analytic $\EE_{\infty}$-rings. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    The existence of the factorization follows from \Cref{prop: factorization of Huber ring maps} (2). 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    We need to verify that for $\Ical:=\fib_{(\Sph\{T\},\Sph)_{\sld}}(\Sph\{T\}\xrightarrow{e}\Qcal)$, the object $\intHom_{(\Sph\{T\},\Sph)_{\sld}}(\Ical,M)$ is in the essential image of the forgetful functor $j_{*}:\Mod_{\Sph\{T\}_{\sld}}\to\Mod_{(\Sph\{T\},\Sph)_{\sld}}$. By \Cref{cor: hom membership} this can be reduced to a check on homotopy, where it follows from \cite[Prop. 5.2.2]{CamargoSolid}. 
+\end{proof}
+\subsection{Exceptional functors for morphisms of finite expansion}\label{subsec: exceptional functors finite expansion}
+In the animated setting \cite[\S 2.7]{HansenMannCLL}, the morphisms of finite expansion of Hamacher \cite{FiniteExpansion} form the exceptional class of the solid six-functor formalism. They adapt to connective $\EE_{\infty}$-rings as follows.
+\begin{definition}\label{def: finite expansion Einfty}
+    Let $f:A\to B$ be a morphism in $\CAlg^{\cn}$. The morphism $f$ is \emph{of finite expansion} if it admits a factorization as $A\to A\{T_{1},\dots,T_{n}\}\to B$ such that $\pi_{0}(A\{T_{1},\dots,T_{n}\})\to\pi_{0}(B)$ is integral. 
+\end{definition}
+\begin{remark}\label{rmk: finite expansion Einfty is static finite expansion}
+    By \Cref{lem: finite expansion static detection} this is equivalent to $\pi_{0}(f):\pi_{0}(A)\to\pi_{0}(B)$ admitting a factorization as $\pi_{0}(A)\to\pi_{0}(A)[T_{1},\dots,T_{n}]\to\pi_{0}(B)$ where $\pi_{0}(A)[T_{1},\dots,T_{n}]\to\pi_{0}(B)$ is an integral morphism. 
+\end{remark}
+The exceptional functors of a finite-expansion morphism are assembled from those of the two factors: the free-algebra morphism $A_{\sld}\to A\{T_{1},\dots,T_{n}\}_{\sld}$, treated below, and the morphism $A\{T_{1},\dots,T_{n}\}_{\sld}\to B_{\sld}$, which has integral $\pi_{0}$ and is analytically proper by the following lemma.
+\begin{lemma}\label{lem: integral implies analytically proper}
+    Let $A\to B$ be a morphism in $\CAlg^{\cn}$ such that $\pi_{0}(A)\to\pi_{0}(B)$ is integral. Then the morphism of discrete solid $\EE_{\infty}$-rings $A_{\sld}\to B_{\sld}$ is analytically proper. 
+\end{lemma}
+\begin{proof}
+    We want to show that a module $M$ is $B_{\sld}$-analytic if and only if its underlying $A$-module is $A_{\sld}$-analytic. By \Cref{prop: t-structure on A-analytic modules} (vi) we can reduce this to the case where $A,B,M$ are static, where it is \cite[Prop. 3.22]{Andreychev}. 
+\end{proof}
+It remains to construct the exceptional functors of the free-algebra morphisms, beginning with the solid affine line and the factorization of \Cref{prop: explicit solid affine line}. That $j$ is an open immersion was shown there through the idempotent algebra $\Qcal$. We reprove it below by the recognition criterion of \Cref{prop: open immersion detected on static rings}, exhibiting the requisite finite analytic Tor-amplitude directly.
+\begin{proposition}\label{prop: exceptional functors for the affine line}
+    Let $f:\Sph_{\sld}\to\Sph\{T\}_{\sld}$ be the morphism of discrete solid $\EE_{\infty}$-rings to the free $\EE_{\infty}$-algebra.
+    \begin{enumerate}
+        \item $f$ admits a factorization $\Sph_{\sld}\xrightarrow{p}(\Sph\{T\},\Sph)_{\sld}\xrightarrow{j}\Sph\{T\}_{\sld}$ in which $p$ is analytically proper and $j$ is an open immersion, so that $j^{*}$ admits a left adjoint $j_{!}$ with $j_{!}j^{*}M\simeq M\otimes_{(\Sph\{T\},\Sph)_{\sld}}j_{!}\Sph\{T\}$.
+        \item The functor $f_{!}:=p_{*}j_{!}:\Mod_{\Sph\{T\}_{\sld}}\to\Mod_{\Sph_{\sld}}$ preserves small colimits and satisfies the projection formula: the natural morphism $f_{!}(f^{*}M\otimes_{\Sph\{T\}_{\sld}}N)\to M\otimes_{\Sph_{\sld}}f_{!}N$ is an equivalence in $\Mod_{\Sph_{\sld}}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    That $p$ is analytically proper and $j$ an open immersion is \Cref{prop: explicit solid affine line}, and $j_{!}$ with the stated formula is then part of the open-immersion data of \Cref{def: open immersion}.
+
+    We give a second proof that $j$ is an open immersion by verifying the hypotheses of \Cref{prop: open immersion detected on static rings} for $j:(\Sph\{T\},\Sph)_{\sld}\to\Sph\{T\}_{\sld}$. Both rings have underlying $\EE_{\infty}$-ring $\Sph\{T\}$, with $\pi_{0}(\Sph\{T\})\simeq\ZZ[T]$. The base-change condition holds since $\ZZ[T]\simeq\pi_{0}(\Sph\{T\})$ already lies in $\Mod_{\Sph\{T\}_{\sld}}$, so that $\Sph\{T\}_{\sld}\otimes_{(\Sph\{T\},\Sph)_{\sld}}\ZZ[T]\simeq\ZZ[T]$. The restriction $(-)|_{\Sph\{T\}}:\Mod_{\Sph\{T\}_{\sld}}\to\Mod_{(\Sph\{T\},\Sph)_{\sld}}$ is fully faithful, both categories being full subcategories of $\Mod_{\Sph\{T\}}$, which is (i). The $t$-structure on $\Mod_{(\Sph\{T\},\Sph)_{\sld}}$ is compatible with small products by \Cref{prop: product compatibility rings under solid sphere}, as $(\Sph\{T\},\Sph)_{\sld}$ receives the morphism $p$ from $\Sph_{\sld}$. Finally, the induced scalar extension on static rings is
+    $$\pi_{0}(\Sph\{T\})_{\sld}\otimes_{(\pi_{0}(\Sph\{T\}),\pi_{0}(\Sph))_{\sld}}(-)\simeq\ZZ[T]_{\sld}\otimes_{(\ZZ[T],\ZZ)_{\sld}}(-),$$
+    which is of analytic $\Tor$-amplitude $\leq 1$ by the proof of \cite[Prop. 2.9.36]{MannRigid6FF}, giving (ii), and an open immersion by \cite[Prop. 5.2.2]{CamargoSolid}, completing (iii). Thus $j$ is an open immersion.
+\end{proof}
+\begin{proof}[Proof of (2)]
+    This follows from the six-functor formalism for analytic $\EE_{\infty}$-rings. Explicitly, $p_{*}$ preserves small colimits as the forgetful functor of an analytically proper map, and $j_{!}$ does so as a left adjoint, so $f_{!}$ preserves colimits as well. The projection formula is obtained by composing those for open immersions \Cref{def: open immersion} (a) and analytically proper morphisms \Cref{prop: analytically proper base change properties}. 
+\end{proof}
+By base change and the six-functor formalism for analytic $\EE_{\infty}$-rings established in \Cref{subsec: six operations on analytic rings}, we extend this to morphisms of finite expansion. 
+\begin{theorem}\label{thm: exceptional functor for finite expansion}
+    Let $f:A_{\sld}\to B_{\sld}$ be a morphism of discrete solid $\EE_{\infty}$-rings of finite expansion. Then there exists a small colimit-preserving functor $f_{!}:\Mod_{B_{\sld}}\to\Mod_{A_{\sld}}$ satisfying the projection formula and which admits a right adjoint $f^{!}:\Mod_{A_{\sld}}\to\Mod_{B_{\sld}}$. 
+\end{theorem}
+\begin{proof}
+    Since $f$ is of finite expansion, it admits a factorization as $$A_{\sld}\xrightarrow{g}A\{T_{1},\dots,T_{n}\}_{\sld}\xrightarrow{h} B_{\sld}$$ where $h: A\{T_{1},\dots,T_{n}\}_{\sld}\to B_{\sld}$ is analytically proper by \Cref{lem: integral implies analytically proper}. 
+
+    We first treat the case of $g$. The functor to discrete solid $\EE_{\infty}$-rings preserves nonempty small colimits by \Cref{lem: functoriality of solid rings}, and we implicitly identify base change of discrete solid and analytic $\EE_{\infty}$-rings in what follows. The morphism $\Sph_{\sld}\to\Sph\{T_{1},\dots,T_{n}\}_{\sld}$ is the iterated base change of $\Sph_{\sld}\to\Sph\{T\}_{\sld}$ hence admits exceptional functors as it lies in the homotopy class $E_{!}$ of \Cref{lem: geometric setup on analytic E-infinity rings}. The morphism $g$ is the base change of $\Sph_{\sld}\to\Sph\{T_{1},\dots,T_{n}\}_{\sld}$ along $\Sph_{\sld}\to A_{\sld}$ hence in $E_{!}$. Since $h$ is analytically proper, it lies in $E_{!}$. By closure under composition, $f$ lies in $E_{!}$ as well. The projection formula and existence of a right adjoint are formal from this being a presentable six-functor formalism as in \Cref{prop: six-functor formalism on analytic E-infinity rings}. 
+\end{proof}
+\subsection{Flat morphisms of discrete solid \texorpdfstring{$\EE_{\infty}$}{E-infinity}-rings}\label{subsec: flat morphisms of solid rings}
+We now study the morphisms of discrete solid $\EE_{\infty}$-rings that are flat and almost of finite presentation in the sense of \Cref{def: finiteness conditions of morphisms}, following Mikami \cite[\S 4]{MikamiFPPF} and \cite[\S 2]{MikamiFFDescent}. 
+
+This structure theory underlies the descent of \Cref{subsec: descent for solid rings} and enters the duality theory of the six-functor formalism for spectral algebraic stacks. For a morphism of discrete solid $\EE_{\infty}$-rings $A_{\sld}\to B_{\sld}$, write $\pi_{0}(A)_{\sld}\to\pi_{0}(B)_{\sld}$ for the induced morphism of discrete solid static rings. We begin with the static case.
+\begin{proposition}[{\cite[Cor. 2.11 \& Prop. 2.20]{MikamiFFDescent}}]\label{prop: flat static representability}
+    Let $\pi_{0}(A)_{\sld}\to \pi_{0}(B)_{\sld}$ be a finitely presented flat morphism of discrete solid static rings. 
+    \begin{enumerate}
+        \item The functor $\pi_{0}(B)_{\sld}\otimes_{\pi_{0}(A)_{\sld}}-:\Mod_{\pi_{0}(A)_{\sld}}\to\Mod_{\pi_{0}(B)_{\sld}}$ is of $\Tor$-amplitude $\leq 1$ and preserves small limits. 
+        \item There exists a compact object $N_{\pi_{0}(B)/\pi_{0}(A)}^{\sld}\in\Mod_{\pi_{0}(A)_{\sld}}^{\omega}$ which corepresents the functor 
+        \begin{equation}\label{eqn: static representability}
+            \Mod_{\pi_{0}(A)_{\sld}}\xrightarrow{\pi_{0}(B)_{\sld}\otimes_{\pi_{0}(A)_{\sld}}-}\Mod_{\pi_{0}(B)_{\sld}}\xrightarrow{\Mor_{\pi_{0}(B)_{\sld}}(\pi_{0}(B),-)}\Ani
+        \end{equation}
+        and an equivalence of functors 
+        $$(\pi_{0}(B)_{\sld}\otimes_{\pi_{0}(A)_{\sld}}-)|_{\pi_{0}(A)}\simeq\intHom_{\pi_{0}(A)_{\sld}}(N_{\pi_{0}(B)/\pi_{0}(A)}^{\sld},-)$$ 
+        in the enriched endofunctor category $\End_{\pi_{0}(A)_{\sld}}$. 
+    \end{enumerate}
+\end{proposition}
+This lifts to discrete solid $\EE_{\infty}$-rings.
+\begin{proposition}[Cf. {\cite[\S 4]{MikamiFPPF}}]\label{prop: flat spectral representability}
+    Let $A_{\sld}\to B_{\sld}$ be a morphism of discrete solid $\EE_{\infty}$-rings that is flat and almost of finite presentation.
+    \begin{enumerate}
+        \item The scalar extension functor $B_{\sld}\otimes_{A_{\sld}}-:\Mod_{A_{\sld}}\to\Mod_{B_{\sld}}$ is of analytic $\Tor$-amplitude $\leq 1$ and preserves small limits.
+        \item There exists a compact object $N_{B/A}^{\sld}\in\Mod_{A_{\sld}}^{\omega}$ which corepresents the functor 
+        \begin{equation}\label{eqn: spectral representability}
+            \Mod_{A_{\sld}}\xrightarrow{B_{\sld}\otimes_{A_{\sld}}-}\Mod_{B_{\sld}}\xrightarrow{\Mor_{B_{\sld}}(B,-)}\Ani
+        \end{equation}
+        satisfying $N_{B/A}^{\sld}\otimes_{A_{\sld}}\pi_{0}(A)\simeq N_{\pi_{0}(B)/\pi_{0}(A)}^{\sld}$ and an equivalence of functors 
+        $$(B_{\sld}\otimes_{A_{\sld}}-)|_{A}\simeq\intHom_{A_{\sld}}(N_{B/A}^{\sld},-)$$
+        in the enriched endofunctor category $\End_{A_{\sld}}$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    We show the flat morphism $A_{\sld}\to B_{\sld}$ satisfies the hypotheses of \Cref{lem: tor amplitude and limits} (2). Flatness gives $B\otimes_{A}\pi_{0}(A)\simeq\pi_{0}(B)$. The $t$-structure on $\Mod_{A_{\sld}}$ is compatible with small products by \Cref{prop: product compatibility rings under solid sphere}, as $A_{\sld}$ receives a morphism from $\Sph_{\sld}$. Finally, $\pi_{0}(B)_{\sld}\otimes_{\pi_{0}(A)_{\sld}}-$ is of analytic $\Tor$-amplitude $\leq 1$ and preserves small limits by \Cref{prop: flat static representability} (1). Hence $B_{\sld}\otimes_{A_{\sld}}-$ is of analytic $\Tor$-amplitude $\leq 1$ and preserves small limits.
+\end{proof}
+\begin{proof}[Proof of (2)]
+    By (1), $B_{\sld}\otimes_{A_{\sld}}-$ preserves small limits and colimits, and $\Mod_{B_{\sld}}$ is $\omega$-presentable with compact unit, so $\Mor_{B_{\sld}}(B,-)$ preserves small limits and filtered colimits. This implies that the composite (\ref{eqn: spectral representability}) preserves small limits and filtered colimits. 
+
+    By \cite[Prop. 5.5.2.7]{HTT}, such a functor is corepresentable by an object of $\Mod_{A_{\sld}}$ and it is compact as the functor furthermore preserves filtered colimits. Denote this object by $N_{B/A}^{\sld}$. By adjunction, $\Mor_{\pi_{0}(A)_{\sld}}(N_{B/A}^{\sld}\otimes_{A_{\sld}}\pi_{0}(A),-)$ corepresents the composite 
+    $$\Mod_{\pi_{0}(A)_{\sld}}\xrightarrow{(-)|_{A}}\Mod_{A_{\sld}}\xrightarrow{\Mor_{A_{\sld}}(N_{B/A}^{\sld},-)}\Ani$$
+    but this functor identifies with (\ref{eqn: static representability}) of \Cref{prop: flat static representability} (2) and we conclude their identification $N_{B/A}^{\sld}\otimes_{A_{\sld}}\pi_{0}(A)\simeq N_{\pi_{0}(B)/\pi_{0}(A)}^{\sld}$ by the Yoneda lemma. 
+
+    We have equivalences of animae 
+    \begin{align*}
+        \Mor_{A_{\sld}}(N_{B/A}^{\sld},N_{B/A}^{\sld}) &\simeq\Mor_{B_{\sld}}(B,B_{\sld}\otimes_{A_{\sld}}N_{B/A}^{\sld}) && \text{representability}\\
+        &\simeq \Mor_{A_{\sld}}\left(A,(B_{\sld}\otimes_{A_{\sld}}N_{B/A}^{\sld})|_{A}\right) && B_{\sld}\otimes_{A_{\sld}}-\dashv(-)|_{A}.
+    \end{align*}
+    Let $f:A\to (B_{\sld}\otimes_{A_{\sld}}N_{B/A}^{\sld})|_{A}$ be the image of $\id_{N_{B/A}^{\sld}}:N_{B/A}^{\sld}\to N_{B/A}^{\sld}$ under this chain of equivalences. Observing that $(B_{\sld}\otimes_{A_{\sld}}-)|_{A}\in\End_{A_{\sld}}$, \cite[Lem. A.4.8]{MannRigid6FF} implies that there is an equivalence of animae 
+    $$\Mor_{\End_{A_{\sld}}}\left(\intHom_{A_{\sld}}(N_{B/A}^{\sld},-),(B_{\sld}\otimes_{A_{\sld}}-)|_{A}\right)\simeq\Mor_{A_{\sld}}\left(A,(B_{\sld}\otimes_{A_{\sld}}N_{B/A}^{\sld})|_{A}\right).$$
+    Let $\eta:\intHom_{A_{\sld}}(N_{B/A}^{\sld},-)\to (B_{\sld}\otimes_{A_{\sld}}-)|_{A}$ be the natural transformation of $\Mod_{A_{\sld}}$-enriched endofunctors corresponding to $f:A\to (B_{\sld}\otimes_{A_{\sld}}N_{B/A}^{\sld})|_{A}$ under this equivalence. The functor $(B_{\sld}\otimes_{A_{\sld}}-)|_{A}$ preserves small limits and colimits as $B_{\sld}\otimes_{A_{\sld}}-$ preserves both by (1) and forgetful functors from module categories $(-)|_{A}$ generally do so. Similarly $\intHom_{A_{\sld}}(N_{B/A}^{\sld},-)$ preserves limits as a right adjoint and preserves colimits by compactness, using that compactness and internal compactness coincide in $\Mod_{A_{\sld}}$ by \Cref{lem: compact implies internally compact}. We check that $\eta$ is an equivalence pointwise. Using that both functors are exact and Postnikov and Whitehead towers in $\Mod_{A_{\sld}}$ we can reduce to checking that $\eta_{M}:\intHom_{A_{\sld}}(N_{B/A}^{\sld},M)\to(B_{\sld}\otimes_{A_{\sld}}M)|_{A}$ is an equivalence for $M\in\Mod_{A_{\sld}}^{\heartsuit}$. By adjunction $\pi_{0}(A)_{\sld}\otimes_{A_{\sld}}-\dashv(-)|_{A}$ and \Cref{prop: relationship with heart} (1), $\intHom_{A_{\sld}}(N_{B/A}^{\sld},M)\simeq\intHom_{\pi_{0}(A)_{\sld}}(N_{\pi_{0}(B)/\pi_{0}(A)}^{\sld},M)$ and $(B_{\sld}\otimes_{A_{\sld}}M)|_{A}\simeq(\pi_{0}(B)_{\sld}\otimes_{\pi_{0}(A)_{\sld}}M)|_{A}$ which in conjunction with conservativity of the forgetful functor $\Mod_{\pi_{0}(A)_{\sld}}\to\Mod_{A_{\sld}}$ is precisely \Cref{prop: flat static representability} (2).  
+\end{proof}
+\subsection{Descent for discrete solid \texorpdfstring{$\EE_{\infty}$}{E-infinity}-rings}\label{subsec: descent for solid rings}
+Solid modules satisfy descent for the faithfully flat and finitely presented topology, following Mikami \cite[\S 4]{MikamiFPPF}. The argument rests on the structure theory of \Cref{subsec: flat morphisms of solid rings} together with the steadiness of morphisms of discrete solid $\EE_{\infty}$-rings, which we record first.
+\begin{lemma}\label{lem: any finite expansion map of solid rings is steady}
+    Any morphism of discrete solid $\EE_{\infty}$-rings $A_{\sld}\to B_{\sld}$ of finite expansion is steady as a morphism of complete analytic $\EE_{\infty}$-rings. 
+\end{lemma}
+\begin{proof}
+    We argue as in \Cref{thm: exceptional functor for finite expansion}. The free algebra morphism $\Sph_{\sld}\to\Sph\{T\}_{\sld}$ factors as $\Sph_{\sld}\to(\Sph\{T\},\Sph)_{\sld}\to\Sph\{T\}_{\sld}$ where $\Sph_{\sld}\to(\Sph\{T\},\Sph)_{\sld}$ is analytically proper. Using that $\Sph\{T\}$ is discrete hence nuclear by \Cref{cor: discrete implies nuclear}, \Cref{prop: nuclear implies steady} implies $\Sph_{\sld}\to(\Sph\{T\},\Sph)_{\sld}$ is steady. The morphism $(\Sph\{T\},\Sph)_{\sld}\to\Sph\{T\}_{\sld}$ is an open immersion by \Cref{prop: exceptional functors for the affine line} hence steady by \Cref{cor: open immersions are steady}, showing $\Sph_{\sld}\to\Sph\{T\}_{\sld}$ is steady. Using the permanence properties of steady morphisms established in \Cref{prop: permanence properties of steady morphisms}, it follows that $A_{\sld}\to A\{T_{1},\dots,T_{n}\}_{\sld}$ is steady, being obtained by iterated base change from $\Sph_{\sld}\to\Sph\{T\}_{\sld}$. Similarly for $A\{T_{1},\dots,T_{n}\}_{\sld}\to B_{\sld}$, this is analytically proper by \Cref{lem: integral implies analytically proper} with $B$ discrete and hence nuclear in $A\{T_{1},\dots,T_{n}\}_{\sld}$-modules by \Cref{cor: discrete implies nuclear} so it is steady by \Cref{prop: nuclear implies steady}. Since steady morphisms are preserved under composition, $A_{\sld}\to B_{\sld}$ is steady. 
+\end{proof}
+\begin{remark}\label{rmk: steadiness not optimal}
+    L. Mann shows that any morphism of discrete solid animated Huber rings is steady \cite[Prop. 2.9.7]{MannRigid6FF}, so \Cref{lem: any finite expansion map of solid rings is steady} and \Cref{cor: fppf is steady} are not optimal. The restricted statements suffice for the descent of \Cref{thm: solid fppf descent}, and we do not reprove the spectral analogue of Mann's result here (cf. \Cref{rmk: Huber to analytic ring preserves colimits}). 
+\end{remark}
+\begin{corollary}\label{cor: fppf is steady}
+    Any faithfully flat and finitely presented morphism of discrete solid $\EE_{\infty}$-rings $A_{\sld}\to B_{\sld}$ is steady as a morphism of complete analytic $\EE_{\infty}$-rings. 
+\end{corollary}
+\begin{proof}
+    By \Cref{lem: finiteness implies finite expansion}, any finitely presented morphism, and in particular any faithfully flat finitely presented morphism is of finite expansion. Thus it is steady by \Cref{lem: any finite expansion map of solid rings is steady}. 
+\end{proof}
+The finitely presented faithfully flat morphisms are descendable. 
+\begin{proposition}\label{prop: solid descendable realizations}
+    Let $A_{\sld}\to B_{\sld}$ be a finitely presented and faithfully flat morphism of discrete solid $\EE_{\infty}$-rings.
+    \begin{enumerate}
+        \item For all $r\geq 1$, $(N_{B/A}^{\sld})^{\otimes r}\in\Mod_{A_{\sld},\geq -1}$. 
+        \item The natural map $|(N_{B/A}^{\sld})^{\otimes \bullet}|\to A$ is an equivalence.
+        \item The map $A_{\sld}\to B_{\sld}$ is descendable. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Note that by repeating the constructions and arguments of \Cref{prop: flat spectral representability}, $(N_{B/A}^{\sld})^{\otimes r}\simeq N_{B^{r}/A}^{\sld}$ where 
+    $$B^{r}:=\underbrace{B_{\sld}\otimes_{A_{\sld}}\dots\otimes_{A_{\sld}}B_{\sld}}_{r\text{-times}}$$
+    so it suffices to treat the case of $r=1$. Suppose there is $k>1$ such that $N_{B/A}^{\sld}\to\tau_{\leq -k}N_{B/A}^{\sld}$ is nonzero. Using the equivalence of functors in \Cref{prop: flat spectral representability} (2), we get $\intHom_{A_{\sld}}(N_{B/A}^{\sld},\tau_{\leq -k}N_{B/A}^{\sld})\simeq (B_{\sld}\otimes_{A_{\sld}}\tau_{\leq -k}N_{B/A}^{\sld})|_{A}$ which is nonvanishing on $\pi_{0}$ by the existence of the nontrivial map $N_{B/A}^{\sld}\to\tau_{\leq -k}N_{B/A}^{\sld}$. But this is a contradiction as $B_{\sld}\otimes_{A_{\sld}}-$ is of $\Tor$-amplitude $\leq 1$. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Observe that the unit of the extension-restriction adjunction furnishes a natural map $\id_{\Mod_{A_{\sld}}}\to\intHom_{A_{\sld}}(N_{B/A}^{\sld},-)$ which under the contravariant fully faithful embedding $\Mod_{A_{\sld}}^{\Opp}\to\End_{A_{\sld}}$ given on objects by $P\mapsto\intHom_{A_{\sld}}(P, -)$ gives a map $N_{B/A}^{\sld}\to A$ \cite[Cor. A.4.9]{HeyerMann6FF}. From (1), the realization $|(N_{B/A}^{\sld})^{\otimes \bullet}|$ is bounded below so the natural morphism $|(N_{B/A}^{\sld})^{\otimes \bullet}|\to A$ is one of bounded below objects. Applying \Cref{lem: conservativity of bounded below}, it suffices to demonstrate the equivalence after applying $\pi_{0}(A)\otimes_{A_{\sld}}-$, namely that 
+    $$|(N_{\pi_{0}(B)/\pi_{0}(A)}^{\sld})^{\otimes\bullet}|\longrightarrow\pi_{0}(A)$$
+    is an equivalence, which is the content of \cite[Thm. 2.15]{MikamiFFDescent}. 
+\end{proof}
+\begin{proof}[Proof of (3)]
+    Let $(N_{B/A}^{\sld})^{r}:=\colim_{[m]\in\Delta^{\Opp}_{s,\leq r}}(N_{B/A}^{\sld})^{\otimes (m+1)}$ be the partial geometric realizations and $C_{r}:=\cofib((N_{B/A}^{\sld})^{r}\to A)$ where both terms lie in $\Mod_{A_{\sld},\geq-1}$ which is closed under colimits computed in $\Mod_{A_{\sld}}$. The partial geometric realizations assemble into (co)fiber sequences $(N_{B/A}^{\sld})^{r}\to (N_{B/A}^{\sld})^{r+1}\to (N_{B/A}^{\sld})^{\otimes (r+2)}[r+1]$ \cite[Lem. 4.12]{MikamiFFDescent}. By (1), $(N^{\sld}_{B/A})^{\otimes (r+2)}\in\Mod_{A_{\sld},\geq-1}$ so $(N^{\sld}_{B/A})^{\otimes(r+2)}[r+1]\in\Mod_{A_{\sld},\geq r}$. Noting that finite colimits of uniformly bounded below objects are uniformly bounded below, we have that $(N_{B/A}^{\sld})^{r},(N_{B/A}^{\sld})^{r+1}\in\Mod_{A_{\sld},\geq-1}$. Examining the long exact sequence on homotopy, we obtain $\pi_{k}((N_{B/A}^{\sld})^{r})\to\pi_{k}((N_{B/A}^{\sld})^{r+1})$ is an equivalence for $k\leq r-2$ and surjective for $k=r-1$. Writing $|(N_{B/A}^{\sld})^{\otimes\bullet}|$ as a sequential colimit of partial geometric realizations, we obtain from (2) an equivalence $\colim_{r}\tau_{\leq k}(N_{B/A}^{\sld})^{r}\simeq\tau_{\leq k}\colim_{r}(N_{B/A}^{\sld})^{r}\simeq\tau_{\leq k}A$ for all $k$. 
+    
+    For $r=1$ the transition maps $\pi_{-1}((N_{B/A}^{\sld})^{1})\to\pi_{-1}((N_{B/A}^{\sld})^{t})$ and $\pi_{0}((N_{B/A}^{\sld})^{1})\to\pi_{0}((N_{B/A}^{\sld})^{t})$ are, respectively, an equivalence and a surjection for $t\geq 2$. Since the sequential colimit of the partial realizations is equivalent to $A$, it follows that $\pi_{-1}((N_{B/A}^{\sld})^{1})\to\pi_{-1}(A)\simeq0$ is an equivalence and $\pi_{0}((N_{B/A}^{\sld})^{1})\to\pi_{0}(A)$ is surjective. Examining the long exact sequence on homotopy, we conclude $\pi_{0}(C_{1})\simeq0$ and thus $C_{1}\in\Mod_{A_{\sld},\geq1}$. Consider the commutative diagram 
+    $$% https://q.uiver.app/#q=WzAsNixbMCwwLCIoTl97Qi9BfV57XFxzbGR9KV57MX0iXSxbMiwwLCJBIl0sWzQsMCwiQ197MX0iXSxbNCwxLCJDX3swfSJdLFsyLDEsIkEiXSxbMCwxLCIoTl97Qi9BfV57XFxzbGR9KV57MH09Tl97Qi9BfV57XFxzbGR9Il0sWzAsMV0sWzEsMl0sWzMsMl0sWzQsM10sWzQsMSwiXFx3clxcaWRfe0F9IiwyXSxbNSw0XSxbNSwwXV0=
+    \begin{tikzcd}
+        {(N_{B/A}^{\sld})^{1}} && A && {C_{1}} \\
+        {(N_{B/A}^{\sld})^{0}=N_{B/A}^{\sld}} && A && {C_{0}}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-3, to=1-5]
+        \arrow[from=2-1, to=1-1]
+        \arrow[from=2-1, to=2-3]
+        \arrow["{\wr\id_{A}}"', from=2-3, to=1-3]
+        \arrow[from=2-3, to=2-5]
+        \arrow[from=2-5, to=1-5]
+    \end{tikzcd}$$
+    with horizontal (co)fiber sequences. Write $(N_{B/A}^{\sld})^{1}\xrightarrow{u} A\xrightarrow{v}C_{1}$ for the morphisms in the (co)fiber sequence. $\pi_{0}(C_{1})\simeq0$ implies $v$ is zero. Applying $\Hom_{A_{\sld}}(A,-)$ to the top cofiber sequence, we obtain a (co)fiber sequence $\Hom_{A_{\sld}}(A,(N_{B/A}^{\sld})^{1})\to\Hom_{A_{\sld}}(A,A)\to\Hom_{A_{\sld}}(A,C_{1})$ in $\Sp$ where the final term has vanishing $\pi_{0}$ by internal compact projectivity of the unit established in \Cref{prop: A-analytic tensor product}. Thus $\id_{A}$ lifts to a morphism $h:A\to (N_{B/A}^{\sld})^{1}$ so that $u\circ h\simeq\id_{A}$ exhibiting $A$ as a retract of $(N_{B/A}^{\sld})^{1}$. 
+
+    Let $D$ be the minimal full subcategory of $\Mod_{A_{\sld}}$ containing $N_{B/A}^{\sld}$ and closed under tensor products, retracts, and shifts. Let $D'$ be the minimal full subcategory of $\Mod_{A_{\sld}}$ containing the fibers of morphisms in $D$ and closed under tensor products, retracts, and shifts. Rotating the (co)fiber sequence $N_{B/A}^{\sld}\to(N_{B/A}^{\sld})^{1}\to(N_{B/A}^{\sld})^{\otimes2}[1]$ gives a (co)fiber sequence $(N_{B/A}^{\sld})^{1}\to(N_{B/A}^{\sld})^{\otimes 2}[1]\to N_{B/A}^{\sld}[1]$. The last two objects belong to $D$, so $(N_{B/A}^{\sld})^{1}\in D'$. Since $D'$ is closed under retracts and $A$ is a retract of $(N_{B/A}^{\sld})^{1}$, we obtain $A\in D'$. In particular, under the exact, monoidal, fully faithful embedding of \cite[Rmk. 2.5.15 \& Cor. A.4.9]{MannRigid6FF}, the identity endofunctor is contained in the smallest full subcategory of $\End_{A_{\sld}}$ containing $(B_{\sld}\otimes_{A_{\sld}}-)|_{A}$ closed under finite limits, finite colimits, retracts, and composition. Together with \Cref{cor: fppf is steady}, this shows that $A_{\sld}\to B_{\sld}$ is descendable by \Cref{lem: descendable equivalent}.  
+\end{proof}
+Descendability and steadiness yield descent.
+\begin{theorem}\label{thm: solid fppf descent}
+    Let $A_{\sld}\to B_{\sld}$ be a finitely presented and faithfully flat morphism of discrete solid $\EE_{\infty}$-rings. Then the functor 
+    $$\Mod_{A_{\sld}}\longrightarrow\lim_{[n]\in\Delta}\Mod_{B_{\tsld}^{\otimes_{A_{\tsld}}(n+1)}}$$
+    is an equivalence.
+\end{theorem}
+\begin{proof}
+    This follows from \Cref{thm: descent for descendable morphisms} in light of \Cref{prop: solid descendable realizations} (3). 
+\end{proof}
+\begin{remark}\label{rmk: descendability index at most two}
+    The proof of \Cref{prop: solid descendable realizations} (3) exhibits $A$ as a retract of $(N_{B/A}^{\sld})^{1}$, so a finitely presented faithfully flat morphism of discrete solid $\EE_{\infty}$-rings is descendable of index at most $2$. The bound rests on \cite[Lem. 4.5]{MikamiFPPF}, which is stated incorrectly there and has yet to be corrected, so we do not prove it.
+\end{remark}

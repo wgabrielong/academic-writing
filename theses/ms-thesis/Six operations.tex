@@ -1,0 +1,296 @@
+\section{Six operations for solid quasicoherent sheaves}\label{sec: six functors for solid sheaves}
+With the analytic and solid theories of the preceding sections in place, we construct the six-functor formalism for solid quasicoherent sheaves that motivates this work. On affine spectral schemes it is obtained by restricting the six-functor formalism on complete analytic $\EE_{\infty}$-rings of \Cref{subsec: six operations on analytic rings} along the embedding of discrete solid $\EE_{\infty}$-rings. Descent along the faithfully flat and finitely presented topology globalizes these to spectral algebraic stacks through the machinery of Heyer--L. Mann \cite[\S 3.4]{HeyerMann6FF}. Together with the duality it supports, the construction recovers the formalism announced in the introduction.
+
+One point of divergence from the animated theory governs the treatment of suaveness. There a morphism of solid affine schemes is suave exactly when it is almost of finite presentation and of finite $\Tor$-amplitude, the sufficiency resting on a factorization $A\to A[T_{1},\dots,T_{n}]\to B$ with $B$ perfect over the flat algebra $A[T_{1},\dots,T_{n}]$ \cite[Lem. 2.7.12]{HansenMannCLL}. Over the sphere this fails, the free $\EE_{\infty}$-algebra $\Sph\{T\}\simeq\bigoplus_{n\geq0}\Sigma^{\infty}_{+}B\Sigma_{n}$ being of infinite $\Tor$-amplitude. We impose the flat factorization as a hypothesis instead, working with the pseudo-lisse morphisms of \Cref{subsec: pseudo-lisse morphisms} and proving that these are suave. It is not clear that every morphism almost of finite presentation and of finite $\Tor$-amplitude is pseudo-lisse, or even that it lies in the closure of the pseudo-lisse morphisms under composition and base change.
+\subsection{Six operations on affine spectral schemes}\label{subsec: six functors on affines}
+Throughout this subsection we fix an uncountable regular cardinal $\kappa$ and restrict to $\kappa$-small affine spectral schemes, sidestepping the set-theoretic difficulties attached to sheaves on large sites. Much of the following discussion holds without the smallness restriction, but the $\kappa$-small setting suffices for our use and eschews the need to develop a theory of macrotopoi (cf. \cite[App. A]{DiracII}).
+\begin{definition}\label{def: kappa small rings}
+    For an uncountable regular cardinal $\kappa$, let the \emph{category of $\kappa$-small affine spectral schemes} $\Aff_{\kappa}$ be the opposite category of $\An\CAlg_{\kappa}^{\sld}$, the full subcategory of $\An\CAlg^{\sld}$ spanned by the essential image of the $\kappa$-compact connective $\EE_{\infty}$-algebras in $\Sp$ under the fully faithful functor $\CAlg^{\cn}\to\An\CAlg^{\sld}$ of \Cref{lem: functoriality of solid rings}. 
+\end{definition}
+\begin{remark}\label{rmk: affine spectral schemes essentially small}
+    The category $\CAlg^{\cn}$ is $\omega$-presentable by \Cref{prop: approximation by finitely presented algebras}, so its full subcategory $\CAlg^{\cn}_{\kappa}$ of $\kappa$-compact objects is essentially small. The embedding of \Cref{lem: functoriality of solid rings} restricts to an equivalence $\CAlg^{\cn}_{\kappa}\xrightarrow{\sim}\An\CAlg^{\sld}_{\kappa}$ onto its essential image, so $\An\CAlg^{\sld}_{\kappa}$ and its opposite $\Aff_{\kappa}$ are essentially small as well.
+\end{remark}
+The class of morphisms along which the exceptional functors are defined is the one detected on $\pi_{0}$ by finite expansion. Transporting the permanence properties of \Cref{prop: finite expansion permanence} to the opposite category exhibits it as a geometric setup.
+\begin{lemma}\label{lem: morphism of geometric setups}
+    Let $\kappa$ be an uncountable regular cardinal. 
+    \begin{enumerate}
+        \item The pair $(\Aff_{\kappa},\mathsf{FE})$, where $\mathsf{FE}$ is the homotopy class of morphisms of finite expansion, is a geometric setup. 
+        \item The restriction of the fully faithful embedding $\CAlg^{\cn}\to\An\CAlg^{\wedge}$ to $\CAlg^{\cn}_{\kappa}$ gives on opposite categories a morphism of geometric setups $(\Aff_{\kappa},\mathsf{FE})\to(\An\Aff,E_{!})$ where $(\An\Aff,E_{!})$ is the geometric setup on the opposite category of $\An\CAlg^{\wedge}$ constructed in \Cref{lem: geometric setup on analytic E-infinity rings}. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    By \Cref{prop: finite expansion permanence}, the morphisms of finite expansion contain all equivalences and are closed under composition, base change, and left cancellation among connective $\EE_{\infty}$-algebras. Passing to opposite categories, $\mathsf{FE}$ contains all equivalences and is closed under composition, pullback, and right cancellation in $\Aff_{\kappa}$, which are the defining conditions of \Cref{def: geometric setup and suitable decomposition} (1). Pullbacks are computed by the relative tensor products $B\otimes_{A}C$, finite colimits in $\CAlg^{\cn}$ and hence internal to $\An\CAlg^{\sld}_{\kappa}\simeq\CAlg^{\cn}_{\kappa}$ by closure of $\kappa$-compact objects under $\kappa$-small colimits.
+\end{proof}
+\begin{proof}[Proof of (2)]
+    The embedding preserves nonempty small colimits by \Cref{lem: functoriality of solid rings}, so it preserves the pushouts computing base changes of morphisms of finite expansion, and on opposite categories $\Aff_{\kappa}\hookrightarrow\An\Aff$ therefore preserves the corresponding fiber products, giving the compatibility required by \Cref{def: geometric setup and suitable decomposition} (2).
+    
+    That every morphism of finite expansion of discrete solid $\EE_{\infty}$-rings lands in the exceptional class $E_{!}$ is furnished by its factorization into analytically proper morphisms and open immersions in \Cref{thm: exceptional functor for finite expansion}, each factor being exceptional, and $E_{!}$ closed under composition by \Cref{lem: geometric setup on analytic E-infinity rings}.
+\end{proof}
+Restriction along this morphism of geometric setups carries the six operations on complete analytic $\EE_{\infty}$-rings to $\kappa$-small affine spectral schemes.
+\begin{proposition}\label{prop: six-functor formalism affine spectral schemes}
+    Let $\kappa$ be an uncountable regular cardinal. There is a presentable six-functor formalism
+    $$\QCoh_{\sld}:\Corr(\Aff_{\kappa},\mathsf{FE})\longrightarrow\PrL \hspace{1cm} \spec(A)\mapsto\Mod_{A_{\sld}}$$
+    obtained by restricting the six-functor formalism of \Cref{prop: six-functor formalism on analytic E-infinity rings} along the morphism of geometric setups of \Cref{lem: morphism of geometric setups}.
+\end{proposition}
+\begin{proof}
+    The morphism of geometric setups of \Cref{lem: morphism of geometric setups} induces a functor on correspondence operads $\Corr(\Aff_{\kappa},\mathsf{FE})\to\Corr(\An\Aff,E_{!})$ \cite[Prop. 2.3.5 \& 2.3.6]{HeyerMann6FF}. Precomposing the six-functor formalism of \Cref{prop: six-functor formalism on analytic E-infinity rings} with this functor is again a lax symmetric monoidal functor into $\PrL$, hence a presentable six-functor formalism, and its value on $\spec(A)$ is $\Mod_{A_{\sld}}$ by construction of the embedding in \Cref{lem: functoriality of solid rings}.
+\end{proof}
+This is the six-functor formalism for solid quasicoherent sheaves on $\kappa$-small affine spectral schemes. 
+\begin{definition}\label{def: solid six-functor formalism affine}
+    Let $\kappa$ be an uncountable regular cardinal. The \emph{solid six-functor formalism on $\kappa$-small affine spectral schemes} is the presentable six-functor formalism $\QCoh_{\sld}$ of \Cref{prop: six-functor formalism affine spectral schemes}.
+\end{definition}
+The six-functor formalism satisfies the categorical K\"{u}nneth formula in the sense of \Cref{def: categorical Kunneth formula}. 
+\begin{corollary}\label{cor: solid six functor formalism affine satisfies categorical kunneth}
+    The solid six-functor formalism on $\kappa$-small affine spectral schemes satisfies the categorical K\"{u}nneth formula. 
+\end{corollary}
+\begin{proof}
+    The functor $\CAlg_{\kappa}^{\cn}\hookrightarrow\An\CAlg^{\wedge}$ preserves nonempty small colimits by \Cref{lem: functoriality of solid rings}, so the composite $\CAlg^{\cn}_{\kappa}\to\PrL$ preserves pushouts by the categorical K\"{u}nneth formula for the six-functor formalism for complete analytic $\EE_{\infty}$-rings established in \Cref{prop: categorical kunneth for analytic rings}. 
+\end{proof}
+\subsection{Primness and suaveness in the affine case}\label{subsec: affine prim and suave}
+With the affine formalism in hand, we take up the study of its prim, suave, and smooth morphisms, together with the related properties of properness and \'{e}taleness relative to a six-functor formalism. The definitions are those of Heyer--L. Mann \cite[\S 4.4-4.6]{HeyerMann6FF}, and the discussion parallels the solid formalism for animated algebraic geometry of Hansen--L. Mann \cite[\S 2.7]{HansenMannCLL}.
+
+The proper morphisms are $\msld$-prim without further hypotheses.
+\begin{lemma}\label{lem: proper morphisms of affines}
+    Let $f:\spec(B)\to\spec(A)$ be a morphism of $\kappa$-small affine spectral schemes.
+    \begin{enumerate}
+        \item If $f$ is an integral morphism on $\pi_{0}$, then $f$ is $\msld$-prim. 
+        \item If $f$ is a proper morphism, then $f$ is $\msld$-prim. 
+    \end{enumerate}
+    In both cases, there is a natural equivalence of functors $f_{*}\simeq f_{!}:\Mod_{B_{\sld}}\to\Mod_{A_{\sld}}$. 
+\end{lemma}
+\begin{proof}
+    \Cref{lem: integral implies analytically proper} furnishes the natural identification of functors in both cases since proper morphisms are in particular integral on $\pi_{0}$ by \cite[Prop. 5.2.1.1]{SAG}. This also implies that (2) follows from (1). 
+
+    We now show (1). By \cite[\href{https://stacks.math.columbia.edu/tag/02JM}{Tag 02JM}]{stacks-project}, integrality on $\pi_{0}$ is left cancellative, hence closed under diagonals by \cite[Lem. 2.1.5]{HeyerMann6FF}. One then verifies $\msld$-primness of $f$ using \cite[Lem. 4.5.5]{HeyerMann6FF}: the natural map $f_{!}\pr_{2*}\Delta_{f!}B\to f_{*}B$ is an equivalence under the equivalences $\Delta_{f*}\simeq\Delta_{f!}, f_{!}\simeq f_{*}$, and $\pr_{2*}\Delta_{f*}\simeq\id_{\Mod_{B_{\sld}}}$. 
+\end{proof}
+\begin{remark}\label{rmk: primness and properness}
+    A proper morphism of $\kappa$-small affine spectral schemes need not be $\msld$-proper in the sense of the six-functor formalism since proper morphisms need not be truncated. Compare the discussion in \cite[Def. 2.7.11]{HansenMannCLL} where proper morphisms in the solid animated setting are not necessarily proper in the sense of the six-functor formalism. 
+\end{remark}
+A large collection of suave morphisms for the affine formalism is provided by the pseudo-lisse morphisms of \Cref{subsec: pseudo-lisse morphisms}, recalled below, whose flat factorization stands in for the structure theory unavailable in the spectral setting.
+\begin{definition}\label{def: pseudo-lisse body}
+    Let $A\to B$ be a morphism in $\CAlg^{\cn}$.
+    \begin{enumerate}
+        \item $A\to B$ is \emph{pseudo-lisse} if it admits a factorization
+        $$A\to C\to B$$
+        in which $A\to C$ is flat and almost of finite presentation and $B$ is perfect as a $C$-module.
+        \item $A\to B$ is \emph{elementary pseudo-lisse} if it admits a factorization
+        $$A\to A[T_{1},\dots,T_{n}]\to B$$
+        for some $n\geq0$ in which $B$ is perfect as an $A[T_{1},\dots,T_{n}]$-module.
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: pseudo-lisse properties recalled}
+    The permanence of such morphisms is recorded in \Cref{prop: properties of pseudo-lisse morphisms}: every elementary pseudo-lisse morphism is pseudo-lisse, the elementary pseudo-lisse morphisms are closed under composition and base change, and the pseudo-lisse morphisms are closed under base change. A pseudo-lisse morphism is moreover almost of finite presentation and of finite $\Tor$-amplitude, hence of finite expansion by \Cref{lem: finiteness implies finite expansion}, so it lies in $\mathsf{FE}$ and carries the exceptional functors of $\QCoh_{\sld}$.
+\end{remark}
+As a special case of pseudo-lisse morphisms, we may consider the fiber-smooth morphisms in the sense of \cite[Def. 11.2.3.1]{SAG}. 
+\begin{definition}\label{def: fiber-smooth morphism}
+    A morphism $A\to B$ in $\CAlg^{\cn}$ is \emph{fiber-smooth} if it satisfies the following conditions: 
+    \begin{enumerate}[label=(\roman*)]
+        \item $A\to B$ is flat and almost of finite presentation. 
+        \item For every field $k$ and morphism of connective $\EE_{\infty}$-rings $B\to k$, the static $k$-vector space $\pi_{1}(k\otimes_{B}\LL_{B/A})$ vanishes, where $\LL_{B/A}$ is the $\EE_{\infty}$-cotangent complex of $A\to B$. 
+    \end{enumerate}
+\end{definition}
+We show pseudo-lisse morphisms are $\msld$-suave. The pseudo-lisse morphisms subsume those for which Grothendieck duality is considered in \cite[\S 6.4.2]{SAG}.  
+\begin{proposition}\label{prop: affine suave morphisms}
+    Let $f:\spec(B)\to\spec(A)$ be a morphism of $\kappa$-small affine spectral schemes.
+    \begin{enumerate}
+        \item If $f$ is proper, almost of finite presentation, and of finite $\Tor$-amplitude, then $B$ is perfect as an $A$-module and $f$ is $\msld$-suave. Furthermore, there is an equivalence $f^{!}A\simeq\omega_{f}^{\circ}$ in $\Mod_{B_{\sld}}$, where $\omega_{f}^{\circ}$ is the dualizing sheaf of \cite[Def. 6.4.2.4]{SAG}. 
+        \item If $f$ is pseudo-lisse, then $f$ is $\msld$-suave. In particular, every finitely presented and faithfully flat morphism is $\msld$-suave.
+        \item If $f$ is fiber-smooth in the sense of \Cref{def: fiber-smooth morphism}, then $f$ is $\msld$-suave and its diagonal $\Delta_{f}:\spec(B)\to\spec(B\otimes_{A}B)$ is both $\msld$-prim and $\msld$-suave. In particular, every fiber-smooth morphism is $\msld$-smooth. 
+        \item If $f$ is \'{e}tale, then $f$ is $\msld$-\'{e}tale. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Properness makes $A\to B$ finite \cite[Prop. 5.2.1.1]{SAG}, so almost finite presentation renders $B$ pseudocoherent over $A$ \cite[Cor. 5.2.2.2]{SAG}, and finite $\Tor$-amplitude in addition makes $B$ perfect over $A$ \cite[Prop. 7.2.4.23]{HA}. By \Cref{lem: proper morphisms of affines}, $f$ is $\msld$-prim with $f_{!}\simeq f_{*}$ and \cite[Lem. 4.5.10]{HeyerMann6FF} shows that perfectness of $B$ over $A$ implies suaveness of $f$. 
+
+    We have an identification $\omega_{f}\simeq f^{!}A\simeq\intHom_{A_{\sld}}(B, A)$. Now $B$ is dualizable in $\Mod_{A}(\Sp)$, being perfect \cite[Prop. 7.2.4.4]{HA}, with dual $\intHom_{A}(B,A)$, and the symmetric monoidal functor $\Mod_{A}(\Sp)\to\Mod_{A_{\sld}}$ preserves duality, hence takes $\intHom_{A}(B,A)$ to $\intHom_{A_{\sld}}(B, A)$. Since the dualizing sheaf of a finite morphism is the $A$-linear dual $\intHom_{A}(B,A)$ \cite[Ex. 6.0.4.3]{SAG}, we get $f^{!}A\simeq\omega_{f}^{\circ}$, as desired. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Let $A_{\sld}\to C_{\sld}\to B_{\sld}$ be a pseudo-lisse factorization, with $A\to C$ flat and almost of finite presentation and $B$ perfect over $C$. Since $\msld$-suave morphisms are closed under composition \cite[Lem. 4.5.9]{HeyerMann6FF}, it suffices to the first factor, the second already having been treated in (1). 
+
+    For $A_{\sld}\to C_{\sld}$, the underlying functor $\Aff_{\kappa}^{\Opp}\simeq\An\CAlg^{\sld}_{\kappa}\to\CAlg(\PrL)$ preserves pushouts by \Cref{cor: solid six functor formalism affine satisfies categorical kunneth}, so the morphism is $\msld$-suave once scalar extension $C_{\sld}\otimes_{A_{\sld}}(-)$ admits a $\Mod_{A_{\sld}}$-linear left adjoint \cite[Lem. 6.3.6]{CamargoSolid}. For a flat morphism almost of finite presentation, such a left adjoint is constructed in \Cref{prop: flat spectral representability}. 
+\end{proof}
+\begin{proof}[Proof of (3)]
+    Suaveness of $f$ follows from (2). By \cite[Prop. 11.3.3.1]{SAG}, $B$ is perfect as a $B\otimes_{A}B$-module in $\Sp$, hence $\pi_{0}(B)$ is finitely generated as a $\pi_{0}(B\otimes_{A}B)$-module \cite[Cor. 7.2.4.5]{HA}, so the diagonal $\Delta_{f}$ is finite and $\msld$-prim by \Cref{lem: proper morphisms of affines}. This exhibits $\Delta_{f}$ as $\msld$-suave by (1). 
+
+    To show $\msld$-smoothness, we need to show $\omega_{f}$ is $\otimes_{B_{\sld}}$-invertible. $\omega_{f}$ is $f$-suave, being the suave dual of the unit, so \cite[Cor. 4.5.18 (ii)]{HeyerMann6FF} implies that $\omega_{f}$ is dualizable, and therefore $\otimes_{B_{\sld}}$-invertible by \cite[Rmk. 4.5.12]{HeyerMann6FF}, showing $f$ is $\msld$-smooth. 
+\end{proof}
+\begin{proof}[Proof of (4)]
+    An \'{e}tale morphism is flat and almost of finite presentation by \Cref{def: finiteness conditions of morphisms} (8), hence pseudo-lisse and $\msld$-suave by (2). Its diagonal is a localization at an idempotent element \cite[Rmk. 7.5.0.2, Thm. 7.5.0.6 \& Ex. 7.5.0.7]{HA}, hence is \'{e}tale and $\msld$-suave by (2). Since the diagonal is also a monomorphism, it follows from \cite[Def. 4.6.1]{HeyerMann6FF} that $f$ is $\msld$-\'{e}tale. 
+\end{proof}
+\begin{definition}\label{def: relative dualizing sheaf}
+    Let $f:\spec(B)\to\spec(A)$ be a $\msld$-suave morphism of $\kappa$-small affine spectral schemes. The \emph{relative dualizing sheaf} $\omega_{f}$ is the object $f^{!}A\in\Mod_{B_{\sld}}$.
+\end{definition}
+\begin{remark}\label{rmk: comparison to lurie jiang}
+    The pseudo-lisse hypothesis is related to other treatments of Grothendieck duality in spectral algebraic geometry as follows. By \Cref{prop: affine suave morphisms} (1), the pseudo-lisse morphisms contain the affine morphisms treated in \cite[\S 6]{SAG}. The pseudo-lisse hypothesis imposes neither the Noetherian nor the homological boundedness conditions appearing in \cite[\S 2]{JiangGD}, where Grothendieck duality is considered for morphisms almost of finite presentation and of finite $\Tor$-amplitude under these additional hypotheses. Every pseudo-lisse morphism is almost of finite presentation and of finite $\Tor$-amplitude by \Cref{rmk: pseudo-lisse properties recalled}. Whether every morphism of connective $\EE_{\infty}$-rings almost of finite presentation and of finite $\Tor$-amplitude is suave, or contained in the closure of pseudo-lisse morphisms under composition and base change, is open. 
+\end{remark}
+\subsection{Perfect and coherent sheaves in the affine case}\label{subsec: affine perfect and coherent}
+The morphism classes of the preceding subsection have object-level counterparts. A sheaf is perfect when it is dualizable for the solid tensor product, and $f$-coherent when it is suave for a morphism $f$ of finite expansion, in the sense of the prim and suave objects of Heyer--L. Mann \cite[\S 4.4 \& 4.5]{HeyerMann6FF}. On these subcategories, the duality of a suave morphism restricts to an anti-autoequivalence, the affine form of the Grothendieck--Verdier duality globalized in \Cref{subsec: duality theory for spectral algebraic stacks}. Compare the animated affine case of \cite[Prop. 2.8.3]{HansenMannCLL}.
+\begin{definition}\label{def: perfect and relatively coherent objects}
+    Let $\kappa$ be an uncountable regular cardinal. 
+    \begin{enumerate}
+        \item For $\spec(A)\in\Aff_{\kappa}$ an object of $\QCoh_{\sld}(A):=\Mod_{A_{\sld}}$ is \emph{perfect} if it is dualizable. Denote the full subcategory of \emph{perfect sheaves} by $\Perf_{\sld}(A)$.  
+        \item Let $f:\spec(B)\to\spec(A)$ be a morphism of finite expansion. An object of $\QCoh_{\sld}(B):=\Mod_{B_{\sld}}$ is \emph{$f$-coherent} if it is an $f$-suave object in $\QCoh_{\sld}$. Denote the full subcategory of \emph{$f$-coherent sheaves} by $\Coh_{\sld}(B,f)$. 
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: perfect sheaves discrete}
+    By \Cref{prop: solid rings are Fredholm}, every dualizable object of $\Mod_{A_{\sld}}$ is discrete, so a perfect sheaf is discrete and $\Perf_{\sld}(A)$ is identified with the perfect $A$-modules in $\Sp$. Namely, we have an equivalence of categories $\Perf_{\sld}(A)\simeq\Perf(A)$, where the latter is the full subcategory of $\Mod_{A}(\Sp)$ spanned by the compact, or equivalently dualizable, objects \cite[Prop. 7.2.4.4]{HA}. 
+\end{remark}
+\begin{remark}\label{rmk: coherent sheaves}
+    Lurie defines a coherent sheaf on a Noetherian affine spectral scheme $\spec(B)$ to be a (discrete) $B$-module in $\Sp$ such that each homotopy group is finitely generated as a $\pi_{0}(B)$-module in static Abelian groups \cite[\S 6.4.3]{SAG}. This does not agree with \Cref{def: perfect and relatively coherent objects} (2) even for $A=B=\Sph$ where the $\id_{\Sph}$-coherent sheaves are the compact spectra, but a spectrum with each homotopy group finitely generated need not be compact, or even pseudocoherent. We have elected to refer to the $f$-suave sheaves as $f$-coherent in line with \cite[\S 2.8]{HansenMannCLL} (cf. \cite[Cor. 2.8.4 (iii)]{HansenMannCLL}).  
+\end{remark}
+Unlike the perfect sheaves, the relatively coherent sheaves are characterized less directly, through the six-functor formalism rather than a finiteness condition in $\Sp$. Both subcategories are nonetheless stable and carry a duality, recorded next.
+\begin{proposition}\label{prop: f-coherent and perfect sheaves affine}
+    Let $f:\spec(B)\to\spec(A)$ be a morphism of finite expansion between $\kappa$-small affine spectral schemes. 
+    \begin{enumerate}
+        \item $\Perf_{\sld}(B)$ and $\Coh_{\sld}(B,f)$ are stable subcategories of $\Mod_{B_{\sld}}$. 
+        \item The functor given on objects by $M\mapsto \intHom_{B_{\sld}}(M, f^{!}A)$ defines an anti-autoequivalence of $f$-coherent sheaves $\Coh_{\sld}(B,f)^{\Opp}\xrightarrow{\sim}\Coh_{\sld}(B,f)$. 
+        \item The functor given on objects by $M\mapsto \intHom_{B_{\sld}}(M, B)$ defines an anti-autoequivalence of perfect sheaves $\Perf_{\sld}(B)^{\Opp}\xrightarrow{\sim}\Perf_{\sld}(B)$. 
+        \item If $f$ is $\msld$-suave, then $\Perf_{\sld}(B)\subseteq\Coh_{\sld}(B,f)$ and the anti-autoequivalence of (2) is given on objects by $M\mapsto\intHom_{B_{\sld}}(M,\omega_{f})$. If the diagonal $\Delta_{f}$ is $\msld$-suave, then $\Coh_{\sld}(B,f)\subseteq\Perf_{\sld}(B)$.
+        \item If $f$ is fiber-smooth, then there is an equivalence of categories $\Perf_{\sld}(B)\simeq\Coh_{\sld}(B,f)$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    The identification of $\Perf_{\sld}(B)$ with the perfect $B$-modules in $\Sp$ \Cref{rmk: perfect sheaves discrete} exhibits it as a stable subcategory \cite[Prop. 7.2.4.2]{HA}. That $\Coh_{\sld}(B,f)$ is a stable subcategory is \cite[Cor. 4.4.13]{HeyerMann6FF}.
+\end{proof}
+\begin{proof}[Proof of (2)]
+    This is \cite[Lem. 4.4.4 \& 4.4.17]{HeyerMann6FF}.
+\end{proof}
+\begin{proof}[Proof of (3)]
+    The identity identifies $\Perf_{\sld}(B)\simeq\Coh_{\sld}(B,\id_{B_{\sld}})$ \cite[Ex. 4.4.3]{HeyerMann6FF}, so this is the case $f=\id_{B_{\sld}}$ of (2).
+\end{proof}
+\begin{proof}[Proof of (4)]
+    The containment $\Perf_{\sld}(B)\subseteq\Coh_{\sld}(B,f)$ is \cite[Cor. 4.5.18]{HeyerMann6FF} (i), and $f^{!}A=\omega_{f}$ by \Cref{def: relative dualizing sheaf} puts the anti-autoequivalence of (2) in the stated form. When $\Delta_{f}$ is $\msld$-suave, the reverse containment $\Coh_{\sld}(B,f)\subseteq\Perf_{\sld}(B)$ is \cite[Cor. 4.5.18]{HeyerMann6FF} (ii).
+\end{proof}
+\begin{proof}[Proof of (5)]
+    By \Cref{prop: affine suave morphisms} (3), $f$ is $\msld$-suave with $\msld$-prim and $\msld$-suave diagonal, so both containments of (4) apply.
+\end{proof}
+\subsection{Six operations on spectral algebraic stacks: construction}\label{subsec: construction on stacks}
+The affine formalism and its sheaves now established, we globalize the six-functor formalism to spectral algebraic stacks. Solid modules satisfy descent for the faithfully flat and finitely presented topology by \Cref{thm: solid fppf descent}, and the arguments of Heyer--L. Mann \cite[\S 3.4]{HeyerMann6FF} promotes the affine formalism to one on stacks. The morphisms carrying exceptional functors are those locally of finite expansion, characterized through the affine case by descent.
+\begin{definition}\label{def: kappa-small spectral stacks}
+    Let $\kappa$ be an uncountable regular cardinal. The \emph{category of $\kappa$-small spectral algebraic stacks} $\Stk_{\kappa}\subseteq\PSh(\Aff_{\kappa};\Ani)$ is the full subcategory of presheaves of animae on $\Aff_{\kappa}$ that are sheaves for the faithfully flat and finitely presented topology.
+\end{definition}
+Globalizing the six operations to these stacks turns on the descent that solid modules enjoy along faithfully flat and finitely presented covers and provides the class of stacky morphisms along which exceptional functors are defined, and the six-functor formalism carrying them.
+\begin{theorem}\label{thm: six-functor formalism on stacks}
+    Let $\kappa$ be an uncountable regular cardinal. There is a homotopy class $\mathsf{LFE}$ of morphisms of $\Stk_{\kappa}$ containing those whose base change along every morphism from a $\kappa$-small affine spectral scheme to the target is affine and of finite expansion. The pair $(\Stk_{\kappa},\mathsf{LFE})$ is a geometric setup, the inclusion $(\Aff_{\kappa},\mathsf{FE})\to(\Stk_{\kappa},\mathsf{LFE})$ a morphism of geometric setups, and there is a six-functor formalism
+    $$\QCoh_{\sld}:\Corr(\Stk_{\kappa},\mathsf{LFE})\longrightarrow\widehat{\Cat},\qquad X\mapsto\QCoh_{\sld}(X),$$
+    whose restriction along $\Aff_{\kappa}\hookrightarrow\Stk_{\kappa}$ is the solid six-functor formalism of \Cref{def: solid six-functor formalism affine}.
+\end{theorem}
+\begin{proof}
+    The affine formalism of \Cref{prop: six-functor formalism affine spectral schemes} descends along the faithfully flat and finitely presented topology: solid modules satisfy descent for it as shown in \Cref{thm: solid fppf descent}, and faithfully flat and finitely presented morphisms are $\msld$-suave by \Cref{prop: affine suave morphisms} (2). These verify the hypotheses of the globalization theorem \cite[Thm. 3.4.11]{HeyerMann6FF}, which produces $\mathsf{LFE}$, the geometric setup, the morphism of geometric setups, and the six-functor formalism restricting to the affine one.
+\end{proof}
+The construction produces a six-functor formalism and a distinguished class of morphisms, named as follows.
+\begin{definition}\label{def: solid six-functor formalism on stacks}
+    Let $\kappa$ be an uncountable regular cardinal.
+    \begin{enumerate}
+        \item The \emph{solid six-functor formalism on $\kappa$-small spectral algebraic stacks} is the six-functor formalism $\QCoh_{\sld}$ of \Cref{thm: six-functor formalism on stacks}.
+        \item A morphism of $\kappa$-small spectral algebraic stacks is \emph{locally of finite expansion} if it lies in the class $\mathsf{LFE}$ of \Cref{thm: six-functor formalism on stacks}.
+    \end{enumerate}
+\end{definition}
+The class $\mathsf{LFE}$ is abstractly characterized by minimality and locality. For computations, however, one wants a concrete handle reducing statements about a stack to a covering family of affine schemes. Such reductions run along the covers for which solid quasicoherent sheaves satisfy exceptional descent, which we isolate below. 
+\begin{definition}\label{def: universal QCoh-cover}
+    Let $\{V_{i}\to Y\}_{i\in I}$ be a small family of morphisms in $\mathsf{LFE}$ with common target $Y\in\Stk_{\kappa}$, and for a morphism $X\to Y$ write $U_{i}:=V_{i}\times_{Y}X$. The family $\{V_{i}\to Y\}_{i\in I}$ is a \emph{universal $\QCoh^{!}_{\sld}$-cover} if for every morphism $X\to Y$ of $\kappa$-small spectral algebraic stacks the augmented cosimplicial diagram
+    $$\QCoh_{\sld}(X)\to\prod_{i_{0}\in I}\QCoh_{\sld}(U_{i_{0}})\rightrightarrows\prod_{i_{0},i_{1}\in I}\QCoh_{\sld}(U_{i_{0}}\times_{X}U_{i_{1}})\to\cdots$$
+    with transition functors the exceptional pullbacks along the projections is a limit diagram in $\widehat{\Cat}$.
+\end{definition}
+The prototypical such cover is a faithfully flat and finitely presented morphism of affine spectral schemes (cf. \Cref{thm: solid fppf descent}).
+\begin{lemma}\label{lem: ffp is universal cover}
+    Let $f:\spec(B)\to\spec(A)$ be a faithfully flat and finitely presented morphism. Then $f$ is a $\msld$-suave cover and a universal $\QCoh^{!}_{\sld}$-cover.
+\end{lemma}
+\begin{proof}
+    By \Cref{prop: affine suave morphisms} (2) the morphism $f$ is $\msld$-suave, and faithful flatness makes it a cover. It is a universal $\QCoh^{!}_{\sld}$-cover by \cite[Lem. 4.7.1]{HeyerMann6FF}.
+\end{proof}
+Using these covers, the morphisms locally of finite expansion admit the anticipated local characterization: the condition is detected on affine targets by the affine notion, and are local on source and target.
+\begin{proposition}\label{prop: locally of finite expansion characterization}
+    The class $\mathsf{LFE}$ of morphisms of $\kappa$-small spectral algebraic stacks locally of finite expansion satisfies the following.
+    \begin{enumerate}[label=(\roman*)]
+        \item $\mathsf{LFE}$ contains every morphism $f: X\to Y$ such that for each $\kappa$-small affine spectral scheme $V\to Y$ the base change $X\times_{Y}V\to V$ is locally of finite expansion.
+        \item A morphism $f: X\to Y$ with $Y$ a $\kappa$-small affine spectral scheme is locally of finite expansion if and only if there is a universal $\QCoh^{!}_{\sld}$-cover $\{U_{i}\to X\}_{i\in I}$ by $\kappa$-small affine spectral schemes with each composite $U_{i}\to X\to Y$ of finite expansion.
+        \item $\mathsf{LFE}$ contains every morphism $f: X\to Y$ admitting a universal $\QCoh^{!}_{\sld}$-cover $\{U_{i}\to X\}_{i\in I}$ with each composite $U_{i}\to X\to Y$ locally of finite expansion.
+        \item $\mathsf{LFE}$ contains every morphism $f: X\to Y$ admitting a universal $\QCoh_{\sld}^{!}$-cover $\{V_{j}\to Y\}_{j\in J}$ with each base change $X\times_{Y}V_{j}\to V_{j}$ locally of finite expansion.
+        \item $\mathsf{LFE}$ contains every morphism $f: X\to Y$ admitting a small family $\{V_{j}\to Y\}_{j\in J}$ with $\coprod_{j\in J}V_{j}\to Y$ an effective epimorphism in $\Stk_{\kappa}$ and each base change $X\times_{Y}V_{j}\to V_{j}$ locally of finite expansion.
+    \end{enumerate}
+    Moreover, $\mathsf{LFE}$ is minimal among the homotopy classes of morphisms of $\Stk_{\kappa}$ satisfying (i) to (iv) and the conclusions of \Cref{thm: six-functor formalism on stacks}. 
+\end{proposition}
+\begin{proof}
+    The statements (i) to (iv) and minimality follow from \cite[Thm. 3.4.11]{HeyerMann6FF}, whose hypotheses are the faithfully flat and finitely presented descent of \Cref{thm: solid fppf descent} and the affine six-functor formalism of \Cref{prop: six-functor formalism affine spectral schemes}.
+
+    For general covers in (v), we follow the strategy of \cite[Thm. 2.7.8 (iii) (b)]{HansenMannCLL}. Let $f:X\to Y$ be a morphism in $\Stk_{\kappa}$ and assume there is a jointly effective epimorphic family $\{V_{j}\to Y\}_{j\in J}$ such that for all $j\in J$ the morphism $V_{j}\times_{Y}X\to V_{j}$ is locally of finite expansion. Being locally of finite expansion can be checked after pullback along all morphisms of $\kappa$-small affine spectral schemes to $Y$ so we may, without loss of generality, take $Y$ to itself be a $\kappa$-small affine spectral scheme. By \cite[Lem. A.3.9]{MannRigid6FF}, there exists a faithfully flat and finitely presented cover $\{W_{i}\to Y\}_{i\in I}$ by $\kappa$-small affine spectral schemes such that each $W_{i}\to Y$ admits a factorization as $W_{i}\to V_{j}\to Y$ for some $j\in J$. By the pasting lemma and closure of morphisms locally of finite expansion under base change, it follows that each $W_{i}\times_{Y}X\to W_{i}$ is locally of finite expansion. Since faithfully flat and finitely presented morphisms of $\kappa$-small affine spectral schemes are universal $\QCoh^{!}_{\sld}$-covers by \Cref{lem: ffp is universal cover}, (iv) applies to $\{W_{i}\to Y\}_{i\in I}$ and $f$ is locally of finite expansion.
+\end{proof}
+By \Cref{lem: ffp is universal cover} every faithfully flat and finitely presented morphism is a suave cover, so many questions about stacks reduce to the affine schemes covering them. This reduction underlies the duality theory of the next subsection.
+\subsection{Duality theory for spectral algebraic stacks}\label{subsec: duality theory for spectral algebraic stacks}
+The construction complete, we now consider duality. The perfect and coherent sheaves of the affine case have stacky counterparts, defined via descent. The subsection closes with the Grothendieck--Verdier duality for suave morphisms of stacks and a restatement of the main theorem. Throughout, compare the animated development of Hansen--L. Mann \cite[\S 2.8]{HansenMannCLL}.
+\begin{definition}\label{def: perfect and coherent sheaves on stacks}
+    Let $f: X\to Y$ be a morphism of $\kappa$-small spectral algebraic stacks locally of finite expansion.
+    \begin{enumerate}
+        \item An object $M\in\QCoh_{\sld}(X)$ is \emph{perfect} if it is dualizable. Denote the full subcategory of perfect sheaves by $\Perf_{\sld}(X)$.
+        \item An object $M\in\QCoh_{\sld}(X)$ is \emph{$f$-coherent} if it is an $f$-suave object of $\QCoh_{\sld}$. Denote the full subcategory of $f$-coherent sheaves by $\Coh_{\sld}(X,f)$.
+    \end{enumerate}
+\end{definition}
+Both subcategories are governed by their affine restrictions. Dualizability can be checked on an affine cover and descends along all covers. 
+\begin{proposition}\label{prop: perfect sheaves on stacks}
+    Let $X$ be a $\kappa$-small spectral algebraic stack.
+    \begin{enumerate}
+        \item Perfect sheaves are preserved by arbitrary pullback and descend along all covers.
+        \item An object $M\in\QCoh_{\sld}(X)$ is perfect if and only if for every $\kappa$-small affine spectral scheme $g:\spec(A)\to X$ the pullback $g^{*}M$ is perfect in $\Mod_{A_{\sld}}$. In particular, every perfect sheaf is discrete.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Dualizable objects are preserved by symmetric monoidal functors, hence by pullback, and admit descent.
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Passing to an affine cover reduces the assertion to the affine case, where $\Perf_{\sld}(A)$ is identified with the perfect $A$-modules in $\Sp$ via \Cref{rmk: perfect sheaves discrete}. Discreteness is affine-local, hence descends, giving the final claim.
+\end{proof}
+Relative coherence behaves similarly, but its descent is confined to the suave covers.
+\begin{proposition}\label{prop: coherent sheaves on stacks}
+    Let $f: X\to Y$ be a morphism of $\kappa$-small spectral algebraic stacks locally of finite expansion. The $f$-coherent sheaves are preserved by pullback along $\msld$-suave morphisms and descend along $\msld$-suave covers. In particular, they descend along covers in the faithfully flat and finitely presented topology.
+\end{proposition}
+\begin{proof}
+    This is \cite[Lem. 4.4.8 \& 4.5.16]{HeyerMann6FF}. The final assertion follows by \Cref{lem: ffp is universal cover} using suaveness of such covers.
+\end{proof}
+With coherence available on stacks, the duality of a suave morphism can be stated globally. As in the affine case, its dualizing sheaf is the exceptional pullback of the unit.
+\begin{definition}\label{def: dualizing sheaf on stacks}
+    Let $f: X\to Y$ be a $\msld$-suave morphism of $\kappa$-small spectral algebraic stacks. The \emph{relative dualizing sheaf} $\omega_{f}$ is the object $f^{!}1_{Y}\in\QCoh_{\sld}(X)$, agreeing with \Cref{def: relative dualizing sheaf} when $f$ is a morphism of affine spectral schemes.
+\end{definition}
+\begin{theorem}[Grothendieck--Verdier duality]\label{thm: Grothendieck Verdier duality stacks}
+    Let $f: X\to Y$ be a $\msld$-suave morphism of $\kappa$-small spectral algebraic stacks.
+    \begin{enumerate}
+        \item The natural morphism $\intHom_{Y}(f_{!}M,N)\to f_{*}\intHom_{X}(M,f^{!}N)$ is an equivalence in $\QCoh_{\sld}(Y)$ for all $M\in\QCoh_{\sld}(X)$ and $N\in\QCoh_{\sld}(Y)$.
+        \item The functor given on objects by $M\mapsto\intHom_{X}(M,\omega_{f})$ is an anti-autoequivalence $\Coh_{\sld}(X,f)^{\Opp}\xrightarrow{\sim}\Coh_{\sld}(X,f)$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}[Proof of (1)]
+    This is \cite[Prop. 3.2.2]{HeyerMann6FF} (iii).
+\end{proof}
+\begin{proof}[Proof of (2)]
+    This is \cite[Lem. 4.4.4 \& 4.4.17]{HeyerMann6FF}.
+\end{proof}
+Combining the construction, the morphism classes, and the duality just obtained yields the theorem announced at the outset. We restate it here with some terms unpacked. 
+\begin{theorem}\label{thm: main six-functor formalism}
+    Let $\kappa$ be an uncountable regular cardinal and $\Stk_{\kappa}$ the category of $\kappa$-small spectral algebraic stacks. There is a six-functor formalism
+    $$\QCoh_{\sld}:\Corr(\Stk_{\kappa},\mathsf{LFE})\longrightarrow\widehat{\Cat} \hspace{1cm} X\mapsto\QCoh_{\sld}(X)$$
+    satisfying the following.
+    \begin{enumerate}
+        \item For every morphism $f: X\to Y$ there is an adjoint pair 
+        $$f^{*}:\QCoh_{\sld}(Y)\rightleftarrows\QCoh_{\sld}(X): f_{*}$$ 
+        with $f^{*}$ symmetric monoidal.
+        \item For every morphism $f: X\to Y$ locally of finite expansion there is an adjoint pair 
+        $$f_{!}:\QCoh_{\sld}(X)\rightleftarrows\QCoh_{\sld}(Y): f^{!}$$ 
+        satisfying proper base change and the projection formula.
+        \item If $f: X\to Y$ is $\msld$-suave-locally pseudo-lisse (ie. pseudo-lisse on a $\msld$-suave cover of source and target) then $f$ is $\msld$-suave and there is a natural equivalence $f^{!}(-)\simeq\omega_{f}\otimes_{X}^{\sld}f^{*}(-)$. This holds in particular when $f$ is pseudo-lisse locally in the faithfully flat and finitely presented topology.
+        \begin{itemize}
+            \item [(3.1)] If $f$ is a fiber-smooth map of $\kappa$-small affine spectral schemes, then $f$ is $\msld$-smooth and $\omega_{f}$ is $\otimes_{X}^{\sld}$-invertible. 
+            \item [(3.2)] If $f$ is \'{e}tale-locally an \'{e}tale map, then $f$ is $\msld$-\'{e}tale and $\omega_{f}\simeq1_{X}$.
+        \end{itemize}
+        \item If $f$ is an integral map of $\kappa$-small affine spectral schemes, then $f$ is $\msld$-prim and there is an equivalence $f_{!}(-)\simeq f_{*}(-)$. In particular, this holds if $f$ is proper. 
+        \item If $f$ is $\msld$-suave, then the following variant of Grothendieck--Verdier duality holds: 
+        \begin{itemize}
+            \item [(5.1)] The natural morphism 
+            $$\intHom_{Y}(f_{!}M,N)\to f_{*}\intHom_{X}(M,f^{!}N)$$ 
+            is an equivalence in $\QCoh_{\sld}(Y)$ for all $M\in\QCoh_{\sld}(X),N\in\QCoh_{\sld}(Y)$. 
+            \item [(5.2)] The functor given on objects by $M\mapsto\intHom_{X}(M,\omega_{f})$ is an anti-autoequivalence of $\Coh_{\sld}(X,f)$.
+        \end{itemize}
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    The six-functor formalism together with (1) and (2) is \Cref{thm: six-functor formalism on stacks}, drawing on \cite[Prop. 3.1.8 \& 3.2.2]{HeyerMann6FF}. In (3) membership in $\mathsf{LFE}$ is furnished by \Cref{prop: locally of finite expansion characterization}, and the suaveness is \Cref{prop: affine suave morphisms} (2) carried along suave covers by the locality of suave morphisms on source and target \cite[\S 4.5]{HeyerMann6FF}, the dualizing-sheaf formula holding by definition of $\msld$-suaveness. The fiber-smooth case (3.1) is \Cref{prop: affine suave morphisms} (3). The \'{e}tale case (3.2) follows from \Cref{prop: affine suave morphisms} (4) and \'{e}tale-locality of \'{e}taleness on source and target \cite[Lem. 4.6.3]{HeyerMann6FF}. Property (4) is \Cref{lem: proper morphisms of affines}, and (5) is \Cref{thm: Grothendieck Verdier duality stacks}.
+\end{proof}

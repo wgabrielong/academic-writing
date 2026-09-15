@@ -1,0 +1,73 @@
+\documentclass{amsart}
+\usepackage[margin=1.5in]{geometry} 
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{accents}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{euscript}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\emergencystretch=1em
+\usepackage[bbgreekl]{mathbbol}
+\DeclareSymbolFontAlphabet{\mathbb}{AMSb} % to ensure \mathbb does not change
+\DeclareMathAlphabet{\mathdutchcal}{U}{dutchcal}{m}{n} 
+\DeclareSymbolFontAlphabet{\mathbbl}{bbold}
+\input{shortcuts.tex}
+\setlength{\headheight}{40pt}
+\setcounter{tocdepth}{2}
+ 
+\definecolor{hot}{RGB}{65,105,225}
+\usepackage{amsmath, amssymb, tikz, amsthm, csquotes, multicol, footnote, tablefootnote, biblatex, wrapfig, float, quiver, mathrsfs, enumitem, upgreek, todonotes}
+\usepackage{thmtools}
+\usepackage[colorlinks, allcolors=hot, hypertexnames=false]{hyperref}
+\usepackage{cleveref}
+\usepackage{epigraph}
+\addbibresource{refs.bib}
+ 
+ 
+\theoremstyle{definition}
+\declaretheorem[numberwithin=section,name=Theorem]{theorem}
+\declaretheorem[sibling=theorem,name=Lemma]{lemma}
+\declaretheorem[sibling=theorem,name=Corollary]{corollary}
+\declaretheorem[sibling=theorem,name=Example]{example}
+\declaretheorem[sibling=theorem,name=Proposition]{proposition}
+\declaretheorem[sibling=theorem,name=Remark]{remark}
+\declaretheorem[sibling=theorem,name=Definition]{definition}
+\declaretheorem[numbered=no,style=definition,name=Theorem]{theorem*}
+\declaretheorem[numbered=no,style=definition,name=Lemma]{lemma*}
+\declaretheorem[numbered=no,style=definition,name=Proposition]{proposition*}
+\declaretheorem[numbered=no,style=definition,name=Definition]{definition*}
+\numberwithin{equation}{section}
+
+\setuptodonotes{color=blue!20, size=tiny}
+ 
+ 
+\begin{document}
+\large
+\title[A six-functor formalism for solid sheaves in spectral algebraic geometry]{A six-functor formalism for solid sheaves in spectral algebraic geometry}
+\author{Wern Juin Gabriel Ong}
+\address{Universit\"{a}t Bonn, Bonn, D-53113}
+\email{wgabrielong@uni-bonn.de}
+\urladdr{https://wgabrielong.github.io/}
+\begin{abstract}
+  We develop a theory of analytic rings relative to connective $\EE_{\infty}$-algebras in condensed spectra and apply it to the construction of a six-functor formalism for solid quasicoherent sheaves on spectral algebraic stacks. This extends work of Clausen--Scholze in the case of static rings, and of Hansen--Mann, L. Mann, and Rodr\'{i}guez Camargo in the animated setting.
+\end{abstract}
+\maketitle
+\tableofcontents
+\include{Introduction}
+\include{Condensed and solid spectra}
+\include{Analytic commutative algebras}
+\include{Morphisms}
+\include{Solid commutative rings}
+\include{Six operations}
+\include{Categories}
+\include{Nuclearity}
+\include{Commutative algebra}
+\printbibliography
+\end{document}

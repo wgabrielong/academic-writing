@@ -1,0 +1,137 @@
+\section{Nuclearity in the \texorpdfstring{$\kappa$}{kappa}-presentable setting}\label{app: nuclearity}
+In \cite[Lecture VIII]{Complex}, Clausen and Scholze introduce trace-class morphisms and nuclear objects in a stable $\omega$-presentable symmetric monoidal category with compact unit (though not necessarily $\omega$-presentably symmetric monoidal -- see \Cref{subsec: notation and conventions}) and relate them to dualizability. 
+
+The categories of interest in the preceding text are not necessarily $\omega$-presentable. Assuming that the tensor unit is ($\omega$-)compact, we introduce a $\kappa$-presentable version of nuclearity adapted from Ramzi's rigidification. These nuclear objects form a full subcategory closed under small colimits, and we prove that an object is dualizable if and only if it is both nuclear and compact. Much of the discussion below builds on work of Aoki \cite{AokiSchwartz} and Ramzi \cite{RamziLocRigid,RamziDualizable}.
+\subsection{Dualizability and trace-class morphisms}\label{subsec: dualizability and trace-class morphisms}
+We begin with a set-theoretic preliminary. 
+\begin{lemma}\label{lem: kappa-presentably symmetric monoidal}
+    Let $\Cscr$ be a presentably symmetric monoidal category such that the underlying category is $\kappa$-presentable for an uncountable regular cardinal $\kappa$. Then $\Cscr\in\CAlg(\PrL_{\kappa})$ if and only if the unit $1_{\Cscr}$ is $\kappa$-compact and the $\kappa$-compact objects are preserved by the tensor product. 
+\end{lemma}
+\begin{proof}
+    This follows from \cite[Not. 5.3.2.8 \& Lem. 5.3.2.11]{HA}.
+\end{proof}
+\begin{remark}\label{rmk: large kappa}
+    By \cite[Lem. 5.3.2.12]{HA}, for every presentably symmetric monoidal category $\Cscr$ there exists an uncountable regular cardinal $\kappa$ such that $\Cscr\in\CAlg(\PrL_{\kappa})$. Thus one may always choose $\kappa$ such that this hypothesis is satisfied. The substantive additional requirement in what follows is that the unit be ($\omega$-)compact, in contrast to the $\omega$-presentability assumed in \cite[Lecture VIII]{Complex}.
+\end{remark}
+Trace-class morphisms, and the nuclear objects of the next subsection, are both closely tied to dualizability. We first recall that notion, in the slightly restricted generality of a closed symmetric monoidal category.
+\begin{definition}\label{def: dualizability in closed symmetric monoidal categories}
+    Let $\Cscr$ be a closed symmetric monoidal category. 
+    \begin{enumerate}
+        \item Let $M\in\Cscr$. The \emph{pre-dual} of $M$ is the object $M^{\vee}:=\intHom_{\Cscr}(M,1_{\Cscr})$. Write $\ev_{M}:M\otimes_{\Cscr}M^{\vee}\to 1_{\Cscr}$ for the counit morphism of the adjunction $M\otimes_{\Cscr}(-)\dashv\intHom_{\Cscr}(M,-)$ at $1_{\Cscr}$. 
+        \item An object $M\in\Cscr$ is \emph{dualizable} if there exists a morphism $\coev_{M}:1_{\Cscr}\to M^{\vee}\otimes_{\Cscr}M$ such that the composites 
+        $$M\xrightarrow{\id_{M}\otimes_{\Cscr}\coev_{M}}M\otimes_{\Cscr}M^{\vee}\otimes_{\Cscr}M\xrightarrow{\ev_{M}\otimes_{\Cscr}\id_{M}}M$$
+        $$M^{\vee}\xrightarrow{\coev_{M}\otimes_{\Cscr}\id_{M^{\vee}}}M^{\vee}\otimes_{\Cscr}M\otimes_{\Cscr}M^{\vee}\xrightarrow{\id_{M^{\vee}}\otimes_{\Cscr}\ev_{M}}M^{\vee}$$
+        are identities. In this case, we say the pre-dual $M^{\vee}$ of $M$ is the \emph{dual} of $M$.  
+    \end{enumerate}
+\end{definition}
+Under the set-theoretic assumptions of \Cref{lem: kappa-presentably symmetric monoidal}, we have the following definition of trace-class morphisms. 
+\begin{definition}\label{def: trace-class}
+    Let $\kappa$ be an uncountable regular cardinal and $\Cscr\in\CAlg(\PrL_{\kappa})$ such that $1_{\Cscr}$ is compact (ie. $\omega$-compact). A morphism $f:M\to N$ in $\Cscr$ is \emph{trace-class} if the morphism $1_{\Cscr}\to\intHom_{\Cscr}(M, N)$ classifying $f$ admits a factorization as $1_{\Cscr}\to M^{\vee}\otimes_{\Cscr}N\to\intHom_{\Cscr}(M, N)$ where $M^{\vee}\otimes_{\Cscr}N\to \intHom_{\Cscr}(M, N)$ is the adjoint morphism to $M\otimes_{\Cscr}M^{\vee}\otimes_{\Cscr}N\xrightarrow{\ev_{M}\otimes_{\Cscr}\id_{N}}N$. 
+\end{definition}
+\begin{remark}[{\cite[\S 7.1]{AokiSchwartz}}]\label{rmk: trace-class factorization}
+    In the situation of \Cref{def: trace-class}, write $\eta_{f}:1_{\Cscr}\to M^{\vee}\otimes_{\Cscr}N$ for a lift of the classifying morphism. Then $f$ itself admits a factorization
+    \begin{equation}\label{eqn: trace-class factorization}
+        M\xrightarrow{\id_{M}\otimes_{\Cscr}\eta_{f}}M\otimes_{\Cscr}M^{\vee}\otimes_{\Cscr}N\xrightarrow{\ev_{M}\otimes_{\Cscr}\id_{N}}N
+    \end{equation}
+    where $\ev_{M}$ is the evaluation morphism for the pre-dual in \Cref{def: dualizability in closed symmetric monoidal categories}.
+\end{remark}
+\subsection{Rigidification and (basic) nuclear objects}\label{subsec: rigidification and basic nuclear objects}
+Throughout this subsection, fix an uncountable regular cardinal $\kappa$ and a stable $\kappa$-presentably symmetric monoidal category $\Cscr\in\CAlg(\PrL_{\St,\kappa})$ with compact unit. We define the (basic) nuclear objects of $\Cscr$ directly, and then identify them with the essential image of the rigidification of \cite{RamziLocRigid}. The comparison functor is not in general fully faithful, but is so under this hypothesis.  
+\begin{definition}\label{def: basic nuclear in category}
+    Let $\kappa$ be an uncountable regular cardinal and $\Cscr\in\CAlg(\PrL_{\St,\kappa})$ be a stable $\kappa$-presentably symmetric monoidal category with compact unit.
+    \begin{enumerate}
+        \item An object of $\Cscr$ is \emph{basic nuclear} if it is a $\QQ_{\geq0}$-indexed colimit of $\kappa$-compact objects along trace-class morphisms. Write $\BNuc(\Cscr)$ for the full subcategory of basic nuclear objects.  
+        \item An object of $\Cscr$ is \emph{nuclear} if it is in the full subcategory of $\Cscr$ generated under small colimits by basic nuclear objects. Write $\Nuc(\Cscr)$ for the full subcategory of nuclear objects. 
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: nuclear is kappa-independent}
+    Under the identification of nuclear objects with the essential image of the rigidification (\Cref{prop: nuclearity and rigidity}), \cite[Thm. 4.81]{RamziLocRigid} shows that nuclearity is independent of the cardinal $\kappa$. 
+\end{remark}
+When the underlying category is $\omega$-presentable, every basic nuclear object in the sense above is basic nuclear in the sense of Clausen and Scholze, as recorded in the following lemma.
+\begin{lemma}\label{lem: CS nuclear comparison}
+    Let $\kappa$ be an uncountable regular cardinal and $\Cscr\in\CAlg(\PrL_{\St,\kappa})$ be a stable $\kappa$-presentably symmetric monoidal category with compact unit, and suppose furthermore that the underlying category is $\omega$-presentable. Then every basic nuclear object of $\Cscr$ in the sense of \Cref{def: basic nuclear in category} (1) is basic nuclear in the sense of \cite[Def. 8.5]{Complex}.
+\end{lemma}
+\begin{proof}
+    Suppose $M$ is basic nuclear in the sense of \Cref{def: basic nuclear in category} (1), and write $M\simeq\colim_{q\in\QQ_{\geq0}}M_{q}$ where each $M_{q}$ is $\kappa$-compact and each transition morphism is trace-class. The inclusion of posets $\NN\hookrightarrow\QQ_{\geq0}$ is cofinal \cite[Rmk. 2.59]{RamziDualizable}, so $M\simeq\colim_{n\in\NN}M_{n}$. The transition morphisms $M_{n}\to M_{n+1}$ are trace-class, being composites of trace-class morphisms in the original diagram, hence this expresses $M$ as a sequential colimit along trace-class morphisms. Thus $M$ is basic nuclear in the sense of \cite[Def. 8.5]{Complex}.
+\end{proof}
+To establish the properties of nuclear objects, we identify them with the essential image of the rigidification of $\Cscr$, following Ramzi \cite[Const. 4.79 \& Thm. 4.81]{RamziLocRigid}.
+\begin{definition}\label{def: rigidification}
+    Let $\kappa$ be an uncountable regular cardinal, $\Cscr\in\CAlg(\PrL_{\St,\kappa})$ be a stable $\kappa$-presentably symmetric monoidal category, and denote by $\ysf:\Cscr_{\kappa}\hookrightarrow\Ind(\Cscr_{\kappa})$ the Yoneda embedding. The \emph{rigidification} $\Rig(\Cscr)$ of $\Cscr$ is the full subcategory of $\Ind(\Cscr_{\kappa})$ generated under small colimits by objects of the form $\colim_{q\in\QQ_{\geq0}}\ysf(M_{q})$ where $\{M_{q}\}_{q\in\QQ_{\geq0}}$ is a diagram of $\kappa$-compact objects with trace-class transition morphisms. 
+\end{definition}
+\begin{remark}\label{rmk: computation of trace-class morphisms}
+    A morphism between $\kappa$-compact objects is trace-class in $\Cscr_{\kappa}$ if and only if it is trace-class in $\Cscr$ \cite[Rmk. 3.2]{RamziLocRigid}. By symmetric monoidality of the Yoneda embedding, the corresponding morphisms are trace-class in $\Ind(\Cscr_{\kappa})$.
+\end{remark}
+We record the properties of the comparison functor that we will need.
+\begin{lemma}\label{lem: comparison functor from rigidification}
+    Let $\kappa$ be an uncountable regular cardinal and $\Cscr\in\CAlg(\PrL_{\St,\kappa})$ be a stable $\kappa$-presentably symmetric monoidal category with compact unit.
+    \begin{enumerate}
+        \item The category $\Rig(\Cscr)$ admits a symmetric monoidal structure for which the composite 
+        $$\Rig(\Cscr)\hookrightarrow\Ind(\Cscr_{\kappa})\xrightarrow{\colim}\Cscr$$
+        is symmetric monoidal. 
+        \item $\Rig(\Cscr)$ is $\omega_{1}$-presentable. Moreover, every object of the form $\colim_{q\in\QQ_{\geq0}}\ysf(M_{q})$ occurring in \Cref{def: rigidification} is $\omega_{1}$-compact.
+        \item The functor in (1) is fully faithful, induces an equivalence on the dualizable objects, and its essential image is closed under small colimits computed in $\Cscr$. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    The symmetric monoidal structure on $\Rig(\Cscr)$ is constructed in \cite[Const. 4.79]{RamziLocRigid} and symmetric monoidality of the composite is verified in \cite[Thm. 4.81]{RamziLocRigid}. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    This is shown as part of the proof of \cite[Thm. 4.81]{RamziLocRigid}. 
+\end{proof}
+\begin{proof}[Proof of (3)]
+    The functor in (1) is fully faithful when the unit is compact \cite[Cor. 4.75 \& Lem. 4.84]{RamziLocRigid}, and restricts to an equivalence on dualizable objects by \cite[Rmk. 7.21]{AokiSchwartz}: the rigidifications of Aoki and Ramzi agree by their universal properties stated in \cite[Cor. 7.20]{AokiSchwartz} and \cite[Thm. 4.81]{RamziLocRigid}. 
+    
+    As a fully faithful morphism in $\CAlg(\PrL_{\St})$, it exhibits $\Rig(\Cscr)$ as a coreflective subcategory of $\Cscr$, so by (the dual of) \cite[\href{https://kerodon.net/tag/04JX}{Tag 04JX}]{kerodon} its essential image is closed under small colimits computed in $\Cscr$.
+\end{proof}
+Together, these properties identify nuclear objects with the essential image of the rigidification. 
+\begin{proposition}\label{prop: nuclearity and rigidity}
+    Let $\kappa$ be an uncountable regular cardinal and $\Cscr\in\CAlg(\PrL_{\St,\kappa})$ be a stable $\kappa$-presentably symmetric monoidal category with compact unit. An object of $\Cscr$ is nuclear if and only if it is in the essential image of the comparison functor $\iota:\Rig(\Cscr)\to\Cscr$ of \Cref{lem: comparison functor from rigidification}. 
+\end{proposition}
+\begin{proof}
+    $(\Rightarrow)$ Suppose $M$ is nuclear. First suppose $M$ is basic nuclear and choose a presentation $M\simeq\colim_{q\in\QQ_{\geq0}}M_{q}$ by $\kappa$-compact objects along trace-class morphisms. Applying the Yoneda embedding gives an object $\colim_{q\in\QQ_{\geq0}}\ysf(M_{q})$ of $\Rig(\Cscr)\subseteq\Ind(\Cscr_{\kappa})$ whose image under $\iota$ is $M$. Thus every basic nuclear object lies in the essential image of $\iota$. Since the essential image of $\iota$ is closed under small colimits by \Cref{lem: comparison functor from rigidification} (3), every nuclear object lies in the essential image of $\iota$.
+
+    $(\Leftarrow)$ Conversely, by definition $\Rig(\Cscr)$ is generated under small colimits by objects of the form $\colim_{q\in\QQ_{\geq0}}\ysf(M_{q})$ in $\Ind(\Cscr_{\kappa})$, where each $M_{q}$ is $\kappa$-compact and the transition morphisms are trace-class. Since $\iota$ is the restriction of the colimit functor, it preserves small colimits and carries each such generator to $\colim_{q\in\QQ_{\geq0}}M_{q}$, which is basic nuclear by definition. The nuclear objects are closed under small colimits by definition, so every object in the essential image of $\iota$ is nuclear. Hence the essential image of $\iota$ is precisely $\Nuc(\Cscr)$.
+\end{proof}
+Nuclearity is preserved by symmetric monoidal functors and satisfies a projection formula when the right adjoint is sufficiently well-behaved. 
+\begin{proposition}\label{prop: preservation of nuclearity}
+    Let $\kappa$ be an uncountable regular cardinal and $F:\Cscr\to\Escr$ be a morphism in $\CAlg(\PrL_{\St,\kappa})$ with compact units. Then:
+    \begin{enumerate}
+        \item $F$ preserves nuclear objects. 
+        \item Suppose the right adjoint $G:\Escr\to\Cscr$ preserves small colimits. For all $M\in\Nuc(\Cscr)$ and $N\in\Escr$, the natural morphism
+        $$M\otimes_{\Cscr}G(N)\longrightarrow G(F(M)\otimes_{\Escr}N)$$
+        is an equivalence.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    As a morphism in $\CAlg(\PrL_{\St,\kappa})$, $F$ is symmetric monoidal, preserves small colimits, and preserves $\kappa$-compact objects. Being symmetric monoidal, it preserves trace-class morphisms \cite[Rmk. 3.2]{RamziLocRigid}. Thus $F$ carries basic nuclear objects of $\Cscr$ to basic nuclear objects of $\Escr$. The full subcategory of objects of $\Cscr$ carried into $\Nuc(\Escr)$ therefore contains the basic nuclear objects, and it is closed under small colimits since $F$ preserves small colimits and $\Nuc(\Escr)$ is closed under them, so it contains all of $\Nuc(\Cscr)$.
+\end{proof}
+\begin{proof}[Proof of (2)]
+    The functors $(-)\otimes_{\Cscr}G(N)$ and $G(F(-)\otimes_{\Escr}N)$ preserve small colimits, so the objects of $\Cscr$ on which the natural morphism is an equivalence form a subcategory closed under small colimits. Since the nuclear objects are generated under small colimits by the basic nuclear objects, it suffices to treat basic nuclear objects. Thus suppose $M\simeq\colim_{q\in\QQ_{\geq0}}M_{q}$ with the $M_{q}$ $\kappa$-compact and the transition morphisms trace-class. For each $q'>q$ in $\QQ_{\geq0}$ with $M_{q}\to M_{q'}$ trace-class, \cite[Prop. 3.4]{RamziLocRigid} supplies a diagonal filler 
+    $$% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNX3txfVxcb3RpbWVzX3tcXENzY3J9RyhOKSJdLFsyLDAsIk1fe3EnfVxcb3RpbWVzX3tcXENzY3J9RyhOKSJdLFswLDEsIkcoRihNX3txfSlcXG90aW1lc197XFxFc2NyfU4pIl0sWzIsMSwiRyhGKE1fe3EnfSlcXG90aW1lc197XFxFc2NyfU4pIl0sWzAsMl0sWzEsM10sWzAsMV0sWzIsM10sWzIsMSwiXFxleGlzdHMiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+        {M_{q}\otimes_{\Cscr}G(N)} && {M_{q'}\otimes_{\Cscr}G(N)} \\
+        {G(F(M_{q})\otimes_{\Escr}N)} && {G(F(M_{q'})\otimes_{\Escr}N)}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow["\exists"{description}, dashed, from=2-1, to=1-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}$$
+    inducing an equivalence on the filtered colimits by \cite[Lem. 2.16]{AokiSchwartz}. 
+\end{proof}
+Finally, we obtain the identification of the dualizable objects with the compact nuclear objects \cite[Prop. 9.3]{Complex}.
+\begin{proposition}\label{prop: dualizable iff nuclear and compact category}
+    Let $\kappa$ be an uncountable regular cardinal and $\Cscr\in\CAlg(\PrL_{\St,\kappa})$ be a stable $\kappa$-presentably symmetric monoidal category with compact unit. An object $M\in\Cscr$ is dualizable if and only if it is compact and nuclear.
+\end{proposition}
+\begin{proof}
+    $(\Rightarrow)$ Suppose $M$ is dualizable. A dualizable object is $\Cscr$-atomic, and since $1_{\Cscr}$ is compact the $\Cscr$-atomic objects are compact \cite[Ex. 1.23 \& Cor. 1.26]{RamziDualizable}, so $M$ is compact. Moreover its coevaluation exhibits $\id_{M}$ as trace-class, so the constant $\QQ_{\geq0}$-indexed diagram at $M$, with every transition morphism $\id_{M}$, realizes $M$ as a $\QQ_{\geq0}$-indexed colimit of the compact, in particular $\kappa$-compact, object $M$ along trace-class morphisms, exhibiting $M$ as basic nuclear and hence nuclear. 
+
+    $(\Leftarrow)$ Conversely, suppose $M$ is compact and nuclear. By \Cref{prop: nuclearity and rigidity}, $M\simeq\iota(\widetilde{M})$ for some $\widetilde{M}\in\Rig(\Cscr)$, where $\iota:\Rig(\Cscr)\to\Cscr$ is the comparison functor of \Cref{lem: comparison functor from rigidification}. For a filtered diagram $\{Y_{i}\}_{i\in I}$ in $\Rig(\Cscr)$ we compute
+    \begin{align*}
+        \Hom_{\Rig(\Cscr)}(\widetilde{M},\colim_{i\in I}Y_{i}) &\simeq \Hom_{\Cscr}(M,\iota(\colim_{i\in I}Y_{i})) && \iota \text{ fully faithful}\\
+        &\simeq \Hom_{\Cscr}(M,\colim_{i\in I}\iota(Y_{i})) && \iota \text{ colimit-preserving}\\
+        &\simeq \colim_{i\in I}\Hom_{\Cscr}(M,\iota(Y_{i})) && M \text{ compact}\\
+        &\simeq \colim_{i\in I}\Hom_{\Rig(\Cscr)}(\widetilde{M},Y_{i}) && \iota \text{ fully faithful}
+    \end{align*}
+    so that $\widetilde{M}$ too is compact. Now $\Rig(\Cscr)$ is rigid \cite[Thm. 4.81]{RamziLocRigid}, and in a rigid category a compact object is dualizable: the identity of a compact object is a compact morphism \cite[Ex. 3.7]{AokiSchwartz}, a compact morphism in a rigid category is trace-class \cite[Prop. 7.17]{AokiSchwartz}, and an object whose identity is trace-class is dualizable by \cite[Ex. 2.9 \& 2.15]{RamziLocRigid} and \cite[Ex. 1.23]{RamziDualizable}. So $\widetilde{M}$ is dualizable, and by \Cref{lem: comparison functor from rigidification} so is $M\simeq\iota(\widetilde{M})$.
+\end{proof}

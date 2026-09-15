@@ -1,0 +1,499 @@
+\appendix
+\crefalias{section}{appendix}
+\crefalias{subsection}{appendix}
+\section{\texorpdfstring{$t$}{t}-bistable categories and their localizations}\label{app: categories}
+In this appendix we collect the category-theoretic results used in the preceding text. Our main objects of study are stable presentable categories satisfying mild additional conditions on their $t$-structure and their symmetric monoidal counterparts. Much of the underlying formalism is standard, developed in the works of Aambø \cite{LocalizingTStruct}, Antieau \cite{AntieauEnhancements}, and Lurie \cite{HA, SAG}. Our primary original contribution is in \Cref{subsec: detecting smashing kernel} where we prove a recognition criterion for when the kernel of a symmetric monoidal localization is the category of modules over an idempotent algebra. 
+\subsection{Stable categories and their \texorpdfstring{$t$}{t}-structures}\label{subsec: t-structures}
+We recall the conditions that a $t$-structure on a stable category may satisfy. Throughout, we work with stable presentable categories. 
+\begin{definition}\label{def: t-structure adjectives}
+    Let $\Cscr$ be a stable presentable category with $t$-structure $(\Cscr_{\geq0},\Cscr_{\leq0})$. 
+    \begin{enumerate}
+        \item The $t$-structure on $\Cscr$ is \emph{compatible with filtered colimits} if $\Cscr_{\leq0}$ is closed under small filtered colimits in $\Cscr$. 
+        \item The $t$-structure on $\Cscr$ is \emph{compatible with countable (resp. small) products} if $\Cscr_{\geq0}$ is closed under countable (resp. small) products computed in $\Cscr$.
+        \item The $t$-structure on $\Cscr$ is \emph{right complete} if the natural functor 
+        $$\colim\left(\Cscr_{\geq0}\hookrightarrow\Cscr_{\geq-1}\hookrightarrow\Cscr_{\geq-2}\hookrightarrow\dots\right)\to\Cscr,$$
+        with the colimit taken in $\PrL$, is an equivalence. In particular, all Whitehead towers are convergent.  
+        \item The $t$-structure on $\Cscr$ is \emph{left complete} if the natural functor 
+        $$\Cscr\to\lim\left(\dots\to\Cscr_{\leq2}\xrightarrow{\tau_{\leq 1}}\Cscr_{\leq 1}\xrightarrow{\tau_{\leq0}}\Cscr_{\leq0}\right)$$
+        is an equivalence. In particular, all Postnikov towers are convergent. 
+        \item The $t$-structure on $\Cscr$ is \emph{right separated} if 
+        $$\bigcap_{n\in \ZZ}\Cscr_{\leq n}\simeq0.$$
+        \item The $t$-structure on $\Cscr$ is \emph{left separated} if 
+        $$\bigcap_{n\in\ZZ}\Cscr_{\geq n}\simeq0.$$
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: filtered colimits implies accessible}
+    If $\Cscr$ is a stable presentable category with a $t$-structure compatible with filtered colimits, the functor $\tau_{\leq0}$ is accessible, implying accessibility of the $t$-structure \cite[Prop. 1.4.4.13]{HA}. 
+\end{remark}
+We will primarily be concerned with a variant of $t$-stable categories as defined by Aambø \cite[Def. 2.22]{LocalizingTStruct}, subject to the further requirement of left completeness. 
+\begin{definition}\label{def: t-bistable category}
+    Let $\Cscr$ be a stable presentable category with $t$-structure $(\Cscr_{\geq0},\Cscr_{\leq0})$. 
+    \begin{enumerate}
+        \item $\Cscr$ is \emph{$t$-bistable} if the $t$-structure is compatible with filtered colimits and both left and right complete. 
+        \item $\Cscr$ is \emph{$t^{+}$-bistable} if it is $t$-bistable and the $t$-structure on $\Cscr$ is furthermore compatible with countable products.  
+    \end{enumerate} 
+\end{definition}
+\begin{remark}\label{rmk: hearts are Grothendieck}
+    By \cite[Rmk. 1.3.5.23]{HA}, the heart of a stable presentable category with accessible $t$-structure and compatible with filtered colimits is Grothendieck Abelian. In particular, the hearts of $t$-bistable categories are Grothendieck Abelian categories and are in particular presentable (cf. \cite[Prop. 3.10]{BekeModel}). If the category is furthermore $t^{+}$-bistable, then countable products are exact in the heart, as can be observed by countable products in the connective and coconnective subcategories agreeing.  
+\end{remark}
+$t$-bistable categories satisfy Whitehead's theorem. 
+\begin{lemma}\label{lem: separatedness and prestable}
+    Let $\Cscr$ be a $t$-bistable category. 
+    \begin{enumerate}
+        \item $\Cscr$ is both left and right separated. 
+        \item Whitehead's theorem holds in the stable category $\Cscr$: $f:M\to N$ is an equivalence in $\Cscr$ if and only if $\pi_{*}(f):\pi_{*}(M)\to\pi_{*}(N)$ is an equivalence of graded objects in $\Cscr^{\heartsuit}$. 
+    \end{enumerate} 
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    This is \cite[Lem. 2.15]{AntieauEnhancements}. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    $(\Rightarrow)$ If $f:M\to N$ is an equivalence in $\Cscr$ then we can take the trivial cofiber sequence $M\xrightarrow{f}N\to0$ and consider the long exact sequence on homotopy objects to obtain the claim. 
+
+    $(\Leftarrow)$ Suppose $f:M\to N$ is a morphism in $\Cscr$ which induces an equivalence of graded homotopy objects in the heart and set $C:=\cofib(f)$. Since $\pi_{*}(f)$ is an equivalence, the long exact sequence gives $\pi_{k}(C)\simeq0$ for all $k\in\ZZ$. Fix $r\leq0$ and consider $C_{r}:=\tau_{\geq r}C\in\Cscr_{\geq r}$. We have (co)fiber sequences $\pi_{k}(C_{r})[k]\to\tau_{\leq k}C_{r}\to\tau_{\leq k-1}C_{r}$ so induction with base case $k=r$ where $\tau_{\leq r}C_{r}\simeq\pi_{r}(C_{r})[r]$ exhibits each Postnikov truncation $\tau_{\leq k}C_{r}$ as an extension of zero objects, hence zero. By left completeness, $C_{r}\simeq\lim_{k}\tau_{\leq k}C_{r}\simeq0$ and $C$ is such that $C_{r}\simeq0$ for all $r\leq0$ so writing $C$ as the colimit of its Whitehead tower yields $C\simeq0$, as desired. 
+\end{proof}
+We isolate a further condition on a $t$-bistable category, not automatic but satisfied in cases of interest, which strengthens the exactness of products considered in \Cref{rmk: hearts are Grothendieck}. It rests on the following notions.
+\begin{definition}\label{def: compact projective objects}
+    Let $\Cscr$ be a $t$-bistable category. 
+    \begin{enumerate}
+        \item An object $P\in\Cscr_{\geq0}$ is \emph{compact projective} if $\Hom_{\Cscr}(P,-):\Cscr\to\Sp$ is $t$-exact and preserves small colimits. 
+        \item $\Cscr$ is \emph{generated by compact projective objects} if there exists a set of compact projective objects $\{P_{i}\}_{i\in I}$ such that the functors 
+        $$\{\Hom_{\Cscr}(P_{i},-):\Cscr\to\Sp\}_{i\in I}$$ 
+        are jointly conservative.
+    \end{enumerate}
+\end{definition}
+The $t$-structure of a $t$-bistable category generated by compact projective objects is compatible with products, a stable counterpart of the fact that a Grothendieck Abelian category generated by compact projective objects has exact products \cite[Lem. A.3.15]{NeemanTriangulated}. 
+\begin{proposition}\label{prop: compact projectively generated implies product compatibility}
+    Let $\Cscr$ be a $t$-bistable category generated by compact projective objects. Then the $t$-structure on $\Cscr$ is compatible with small products. 
+\end{proposition}
+\begin{proof}
+    Let $\{M_{i}\}_{i\in I}$ be a small collection of connective objects with product $M:=\prod_{i\in I}M_{i}$. For each compact projective generator $P$, using that $\Hom_{\Cscr}(-,-)$ commutes with limits in the second argument, we have an equivalence $\Hom_{\Cscr}(P,M)\simeq\prod_{i\in I}\Hom_{\Cscr}(P,M_{i})$ which is connective by right $t$-exactness of $\Hom_{\Cscr}(P,-)$, connectivity of $M_{i}$, and compatibility of the $t$-structure on $\Sp$ with small products, as the formation of homotopy groups commutes with products in $\Sp$. Consider the (co)fiber sequence $\tau_{\geq 0}M\to M\to\tau_{\leq -1}M$. For any compact projective generator $P$, we obtain a (co)fiber sequence $\Hom_{\Cscr}(P,\tau_{\geq0}M)\to \Hom_{\Cscr}(P,M)\to\Hom_{\Cscr}(P, \tau_{\leq -1}M)$ where $\Hom_{\Cscr}(P,\tau_{\geq0}M)$ is connective by $P$ being compact projective and $\Hom_{\Cscr}(P,M)$ is connective by the previous argument. Since connective objects are closed under cofibers, it follows that $\Hom_{\Cscr}(P, \tau_{\leq -1}M)$ is connective as well. But compact projectivity of $P$ also implies that $\Hom_{\Cscr}(P, \tau_{\leq -1}M)\in\Sp_{\leq-1}$ showing that $\Hom_{\Cscr}(P, \tau_{\leq -1}M)\simeq0$. By joint conservativity of the compact projective generators, we conclude $\tau_{\leq-1}M\simeq0$ and $\tau_{\geq0}M\to M$ an equivalence. 
+\end{proof}
+When $\Cscr$ is $t^{+}$-bistable, the exactness properties of the heart do not by themselves recover the homotopy of a sequential limit from that of its terms: the relationship is mediated by a Milnor sequence, whose theory is the concern of the next section.
+\subsection{Milnor sequences in the heart}\label{subsec: Milnor sequences in the heart}
+For a sequential diagram 
+$$\dots\to X_{2}\to X_{1}\to X_{0}$$
+in the category $\Ani_{*}$ of pointed animae with limit $X$, the Milnor sequence 
+$$0\to \lim_{n}^{1}\pi_{k+1}(X_{n})\to\pi_{k}(X)\to\lim_{n}\pi_{k}(X_{n})\to0$$
+recovers the homotopy groups of $X$ in degrees $k\geq 2$ as an extension. In the category of Abelian groups, the Mittag--Leffler condition gives a convenient criterion for the derived limit term $\lim^{1}_{n}\pi_{k+1}(X_{n})$ to vanish so that there is an isomorphism $\pi_{k}(X)\simeq\lim_{n}\pi_{k}(X_{n})$. 
+\begin{definition}\label{def: tower}
+    \begin{enumerate}
+        \item Let $\Cscr$ be a $t^{+}$-bistable category. The \emph{category of towers} $\Tow(\Cscr)$ is the functor category $\Fun(\NN^{\Opp},\Cscr)$.
+        \item Let $\Asf$ be a Grothendieck Abelian category in which countable products are exact. The \emph{category of towers} $\Tow(\Asf)$ is the functor category $\Fun(\NN^{\Opp},\Asf)$.
+    \end{enumerate} 
+\end{definition}
+As in the case of the category of Abelian groups, the higher derived limits of sequential diagrams vanish by a result of Roos.  
+\begin{lemma}[{\cite[Thm. 2.1 \& Rmk. 2.3]{RoosLimits}}]\label{lem: vanishing of higher derived limits}
+    Let $\Asf$ be a Grothendieck Abelian category in which countable products are exact. Then the functor $\lim_{n}:\Tow(\Asf)\to\Asf$ given on objects by $(\dots\to A_{2}\to A_{1}\to A_{0})\mapsto\lim_{n}A_{n}$ admits higher derived functors $\lim_{n}^{m}$ which vanish for $m\geq 2$. 
+\end{lemma}
+Only the limit and its first derived functor contribute, and Milnor sequences take the familiar form.
+\begin{proposition}\label{prop: Milnor sequence in t-plus bistable}
+    Let $\Cscr$ be a $t^{+}$-bistable category and $\{M_{n}\}_{n}\in\Tow(\Cscr)$ a tower with limit $M$. Then for all $k\in\ZZ$ there is a short exact sequence in $\Cscr^{\heartsuit}$
+    \begin{equation}\label{eqn: t plus bistable Milnor sequence}
+        0\to\lim_{n}^{1}\pi_{k+1}(M_{n})\to\pi_{k}(M)\to\lim_{n}\pi_{k}(M_{n})\to0.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    Writing $M$ as an equalizer of a product, we obtain a (co)fiber sequence 
+    $$M\xrightarrow{e}\prod_{\NN}M_{n}\xrightarrow{f}\prod_{\NN}M_{n}$$
+    where we have regarded $\NN$ as a set and $f$ is the endomorphism induced by the transition maps $\rho_{n+1}:M_{n+1}\to M_{n}$ of the sequential diagram by $(m_{n})_{n\in\NN}\mapsto(m_{n}-\rho_{n+1}(m_{n+1}))_{n\in\NN}$. Passing to the long exact sequence on homotopy objects 
+    $$% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXGRvdHMiXSxbMSwwLCJcXHByb2Rfe1xcTk59XFxwaV97aysxfShNX3tufSkiXSxbMywwLCJcXHByb2Rfe1xcTk59XFxwaV97aysxfShNX3tufSkiXSxbMiwxLCJcXHBpX3trfShNKSJdLFszLDEsIlxccHJvZF97XFxOTn1cXHBpX3trfShNX3tufSkiXSxbNCwxLCJcXGRvdHMiXSxbMCwxXSxbMSwyLCJcXHBpX3trKzF9KGYpIl0sWzIsMywiXFxwYXJ0aWFsIiwxXSxbMyw0LCJcXHBpX3trfShlKSIsMl0sWzQsNV1d
+    \begin{tikzcd}
+        \dots & {\prod_{\NN}\pi_{k+1}(M_{n})} && {\prod_{\NN}\pi_{k+1}(M_{n})} & \\
+        && {\pi_{k}(M)} & {\prod_{\NN}\pi_{k}(M_{n})} & \dots
+        \arrow[from=1-1, to=1-2]
+        \arrow["{\pi_{k+1}(f)}", from=1-2, to=1-4]
+        \arrow["\partial"{description}, from=1-4, to=2-3]
+        \arrow["{\pi_{k}(e)}"', from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+    \end{tikzcd}$$
+    we obtain short exact sequences 
+    \begin{equation}\label{eqn: Milnor SES}
+        0\to\coker(\pi_{k+1}(f))\to\pi_{k}(M)\to\img(\pi_{k}(e))\simeq\ker(\pi_{k}(f))\to0.
+    \end{equation}
+    By exactness of countable products and the formation of homotopy objects preserving countable products, we get that $\ker(\pi_{k}(f))\simeq\lim_{n}\pi_{k}(M_{n})$. The identification of the cokernel with the higher derived limit $\coker(\pi_{k+1}(f))\simeq\lim_{n}^{1}\pi_{k+1}(M_{n})$ follows from \cite[Lem. 2.2]{RoosLimits}. 
+\end{proof}
+\begin{remark}\label{rmk: Mittag-Leffler under exact products}
+    The Mittag--Leffler criterion persists under stronger exactness hypotheses. If small products are exact in the Grothendieck Abelian category $\Asf$, then $\lim_{n}^{1}$ vanishes on every tower in $\Asf$ with epimorphic transition maps \cite[Thm. 3.1]{RoosLimits}. In particular, if the $t$-structure on the $t^{+}$-bistable category $\Cscr$ is furthermore compatible with small products, so that small products are exact in $\Cscr^{\heartsuit}$ by the argument of \Cref{rmk: hearts are Grothendieck}, then the third term of (\ref{eqn: t plus bistable Milnor sequence}) computes $\pi_{k}(M)$ whenever the tower $\{\pi_{k+1}(M_{n})\}_{n}$ has epimorphic transition maps. 
+\end{remark}
+The derived-limit term in \Cref{prop: Milnor sequence in t-plus bistable} vanishes under a hypothesis weaker than exactness of small products.
+\begin{definition}\label{def: lim1 acyclic categories}
+    A $t^{+}$-bistable category $\Cscr$ is \emph{$\lim^{1}$-epi-acyclic} if every tower $\{A_{n}\}_{n\geq0}$ in $\Cscr^{\heartsuit}$ with epimorphic transition maps satisfies $\lim^{1}_{n}A_{n}\simeq0$. 
+\end{definition}
+\begin{remark}\label{rmk: 1-localic is lim1 epi acyclic}
+    If $\Xscr$ is a replete 1-topos, then any $t^{+}$-bistable category whose heart is equivalent to Abelian sheaves on $\Xscr$ is $\lim^{1}$-epi-acyclic \cite[Prop. 3.1.10]{Proetale}. 
+\end{remark}
+Under this condition, a heart-preserving functor that is left $t$-exact is automatically $t$-exact.
+\begin{proposition}\label{prop: lim1 acyclic t-exact}
+    Let $\Cscr$ be a $t$-bistable category, $\Escr$ a $\lim^{1}$-epi-acyclic category, and $F:\Cscr\to\Escr$ an exact, limit-preserving, left $t$-exact functor. If $F(\Cscr^{\heartsuit})\subseteq\Escr^{\heartsuit}$ then $F$ is $t$-exact. 
+\end{proposition}
+\begin{proof}
+    We need to show that $F$ is right $t$-exact. 
+
+    Let $M\in\Cscr_{[0,n]}$ be connective and bounded above. Whitehead truncations yield (co)fiber sequences $\tau_{\geq k}M\to\tau_{\geq k-1}M\to\pi_{k-1}(M)[k-1]$, giving a (co)fiber sequence 
+    $$F(\tau_{\geq k}M)\to F(\tau_{\geq k-1}M)\to F(\pi_{k-1}(M)[k-1])\simeq F(\pi_{k-1}(M))[k-1]$$
+    where the final equivalence is from exactness and heart-preservation of $F$. Decreasing induction with base case $k=n$ exhibits each Whitehead truncation for $k\geq0$ as an extension of connective objects, the connective objects are closed under extensions, showing each $F(\tau_{\geq k}M)$ is connective, and in particular $F(M)\simeq F(\tau_{\geq0}M)$ is connective. 
+
+    Now let $M\in\Cscr_{\geq0}$ be connective. By left completeness, we may write $M$ as its Postnikov tower $M\simeq\lim_{n}\tau_{\leq n}M$ and use the (co)fiber sequences from Postnikov truncations $\pi_{k}(M)[k]\to\tau_{\leq k}M\to\tau_{\leq k-1}M$. From the resulting (co)fiber sequence 
+    $$F(\pi_{k}(M))[k]\to F(\tau_{\leq k}M)\to F(\tau_{\leq k-1}M)$$
+    in $\Escr$, we note that $F(\tau_{\leq k}M)\to F(\tau_{\leq k-1}M)$ induces an equivalence on $\pi_{r}$ in $\Escr^{\heartsuit}$ for all $r\leq0$ and $k\geq 1$. As $F$ preserves limits, we have $F(M)\simeq\lim_{n}F(\tau_{\leq n}M)$. Using the Milnor sequence constructed in \Cref{prop: Milnor sequence in t-plus bistable}, we have a short exact sequence in $\Escr^{\heartsuit}$
+    $$0\to\lim^{1}_{n}\pi_{r+1}(F(\tau_{\leq n}M))\to\pi_{r}(F(M))\to\lim_{n}\pi_{r}(F(\tau_{\leq n}M))\to0.$$
+    Since $\Escr$ is $\lim^{1}$-epi-acyclic, the equivalences $F(\tau_{\leq k}M)\to F(\tau_{\leq k-1}M)$ on non-positive homotopy groups imply that $\pi_{r}(F(M))\simeq\lim_{n}\pi_{r}(F(\tau_{\leq n}M))$ for $r\leq-1$. $F$ sends bounded above connective objects to connective ones $\pi_{r}(F(\tau_{\leq n}M))\simeq0$ for $r\leq -1$ and thus $\pi_{r}(F(M))\simeq0$ for $r\leq -1$ showing that $F(M)$ is connective in $\Escr$, as desired. 
+\end{proof}
+\subsection{Symmetric monoidal structures}\label{subsec: symmetric monoidal structures}
+The $t$-bistable categories of interest are frequently equipped with a symmetric monoidal structure compatible with the $t$-structure. We record that compatibility and its elementary consequences. 
+\begin{definition}\label{def: symmetric monoidal t-bistable category}
+    Let $\Cscr$ be a stable presentable category equipped with a $t$-structure and symmetric monoidal structure. 
+    \begin{enumerate}
+        \item $\Cscr$ is a \emph{presentably symmetric monoidal $t$-bistable category} if it is presentably symmetric monoidal with underlying category $t$-bistable and the symmetric monoidal structure on $\Cscr$ restricts to one on $\Cscr_{\geq0}$.
+        \item $\Cscr$ is a \emph{presentably symmetric monoidal $t^{+}$-bistable category} if it is presentably symmetric monoidal $t$-bistable and its underlying category is $t^{+}$-bistable. 
+    \end{enumerate}  
+\end{definition}
+\begin{remark}\label{rmk: t-bistable sym mon depends is structure}
+    Relative to a fixed symmetric monoidal structure and $t$-structure, the conditions of \Cref{def: symmetric monoidal t-bistable category} -- that the tensor product preserve colimits in each variable, that the $t$-structure be both left and right complete, and that $\Cscr_{\geq0}$ be closed under tensor products with connective unit -- are properties.
+\end{remark}
+\begin{remark}\label{rmk: Postnikov is symmetric monoidal}
+    In the language of \cite[Ex. 2.2.1.3]{HA}, the $t$-structure on the $t$-bistable (resp. $t^{+}$-bistable) category $\Cscr$ is compatible with the symmetric monoidal structure. Under this hypothesis, the Postnikov truncation functors $\tau_{\leq n}$ become symmetric monoidal functors $\Cscr_{\geq0}\to\Cscr_{[0,n]}$ \cite[Ex. 2.2.1.10]{HA}.
+\end{remark}
+A recurring device compares such a category with modules over the static commutative algebra object $\pi_{0}(1_{\Cscr})$. We begin with the case of a general connective commutative algebra object $A$. 
+\begin{lemma}\label{lem: modules inherit bistability}
+    Let $\Cscr$ be a presentably symmetric monoidal $t$-bistable category, $A\in\CAlg(\Cscr_{\geq0})$, and $\Escr:=\Mod_{A}(\Cscr)$. Then:
+    \begin{enumerate}
+        \item Denote by $f^{*}:\Cscr\to\Escr$ the scalar extension functor and by $f_{*}$ its right adjoint. The category $\Escr$ is itself a presentably symmetric monoidal $t$-bistable category with respect to which the forgetful functor $f_{*}:\Escr\to\Cscr$ is conservative, $t$-exact, and preserves small colimits. If $\Cscr$ is $t^{+}$-bistable, then the same holds for $\Escr$. 
+        \item For all $M\in\Cscr,N\in\Escr$ there is an equivalence 
+        $$f_{*}\intHom_{\Escr}(f^{*}M,N)\simeq\intHom_{\Cscr}(M, f_{*}N).$$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    Since the $t$-structure on $\Cscr$ is accessible, \cite[Prop. A.15]{CartierModules} endows $\Escr$ with the induced accessible $t$-structure compatible with the symmetric monoidal structure, in the sense that $\Escr_{\geq0}\hookrightarrow\Escr$ is a symmetric monoidal functor. Moreover, $f_{*}$ is conservative \cite[Prop. 4.8.5.8 (5)]{HA} and $t$-exact and, by \cite[Cor. 4.2.3.7]{HA}, preserves small limits and colimits. 
+
+    For any filtered diagram of coconnective objects, coconnectivity of the colimit can be checked after applying the $t$-exact functor $f_{*}$. Since the functor is $t$-exact and colimit-preserving, compatibility of the $t$-structure on $\Escr$ with filtered colimits follows from compatibility of the $t$-structure on $\Cscr$ with filtered colimits. Similarly, $t$-exactness implies $f_{*}$ preserves Whitehead and Postnikov towers in $\Escr$ so by conservativity their convergence can be checked in $\Cscr$ after applying $f_{*}$. Thus left and right completeness of $\Cscr$ implies the same for $\Escr$. 
+
+    Finally, if $\Cscr$ is $t^{+}$-bistable, then so is $\Escr$ as compatibility with countable products holds in $\Escr$ by \cite[Prop. A.15 (2)]{CartierModules}. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    For $P\in\Cscr$ we compute 
+    \begin{align*}
+        \Hom_{\Cscr}(P, \intHom_{\Cscr}(M, f_{*}N)) &\simeq \Hom_{\Cscr}(P\otimes_{\Cscr}M,f_{*}N) && \otimes_{\Cscr}\dashv\intHom_{\Cscr} \\
+        &\simeq \Hom_{\Escr}(f^{*}(P\otimes_{\Cscr}M),N) && f^{*}\dashv f_{*} \\
+        &\simeq \Hom_{\Escr}(f^{*}P\otimes_{\Escr}f^{*}M,N) && f^{*}\text{ sym. mon.} \\
+        &\simeq \Hom_{\Escr}(f^{*}P,\intHom_{\Escr}(f^{*}M,N)) && \otimes_{\Escr}\dashv \intHom_{\Escr} \\
+        &\simeq \Hom_{\Cscr}(P, f_{*}\intHom_{\Escr}(f^{*}M, N)) && f^{*}\dashv f_{*}
+    \end{align*}
+    and we conclude by the Yoneda lemma. 
+\end{proof}
+In the case of the connective commutative algebra object $\pi_{0}(1_{\Cscr})$, the comparison provides a convenient tool to reduce questions about $\Cscr$ to the module category over $\pi_{0}(1_{\Cscr})$. In particular, scalar extension induces an equivalence on hearts, is well behaved on internal homs, and is conservative on bounded below objects. 
+\begin{proposition}\label{prop: relationship with heart}
+    Let $\Cscr$ be a presentably symmetric monoidal $t$-bistable category with unit $1_{\Cscr}$ and $\Escr:=\Mod_{\pi_{0}(1_{\Cscr})}(\Cscr)$. Then:
+    \begin{enumerate}
+        \item Denote by $f^{*}:\Cscr\to\Escr$ the scalar extension functor and by $f_{*}$ its right adjoint. The functor $f^{*}$ induces an equivalence $f^{\heartsuit,*}:\Cscr^{\heartsuit}\to\Escr^{\heartsuit}$ given on objects by $M\mapsto\pi_{0}^{\Escr}(M\otimes_{\Cscr}\pi_{0}^{\Cscr}(1_{\Cscr}))$, with inverse the restriction of $f_{*}$. 
+        \item The functor $f^{*}:\Cscr\to\Escr$ is conservative on bounded below objects: if $g:M\to N$ is a morphism of bounded below objects in $\Cscr$ such that $f^{*}(g):f^{*}M\to f^{*}N$ is an equivalence in $\Escr$ then $g$ is an equivalence in $\Cscr$. 
+        \item For $M,N\in\Cscr^{\heartsuit}$, $\intHom_{\Cscr}(M,N)\in\Cscr_{\leq0}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    This is \cite[Lem. A.13 \& Prop. A.15 (3)]{CartierModules}. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    By shifting we may take $M$ and $N$ to be connective. Let $M\xrightarrow{g}N\to C$ be the associated (co)fiber sequence in $\Cscr$, so $C\in\Cscr_{\geq0}$ as a cofiber of connective objects. Exactness of the tensor product identifies $\pi_{0}^{\Cscr}(1_{\Cscr})\otimes_{\Cscr}C$ with the cofiber of $f^{*}(g)$ computed in $\Cscr$, which vanishes as $f^{*}(g)$ is an equivalence. 
+
+    We claim $C\in\Cscr_{\geq n}$ for all $n\geq0$, arguing by induction with base case $n=0$ established above. Suppose $C\in\Cscr_{\geq n}$, so $C[-n]$ is connective and $\pi_{0}^{\Cscr}(1_{\Cscr})\otimes_{\Cscr}C[-n]\simeq(\pi_{0}^{\Cscr}(1_{\Cscr})\otimes_{\Cscr}C)[-n]\simeq0$. Since $\tau_{\leq0}:\Cscr_{\geq0}\to\Cscr^{\heartsuit}$ is symmetric monoidal by \Cref{rmk: Postnikov is symmetric monoidal}, we compute in $\Cscr^{\heartsuit}$
+    $$0\simeq\pi_{0}(\pi_{0}^{\Cscr}(1_{\Cscr})\otimes_{\Cscr}C[-n])\simeq\pi_{0}^{\Cscr}(1_{\Cscr})\otimes_{\Cscr^{\heartsuit}}\pi_{0}^{\Cscr}(C[-n])\simeq\pi_{0}^{\Cscr}(C[-n])\simeq\pi_{n}^{\Cscr}(C)$$
+    where the third equivalence holds as $\pi_{0}^{\Cscr}(1_{\Cscr})$ is the unit of $\Cscr^{\heartsuit}$. So $\tau_{\leq n}C\simeq\pi_{n}(C)[n]\simeq0$ and $C\in\Cscr_{\geq n+1}$ for all $n\geq0$. Left separatedness -- which holds by \Cref{lem: separatedness and prestable} (1) -- gives $C\simeq0$, so $g$ is an equivalence.
+\end{proof}
+\begin{proof}[Proof of (3)]
+    As $\intHom_{\Cscr}(M,-)$ is right adjoint to the right $t$-exact $M\otimes_{\Cscr}-$ it is left $t$-exact, so $\intHom_{\Cscr}(M,N)\in\Cscr_{\leq0}$ for $N\in\Cscr^{\heartsuit}\subseteq\Cscr_{\leq0}$.
+\end{proof}
+An object was called compact projective in \Cref{def: compact projective objects} when the spectrum-valued $\Hom_{\Cscr}(P,-)$ is $t$-exact and preserves small colimits. With a closed symmetric monoidal structure now at hand, the same two conditions may be asked of the internal hom $\intHom_{\Cscr}(M,-):\Cscr\to\Cscr$. It is convenient to name these separately.
+\begin{definition}\label{def: internally compact projective}
+    Let $\Cscr$ be a presentably symmetric monoidal $t$-bistable category. 
+    \begin{enumerate}
+        \item An object $M\in\Cscr$ is \emph{internally compact} if $\intHom_{\Cscr}(M,-)$ preserves small colimits. 
+        \item An object $M\in\Cscr_{\geq0}$ is \emph{internally projective} if the left $t$-exact functor $\intHom_{\Cscr}(M,-)$ is $t$-exact as an endofunctor of $\Cscr$. 
+        \item An object $M\in\Cscr_{\geq0}$ is \emph{internally compact projective} if it is both internally compact and internally projective. 
+    \end{enumerate}
+\end{definition}
+Internal compact projectivity is inherited by the unit and preserved under finite (co)products and tensor products, and implies ordinary compact projectivity when the unit is compact projective.
+\begin{lemma}\label{lem: permanence of internal compact projectivity}
+    Let $\Cscr$ be a presentably symmetric monoidal $t$-bistable category. 
+    \begin{enumerate}
+        \item The unit $1_{\Cscr}$ is internally compact projective, and the internally compact projective objects are closed under finite (co)products and tensor products. 
+        \item If the unit $1_{\Cscr}$ is compact projective, then every internally compact projective object is compact projective. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    $1_{\Cscr}$ is internally compact projective as $\intHom_{\Cscr}(1_{\Cscr},-)\simeq\id_{\Cscr}$ which is $t$-exact and preserves small colimits. In the case of finite (co)products we can reduce to the case of binary ones, where it follows $\intHom_{\Cscr}(-,-)$ preserving finite (co)products in the first argument and $t$-exactness of finite (co)products. Now let $M,N$ be internally compact projective. Then $\intHom_{\Cscr}(M\otimes_{\Cscr}N,-)\simeq\intHom_{\Cscr}(M,\intHom_{\Cscr}(N,-))$ is the composite of two $t$-exact functors which preserve small colimits, hence is $t$-exact and preserves small colimits.
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Let $M$ be internally compact projective. The mapping spectrum factors as $\Hom_{\Cscr}(M,-)\simeq\Hom_{\Cscr}(1_{\Cscr},\intHom_{\Cscr}(M,-))$. Now $\intHom_{\Cscr}(M,-)$ is $t$-exact and preserves small colimits as $M$ is internally compact projective, and $\Hom_{\Cscr}(1_{\Cscr},-)$ is $t$-exact and preserves small colimits as $1_{\Cscr}$ is compact projective, so their composite $\Hom_{\Cscr}(M,-)$ is $t$-exact and preserves small colimits. Thus $M$ is compact projective.
+\end{proof}
+Internal compactness is moreover implied by ordinary compactness whenever the compact objects are closed under tensoring. This uses neither the $t$-structure nor a compact unit, so we state it for a stable $\omega$-presentable category. 
+\begin{lemma}\label{lem: compact implies internally compact}
+   Let $\Cscr$ be a stable $\omega$-presentable presentably symmetric monoidal category with compact unit in which the compact objects are closed under tensor product. Then every compact object is internally compact. 
+\end{lemma}
+\begin{proof}
+    For each compact generator $M$ and compact object $N$ we have a natural equivalence $\Hom_{\Cscr}(M,\intHom_{\Cscr}(N,-))\simeq\Hom_{\Cscr}(M\otimes_{\Cscr}N,-)$ which preserves small colimits as $M\otimes_{\Cscr}N$ is compact so $\intHom_{\Cscr}(N,-)$ commutes with small colimits, as desired. 
+\end{proof}
+\begin{remark}\label{rmk: internally compact notation clarification}
+    Equivalently, \Cref{lem: compact implies internally compact} holds for stable $\omega$-presentable presentably symmetric monoidal category in which binary tensor products of compact objects are compact, and in particular for stable $\omega$-presentably symmetric monoidal categories. See \Cref{subsec: notation and conventions} for the conventions we adopt. 
+\end{remark}
+This relationship holds not only within a fixed category, but along free functors to the module category over some connective commutative algebra object in $\Cscr$. 
+\begin{proposition}\label{prop: scalar extension preserves internal compact projectives}
+    Let $\Cscr$ be a presentably symmetric monoidal $t$-bistable category and $A\in\CAlg(\Cscr_{\geq0})$.
+    \begin{enumerate}
+        \item If $M$ is internally compact projective in $\Cscr$ then $A\otimes_{\Cscr}M$ is internally compact projective in $\Mod_{A}(\Cscr)$. 
+        \item If $\Cscr$ is generated under small colimits and shifts by a set $\{P_{i}\}_{i\in I}$ of internally compact projective objects, then $\Mod_{A}(\Cscr)$ is generated under small colimits and shifts by $\{A\otimes_{\Cscr}P_{i}\}_{i\in I}$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Using \Cref{lem: modules inherit bistability} (2), this follows from $f_{*}$ preserving small colimits and being $t$-exact. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    The objects $A\otimes_{\Cscr}P_{i}$ for varying $i\in I$ are internally compact projective by (1). These objects generate because, by adjunction, $\Hom_{\Cscr}(P_{i},f_{*}(-))\simeq\Hom_{\Mod_{A}(\Cscr)}(A\otimes_{\Cscr}P_{i},-)$ are jointly conservative as functors to $\Sp$ by conservativity of $f_{*}$ and $\Hom_{\Cscr}(P_{i},-)$ being jointly conservative in $\Cscr$. 
+\end{proof}
+This completes the framework of presentably symmetric monoidal $t$-bistable categories and their internal notions of compactness and projectivity. We turn now to the localizations of such categories.
+\subsection{Localizations of stable presentable categories}\label{subsec: localizations of stable categories}
+Localizations of $t$-bistable categories arise repeatedly in the main text. We isolate the class relevant to our purposes, whose defining feature is that the reflection is compatible with the connective part of the $t$-structure.
+\begin{definition}\label{def: pi stably reflective}
+    Let $\Cscr$ be a $t$-bistable category. A full subcategory $\Cscr^{L}\subseteq\Cscr$ is \emph{$\pi$-stably reflective} if $\Cscr^{L}$ is closed under small limits and small colimits in $\Cscr$ and the inclusion $\Cscr^{L}\hookrightarrow\Cscr$ admits a left adjoint $L:\Cscr\to\Cscr^{L}$ which is right $t$-exact regarded as an endofunctor of $\Cscr$.  
+\end{definition}
+Before turning to the induced $t$-structure on the local objects, we record the closure property that makes the argument go through in its natural generality. Membership in a full subcategory is detected by retracts as soon as the subcategory is idempotent complete, with no reference to any additional structure.
+\begin{lemma}\label{lem: retracts in full subcategories}
+    Let $\Cscr$ be a category and $\Escr\subseteq\Cscr$ an idempotent complete full subcategory closed under equivalences. If an object $C\in\Cscr$ admits a retraction $C\xrightarrow{i}E\xrightarrow{r}C$ in $\Cscr$ with $E\in\Escr$, then $C\in\Escr$. 
+\end{lemma}
+\begin{proof}
+    Recall the simplicial sets $\Idem\subseteq\Idem^{+}\supseteq\Ret$ of \cite[Def. 4.4.5.2]{HTT}. The simplicial set $\Idem^{+}$ has exactly two vertices $x$ and $y$, of which $x$ is the unique vertex of $\Idem$, and $\Ret$ is the quotient of $\Delta^{2}$ collapsing the edge $\Delta^{\{0,2\}}$ to $y$. A map $\Ret\to\Cscr$ is then the datum of a $2$-simplex witnessing a retraction, so the given retraction determines a weak retraction diagram $\overline{F}:\Ret\to\Cscr$ with $\overline{F}(x)=E$ and $\overline{F}(y)=C$ in the sense of \cite[Def. 4.4.5.4]{HTT}. The inclusion $\Ret\subseteq\Idem^{+}$ is inner anodyne by \cite[Prop. 4.4.5.6]{HTT}, so the restriction map $\Fun(\Idem^{+},\Cscr)\to\Fun(\Ret,\Cscr)$ is a trivial fibration by \cite[Cor. 4.4.5.7]{HTT}. Choose an extension $F:\Idem^{+}\to\Cscr$ of $\overline{F}$ and set
+    $$\widetilde{F}:=F|_{\Idem}:\Idem\to\Cscr,$$
+    a coherent idempotent carried by $E$ with underlying endomorphism $i\circ r:E\to E$. 
+
+    We claim $\widetilde{F}$ factors through $\Escr$. As $\Escr\subseteq\Cscr$ is full, a simplex of $\Cscr$ lies in $\Escr$ if and only if each of its vertices does. The simplicial set $\Idem$ has the single vertex $x$ by \cite[Rem. 4.4.5.3]{HTT}, and $\widetilde{F}(x)=E\in\Escr$, so every simplex in the image of $\widetilde{F}$ has all its vertices equal to $E$. Thus $\widetilde{F}=\iota\circ G$ for a unique $G:\Idem\to\Escr$, where $\iota:\Escr\to\Cscr$ is the inclusion. Since $\Escr$ is idempotent complete, $G$ is effective, so extends to a strong retraction diagram $H:\Idem^{+}\to\Escr$ \cite[Cor. 4.4.5.14 \& 4.4.5.15]{HTT}. 
+
+    Set $E':=H(y)\in\Escr$ and let $\Dscr\subseteq\Fun(\Idem,\Cscr)$ be the full subcategory spanned by the effective idempotents. The idempotent $\widetilde{F}$ is effective, being the restriction of $F$, so lies in $\Dscr$, as do the restrictions of $F$ and $\iota\circ H$ to $\Idem$, both of which recover $\widetilde{F}$. The restriction map $\Fun(\Idem^{+},\Cscr)\to\Dscr$ is a trivial Kan fibration by \cite[Cor. 4.4.5.16]{HTT}, so its fiber over $\widetilde{F}$ is a contractible Kan complex, and $F\simeq\iota\circ H$ in $\Fun(\Idem^{+},\Cscr)$. Evaluating at $y$ gives
+    $$C=F(y)\simeq(\iota\circ H)(y)=E'$$
+    in $\Cscr$. As $\Escr$ is closed under equivalences and $E'\in\Escr$, we conclude $C\in\Escr$. 
+\end{proof}
+This is slightly more than the retract closure recorded in \cite[\S 4.4.5]{HTT}, but it is elementary and streamlines the verification that $\Cscr^{L}$ is closed under retracts, reducing it to idempotent completeness of the subcategory of local objects $\Cscr^{L}$. With it in hand, the $\pi$-stably reflective condition shows that the local objects admit the induced $t$-structure.
+\begin{proposition}\label{prop: properties of pi stably reflective localizations}
+    Let $\Cscr$ be a $t$-bistable category and $\Cscr^{L}\subseteq\Cscr$ a $\pi$-stably reflective subcategory. 
+    \begin{enumerate}
+        \item $\Cscr^{L}$ is itself a stable presentable category closed under extensions and retracts in $\Cscr$. 
+        \item $\Cscr^{L}$ admits the induced $t$-structure from $\Cscr$ with respect to which $\Cscr^{L}$ is itself $t$-bistable. 
+        \item $M\in\Cscr^{L}$ if and only if $\pi_{k}(M)\in(\Cscr^{L})^{\heartsuit}$ for all $k\in\ZZ$. 
+        \item If $\Cscr$ is furthermore $t^{+}$-bistable then $\Cscr^{L}$ is itself $t^{+}$-bistable with respect to the induced $t$-structure. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Closure under small limits and colimits implies $\Cscr^{L}$ is a stable category \cite[Lem. 1.1.3.3]{HA} and presentability follows from \cite[Thm. 1.1]{RagimovReflection}. 
+
+    For closure under extensions, we can contemplate the diagram 
+    \begin{equation}\label{eqn: closed under extensions diagram}
+        % https://q.uiver.app/#q=WzAsNixbMCwwLCJNX3sxfSJdLFsyLDAsIk1fezJ9Il0sWzAsMSwiMCJdLFsyLDEsIk1fezN9Il0sWzQsMCwiMCJdLFs0LDEsIk1fezF9WzFdIl0sWzAsMV0sWzEsNF0sWzQsNV0sWzEsM10sWzMsNV0sWzAsMl0sWzIsM11d
+        \begin{tikzcd}
+            {M_{1}} && {M_{2}} && 0 \\
+            0 && {M_{3}} && {M_{1}[1]}
+            \arrow[from=1-1, to=1-3]
+            \arrow[from=1-1, to=2-1]
+            \arrow[from=1-3, to=1-5]
+            \arrow[from=1-3, to=2-3]
+            \arrow[from=1-5, to=2-5]
+            \arrow[from=2-1, to=2-3]
+            \arrow[from=2-3, to=2-5]
+        \end{tikzcd}
+    \end{equation}
+    in $\Cscr$ where all squares are biCartesian. Since $M_{1},M_{3}\in\Cscr^{L}$ and $\Cscr^{L}$ is closed under colimits, $M_{1}[1]\in\Cscr^{L}$. Closure under limits then places $M_{2}$, the fiber of $M_{3}\to M_{1}[1]$ in $\Cscr$, in $\Cscr^{L}$.
+
+    Cocompleteness of $\Cscr$ and $\Cscr^{L}$ imply they are idempotent complete \cite[Rmk. 4.4.5.3 \& Cor. 4.4.5.15]{HTT}. Thus $\Cscr^{L}$ is closed under retracts by \Cref{lem: retracts in full subcategories}. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    To show that $\Cscr^{L}$ admits the induced $t$-structure, it suffices to show that $\Cscr^{L}$ is closed under the Postnikov truncation functor $\tau_{\leq0}$ in $\Cscr$ \cite[\S 1.3.19 \& \S 2]{Perverse}. Fix $M\in\Cscr^{L}$. Since $\tau_{\leq0}M\simeq\cofib(\tau_{\geq 1}M\to M)$ and $\Cscr^{L}$ is closed under colimits, it suffices to show that $\tau_{\geq 1}M\in\Cscr^{L}$. We exhibit $\tau_{\geq 1}M$ as a retract of $L(\tau_{\geq 1}M)$ in which case (1) implies $\tau_{\geq 1}M\in\Cscr^{L}$. 
+
+    Write $c:\tau_{\geq 1}M\to M$ for the counit of the Whitehead truncation with coconnective fiber $(\tau_{\leq 0}M)[-1]$. Since $L$ is exact and right $t$-exact, $L(\tau_{\geq 1}M)\in\Cscr_{\geq 1}$. Applying $\Hom_{\Cscr}(L(\tau_{\geq 1}M),-)$ to the (co)fiber sequence $(\tau_{\leq 0}M)[-1]\to\tau_{\geq 1}M\to M$ gives an isomorphism on $\pi_{0}$ from $\Hom_{\Cscr}(L(\tau_{\geq 1}M),\tau_{\geq 1}M)$ to $\Hom_{\Cscr}(L(\tau_{\geq 1}M),M)$, as the fiber $\Hom_{\Cscr}(L(\tau_{\geq 1}M),(\tau_{\leq0}M)[-1])$ lies in $\Sp_{\leq -2}$. Indeed, $\Hom_{\Cscr}(L(\tau_{\geq 1}M),\tau_{\leq 0}M)$ is coconnective as $L(\tau_{\geq 1}M)\in\Cscr_{\geq 0}$ and $\tau_{\leq 0}M\in\Cscr_{\leq 0}$, and vanishes in degree $0$ as $L(\tau_{\geq 1}M)\in\Cscr_{\geq 1}$, so $\tau_{\leq0}M$ lies in $\Sp_{\leq -1}$, and shifting gives $(\tau_{\leq0}M)[-1]\in\Sp_{\leq -2}$. There exists a unique morphism $\beta:L(\tau_{\geq 1}M)\to \tau_{\geq 1}M$ such that $c\circ\beta\simeq\alpha$ where $\alpha:L(\tau_{\geq 1}M)\to M$ is the composite of $L(c)$ with the inverse of the unit $\eta_{M}:M\to L(M)$, which is invertible since $M\in\Cscr^{L}$. 
+
+    We claim $\beta\circ\eta_{\tau_{\geq 1}M}\simeq\id_{\tau_{\geq 1}M}$. Using the naturality square involving the downward-pointing vertical arrows
+    \begin{equation}\label{eqn: retraction square}
+        % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHRhdV97XFxnZXEgMX1NIl0sWzIsMCwiTSJdLFsyLDEsIkwoTSkiXSxbMCwxLCJMKFxcdGF1X3tcXGdlcSAxfU0pIl0sWzAsMSwiYyJdLFszLDIsIkwoYykiLDJdLFsxLDIsIlxcZXRhX3tNfSIsMix7ImN1cnZlIjoxfV0sWzAsMywiXFxldGFfe1xcdGF1X3tcXGdlcSAxfU19IiwyXSxbMiwxLCJcXGV0YV97TX1eey0xfSIsMix7ImN1cnZlIjoxfV1d
+        \begin{tikzcd}
+            {\tau_{\geq 1}M} && M \\
+            {L(\tau_{\geq 1}M)} && {L(M).}
+            \arrow["c", from=1-1, to=1-3]
+            \arrow["{\eta_{\tau_{\geq 1}M}}"', from=1-1, to=2-1]
+            \arrow["{\eta_{M}}"', curve={height=6pt}, from=1-3, to=2-3]
+            \arrow["{L(c)}"', from=2-1, to=2-3]
+            \arrow["{\eta_{M}^{-1}}"', curve={height=6pt}, from=2-3, to=1-3]
+        \end{tikzcd}
+    \end{equation}
+    we compute 
+    $$c\circ \beta\circ\eta_{\tau_{\geq 1}M}\simeq\alpha\circ\eta_{\tau_{\geq 1}M}\simeq\eta_{M}^{-1}\circ L(c)\circ\eta_{\tau_{\geq 1}M}\simeq\eta_{M}^{-1}\circ\eta_{M}\circ c\simeq c.$$
+    Since $\tau_{\geq 1}M\in\Cscr_{\geq1}$, the same argument applied to the (co)fiber sequence $(\tau_{\leq0}M)[-1]\to\tau_{\geq 1}M\xrightarrow{c}M$ with $\Hom_{\Cscr}(\tau_{\geq 1}M,-)$ in place of $\Hom_{\Cscr}(L(\tau_{\geq 1}M),-)$ shows that the map
+    $$\Hom_{\Cscr}(\tau_{\geq 1}M,\tau_{\geq 1}M)\to\Hom_{\Cscr}(\tau_{\geq 1}M,M),\qquad g\mapsto c\circ g,$$
+    is an isomorphism on $\pi_{0}$, the fiber $\Hom_{\Cscr}(\tau_{\geq 1}M,(\tau_{\leq0}M)[-1])$ lying in $\Sp_{\leq -2}$ as before. In particular, it is injective on $\pi_{0}$, so $\beta\circ\eta_{\tau_{\geq 1}M}$ and $\id_{\tau_{\geq 1}M}$, which the preceding computation sends to the common value $c$, are homotopic. This exhibits $\tau_{\geq 1}M$ as a retract of $L(\tau_{\geq 1}M)\in\Cscr^{L}$, so $\tau_{\geq 1}M\in\Cscr^{L}$ by (1). Using the (co)fiber sequence $\tau_{\geq 1}M\to M\to\tau_{\leq 0}M$ and closure of $\Cscr^{L}$ under colimits, we conclude $\tau_{\leq 0}M\in\Cscr^{L}$, which is what we wanted to show.
+
+    Since $\Cscr^{L}$ is equipped with the induced $t$-structure and the inclusion $\Cscr^{L}\hookrightarrow\Cscr$ preserves and reflects small limits and colimits, each defining property of a $t$-bistable category is inherited by $\Cscr^{L}$ from $\Cscr$.
+\end{proof}
+\begin{proof}[Proof of (3)]
+    $(\Rightarrow)$ If $M\in\Cscr^{L}$ then $\pi_{k}(M)\in(\Cscr^{L})^{\heartsuit}$ for all $k\in\ZZ$, since $\Cscr^{L}$ admits the induced $t$-structure.
+
+    $(\Leftarrow)$ By right completeness of $\Cscr$, we can write $M$ as the colimit of its Whitehead tower, and each Whitehead truncation again satisfies the hypothesis, its homotopy objects being among those of $M$. Since $\Cscr^{L}$ is closed under small colimits in $\Cscr$, it suffices to treat $M$ bounded below, say $M\in\Cscr_{\geq r}$. By left completeness, we have $M\simeq\lim_{k}\tau_{\leq k}M$, and since $\Cscr^{L}$ is closed under limits it suffices to show that each Postnikov truncation $\tau_{\leq k}M$ lies in $\Cscr^{L}$. We argue by induction on $k\geq r$ using the (co)fiber sequences 
+    $$\pi_{k}(M)[k]\to\tau_{\leq k}M\to\tau_{\leq k-1}M,$$
+    which exhibit $\tau_{\leq k}M$ as an extension of $\tau_{\leq k-1}M$ by $\pi_{k}(M)[k]$. In the base case $k=r$, the boundedness $M\in\Cscr_{\geq r}$ gives $\tau_{\leq r}M\simeq\pi_{r}(M)[r]$ which lies in $\Cscr^{L}$ because $\pi_{r}(M)\in(\Cscr^{L})^{\heartsuit}$ and $\Cscr^{L}$ is closed under shifts. For the inductive step, $\pi_{k}(M)[k]\in\Cscr^{L}$ by hypothesis and $\tau_{\leq k-1}M\in\Cscr^{L}$ by the inductive hypothesis, so $\tau_{\leq k}M\in\Cscr^{L}$ by closure under extensions in (1). Hence each $\tau_{\leq k}M$ lies in $\Cscr^{L}$ and therefore so does $M\simeq\lim_{k}\tau_{\leq k}M$.
+\end{proof}
+\begin{proof}[Proof of (4)]
+    The only condition left to verify atop those shown in (2) is compatibility with countable products. Since $\Cscr^{L}$ admits the induced $t$-structure and the inclusion $\Cscr^{L}\hookrightarrow\Cscr$ reflects limits, compatibility of the induced $t$-structure on $\Cscr^{L}$ with countable products follows from compatibility of the $t$-structure on $\Cscr$ with countable products. 
+\end{proof}
+We extend these considerations to the symmetric monoidal setting. The following criterion of Lurie gives conditions under which a localization is compatible with the tensor product.
+\begin{proposition}[{\cite[Prop. 2.2.1.9]{HA}}]\label{prop: sym mon localizations}
+    Let $\Cscr^{\otimes}$ be a symmetric monoidal category and $L:\Cscr\to\Cscr^{L}$ a localization of the underlying category such that for all $L$-equivalences $f:M\to N$ and all $P\in\Cscr$, the induced morphism $P\otimes_{\Cscr}M\xrightarrow{\id_{P}\otimes f}P\otimes_{\Cscr}N$ is an $L$-equivalence. Then $\Cscr^{L}$ admits a unique symmetric monoidal structure with respect to which $L$ assembles into a symmetric monoidal functor $L^{\otimes}:\Cscr^{\otimes}\to(\Cscr^{L})^{\otimes}$. 
+\end{proposition}
+\begin{remark}\label{rmk: inclusion is lax}
+    In the situation of \Cref{prop: sym mon localizations}, the inclusion $\Cscr^{L}\hookrightarrow\Cscr$ is lax symmetric monoidal with respect to the respective symmetric monoidal structures. 
+\end{remark}
+We name the localizations meeting this hypothesis in the setting of interest.
+\begin{definition}\label{def: compatible localization}
+    Let $\Cscr$ be a presentably symmetric monoidal $t$-bistable category and $\Cscr^{L}$ a $\pi$-stably reflective subcategory. The localization functor $L:\Cscr\to\Cscr^{L}$ is \emph{$\otimes_{\Cscr}$-compatible} if it satisfies the hypothesis of \Cref{prop: sym mon localizations}: $L$-equivalences are preserved by tensoring. 
+\end{definition}
+Compatibility promotes the induced structure on $\Cscr^{L}$ to a monoidal one.
+\begin{proposition}\label{prop: compatible localization implies pres sym mon t-bistable}
+    Let $\Cscr$ be a presentably symmetric monoidal $t$-bistable category and $\Cscr^{L}$ a $\pi$-stably reflective subcategory with $\otimes_{\Cscr}$-compatible localization $L:\Cscr\to\Cscr^{L}$. 
+    \begin{enumerate}
+        \item $\Cscr^{L}$ is a presentably symmetric monoidal $t$-bistable category. 
+        \item If $\Cscr$ was furthermore $t^{+}$-bistable, then $\Cscr^{L}$ is a presentably symmetric monoidal $t^{+}$-bistable category. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Note that the underlying category $\Cscr^{L}$ is $t$-bistable with respect to the induced $t$-structure by \Cref{prop: properties of pi stably reflective localizations}. The symmetric monoidal structure on $\Cscr^{L}$ is given by $M\otimes_{\Cscr^{L}}N:=L(M\otimes_{\Cscr}N)$ \cite[Prop. 2.2.1.9]{HA}, and $L$ is right $t$-exact, so the tensor product on $\Cscr^{L}$ restricts to one on $\Cscr^{L}_{\geq0}$. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    This follows readily from (1) since $t^{+}$-bistability is a condition on the underlying category which is satisfied by \Cref{prop: properties of pi stably reflective localizations} (4). 
+\end{proof}
+\subsection{Recognizing symmetric monoidal localizations with smashing kernel}\label{subsec: detecting smashing kernel}
+We characterize when a $\otimes_{\Cscr}$-compatible localization of a $t$-bistable category is an open immersion, that is, has kernel the category of modules over an idempotent algebra \cite[Prop. 6.5]{Complex}.
+\begin{definition}\label{def: categorical open immersion}
+    A morphism $f^{*}:\Cscr\to\Escr$ in $\CAlg(\PrL_{\St})$ with a fully faithful right adjoint is an \emph{open immersion} if it satisfies either of the following equivalent conditions: 
+    \begin{enumerate}[label=(\alph*)]
+        \item $f^{*}$ admits a fully faithful left adjoint $f_{\sharp}$ that satisfies the projection formula: for all $M\in\Cscr$ and $N\in\Escr$ the natural morphism $f_{\sharp}(f^{*}M\otimes_{\Escr}N)\to M\otimes_{\Cscr}f_{\sharp}N$ is an equivalence in $\Cscr$.
+        \item The kernel $\ker(f^{*}):=\{K\in\Cscr:f^{*}K\simeq0\}\subseteq\Cscr$ is equivalent, as a full subcategory of $\Cscr$, to $\Mod_{Q}(\Cscr)$ for some idempotent algebra $Q\in\Idem(\Cscr)$.
+    \end{enumerate}
+\end{definition}
+The two formulations are connected by the adjoint functor theorem: an open immersion $f^{*}$ admits a left adjoint and so preserves limits. Preservation of limits is one of the two structural inputs the kernel analysis requires -- the other being homotopy-detection which we define below. 
+\begin{definition}\label{def: kernel detected homotopy}
+    Let $L:\Cscr\to\Cscr^{L}$ be a $\pi$-stably reflective localization of a $t$-bistable category. Its kernel is \emph{homotopy detected} if it admits the induced $t$-structure: for each $K\in\ker(L)$ and every $n\in\ZZ$, both $\tau_{\leq n}K$ and $\tau_{\geq n}K$ lie in $\ker(L)$. 
+\end{definition}
+\begin{remark}\label{rmk: homotopy detection of kernel}
+    Homotopy detection of $\ker(L)$ is implied by, but weaker than $t$-exactness of $L$. If $L$ is $t$-exact, then it commutes with the truncation functors, so $L(K)\simeq0$ forces $L(\tau_{\leq n}K)\simeq\tau_{\leq n}L(K)\simeq0$ and $\ker(L)$ is closed under truncation. The converse need not hold: we only require the comparison map for truncations to be an equivalence for all $K\in\ker(L)$, but not necessarily for all objects of $\Cscr$. 
+\end{remark}
+We consider the structure of the kernel of an $\otimes_{\Cscr}$-compatible $\pi$-stably reflective localization under the additional assumption that $L$ preserves small limits. 
+\begin{lemma}\label{lem: kernel structure L limit preserving}
+    Let $L:\Cscr\to\Cscr^{L}$ be a $\otimes_{\Cscr}$-compatible $\pi$-stably reflective localization of a presentably symmetric monoidal $t$-bistable category with $L$ preserving small limits. Then: 
+    \begin{enumerate}
+        \item $\ker(L):=\{K\in\Cscr:L(K)\simeq0\}\subseteq\Cscr$ is a stable tensor ideal closed under small limits, colimits, and extensions in $\Cscr$. 
+        \item If moreover $\ker(L)$ is homotopy detected, $K\in\ker(L)$ if and only if $\pi_{k}(K)\in\ker(L)\cap\Cscr^{\heartsuit}$ for all $k\in\ZZ$. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    By \cite[Def. 2.26 \& Lem. 2.27]{LocalizingTStruct}, $\ker(L)$ is a stable subcategory of $\Cscr$ closed under small colimits and extensions. Since $L$ preserves limits, for $M:=\lim_{i\in I}M_{i}$ a limit of objects $M_{i}\in\ker(L)$, we have $L(\lim_{i\in I}M_{i})\simeq \lim_{i\in I}L(M_{i})\simeq\lim_{i\in I}0\simeq0$ showing $L(M)\simeq0$ and $M\in\ker(L)$. To see $\ker(L)$ is a tensor ideal, we note that for $K\in\ker(L)$ that $K\to 0$ is an $L$-equivalence, so by \Cref{prop: sym mon localizations}, $M\otimes_{\Cscr}K\to M\otimes_{\Cscr}0\simeq 0$ is an $L$-equivalence showing $M\otimes_{\Cscr}K\in\ker(L)$ for all $M\in\Cscr$. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    $(\Rightarrow)$ Let $K\in\ker(L)$. Since $\ker(L)$ is homotopy detected, each homotopy group $\pi_{k}(K)$ lies in $\ker(L)\cap\Cscr^{\heartsuit}$. 
+
+    $(\Leftarrow)$ By right completeness we can write $K$ as the colimit of its Whitehead tower, and each Whitehead truncation again satisfies the hypothesis. Since $\ker(L)$ is closed under small colimits, we may assume $K$ to be bounded below. For $K\in\Cscr_{\geq r}$, we appeal to left completeness to write $K\simeq\lim_{k}\tau_{\leq k}K$ as the limit of its Postnikov tower, and further reduce to showing each term of the Postnikov tower lies in $\ker(L)$. Induction with base case 
+    $$\pi_{r}(K)[r]\to\tau_{\leq r}K\to\tau_{\leq r-1}K\simeq0$$
+    exhibits each term of the Postnikov tower as an extension of two objects in $\ker(L)$, and thus lies in $\ker(L)$ by closure of $\ker(L)$ under extensions. We then conclude that $K\in\ker(L)$ for $\ker(L)$ is closed under limits. 
+\end{proof}
+We use the following recognition criterion for the category of modules over an idempotent algebra. 
+\begin{proposition}[{\cite[Thm. 7.7]{RagimovReflection}}]\label{prop: idempotent recognition}
+    Let $\Cscr$ be a presentably symmetric monoidal category and $\Escr\subseteq\Cscr$ a full subcategory. The following are equivalent: 
+    \begin{enumerate}[label=(\alph*)]
+        \item $\Escr\simeq\Mod_{Q}(\Cscr)$ for some idempotent algebra $Q\in\Idem(\Cscr)$. 
+        \item The inclusion $\iota:\Escr\hookrightarrow\Cscr$ admits a left adjoint given on objects by $M\mapsto M\otimes_{\Cscr}Q$ for some object $Q\in\Cscr$. 
+        \item $\Escr$ is closed under limits and colimits in $\Cscr$ and $E\otimes_{\Cscr}M,\intHom_{\Cscr}(M,E)\in\Escr$ for $E\in\Escr,M\in\Cscr$.
+    \end{enumerate}
+\end{proposition}
+The internal hom condition of \Cref{prop: idempotent recognition} (c) is the substantive one to verify. The next two results reduce it to a condition on static objects: first by commuting the internal hom past Whitehead and Postnikov towers, then by descending membership to homotopy objects.
+\begin{lemma}\label{lem: internal hom and towers}
+    Let $\Cscr$ be a presentably symmetric monoidal $t$-bistable category. 
+    \begin{enumerate}
+        \item If $M\in\Cscr$ is bounded below, then $\intHom_{\Cscr}(M,-)$ commutes with Whitehead towers of bounded above objects: $\intHom_{\Cscr}(M, N)\simeq\colim_{k}\intHom_{\Cscr}(M,\tau_{\geq k}N)$. 
+        \item If $N\in\Cscr$ is bounded above, then $\intHom_{\Cscr}(-,N)$ commutes with Postnikov towers of bounded below objects: $\intHom_{\Cscr}(M, N)\simeq\colim_{k}\intHom_{\Cscr}(\tau_{\leq k}M, N)$. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    By exactness of $\intHom_{\Cscr}(-,-)$ and shifting, we may reduce to the case of $M$ connective and $N$ coconnective. 
+
+    We first show (1). As the right adjoint of the right $t$-exact functor $M\otimes_{\Cscr}-$, the functor $\intHom_{\Cscr}(M,-)$ is left $t$-exact. Writing $N\simeq\colim_{k}\tau_{\geq k}N$ for the Whitehead tower, which converges by right completeness, we obtain a comparison morphism
+    \begin{equation}\label{eqn: Whitehead comparison map}
+        \colim_{k}\intHom_{\Cscr}(M,\tau_{\geq k}N)\longrightarrow\intHom_{\Cscr}(M, N).
+    \end{equation}
+    Applying $\intHom_{\Cscr}(M,-)$ to the (co)fiber sequences $\tau_{\geq k}N\to N\to\tau_{\leq k-1}N$ identifies the fiber of $\intHom_{\Cscr}(M,\tau_{\geq k}N)\to\intHom_{\Cscr}(M,N)$ with $\intHom_{\Cscr}(M,\tau_{\leq k-1}N)[-1]$. Since finite limits commute with filtered colimits, the fiber $F$ of \eqref{eqn: Whitehead comparison map} is
+    $$F\simeq\colim_{k}\intHom_{\Cscr}(M,\tau_{\leq k-1}N)[-1].$$
+    By left $t$-exactness of $\intHom_{\Cscr}(M,-)$, each $\intHom_{\Cscr}(M,\tau_{\leq k-1}N)[-1]$ lies in $\Cscr_{\leq k}$, so for every $r\in\ZZ$ the homotopy object $\pi_{r}$ of the $k$-th term vanishes once $k<r$. This holds cofinally in the filtered colimit computing $\pi_{r}(F)$, so $\pi_{r}(F)\simeq0$ for all $r$, hence $F\simeq0$ and \eqref{eqn: Whitehead comparison map} is an equivalence. 
+
+    The proof of (2) is dual. Applying the contravariant $\intHom_{\Cscr}(-,N)$ to the (co)fiber sequences $\tau_{\geq k+1}M\to M\to\tau_{\leq k}M$ identifies the cofiber of the comparison morphism $\colim_{k}\intHom_{\Cscr}(\tau_{\leq k}M,N)\to\intHom_{\Cscr}(M,N)$ with $\colim_{k}\intHom_{\Cscr}(\tau_{\geq k+1}M,N)$. Coconnectivity of $N$ and adjunction means $\intHom_{\Cscr}(-,N)$ carries $\Cscr_{\geq k+1}$ into $\Cscr_{\leq -k-1}$, so these terms grow arbitrarily coconnective and the colimit vanishes, whence the comparison is an equivalence.
+\end{proof}
+Iterating along both towers reduces an internal hom membership to its values on the homotopy objects of the two arguments.
+\begin{corollary}\label{cor: hom membership}
+    Let $\Cscr$ be a presentably symmetric monoidal $t$-bistable category and $\Escr\subseteq\Cscr$ a subcategory closed under small colimits, countable limits, and extensions in $\Cscr$. Let $M\in\Cscr,E\in\Escr$ and suppose $\intHom_{\Cscr}(\pi_{a}(M),\pi_{b}(E))\in\Escr$ for all $a,b\in\ZZ$. Then $\intHom_{\Cscr}(M, E)\in\Escr$. 
+\end{corollary}
+\begin{proof}
+    By closure of $\Escr$ under colimits and countable limits, we may use Whitehead towers in $M$ and Postnikov towers in $E$ to reduce to the case of $M$ bounded below and $E$ bounded above. Then, by shifting and exactness of $\intHom_{\Cscr}(-,-)$, we can take $M$ to be connective and $E$ to be coconnective.
+
+    Now suppose $\intHom_{\Cscr}(\pi_{a}(M),\pi_{b}(E))\in\Escr$ for all $a,b\in\ZZ$. Since $E$ is coconnective and $\pi_{a}(M)$ is in the heart -- and hence connective -- we have by \Cref{lem: internal hom and towers} (1) that $\colim_{k}\intHom_{\Cscr}(\pi_{a}(M),\tau_{\geq k}E)\simeq\intHom_{\Cscr}(\pi_{a}(M),E)$. We show each term of the colimit lies in $\Escr$. Using the (co)fiber sequences $\tau_{\geq k}E\to\tau_{\geq k-1}E\to\pi_{k-1}(E)[k-1]$ in $\Cscr$, induction with base case 
+    $$\intHom_{\Cscr}(\pi_{a}(M),\tau_{\geq 0}E)\to\intHom_{\Cscr}(\pi_{a}(M),\tau_{\geq -1}E)\to\intHom_{\Cscr}(\pi_{a}(M),\pi_{-1}(E))[-1]$$
+    exhibits each term of the colimit as an extension of two objects that lie in $\Escr$, hence each lies in $\Escr$ by closure under extensions. Here the base term satisfies $\intHom_{\Cscr}(\pi_{a}(M),\tau_{\geq 0}E)\simeq\intHom_{\Cscr}(\pi_{a}(M),\pi_{0}(E))\in\Escr$ as $\tau_{\geq0}E\simeq\pi_{0}(E)$ by coconnectivity of $E$. We thus obtain $\intHom_{\Cscr}(\pi_{a}(M),E)\in\Escr$ for all $a\in\ZZ$.
+
+    Now using the equivalence $\colim_{k}\intHom_{\Cscr}(\tau_{\leq k}M, E)\simeq\intHom_{\Cscr}(M, E)$ of \Cref{lem: internal hom and towers} (2), it remains to show each term of the colimit lies in $\Escr$. Applying the exact contravariant $\intHom_{\Cscr}(-,E)$ to the (co)fiber sequences $\pi_{k}(M)[k]\to\tau_{\leq k}M\to\tau_{\leq k-1}M$ produces (co)fiber sequences 
+    $$\intHom_{\Cscr}\left(\tau_{\leq k-1}M,E\right)\to\intHom_{\Cscr}\left(\tau_{\leq k}M,E\right)\to\intHom_{\Cscr}\left(\pi_{k}(M),E\right)[-k]$$
+    in $\Cscr$, exhibiting $\intHom_{\Cscr}(\tau_{\leq k}M,E)$ as an extension of $\intHom_{\Cscr}(\pi_{k}(M),E)[-k]$ by $\intHom_{\Cscr}(\tau_{\leq k-1}M,E)$. The base case $k=0$ gives $\intHom_{\Cscr}(\tau_{\leq 0}M,E)\simeq\intHom_{\Cscr}(\pi_{0}(M),E)\in\Escr$ by the previous paragraph, and the third term lies in $\Escr$ by the same together with stability of $\Escr$. Induction on $k$ and closure under extensions then give $\intHom_{\Cscr}(\tau_{\leq k}M,E)\in\Escr$ for every $k$, and we conclude $\intHom_{\Cscr}(M, E)\in\Escr$ as desired. 
+\end{proof}
+We now prove the recognition criterion in $\Cscr$.
+\begin{theorem}\label{thm: smashing kernel recognition}
+    Let $L:\Cscr\to\Cscr^{L}$ be a $\otimes_{\Cscr}$-compatible $\pi$-stably reflective localization of a presentably symmetric monoidal $t$-bistable category with $L$ preserving small limits and $\ker(L)$ homotopy detected. The following conditions are equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item $L$ is an open immersion with $\ker(L)\simeq\Mod_{Q}(\Cscr)$ for some idempotent algebra $Q$ in $\Cscr$. 
+        \item $\intHom_{\Cscr}(M,K)\in\ker(L)$ for all $M\in\Cscr^{\heartsuit},K\in\ker(L)\cap\Cscr^{\heartsuit}$. 
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    ($\Rightarrow$) If $L$ is an open immersion, $\intHom_{\Cscr}(M, K)\in\ker(L)$ for all $M\in\Cscr,K\in\ker(L)$ by \Cref{prop: idempotent recognition}, of which (b) is a special case. 
+
+    ($\Leftarrow$) By \Cref{lem: kernel structure L limit preserving} (1), $\ker(L)$ is a stable tensor ideal closed under small limits, small colimits, and extensions in $\Cscr$. To conclude $\ker(L)\simeq\Mod_{Q}(\Cscr)$ for an idempotent algebra $Q\in\Idem(\Cscr)$ it therefore suffices, by \Cref{prop: idempotent recognition} (c), to show that $\intHom_{\Cscr}(M,K)\in\ker(L)$ for all $M\in\Cscr$ and $K\in\ker(L)$. 
+
+    Fix such $M$ and $K$. Apply \Cref{cor: hom membership} to $\ker(L)$, whose closure under small colimits, small limits, and extensions is furnished by \Cref{lem: kernel structure L limit preserving} (1). We show $\intHom_{\Cscr}(\pi_{a}(M),\pi_{b}(K))\in\ker(L)$ for all $a,b\in\ZZ$. Here $\pi_{a}(M)\in\Cscr^{\heartsuit}$ and $\pi_{b}(K)\in\ker(L)\cap\Cscr^{\heartsuit}$ by \Cref{lem: kernel structure L limit preserving} (2), so the hypothesis of \Cref{cor: hom membership} holds by (b). 
+
+    As $M\in\Cscr$ and $K\in\ker(L)$ were arbitrary, the conditions of \Cref{prop: idempotent recognition} (c) hold, so there is an idempotent algebra $Q\in\Idem(\Cscr)$ with $\ker(L)\simeq\Mod_{Q}(\Cscr)$, exhibiting $L$ as an open immersion.
+\end{proof}
+It remains to record a practically verifiable sufficient condition for homotopy detection. In particular, we show the hypothesis holds when the localization has $t$-amplitude at most 1. 
+\begin{definition}\label{def: t-amplitude}
+    Let $F:\Cscr\to\Escr$ be an exact, right $t$-exact, small colimit-preserving functor between $t$-bistable categories, and let $n\geq0$. $F$ is \emph{of $t$-amplitude $\leq n$} if $F(\Cscr^{\heartsuit})\subseteq\Escr_{\leq n}$. 
+\end{definition}
+\begin{lemma}\label{lem: homotopy detected kernels of t-amplitude less than 1 functors}
+    If $F:\Cscr\to\Escr$ is an exact, right $t$-exact, small colimit-preserving functor of $t$-amplitude $\leq 1$ between $t$-bistable categories, then $F(\Cscr_{\leq m})\subseteq\Escr_{\leq m+1}$ and 
+    $$\ker(F):=\{K\in\Cscr:F(K)\simeq0\}\subseteq\Cscr$$ 
+    admits the induced $t$-structure.  
+\end{lemma}
+\begin{proof}
+    First observe that for $M\in\Cscr^{\heartsuit}$, exactness of $F$ gives $F(M[k])\simeq F(M)[k]\in\Escr_{\leq k+1}$ for $k\in\ZZ$. 
+
+    Now assume $M\in\Cscr_{[a,b]}$ is bounded. We can write it as a Whitehead tower 
+    $$0\simeq\tau_{\geq b+1}M\to \tau_{\geq b}M\to\dots\to\tau_{\geq a+1}M\to\tau_{\geq a}M\simeq M$$
+    with (co)fiber sequences $\tau_{\geq k+1}M\to\tau_{\geq k}M\to \pi_{k}(M)[k]$. Applying $F$ we get a diagram 
+    $$0\simeq F(\tau_{\geq b+1}M)\to F(\tau_{\geq b}M)\to\dots\to F(\tau_{\geq a+1}M)\to F(\tau_{\geq a}M)\simeq F(M)$$
+    with (co)fiber sequences $F(\tau_{\geq k+1}M)\to F(\tau_{\geq k}M)\to F(\pi_{k}(M))[k]$. Each $F(\tau_{\geq k}M)$ is an extension of objects in $\Escr_{\leq b+1}$ and hence lies in $\Escr_{\leq b+1}$ showing $F(M)\in\Escr_{\leq b+1}$ as well. 
+
+    Now let $M\in\Cscr_{\leq m}$. Writing $M$ as its Whitehead tower, we have $F(M)\simeq\colim_{k}F(\tau_{\geq k}M)$ in $\Escr$ as $F$ preserves small colimits. Since each $\tau_{\geq k}M$ term is bounded, $F(M)$ is a filtered colimit of objects in $\Escr_{\leq m+1}$. Since passage to homotopy objects in $\Escr$ commutes with filtered colimits, we compute $\pi_{r}(F(M))\simeq\colim_{k}(\pi_{r}(F(\tau_{\geq k}M)))$ which vanishes for $r\geq m+2$ as each term does. This shows $F(M)\in\Escr_{\leq m+1}$ by \Cref{lem: separatedness and prestable} (2), proving the first claim.
+
+    For the second claim, let $K\in\ker(F)$ and $m\in\ZZ$. By stability, $\ker(F)$ is closed under fibers and cofibers. Using the (co)fiber sequences $\tau_{\geq m+1}K\to K\to\tau_{\leq m}K$, it suffices to show that $\tau_{\leq m}K\in\ker(F)$. Applying $F$ to the (co)fiber sequence, we get a (co)fiber sequence $F(\tau_{\geq m+1}K)\to F(K)\simeq0\to F(\tau_{\leq m}K)$ in $\Escr$ showing $F(\tau_{\leq m}K)\simeq\cofib(F(\tau_{\geq m+1}K)\to 0)\simeq F(\tau_{\geq m+1}K)[1]$. We have that $F(\tau_{\geq m+1}K)[1]\in\Escr_{\geq m+2}$ by right $t$-exactness of $F$ but $F(\tau_{\leq m}K)\in\Escr_{\leq m+1}$ by the preceding argument. So $F(\tau_{\leq m}K)\in\Escr_{\leq m+1}\cap\Escr_{\geq m+2}\simeq0$, showing that $\tau_{\leq m}K\in\ker(F)$, as desired. 
+\end{proof}
+\begin{remark}\label{rmk: sharpness of t-amplitude bound}
+    The argument does not carry over for functors of $t$-amplitude $n\geq 2$. For $F(\Cscr^{\heartsuit})\subseteq\Escr_{\leq n}$ the same computation only places $F(\tau_{\leq m}K)$ in $\Escr_{\leq m+n}\cap\Escr_{\geq m+2}$, which need not be zero. 
+\end{remark}
+We obtain the following corollary. 
+\begin{corollary}\label{cor: recognition at t-amplitude 1}
+    Let $L:\Cscr\to\Cscr^{L}$ be an $\otimes_{\Cscr}$-compatible $\pi$-stably reflective localization of a presentably symmetric monoidal $t^{+}$-bistable category such that $L$ preserves small limits and is of $t$-amplitude $\leq 1$. The following are equivalent: 
+    \begin{enumerate}[label=(\alph*)]
+        \item $L$ is an open immersion with $\ker(L)\simeq\Mod_{Q}(\Cscr)$ for some idempotent algebra $Q\in\Idem(\Cscr)$. 
+        \item $\intHom_{\Cscr}(M, K)\in\ker(L)$ for all $M\in \Cscr^{\heartsuit},K\in\ker(L)\cap\Cscr^{\heartsuit}$. 
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    $L$ is exact, right $t$-exact, small colimit-preserving, and of $t$-amplitude $\leq 1$, so \Cref{lem: homotopy detected kernels of t-amplitude less than 1 functors} gives that $\ker(L)$ is homotopy detected. The hypotheses of \Cref{thm: smashing kernel recognition} apply, giving the desired equivalence. 
+\end{proof}

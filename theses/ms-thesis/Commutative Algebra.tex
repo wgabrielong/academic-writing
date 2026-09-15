@@ -1,0 +1,150 @@
+\section{Commutative algebra of \texorpdfstring{$\EE_{\infty}$}{E-infinity}-rings}\label{app: commutative algebra}
+The preceding text relies on several facts about the commutative algebra of connective $\EE_{\infty}$-rings, which this appendix collects. The finiteness conditions on modules and morphisms used in the main text are recalled first, together with some structural properties of the category of connective $\EE_{\infty}$-rings. 
+
+We then turn our attention to two classes of morphisms. The morphisms of finite expansion are a natural enlargement of the collection of morphisms of finite type, while the pseudo-lisse morphisms carve out a generality in which a morphism almost of finite presentation and of finite $\Tor$-amplitude retains a workable structure theory, one that the animated setting supplies automatically but that the spectral setting does not.
+\subsection{Finiteness properties of modules and morphisms}\label{subsec: finiteness properties}
+The finiteness conditions used below follow \cite[\S 7.2]{HA} and \cite[\S 4]{SAG}. 
+\begin{definition}\label{def: finiteness properties of modules}
+    Let $A\in\CAlg^{\cn}$ and $M\in\Mod_{A}(\Sp)$. 
+    \begin{enumerate}
+        \item $M$ is \emph{pseudocoherent} if there exists $k\in\ZZ$ such that $M\in\Mod_{A}(\Sp)_{\geq k}$ and $\tau_{\leq n}M$ is compact in $\Mod_{A}(\Sp)_{[k,n]}$ for all $n\geq0$. 
+        \item $M$ is \emph{perfect} if it is compact as an object of $\Mod_{A}(\Sp)$. 
+    \end{enumerate}
+\end{definition} 
+\begin{remark}\label{rmk: pseudocoherent and almost perfect}
+    In \cite[\S 7]{HA} and \cite{SAG}, pseudocoherent modules are referred to as almost perfect modules. 
+\end{remark}
+Passing from modules to morphisms, one meets a familiar obstruction. As Lurie points out, many conditions on morphisms of static commutative rings do not generalize directly to connective $\EE_{\infty}$-rings, since the higher coherences force one to prescribe relations among relations without end. The conditions recorded below appear in \cite[\S 7.2.4]{HA} and \cite[\S 4.1 \& \S 5.2]{SAG} (cf.\ \cite[Rmk. 5.2.0.2]{SAG}) and are formulated with that constraint in mind.
+\begin{definition}\label{def: finiteness conditions of morphisms}
+    Let $f:A\to B$ be a morphism in $\CAlg^{\cn}$. 
+    \begin{enumerate}
+        \item $f$ is \emph{of finite presentation} if $B$ is a compact object of the category of connective $A$-algebras $\CAlg^{\cn}_{A}$. 
+        \item $f$ is \emph{almost of finite presentation} if $\tau_{\leq n}B$ is a compact object of the category of connective $n$-truncated $A$-algebras for all $n\geq0$. 
+        \item $f$ is \emph{of finite type} if $\pi_{0}(f):\pi_{0}(A)\to\pi_{0}(B)$ is a finite type morphism of static commutative rings. 
+        \item $f$ is \emph{finite} if $\pi_{0}(B)$ is finitely generated as a module over $\pi_{0}(A)$. 
+        \item $f$ is \emph{of finite $\Tor$-amplitude} if $B\otimes_{A}(-):\Mod_{A}(\Sp)\to\Mod_{B}(\Sp)$ carries $\Mod_{A}(\Sp)^{\heartsuit}$ into $\Mod_{B}(\Sp)_{\leq n}$ for some $n$.
+        \item $f$ is \emph{flat} if $\pi_{0}(f):\pi_{0}(A)\to\pi_{0}(B)$ is a flat morphism of static commutative rings and the map $\pi_{0}(B)\otimes_{\pi_{0}(A)}\pi_{k}(A)\to\pi_{k}(B)$ is an isomorphism of $\pi_{0}(B)$-modules for all $k\geq0$. 
+        \item $f$ is \emph{faithfully flat} if $f$ is flat and $\pi_{0}(f):\pi_{0}(A)\to\pi_{0}(B)$ is faithfully flat as a morphism of static commutative rings. 
+        \item $f$ is \emph{\'{e}tale} if $f$ is flat and $\pi_{0}(f):\pi_{0}(A)\to\pi_{0}(B)$ is \'{e}tale as a morphism of static commutative rings. 
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: terminology for finite presentation}
+    Our terminology differs from that of \cite[\S 7.2.4]{HA}, where morphisms of finite presentation in the sense of \Cref{def: finiteness conditions of morphisms} are called morphisms locally of finite presentation.
+\end{remark}
+Two families of algebras over a connective $\EE_{\infty}$-ring recur throughout this appendix, the free $\EE_{\infty}$-algebras and the polynomial algebras.
+\begin{definition}\label{def: free and flat algebras}
+    Let $A$ be a connective $\EE_{\infty}$-algebra in $\Sp$ and let $n\geq 0$.
+    \begin{enumerate}
+        \item The \emph{free $\EE_{\infty}$-algebra} on generators $T_{1},\dots,T_{n}$ over $A$ is $A\{T_{1},\dots,T_{n}\}:=\mathsf{Sym}_{A}(A^{\oplus n})$.
+        \item The \emph{polynomial algebra} in the variables $T_{1},\dots,T_{n}$ over $A$ is $A[T_{1},\dots,T_{n}]:=A\otimes_{\Sph}\Sigma^{\infty}_{+}\NN^{n}$, the monoid algebra of the free commutative monoid $\NN^{n}$.
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: free and flat algebras}
+    Let $A$ be a connective $\EE_{\infty}$-algebra in $\Sp$ and $n\geq 1$. By \cite[Rmk. 5.4.1.2 \& Not. B.1.1.2]{SAG}, we have equivalences
+    $$\pi_{0}(A\{T_{1},\dots,T_{n}\})\simeq\pi_{0}(A[T_{1},\dots,T_{n}])\simeq\pi_{0}(A)[T_{1},\dots,T_{n}],$$
+    and $A[T_{1},\dots,T_{n}]$ is flat over $A$. Over the sphere, $\Sph\{T_{1},\dots,T_{n}\}$ carries the homology of the symmetric groups and is not of finite $\Tor$-amplitude, while $\Sph[T_{1},\dots,T_{n}]$ is flat. This underlies the contrast between the morphisms of finite expansion of \Cref{subsec: morphisms of finite expansion} and the pseudo-lisse morphisms of \Cref{subsec: pseudo-lisse morphisms}.
+\end{remark}
+Many statements about algebras over a connective $\EE_{\infty}$-ring reduce to the finitely presented case, by writing a general algebra as a filtered colimit of finitely presented ones as in the static setting. The relevant approximation is the following, an analogue of \cite[\href{https://stacks.math.columbia.edu/tag/00QL}{Tag 00QL}]{stacks-project}.
+\begin{proposition}[{\cite[Prop. 7.2.4.27]{HA}}]\label{prop: approximation by finitely presented algebras}
+    Let $A$ be a connective $\EE_{\infty}$-algebra in $\Sp$.
+    \begin{enumerate}
+        \item The category $\CAlg^{\cn}_{A}$ is generated under sifted colimits by retracts of finitely generated free algebras (\Cref{def: free and flat algebras} (1)). In particular, it is $\omega$-presentable.
+        \item Write $\CAlg^{\mathsf{fp}}_{A}\subseteq\CAlg^{\cn}_{A}$ for the full subcategory spanned by the finitely presented algebras. The inclusion induces an equivalence $\Ind(\CAlg^{\mathsf{fp}}_{A})\simeq\CAlg^{\cn}_{A}$.
+        \item A connective $A$-algebra $B$ is almost of finite presentation if and only if for every $n\geq 0$ there is a finitely presented $A$-algebra $C$ such that $\tau_{\leq n}B$ is a retract of $\tau_{\leq n}C$.
+    \end{enumerate}
+\end{proposition}
+\subsection{Morphisms of finite expansion}\label{subsec: morphisms of finite expansion}
+The morphisms of finite expansion were introduced by Hamacher \cite{FiniteExpansion} to carry the exceptional pushforward and pullback functors of \'{e}tale cohomology beyond the case of morphisms of finite type.
+
+The notion is recalled first for static commutative rings, then transported to connective $\EE_{\infty}$-rings through its effect on $\pi_{0}$, before its permanence properties are taken up.
+\begin{definition}[{\cite[Def. 1.1 \& Rmk. 1.2]{FiniteExpansion}}]\label{def: static finite expansion}
+    Let $A\to B$ be a morphism of static commutative rings. Then $A\to B$ is \emph{of finite expansion} if it admits a factorization
+    $$A\to A[T_{1},\dots,T_{n}]\to B$$
+    where $A[T_{1},\dots,T_{n}]\to B$ is integral.
+\end{definition}
+The finite expansion condition is phrased using the free algebra $A\{T_{1},\dots,T_{n}\}$ of \Cref{def: free and flat algebras}. That it depends only on $\pi_{0}$, where it reduces to the static notion, is the content of the following lemma.
+\begin{lemma}\label{lem: finite expansion static detection}
+    Let $f:A\to B$ be a morphism of connective $\EE_{\infty}$-algebras in $\Sp$. The following are equivalent.
+    \begin{enumerate}[label=(\alph*)]
+        \item The morphism $f$ admits a factorization $A\to A\{T_{1},\dots,T_{n}\}\to B$ for which $\pi_{0}(A\{T_{1},\dots,T_{n}\})\to\pi_{0}(B)$ is integral.
+        \item The induced morphism of static rings $\pi_{0}(f):\pi_{0}(A)\to\pi_{0}(B)$ is of finite expansion in the sense of \Cref{def: static finite expansion}.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    $(\Rightarrow)$ Connectivity of $A$ and $B$ gives $\pi_{0}(A\{T_{1},\dots,T_{n}\})\simeq\pi_{0}(A)[T_{1},\dots,T_{n}]$ \cite[Not. B.1.1.2]{SAG}, so applying $\pi_{0}(-)$ to the factorization of (a) presents $\pi_{0}(A)\to\pi_{0}(B)$ as $\pi_{0}(A)\to\pi_{0}(A)[T_{1},\dots,T_{n}]\to\pi_{0}(B)$ with the second map integral.
+
+    $(\Leftarrow)$ The classifying map $\pi_{0}(A)[T_{1},\dots,T_{n}]\to\pi_{0}(B)$ of (b) is the datum of $n$ elements of $\pi_{0}(B)$. Lifting these to points of $\Omega^{\infty} B$ and invoking the universal property of the free algebra of \Cref{def: free and flat algebras}, furnished by the free--forgetful adjunction, 
+    $$\Mor_{\CAlg_{A}}(A\{T_{1},\dots,T_{n}\},B)\simeq(\Omega^{\infty} B)^{n},$$ 
+    produces a factorization $A\to A\{T_{1},\dots,T_{n}\}\to B$. On $\pi_{0}$ this recovers the map $\pi_{0}(A)[T_{1},\dots,T_{n}]\to\pi_{0}(B)$, which is integral, so $\pi_{0}(A\{T_{1},\dots,T_{n}\})\to\pi_{0}(B)$ is integral.
+\end{proof}
+With the equivalence in hand, we define the notion of a morphism of finite expansion between connective $\EE_{\infty}$-rings.
+\begin{definition}\label{def: finite expansion appendix}
+    Let $A\to B$ be a morphism of connective $\EE_{\infty}$-algebras in $\Sp$. Then $A\to B$ is \emph{of finite expansion} if it satisfies the equivalent conditions of \Cref{lem: finite expansion static detection}.
+\end{definition}
+\begin{proposition}\label{prop: finite expansion permanence}
+    The morphisms of finite expansion between connective $\EE_{\infty}$-algebras in $\Sp$ satisfy the following permanence properties.
+    \begin{enumerate}
+        \item (Composition) If $A\to B$ and $B\to C$ are of finite expansion, then so is the composite $A\to C$.
+        \item (Base Change) If $A\to B$ is of finite expansion and $A\to C$ is arbitrary, then $C\to B\otimes_{A} C$ is of finite expansion.
+        \item (Left Cancellation) If the composite $A\to B\to C$ and $A\to B$ are of finite expansion, then so is $B\to C$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    By \Cref{lem: finite expansion static detection}, each assertion reduces to the corresponding statement for the induced morphism on static rings. For base change, $\pi_{0}(B\otimes_{A}C)\simeq\pi_{0}(B)\otimes_{\pi_{0}(A)}\pi_{0}(C)$ for connective $\EE_{\infty}$-rings $A,B,C$, so that $\pi_{0}(C)\to\pi_{0}(B\otimes_{A}C)$ is the base change of $\pi_{0}(A)\to\pi_{0}(B)$ along $\pi_{0}(A)\to\pi_{0}(C)$ \cite[Cor. 7.2.1.23]{HA}. Composition and left cancellation are verified in \cite[Lem. 1.3 (1)]{FiniteExpansion} and base change in \cite[Lem. 1.3 (3)]{FiniteExpansion}. 
+\end{proof}
+The finiteness conditions of \Cref{def: finiteness conditions of morphisms} relate to finite expansion as follows.
+\begin{lemma}\label{lem: finiteness implies finite expansion}
+    Let $f:A\to B$ be a morphism in $\CAlg^{\cn}$. If $f$ is of finite presentation, almost of finite presentation, or of finite type, then $f$ is of finite expansion.
+\end{lemma}
+\begin{proof}
+    By \Cref{lem: finite expansion static detection}, it suffices to show that $\pi_{0}(f)$ is of finite expansion in each case. Finite presentation implies almost of finite presentation, which in turn implies finite type \cite[\S 4.1]{SAG}, so under any of the three hypotheses $\pi_{0}(f):\pi_{0}(A)\to\pi_{0}(B)$ is a finite type morphism of static rings. Such a morphism factors as a surjection $\pi_{0}(A)[T_{1},\dots,T_{n}]\twoheadrightarrow\pi_{0}(B)$ out of a polynomial algebra, and a surjection is integral, so $\pi_{0}(f)$ is of finite expansion.
+\end{proof}
+\subsection{Pseudo-lisse morphisms}\label{subsec: pseudo-lisse morphisms}
+Finite expansion constrains a morphism only through its effect on $\pi_{0}$ and leaves its $\Tor$-amplitude uncontrolled -- the morphism $A\to A\{T_{1},\dots,T_{n}\}$ is of finite expansion yet need not be of finite $\Tor$-amplitude when $n\geq 1$. The last class considered in this appendix restores that control. 
+
+In the animated setting, a morphism of animated rings almost of finite presentation and of finite $\Tor$-amplitude admits a factorization $A\to A[T_{1},\dots,T_{n}]\to B$ with $B$ perfect over $A[T_{1},\dots,T_{n}]$ \cite[Lem. 2.7.12 (iv)]{HansenMannCLL}. In the spectral setting, choosing representatives in $\Omega^{\infty}B$ of $n$ elements of $\pi_{0}(B)$ produces a morphism of $A$-algebras $A\{T_{1},\dots,T_{n}\}\to B$ but need not produce a morphism of $A$-algebras $A[T_{1},\dots,T_{n}]\to B$. Since the free $\EE_{\infty}$-algebra may fail this $\Tor$-amplitude condition, the animated factorization theorem does not directly carry over. The definition below instead imposes a factorization through a flat algebra with perfect second leg, at the cost of a slightly more restricted generality than that of morphisms almost of finite presentation and of finite $\Tor$-amplitude.
+\begin{definition}\label{def: pseudo-lisse appendix}
+    Let $A\to B$ be a morphism in $\CAlg^{\cn}$.
+    \begin{enumerate}
+        \item $A\to B$ is \emph{pseudo-lisse} if it admits a factorization
+        $$A\to C\to B$$
+        in which $A\to C$ is flat and almost of finite presentation, and $B$ is perfect as a $C$-module.
+        \item $A\to B$ is \emph{elementary pseudo-lisse} if it admits a factorization
+        $$A\to A[T_{1},\dots,T_{n}]\to B$$
+        for some $n\geq 0$ in which $B$ is perfect as an $A[T_{1},\dots,T_{n}]$-module.
+    \end{enumerate}
+\end{definition}
+Elementary pseudo-lisse and pseudo-lisse morphisms satisfy the following. 
+\begin{proposition}\label{prop: properties of pseudo-lisse morphisms}
+    \begin{enumerate}
+        \item Every elementary pseudo-lisse morphism is pseudo-lisse. 
+        \item Every pseudo-lisse morphism is almost of finite presentation and of finite $\Tor$-amplitude. In particular, every pseudo-lisse morphism is of finite expansion. 
+        \item The elementary pseudo-lisse morphisms satisfy the following permanence properties: 
+        \begin{itemize}
+            \item [(3.1)] (Composition) If $A\to B$ and $B\to C$ are elementary pseudo-lisse, then so is the composite $A\to C$. 
+            \item [(3.2)] (Base Change) If $A\to B$ is elementary pseudo-lisse, then for any morphism $A\to C$ the induced morphism $C\to B\otimes_{A}C$ is elementary pseudo-lisse. 
+        \end{itemize}
+        \item The pseudo-lisse morphisms satisfy the following permanence property: 
+        \begin{itemize}
+            \item [(4.1)] (Base Change) If $A\to B$ is pseudo-lisse, then for any morphism $A\to C$ the induced morphism $C\to B\otimes_{A}C$ is pseudo-lisse. 
+        \end{itemize}
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    Flatness follows from \cite[Rmk. 5.4.1.2]{SAG}. Being almost of finite presentation is preserved by base change \cite[Rmk. 7.2.4.28]{HA}, which reduces the claim to the universal case $\Sph\to\Sph[T_{1},\dots,T_{n}]$, and this follows from the Hilbert Basis Theorem for connective $\EE_{\infty}$-rings \cite[Prop. 7.2.4.31]{HA}: $\Sph$ and $\Sph[T_{1},\dots,T_{n}]$ are Noetherian in the sense of \cite[Def. 7.2.4.30]{HA} as both are connective, on $\pi_{0}$ these are $\ZZ$ and $\ZZ[T_{1},\dots,T_{n}]$, which are Noetherian (and in particular coherent) as static commutative rings, and each higher homotopy group of either is finitely generated -- equivalently, as $\pi_{0}$ is Noetherian, finitely presented -- over $\pi_{0}$. For $\Sph$ this is Serre's celebrated finiteness of the stable stems in positive degrees. For $\Sph[T_{1},\dots,T_{n}]=\Sigma^{\infty}_{+}\NN^{n}$ one has $\pi_{k}(\Sph[T_{1},\dots,T_{n}])\simeq\pi_{k}(\Sph)\otimes_{\ZZ}\ZZ[T_{1},\dots,T_{n}]$, which is finitely generated over $\ZZ[T_{1},\dots,T_{n}]$ because $\pi_{k}(\Sph)$ is finite when $k\geq1$.
+\end{proof}
+\begin{proof}[Proof of (2)]
+    We first show $A\to B$ is almost of finite presentation. By \cite[Cor. 7.4.3.19]{HA}, being almost of finite presentation is preserved by composition and $A\to C$ is almost of finite presentation by assumption, so it suffices to show that $C\to B$ is almost of finite presentation. Since $B$ is perfect over $C$, the morphism $C\to B$ is finite and $B$ is pseudocoherent as a $C$-module. A finite morphism is almost of finite presentation if and only if its target is pseudocoherent over the source \cite[Cor. 5.2.2.2]{SAG}, so $C\to B$ is almost of finite presentation. 
+
+    For the finite $\Tor$-amplitude, $A\to C$ is flat and $B$ is of finite $\Tor$-amplitude over $C$, being perfect \cite[Prop. 7.2.4.23]{HA}, so the composite $A\to B$ is of finite $\Tor$-amplitude \cite[Lem. 6.1.1.6]{SAG}. 
+\end{proof}
+\begin{proof}[Proof of (3)]
+    Let $A\to A[T_{1},\dots,T_{n}]\to B$ and $B\to B[T_{1},\dots,T_{m}]\to C$ be factorizations of $A\to B$ and $B\to C$ as elementary pseudo-lisse morphisms. We claim that the composite factors as $A\to A[T_{1},\dots,T_{m+n}]\to C$ where $C$ is perfect over $A[T_{1},\dots,T_{m+n}]$. First note that $A[T_{1},\dots,T_{m+n}]\otimes_{A[T_{1},\dots,T_{n}]}B\simeq B[T_{1},\dots,T_{m}]$, providing a factorization of $A$-algebras $A\to A[T_{1},\dots,T_{m+n}]\to C$. Since scalar extension preserves compact objects, $B[T_{1},\dots,T_{m}]$ is perfect over $A[T_{1},\dots,T_{m+n}]$, hence $B[T_{1},\dots,T_{m}]$ is contained in the minimal full subcategory of $A[T_{1},\dots,T_{m+n}]$-modules containing the unit and closed under finite colimits and retracts. 
+    
+    Since $C$ is perfect over $B[T_{1},\dots,T_{m}]$, restriction of scalars exhibits it as an object of the minimal full subcategory of $A[T_{1},\dots,T_{m+n}]$-modules containing $B[T_{1},\dots,T_{m}]$ and closed under finite colimits and retracts. As $B[T_{1},\dots,T_{m}]$ is perfect over $A[T_{1},\dots,T_{m+n}]$, this subcategory is contained in the perfect $A[T_{1},\dots,T_{m+n}]$-modules, so $C$ is perfect over $A[T_{1},\dots,T_{m+n}]$. 
+
+    For closure under base change, applying $C\otimes_{A}(-)$ to a factorization of $A\to B$ as an elementary pseudo-lisse morphism yields a factorization of $C\to B\otimes_{A}C$ as an elementary pseudo-lisse morphism by functoriality of the polynomial algebra and the permanence of perfectness under base change.  
+\end{proof}
+\begin{proof}[Proof of (4)]
+    This follows from the base change argument of (3), instead using that flatness and being almost of finite presentation are preserved by base change along general maps \cite[Prop. 7.2.2.16 \& Rmk. 7.2.4.28]{HA}. 
+\end{proof}

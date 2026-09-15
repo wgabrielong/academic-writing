@@ -1,0 +1,360 @@
+\section{Analytic \texorpdfstring{$\EE_{\infty}$}{E-infinity}-rings}\label{sec: analytic rings}
+The category of all modules over a topological ring retains little of its topology. One often works instead inside a subcategory of complete modules -- those on which the topology is appropriately reflected -- and replaces the algebraic tensor product by a completed variant. 
+
+In condensed mathematics, this is axiomatized by Clausen and Scholze \cite[Lecture VII]{Condensed} through the notion of an analytic ring: a condensed ring together with a full subcategory of its modules -- the analytic modules -- satisfying good closure properties in the ambient category and admitting an analytic refinement of the tensor product. 
+
+Here we treat the fully commutative, ie. $\EE_{\infty}$, case, taking as base a connective $\EE_{\infty}$-algebra in condensed spectra.
+\subsection{Basic definitions}\label{subsec: basic definitions}
+The $\EE_{\infty}$-algebras in condensed spectra form a category $\Cond\CAlg:=\CAlg(\Cond\Sp)$ with full subcategory $\Cond\CAlg^{\cn}$ of connective objects. Since the forgetful functor $\CAlg\to\Sp$ preserves and reflects limits, we have 
+$$\Cond\CAlg\simeq\widehat{\Sh}(\PFin_{\NN};\CAlg)\text{ and }\Cond\CAlg^{\cn}\simeq\widehat{\Sh}(\PFin_{\NN};\CAlg^{\cn}).$$
+
+An analytic $\EE_{\infty}$-ring equips an object of $\Cond\CAlg^{\cn}$ with a distinguished subcategory of its modules. 
+\begin{definition}\label{def: analytic E-infinity ring}
+    Let $A^{\tri}\in\Cond\CAlg^{\cn}$. 
+    \begin{enumerate}
+        \item An \emph{analytic $\EE_{\infty}$-ring} on $A^{\tri}$-modules is the data of a pair $A:=(A^{\tri},\Mod_{A})$ where $\Mod_{A}\subseteq\Mod_{A^{\tri}}$ is a full subcategory of $A^{\tri}$-modules in condensed spectra satisfying the following additional conditions: 
+        \begin{enumerate}[label=(\roman*)]
+            \item $\Mod_{A}$ is closed under small limits and colimits in $\Mod_{A^{\tri}}$. 
+            \item $\Mod_{A}$ is a $\Cond\Sp$-linear category: for $M\in\Mod_{A^{\tri}},N\in\Mod_{A}$ we have $\intHom_{A^{\tri}}(M,N)\in\Mod_{A}$. 
+            \item The left adjoint $L^{A}:\Mod_{A^{\tri}}\to\Mod_{A}$ to the inclusion $\Mod_{A}\hookrightarrow\Mod_{A^{\tri}}$ is right $t$-exact (as an endofunctor of $\Mod_{A^{\tri}}$). 
+        \end{enumerate} 
+        We refer to the subcategory $\Mod_{A}$ of $\Mod_{A^{\tri}}$ as the subcategory of \emph{$A$-analytic modules} and the functor $L^{A}:\Mod_{A^{\tri}}\to\Mod_{A}$ as \emph{$A$-analytification}. 
+        \item An analytic $\EE_{\infty}$-ring is \emph{complete} if $A^{\tri}\in\Mod_{A}$. 
+        \item A \emph{morphism of analytic $\EE_{\infty}$-rings} is a morphism $A^{\tri}\to B^{\tri}$ in $\Cond\CAlg^{\cn}$ such that restriction of scalars along this morphism takes $B$-analytic modules to $A$-analytic modules. 
+        \item Denote by $\An\CAlg$ the category with objects analytic $\EE_{\infty}$-rings as in (1) and morphisms those of analytic $\EE_{\infty}$-rings in the sense of (3). Denote by $\An\CAlg^{\wedge}$ the full subcategory of $\An\CAlg$ spanned by the complete analytic $\EE_{\infty}$-rings. 
+    \end{enumerate}
+\end{definition}
+\begin{remark}\label{rmk: analytic v complete modules}
+    Our nomenclature here is slightly nonstandard. In the existing literature, one typically refers to an analytic $\EE_{\infty}$-ring as a pre-analytic or uncompleted analytic ring, to a complete analytic $\EE_{\infty}$-ring as an analytic ring, and to $\Mod_{A}\subseteq\Mod_{A^{\tri}}$ as the $A$-complete modules. We have adopted our conventions to avoid confusion with the notion of completeness of analytic $\EE_{\infty}$-rings. 
+\end{remark}
+\begin{remark}\label{rmk: conditions on analytic modules}
+    The condition that $\Mod_{A}$ is a $\Cond\Sp$-linear category is equivalent to the tensor product $-\otimes_{A^{\tri}}-$ on $\Mod_{A^{\tri}}$ preserving $L^{A}$-equivalences \cite[Lem. 7.5]{RagimovReflection}. This implies that $\Mod_{A}$ admits the structure of a symmetric monoidal category with respect to which $A$-analytification is a symmetric monoidal functor (cf. \Cref{prop: sym mon localizations}). 
+\end{remark}
+\begin{remark}\label{rmk: Ek and nonconnective}
+    One might instead take as base an $\EE_{k}$-algebra in condensed spectra for $1\leq k<\infty$ without connectivity assumptions. We expect that an analytic theory over connective $\EE_{k}$-algebras can be developed along the same lines, with the module categories carrying $\EE_{k-1}$-monoidal structures rather than symmetric monoidal ones by Dunn additivity \cite[Cor. 5.1.2.6]{HA}, in analogy to Francis' less commutative algebraic geometry \cite{FrancisThesis}. The fully commutative case is adopted only because it suffices for our intended applications and affords a symmetric monoidal theory. Connectivity, on the other hand, is used essentially, as several results in the subsequent text rely crucially on it, and working in the nonconnective setting would require substantial modifications. 
+\end{remark}
+\subsection{\texorpdfstring{$A$}{A}-analytic modules}\label{subsec: analytic modules}
+This subsection records the basic structure of the module category of a fixed analytic $\EE_{\infty}$-ring $(A^{\tri},\Mod_{A})$: stability, generation, the analytic tensor product, and the $t$-structure. For a complete analytic $\EE_{\infty}$-ring the module category is closely tied to its discrete modules, namely the ordinary $A^{\tri}(*)$-modules in spectra.
+\begin{proposition}\label{prop: stability of A-analytic modules}\label{prop: A-analytic tensor product}
+    Let $(A^{\tri},\Mod_{A})$ be an analytic $\EE_{\infty}$-ring. 
+    \begin{enumerate}
+        \item $\Mod_{A^{\tri}}$ is a stable $\omega_{1}$-presentably symmetric monoidal category, generated under small colimits and shifts by the $\omega_{1}$-compact objects $A^{\tri}[S]:=A^{\tri}\otimes_{\Sph}\Sph[S]$ for $S\in\PFin_{\NN}$. 
+        \item $\Mod_{A}$ is a stable $\omega_{1}$-presentably symmetric monoidal category for the tensor product $M\otimes_{A}N:=L^{A}(M\otimes_{A^{\tri}}N)$, generated under small colimits and shifts by the $\omega_{1}$-compact objects $A[S]:=L^{A}(A^{\tri}[S])$, with respect to which $L^{A}$ is symmetric monoidal and the inclusion $\Mod_{A}\hookrightarrow\Mod_{A^{\tri}}$ lax symmetric monoidal. The unit is compact projective in the sense of \Cref{def: compact projective objects} (1), and internal homs are computed by $\intHom_{A}(M,N)\simeq\intHom_{A^{\tri}}(M,N)$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    The category $\Cond\Sp$ is stable and $\omega_{1}$-presentably symmetric monoidal with compact projective unit and $\omega_{1}$-compact generators the $\Sph[S]$ by \Cref{thm: properties of condensed spectra} (1), so $\Mod_{A^{\tri}}$ is stable \cite[Prop. 7.1.1.4]{HA} and $\omega_{1}$-presentably symmetric monoidal \cite[Lem. 2.2]{AokiHigherLimits}. The forgetful functor $\Mod_{A^{\tri}}\to\Cond\Sp$ is conservative and preserves small limits and colimits \cite[Cor. 4.2.3.5]{HA}, so its left adjoint $A^{\tri}\otimes_{\Sph}-$ preserves $\omega_{1}$-compact objects and the $A^{\tri}[S]$ are $\omega_{1}$-compact. 
+    
+    By adjunction and conservativity of scalar restriction, joint conservativity of $\Sph[S]$ in $\Cond\Sp$ imply the joint conservativity of $A^{\tri}[S]$ in $\Mod_{A^{\tri}}$. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    By $\Cond\Sp$-linearity of \Cref{def: analytic E-infinity ring} (1) (ii), the localization $L^{A}$ is compatible with the symmetric monoidal structure of $\Mod_{A^{\tri}}$ \cite[Lem. 7.4 \& 7.5]{RagimovReflection}, yielding the stated symmetric monoidal structure with $L^{A}$ symmetric monoidal and the inclusion lax symmetric monoidal. The formula for internal homs being \cite[Cor. 7.6]{RagimovReflection}. 
+    
+    Closure of $\Mod_{A}$ under small limits, colimits, and shifts in $\Mod_{A^{\tri}}$ gives stability, and since the inclusion preserves all small colimits, $L^{A}$ preserves $\omega_{1}$-compact objects, so the $A[S]$ are $\omega_{1}$-compact and generate $\Mod_{A}$ under small colimits and shifts by (1). Since $L^{A}$ is symmetric monoidal and preserves $\omega_{1}$-compact objects and generators, $\Mod_{A}$ is $\omega_{1}$-presentably symmetric monoidal as well. 
+    
+    Finally, the unit $L^{A}(A^{\tri})$ is connective by right $t$-exactness of $L^{A}$, and by adjunction $\Hom_{A}(L^{A}(A^{\tri}),-)\simeq\Hom_{\Cond\Sp}(\Sph,(-)|_{\Sph})$ where $(-)|_{\Sph}:\Mod_{A}\to\Cond\Sp$ is $t$-exact and preserves small colimits, so compact projectivity of the unit reduces to that of $\Sph$ established in \Cref{thm: properties of condensed spectra} (1). 
+\end{proof}
+Membership in $\Mod_{A}$ is detected on the generators of \Cref{prop: stability of A-analytic modules}.
+\begin{corollary}\label{cor: testing by free on profinites}
+    Let $(A^{\tri},\Mod_{A})$ be an analytic $\EE_{\infty}$-ring and $M\in\Mod_{A^{\tri}}$. Then $M\in\Mod_{A}$ if and only if the natural morphism 
+    \begin{equation}\label{eqn: analytic by free objects}
+        \intHom_{A^{\tri}}(A[S],M)\longrightarrow\intHom_{A^{\tri}}(A^{\tri}[S],M)
+    \end{equation}
+    is an equivalence for all $S\in\PFin_{\NN}$. 
+\end{corollary}
+\begin{proof}
+    $(\Rightarrow)$ This is \cite[Cor. 7.6]{RagimovReflection}. 
+
+    $(\Leftarrow)$ Suppose the natural morphism (\ref{eqn: analytic by free objects}) is an equivalence for all $S\in\PFin_{\NN}$. By \Cref{prop: stability of A-analytic modules} (2) the $A^{\tri}[S]$ generate $\Mod_{A^{\tri}}$ under colimits and shifts, so $M$ is a colimit of shifts of the $A^{\tri}[S]$ and $L^{A}(M)$ the colimit of the corresponding shifts of the $A[S]$, with $\eta_{M}:M\to L^{A}(M)$ their colimit. Since $\intHom_{A^{\tri}}(-,M)$ carries colimits to limits and shifts to shifts up to sign, applying it to $\eta_{M}$ returns a limit of shifts of (\ref{eqn: analytic by free objects}), so $\intHom_{A^{\tri}}(\eta_{M},M):\intHom_{A^{\tri}}(L^{A}(M),M)\to\intHom_{A^{\tri}}(M,M)$ is an equivalence. The preimage $r:L^{A}(M)\to M$ of $\id_{M}$ then satisfies $r\circ\eta_{M}\simeq\id_{M}$, exhibiting $M$ as a retract of $L^{A}(M)$ in $\Mod_{A^{\tri}}$. Now $\Mod_{A}$ is closed under retracts in $\Mod_{A^{\tri}}$ by \Cref{prop: properties of pi stably reflective localizations} (1), so $M\in\Mod_{A}$. 
+\end{proof}
+As for algebras in spectra, both module categories carry a $t$-structure for which the forgetful functors to $\Cond\Sp$ are $t$-exact.
+\begin{proposition}\label{prop: t-structure on A-analytic modules}
+    Let $(A^{\tri},\Mod_{A})$ be an analytic $\EE_{\infty}$-ring. The category $\Mod_{A}$ admits an accessible $t$-structure $(\Mod_{A,\geq0},\Mod_{A,\leq0})$ with the following properties:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\Mod_{A,\geq0},\Mod_{A,\leq0}$ are spanned by those $A$-analytic modules $M$ such that the homotopy sheaves $\pi_{k}(M)$ vanish for $k<0$ and $k>0$, respectively.
+        \item $\Mod_{A,\geq0}$ contains the unit in $\Mod_{A}$ and is closed under the $A$-analytic tensor product in $\Mod_{A}$. 
+        \item $\Mod_{A,\leq0}$ is closed under filtered colimits in $\Mod_{A}$. 
+        \item $\Mod_{A,\geq0}$ is closed under countable products in $\Mod_{A}$.
+        \item The $t$-structure on $\Mod_{A}$ is both left and right complete. 
+        \item An $A^{\tri}$-module $M$ in condensed spectra is $A$-analytic if and only if $\pi_{k}(M)\in\Mod_{A}^{\heartsuit}$ for all $k\in\ZZ$. 
+    \end{enumerate}
+\end{proposition} 
+\begin{proof}
+    All but (iv) and (vi) hold for $\Mod_{A}=\Mod_{A^{\tri}}$ by \cite[Prop. 2.1.1.1, War. 2.1.1.2, \& Rmk. 2.1.2.1]{SAG}. For (iv), the forgetful functor $\Mod_{A^{\tri}}\to\Cond\Sp$ preserves countable products and reflects connectivity, so the claim reduces to closure of $\Cond\Sp_{\geq0}$ under countable products, which holds by \Cref{thm: properties of condensed spectra} (2) (iv). 
+
+    When $\Mod_{A}\subsetneq\Mod_{A^{\tri}}$, conditions (i) and (iii) of \Cref{def: analytic E-infinity ring} exhibit $\Mod_{A}$ as a $\pi$-stably reflective subcategory (\Cref{def: pi stably reflective}) of the $t$-bistable $\Mod_{A^{\tri}}$, so \Cref{prop: properties of pi stably reflective localizations} and \Cref{prop: compatible localization implies pres sym mon t-bistable} apply to give the conclusion for (vi). 
+\end{proof}
+When an analytic $\EE_{\infty}$-ring is complete, the underlying ring $A^{\tri}$ is itself the unit of $\Mod_{A}$, and its global sections generate a fully faithful copy of $\Mod_{A^{\tri}(*)}(\Sp)$ inside $\Mod_{A}$.
+\begin{proposition}\label{prop: discrete modules}
+    Let $(A^{\tri},\Mod_{A})$ be a complete analytic $\EE_{\infty}$-ring. 
+    \begin{enumerate}
+        \item There is a fully faithful functor $\Cond_{A^{\tri}(*)}:\Mod_{A^{\tri}(*)}(\Sp)\hookrightarrow\Mod_{A}$. 
+        \item An object of $\Mod_{A}$ lies in the essential image of the embedding in (1) if and only if it lies in the subcategory of $\Mod_{A}$ generated by $A^{\tri}$ under colimits and shifts. 
+    \end{enumerate} 
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    By completeness $A^{\tri}$ is the unit of $\Mod_{A}$ which is compact by \Cref{prop: A-analytic tensor product}. Let $\Escr\subseteq\Mod_{A}$ be the smallest full subcategory containing $A^{\tri}$ and closed under colimits and shifts. Then $\Escr$ is stable and presentable and $A^{\tri}$ is a compact generator of it, so the Schwede--Shipley theorem \cite[Prop. 7.1.2.7]{HA} yields an equivalence $\Escr\simeq\Mod_{A^{\tri}(*)}(\Sp)$ where $\Hom_{A}(A^{\tri},A^{\tri})\simeq A^{\tri}(*)$ as $\EE_{\infty}$-rings, identifying the endomorphisms of the unit with its global sections. The desired embedding is the composite $\Mod_{A^{\tri}(*)}(\Sp)\simeq\Escr\hookrightarrow\Mod_{A}$, fully faithful as $\Escr$ is a full subcategory of $\Mod_{A}$. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    The essential image of the embedding of (1) is $\Escr$, which by construction is the subcategory of $\Mod_{A}$ generated by $A^{\tri}$ under colimits and shifts. 
+\end{proof}
+The objects so embedded are the discrete ones.
+\begin{definition}\label{def: discrete modules}
+    Let $(A^{\tri},\Mod_{A})$ be a complete analytic $\EE_{\infty}$-ring. An object $M\in\Mod_{A}$ is \emph{discrete} if it lies in the essential image of the fully faithful embedding $\Mod_{A^{\tri}(*)}(\Sp)\hookrightarrow\Mod_{A}$. 
+\end{definition}
+The relationship between discreteness and finiteness of analytic modules is taken up in \Cref{subsec: mereology of analytic modules}.
+\subsection{Functoriality and colimits in \texorpdfstring{$\An\CAlg$}{AnCAlg}}\label{subsec: functoriality and colimits}
+The previous subsection fixed an analytic $\EE_{\infty}$-ring. We now let the ring vary and record the basic functoriality of $\An\CAlg$, before establishing that $\An\CAlg$ admits small colimits.
+
+The category of $A^{\tri}$-modules in $\Cond\Sp$ always defines an analytic structure and is complete since $A^{\tri}\in\Mod_{A^{\tri}}$.
+\begin{definition}\label{def: trivial analytic ring structure}
+    Let $(A^{\tri},\Mod_{A})$ be an analytic $\EE_{\infty}$-ring. $(A^{\tri},\Mod_{A})$ is \emph{trivial} if $\Mod_{A}=\Mod_{A^{\tri}}$. 
+\end{definition}
+The trivial structure is functorial in the underlying ring and left adjoint to the forgetful functor.
+\begin{proposition}\label{prop: trivial is left adjoint}
+    The functor $\Cond\CAlg^{\cn}\to\An\CAlg$ given on objects by $A^{\tri}\mapsto(A^{\tri},\Mod_{A^{\tri}})$ is fully faithful with essential image in $\An\CAlg^{\wedge}$ and left adjoint to the forgetful functor given on objects by $(A^{\tri},\Mod_{A})\mapsto A^{\tri}$. 
+\end{proposition}
+\begin{proof}
+    For any analytic $\EE_{\infty}$-ring $(B^{\tri},\Mod_{B})$ we have an equivalence of animae 
+    $$\Mor_{\An\CAlg}\left((A^{\tri},\Mod_{A^{\tri}}),(B^{\tri},\Mod_{B})\right)\simeq\Mor_{\Cond\CAlg^{\cn}}\left(A^{\tri},B^{\tri}\right)$$
+    as the condition that scalar restriction takes $B$-analytic modules to $A^{\tri}$-modules is tautologically satisfied. This proves the desired adjunction and that it is fully faithful. The description of the essential image is clear as $A^{\tri}\in\Mod_{A^{\tri}}$. 
+\end{proof}
+A morphism of analytic $\EE_{\infty}$-rings induces a symmetric monoidal scalar extension functor. 
+\begin{proposition}\label{prop: scalar extension functor is symmetric monoidal}
+    Let $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be a morphism of analytic $\EE_{\infty}$-rings. Scalar restriction $\Mod_{B}\to\Mod_{A}$ admits a symmetric monoidal left adjoint $B\otimes_{A}-:\Mod_{A}\to\Mod_{B}$ for which the square
+    \begin{equation}\label{eqn: scalar extension is sym mon}
+        % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE1vZF97QV57XFx0cml9fSJdLFsyLDAsIlxcTW9kX3tCXntcXHRyaX19Il0sWzAsMSwiXFxNb2Rfe0F9Il0sWzIsMSwiXFxNb2Rfe0J9Il0sWzEsMywiTF57Qn0iXSxbMCwxLCJCXntcXHRyaX1cXG90aW1lc197QV57XFx0cml9fS0iXSxbMCwyLCJMXntBfSIsMl0sWzIsMywiQlxcb3RpbWVzX3tBfS0iLDJdXQ==
+        \begin{tikzcd}
+            {\Mod_{A^{\tri}}} && {\Mod_{B^{\tri}}} \\
+            {\Mod_{A}} && {\Mod_{B}}
+            \arrow["{B^{\tri}\otimes_{A^{\tri}}-}", from=1-1, to=1-3]
+            \arrow["{L^{A}}"', from=1-1, to=2-1]
+            \arrow["{L^{B}}", from=1-3, to=2-3]
+            \arrow["{B\otimes_{A}-}"', from=2-1, to=2-3]
+        \end{tikzcd}
+    \end{equation}
+    is commutative. 
+\end{proposition}
+\begin{proof}
+    The forgetful functor $\Mod_{B}\to\Mod_{A}$ is a functor between presentable categories preserving small limits and colimits, so the adjoint functor theorem \cite[Cor. 5.5.2.9]{HTT} furnishes a left adjoint $B\otimes_{A}-$. The composite $L^{B}\circ(B^{\tri}\otimes_{A^{\tri}}-):\Mod_{A^{\tri}}\to\Mod_{B}$ is symmetric monoidal, being a composite of such, and we claim it annihilates $\ker(L^{A})$. Let $K\in\ker(L^{A})\subseteq\Mod_{A^{\tri}}$ and $M\in\Mod_{B}$. Since the map is a morphism of analytic rings, $M|_{A^{\tri}}\in\Mod_{A}$, and we compute
+    \begin{align*}
+        \Hom_{B^{\tri}}(L^{B}(B^{\tri}\otimes_{A^{\tri}}K),M) &\simeq \Hom_{B^{\tri}}(B^{\tri}\otimes_{A^{\tri}}K,M) && L^{B}\dashv\iota_{B}\\
+        &\simeq \Hom_{A^{\tri}}(K,M|_{A^{\tri}}) && B^{\tri}\otimes_{A^{\tri}}(-)\dashv(-)|_{A^{\tri}}\\
+        &\simeq \Hom_{A^{\tri}}(L^{A}(K),M|_{A^{\tri}}) && L^{A}\dashv\iota_{A},\ M|_{A^{\tri}}\in\Mod_{A}\\
+        &\simeq 0 && K\in\ker(L^{A})
+    \end{align*}
+    where $\iota_{A},\iota_{B}$ denote the inclusions of the analytic modules. So $L^{B}(B^{\tri}\otimes_{A^{\tri}}K)\simeq0$. By \cite[Thm. I.3.6 \& App. S]{TC}, the symmetric monoidal functor $L^{B}\circ B^{\tri}\otimes_{A^{\tri}}-:\Mod_{A^{\tri}}\to\Mod_{B}$ descends to a symmetric monoidal functor $B\otimes_{A}-:\Mod_{A}\to\Mod_{B}$ left adjoint to $(-)|_{A^{\tri}}:\Mod_{B}\to\Mod_{A}$.
+\end{proof}
+The small colimits of $\An\CAlg$ are assembled from pushouts along trivial structures, for which we first isolate the analytic structure a ring map induces on its target.
+\begin{proposition}\label{prop: induced analytic ring structure}
+    Let $(A^{\tri},\Mod_{A})$ be an analytic $\EE_{\infty}$-ring and $A^{\tri}\to B^{\tri}$ a morphism in $\Cond\CAlg^{\cn}$. 
+    \begin{enumerate}
+        \item The full subcategory of $\Mod_{B^{\tri}}$ spanned by those objects $M$ such that $M|_{A^{\tri}}\in\Mod_{A}$ defines an analytic $\EE_{\infty}$-ring $(B^{\tri},\Mod_{B^{\tri}/A})$. 
+        \item The analytic $\EE_{\infty}$-ring $(B^{\tri},\Mod_{B^{\tri}/A})$ of (1) is the pushout of 
+        $$(A^{\tri},\Mod_{A})\leftarrow(A^{\tri},\Mod_{A^{\tri}})\to(B^{\tri},\Mod_{B^{\tri}})$$
+        in $\An\CAlg$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (1)]
+    The forgetful functor $(-)|_{A^{\tri}}:\Mod_{B^{\tri}}\to\Mod_{A^{\tri}}$ is conservative, $t$-exact, and preserves small limits and colimits so $\Mod_{B^{\tri}/A}$ admits the induced $t$-structure from $\Mod_{B^{\tri}}$, $\Mod_{B^{\tri}/A}$ is closed under small limits and colimits in $\Mod_{B^{\tri}}$ and there is an adjunction $L^{B^{\tri}/A}:\Mod_{B^{\tri}}\rightleftarrows\Mod_{B^{\tri}/A}:\iota_{B^{\tri}/A}$ by the adjoint functor theorem \cite[Cor. 5.5.2.9]{HTT}. By adjunction between $B^{\tri}\otimes_{A^{\tri}}-:\Mod_{A^{\tri}}\rightleftarrows\Mod_{B^{\tri}}:(-)|_{A^{\tri}}$ we have 
+    $$\intHom_{B^{\tri}}(B^{\tri}[S],N)|_{A^{\tri}}\simeq\intHom_{A^{\tri}}(A^{\tri}[S],N|_{A^{\tri}})$$
+    for all $N\in\Mod_{B^{\tri}/A}$, where the right-hand side lies in $\Mod_{A}$ by \Cref{def: analytic E-infinity ring} (1) (ii). A general $M\in\Mod_{B^{\tri}}$ is a colimit of shifts of the $B^{\tri}[S]$ by \Cref{prop: stability of A-analytic modules} (2), and $\intHom_{B^{\tri}}(-,N)|_{A^{\tri}}$ carries colimits to limits and shifts to shifts up to sign, so $\intHom_{B^{\tri}}(M,N)|_{A^{\tri}}\in\Mod_{A}$ by closure of $\Mod_{A}$ under small limits and shifts. Thus $\Mod_{B^{\tri}/A}$ is $\Cond\Sp$-linear. It remains to show $L^{B^{\tri}/A}$ is right $t$-exact. For $N\in\Mod_{B^{\tri}/A,\leq -1},M\in\Mod_{B^{\tri},\geq0}$ the mapping spectra $\Hom_{B^{\tri}}(M, N)\simeq\Hom_{B^{\tri}}(L^{B^{\tri}/A}(M),N)$ have trivial 0th homotopy groups so $L^{B^{\tri}/A}$ is right $t$-exact. This verifies the conditions of \Cref{def: analytic E-infinity ring} (1) showing $(B^{\tri},\Mod_{B^{\tri}/A})$ is an analytic $\EE_{\infty}$-ring. 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Let $(C^{\tri},\Mod_{C})\in\An\CAlg$. By the Yoneda lemma it suffices to show that the square of animae
+    $$
+    \begin{tikzcd}
+        {\Mor_{\An\CAlg}\left((B^{\tri},\Mod_{B^{\tri}/A}),(C^{\tri},\Mod_{C})\right)} && {\Mor_{\Cond\CAlg^{\cn}}\left(B^{\tri},C^{\tri}\right)} \\
+        {\Mor_{\An\CAlg}\left((A^{\tri},\Mod_{A}),(C^{\tri},\Mod_{C})\right)} && {\Mor_{\Cond\CAlg^{\cn}}\left(A^{\tri},C^{\tri}\right)}
+        \arrow[from=1-1, to=1-3]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-3]
+    \end{tikzcd}
+    $$
+    is Cartesian, where the horizontal maps send an analytic morphism to its underlying ring map and are, by \Cref{def: analytic E-infinity ring} (3), the inclusions of the subanimae cut out by the scalar-restriction condition. The fibered product of the bottom and right morphisms is the anima of ring maps $B^{\tri}\to C^{\tri}$ whose restriction along $A^{\tri}\to B^{\tri}\to C^{\tri}$ sends $\Mod_{C}$ into $\Mod_{A}$. Since $\Mod_{B^{\tri}/A}$ consists precisely of those $B^{\tri}$-modules whose underlying $A^{\tri}$-module is $A$-analytic, this is exactly the anima of ring maps whose restriction along $B^{\tri}\to C^{\tri}$ sends $\Mod_{C}$ into $\Mod_{B^{\tri}/A}$, namely the top-left corner. So the square is Cartesian. 
+\end{proof}
+\begin{definition}\label{def: induced analytic ring}
+    Let $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be a morphism of analytic $\EE_{\infty}$-rings. $(B^{\tri},\Mod_{B})$ has the \emph{induced analytic $\EE_{\infty}$-ring structure} from $(A^{\tri},\Mod_{A})$ if $\Mod_{B}=\Mod_{B^{\tri}/A}$. 
+\end{definition}
+Colimits along a fixed underlying ring are computed as intersections of module categories.
+\begin{lemma}\label{lem: ringwise colimits}
+    Let $\{(A^{\tri},\Mod_{A_{i}})\}_{i\in I}$ be a diagram of analytic $\EE_{\infty}$-ring structures on $A^{\tri}$-modules for a fixed $A^{\tri}\in\Cond\CAlg^{\cn}$. 
+    \begin{enumerate}
+        \item The colimit $\colim_{i\in I}(A^{\tri},\Mod_{A_{i}})$ in analytic $\EE_{\infty}$-rings under $(A^{\tri},\Mod_{A^{\tri}})$ exists and is given by 
+        $$\colim_{i\in I}(A^{\tri},\Mod_{A_{i}})\simeq\left(A^{\tri},\bigcap_{i\in I}\Mod_{A_{i}}\right).$$
+        \item If all analytic ring structures in (1) are assumed to be complete, then the colimit is complete as well. 
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of (1)]
+    Note that $(A^{\tri},\Mod_{A_{i}})\to(A^{\tri},\Mod_{A_{j}})$ is a morphism of analytic $\EE_{\infty}$-rings if and only if $\Mod_{A_{j}}$ is a subcategory of $\Mod_{A_{i}}$. Observe \Cref{def: analytic E-infinity ring} (1) (i) and (ii) are preserved under intersections in $\Mod_{A^{\tri}}$. By \cite[Lem. 5.5.4.18]{HTT}, the intersection $\bigcap_{i\in I}\Mod_{A_{i}}$ is the objects local for the union of small collections generating the $L^{A_{i}}$-equivalences. Since each $\Mod_{A_{i}}$ is closed under Postnikov and Whitehead truncation in $\Mod_{A^{\tri}}$ by \Cref{prop: properties of pi stably reflective localizations} (2), so is the intersection. Let $L^{A}$ be the left adjoint to the inclusion $\Mod_{A}:=\bigcap_{i\in I}\Mod_{A_{i}}\hookrightarrow\Mod_{A^{\tri}}$. Assume $M\in\Mod_{A^{\tri},\geq0}$ and $N\in\Mod_{A,\leq-1}$. By adjunction, $\Hom_{A^{\tri}}(L^{A}(M),N)\simeq\Hom_{A^{\tri}}(M,N)$ has trivial $\pi_{0}$. So the truncation map $L^{A}(M)\to\tau_{\leq-1}L^{A}(M)$ is zero and therefore $\tau_{\leq-1}L^{A}(M)\simeq0$. Thus $L^{A}(M)$ is connective and $L^{A}$ is right $t$-exact, verifying \Cref{def: analytic E-infinity ring} (1) (iii). This shows that $(A^{\tri},\bigcap_{i\in I}\Mod_{A_{i}})$ is an analytic $\EE_{\infty}$-ring. 
+    
+    For the universal property, fix an analytic $\EE_{\infty}$-ring $(B^{\tri},\Mod_{B})$ under $(A^{\tri},\Mod_{A^{\tri}})$. For any $i$, the map $(A^{\tri},\Mod_{A^{\tri}})\to(B^{\tri},\Mod_{B})$ descends to one $(A^{\tri},\Mod_{A_{i}})\to(B^{\tri},\Mod_{B})$ if and only if scalar restriction takes $B$-analytic modules to $A_{i}$-analytic ones so the map descends to one $\left(A^{\tri},\bigcap_{i\in I}\Mod_{A_{i}}\right)\to(B^{\tri},\Mod_{B})$ if and only if scalar restriction takes $B$-analytic modules to $A_{i}$-analytic ones for all $i\in I$, which is precisely the universal property of the colimit (cf. \cite[Lem. 4.1.10]{CamargoSolid}). 
+\end{proof}
+\begin{proof}[Proof of (2)]
+    Membership of $A^{\tri}$ in the subcategory $\Mod_{A_{i}}$ is preserved under intersection as well. 
+\end{proof}
+The general case follows from a result on colimits in coCartesian fibrations over a cocomplete base.
+\begin{proposition}\label{prop: colimits in AnCAlg}
+   Let $\{(A_{i}^{\tri},\Mod_{A_{i}})\}_{i\in I}$ be a small diagram in $\An\CAlg$. Then the colimit $\colim_{i\in I}(A_{i}^{\tri},\Mod_{A_{i}})$ exists and is given by 
+   $$\colim_{i\in I}(A_{i}^{\tri},\Mod_{A_{i}})\simeq(B^{\tri},\Mod_{B}):=\left(B^{\tri},\bigcap_{i\in I}\Mod_{B^{\tri}/A_{i}}\right)$$
+   where $B^{\tri}$ is the colimit $\colim_{i\in I}A^{\tri}_{i}$ in $\Cond\CAlg^{\cn}$. 
+\end{proposition}
+\begin{proof}
+    The forgetful functor $\An\CAlg\to\Cond\CAlg^{\cn}$, $(A^{\tri},\Mod_{A})\mapsto A^{\tri}$, of \Cref{prop: trivial is left adjoint} is a coCartesian fibration: for a morphism $A^{\tri}\to B^{\tri}$ and an analytic structure $\Mod_{A}$ over $A^{\tri}$, the induced structure of \Cref{prop: induced analytic ring structure} supplies a coCartesian lift, its universal property being the pushout of \Cref{prop: induced analytic ring structure} (2). Fibre transport is thus $\Mod_{A}\mapsto\Mod_{B^{\tri}/A}$, which preserves colimits as $\Mod_{B^{\tri}/\bigcap_{i}A_{i}}=\bigcap_{i}\Mod_{B^{\tri}/A_{i}}$. 
+    
+    Now $\Cond\CAlg^{\cn}$ is presentable, hence cocomplete, and each fibre is cocomplete by \Cref{lem: ringwise colimits}, so \cite[Lem. 10.7]{LaxFree} gives that $\An\CAlg$ is cocomplete, the colimit being computed by transporting each $\Mod_{A_{i}}$ to the fibre over $B^{\tri}=\colim_{i\in I}A_{i}^{\tri}$ and intersecting, namely $(B^{\tri},\bigcap_{i\in I}\Mod_{B^{\tri}/A_{i}})$. 
+\end{proof}
+On the free objects a sifted colimit is computed termwise, which we record for later use.
+\begin{lemma}\label{lem: sifted colimits in AnCAlg}
+    Let $\{(A_{i}^{\tri},\Mod_{A_{i}})\}_{i\in I}$ be a sifted diagram in $\An\CAlg$ with colimit $(B^{\tri},\Mod_{B})$, and let $S\in\PFin_{\NN}$. The colimit $\colim_{i\in I}A_{i}[S]$ of underlying condensed spectra carries a natural $B^{\tri}$-module structure with respect to which it is $B$-analytic and equivalent to $B[S]$.
+\end{lemma}
+\begin{proof}
+    Since $I$ is sifted, $\colim_{i\in I}A_{i}^{\tri}\simeq B^{\tri}$ acts on $M:=\colim_{i\in I}A_{i}[S]$, the colimit of underlying condensed spectra, making it a $B^{\tri}$-module: the diagonal $I\to I\times I$ is cofinal, so the action maps assemble into $B^{\tri}\otimes_{\Sph}M\simeq\colim_{i\in I}(A_{i}^{\tri}\otimes_{\Sph}A_{i}[S])\to\colim_{i\in I}A_{i}[S]=M$, and moreover $M\simeq\colim_{i\in I}(B^{\tri}\otimes_{A_{i}^{\tri}}A_{i}[S])$ in $\Mod_{B^{\tri}}$.
+
+    Since $L^{B}$ preserves colimits, $L^{B}(M)\simeq\colim_{i\in I}L^{B}(B^{\tri}\otimes_{A_{i}^{\tri}}A_{i}[S])$. The factorization $L^{B}\circ(B^{\tri}\otimes_{A_{i}^{\tri}}-)\simeq(B\otimes_{A_{i}}-)\circ L^{A_{i}}$ of \Cref{prop: scalar extension functor is symmetric monoidal}, applied to the analytification unit $\eta_{i}: A_{i}^{\tri}[S]\to A_{i}[S]$ inverted by $L^{A_{i}}$, shows that $L^{B}$ inverts $B^{\tri}\otimes_{A_{i}^{\tri}}\eta_{i}: B^{\tri}[S]\to B^{\tri}\otimes_{A_{i}^{\tri}}A_{i}[S]$, where $B^{\tri}\otimes_{A_{i}^{\tri}}A_{i}^{\tri}[S]\simeq B^{\tri}[S]$. The diagram $i\mapsto B^{\tri}\otimes_{A_{i}^{\tri}}A_{i}^{\tri}[S]$ is thus constant at $B^{\tri}[S]$, and the $\eta_{i}$ are natural in $i$, so $L^{B}(M)\simeq\colim_{i\in I}B[S]\simeq B[S]$. It therefore suffices to show that $M$ is $B$-analytic, in which case the unit $M\to L^{B}(M)$ is an equivalence.
+
+    Fix $i\in I$. We claim the forgetful map $I_{i/}\to I$ is cofinal. Siftedness gives the weak contractibility of $I\times_{I\times I}(I\times I)_{(i,j)/}$ for every $(i,j)\in I\times I$, and $(I\times I)_{(i,j)/}\simeq I_{i/}\times I_{j/}$ identifies with $I_{i/}\times_{I}I_{j/}$ via the diagonal. Quillen's Theorem A \cite[Thm. 4.1.3.1]{HTT} applied to $I_{i/}\to I$ proves the claim. Restriction of scalars makes $(\alpha: i\to j)\mapsto A_{j}[S]|_{A_{i}^{\tri}}$ a diagram $I_{i/}\to\Mod_{A_{i}^{\tri}}$ with values in $\Mod_{A_{i}}$, as each morphism is one of analytic $\EE_{\infty}$-rings by \Cref{def: analytic E-infinity ring} (3). Denote its colimit by $N$, which lies in $\Mod_{A_{i}}$ by closure under colimits. The natural maps $A_{j}[S]\to M|_{A_{j}^{\tri}}$ restrict to $A_{i}^{\tri}$-linear maps inducing equivalences $N\to M|_{A_{i}^{\tri}}$: the forgetful functor $\Mod_{A_{i}^{\tri}}\to\Cond\Sp$ is conservative and preserves small colimits \cite[Cor. 4.2.3.5]{HA}, and the underlying map is the comparison $\colim_{(i\to j)\in I_{i/}}A_{j}[S]\to M$, invertible by cofinality \cite[Prop. 4.1.1.8]{HTT}. Hence $M|_{A_{i}^{\tri}}\in\Mod_{A_{i}}$. Since $i\in I$ was arbitrary, $M\in\bigcap_{i\in I}\Mod_{B^{\tri}/A_{i}}=\Mod_{B}$ by \Cref{prop: colimits in AnCAlg}, whence $M\simeq L^{B}(M)\simeq B[S]$. 
+\end{proof}
+\subsection{Completion}\label{subsec: completion}
+We produce a left adjoint to the inclusion $\An\CAlg^{\wedge}\hookrightarrow\An\CAlg$, so that every analytic $\EE_{\infty}$-ring admits a completion, obtained by applying the analytification functor to its underlying ring.
+\begin{theorem}\label{thm: completions exist}
+    The full inclusion $\An\CAlg^{\wedge}\hookrightarrow\An\CAlg$ admits a left adjoint $(-)^{\wedge}:\An\CAlg\to\An\CAlg^{\wedge}$ given on objects by $(A^{\tri},\Mod_{A})\mapsto (A^{\tri,=},\Mod_{A})$ where $A^{\tri,=}:=L^{A}(A^{\tri})$ and $L^{A}$ the $A$-analytification functor. 
+\end{theorem}
+\begin{proof}
+    The following proof is due to Longke Tang and Yixiao Li provided to us by Peter Scholze in private correspondence \cite{ScholzePC}.
+
+    By the functor $L^{A}$ exhibits $\Mod_{A}$ as a symmetric monoidal localization of $\Mod_{A^{\tri}}$, with symmetric monoidal unit $A^{\tri,=}:=L^{A}(A^{\tri})$. The unit of the localization $\eta:A^{\tri}\to A^{\tri,=}$ is a morphism in $\Cond\CAlg^{\cn}$. By \cite[Const. 5.23]{NilpotenceDescent}, the forgetful functor $R:\Mod_{A}\hookrightarrow\Mod_{A^{\tri}}$ factors as 
+    $$\Mod_{A}\xrightarrow{\overline{R}}\Mod_{A^{\tri,=}}\xrightarrow{(-)|_{A^{\tri}}}\Mod_{A^{\tri}}$$ 
+    and there is an induced left adjoint $\overline{L}:\Mod_{A^{\tri,=}}\to\Mod_{A}$ which identifies with $L^{A}$. The counit of the adjunction $\overline{L}\dashv\overline{R}$ is the canonical equivalence $L^{A}(N)\simeq N$ for $N\in\Mod_{A}$ so $\overline{R}$ is fully faithful, and the unit is an equivalence precisely on those objects of $\Mod_{A^{\tri,=}}$ whose underlying $A^{\tri}$-modules are $A$-analytic. So $\overline{L}$ is the localization for the induced structure $\Mod_{A^{\tri,=}/A}$ and conservativity of the forgetful functor $(-)|_{A^{\tri}}$ defines an equivalence of categories $\Mod_{A^{\tri,=}/A}\simeq\Mod_{A}$ identifying the induced structure with $(A^{\tri,=},\Mod_{A})$ which is complete as $A^{\tri,=}|_{A^{\tri}}\in\Mod_{A}$ by construction. 
+
+    Finally, let $(B^{\tri},\Mod_{B})\in\An\CAlg^{\wedge}$ and let $f:(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be a morphism of analytic $\EE_{\infty}$-rings. Completeness gives $B^{\tri}\in\Mod_{B}$ and analyticity of $f$ then gives $B^{\tri}|_{A^{\tri}}\in\Mod_{A}$, so $B^{\tri}$, regarded as a commutative algebra object of $\Mod_{A^{\tri}}$, lies in the essential image of the fully faithful functor $\CAlg(\Mod_{A})\to\CAlg(\Mod_{A^{\tri}})$, under which $A^{\tri,=}$ corresponds to the unit of $\Mod_{A}$. Since the unit is initial in $\CAlg(\Mod_{A})$ \cite[Cor. 3.2.1.9]{HA}, the anima of morphisms of condensed $\EE_{\infty}$-rings $A^{\tri,=}\to B^{\tri}$ under $A^{\tri}$ (ie. factorizations of $f$ over $\eta$) is contractible. The unique factorization $g:A^{\tri,=}\to B^{\tri}$ is a morphism of analytic rings $(A^{\tri,=},\Mod_{A})\to(B^{\tri},\Mod_{B})$, since $N|_{A^{\tri}}\in\Mod_{A}$ for $N\in\Mod_{B}$. Conversely, composition with the canonical morphism $(A^{\tri},\Mod_{A})\to(A^{\tri,=},\Mod_{A})$ preserves analyticity. This gives an equivalence 
+    $$\Mor_{\An\CAlg^{\wedge}}\left((A^{\tri,=},\Mod_{A}),(B^{\tri},\Mod_{B})\right)\simeq\Mor_{\An\CAlg}\left((A^{\tri},\Mod_{A}),(B^{\tri},\Mod_{B})\right),$$
+    naturally in $(B^{\tri},\Mod_{B})\in\An\CAlg^{\wedge}$ giving the claim. 
+\end{proof}
+Reflectivity transports the colimits of \Cref{prop: colimits in AnCAlg} to $\An\CAlg^{\wedge}$.
+\begin{corollary}\label{cor: complete AnCAlg has colimits}
+    The category $\An\CAlg^{\wedge}$ of complete analytic $\EE_{\infty}$-rings admits small colimits, given as completions of colimits in $\An\CAlg$.  
+\end{corollary}
+\begin{proof}
+    The adjunction exhibits $\An\CAlg^{\wedge}$ as a reflective subcategory in $\An\CAlg$ so the existence of small colimits in the latter -- as shown in \Cref{prop: colimits in AnCAlg} -- implies their existence in the former, as well as the formula for their computation \cite[\href{https://kerodon.net/tag/04JW}{Tag 04JW}]{kerodon}. 
+\end{proof}
+In the case of sifted colimits, no completion of the result is needed. 
+\begin{proposition}\label{prop: sifted colimits in complete}
+    The category $\An\CAlg^{\wedge}$ of complete analytic $\EE_{\infty}$-rings is closed under sifted colimits computed in $\An\CAlg$. 
+\end{proposition}
+\begin{proof}
+    Let $\{(A_{i}^{\tri},\Mod_{A_{i}})\}_{i\in I}$ be a sifted diagram in $\An\CAlg^{\wedge}$ with colimit $(B^{\tri},\Mod_{B})$ in $\An\CAlg$. By completeness $A_{i}^{\tri}\simeq A_{i}[*]$, so $B^{\tri}\simeq\colim_{i\in I}A_{i}^{\tri}\simeq\colim_{i\in I}A_{i}[*]$, which is $B$-analytic by \Cref{lem: sifted colimits in AnCAlg} at $S=*$. Hence $B^{\tri}\in\Mod_{B}$, so $(B^{\tri},\Mod_{B})$ is complete. 
+\end{proof}
+\subsection{Topological invariance}\label{subsec: topological invariance}
+The completion of \Cref{subsec: completion} replaced the underlying ring by its analytification while leaving the analytic modules fixed. We now show that the analytic structure is insensitive to the higher homotopy of the underlying condensed $\EE_{\infty}$-ring altogether: an analytic $\EE_{\infty}$-ring structure on $A^{\tri}$-modules is detected on the heart.
+\begin{theorem}\label{thm: heart recognition for analytic rings}
+    Let $A^{\tri}\in\Cond\CAlg^{\cn}$. The analytic $\EE_{\infty}$-ring structures on $A^{\tri}$-modules are in bijection with the full subcategories $\Asf$ of the Grothendieck Abelian category $\Mod_{\pi_{0}(A^{\tri})}^{\heartsuit}$ of $\pi_{0}(A^{\tri})$-modules in static condensed Abelian groups satisfying the following properties:
+     \begin{enumerate}[label=(\roman*)]
+        \item $\Asf$ is closed under small limits, colimits, and extensions in $\Mod_{\pi_{0}(A^{\tri})}^{\heartsuit}$. 
+        \item $\Asf$ is closed under arbitrary higher derived products $\prod^{(n)}_{I}$. 
+        \item For all $S\in\PFin_{\NN}$ and $N\in\Asf$, the homotopy groups 
+        $$\pi_{-k}(\intHom_{A^{\tri}}(A^{\tri}[S],N))\simeq\pi_{-k}(\intHom_{\Cond\Sp}(\Sph[S],N))$$ 
+        lie in $\Asf$ for all $k\geq0$. 
+    \end{enumerate}
+    The bijection sends $\Mod_{A}$ to $\Mod_{A}^{\heartsuit}$ and $\Asf$ to the full subcategory of $\Mod_{A^{\tri}}$ spanned by those objects $M$ such that $\pi_{k}(M)\in\Asf$ for all $k\in\ZZ$. 
+\end{theorem}
+\begin{proof}
+    We follow \cite[Prop. 4.4.2 \& Thm. 4.4.1]{CamargoSolid}, noting that the identification in condition (iii) is \Cref{lem: modules inherit bistability} (2) using $t$-exactness of the forgetful functor to $\Cond\Sp$.  
+
+    Given an analytic $\EE_{\infty}$-ring structure $\Mod_{A}$, set $\Asf:=\Mod_{A}^{\heartsuit}$. By \Cref{prop: properties of pi stably reflective localizations} (2) and (3), $\Mod_{A}$ carries the induced $t$-structure and membership in $\Mod_{A}$ is detected on homotopy groups. Regarding short exact sequences in $\Asf$ as (co)fiber sequences in $\Mod_{A}$, $\Asf$ is closed under extensions, kernels, and cokernels. Colimits in $\Asf$ are computed as $\pi_{0}$ of colimits computed in $\Mod_{A}$ hence in $\Asf$ by closure under homotopy. In the case of limits, we note that $\Asf$ is closed under higher derived products, which are the homotopy groups $\pi_{-k}(\prod_{i\in I}M_{i})$ of products formed in $\Mod_{A}$, and $\Asf$ is closed under small limits by writing these as kernels of derived products. This shows (i) and (ii). For (iii), the internal hom $\intHom_{A^{\tri}}(A^{\tri}[S],N)\in\Mod_{A}$ for $N\in\Asf\subseteq\Mod_{A}$ by \Cref{def: analytic E-infinity ring} (1) (ii) so its homotopy groups lie in $\Asf$ by homotopy detection.  
+
+    Conversely, given $\Asf$ satisfying (i)-(iii), let $\Mod_{A}$ be spanned by those $M$ with all $\pi_{k}(M)\in\Asf$ for all $k\in\ZZ$. The long exact sequence of homotopy groups and exactness of direct sums give closure under fibers, cofibers, and small colimits. By the same argument using the biCartesian square in the proof of \Cref{thm: properties of solid spectra} (1), $\Mod_{A}$ is closed under extensions as well. To show closure of $\Mod_{A}$ under small limits, it suffices to show closure under small products. For a family $\{M_{i}\}_{i\in I}$ in $\Mod_{A}$ and $k\in\ZZ$, the third term of the fiber sequence $\prod_{i\in I}\tau_{\geq r}M_{i}\to\prod_{i\in I}M_{i}\to\prod_{i\in I}\tau_{\leq r-1}M_{i}$ is in $\Mod_{A^{\tri},\leq r-1}$ as coconnective objects are closed under products, so $\pi_{k}(\prod_{i\in I}M_{i})\simeq\pi_{k}(\prod_{i\in I}\tau_{\geq r}M_{i})$ for $r<k$. The truncations are uniformly bounded below, so left completeness and commutation of products with limits give $\prod_{i\in I}\tau_{\geq r}M_{i}\simeq\lim_{m}\prod_{i\in I}\tau_{[r,m]}M_{i}$, and induction on $m$ exhibits each $\prod_{i\in I}\tau_{[r,m]}M_{i}$ as an iterated extension of the $\prod_{i\in I}\pi_{n}(M_{i})[n]$, whose homotopy groups are higher derived products, so lie in $\Asf$. The Milnor sequence of \Cref{prop: Milnor sequence in t-plus bistable} then exhibits $\pi_{k}(\prod_{i\in I}\tau_{\geq r}M_{i})$ as an extension of $\lim_{m}\pi_{k}(\prod_{i\in I}\tau_{[r,m]}M_{i})$ by $\lim^{1}_{m}\pi_{k+1}(\prod_{i\in I}\tau_{[r,m]}M_{i})$. Both terms are kernels and cokernels of maps between countable products of objects of $\Asf$ by the construction of the Milnor sequence, so $\pi_{k}(\prod_{i\in I}M_{i})\in\Asf$ by (i). This shows \Cref{def: analytic E-infinity ring} (1) (i). 
+    
+    The inclusion admits a left adjoint $L^{A}$ by \cite[Thm. 1.1]{RagimovReflection} which is right $t$-exact by the same proof as \Cref{lem: ringwise colimits} (1) using adjunction. This establishes \Cref{def: analytic E-infinity ring} (1) (iii). For the final condition of \Cref{def: analytic E-infinity ring}, note that a general $M\in\Mod_{A^{\tri}}$ is a colimit of shifts of the $A^{\tri}[S]$ by \Cref{prop: stability of A-analytic modules} (2) which $\intHom_{A^{\tri}}(-,N)$ carries to a limit of shifts in $\Mod_{A}$ so it suffices to show $\intHom_{A^{\tri}}(A^{\tri}[S],N)\in\Mod_{A}$ for all $N\in\Mod_{A}$. Using the Postnikov tower and left completeness, we can further reduce to $N$ coconnective. In this case $\intHom_{A^{\tri}}(A^{\tri}[S],-)$ commutes with Whitehead towers of bounded above objects by \Cref{lem: internal hom and towers} (1) so using the (co)fiber sequences $\tau_{\geq k}N\to\tau_{\geq k-1}N\to\pi_{k-1}(N)[k-1]$ we use induction and closure of $\Mod_{A}$ under shifts and extensions to reduce to the case of $N\in\Asf$ which was assumed in (iii) above. This shows that $(A^{\tri},\Mod_{A})$ is an analytic $\EE_{\infty}$-ring structure. 
+
+    The assignments are mutually inverse: the heart of the subcategory associated to $\Asf$ is $\Asf$, and an analytic $\EE_{\infty}$-ring structure is recovered from its heart by \Cref{prop: properties of pi stably reflective localizations} (3). 
+\end{proof}
+\begin{remark}\label{rmk: higher derived products}
+    Closure under higher derived products is absent in \cite[Prop. 12.19]{Analytic} due to exactness of products in the non-light setting. In the light condensed setting, only countable products of connective objects remain connective by \Cref{thm: properties of condensed spectra} (2) (iv), and closure under higher derived products is necessary, cf. \cite[Rmk. 4.4.3]{CamargoSolid}. 
+\end{remark}
+In particular the data classifying analytic $\EE_{\infty}$-ring structures on $A^{\tri}$-modules and $\pi_{0}(A^{\tri})$-modules agree. 
+\begin{proposition}\label{prop: functorial heart invariance}
+    Let $A^{\tri}\in\Cond\CAlg^{\cn}$. The natural morphism $A^{\tri}\to\pi_{0}(A^{\tri})$ induces a functorial bijection of analytic $\EE_{\infty}$-ring structures on the categories of $A^{\tri}$- and $\pi_{0}(A^{\tri})$-modules in condensed spectra taking an analytic $\EE_{\infty}$-ring structure on $A^{\tri}$-modules to the induced analytic $\EE_{\infty}$-ring structure on $\pi_{0}(A^{\tri})$-modules. 
+\end{proposition}
+\begin{proof}
+    The hearts of $\Mod_{A^{\tri}}$ and $\Mod_{\pi_{0}(A^{\tri})}$ coincide by \Cref{prop: relationship with heart} (1), so the sets of subcategories of the heart satisfying conditions (i)-(iii) of \Cref{thm: heart recognition for analytic rings} are identical. The bijection is realized by the induced analytic $\EE_{\infty}$-ring structure (\Cref{def: induced analytic ring}) as its analytic modules $\Mod_{\pi_{0}(A^{\tri})/A}$ -- those $N$ with $N|_{A^{\tri}}\in\Mod_{A}$ -- having heart $\Mod_{A}^{\heartsuit}$ by \Cref{prop: properties of pi stably reflective localizations} (3). Functoriality is provided by that of the induced structure. 
+\end{proof}
+Consequently the analytic structure depends only on the static truncation. 
+\begin{corollary}\label{cor: induced for equivalence on pi0}
+    Let $A^{\tri}\to B^{\tri}$ be a morphism in $\Cond\CAlg^{\cn}$ which induces an equivalence $\pi_{0}(A^{\tri})\to\pi_{0}(B^{\tri})$. Then there is a functorial bijection of analytic $\EE_{\infty}$-ring structures on $A^{\tri}$-modules and analytic $\EE_{\infty}$-ring structures on $B^{\tri}$-modules via the induced analytic $\EE_{\infty}$-ring structure. 
+\end{corollary}
+\begin{proof}
+    Under the identification $\pi_{0}(A^{\tri})\simeq\pi_{0}(B^{\tri})$, any analytic $\EE_{\infty}$-ring structure $(A^{\tri},\Mod_{A})$ on $A^{\tri}$-modules gives a unique analytic $\EE_{\infty}$-ring structure on $\pi_{0}(B^{\tri})$-modules which lifts to a unique analytic $\EE_{\infty}$-ring structure on $B^{\tri}$-modules by \Cref{prop: functorial heart invariance}. 
+\end{proof}
+Analytic $\EE_{\infty}$-ring structures are moreover invariant under nilpotent thickenings. 
+\begin{corollary}\label{cor: analytic structures invariant under nilpotent thickenings}
+    Let $A^{\tri}\to B^{\tri}$ be a morphism in $\Cond\CAlg^{\cn}$ such that $\pi_{0}(A^{\tri})\to\pi_{0}(B^{\tri})$ is surjective with nilpotent kernel. Then there is a functorial bijection of analytic $\EE_{\infty}$-ring structures on $A^{\tri}$-modules and analytic $\EE_{\infty}$-ring structures on $B^{\tri}$-modules via the induced analytic $\EE_{\infty}$-ring structure. 
+\end{corollary}
+\begin{proof}
+    By \Cref{cor: induced for equivalence on pi0} applied to the truncations, we may assume $A^{\tri}$ and $B^{\tri}$ static, where the claim is \cite[Prop. 4.4.5]{CamargoSolid}. 
+\end{proof}
+\subsection{Mereology of \texorpdfstring{$A$}{A}-analytic modules}\label{subsec: mereology of analytic modules}
+As in static algebra and algebraic geometry, it is often fruitful to single out subcategories of modules that are finitary in a suitable sense. We consider several notions of finiteness for the modules over a complete analytic $\EE_{\infty}$-ring $(A^{\tri},\Mod_{A})$ and relate them to finiteness in the category $\Mod_{A^{\tri}(*)}(\Sp)$ of $A^{\tri}(*)$-modules in spectra. 
+
+Recall that $\Mod_{A}$ is $\omega_{1}$-presentably symmetric monoidal with compact unit by \Cref{prop: A-analytic tensor product}, so the theory of \Cref{app: nuclearity} applies for $\kappa=\omega_{1}$.
+
+We first specialize dualizability to this setting.
+\begin{definition}\label{def: dualizability}
+    Let $(A^{\tri},\Mod_{A})$ be a complete analytic $\EE_{\infty}$-ring.
+    \begin{enumerate}
+        \item Let $M\in\Mod_{A}$. The \emph{pre-dual} of $M$ is the object $M^{\vee}:=\intHom_{A}(M, A^{\tri})$. Let $\ev_{M}:M\otimes_{A}M^{\vee}\to A^{\tri}$ be the counit morphism of $M\otimes_{A}(-)\dashv\intHom_{A}(M, -)$ at $A^{\tri}$.  
+        \item An object $M\in\Mod_{A}$ is \emph{dualizable} if there exists a morphism $\coev_{M}:A^{\tri}\to M^{\vee}\otimes_{A}M$ such that the composites 
+        $$M\xrightarrow{\id_{M}\otimes_{A}\coev_{M}}M\otimes_{A}M^{\vee}\otimes_{A}M\xrightarrow{\ev_{M}\otimes_{A}\id_{M}}M$$
+        $$M^{\vee}\xrightarrow{\coev_{M}\otimes_{A}\id_{M^{\vee}}}M^{\vee}\otimes_{A}M\otimes_{A}M^{\vee}\xrightarrow{\id_{M^{\vee}}\otimes_{A}\ev_{M}}M^{\vee}$$
+        are identities. In this case, we say the pre-dual $M^{\vee}$ is the \emph{dual} of $M$. 
+    \end{enumerate}
+\end{definition}
+The nuclear objects are built from the compact ones along trace class maps.
+\begin{definition}\label{def: nuclearity and trace class morphisms}
+    Let $(A^{\tri},\Mod_{A})$ be a complete analytic $\EE_{\infty}$-ring. 
+    \begin{enumerate}
+        \item A morphism $f:M\to N$ in $\Mod_{A}$ is \emph{trace class} if the morphism $A^{\tri}\to\intHom_{A}(M, N)$ classifying $f$ admits a factorization as $A^{\tri}\to M^{\vee}\otimes_{A}N\to\intHom_{A}(M,N)$. 
+        \item An object of $\Mod_{A}$ is \emph{basic nuclear} if it is the colimit of a $\QQ_{\geq0}$-indexed diagram of $\omega_{1}$-compact objects along trace class morphisms. 
+        \item An object of $\Mod_{A}$ is \emph{nuclear} if it lies in the subcategory of $\Mod_{A}$ generated under small colimits by the basic nuclear objects. 
+    \end{enumerate}
+    Denote the full subcategory of nuclear objects by $\Nuc_{A}\subseteq\Mod_{A}$. 
+\end{definition}
+\begin{remark}\label{rmk: nuclear objects}
+    The generators $A[S]$ of $\Mod_{A}$ are only $\omega_{1}$-compact by \Cref{prop: stability of A-analytic modules} (3), so $\Mod_{A}$ need not be $\omega$-presentable and the results of \cite[Lecture VIII]{Complex} do not apply. However, $\Mod_{A}$ is $\omega_{1}$-presentably symmetric monoidal with compact unit by \Cref{prop: A-analytic tensor product} (2) bringing $\Mod_{A}$ within the scope of \Cref{app: nuclearity}, and allowing us to produce a satisfactory theory of nuclear objects.
+\end{remark}
+The collection of nuclear modules satisfies the following permanence properties. 
+\begin{proposition}[{\cite[Prop. 2.3.22]{MannRigid6FF}}]\label{prop: permanence properties of nuclear objects}
+    Let $(A^{\tri},\Mod_{A})\to(B^{\tri},\Mod_{B})$ be a morphism in $\An\CAlg^{\wedge}$.
+    \begin{enumerate}
+        \item $\Nuc_{A}$ is closed under small colimits computed in $\Mod_{A}$. 
+        \item The scalar extension functor $B\otimes_{A}-:\Mod_{A}\to\Mod_{B}$ preserves nuclear objects: if $M\in\Nuc_{A}$ then $B\otimes_{A}M\in\Nuc_{B}\subseteq\Mod_{B}$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    (1) is \Cref{lem: comparison functor from rigidification} (3) and \Cref{prop: nuclearity and rigidity}, while (2) is \Cref{prop: preservation of nuclearity} using that scalar extension is a symmetric monoidal functor which preserves $\omega_{1}$-compact generators.  
+\end{proof}
+Discrete modules provide a convenient source of nuclear modules.
+\begin{corollary}\label{cor: discrete implies nuclear}
+    Let $(A^{\tri},\Mod_{A})$ be a complete analytic $\EE_{\infty}$-ring. Any discrete object of $\Mod_{A}$ is nuclear.
+\end{corollary}
+\begin{proof}
+    By \Cref{prop: discrete modules}, the discrete objects of $\Mod_{A}$ are generated under colimits and shifts by $A^{\tri}$. But $A^{\tri}$ is dualizable, hence nuclear, and $\Nuc_{A}$ is closed under colimits and shifts in $\Mod_{A}$, thus in particular contains the discrete objects.  
+\end{proof}
+In a closed symmetric monoidal category with compact unit, any dualizable object is necessarily compact. However, compactness is often not sufficient. The precise criterion is nuclearity together with compactness.
+\begin{proposition}[{\cite[Prop. 9.3]{Complex}}]\label{prop: dualizable iff nuclear and compact}
+    Let $(A^{\tri},\Mod_{A})$ be a complete analytic $\EE_{\infty}$-ring. An object $M\in\Mod_{A}$ is dualizable if and only if it is nuclear and compact. 
+\end{proposition}
+\begin{proof}
+    This is \Cref{prop: dualizable iff nuclear and compact category}. 
+\end{proof}
+\begin{remark}\label{rmk: beyond the omega-presentable case}
+    \cite[Prop. 9.3]{Complex} imposes the condition that the ambient category is $\omega$-presentable with compact unit. The statement in \Cref{app: nuclearity} shows this still holds when the assumption of $\omega$-presentability on the category is removed but the unit is still compact. 
+\end{remark}
+As the preceding discussion suggests, the discrete compact objects of $\Mod_{A}$ are dualizable, and we introduce the following name for when the embedding of \Cref{prop: discrete modules} restricts to an equivalence on dualizable objects. 
+\begin{definition}[{\cite[Def. 3.3.1]{dRFF}}]\label{def: Fredholm rings}
+    A complete analytic $\EE_{\infty}$-ring $(A^{\tri},\Mod_{A})$ is \emph{Fredholm} if all dualizable objects of $\Mod_{A}$ are discrete. 
+\end{definition}
+\begin{remark}\label{rmk: Fredholm rings}
+    The notion of a Fredholm compactly generated closed symmetric monoidal category with compact unit first appeared as \cite[Def. 9.7]{Complex}, of which \Cref{def: Fredholm rings} can be seen as special case under additional assumptions on the category of analytic modules. 
+\end{remark}
