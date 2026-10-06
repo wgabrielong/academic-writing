@@ -43,6 +43,7 @@ well.
 ## Seminars
 
 - [![pdf](https://img.shields.io/badge/pdf-Seminar-orange)](https://wgabrielong.github.io/academic-writing/seminars/prismatic-f-gauges/main.pdf) Reading Seminar: Prismatic *F*-Gauges — jointly organized with Lucas Piessevaux, Summer 2026
+- [![pdf](https://img.shields.io/badge/pdf-Seminar-orange)](https://wgabrielong.github.io/academic-writing/seminars/ring-stacks/main.pdf) Reading Seminar: Cohomology theories in the moduli of ring stacks — jointly organized with Maria Alexandra Stroe, Winter 2026/27
 
 
 ## License
