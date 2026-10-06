@@ -1,0 +1,121 @@
+\documentclass[12pt]{amsart}
+\usepackage{amssymb,mathdots,mathtools,pgfplots,float,mathrsfs}
+\definecolor{hot}{RGB}{65,105,225}
+\usepackage[colorlinks, allcolors=hot]{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{biblatex}
+\addbibresource{refs.bib}
+
+\pgfplotsset{compat=1.18}
+
+
+%Environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\title[Cohomology theories in the moduli of ring stacks]{Reading Seminar: Cohomology theories in the moduli of ring stacks \\[0.5ex] \footnotesize Winter Semester 2026/27}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author[Ong]{Wern Juin Gabriel Ong} 
+\address{Wern Juin Gabriel Ong\\
+         Department of Mathematics\\
+         University of Bonn\\
+         Bonn, D-53111\\
+         Germany} 
+\email{wgabrielong@uni-bonn.de}
+\urladdr{https://wgabrielong.github.io}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author[Stroe]{Maria Alexandra Stroe} 
+\address{Maria Alexandra Stroe\\
+         Department of Mathematics\\
+         University of Bonn\\
+         Bonn, D-53111\\
+         Germany} 
+\email{s6mmstro@uni-bonn.de}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Beginning
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Introduction  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Preamble}
+The reading seminar this semester will focus on the preprint of Lahoti--Manam, ``Cohomology theories in the moduli of ring stacks'' \cite{LM25}. 
+
+For a smooth scheme $X$ over a field of characteristic $0$, Simpson identifies the category of $D$-modules on $X$ with that of quasicoherent sheaves on the de Rham stack $X^{\mathsf{dR}}$ of $X$ \cite{Sim96}. Drinfeld, Bhatt--Lurie, Scholze, and others have since recast the coefficients of several cohomology theories in the same way, the relevant stack arising as the transmutation of $X$ by a ring stack: for the de Rham stack this is $\mathbb{G}_{a}^{\mathsf{dR}}$, the \'{e}tale sheaf on static commutative $\mathbb{Q}$-algebras sending $R$ to its reduction $R/\mathrm{Nil}(R)$, and one has $X^{\mathsf{dR}}(R) \simeq X(\mathbb{G}_{a}^{\mathsf{dR}}(R))$. 
+
+For a fixed static ring $A$, the $A$-algebra stacks -- those sheaves of animated $A$-algebras for some Grothendieck topology on the category of static rings -- themselves form a stack $A\mathsf{\text{-}AlgStk}$ which we may regard as a moduli stack of cohomology theories on $A$-schemes: given $\mathcal{A}\in A\mathsf{\text{-}AlgStk}$ we can transmute by $\mathcal{A}$ to get a coefficient theory on $A$-schemes $X$ by taking quasicoherent sheaves on the stack $X^{\mathcal{A}}$ where $X^{\mathcal{A}}(R):=X(\mathcal{A}(R))$. 
+
+Fix a prime $p$ and let $A^{\mathsf{Syn}}$ be the syntomification of $A$, obtained from the filtered prismatization $A^{\mathcal{N}}$ by identifying its Hodge--Tate and de Rham loci \cite[Rmk. 3.4.2 \& Def. 6.1.1]{Bha22}. For $R$ a $p$-nilpotent ring, a map $\mathrm{Spec}(R)\to A^{\mathsf{Syn}}$ is locally on $R$ a filtered Cartier--Witt divisor \cite[Def. 5.3.1]{Bha22} -- a map of $W$-module schemes $M\to W$ over $R$ with $M$ an admissible $W$-module \cite[Def. 5.2.4]{Bha22} -- together with a map $A\to (W/M)(R):=R\Gamma(\mathrm{Spec}(R),W/M)$ of animated rings \cite[Cor. 5.3.9]{Bha22}. The animated ring stack $W/M$ over $\mathrm{Spec}(R)$ is thus an $A$-algebra stack, and $(M\to W)\mapsto W/M$ assembles into a map of stacks
+\begin{equation}\label{eqn: functor on stacks}
+    A^{\mathsf{Syn}} \longrightarrow A\mathsf{\text{-}AlgStk},
+\end{equation}
+classifying the ring stack $\mathbb{G}_{a,A}^{\mathsf{Syn}}$. The main result of \cite{LM25} is that (\ref{eqn: functor on stacks}) is fully faithful, with essential image the $A$-algebra stacks whose underlying abelian monoid stack arises from $A^{\mathsf{Syn}}$, and that full faithfulness holds in the characteristic 0 filtered de Rham, $\ell=p$ \'{e}tale, and Betti settings. When viewing $A\mathsf{\text{-}AlgStk}$ as the moduli stack of coefficient theories on $A$-schemes, full faithfulness of (\ref{eqn: functor on stacks}) can be interpreted as the statement that prismatic $F$-gauges completely capture a subcollection of all possible coefficient theories on $A$-schemes.
+
+\subsection*{Prerequisites} Strong facility with higher algebra in the sense of Lurie \cite{LurieHTT, LurieHA} -- $\infty$-categories, animated commutative rings and their modules, etc. -- is essential and will be assumed throughout. The aspects of prismatic cohomology as discussed in the two preceding seminars, following Bhatt--Lurie \cite{BL22} and Bhatt \cite{Bha22}, serve as the basic motivation, but the talks should be accessible (if only unmotivated) to those with the requisite $\infty$-categorical background. 
+
+\newpage
+\section*{Schedule}
+
+The seminar meets at WW:WW to XX:XX on Y in room Z. 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lrll}
+        \textbf{Date}  & & \textbf{Topic} & \textbf{Speaker}\\
+        Wk. Oct. 12th &0& Motivation &  The Organizers\\
+        Wk. Nov. 16th &1& Affine Stacks I &  TBD\\
+        Wk. Nov. 23rd &2& Affine Stacks II &  TBD\\
+        Wk. Nov. 30th &3& Prismatization &  TBD\\
+        Wk. Dec. 7th &4& $W$-module Schemes &  TBD\\
+        Wk. Dec. 14th &5& Syntomification I &  TBD\\
+        Wk. Jan. 4th &6& Interlude &  TBD\\
+        Wk. Jan. 11th &7& Syntomification II &  TBD\\
+        Wk. Jan. 18th &8& de Rham and \'{e}tale cohomology &  TBD\\
+        Wk. Jan. 25th &9& Betti cohomology & TBD
+    \end{tabular}
+\end{table}
+\section*{Syllabus}
+\subsection*{Talk 0 -- Motivation}
+Recall the role ring stacks play in the theory of prismatization following \cite[\S 1.4]{Bha22}. Then state \cite[Thm. 1.7.4]{LM25} together with its interpretation that prismatic $F$-gauges capture some part of the theory of motives, as well as the analogues of the prismatic result in the de Rham setting \cite[Cor. 2.12]{LM25}, \'{e}tale setting \cite[Thm. 3.3]{LM25}, and Betti setting \cite[Thm. 4.11]{LM25} together with an identification of the essential image in the syntomic case. Outline the progression of the seminar. 
+
+Talks will be distributed at this meeting. 
+\subsection*{Talk 1 -- Affine Stacks I} 
+Give a motivated discussion of the first half of the general theory of affine stacks as in \cite[App. B.1-6]{LM25}. Recall the relevant constructions from the discussion of derived algebraic contexts \cite[\S 4.2]{Rak20} and the graded variant introduced in \cite[Const. 4.3.4]{Rak20}. Recall the definitions of $c$- and $g$-stacks \cite[\S 2.1-2]{Dri22}, as well as how they relate to the syntomification, filtered prismatization, and $F$-gauges \cite[\S 1.6-8]{Dri22}. Discuss \cite[Lem. B.2-3]{LM25} on base change and limits of contexts via monadicity, the Kan extension result \cite[Def. B.4]{LM25}, and the relationship between graded objects \cite[Rmk. B.5-6]{LM25}. 
+\subsection*{Talk 2 -- Affine stacks II}
+Continue the discussion of affine stacks and prove that the syntomification of a $p$-complete animated ring is relatively affine over $\mathbb{Z}_{p}^{\mathsf{Syn}}$, completing \cite[App. B]{LM25}. Build up the theory of the derived spectrum and affine derived stacks from \cite[\S 3]{MM}, mentioning the subtleties highlighted in \cite[Cor. 3.12 \& Rmk. 3.13]{MM}. Explain the generalities on affine stacks \cite[Prop. 4.1 \& 4.2]{MM}, as well as the relationship with $BG$ and $X/G$ \cite[Cor. 4.4 \& Prop. 4.11]{MM}. Using this, define relative affineness as in \cite[Def. B.7]{LM25} and \cite[Rmk. 4.5]{MM} and note that it is local in the faithfully flat and quasicompact topology \cite[Rmk. B.8]{LM25}. Prove $\mathbb{G}_{a}^{\mathsf{Syn}}$ is locally $W/M$ with $M$ as in \cite[Ex. 5.5.6]{Bha22}, affineness of $BM$ \cite[Prop. 4.11]{MM} and unipotence of $W$ and $\mathbb{G}_{a}^{\sharp}$, deducing \cite[Thm. B.9]{LM25}. 
+
+\newpage
+\subsection*{Talk 3 -- Prismatization} 
+Discuss the relative variants of the filtered prismatization constructed in \cite[\S 1.1]{LM25}: the map $\mathrm{Spf}(A)\times\mathbb{Z}_{p}^{\mathcal{N}}\to A^{\mathcal{N}}$ for a $\delta$-ring $A$ and its Frobenius twist on the de Rham locus \cite[Rec. 1.1.1 \& Rmk. 1.1.2]{LM25}, the gluing \cite[Const. 1.1.4]{LM25}, and the explicit model for a prism \cite[Const. 1.1.6]{LM25} generalizing \cite[Ex. 5.5.6]{Bha22}. Describe the complete filtered prismatization, and relate them to the ring and monoid Nygaard stacks that we have previously encountered in the discussion of prismatization \cite[Rmk. 1.1.3]{LM25}. Give the constructions and proofs in detail with reference to and recollections from \cite{Bha22} as needed, in particular \cite[\S 5]{Bha22}, including the constructions of the key stacks.
+
+
+\subsection*{Talk 4 -- $W$-module schemes} 
+Study affine $W$-module schemes as in \cite[\S 1.2]{LM25} (vis. \cite[\S 2.6 \& 5.2]{Bha22}). Give expanded explanations of the core constructions: using \cite[A.4]{Mat23} and \cite[Rmk. A.17]{LM25}, explain why $W^{\mathsf{rat}, +}$ is the free commutative monoid on the pointed scheme $(\mathbb{A}^1, 0)$ as a prelude to the proof of \cite[Lem. 1.2.4]{LM25}; and explain the dual exact sequences in \cite[Rec. 1.2.12]{LM25} using \cite[\S 3.7-8]{Dri22} as used in \cite[Cor. 1.2.13]{LM25}.  
+\subsection*{Talk 5 -- Syntomification I} 
+Give an overview of the tools for the identification of the essential image in the case of syntomification \cite[\S 1.3-1.5]{LM25}. Motivate the discussion of passable $W$-modules and polyfiltered Cartier--Witt divisors from \cite[\S 5.1-5.3]{Bha22}. Sketch or prove \cite[Prop. 1.5.8]{LM25} building off \cite[Thm. A.1]{Mat23}.
+\subsection*{Talk 6 -- Interlude: Divided powers and descent} 
+Explain \cite[\S 1.6 \& App. A]{LM25}, relating the ideas therein to the notion of descendability introduced by Mathew \cite{Mat16}. Discuss pseudodescendability, the example of the projective line \cite[Rmk. A.3]{LM25}, and the fact that derived divided powers preserve descendable maps. Returning to \cite[\S 1.6]{LM25}, prove \cite[Prop. 1.6.1]{LM25} using the material from the appendix. 
+
+\subsection*{Talk 7 -- Syntomification II} 
+Returning to the proof of the syntomic statement, go over \cite[\S 1.7 \& App. D]{LM25}. Explain the theory of accessible presheaves following \cite[App. A]{HP24} without proof. Prove the recognition principle for transmutation \cite[Prop. D.2]{LM25} and explain the relevant aspects of \cite[\S 8.4]{Dri22}, in particular the statement of \cite[Thm. 8.4.7]{Dri22}, as it relates to the proof of the main theorem \cite[Thm. 1.7.4]{LM25}. 
+\subsection*{Talk 8 -- de Rham and \'{e}tale cohomology} 
+Discuss the proof in the filtered de Rham and $\ell=p$ \'{e}tale settings in \cite[\S 2-3]{LM25}. Note the de Rham setting is not an adaptation of the syntomic argument and instead works with derived stacks in the pro faithfully flat and finitely presented topology and certain hom computations. Give a generous discussion of the background and motivation, for example the filtered de Rham construction in \cite[\S 6.4]{GM26}, the theory of virtual Cartier divisors and its relationship with the operation on ring stacks in \cite[\S 3.2]{KR25}, and \cite[Prop. A.6 \& A.15]{Mat23} for the mechanism behind $\mathrm{RHom}_{\mathbb{Q}}(\mathbb{G}_{a},\mathbb{G}_{a})\simeq\mathbb{Q}$. 
+\subsection*{Talk 9 -- Betti cohomology} 
+Conclude with a discussion of the Betti case. Start by recalling the theory of w-local rings following \cite{BS15} and the description of compactly generated Hausdorff spaces as accessible presheaves on profinite sets (ie. ``big'' condensed mathematics) following \cite{Sch19}. Then prove the statement in the case of the Betti stack. Briefly discuss the outlook in the first part of \cite[\S 5]{LM25}.
+
+\newpage
+\printbibliography
+
+
+\end{document}
