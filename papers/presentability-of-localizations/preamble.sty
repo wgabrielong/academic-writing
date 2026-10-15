@@ -1,0 +1,148 @@
+\usepackage{import} % To import chapters
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % For math equations, theorems, symbols, etc
+\usepackage[euler-digits,euler-hat-accent]{eulervm}  % Euler for math font
+\usepackage{newpxtext} % Palatino for text font
+\linespread{1.1} % Increases by 10% the distance between lines. This makes in-line math look better.
+\usepackage{array} % Creating arrays
+\usepackage{mathtools} % For \xhookrightarrow
+\usepackage{graphicx} % For \yo
+\usepackage{microtype}
+\DeclareMicrotypeAlias{ppl}{pplx}
+\usepackage[scr=rsfso]{mathalpha}
+\usepackage{yhmath} % For really wide \widehat
+\usepackage{enumitem} % For enumerating by letters
+\usepackage{xcolor} % For naming colors
+\definecolor{ocre}{RGB}{184,115,51} % Main color
+\definecolor{phtgreen}{RGB}{28,92,64}
+\usepackage{mleftright} % for '\mleft' and '\mright' macros
+\usepackage[hidelinks,hyperfootnotes=false,colorlinks=true,citecolor=phtgreen, urlcolor=phtgreen, linkcolor=ocre,pdftitle={Presentability of categories of localizations and analytic rings}]{hyperref} % For creating hyperlinks
+\usepackage{chngcntr}
+\usepackage{tikz-cd} % For commutative diagrams
+\tikzset{
+    labl/.style={anchor=north, rotate=90, inner sep=.5mm}
+}
+\usepackage{stmaryrd} % For double brackets
+\usepackage{booktabs} % for beautiful tables
+\usepackage{colonequals} % for \colonequals
+\usepackage[
+backend=biber,
+style=alphabetic,
+backref=true
+]{biblatex}
+\addbibresource{bibliography.bib}
+
+\addtokomafont{part}{\normalfont\scshape} % Small caps headers
+\addtokomafont{partprefix}{\normalfont\scshape}
+\addtokomafont{section}{\normalfont\scshape}
+\addtokomafont{subsection}{\normalfont\scshape}
+\addtokomafont{subsubsection}{\normalfont\scshape}
+\addtokomafont{partentry}{\normalfont\scshape}
+\addtokomafont{title}{\normalfont\scshape}
+
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+
+\title{Presentability of categories of localizations and analytic rings}
+\author{Wern Juin Gabriel Ong, Gabriel Ribeiro}
+\date{}
+
+\newtheoremstyle{thm}
+  {10pt}   % Space above
+  {10pt}   % Space below
+  {\normalfont\itshape}  % Body font
+  {}      % Indent amount
+  {\normalfont\scshape}  % Theorem head font
+  {.}     % Punctuation after theorem head
+  {0.4em}  % Space after theorem head
+  {}      % Theorem head spec
+\theoremstyle{thm}
+\newcounter{dummy} 
+\counterwithin{dummy}{section}
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{proposition}[dummy]{Proposition}
+\newtheorem{corollary}[dummy]{Corollary}
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{introthm}{Theorem}
+\renewcommand{\theintrothm}{\Alph{introthm}}
+\newtheorem*{introcor}{Corollary}
+
+\newtheoremstyle{def}
+  {15pt}   % Space above
+  {15pt}   % Space below
+  {\normalfont}  % Body font
+  {}      % Indent amount
+  {\normalfont\scshape}  % Theorem head font
+  {.}     % Punctuation after theorem head
+  {0.4em}  % Space after theorem head
+  {}      % Theorem head spec
+\theoremstyle{def}
+\newtheorem{definition}[dummy]{Definition}
+\newtheorem*{definition*}{Definition}
+
+\newtheoremstyle{blacknumex}% Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% Body font
+{} % Indent amount
+{\small\normalfont \scshape}% Theorem head font
+{.\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small{\tiny\ensuremath{\blacksquare}}\nobreakspace\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont \scshape---\nobreakspace#3}}% Optional theorem note
+
+\theoremstyle{blacknumex}
+\newtheorem{exampleT}[dummy]{Remark}
+\newtheorem{exampleT1}[dummy]{Example}
+
+\newenvironment{remark}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}
+\newenvironment{example}{\begin{exampleT1}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT1}}
+
+\newtheoremstyle{blacknumex*}% Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% Body font
+{} % Indent amount
+{\small\normalfont \scshape}% Theorem head font
+{\hspace{0.05em}.\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small{\tiny\ensuremath{\blacksquare}}\nobreakspace\thmname{#1}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont \scshape---\nobreakspace#3}}% Optional theorem note
+
+\theoremstyle{blacknumex*}
+\newtheorem*{exampleT2}{Example}
+
+\newenvironment{example*}{\begin{exampleT2}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT2}}
+
+\renewcommand{\rightrightarrows}
+  {\mathrel{\substack{\textstyle\to\\[-0.1ex]
+   \textstyle\to}}}
+
+\newcommand{\rightrightrightarrows}
+  {\mathrel{\substack{\textstyle\to\\[-0.1ex]
+   \textstyle\to \\[-0.1ex]
+   \textstyle\to}}}
+   
+\newcommand{\rightrightrightrightarrows}
+  {\mathrel{\substack{\textstyle\to\\[-0.1ex]
+   \textstyle\to \\[-0.1ex]
+   \textstyle\to \\[-0.1ex]
+   \textstyle\to}}}
+
+\newcommand{\tri}{{\mathbin{\textstyle \triangleright}}}
+
+\DeclareFontFamily{U}{min}{}
+\DeclareFontShape{U}{min}{m}{n}{<-> udmj30}{}
+
+\newcommand{\yo}{%
+  \mathord{%
+   \!\! \scalebox{1.2}{\text{\usefont{U}{min}{m}{n}\symbol{'207}}} \!%
+  }%
+}
+
+% Use Computer Modern for \aleph only.
+\DeclareSymbolFont{cmaleph}{OMS}{cmsy}{m}{n}
+\SetSymbolFont{cmaleph}{bold}{OMS}{cmsy}{b}{n}
+\let\aleph\relax
+\DeclareMathSymbol{\aleph}{\mathord}{cmaleph}{"40}
+
+\DeclareMathAlphabet{\mathdutchcal}{U}{dutchcal}{m}{n} 

@@ -1,0 +1,300 @@
+Before stating the definition of pre-analytic rings, we first make the following construction. Let $\mathsf{FF}$ denote the full subcategory of $\mathsf{Fun}(\Delta^1,\widehat{\mathsf{Cat}})$ consisting of fully faithful functors, and consider the pullback diagram
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhzZntQfV97XFxsYW1iZGF9Il0sWzAsMSwiXFxtYXRoc2Z7Q29uZH1fe1xcbGFtYmRhfShcXG1hdGhzZntSaW5nfSkiXSxbMiwxLCJcXHdpZGVoYXR7XFxtYXRoc2Z7Q2F0fX1eXFxtYXRocm17b3B9Il0sWzIsMCwiXFxtYXRoc2Z7RkZ9XlxcbWF0aHJte29wfSJdLFszLDIsInQiXSxbMSwyLCJcXG1hdGhzZntEfSgtKSJdLFswLDFdLFswLDNdXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{P}_{\lambda}} \&\& {\mathsf{FF}^\mathrm{op}} \\
+	{\mathsf{Cond}_{\lambda}(\mathsf{Ring})} \&\& {\widehat{\mathsf{Cat}}^\mathrm{op},}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["t", from=1-3, to=2-3]
+	\arrow["{\mathsf{D}(-)}", from=2-1, to=2-3]
+\end{tikzcd}\]
+where $t \colon \mathsf{FF} \to \widehat{\mathsf{Cat}}$ sends a functor to its target.
+
+Since $t$ is an isofibration, \cite[Tag \href{https://kerodon.net/tag/033T}{033T}]{kerodon} provides an explicit description of $\mathsf{P}_\lambda$. Its objects are pairs $A=(A^\triangleright, \mathsf{D}(A))$, where $A^\triangleright$ is a $\lambda$-light condensed ring and $\mathsf{D}(A)$ is a full subcategory of $\mathsf{D}(A^\triangleright)$. A morphism $A \to B$ in $\mathsf{P}_\lambda$ consists of a morphism of $\lambda$-light condensed rings $\varphi\colon A^\triangleright \to B^\triangleright$ such that the associated restriction-of-scalars functor
+\[\varphi_*\colon \mathsf{D}(B^\triangleright) \to \mathsf{D}(A^\triangleright)\]
+carries $\mathsf{D}(B)$ into $\mathsf{D}(A)$. 
+
+\begin{definition}\label{def panring}
+A \emph{$\lambda$-light pre-analytic ring} $A$ is a pair $(A^\triangleright,\mathsf{D}(A))$ consisting of a $\lambda$-light condensed ring $A^\triangleright$ and a full subcategory $\mathsf{D}(A)$ of $\mathsf{D}(A^\triangleright)$ such that:
+\begin{enumerate}[label=(\roman*)]
+    \item The full subcategory $\mathsf{D}(A)\subset \mathsf{D}(A^\triangleright)$ is closed under small limits and colimits (hence the inclusion $\iota_A\colon \mathsf{D}(A)\hookrightarrow\mathsf{D}(A^\triangleright)$ admits a left adjoint, denoted $-\otimes_{A^\triangleright}A$);
+    \item For every $M \in \mathsf{D}(A^\triangleright)$ and $N \in \mathsf{D}(A)$, the object $\underline{\operatorname{Hom}}(M,N)$ lies in $\mathsf{D}(A)$;
+    \item The composition $L_A\colonequals\iota_A \circ \bigl(-\otimes_{A^\triangleright}A\bigr)$ preserves connective objects.
+\end{enumerate}
+We define $\mathsf{PAnRing}_{\lambda}$ to be the full subcategory of $\mathsf{P}_{\lambda}$ spanned by the $\lambda$-light pre-analytic rings.
+\end{definition}
+
+\begin{theorem}\label{PAnRing is presentable}
+    The category $\mathsf{PAnRing}_\lambda$ is $\mu$-presentable, for $\mu=((2^{<\lambda})^{\aleph_0})^+$.
+\end{theorem}
+
+The proof of this theorem requires us to reinterpret each of the three conditions in Definition~\ref{def panring}. We begin with the third, which leads us to consider a variant $\mathsf{P}_\lambda^\mathrm{cn}$ of $\mathsf{P}_\lambda$, obtained by replacing the functor $\mathsf{D}(-)$ in its definition with
+\[\mathsf{D}(-)_{\geq 0}\colon \mathsf{Cond}_\lambda(\mathsf{Ring})\to \widehat{\mathsf{Cat}}^\mathrm{op}.\]
+In the same spirit, we introduce the following connective analogue of Definition~\ref{def panring}.
+
+\begin{definition}\label{def connective panring}
+We denote by $\mathsf{PAnRing}^\mathrm{cn}_\lambda$ the full category of $\mathsf{P}_\lambda^\mathrm{cn}$ spanned by pairs $A=(A^{\triangleright},\mathsf{D}(A)_{\geq0})$, consisting of a $\lambda$-light condensed ring $A^{\triangleright}$ and a full subcategory $\mathsf{D}(A)_{\geq0}$ of $\mathsf{D}(A^{\triangleright})_{\geq0}$ such that: 
+    \begin{enumerate}[label=(\roman*)]
+        \item The full subcategory $\mathsf{D}(A)_{\geq0}\subset\mathsf{D}(A^{\triangleright})_{\geq0}$ is closed under small limits and colimits (hence the inclusion admits a left adjoint, which we still denote by $-\otimes_{A^{\triangleright}}A$);
+        \item For every $M \in \mathsf{D}(A^\triangleright)_{\geq0}$ and $N \in \mathsf{D}(A)_{\geq0}$, the object $\tau_{\geq 0}\underline{\operatorname{Hom}}(M,N)$ lies in $\mathsf{D}(A)_{\geq0}$.
+    \end{enumerate}
+\end{definition}
+
+There is a natural comparison between $\mathsf{PAnRing}_\lambda$ and $\mathsf{PAnRing}_\lambda^{\mathrm{cn}}$. To construct it, let $\mathsf{FF}^{\mathsf{R}}$ denote the full subcategory of $\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{R}})$ spanned by the fully faithful functors. The reflection theorem implies that the composite $\mathsf{PAnRing}^\mathrm{cn}_\lambda\hookrightarrow \mathsf{P}^\mathrm{cn}_\lambda\to \mathsf{FF}^\mathrm{op}$ factors as
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhzZntQQW5SaW5nfV9cXGxhbWJkYSJdLFswLDEsIlxcbWF0aHNme1B9X1xcbGFtYmRhIl0sWzIsMCwiXFxtYXRoc2Z7RkZ9XntcXG1hdGhzZntSfSxcXG1hdGhybXtvcH19Il0sWzIsMSwiXFxtYXRoc2Z7RkZ9XlxcbWF0aHJte29wfSwiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDNdLFsyLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMiwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{PAnRing}^\mathrm{cn}_\lambda} \&\& {\mathsf{FF}^{\mathsf{R},\mathrm{op}}} \\
+	{\mathsf{P}^\mathrm{cn}_\lambda} \&\& {\mathsf{FF}^\mathrm{op}.}
+	\arrow[dashed, from=1-1, to=1-3]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[hook, from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}\]
+
+Now let $A^\triangleright$ be a $\lambda$-light condensed ring. By Lemma~\ref{t-structures on derived categories}, there is an equivalence of categories $\mathsf{D}(A^\triangleright)\simeq \mathsf{D}(A^\triangleright)_{\geq 0}\otimes \mathsf{Sp}$. It follows from the universal property of the fiber product that these equivalences assemble into the dashed functor $\Psi_\lambda$ in the diagram below:
+% https://q.uiver.app/#q=WzAsOSxbMSwxLCJcXG1hdGhzZntQfV9cXGxhbWJkYSJdLFszLDEsIlxcbWF0aHNme0ZGfV5cXG1hdGhybXtvcH0sIl0sWzEsMiwiXFxtYXRoc2Z7Q29uZH1fXFxsYW1iZGEoXFxtYXRoc2Z7UmluZ30pIl0sWzMsMiwiXFx3aWRlaGF0e1xcbWF0aHNme0NhdH19XlxcbWF0aHJte29wfSJdLFswLDEsIlxcbWF0aHNme1B9X1xcbGFtYmRhXlxcbWF0aHJte2NufSJdLFswLDIsIlxcbWF0aHNme0NvbmR9X1xcbGFtYmRhKFxcbWF0aHNme1Jpbmd9KSJdLFswLDAsIlxcbWF0aHNme1BBblJpbmd9X1xcbGFtYmRhXlxcbWF0aHJte2NufSJdLFsxLDAsIlxcbWF0aHNme0ZGfV57XFxtYXRoc2Z7Un0sXFxtYXRocm17b3B9fSJdLFszLDAsIlxcbWF0aHNme0ZGfV57XFxtYXRoc2Z7Un0sXFxtYXRocm17b3B9fSJdLFswLDFdLFswLDJdLFsyLDMsIlxcbWF0aHNme0R9KC0pIl0sWzEsMywidCJdLFs1LDIsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1XSxbNiw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs2LDddLFs3LDgsIi1cXG90aW1lc1xcbWF0aHNme1NwfSJdLFs4LDEsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzYsMCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{PAnRing}_\lambda^\mathrm{cn}} \& {\mathsf{FF}^{\mathsf{R},\mathrm{op}}} \&\& {\mathsf{FF}^{\mathsf{R},\mathrm{op}}} \\
+	{\mathsf{P}_\lambda^\mathrm{cn}} \& {\mathsf{P}_\lambda} \&\& {\mathsf{FF}^\mathrm{op},} \\
+	{\mathsf{Cond}_\lambda(\mathsf{Ring})} \& {\mathsf{Cond}_\lambda(\mathsf{Ring})} \&\& {\widehat{\mathsf{Cat}}^\mathrm{op}.}
+	\arrow[from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow["{\Psi_\lambda}"', dashed, from=1-1, to=2-2]
+	\arrow["{-\otimes\mathsf{Sp}}", from=1-2, to=1-4]
+	\arrow[hook, from=1-4, to=2-4]
+	\arrow[from=2-1, to=3-1]
+	\arrow[from=2-2, to=2-4]
+	\arrow[from=2-2, to=3-2]
+	\arrow["t", from=2-4, to=3-4]
+	\arrow[equals, from=3-1, to=3-2]
+	\arrow["{\mathsf{D}(-)}", from=3-2, to=3-4]
+\end{tikzcd}\]
+
+\begin{lemma}\label{preanalytic rings are determined by connective halves}
+The functor $\Psi_\lambda\colon \mathsf{PAnRing}_\lambda^{\mathrm{cn}}\to \mathsf{P}_\lambda$ is fully faithful, with essential image $\mathsf{PAnRing}_\lambda$. In particular, it induces an equivalence $\mathsf{PAnRing}_\lambda^{\mathrm{cn}}\simeq \mathsf{PAnRing}_\lambda$.
+\end{lemma}
+
+\begin{proof}
+We first outline the argument, before giving the details of each step. After observing that the essential image of $\Psi_\lambda$ is contained in $\mathsf{PAnRing}_\lambda$, we obtain a commutative diagram
+% https://q.uiver.app/#q=WzAsMyxbMiwwLCJcXG1hdGhzZntQQW5SaW5nfV9cXGxhbWJkYSJdLFsxLDEsIlxcbWF0aHNme0NvbmR9X1xcbGFtYmRhKFxcbWF0aHNme1Jpbmd9KSwiXSxbMCwwLCJcXG1hdGhzZntQQW5SaW5nfV9cXGxhbWJkYV5cXG1hdGhybXtjbn0iXSxbMCwxLCJVIl0sWzIsMCwiXFxQc2lfXFxsYW1iZGEiXSxbMiwxLCJVXlxcbWF0aHJte2NufSIsMl1d
+\[\begin{tikzcd}[ampersand replacement=\&,column sep = tiny]
+	{\mathsf{PAnRing}_\lambda^\mathrm{cn}} \&\& {\mathsf{PAnRing}_\lambda} \\
+	\& {\mathsf{Cond}_\lambda(\mathsf{Ring}),}
+	\arrow["{\Psi_\lambda}", from=1-1, to=1-3]
+	\arrow["{U^\mathrm{cn}}"', from=1-1, to=2-2]
+	\arrow["U", from=1-3, to=2-2]
+\end{tikzcd}\]
+where $U^\mathrm{cn}$ and $U$ forget the categories of complete modules. We then show that both $U^\mathrm{cn}$ and $U$ are cocartesian fibrations and that $\Psi_\lambda$ preserves cocartesian maps. According to \cite[Tag~\href{https://kerodon.net/tag/028B}{028B}]{kerodon}, it therefore suffices to show that $\Psi_\lambda$ induces an equivalence on each fiber. On fibers, this reduces to the classical fact that pre-analytic ring structures can be encoded in terms of abelian categories.
+
+\textsc{Step I: The essential image of $\Psi_\lambda$ is contained in $\mathsf{PAnRing}_\lambda$.} Let $(A^\triangleright,\mathsf{D}(A)_{\geq 0})$ be an object of $\mathsf{PAnRing}_\lambda^\mathrm{cn}$. Since stabilization is a 2-functor \cite[Rem.~6.1.7]{CLL}, we obtain an adjunction
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXG1hdGhzZntEfShBKV97XFxnZXEgMH1cXG90aW1lcyBcXG1hdGhzZntTcH0iXSxbMiwwLCJcXG1hdGhzZntEfShBXlxcdHJpYW5nbGVyaWdodClfe1xcZ2VxIDB9XFxvdGltZXMgXFxtYXRoc2Z7U3B9LiJdLFswLDEsIiIsMCx7ImN1cnZlIjotM31dLFsxLDAsIiIsMCx7ImN1cnZlIjotMywic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMiwzLCIiLDIseyJsZXZlbCI6MSwic3R5bGUiOnsibmFtZSI6ImFkanVuY3Rpb24ifX1dXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{D}(A^\triangleright)_{\geq 0}\otimes \mathsf{Sp}} \&\& {\mathsf{D}(A)_{\geq 0}\otimes \mathsf{Sp}.}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{(- \otimes_{A^\triangleright}A)\otimes \mathsf{Sp}}", bend left, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, bend left, hook', from=1-3, to=1-1]
+	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
+\end{tikzcd}\]
+In particular, the full subcategory $\mathsf{D}(A)_{\geq 0}\otimes \mathsf{Sp}\subseteq \mathsf{D}(A^\triangleright)_{\geq 0}\otimes \mathsf{Sp}\simeq \mathsf{D}(A^\triangleright)$ is stable under small limits. On the other hand, the inclusion $\mathsf{D}(A)_{\geq 0}\hookrightarrow \mathsf{D}(A^\triangleright)_{\geq 0}$ preserves small colimits and therefore admits a right adjoint. Stabilizing this adjunction shows that $\mathsf{D}(A)_{\geq 0}\otimes \mathsf{Sp}\subseteq \mathsf{D}(A^\triangleright)$ is also closed under small colimits.
+
+By Proposition~\ref{enhanced reflection theorem}, the completion functor
+\[-\otimes_{A^\triangleright}A\colon \mathsf{D}(A^\triangleright)_{\geq 0}\to \mathsf{D}(A)_{\geq 0}\]
+endows $\mathsf{D}(A)_{\geq 0}$ with a symmetric monoidal structure for which this functor is symmetric monoidal. Moreover, Proposition~\ref{enhanced reflection theorem} shows that it defines a morphism in $\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\aleph_1})$. Applying the argument of Proposition~\ref{D is a map in Pr_k}, we obtain the corresponding statement for
+\[(-\otimes_{A^\triangleright}A)\otimes\mathsf{Sp}.\]
+In particular, this functor is \emph{compatible with the symmetric monoidal structure} in the sense of \cite[Def.~2.2.1.6]{higheralgebra}. Condition~(ii) of Definition~\ref{def panring} now follows from \cite[Lem.~7.5]{reflectionprinciple}.
+
+Finally, condition~(iii) of Definition~\ref{def panring} follows by applying \cite[Prop.~C.3.1.1]{lurie2018spectral} to the inclusion $\mathsf{D}(A)_{\geq 0}\hookrightarrow\mathsf{D}(A^\triangleright)_{\geq 0}$ and to the completion functor $-\otimes_{A^\triangleright}A$. 
+
+\textsc{Step II: $U^\mathrm{cn}$ and $U$ are cocartesian fibrations.} We treat $U$, as the same argument applies to $U^\mathrm{cn}$. Let $A=(A^\triangleright,\mathsf{D}(A))$ be a $\lambda$-light pre-analytic ring, and let $\varphi\colon A^\triangleright\to B^\triangleright$ be a morphism of $\lambda$-light condensed rings. Write $B^\triangleright_{/A}$ for the induced pre-analytic ring structure on $B^\triangleright$ \cite[Lem.~4.1.9]{camargo2026notessolidgeometry}. Thus, we have a pushout square of $\lambda$-light pre-analytic rings
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJBXlxcdHJpYW5nbGVyaWdodCJdLFswLDEsIkJeXFx0cmlhbmdsZXJpZ2h0Il0sWzEsMCwiQSJdLFsxLDEsIkJeXFx0cmlhbmdsZXJpZ2h0L0EuIl0sWzAsMl0sWzIsMywiZiJdLFswLDEsImZeXFx0cmlhbmdsZXJpZ2h0IiwyXSxbMSwzXV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{A^\triangleright} \& A \\
+	{B^\triangleright} \& {B^\triangleright_{/A}.}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{\varphi}"', from=1-1, to=2-1]
+	\arrow["\overline{\varphi}", from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+The functor $U$ maps $\overline{\varphi}\colon A\to B^\triangleright_{/A}$ to $\varphi$, so it suffices to prove that $\overline{\varphi}$ is a $U$-cocartesian morphism.
+
+For any $\lambda$-light pre-analytic ring $C$, the universal property of the pushout gives a cartesian square
+% https://q.uiver.app/#q=WzAsNCxbMSwxLCJcXG9wZXJhdG9ybmFtZXtNYXB9X3tcXG1hdGhzZntQQW5SaW5nfX0oQV5cXHRyaWFuZ2xlcmlnaHQsQykuIl0sWzAsMSwiXFxvcGVyYXRvcm5hbWV7TWFwfV97XFxtYXRoc2Z7UEFuUmluZ319KEJeXFx0cmlhbmdsZXJpZ2h0LEMpIl0sWzEsMCwiXFxvcGVyYXRvcm5hbWV7TWFwfV97XFxtYXRoc2Z7UEFuUmluZ319KEEsQykiXSxbMCwwLCJcXG9wZXJhdG9ybmFtZXtNYXB9X3tcXG1hdGhzZntQQW5SaW5nfX0oQl5cXHRyaWFuZ2xlcmlnaHQvQSxDKSJdLFsyLDBdLFsxLDBdLFszLDFdLFszLDJdXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\operatorname{Map}_{\mathsf{PAnRing}_\lambda}(B^\triangleright_{/A},C)} \& {\operatorname{Map}_{\mathsf{PAnRing}_\lambda}(A,C)} \\
+	{\operatorname{Map}_{\mathsf{PAnRing}_\lambda}(B^\triangleright,C)} \& {\operatorname{Map}_{\mathsf{PAnRing}_\lambda}(A^\triangleright,C).}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+By \cite[Lem.~4.1.5]{camargo2026notessolidgeometry}, we have
+\[\operatorname{Map}_{\mathsf{PAnRing}_\lambda}(A^\triangleright,C)\simeq \operatorname{Map}_{\mathsf{Cond}_\lambda(\mathsf{Ring})}(A^\triangleright,C^\triangleright),\]
+and similarly for $B^\triangleright$. Hence, the square above identifies with the cartesian square
+% https://q.uiver.app/#q=WzAsNCxbMSwxLCJcXG9wZXJhdG9ybmFtZXtNYXB9X3tcXG1hdGhzZntDb25kfV9cXGxhbWJkYShcXG1hdGhzZntSaW5nfSl9KEFeXFx0cmlhbmdsZXJpZ2h0LEMpLCJdLFswLDEsIlxcb3BlcmF0b3JuYW1le01hcH1fe1xcbWF0aHNme0NvbmR9X1xcbGFtYmRhKFxcbWF0aHNme1Jpbmd9KX0oQl5cXHRyaWFuZ2xlcmlnaHQsQykiXSxbMSwwLCJcXG9wZXJhdG9ybmFtZXtNYXB9X3tcXG1hdGhzZntQQW5SaW5nfX0oQSxDKSJdLFswLDAsIlxcb3BlcmF0b3JuYW1le01hcH1fe1xcbWF0aHNme1BBblJpbmd9fShCXlxcdHJpYW5nbGVyaWdodC9BLEMpIl0sWzIsMF0sWzEsMF0sWzMsMV0sWzMsMl1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\operatorname{Map}_{\mathsf{PAnRing}_\lambda}(B^\triangleright_{/A},C)} \& {\operatorname{Map}_{\mathsf{PAnRing}_\lambda}(A,C)} \\
+	{\operatorname{Map}_{\mathsf{Cond}_\lambda(\mathsf{Ring})}(B^\triangleright,C)} \& {\operatorname{Map}_{\mathsf{Cond}_\lambda(\mathsf{Ring})}(A^\triangleright,C),}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+which proves that $\overline{\varphi}$ is $U$-cocartesian and completes the proof.
+
+\textsc{Step III: The functor $\Psi_\lambda$ preserves cocartesian morphisms.} Running the preceding argument in reverse, we see that a morphism $A\to B$ in $\mathsf{PAnRing}_\lambda$ (resp.~in $\mathsf{PAnRing}^\mathrm{cn}_\lambda$) is $U$-cocartesian (resp.~$U^\mathrm{cn}$-cocartesian) if and only if the diagram
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBXlxcdHJpYW5nbGVyaWdodCJdLFsxLDAsIkJeXFx0cmlhbmdsZXJpZ2h0Il0sWzAsMSwiQSJdLFsxLDEsIkIiXSxbMCwyXSxbMCwxXSxbMiwzXSxbMSwzXV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{A^\triangleright} \& {B^\triangleright} \\
+	A \& B
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+is a pushout, or equivalently, if and only if $B$ carries the pre-analytic ring structure on $B^\triangleright$ induced from $A$.
+
+It therefore remains to show that $\Psi_\lambda$ preserves induced pre-analytic ring structures. Let $A=(A^\triangleright,\mathsf{D}(A)_{\geq 0})$ be an object of $\mathsf{PAnRing}^\mathrm{cn}_\lambda$ and let $\varphi\colon A^\triangleright\to B^\triangleright$ be a morphism of $\lambda$-light condensed rings. By \cite[Lem.~4.1.9]{camargo2026notessolidgeometry}, the pushout $B^\triangleright_{A/}$ defining the induced pre-analytic ring structure exists, and its connective derived category admits the explicit description
+\[\mathsf{D}(B^\triangleright_{A/})_{\geq 0}\simeq \{ M\in \mathsf{D}(B^\triangleright)_{\geq 0} \mid \varphi_*M\in \mathsf{D}(A)_{\geq 0}\}.\]
+Thus, it suffices to verify that the stabilization $\mathsf{D}(B^\triangleright_{A/})_{\geq 0}\otimes\mathsf{Sp}$ admits the analogous description in terms of $\mathsf{D}(B^\triangleright)\simeq \mathsf{D}(B^\triangleright)_{\geq0}\otimes \mathsf{Sp}$ and $\mathsf{D}(A)_{\geq0}\otimes \mathsf{Sp}$.
+
+By \cite[Prop.~4.1.8]{camargo2026notessolidgeometry}, an object $M\in\mathsf{D}(B^\triangleright)\simeq\mathsf{D}(B^\triangleright)_{\geq 0}\otimes\mathsf{Sp}$ belongs to $\mathsf{D}(B^\triangleright_{A/})_{\geq 0}\otimes\mathsf{Sp}$ if and only if $\pi_i(M)$ does for every $i\in\mathbb{Z}$. Since $\pi_i(M)$ is static, this is equivalent to requiring that $\pi_i(M)$ belong to $\mathsf{D}(B^\triangleright_{A/})_{\geq 0}$ for every $i\in\mathbb{Z}$. By the description above, the latter condition amounts to
+\[\varphi_*\pi_i(M)\in\mathsf{D}(A)_{\geq 0}\qquad\text{for all }i\in\mathbb{Z}.\]
+Since restriction of scalars is $t$-exact, we have $\varphi_*\pi_i(M)\simeq\pi_i(\varphi_*M)$. A second application of \cite[Prop.~4.1.8]{camargo2026notessolidgeometry} therefore shows that the condition above is equivalent to
+\[\varphi_*M\in\mathsf{D}(A)_{\geq 0}\otimes\mathsf{Sp}.\]
+This gives the desired description of the induced pre-analytic ring structure.
+
+\textsc{Step IV: $\Psi_\lambda$ is an equivalence on fibers.} We have now established the hypotheses of \cite[Tag~\href{https://kerodon.net/tag/028B}{028B}]{kerodon}, so it remains to show that $\Psi_\lambda$ induces an equivalence on each fiber. For a $\lambda$-light condensed ring $A^\triangleright$, the fiber of $U$ over $A^\triangleright$ is the partially ordered set of pre-analytic ring structures on $A^\triangleright$, ordered by reverse inclusion, and similarly for $U^\mathrm{cn}$. The required equivalence is then a direct consequence of \cite[Thm.~4.4.1]{camargo2026notessolidgeometry}.
+\end{proof}
+
+Since presentability is not preserved under passage to opposite categories, it will be convenient to reformulate the definition of $\mathsf{PAnRing}_\lambda^\mathrm{cn}$ in terms of the covariant functor
+\[\mathsf{D}(-)_{\geq 0}\colon \mathsf{Cond}_\lambda(\mathsf{Ring})\to \widehat{\mathsf{Cat}},\]
+rather than its contravariant counterpart.
+
+\begin{lemma}\label{contractability of fibers}
+Let $\varphi\colon A^\triangleright\to B^\triangleright$ be a morphism of $\lambda$-light condensed rings, and consider full subcategories $\mathsf{D}(A)_{\geq0}\subseteq \mathsf{D}(A^\triangleright)_{\geq0}$ and $\mathsf{D}(B)_{\geq0}\subseteq \mathsf{D}(B^\triangleright)_{\geq0}$ closed under small limits and colimits. We retain the notation of Definition~\ref{def connective panring}, but do not assume condition (ii) therein. The following conditions are equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item The restriction-of-scalars $\varphi_*\colon\mathsf{D}(B^\triangleright)_{\geq0} \to\mathsf{D}(A^\triangleright)_{\geq0}$ sends $\mathsf{D}(B)_{\geq0}$ into $\mathsf{D}(A)_{\geq0}$;
+        \item There exists a functor $\overline{\varphi}^*\colon \mathsf{D}(A)_{\geq0}\to \mathsf{D}(B)_{\geq0}$ and a natural isomorphism
+        \[\alpha_\varphi\colon \bigl(-\otimes_{B^\triangleright}B\bigr)\circ\varphi^*\to \overline{\varphi}^*\circ \bigl(-\otimes_{A^\triangleright}A\bigr)\]
+        witnessing the commutativity of the diagram
+        % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhzZntEfShBXlxcdHJpYW5nbGVyaWdodClfe1xcZ2VxMH0iXSxbMCwxLCJcXG1hdGhzZntEfShCXlxcdHJpYW5nbGVyaWdodClfe1xcZ2VxMH0iXSxbMiwwLCJcXG1hdGhzZntEfShBKV97XFxnZXEwfSJdLFsyLDEsIlxcbWF0aHNme0R9KEIpX3tcXGdlcTB9LiJdLFswLDEsIlxcdmFycGhpXioiLDJdLFsxLDMsIi1cXG90aW1lc197Ql5cXHRyaWFuZ2xlcmlnaHR9QiJdLFsyLDMsIlxcb3ZlcmxpbmV7XFx2YXJwaGl9XioiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwyLCItXFxvdGltZXNfe0FeXFx0cmlhbmdsZXJpZ2h0fUEiXV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{D}(A^\triangleright)_{\geq0}} \&\& {\mathsf{D}(A)_{\geq0}} \\
+	{\mathsf{D}(B^\triangleright)_{\geq0}} \&\& {\mathsf{D}(B)_{\geq0}.}
+	\arrow["{-\otimes_{A^\triangleright}A}", from=1-1, to=1-3]
+	\arrow["{\varphi^*}"', from=1-1, to=2-1]
+	\arrow["{\overline{\varphi}^*}", from=1-3, to=2-3]
+	\arrow["{-\otimes_{B^\triangleright}B}", from=2-1, to=2-3]
+\end{tikzcd}\]
+    \end{enumerate}
+The anima of pairs $(\overline{\varphi}^*,\alpha_\varphi)$ as in (b) is contractible when these conditions hold, and empty otherwise.
+\end{lemma}
+
+\begin{proof}
+Assume (a), so that $\varphi_*$ restricts to a functor $\overline{\varphi}_*\colon \mathsf{D}(B)_{\geq0}\to\mathsf{D}(A)_{\geq0}$, and define $\overline{\varphi}^{*}\colonequals
+\bigl(-\otimes_{B^\triangleright}B\bigr)\circ\varphi^{*}\circ\iota_A$. For $M\in\mathsf{D}(A)_{\geq0}$ and $N\in\mathsf{D}(B)_{\geq0}$, we have that
+\begin{align*}
+        \operatorname{Map}_{\mathsf{D}(B)_{\geq0}}(\overline{\varphi}^{*}M,N) &\simeq \operatorname{Map}_{\mathsf{D}(B^{\triangleright})_{\geq0}}(\varphi^{*}\iota_{A}M,\iota_BN) && B\otimes_{B^{\triangleright}}-\dashv \iota_{B} \\
+        &\simeq\operatorname{Map}_{\mathsf{D}(A^{\triangleright})_{\geq0}}(\iota_{A}M,\varphi_{*}\iota_B N) && \varphi^{*}\dashv \varphi_{*} \\
+        &\simeq\operatorname{Map}_{\mathsf{D}(A^{\triangleright})_{\geq0}}(\iota_{A}M,\iota_A\overline{\varphi}_{*} N) && \varphi_{*}\circ \iota_B\simeq \iota_A\circ \overline{\varphi}_{*} \\
+        &\simeq \operatorname{Map}_{\mathsf{D}(A)_{\geq0}}(M,\overline{\varphi}_{*}N) && \iota_A\text{ is fully faithful}.
+    \end{align*}
+As a result, the functors $\bigl(-\otimes_{B^\triangleright}B\bigr)\circ\varphi^*$ and $\overline{\varphi}^*\circ \bigl(-\otimes_{A^\triangleright}A\bigr)$ are both left adjoint to
+\[\varphi_{*}\circ \iota_B\simeq \iota_A\circ \overline{\varphi}_{*},\]
+and so they are naturally isomorphic.
+
+Conversely, assume (b). Precomposing $\alpha_\varphi$ with $\iota_A$ and using that $\iota_A$ is fully faithful, we obtain a natural equivalence
+\[\overline{\varphi}^*\simeq\overline{\varphi}^*\circ \bigl(-\otimes_{A^\triangleright}A\bigr)\circ\iota_A\simeq\bigl(-\otimes_{B^\triangleright}B\bigr)\circ\varphi^*\circ\iota_A.\]
+Since $\iota_A$ preserves small colimits and the other two functors on the right are left adjoints, $\overline{\varphi}^*$ preserves small colimits; hence admits a right adjoint $\overline{\varphi}_*$. Taking right adjoints in $\alpha_\varphi$ yields a natural equivalence
+\[\varphi_*\circ\iota_B\simeq\iota_A\circ\overline{\varphi}_*,\]
+showing that $\varphi_*$ sends $\mathsf{D}(B)_{\geq0}$ into $\mathsf{D}(A)_{\geq0}$, as required.
+
+Finally, since the completion functor $-\otimes_{A^\triangleright}A\colon \mathsf{D}(A^\triangleright)_{\geq 0}\to \mathsf{D}(A)_{\geq 0}$ is a localization, it induces a fully faithful functor
+\[\mathsf{Fun}\mleft(\mathsf{D}(A)_{\geq 0},\mathsf{D}(B)_{\geq 0}\mright)\xhookrightarrow{\hspace{0.8em} -\circ \bigl(-\otimes_{A^\triangleright}A\bigr)\hspace{0.8em} }\mathsf{Fun}\mleft(\mathsf{D}(A^\triangleright)_{\geq 0},\mathsf{D}(B)_{\geq 0}\mright).\]
+The induced functor on cores is still fully faithful \cite[Tag~\href{https://kerodon.net/tag/01JP}{01JP}]{kerodon}, and the anima of pairs $(\overline{\varphi}^*,\alpha_\varphi)$ is its fiber over $\bigl(-\otimes_{B^\triangleright}B\bigr)\circ\varphi^*$. It follows that this anima is either empty or contractible \cite[Tags~\href{https://kerodon.net/tag/06SF}{06SF}
+and \href{https://kerodon.net/tag/056B}{056B}]{kerodon}; the latter happening precisely when the equivalent conditions are satisfied.
+\end{proof}
+
+The following lemma makes precise, with the size bounds needed here, the connective pullback description outlined in \cite[\S2.1.1.9]{Kipp}.
+
+\begin{lemma}\label{PAnRing as a pullback}
+Set $\mathsf{W}\colonequals\mathsf{Cond}_\lambda(\mathsf{Ab})$. Then $\mathsf{PAnRing}^\mathrm{cn}_\lambda$ is naturally equivalent to the fiber product of the diagram
+\[\mathsf{Cond}_\lambda(\mathsf{Ring})\xrightarrow{\ \mathsf{D}(-)_{\geq 0}\ }\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\aleph_1})_{\mathsf{W}/}\xleftarrow{\ s\ }\overline{\mathsf{Loc}}_{\aleph_1}^\otimes(\mathsf{W}),\]
+where $s$ is the functor sending each symmetric monoidal localization to its source.
+\end{lemma}
+
+\begin{proof}
+Let $\mathsf{Q}^\mathrm{cn}_\lambda$ denote the fiber product in the statement. Since $\overline{\mathsf{Loc}}^{\otimes}_{\aleph_1}(\mathsf{W})$ is a replete full subcategory of $\mathsf{Fun}(\Delta^{1},\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\aleph_1})_{\mathsf{W}/})$, the functor
+\[s\colon \overline{\mathsf{Loc}}_{\aleph_1}^\otimes(\mathsf{W})\to \mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\aleph_1})_{\mathsf{W}/}\]
+is an isofibration by \cite[Tags~\href{https://kerodon.net/tag/01EX}{01EX} and \href{https://kerodon.net/tag/01F3}{01F3}]{kerodon}. Consequently, as at the outset of this section, \cite[Tag~\href{https://kerodon.net/tag/033T}{033T}]{kerodon} identifies the objects of $\mathsf{Q}_{\lambda}^{\mathrm{cn}}$ with pairs $(A^{\triangleright},-\otimes_{A^{\triangleright}}A)$, consisting of a $\lambda$-light condensed ring $A^{\triangleright}$ and a symmetric monoidal localization
+\[-\otimes_{A^{\triangleright}}A\colon \mathsf{D}(A^{\triangleright})_{\geq 0}\to\mathsf{D}(A)_{\geq 0}\]
+belonging to $\overline{\mathsf{Loc}}^{\otimes}_{\aleph_{1}}(\mathsf{W})$. In particular, it folows from Definition~\ref{def connective panring} -- rephrasing condition (ii) therein via \cite[Lem.~7.5]{reflectionprinciple} -- that $(A^\triangleright,\mathsf{D}(A)_{\geq 0})$ is an object of $\mathsf{PAnRing}^\mathrm{cn}_\lambda$.
+
+The universal property of fiber products yields a functor $\mathsf{Q}^\mathrm{cn}_\lambda\to\mathsf{P}^\mathrm{cn}_\lambda$, induced by the canonical projection $\mathsf{Q}^\mathrm{cn}_\lambda\to\mathsf{Cond}_\lambda(\mathsf{Ring})$ and the composite
+\[\overline{\mathsf{Loc}}^{\otimes}_{\kappa}(\mathsf{W})\to\mathsf{Fun}(\Delta^{1},\mathsf{Pr}^{\mathsf{L}}_{\kappa})\simeq\mathsf{Fun}(\Delta^{1},\mathsf{Pr}^{\mathsf{R}}_{\kappa})^{\mathrm{op}}\to\mathsf{Fun}(\Delta^{1},\widehat{\mathsf{Cat}})^{\mathrm{op}},\]
+whose essential image is contained in $\mathsf{FF}^{\mathrm{op}}$. As above, the resulting functor takes values in $\mathsf{PAnRing}^\mathrm{cn}_\lambda$ and thus induces a functor
+\[\Phi_\lambda\colon\mathsf{Q}^\mathrm{cn}_\lambda\to\mathsf{PAnRing}^\mathrm{cn}_\lambda,\]
+which we claim is an equivalence.
+
+To prove that $\Phi_\lambda$ is essentially surjective, let $(A^\triangleright,\mathsf{D}(A)_{\geq 0})$ be an object of $\mathsf{PAnRing}^\mathrm{cn}_\lambda$. As explained in the first step of the proof of Lemma~\ref{preanalytic rings are determined by connective halves}, the completion functor $-\otimes_{A^\triangleright}A$ equips $\mathsf{D}(A)_{\geq 0}$ with a symmetric monoidal structure making
+\[-\otimes_{A^\triangleright}A\colon\mathsf{D}(A^\triangleright)_{\geq 0}\to\mathsf{D}(A)_{\geq 0}\]
+a morphism in $\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\aleph_1})$. Equipping $\mathsf{D}(A)_{\geq 0}$ with the induced symmetric monoidal functor from $\mathsf{W}$, we obtain an object $(A^\triangleright,-\otimes_{A^\triangleright}A)$ of $\mathsf{Q}^\mathrm{cn}_\lambda$ satisfying
+\[\Phi_\lambda(A^\triangleright,-\otimes_{A^\triangleright}A)\simeq (A^\triangleright,\mathsf{D}(A)_{\geq 0}).\]
+
+To prove that $\Phi_\lambda$ is fully faithful, observe that it is a functor over $\mathsf{Cond}_\lambda(\mathsf{Ring})$. It therefore suffices to show that, for every morphism $\varphi\colon A^\triangleright\to B^\triangleright$ of $\lambda$-light condensed rings, the induced map on fibers over $\varphi$ of
+\[\operatorname{Map}_{\mathsf{Q}_{\lambda}^{\mathrm{cn}}}\mleft(\mleft(A^{\triangleright},-\otimes_{A^{\triangleright}}A\mright),\mleft(B^{\triangleright},-\otimes_{B^{\triangleright}}B\mright)\mright)\to\operatorname{Map}_{\mathsf{PAnRing}_\lambda^\mathrm{cn}}\mleft(\mleft(A^\triangleright,\mathsf{D}(A)_{\geq 0}\mright),\mleft(B^\triangleright,\mathsf{D}(B)_{\geq 0}\mright)\mright)\]
+is an equivalence. By definition of $\mathsf{PAnRing}_\lambda^\mathrm{cn}$, the fiber on the right is contractible if $\varphi_*$ maps $\mathsf{D}(B)_{\geq 0}$ into $\mathsf{D}(A)_{\geq 0}$, and empty otherwise. Thus, it remains to establish the same description for the fiber on the left.
+
+To establish the same description for the fiber on the left, consider the following cartesian square of mapping animae, induced by the defining fiber product of $\mathsf{Q}^\mathrm{cn}_\lambda$:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG9wZXJhdG9ybmFtZXtNYXB9X3tcXG1hdGhzZntRfV97XFxsYW1iZGF9XntcXG1hdGhybXtjbn19fVxcbWxlZnQoXFxtbGVmdChBXntcXHRyaWFuZ2xlcmlnaHR9LC1cXG90aW1lc197QV57XFx0cmlhbmdsZXJpZ2h0fX1BXFxtcmlnaHQpLFxcbWxlZnQoQl57XFx0cmlhbmdsZXJpZ2h0fSwtXFxvdGltZXNfe0Jee1xcdHJpYW5nbGVyaWdodH19QlxcbXJpZ2h0KVxcbXJpZ2h0KSJdLFswLDEsIlxcb3BlcmF0b3JuYW1le01hcH1fe1xcbWF0aHNme0NvbmR9X3tcXGxhbWJkYX0oXFxtYXRoc2Z7UmluZyl9fShBXntcXHRyaWFuZ2xlcmlnaHR9LEJee1xcdHJpYW5nbGVyaWdodH0pIl0sWzEsMSwiXFxvcGVyYXRvcm5hbWV7TWFwfV97XFxtYXRoc2Z7Q0FsZ30oXFxtYXRoc2Z7UHJ9XntcXG1hdGhzZntMfX1fe1xcYWxlcGhfezF9fSlfe1xcbWF0aHNme1d9L319XFxtbGVmdChcXG1hdGhzZntEfShBXntcXHRyaWFuZ2xlcmlnaHR9KSxcXG1hdGhzZntEfShCXntcXHRyaWFuZ2xlcmlnaHR9KVxcbXJpZ2h0KSJdLFsxLDAsIlxcb3BlcmF0b3JuYW1le01hcH1fe1xcb3ZlcmxpbmV7XFxtYXRoc2Z7TG9jfX1fe1xcYWxlcGhfezF9fV57XFxvdGltZXN9KFxcbWF0aHNme1d9KX1cXG1sZWZ0KC1cXG90aW1lc197QV57XFx0cmlhbmdsZXJpZ2h0fX1BLC1cXG90aW1lc197Ql57XFx0cmlhbmdsZXJpZ2h0fX1CXFxtcmlnaHQpIl0sWzAsM10sWzMsMiwicyJdLFswLDEsIlUiLDJdLFsxLDJdXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\operatorname{Map}_{\mathsf{Q}_{\lambda}^{\mathrm{cn}}}\mleft(\mleft(A^{\triangleright},-\otimes_{A^{\triangleright}}A\mright),\mleft(B^{\triangleright},-\otimes_{B^{\triangleright}}B\mright)\mright)} \& {\operatorname{Map}_{\overline{\mathsf{Loc}}_{\aleph_{1}}^{\otimes}(\mathsf{W})}\mleft(-\otimes_{A^{\triangleright}}A,-\otimes_{B^{\triangleright}}B\mright)} \\
+	{\operatorname{Map}_{\mathsf{Cond}_{\lambda}(\mathsf{Ring)}}(A^{\triangleright},B^{\triangleright})} \& {\operatorname{Map}_{\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_{\aleph_{1}})_{\mathsf{W}/}}\mleft(\mathsf{D}(A^{\triangleright})_{\geq 0},\mathsf{D}(B^{\triangleright})_{\geq 0}\mright).}
+	\arrow[from=1-1, to=1-2]
+	\arrow["U"', from=1-1, to=2-1]
+	\arrow["s", from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+The pasting law gives an equivalence between the fiber of $U$ over $\varphi$ and the fiber of $s$ over $\varphi^*$. By Lemma~\ref{contractability of fibers}, the latter is contractible if $\varphi_*$ maps $\mathsf{D}(B)_{\geq 0}$ into $\mathsf{D}(A)_{\geq 0}$, and empty otherwise. This establishes the desired description and completes the proof.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{PAnRing is presentable}]
+Lemmas~\ref{preanalytic rings are determined by connective halves} and \ref{PAnRing as a pullback} identify $\mathsf{PAnRing}_\lambda$ with the pullback of the diagram
+\[\mathsf{Cond}_\lambda(\mathsf{Ring})\xrightarrow{\ \mathsf{D}(-)_{\geq 0}\ }\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\aleph_1})_{\mathsf{W}/}\xleftarrow{\ s\ }\overline{\mathsf{Loc}}^\otimes_{\aleph_1}(\mathsf{W}),\]
+where $\mathsf{W}=\mathsf{Cond}_\lambda(\mathsf{Ab})$. By Proposition~\ref{D is a map in Pr_k}, the morphism on the left lies in $\mathsf{Pr}^\mathsf{L}_{\aleph_1}$. On the other hand, Proposition~\ref{CondAb is mu-compact} allows us to apply Corollary~\ref{main theorem on monoidal localizations2}, which shows that the morphism on the right lies in $\mathsf{Acc}_\mu$ and preserves $\aleph_1$-filtered colimits.
+
+The argument of \cite[Tag~\href{https://kerodon.net/tag/06LM}{06LM}]{kerodon} therefore shows that $\mathsf{PAnRing}_\lambda$ is $\mu$-accessible. Finally, \cite[Lem.~4.1.10 and Prop.~4.1.11]{camargo2026notessolidgeometry} proves that $\mathsf{PAnRing}_{\aleph_1}$ admits small colimits. The same arguments apply verbatim for every uncountable cardinal $\lambda$, and hence $\mathsf{PAnRing}_\lambda$ admits small colimits in general.
+\end{proof}
+
+A convenient feature of presentable categories is that they are automatically complete \cite[Tag~\href{https://kerodon.net/tag/06PU}{06PU}]{kerodon}. We therefore obtain the following corollary, for which we are not aware of a direct proof.
+
+\begin{corollary}\label{PAnRing is complete}
+   The category $\mathsf{PAnRing}_\lambda$ is complete. 
+\end{corollary}
+
+In Clausen--Scholze's theory of analytic geometry, one typically works with \emph{analytic rings}, namely pre-analytic rings $A$ satisfying $A^\triangleright\in\mathsf{D}(A)$. In the light setting, where $\lambda=\aleph_1$, pre-analytic rings enjoy an additional important property: for every prime $p$, the Frobenius morphism
+\[\phi_p\colon A^\triangleright\to A^\triangleright/p\]
+underlies a morphism of pre-analytic rings $A\to A/p$, where $A/p$ carries the pre-analytic ring structure induced by $A$ \cite[Thm.~4.3.2]{camargo2026notessolidgeometry}. As it is unclear whether this property extends to arbitrary $\lambda$, we henceforth restrict to the light setting and suppress $\lambda$ from the notation.
+
+\begin{definition}
+Let $A$ be a light pre-analytic ring. We say that $A$ is an \emph{analytic ring} if the object $A^\triangleright$ of $\mathsf{D}(A^\triangleright)$ belongs to the full subcategory $\mathsf{D}(A)$. We denote by $\mathsf{AnRing}\subseteq\mathsf{PAnRing}$ the full subcategory spanned by the analytic rings.
+\end{definition}
+
+We are now in a position to state the main application of the machinery developed in Sections~\ref{sec2} and \ref{sec3}. As noted in the introduction, the following theorem was announced in \cite[Lecture~15]{ClausenScholzeAnalyticStacks} without proof and raised as an open point in \cite[\S1.2, Footnote~2]{camargo2026notessolidgeometry}.
+
+\begin{theorem}\label{AnRing is presentable}
+    The category $\mathsf{AnRing}$ is $\mu$-presentable, for $\mu=(2^{\aleph_0})^+$.
+\end{theorem}
+
+\begin{proof}
+According to \cite[Thm.~4.1.13 and Cor.~4.2.7]{camargo2026notessolidgeometry}, the natural inclusion
+\[\mathsf{AnRing}\hookrightarrow\mathsf{PAnRing}\]
+admits a left adjoint. It follows from Corollary~\ref{PAnRing is complete} and \cite[Tag~\href{https://kerodon.net/tag/04JX}{04JX}]{kerodon} that $\mathsf{AnRing}$ is complete and that the inclusion preserves and reflects small limits. By \cite[Cor.~4.1.12]{camargo2026notessolidgeometry}, we also have that the category $\mathsf{AnRing}$ is stable under sifted, hence filtered, colimits in $\mathsf{PAnRing}$. The desired result then follows from Theorem~\ref{PAnRing is presentable} and Proposition~\ref{enhanced reflection theorem}.
+\end{proof}
+
+For convenience, we record the following consequence of the preceding proof.
+
+\begin{corollary}\label{AnRing is complete}
+   The category $\mathsf{AnRing}$ is complete. Moreover, the inclusion
+   \[\mathsf{AnRing}\hookrightarrow\mathsf{PAnRing}\] 
+   preserves and reflects small limits. 
+\end{corollary}

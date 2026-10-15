@@ -1,0 +1,190 @@
+\begin{definition}
+Let $\kappa$ be a regular cardinal, and let $\mathsf{V}$ be a $\kappa$-presentable category. We denote by
+\[\mathsf{Loc}_\kappa(\mathsf{V})\subseteq\mathsf{Fun}\mleft(\Delta^1,(\mathsf{Pr}^\mathsf{L}_{\kappa})_{\mathsf{V}/}\mright)\]
+the full subcategory spanned by the morphisms that are Bousfield localizations. For the terminal category $\ast$, we denote $\mathsf{Loc}_\kappa(\ast)$ simply as $\mathsf{Loc}_\kappa$.
+\end{definition}
+
+\begin{theorem}\label{walking localization}
+    Let $\kappa\geq \aleph_1$ be a regular cardinal, and let $\mathsf{V}$ be a $\kappa$-presentable category. Then the natural inclusion
+    \[\mathsf{Loc}_\kappa(\mathsf{V})\hookrightarrow \mathsf{Fun}\mleft(\Delta^1,(\mathsf{Pr}^\mathsf{L}_{\kappa})_{\mathsf{V}/}\mright)\]
+    is a morphism in $\mathsf{Pr}^\mathsf{L}_{\kappa}$. In particular, the category $\mathsf{Loc}_\kappa(\mathsf{V})$ is $\kappa$-presentable.
+\end{theorem}
+
+The proof of this result requires some preparation. Let $i\colon \partial\Delta^1\hookrightarrow \Delta^1$ denote the natural inclusion. If $\mathsf{C}$ is a category admitting binary coproducts, then the restriction functor $i^*\colon \mathsf{Fun}(\Delta^1,\mathsf{C})\to \mathsf{Fun}(\partial\Delta^1,\mathsf{C})\simeq \mathsf{C}\times \mathsf{C}$ admits a left adjoint
+\begin{align*}
+    i_\sharp\colon \mathsf{C}\times \mathsf{C} &\to \mathsf{Fun}(\Delta^1,\mathsf{C})\\
+    (X,Y) &\mapsto (X \to X\sqcup Y).
+\end{align*}
+Moreover, for every morphism $F\colon \mathsf{C}\to \mathsf{D}$ in $\mathsf{Pr}^\mathsf{L}_\kappa$, the functors $i_\sharp$ fit into a commutative square
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhzZntDfVxcdGltZXMgXFxtYXRoc2Z7Q30iXSxbMiwwLCJcXG1hdGhzZntEfVxcdGltZXMgXFxtYXRoc2Z7RH0iXSxbMCwxLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMSxcXG1hdGhzZntDfSkiXSxbMiwxLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMSxcXG1hdGhzZntEfSkuIl0sWzAsMSwiRlxcdGltZXMgRiJdLFswLDIsImlfXFxzaGFycCIsMl0sWzEsMywiaV9cXHNoYXJwIl0sWzIsMywiXFxtYXRoc2Z7RnVufShcXERlbHRhXjEsRikiXV0=
+    \[\begin{tikzcd}
+    	{\mathsf{C}\times \mathsf{C}} && {\mathsf{D}\times \mathsf{D}} \\
+    	{\mathsf{Fun}(\Delta^1,\mathsf{C})} && {\mathsf{Fun}(\Delta^1,\mathsf{D}).}
+    	\arrow["{F\times F}", from=1-1, to=1-3]
+    	\arrow["{i_\sharp}"', from=1-1, to=2-1]
+    	\arrow["{i_\sharp}", from=1-3, to=2-3]
+    	\arrow["{\mathsf{Fun}(\Delta^1,F)}", from=2-1, to=2-3]
+    \end{tikzcd}\]
+
+We now consider the functor
+\[P_{\kappa}\colon \mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)\to \mathsf{Fun}(\Delta^1\times \Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)\]
+that sends a morphism $F\colon \mathsf{C}\to \mathsf{D}$ in $\mathsf{Pr}^\mathsf{L}_\kappa$ to the square displayed above.
+
+\begin{lemma}\label{localization_lemma}
+Let $\kappa$ be a regular cardinal and let $F$ be a morphism in $\mathsf{Pr}^\mathsf{L}_\kappa$. Then $F$ is a Bousfield localization if and only if the commutative square $P_\kappa(F)$ is a pushout in $\mathsf{Pr}^\mathsf{L}_\kappa$.
+\end{lemma}
+
+\begin{proof}
+   Let $G\colon \mathsf{D}\to \mathsf{C}$ be the right adjoint of $F$. By the equivalence $(\mathsf{Pr}^\mathsf{L}_\kappa)^\mathrm{op}\simeq \mathsf{Pr}^\mathsf{R}_\kappa$, the square $P_\kappa(F)$ is a pushout in $\mathsf{Pr}^\mathsf{L}_\kappa$ if and only if the square
+% https://q.uiver.app/#q=WzAsNCxbMiwxLCJcXG1hdGhzZntDfVxcdGltZXMgXFxtYXRoc2Z7Q30iXSxbMCwxLCJcXG1hdGhzZntEfVxcdGltZXMgXFxtYXRoc2Z7RH0iXSxbMiwwLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMSxcXG1hdGhzZntDfSkiXSxbMCwwLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMSxcXG1hdGhzZntEfSkiXSxbMSwwLCJHXFx0aW1lcyBHIl0sWzIsMCwiaV4qIl0sWzMsMSwiaV4qIiwyXSxbMywyLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMSxHKSJdXQ==
+\[\begin{tikzcd}
+	{\mathsf{Fun}(\Delta^1,\mathsf{D})} && {\mathsf{Fun}(\Delta^1,\mathsf{C})} \\
+	{\mathsf{D}\times \mathsf{D}} && {\mathsf{C}\times \mathsf{C}}
+	\arrow["{\mathsf{Fun}(\Delta^1,G)}", from=1-1, to=1-3]
+	\arrow["{i^*}"', from=1-1, to=2-1]
+	\arrow["{i^*}", from=1-3, to=2-3]
+	\arrow["{G\times G}", from=2-1, to=2-3]
+\end{tikzcd}\]
+   is a pullback in $\mathsf{Pr}^\mathsf{R}_\kappa$ (or, equivalently, in $\widehat{\mathsf{Cat}}$). This holds precisely if $G$ is fully faithful \cite[Prop.~1.4]{haine2025fullyfaithfulfunctorspushouts}.
+\end{proof}
+
+\begin{lemma}\label{Q is nice}
+    Let $\kappa$ be a regular cardinal. Then $P_\kappa$ is a morphism in $\mathsf{Pr}^\mathsf{L}_\kappa$.
+\end{lemma}
+
+\begin{proof}
+According to \cite[Prop.~2.3]{aoki2025higherpresentablecategorieslimits}, $\mathsf{Pr}^\mathsf{L}_\kappa$ is a commutative algebra in $\mathsf{Pr}^\mathsf{L}_\kappa$. Thus, since $\Delta^1$ and $\Delta^1\times \Delta^1$ are finite posets, \cite[Tag~\href{https://kerodon.net/tag/06HY}{06HY}]{kerodon} implies that the source and target of $P_\kappa$ are $\kappa$-presentable, and that $\kappa$-compactness in these categories is checked pointwise. It therefore suffices to show that the endofunctors
+\[\mathsf{C}\mapsto \mathsf{Fun}(\partial\Delta^1,\mathsf{C})\simeq \mathsf{C}\times\mathsf{C},\qquad\mathsf{C}\mapsto\mathsf{Fun}(\Delta^1,\mathsf{C})\]
+of $\mathsf{Pr}^\mathsf{L}_\kappa$ preserve small colimits and
+$\kappa$-compact objects of $\mathsf{Pr}^\mathsf{L}_\kappa$.
+
+Let $K$ be either $\partial\Delta^1$ or $\Delta^1$, and let $\yo\colon K^\mathrm{op}\to \mathsf{P}(K^\mathrm{op})$ denote the Yoneda embedding. Given a small-colimit-preserving functor $F\colon \mathsf{P}(K^\mathrm{op})\to \mathsf{C}$, we claim that $F$ preserves $\kappa$-compact objects if and only if $F\circ \yo$ takes values in $\mathsf{C}^\kappa$. Since colimits in functor categories are computed pointwise, the Yoneda lemma implies that every representable presheaf is compact. Thus, if $F$ preserves $\kappa$-compact objects, then $F\circ \yo$ takes values in $\mathsf{C}^\kappa$, proving one implication.
+
+Conversely, suppose that $F\circ \yo$ takes values in $\mathsf{C}^\kappa$, and let $f$ be a $\kappa$-compact object of $\mathsf{P}(K^\mathrm{op})$. By \cite[Prop.~5.3.4.17]{lurie2009HTT}, $f$ is a retract of a $\kappa$-small colimit of representables $g$. Since $F$ preserves small colimits, $F(g)$ is therefore a $\kappa$-small colimit of objects in $\mathsf{C}^\kappa$. As $\mathsf{C}^\kappa$ is closed under $\kappa$-small colimits in $\mathsf{C}$ \cite[Tag~\href{https://kerodon.net/tag/064W}{064W}]{kerodon}, it follows that $F(g)$ is $\kappa$-compact. Similarly, given that $F(f)$ is a retract of $F(g)$, \cite[Tag~\href{https://kerodon.net/tag/064Z}{064Z}]{kerodon} implies that $F(f)$ is also $\kappa$-compact. This proves the converse and completes the proof of the claim.
+
+The claim above shows that the universal property of the Yoneda embedding \cite[Tag~\href{https://kerodon.net/tag/03W9}{03W9}]{kerodon} restricts to an equivalence
+\[\yo^*\colon \operatorname{Map}_{\mathsf{Pr}^\mathsf{L}_\kappa}(\mathsf{P}(K^\mathrm{op}),\mathsf{C})\xrightarrow{\ \sim \ }\operatorname{Map}_{\mathsf{Cat}}(K^\mathrm{op},\mathsf{C}^\kappa).\]
+Now $K^\mathrm{op}$ is a compact object of $\mathsf{Cat}$ \cite[Tag~\href{https://kerodon.net/tag/068G}{068G}]{kerodon}, while the functor
+\[\mathsf{Pr}^\mathsf{L}_\kappa \to \mathsf{Cat},\qquad \mathsf{C}\mapsto \mathsf{C}^\kappa\]
+preserves $\kappa$-filtered colimits \cite[Props.~5.5.7.10-5.5.7.11 and Cor.~4.4.5.21]{lurie2009HTT}. It follows that $\mathsf{P}(K^\mathrm{op})$ is a $\kappa$-compact object of $\mathsf{Pr}^\mathsf{L}_\kappa$.
+
+Since $\mathsf{Pr}^\mathsf{L}_\kappa$ is a commutative algebra
+object in $\mathsf{Pr}^\mathsf{L}_\kappa$, tensoring with
+$\mathsf{P}(K^\mathrm{op})$ therefore preserves small colimits
+and $\kappa$-compact objects.
+Finally, the equivalence
+\[\mathsf{P}(K^\mathrm{op})\otimes\mathsf{C}\simeq\mathsf{Fun}(K,\mathsf{C}),\]
+which is natural in $\mathsf{C}\in\mathsf{Pr}^\mathsf{L}_\kappa$
+\cite[Tags~\href{https://kerodon.net/tag/03W9}{03W9}, \href{https://kerodon.net/tag/071C}{071C}, \href{https://kerodon.net/tag/071F}{071F}]{kerodon}, identifies this functor
+with $\mathsf{Fun}(K,{-})$. The two choices of $K$ give the
+required endofunctors, and hence the result.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{walking localization}]
+Let $u\colon \Lambda^2_0\hookrightarrow \Delta^1\times \Delta^1$ be the natural inclusion of the walking span into the walking commutative square. As above, if $\mathsf{C}$ admits pushouts, the restriction functor $u^*\colon \mathsf{Fun}(\Delta^1\times \Delta^1,\mathsf{C})\to \mathsf{Fun}(\Lambda^2_0,\mathsf{C})$ admits a fully faithful left adjoint
+\[u_\sharp\colon \mathsf{Fun}(\Lambda^2_0,\mathsf{C}) \to \mathsf{Fun}(\Delta^1\times \Delta^1,\mathsf{C}),\]
+that sends a span $X\leftarrow Y\to Z$ to the pushout
+\[\begin{tikzcd}[ampersand replacement=\&]
+	Y \& Z \\
+	X \& {X\sqcup_Y Z.}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+
+Lemma~\ref{localization_lemma} can then be reformulated as asserting that the commutative square
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhzZntMb2N9X1xca2FwcGEiXSxbMCwxLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMSxcXG1hdGhzZntQcn1eXFxtYXRoc2Z7TH1fXFxrYXBwYSkiXSxbMiwxLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMVxcdGltZXMgXFxEZWx0YV4xLFxcbWF0aHNme1ByfV5cXG1hdGhzZntMfV9cXGthcHBhKSJdLFsyLDAsIlxcbWF0aHNme0Z1bn0oXFxMYW1iZGFeMl8wLFxcbWF0aHNme1ByfV5cXG1hdGhzZntMfV9cXGthcHBhKSJdLFsxLDIsIlEiXSxbMywyLCJ1X1xcc2hhcnAiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsM11d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{Loc}_\kappa} \&\& {\mathsf{Fun}(\Lambda^2_0,\mathsf{Pr}^\mathsf{L}_\kappa)} \\
+	{\mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)} \&\& {\mathsf{Fun}(\Delta^1\times \Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)}
+	\arrow[from=1-1, to=1-3]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow["{u_\sharp}", hook, from=1-3, to=2-3]
+	\arrow["P_\kappa", from=2-1, to=2-3]
+\end{tikzcd}\]
+is cartesian. Given that $\Delta^1$, $\Delta^1\times \Delta^1$, and $\Lambda^2_0$ are finite posets, \cite[Prop.~2.3]{aoki2025higherpresentablecategorieslimits} and \cite[Tag \href{https://kerodon.net/tag/06HY}{06HY}]{kerodon} imply that the categories
+\[\mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa), \quad \mathsf{Fun}(\Delta^1\times \Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa), \quad \text{and}\quad \mathsf{Fun}(\Lambda^2_0,\mathsf{Pr}^\mathsf{L}_\kappa)\]
+are all $\kappa$-presentable. 
+
+Note that, since the functor $u^*$ preserves all small colimits, its left adjoint $u_\sharp$ is a morphism in $\mathsf{Pr}^\mathsf{L}_\kappa$. Moreover, by Lemma~\ref{Q is nice}, so is the functor $P_\kappa$. We conclude from \cite[Prop.~3.2]{aoki2025higherpresentablecategorieslimits} that $\mathsf{Loc}_\kappa$ is $\kappa$-presentable and that the inclusion
+\[j\colon \mathsf{Loc}_\kappa\hookrightarrow \mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)\]
+is a morphism in $\mathsf{Pr}^\mathsf{L}_\kappa$. 
+
+Let $s\colon \mathsf{Fun}(\Delta^1, \mathsf{Pr}^\mathsf{L}_\kappa)\to \mathsf{Pr}^\mathsf{L}_\kappa$ be the functor that maps a morphism $\mathsf{C}\to \mathsf{D}$ in $\mathsf{Pr}^\mathsf{L}_\kappa$ to $\mathsf{C}$. Since the square
+\[% https://q.uiver.app/#q=WzAsNCxbMCwwLCIoXFxtYXRoc2Z7UHJ9XntcXG1hdGhzZntMfX1fe1xca2FwcGF9KV97XFxtYXRoc2Z7Vn0vfSJdLFsyLDAsIlxcbWF0aHNme0Z1bn0oXFxEZWx0YV57MX0sXFxtYXRoc2Z7UHJ9XntcXG1hdGhzZntMfX1fe1xca2FwcGF9KSJdLFsyLDEsIlxcbWF0aHNme1ByfV57XFxtYXRoc2Z7TH19X3tcXGthcHBhfSJdLFswLDEsIioiXSxbMCwxXSxbMSwyLCJcXG1hdGhybXtldn1fezB9Il0sWzAsM10sWzMsMiwiXFxtYXRoc2Z7Vn0iLDJdXQ==
+\begin{tikzcd}
+	{(\mathsf{Pr}^{\mathsf{L}}_{\kappa})_{\mathsf{V}/}} && {\mathsf{Fun}(\Delta^{1},\mathsf{Pr}^{\mathsf{L}}_{\kappa})} \\
+	{*} && {\mathsf{Pr}^{\mathsf{L}}_{\kappa}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["s", from=1-3, to=2-3]
+	\arrow["{\mathsf{V}}", from=2-1, to=2-3]
+\end{tikzcd}\]
+is cartesian and the functor $\mathsf{Fun}(\Delta^{1},-)$ preserves limits, we obtain a natural equivalence
+\[\mathsf{Fun}\mleft(\Delta^{1},(\mathsf{Pr}^{\mathsf{L}}_{\kappa})_{\mathsf{V}/}\mright)\simeq\{\operatorname{id}_{\mathsf{V}}\}\times_{\mathsf{Fun}(\Delta^{1},\mathsf{Pr}^{\mathsf{L}}_{\kappa})}\mathsf{Fun}(\Delta^{1},\mathsf{Fun}(\Delta^{1},\mathsf{Pr}^{\mathsf{L}}_{\kappa}))\simeq\mathsf{Fun}(\Delta^{1},\mathsf{Pr}^{\mathsf{L}}_{\kappa})_{\operatorname{id}_{\mathsf{V}}/}.\]
+Under this equivalence, the full subcategory $\mathsf{Loc}_\kappa(\mathsf{V})$ of $\mathsf{Fun}(\Delta^{1},(\mathsf{Pr}^{\mathsf{L}}_{\kappa})_{\mathsf{V}/})$ corresponds to the full subcategory $(\mathsf{Loc}_{\kappa})_{\operatorname{id}_{\mathsf{V}}/}$ of $\mathsf{Fun}(\Delta^{1},\mathsf{Pr}^{\mathsf{L}}_{\kappa})_{\operatorname{id}_{\mathsf{V}}/}$. The desired result then follows from Proposition~\ref{lemma on coslices}.
+\end{proof}
+
+We now study a symmetric monoidal analogue of Theorem~\ref{walking localization}.
+
+\begin{definition}
+Let $\kappa$ be a regular cardinal, and let $\mathsf{W}$ be a commutative algebra object in $\mathsf{Pr}^\mathsf{L}_{\kappa}$. We denote by
+\[\mathsf{Loc}^\otimes_\kappa(\mathsf{W})\subseteq\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\kappa})_{\mathsf{W}/}\mright)\]
+the full subcategory spanned by the morphisms that are Bousfield localizations. For $\mathsf{W}=\mathsf{Ani}$, we denote $\mathsf{Loc}^\otimes_\kappa(\mathsf{W})$ simply as $\mathsf{Loc}_\kappa^\otimes$.
+\end{definition}
+
+\begin{theorem}\label{result on monoidal localizations}
+    Let $\kappa\geq \aleph_1$ be a regular cardinal, and let $\mathsf{W}$ be a commutative algebra object in $\mathsf{Pr}^\mathsf{L}_{\kappa}$. Then the natural inclusion
+    \[\mathsf{Loc}^\otimes_\kappa(\mathsf{W})\hookrightarrow\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\kappa})_{\mathsf{W}/}\mright)\]
+    is a morphism in $\mathsf{Pr}^\mathsf{L}_{\kappa}$. In particular, the category $\mathsf{Loc}^\otimes_\kappa(\mathsf{W})$ is $\kappa$-presentable.
+\end{theorem}
+
+The proof uses the pointwise symmetric monoidal structure on the arrow category. We first show that the inclusion of $\mathsf{Loc}_\kappa$ is compatible with this structure.
+
+\begin{lemma}\label{commutative algebras in the functor category}
+Let $\kappa\geq \aleph_1$ be a regular cardinal, and endow $\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)$ with the pointwise symmetric monoidal structure. Then the following statements hold.
+    \begin{enumerate}
+        \item The category $\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)$ is a commutative algebra object in $\mathsf{Pr}^{\mathsf{L}}_\kappa$, and there is a natural equivalence
+        \[\mathsf{CAlg}\mleft(\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)\mright)\simeq\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)\mright)\]
+        in $\mathsf{Pr}^{\mathsf{L}}_\kappa$.
+        \item The full subcategory $\mathsf{Loc}_\kappa\subseteq \mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)$ contains the symmetric monoidal unit and is closed under tensor products. The induced symmetric monoidal structure makes the inclusion
+        \[\mathsf{Loc}_\kappa\hookrightarrow\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)\]
+        a morphism in $\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+According to \cite[Prop.~2.3]{aoki2025higherpresentablecategorieslimits}, $\mathsf{Pr}^{\mathsf{L}}_\kappa$ is a commutative algebra object in $\mathsf{Pr}^{\mathsf{L}}_\kappa$. Since $\Delta^1$ is a finite poset, \cite[Prop.~2.17]{AokiTTG} implies that the same holds for $\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)$ equipped with the pointwise symmetric monoidal structure. Moreover, \cite[Rem.~2.1.3.4]{higheralgebra} gives a natural equivalence
+\[\mathsf{CAlg}\mleft(\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)\mright)\simeq\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)\mright).\]
+
+Recall that, for every commutative algebra object $\mathsf{C}$ in $\mathsf{Pr}^{\mathsf{L}}_\kappa$, the category $\mathsf{CAlg}(\mathsf{C})$ is $\kappa$-presentable. Indeed, it is presentable by \cite[Cor.~3.2.3.5]{higheralgebra}, and the free commutative algebras on $\kappa$-compact generators of $\mathsf{C}$ form a set of $\kappa$-compact generators, since the forgetful functor preserves $\kappa$-filtered colimits \cite[Cor.~3.2.3.2]{higheralgebra}. Together with \cite[Tag~\href{https://kerodon.net/tag/06HY}{06HY}]{kerodon}, this shows that both sides of the displayed equivalence are $\kappa$-presentable.
+
+To prove (2), note that the symmetric monoidal unit of $\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)$ is $\operatorname{id}_{\mathsf{Ani}}$, which is a Bousfield localization. Moreover, tensor products of Bousfield localizations remain Bousfield localizations \cite[Tag~\href{https://kerodon.net/tag/071G}{071G}]{kerodon}. It follows from \cite[Prop.~2.2.1.1 and Rem.~2.2.1.2]{higheralgebra} that the pointwise symmetric monoidal structure restricts to $\mathsf{Loc}_\kappa$, making the inclusion
+\[j\colon \mathsf{Loc}_\kappa\hookrightarrow\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)\]
+a symmetric monoidal functor.
+
+By Theorem~\ref{walking localization}, applied to $\mathsf{V}=\ast$, the category $\mathsf{Loc}_\kappa$ is $\kappa$-presentable and $j$ preserves small colimits and $\kappa$-compact objects. Since $j$ is fully faithful and preserves small colimits, the tensor product on $\mathsf{Loc}_\kappa$ preserves small colimits separately in each variable. Moreover, full faithfulness and preservation of $\kappa$-filtered colimits imply that $j$ also reflects $\kappa$-compact objects. Thus, the $\kappa$-compactness of the symmetric monoidal unit and the stability of $\kappa$-compact objects under tensor products follow from the corresponding properties in $\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)$. This proves that $j$ is a morphism in $\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{result on monoidal localizations}.]
+By Lemma~\ref{commutative algebras in the functor category}, both $\mathsf{Loc}_\kappa$ and the inclusion $j\colon\mathsf{Loc}_\kappa\hookrightarrow\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)$ lie in $\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_\kappa)$. As a result, it induces a fully faithful functor
+\[\mathsf{CAlg}(j)\colon \mathsf{CAlg}(\mathsf{Loc}_\kappa)\hookrightarrow\mathsf{CAlg}\mleft(\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)\mright)\simeq\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)\mright),\]
+whose essential image consists of the morphisms whose underlying functors are Bousfield localizations \cite[Rem.~2.2.1.5]{higheralgebra}.
+
+We claim that this functor is a morphism in $\mathsf{Pr}^{\mathsf{L}}_\kappa$. Let $R$ be the right adjoint of $j$. By \cite[Rem.~2.2.1.5]{higheralgebra}, the functor $\mathsf{CAlg}(j)$ admits a right adjoint whose underlying functor is given by $R$. Since $j$ preserves $\kappa$-compact objects, $R$ preserves $\kappa$-filtered colimits. These colimits are computed on underlying objects in categories of commutative algebras \cite[Cor.~3.2.3.2]{higheralgebra}, so the right adjoint of $\mathsf{CAlg}(j)$ also preserves $\kappa$-filtered colimits. Thus, $\mathsf{CAlg}(j)$ preserves small colimits and $\kappa$-compact objects, proving the claim.
+
+As in the proof of Theorem~\ref{walking localization}, there is a natural equivalence
+\[\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)_{\mathsf{W}/}\mright)\simeq\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)\mright)_{\operatorname{id}_{\mathsf{W}}/}.\]
+Since $\operatorname{id}_{\mathsf{W}}$ is a Bousfield localization, it determines an object of $\mathsf{CAlg}(\mathsf{Loc}_\kappa)$. Under the displayed equivalence, the inclusion of $\mathsf{Loc}^\otimes_\kappa(\mathsf{W})$ identifies with the functor
+\[\mathsf{CAlg}(\mathsf{Loc}_\kappa)_{\operatorname{id}_{\mathsf{W}}/}\hookrightarrow\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)\mright)_{\operatorname{id}_{\mathsf{W}}/}\]
+induced by $\mathsf{CAlg}(j)$. The desired result then follows from Proposition~\ref{lemma on coslices}.
+\end{proof}
+
+\begin{remark}
+The same arguments prove variants of Theorems~\ref{walking localization} and \ref{result on monoidal localizations} in which coslice categories are replaced by slice categories. More precisely, under the same hypotheses, the full subcategories of
+\[\mathsf{Fun}\mleft(\Delta^1,(\mathsf{Pr}^{\mathsf{L}}_\kappa)_{/\mathsf{V}}\mright)
+\qquad\text{and}\qquad
+\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)_{/\mathsf{W}}\mright)\]
+spanned by the morphisms that are Bousfield localizations are $\kappa$-presentable, and their natural inclusions are morphisms in $\mathsf{Pr}^{\mathsf{L}}_\kappa$. It suffices to replace the application of Proposition~\ref{lemma on coslices} by \cite[Tags~\href{https://kerodon.net/tag/06HU}{06HU} and \href{https://kerodon.net/tag/06P6}{06P6}]{kerodon}.
+\end{remark}

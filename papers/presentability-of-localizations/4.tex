@@ -1,0 +1,219 @@
+\begin{definition}
+    Let $S$ be a profinite set. We define:
+    \begin{itemize}
+        \item The \emph{size} $\kappa(S)$ as the cardinality of $S$.
+        \item The \emph{weight} $\lambda(S)$ as the cardinality of the Boolean ring $\operatorname{Cont}(S,\mathbb{F}_2)$.
+    \end{itemize}
+    For an uncountable cardinal $\lambda$, we say that $S$ is $\lambda$\emph{-light} if $\lambda(S)< \lambda$. The category of $\lambda$-light profinite sets will be denoted as $\mathsf{Prof}_\lambda$. In particular, for $\lambda=\aleph_1$ (the first uncountable cardinal), we say that $S$ is \emph{light} if $\lambda(S)$ is countable.
+\end{definition}
+
+We note that, if $\kappa(S)$ is infinite, $\lambda(S)$ coincides with the cardinality of the smallest index set $I$ for which there exists a presentation
+\[S=\lim_{i\in I}S_i,\]
+with each $S_i$ finite and discrete. Moreover, if $\lambda$ is an uncountable strong limit cardinal, a profinite set $S$ is $\lambda$-light if and only if $\kappa(S)<\lambda$.
+
+\begin{definition}
+    We define a Grothendieck topology on $\mathsf{Prof}_\lambda$ by saying that $\{S_i\to S\}_{i\in I}$ is a covering if $I$ is finite and $\bigsqcup_{i\in I}S_i\to S$ is surjective. For a presentable category $\mathsf{V}$, we denote by $\mathsf{Cond}_\lambda(\mathsf{V})$ the category of $\mathsf{V}$-valued hypersheaves on $\mathsf{Prof}_\lambda$.
+\end{definition}
+
+According to \cite[Prop.~A.5.7.2]{lurie2018spectral}, an object of $\mathsf{Cond}_\lambda(\mathsf{V})$ is the same as a functor $X\colon \mathsf{Prof}_\lambda^{\mathrm{op}}\to \mathsf{V}$ satisfying the following conditions:
+\begin{enumerate}[label=(\roman*)]
+    \item For a collection $\{S_i\}_{i\in I}$ of $\lambda$-light profinite sets indexed by a finite set $I$, the natural map
+    \[X\mleft(\coprod_{i\in I}S_i\mright)\to \prod_{i\in I}X(S_i)\]
+    is an equivalence;
+    \item For a hypercover $S_\ast\to S$ in $\mathsf{Prof}_\lambda$, the natural map
+    \[X(S)\to \lim_{n\in \Delta}X(S_n)\]
+    is an equivalence.
+\end{enumerate}
+If $\mathsf{V}$ is an $n$-category for some finite $n$, it suffices to check the second condition above on \v{C}ech nerves \cite[Lem.~6.5.2.9]{lurie2009HTT}. We also note that the category $\mathsf{Cond}_\lambda(\mathsf{V})$ is presentable and equivalent to the tensor product $\mathsf{Cond}_\lambda(\mathsf{Ani})\otimes \mathsf{V}$ \cite[Lem.~A.4.22]{heyer20246functorformalismssmoothrepresentations}.
+
+\begin{lemma}\label{compact condensed anima}
+    Let $S$ be a $\lambda$-light profinite set. The representable presheaf $\underline{S}\colon \mathsf{Prof}_\lambda^{\mathrm{op}}\to \mathsf{Set}\subset \mathsf{Ani}$, defined as $\underline{S}(T)=\operatorname{Cont}(T,S)$ is an $\aleph_1$-compact object of $\mathsf{Cond}_\lambda(\mathsf{Ani})$.
+\end{lemma}
+
+\begin{proof}
+Since the functor $\operatorname{Cont}(-,S)$ takes finite coproducts to products, it is a hypersheaf as soon as the map
+\[\operatorname{Cont}(T,S) \to \operatorname{eq}\mleft(\operatorname{Cont}(T^\prime,S)\rightrightarrows \operatorname{Cont}(T^\prime\times_T T^\prime,S)\mright)\]
+is an equivalence for every surjection $T^\prime\to T$ of $\lambda$-light profinite sets, which is clear.
+
+Now let $X=\operatorname*{colim}_{i\in I} X_i$ be an $\aleph_1$-filtered colimit of condensed animae. To say that $\underline{S}$ is $\aleph_1$-compact means that the natural map
+\[\operatorname*{colim}_{i\in I} X_i(S)\simeq \operatorname*{colim}_{i\in I}\operatorname{Map}\mleft(\underline{S},X_i\mright)\to \operatorname{Map}\mleft(\underline{S},X\mright)\simeq X(S)\]
+is an equivalence. Equivalently, one must show that the functor
+\[S \mapsto \operatorname*{colim}_{i\in I} X_i(S)\]
+satisfies hyperdescent. This follows from the fact that each $X_i$ is a hypersheaf and that $\aleph_1$-filtered colimits commute with countable limits in $\mathsf{Ani}$ \cite[Tag \href{https://kerodon.net/tag/05Y0}{05Y0}]{kerodon}.
+\end{proof}
+
+Let $G\colon \mathsf{W}\to \mathsf{V}$ be a morphism in $\mathsf{Pr}^\mathsf{R}$ and let $Y\in \mathsf{Cond}_\lambda(\mathsf{W})$. Since $G$ preserves small limits, the composition $G\circ Y$ still satisfies hyperdescent. Thus, we obtain an induced functor
+\begin{align*}
+    \mathsf{Cond}_\lambda(\mathsf{W}) &\to \mathsf{Cond}_\lambda(\mathsf{V}) \\
+    \mleft(\mathsf{Prof}_\lambda^\mathrm{op}\xrightarrow{\ Y\ } \mathsf{W}\mright)&\mapsto \mleft(\mathsf{Prof}_\lambda^\mathrm{op}\xrightarrow{\ Y\ } \mathsf{W}\xrightarrow{\ G\ }\mathsf{V}\mright).
+\end{align*}
+Under the natural equivalence $\mathsf{Cond}_\lambda(-)\simeq \mathsf{Cond}_\lambda(\mathsf{Ani})\otimes -$, the induced functor is nothing but $\operatorname{id}\otimes \,G$. Similarly, given a morphism $F\colon \mathsf{V}\to \mathsf{W}$ in $\mathsf{Pr}^\mathsf{L}$, we also obtain an induced functor
+\[\mathsf{Cond}_\lambda(\mathsf{V})\simeq \mathsf{Cond}_\lambda(\mathsf{Ani})\otimes \mathsf{V}\xrightarrow{\ \operatorname{id}\otimes F\ }\mathsf{Cond}_\lambda(\mathsf{Ani})\otimes \mathsf{W}\simeq \mathsf{Cond}_\lambda(\mathsf{W})\]
+which maps a $\mathsf{V}$-valued hypersheaf $X$ to the hypersheafification of $F\circ X$.
+
+\begin{proposition}\label{Cond preserves presentability}
+    Let $\kappa\geq \aleph_1$ be a regular cardinal. Then the assignment $\mathsf{V}\mapsto \mathsf{Cond}_\lambda(\mathsf{V})$ defines an endofunctor of each of the categories 
+    \[\mathsf{Pr}^\mathsf{R}_{\kappa}, \quad \mathsf{Pr}^\mathsf{R}_{\kappa,\mathrm{st}}, \quad \mathsf{Pr}^\mathsf{L}_{\kappa}, \quad\mathsf{Pr}^\mathsf{L}_{\kappa,\mathrm{st}}.\]
+    Moreover, it induces an endofunctor on the categories of commutative algebra objects in $\mathsf{Pr}^\mathsf{L}_{\kappa}$ and $\mathsf{Pr}^\mathsf{L}_{\kappa,\mathrm{st}}$.
+\end{proposition}
+
+\begin{proof}
+We first show that $\mathsf{Cond}_\lambda(-)$ preserves $\kappa$-presentability. Since the tensor product of presentable categories does so \cite[Lem.~5.3.2.11]{higheralgebra}, it suffices to prove that $\mathsf{Cond}_\lambda(\mathsf{Ani})$ is $\kappa$-presentable. To this end, by \cite[Cor.~5.5.7.3]{lurie2009HTT}, it is enough to show that $\mathsf{Cond}_\lambda(\mathsf{Ani}) = \mathsf{HSh}(\mathsf{Prof}_\lambda,\mathsf{Ani})$ is closed under $\kappa$-filtered colimits in $\mathsf{PSh}(\mathsf{Prof}_\lambda,\mathsf{Ani})$, which is precisely the content of Lemma~\ref{compact condensed anima}. 
+
+Next, since limits and colimits in functor categories are computed pointwise, the category $\mathsf{PSh}(\mathsf{Prof}_\lambda,\mathsf{V})$ is stable whenever $\mathsf{V}$ is. Finally, the full subcategory $\mathsf{Cond}_\lambda(\mathsf{V}) = \mathsf{HSh}(\mathsf{Prof}_\lambda,\mathsf{V})$ is closed under fibers and shifts, and is therefore stable as well.
+
+Since $\mathsf{Cond}_{\lambda}(\mathsf{Ani})$ is a topos, small colimits in $\mathsf{Cond}_{\lambda}(\mathsf{Ani})$ are universal. Therefore, to show that its cartesian symmetric monoidal structure defines an object of $\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_{\kappa})$, it suffices to verify that the tensor unit $\ast$ is $\kappa$-compact and that the full subcategory of $\kappa$-compact objects is closed under finite products.
+
+The tensor unit is representable, and hence $\kappa$-compact by Lemma~\ref{compact condensed anima}. Moreover, by \cite[Prop.~5.3.4.17 and Cor.~5.5.7.3]{lurie2009HTT}, every $\kappa$-compact object of $\mathsf{Cond}_{\lambda}(\mathsf{Ani})$ is a retract of a $\kappa$-small colimit of representables. It follows again from Lemma~\ref{compact condensed anima} that $\kappa$-compact objects are stable under finite products.
+
+We now show that $\mathsf{Cond}_\lambda(\mathsf{V})$ inherits a $\kappa$-presentably symmetric monoidal structure from $\mathsf{V}$. By \cite[Cor.~3.2.4.8]{higheralgebra}, the category $\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_\kappa)$ admits finite coproducts, and these are compatible with the tensor product in $\mathsf{Pr}^\mathsf{L}_\kappa$ in the sense that the diagram
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhzZntDQWxnfShcXG1hdGhzZntQcn1eXFxtYXRoc2Z7TH1fXFxrYXBwYSkiXSxbMywwLCJcXG1hdGhzZntDQWxnfShcXG1hdGhzZntQcn1eXFxtYXRoc2Z7TH1fXFxrYXBwYSkiXSxbMCwxLCJcXG1hdGhzZntQcn1eXFxtYXRoc2Z7TH1fXFxrYXBwYSJdLFszLDEsIlxcbWF0aHNme1ByfV5cXG1hdGhzZntMfV9cXGthcHBhIl0sWzAsMl0sWzEsM10sWzIsMywiXFxtYXRoc2Z7Q29uZH1fXFxsYW1iZGEoXFxtYXRoc2Z7QW5pfSlcXG90aW1lcy0iXSxbMCwxLCJcXG1hdGhzZntDb25kfV9cXGxhbWJkYShcXG1hdGhzZntBbml9KVxcc3FjdXAtIl1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_\kappa)} \&\&\& {\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_\kappa)} \\
+	{\mathsf{Pr}^\mathsf{L}_\kappa} \&\&\& {\mathsf{Pr}^\mathsf{L}_\kappa,}
+	\arrow["{\mathsf{Cond}_\lambda(\mathsf{Ani})\sqcup-}", from=1-1, to=1-4]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-4, to=2-4]
+	\arrow["{\mathsf{Cond}_\lambda(\mathsf{Ani})\otimes-}", from=2-1, to=2-4]
+\end{tikzcd}\]
+commutes, where the vertical maps are the forgetful functors. It follows that tensoring with $\mathsf{Cond}_\lambda(\mathsf{Ani})$ carries commutative algebra objects to commutative algebra objects, giving the desired $\kappa$-presentably symmetric monoidal structure on $\mathsf{Cond}_\lambda(\mathsf{V})$.
+
+For the stable case, recall that $-\otimes\mathsf{Sp}\colon\mathsf{Pr}^\mathsf{L}_\kappa\to\mathsf{Pr}^\mathsf{L}_{\kappa,\mathrm{st}}$ is symmetric monoidal. Hence it endows
+\[\mathsf{Cond}_{\lambda}(\mathsf{Sp})\simeq \mathsf{Cond}_{\lambda}(\mathsf{Ani})\otimes \mathsf{Sp}.\]
+with a $\kappa$-presentably symmetric monoidal structure. Applying the same argument as above, with $\mathsf{Cond}_{\lambda}(\mathsf{Ani})$ replaced by $\mathsf{Cond}_{\lambda}(\mathsf{Sp})$, gives the corresponding result in the stable setting.
+\end{proof}
+
+Let $\mathsf{Ab}$ and $\mathsf{Ring}$ denote the categories of (animated) abelian groups and commutative rings, respectively. Equivalently, these are the categories of finite-product-preserving functors
+\[\mathsf{Lat}^\mathrm{op}\to \mathsf{Ani} \qquad\text{and}\qquad \mathsf{Poly}^\mathrm{op}\to \mathsf{Ani},\]
+where $\mathsf{Lat}$ is the category of finitely generated free abelian groups $\mathbb{Z}^n$, and $\mathsf{Poly}$ is the category of finitely generated polynomial rings $\mathbb{Z}[x_1,\dots,x_n]$, for $n\geq 0$.
+
+By the Dold--Kan correspondence, the category $\mathsf{Ab}$ is equivalent to the connective part $\mathsf{D}(\mathbb{Z})_{\geq 0}$ of the derived category $\mathsf{D}(\mathbb{Z})$. Furthermore, it may be identified with
+\[\mathsf{Mod}_{\mathsf{H}\mathbb{Z}}(\mathsf{Sp}^{\mathrm{cn}}),\]
+the category of $\mathsf{H}\mathbb{Z}$-modules in connective spectra, where $\mathsf{H}\mathbb{Z}$ denotes the Eilenberg--MacLane spectrum of $\mathbb{Z}$.
+
+Passing to condensed objects, \cite[Thm.~1.2.(2)]{standardtstructures} endows $\mathsf{Cond}_{\lambda}(\mathsf{D}(\mathbb{Z}))$ with a $t$\nobreakdash-structure whose connective and coconnective parts are given by
+\[\mathsf{Cond}_{\lambda}(\mathsf{D}(\mathbb{Z}))_{\geq 0}\simeq \mathsf{Cond}_{\lambda}(\mathsf{D}(\mathbb{Z})_{\geq 0}) \quad \text{and}\quad \mathsf{Cond}_{\lambda}(\mathsf{D}(\mathbb{Z}))_{\leq 0}\simeq \mathsf{Cond}_{\lambda}(\mathsf{D}(\mathbb{Z})_{\leq 0}),\]
+respectively. Consequently, $\mathsf{Cond}_{\lambda}(\mathsf{Ab})$ identifies with the full subcategory of connective objects in $\mathsf{Cond}_{\lambda}(\mathsf{D}(\mathbb{Z}))$. This $t$-structure is right complete and compatible with both filtered colimits and the symmetric monoidal structure \cite[Prop.~3.8]{standardtstructures}.
+
+\begin{proposition}\label{CondAb is mu-compact}
+    Let $\mu=((2^{<\lambda})^{\aleph_0})^+$. Then $\mathsf{Cond}_\lambda(\mathsf{Ab})$ is a $\mu$-compact object of $\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\aleph_1})$.
+\end{proposition}
+
+\begin{proof}
+We begin by recalling that, by Stone duality, the category $\mathsf{Prof}_\lambda$ is anti-equivalent to the category $\mathsf{Bool}_\lambda$ of $\lambda$-small Boolean rings. It is a classical theorem that, for each infinite cardinal $\rho$, there are exactly $2^\rho$ isomorphism classes of Boolean rings of cardinality $\rho$ \cite{Monk1989}. Hence
+\[\#\pi_0(\mathsf{Bool}_\lambda^\simeq)=\sup_{ \rho<\lambda}2^\rho\equalscolon 2^{<\lambda}.\]
+Choose a skeleton $\overline{\mathsf{Bool}}_\lambda$ of $\mathsf{Bool}_\lambda$ and let $A$, $B$ be objects of it. We have that
+\[\#\operatorname{Map}_{\mathsf{B}_\lambda}(A,B)\leq \#\operatorname{Map}_{\mathsf{Set}}(A,B)\leq 2^{\max(\aleph_0,\# A,\#B)}\leq 2^{<\lambda}.\]
+It follows that the full subcategory $\overline{\mathsf{Prof}}_\lambda\subseteq \mathsf{Prof}_\lambda$ spanned by the profinite sets $S$ such that $\operatorname{Cont}(S,\mathbb{F}_2)\in \overline{\mathsf{Bool}}_\lambda$ is $(2^{<\lambda})^+$-small.
+
+Let $\mathsf{C}$ be the $(2^{<\lambda})^+$-small category $\overline{\mathsf{Prof}}_\lambda\times \mathsf{Lat}$ and, for each object $(S,\mathbb{Z}^n)$ of $\mathsf{C}$, denote by $\yo(S,\mathbb{Z}^n)$ the corresponding representable presheaf in $\mathsf{P}(\mathsf{C})$. Let $W$ be the collection of morphisms in $\mathsf{P}(\mathsf{C})$ consisting of the maps
+\begin{align*}
+   (W_1)&&  \coprod_{j=1}^n\yo(S,\mathbb{Z})&\to\yo(S,\mathbb{Z}^n), && S\in\overline{\mathsf{Prof}}_\lambda,\ n\geq0;\\
+   (W_2)&&  \coprod_{j=1}^m\yo(S_j,\mathbb{Z})&\to\yo\mleft(\coprod_{j=1}^m S_j,\mathbb{Z}\mright), && S_j\in\overline{\mathsf{Prof}}_\lambda,\ m\geq0;\\
+    (W_3)&& \operatornamewithlimits{colim}_{[n]\in\Delta^\mathrm{op}}\yo(S_n,\mathbb{Z})&\to\yo(S,\mathbb{Z}), && S_\ast\to S\text{ a hypercover in }\overline{\mathsf{Prof}}_\lambda,
+\end{align*}
+and let $\mathsf{P}_0\subseteq\mathsf{P}(\mathsf{C})$ be the full subcategory spanned by the $W$-local objects.
+
+Now let $X_0\colon \overline{\mathsf{Prof}}_\lambda^\mathrm{op}\times \mathsf{Lat}^\mathsf{op}\to \mathsf{Ani}$ be a presheaf, and let
+\[X\colon \overline{\mathsf{Prof}}_\lambda^\mathrm{op}\to \mathsf{Fun}(\mathsf{Lat}^\mathsf{op},\mathsf{Ani})\]
+be the corresponding curried functor. The presheaf $X_0$ is local with respect to the maps in $W_1$ precisely if $X$ takes values in $\mathsf{Ab}\subseteq \mathsf{Fun}(\mathsf{Lat}^\mathsf{op},\mathsf{Ani})$. Similarly, locality with respect to $W_2$ and $W_3$ is equivalent to the condition that $X$ is a hypersheaf. We therefore obtain an equivalence $\mathsf{P}_0\simeq \mathsf{Cond}_\lambda(\mathsf{Ab})$.
+
+By the discussion above, the collections $W_1$ and $W_2$ are visibly $(2^{<\lambda})^+$-small. For $W_3$, note that $\Delta_+$ is countable. Hence the collection of augmented simplicial objects in $\overline{\mathsf{Prof}}_\lambda$ has cardinality at most
+\[(2^{<\lambda})^{\aleph_0}<\mu.\]
+In particular, $W_3$ is $\mu$-small, and therefore so is $W$. Since the source and target of every morphism in $W$ are $\aleph_1$-compact, the result follows from Propositions~\ref{forgetful functor preserves compacts} and \ref{compactness of local objects}.
+\end{proof}
+
+Contrary to what one might expect, the category $\mathsf{Ring}$ of (animated) commutative rings is not equivalent to
+\[\mathsf{CAlg}(\mathsf{Ab})\simeq \mathsf{CAlg}\mleft(\mathsf{Mod}_{\mathsf{H}\mathbb{Z}}(\mathsf{Sp}^{\mathrm{cn}})\mright)\simeq\mathsf{CAlg}(\mathsf{Sp}^{\mathrm{cn}})_{\mathsf{H}\mathbb{Z}/}.\]
+The universal property of animation \cite[Prop.~5.5.8.15]{lurie2009HTT} provides a sifted-colimit-preserving extension
+\[\Theta\colon \mathsf{Ring}\to\mathsf{CAlg}(\mathsf{Sp}^{\mathrm{cn}})_{\mathsf{H}\mathbb{Z}/}\]
+of the Eilenberg--MacLane functor $\mathsf{H}\colon \mathsf{Poly}\to\mathsf{CAlg}(\mathsf{Sp}^{\mathrm{cn}})_{\mathsf{H}\mathbb{Z}/}$. While $\Theta$ is not an equivalence, the corresponding functor obtained after replacing $\mathbb{Z}$ by $\mathbb{Q}$ is an equivalence.
+
+That being said, $\Theta$ will be useful in our study of $\mathsf{Ring}$. Indeed, by \cite[Prop.~25.1.2.2]{lurie2018spectral}, the functor $\Theta$ is conservative and preserves all small limits and colimits. The following lemma establishes another important property of $\Theta$.
+
+\begin{lemma}\label{Theta preserves kappa-compact objects}
+    The functor $\Theta\colon \mathsf{Ring}\to \mathsf{CAlg}(\mathsf{Sp}^\mathrm{cn})_{\mathsf{H}\mathbb{Z}/}$ preserves $\aleph_1$-compact objects. Consequently, $\Theta$ is a map in $\mathsf{Pr}^\mathsf{L}_{\aleph_1}$.
+\end{lemma}
+
+\begin{proof}
+    According to the Hilbert Basis Theorem \cite[Prop.~7.2.4.31]{higheralgebra}, the polynomial ring $\mathsf{H}\mathbb{Z}[x_1,\dots,x_n]$ is almost of finite presentation as an $\mathbb{E}_\infty$-algebra over $\mathsf{H}\mathbb{Z}$. By definition, this means that $\mathsf{H}\mathbb{Z}[x_1,\dots,x_n]$ is a compact object of $\tau_{\leq m}\mathsf{CAlg}(\mathsf{Sp}^\mathrm{cn})_{\mathsf{H}\mathbb{Z}/}$ for all $m\geq 0$. We claim that this implies that $\mathsf{H}\mathbb{Z}[x_1,\dots,x_n]$ is $\aleph_1$-compact for all $n\geq 0$.
+
+    Let $(B_i)_{i\in I}$ be an $\aleph_1$-filtered diagram in $\mathsf{CAlg}(\mathsf{Sp}^\mathrm{cn})_{\mathsf{H}\mathbb{Z}/}$. Since Postnikov towers converge in this category \cite[Prop.~7.1.3.19]{higheralgebra}, we have that
+    \begin{align*}
+        \operatorname{Map}\mleft(\mathsf{H}\mathbb{Z}[x_1,\dots,x_n],\operatornamewithlimits{colim}_{i\in I}B_i\mright) &\simeq \lim_{m\geq 0}\operatorname{Map}\mleft(\mathsf{H}\mathbb{Z}[x_1,\dots,x_n],\tau_{\leq m}\operatornamewithlimits{colim}_{i\in I}B_i\mright) \\
+        &\simeq \lim_{m\geq 0}\operatorname{Map}\mleft(\mathsf{H}\mathbb{Z}[x_1,\dots,x_n],\operatornamewithlimits{colim}_{i\in I}\tau_{\leq m}B_i\mright) \\
+        &\simeq \lim_{m\geq 0}\operatornamewithlimits{colim}_{i\in I}\operatorname{Map}(\mathsf{H}\mathbb{Z}[x_1,\dots,x_n],\tau_{\leq m}B_i) \\
+        &\simeq \operatornamewithlimits{colim}_{i\in I}\lim_{m\geq 0}\operatorname{Map}(\mathsf{H}\mathbb{Z}[x_1,\dots,x_n],\tau_{\leq m}B_i) \\
+        &\simeq \operatornamewithlimits{colim}_{i\in I}\operatorname{Map}(\mathsf{H}\mathbb{Z}[x_1,\dots,x_n],B_i).
+    \end{align*}
+    Here, we used on the fourth line that $\aleph_1$-filtered colimits commute with countable limits in $\mathsf{Ani}$. In other words, $\mathsf{H}\mathbb{Z}[x_1,\dots,x_n]$ is $\aleph_1$-compact for all $n\geq 0$.
+
+    To conclude that $\Theta$ preserves $\aleph_1$-compact objects, we will prove that its right adjoint $\Theta^R$ preserves $\aleph_1$-filtered colimits. Given an $\mathbb{E}_\infty$-algebra $B$ over $\mathsf{H}\mathbb{Z}$, the adjunction implies that $\Theta^R(B)$ is the functor
+    \begin{align*}
+        \mathsf{Poly}^\mathrm{op} &\to \mathsf{Ani}\\
+        \mathbb{Z}[x_1,\dots,x_n] &\mapsto \operatorname{Map}(\mathsf{H}\mathbb{Z}[x_1,\dots,x_n],B).
+    \end{align*}
+    Since sifted colimits (in particular, $\aleph_1$-filtered colimits) in $\mathsf{Ring}$ are computed pointwise, the $\aleph_1$-compactness of $\mathsf{H}\mathbb{Z}[x_1,\dots,x_n]$ implies that $\Theta^R$ preserves $\aleph_1$-filtered colimits.
+\end{proof}
+
+For an object $\mathsf{W}$ of $\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_\kappa)$, the natural equivalence
+\[\mathsf{Fun}(\mathsf{Prof}_\lambda^\mathrm{op},\mathsf{CAlg}(\mathsf{W}))\simeq \mathsf{CAlg}(\mathsf{Fun}(\mathsf{Prof}_\lambda^\mathrm{op},\mathsf{W}))\]
+is compatible with hypersheafification and therefore induces an equivalence
+\[\mathsf{Cond}_\lambda(\mathsf{CAlg}(\mathsf{W}))\simeq\mathsf{CAlg}(\mathsf{Cond}_\lambda(\mathsf{W}));\]
+see \cite[Prop.~2.1.6]{montagnani2025axiomaticapproachanalytic1affineness} for further details.
+In particular, applying this to $\mathsf{W}=\mathsf{Ab}$ allows us, for a $\lambda$-light condensed ring $A^\triangleright$, to regard $\mathsf{Cond}_\lambda(\Theta)(A^\triangleright)$ as an object of
+\[\mathsf{CAlg}(\mathsf{Cond}_\lambda(\mathsf{Ab}))\subseteq \mathsf{CAlg}(\mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))).\] 
+We denote this object by $A^\triangleright_\circ$.
+
+\begin{definition}\label{derived category of a condensed ring}
+Let $A^\triangleright$ be a $\lambda$-light condensed ring. Its \emph{derived category} is
+\[\mathsf{D}(A^\triangleright)\colonequals\mathsf{Mod}_{A^\triangleright_\circ}\mleft(\mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))\mright);\]
+the category of $A^\triangleright_\circ$-modules in $\mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))$. The \emph{connective derived category} of $A^\triangleright$ is the full subcategory $\mathsf{D}(A^{\triangleright})_{\geq0}$ spanned by those $A^{\triangleright}_{\circ}$-modules whose underlying object of $\mathsf{Cond}_{\lambda}(\mathsf{D}(\mathbb{Z}))$ lies in $\mathsf{Cond}_{\lambda}(\mathsf{Ab})$. 
+\end{definition}
+
+The following lemma shows that our nomenclature is well-chosen, and verifies some additional properties of these categories.
+
+\begin{lemma}\label{t-structures on derived categories}
+Let $A^\triangleright$ be a $\lambda$-light condensed ring. Then the following statements hold.
+\begin{enumerate}
+    \item The category $\mathsf{D}(A^\triangleright)$ admits a right complete $t$\nobreakdash-structure whose connective part is $\mathsf{D}(A^\triangleright)_{\geq0}$. This $t$\nobreakdash-structure is compatible with filtered colimits and the symmetric monoidal structure.
+    \item There is a natural equivalence
+    \[\mathsf{D}(A^\triangleright)_{\geq0}\simeq\mathsf{Mod}_{A^\triangleright_\circ}\mleft(\mathsf{Cond}_\lambda(\mathsf{Ab})\mright),\]
+    and $\mathsf{D}(A^\triangleright)$ is the stabilization of $\mathsf{D}(A^\triangleright)_{\geq0}$. Moreover, $\mathsf{D}(A^\triangleright)_{\geq0}$ and $\mathsf{D}(A^\triangleright)$ are commutative algebra objects in the categories of $\mathsf{Cond}_\lambda(\mathsf{Ab})$-linear and $\mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))$-linear $\aleph_1$-presentable categories, respectively.
+    \item Every morphism $\varphi\colon A^\triangleright\to B^\triangleright$ of $\lambda$-light condensed rings induces an adjunction
+    \[\varphi^*\colon\mathsf{D}(A^\triangleright)\rightleftarrows\mathsf{D}(B^\triangleright):\hspace{-0.2em}\varphi_*,\]
+    where $\varphi^*$ is extension-of-scalars and $\varphi_*$ is restriction-of-scalars. These functors restrict to an adjunction between the connective derived categories.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    As noted above, the $t$-structure on $\mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))$ is right complete and compatible with both filtered colimits and the symmetric monoidal structure. By \cite[Prop.~A.15]{CartierCyclotomic}, the category $\mathsf{D}(A^\triangleright)$ inherits a $t$-structure compatible with the symmetric monoidal structure from $\mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))$, with connective part
+\[\mathsf{D}(A^\triangleright)_{\geq0}\simeq \mathsf{Mod}_{A^\triangleright_\circ}\mleft(\mathsf{Cond}_\lambda(\mathsf{Ab})\mright).\]
+Since the forgetful functor $\mathsf{D}(A^\triangleright)\to\mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))$ is conservative, $t$-exact, and preserves small colimits, the right completeness of this $t$-structure and its compatibility with filtered colimits follow from the corresponding properties of $\mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))$.
+    
+The fact that $\mathsf{D}(A^\triangleright)$ is the stabilization of $\mathsf{D}(A^\triangleright)_{\geq0}$ is explained in \cite[Rem.~C.3.1.5]{lurie2018spectral}. Moreover, by Proposition~\ref{Cond preserves presentability} and \cite[Lem.~2.2]{aoki2025higherpresentablecategorieslimits}, the categories $\mathsf{D}(A^\triangleright)_{\geq0}$ and $\mathsf{D}(A^\triangleright)$ are naturally objects of
+\[\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\aleph_1})_{\mathsf{W}/},\]
+for $\mathsf{W}\colonequals \mathsf{Cond}_\lambda(\mathsf{Ab})$ and $\mathsf{W}\colonequals \mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))$, respectively.
+
+The third item follows directly from \cite[Prop.~4.6.2.17]{higheralgebra}, applied first with $\mathsf{C}=\mathsf{M}=\mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))$ and then with $\mathsf{C}=\mathsf{M}=\mathsf{Cond}_\lambda(\mathsf{Ab})$.
+\end{proof}
+
+\begin{proposition}\label{D is a map in Pr_k}
+   The assignments $A^\triangleright\mapsto \mathsf{D}(A^\triangleright)_{\geq0}$ and $A^\triangleright\mapsto\mathsf{D}(A^\triangleright)$ define functors
+    \[\mathsf{Cond}_\lambda(\mathsf{Ring})\to \mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\aleph_1})_{\mathsf{W}/},\]
+    for $\mathsf{W}\colonequals \mathsf{Cond}_\lambda(\mathsf{Ab})$ and $\mathsf{W}\colonequals \mathsf{Cond}_\lambda(\mathsf{D}(\mathbb{Z}))$, respectively, that lie in $\mathsf{Pr}^\mathsf{L}_{\aleph_1}$.
+\end{proposition}
+
+\begin{proof}
+We begin by considering $\mathsf{W}=\mathsf{Cond}_\lambda(\mathsf{Ab})$ and the connective derived category. The functor given on objects by $A^\triangleright\mapsto\mathsf{D}(A^{\triangleright})_{\geq0}$ is the composite
+    \[\mathsf{Cond}_\lambda(\mathsf{Ring}) \xrightarrow{\ \mathsf{Cond}_\lambda(\Theta)\ }\mathsf{Cond}_\lambda(\mathsf{CAlg}(\mathsf{Ab}))\simeq \mathsf{CAlg}(\mathsf{W})\xrightarrow{\ \mathsf{Mod}_{(-)}(\mathsf{W}) \ }\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_{\aleph_1})_{\mathsf{W}/},\]
+    where the middle equivalence was explained just above Definition~\ref{derived category of a condensed ring}. Proposition~\ref{Cond preserves presentability} and Lemma~\ref{Theta preserves kappa-compact objects} imply that $\mathsf{Cond}_{\lambda}(\Theta)$ is a morphism in $\mathsf{Pr}^{\mathsf{L}}_{\aleph_1}$, and the same holds for $\mathsf{Mod}_{(-)}(\mathsf{W})$ by \cite[Lem.~2.11]{aoki2025higherpresentablecategorieslimits}.
+
+    According to Lemma~\ref{t-structures on derived categories}, the functor given on objects by $A^\triangleright\mapsto\mathsf{D}(A^{\triangleright})$ is the composition of the functor above with
+    \[\mathsf{Sp}\sqcup - \colon \mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_{\aleph_1})_{\mathsf{W}/}\to \mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_{\aleph_1})_{\mathsf{Sp}\sqcup\mathsf{W}/}.\]
+    The latter has a right adjoint, given by restriction of scalars along the natural inclusion
+    \[\mathsf{W}\to \mathsf{Sp}\sqcup \mathsf{W},\]
+    where the coproduct is computed in $\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_{\aleph_1})$. (See also the proof of Proposition~\ref{Cond preserves presentability}.)
+
+    Since this right adjoint is given by precomposition, it leaves the underlying object of $\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_{\aleph_1})$ unchanged. Moreover, filtered colimits in coslice categories are computed on underlying objects \cite[Tags~\href{https://kerodon.net/tag/0236}{0236}, \href{https://kerodon.net/tag/02KT}{02KT}, and \href{https://kerodon.net/tag/02PH}{02PH}]{kerodon}. It therefore preserves filtered colimits. Consequently, $\mathsf{Sp}\sqcup -$ is a morphism in $\mathsf{Pr}^{\mathsf{L}}_{\aleph_1}$, which completes the proof.
+\end{proof}

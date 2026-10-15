@@ -1,0 +1,175 @@
+In this appendix, we collect some folklore results on presentable and accessible categories that we were unable to find in precisely the form needed here. Rather than merely citing analogous statements, we explain how the relevant arguments adapt to our setting.
+
+We begin with a criterion for a presentable category to be $\kappa$-compactly generated, and therefore $\kappa$-presentable. The case $\kappa=\aleph_0$ is due to Mathew \cite[Lem.~6.22]{mathew2016galois}; the proof below follows his argument for an arbitrary regular cardinal $\kappa$.
+
+\begin{proposition}\label{Mathews lemma}
+    Let $\kappa$ be a regular cardinal and let $\mathsf{C}$ be a presentable category. Let $\mathsf{C}_0\subseteq \mathsf{C}^\kappa$ be a full subcategory stable under $\kappa$-small colimits in $\mathsf{C}$. We say that $\mathsf{C}_0$ \emph{detects equivalences} if a map $f\colon X\to Y$ in $\mathsf{C}$ is an equivalence whenever
+    \[\operatorname{Map}_\mathsf{C}(Z,X)\xrightarrow{\ f\circ -\ } \operatorname{Map}_\mathsf{C}(Z,Y)\]
+    is an equivalence for every $Z\in \mathsf{C}_0$. Then the induced functor
+    \[\mathsf{Ind}_\kappa(\mathsf{C}_0)\to \mathsf{C}\]
+    is an equivalence if and only if $\mathsf{C}_0$ detects equivalences.
+\end{proposition}
+
+\begin{proof}
+Let $F\colon \mathsf{Ind}_\kappa(\mathsf{C}_0)\to \mathsf{C}$ be the induced functor, and identify $\mathsf{Ind}_\kappa(\mathsf{C}_0)$ with the full subcategory of $\mathsf{P}(\mathsf{C}_0)$ spanned by the functors $\mathsf{C}_0^\mathrm{op}\to \mathsf{Ani}$ that preserve $\kappa$-small limits \cite[Cor.~5.3.5.4]{lurie2009HTT}. Since $\mathsf{C}_0$ is stable under $\kappa$-small colimits in $\mathsf{C}$, the restricted Yoneda functor
+\[\mathsf{C}\to \mathsf{P}(\mathsf{C}_0)\]
+factors through $\mathsf{Ind}_\kappa(\mathsf{C}_0)$, and the resulting functor $\yo\colon\mathsf{C}\to\mathsf{Ind}_\kappa(\mathsf{C}_0)$ is right adjoint to $F$ by \cite[Tag~\href{https://kerodon.net/tag/03WN}{03WN}]{kerodon}.
+
+The assumption that $\mathsf{C}_0$ detects equivalences is precisely the statement that $\yo$ is conservative. On the other hand, \cite[Prop.~5.3.5.11]{lurie2009HTT} implies that $F$ is fully faithful. It follows that $F$ is an equivalence, since a fully faithful left adjoint is an equivalence if and only if its right adjoint is conservative; this is the dual of \cite[Tag~\href{https://kerodon.net/tag/03UZ}{03UZ}]{kerodon}.
+\end{proof}
+
+We now apply this criterion to coslice categories. The next proposition extends \cite[Tags~\href{https://kerodon.net/tag/06HW}{06HW} and \href{https://kerodon.net/tag/06P6}{06P6}]{kerodon} by removing the compactness hypothesis on $S$. The proof again follows Mathew's argument in \cite[Lem.~6.22]{mathew2016galois}.
+
+\begin{proposition}\label{lemma on coslices}
+Let $\kappa$ be a regular cardinal, let $\mathsf{C}$ be a $\kappa$-presentable category, and let $S\in\mathsf{C}$. Then the coslice category $\mathsf{C}_{S/}$ is $\kappa$-presentable, and its subcategory of $\kappa$-compact objects is generated under $\kappa$-small colimits and retracts by the objects
+\[(S\to S\sqcup X)\in \left(\mathsf{C}_{S/}\right)^\kappa,\]
+for $X\in \mathsf{C}^\kappa$. Moreover, for every morphism $F\colon\mathsf{C}\to\mathsf{D}$ in $\mathsf{Pr}^{\mathsf{L}}_\kappa$, the induced functor
+\[F_{S/}\colon \mathsf{C}_{S/}\to\mathsf{D}_{F(S)/}\]
+is again a morphism in $\mathsf{Pr}^{\mathsf{L}}_\kappa$.
+\end{proposition}
+
+\begin{proof}
+As $\mathsf{C}$ is $\kappa$-compactly generated, the full subcategory $\mathsf{C}^\kappa$ generates $\mathsf{C}$ under $\kappa$-filtered colimits. Hence the functors
+\[\operatorname{Map}_{\mathsf{C}}(X,-),\qquad X\in\mathsf{C}^\kappa,\]
+are jointly conservative. For every $X\in\mathsf{C}^\kappa$ and every object $S\to Y$ of $\mathsf{C}_{S/}$, the universal property of the coproduct gives a natural equivalence
+\[\operatorname{Map}_{\mathsf{C}_{S/}}(S\sqcup X,Y)\simeq\operatorname{Map}_{\mathsf{C}}(X,Y).\]
+
+Since the forgetful functor $\mathsf{C}_{S/}\to\mathsf{C}$ preserves $\kappa$-filtered colimits, this equivalence implies that $S\to S\sqcup X$ is $\kappa$-compact in $\mathsf{C}_{S/}$ \cite[Tags~\href{https://kerodon.net/tag/0236}{0236}, \href{https://kerodon.net/tag/02KT}{02KT}, and \href{https://kerodon.net/tag/02PH}{02PH}]{kerodon}. The conservativity of the projection $\mathsf{C}_{S/}\to\mathsf{C}$ then gives that the functors
+\[\operatorname{Map}_{\mathsf{C}_{S/}}(S\sqcup X,-),
+\qquad X\in\mathsf{C}^\kappa,\]
+are jointly conservative.
+
+Denote by $\mathsf{C}_0$ the full subcategory of $\mathsf{C}_{S/}$ generated under $\kappa$-small colimits by the maps $S\to S\sqcup X$ with $X$ in $\mathsf{C}^\kappa$. Note that $\mathsf{C}_{S/}$ is presentable and $\mathsf{C}_0$ is contained in $(\mathsf{C}_{S/})^\kappa$, by \cite[Tags~\href{https://kerodon.net/tag/06P6}{06P6} and \href{https://kerodon.net/tag/064X}{064X}]{kerodon}. Proposition~\ref{Mathews lemma} then implies that the natural functor
+\[\mathsf{Ind}_\kappa(\mathsf{C}_0)\to \mathsf{C}_{S/}\]
+is an equivalence. It follows that $\mathsf{C}_{S/}$ is $\kappa$-presentable and the description of $(\mathsf{C}_{S/})^\kappa$ follows from the fact that $\mathsf{Ind}_\kappa(\mathsf{C}_0)^\kappa$ is the idempotent completion of $\mathsf{C}_0$ \cite[Lem.~5.4.2.4]{lurie2009HTT}.
+
+Finally, let $F\colon\mathsf{C}\to\mathsf{D}$ be a morphism in $\mathsf{Pr}^{\mathsf{L}}_\kappa$. By the dual of \cite[Tag~\href{https://kerodon.net/tag/02KD}{02KD}]{kerodon}, the induced functor $F_{S/}$ admits a right adjoint. Moreover, $F_{S/}$ preserves $\kappa$-compact objects: on the generators described above, it is given by
+\[\mleft[S\to S\sqcup X\mright]\mapsto\mleft[F(S)\to F(S)\sqcup F(X)\mright],\]
+which is $\kappa$-compact since $F(X)$ is $\kappa$-compact.
+\end{proof}
+
+We next consider coslice categories in the accessible setting. Assuming that $S$ is $\kappa$-compact gives the following analogue, with a simpler description of the $\kappa$-compact objects.
+
+\begin{proposition}\label{lemma on accessible coslices}
+Let $\kappa$ be a regular cardinal, let $\mathsf{C}$ be a $\kappa$-accessible category, and let $S\in\mathsf{C}$ be $\kappa$-compact. Then the coslice category $\mathsf{C}_{S/}$ is $\kappa$-accessible, and an object $S\to X$ of $\mathsf{C}_{S/}$ is $\kappa$-compact if and only if $X$ is $\kappa$-compact in $\mathsf{C}$. Moreover, for every morphism $F\colon \mathsf{C}\to \mathsf{D}$ in $\mathsf{Acc}_\kappa$, the induced functor
+\[F_{S/}\colon \mathsf{C}_{S/}\to \mathsf{D}_{F(S)/}\]
+is again a morphism in $\mathsf{Acc}_\kappa$.
+\end{proposition}
+
+\begin{proof}
+The first statement follows from \cite[Tags~\href{https://kerodon.net/tag/06HW}{06HW} and \href{https://kerodon.net/tag/06LJ}{06LJ}]{kerodon}. The characterization of the $\kappa$-compact objects of $\mathsf{C}_{S/}$ immediately implies that $F_{S/}$ preserves $\kappa$-compact objects. Finally, \cite[Tags~\href{https://kerodon.net/tag/0236}{0236}, \href{https://kerodon.net/tag/02KT}{02KT}, and \href{https://kerodon.net/tag/02PH}{02PH}]{kerodon} shows that $F_{S/}$ preserves $\kappa$-filtered colimits.
+\end{proof}
+
+We next record a simple consequence of the reflection theorem of Ragimov--Schlank \cite[Thm.~1.1]{reflectionprinciple}. Since we will use it repeatedly, it is convenient to state it explicitly.
+
+\begin{proposition}\label{enhanced reflection theorem}
+Let $\kappa$ be a regular cardinal, let $\mathsf{C}$ be a $\kappa$-presentable category, and let $\mathsf{C}_0\subseteq\mathsf{C}$ be a full subcategory closed under small limits and $\kappa$-filtered colimits in $\mathsf{C}$. Then $\mathsf{C}_0$ is $\kappa$-presentable, and the inclusion $\mathsf{C}_0\hookrightarrow\mathsf{C}$ admits a left adjoint
+\[L\colon\mathsf{C}\to\mathsf{C}_0\]
+which is a morphism in $\mathsf{Pr}^{\mathsf{L}}_\kappa$.
+
+Suppose in addition that $\mathsf{C}$ is a commutative algebra object in $\mathsf{Pr}^{\mathsf{L}}_\kappa$ and that
+\[\underline{\operatorname{Hom}}(X,A)\in\mathsf{C}_0\qquad\text{for all }X\in\mathsf{C}\text{ and }A\in\mathsf{C}_0,\]
+where $\underline{\operatorname{Hom}}$ denotes the internal Hom in $\mathsf{C}$. Then $\mathsf{C}_0$ admits a unique symmetric monoidal structure for which $L$ is symmetric monoidal. With respect to this structure, $\mathsf{C}_0$ is a commutative algebra object in $\mathsf{Pr}^{\mathsf{L}}_\kappa$, and $L\colon\mathsf{C}\to\mathsf{C}_0$ is a morphism in $\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)$.
+\end{proposition}
+
+\begin{proof}
+    By the reflection theorem \cite[Thm.~1.1]{reflectionprinciple}, the category $\mathsf{C}_0$ is presentable and the inclusion $i\colon \mathsf{C}_0\hookrightarrow\mathsf{C}$ admits a left adjoint $L$. Since $i$ preserves $\kappa$-filtered colimits, the adjunction equivalence
+\[\operatorname{Map}_{\mathsf{C}_0}(L(X),Y)\simeq\operatorname{Map}_{\mathsf{C}}(X,i(Y))\]
+implies that $L(X)$ is $\kappa$-compact for every $\kappa$-compact object $X\in\mathsf{C}$.
+
+For every $A\in\mathsf{C}_0$, choose a presentation $i(A)\simeq\operatornamewithlimits{colim}_{j\in\mathsf{J}}X_j$ as a small $\kappa$-filtered colimit of objects $X_j\in\mathsf{C}^\kappa$. Applying $L$, we obtain
+\[A\simeq L(i(A))\simeq\operatornamewithlimits{colim}_{j\in\mathsf{J}}L(X_j).\]
+Since $\mathsf{C}^\kappa$ is essentially small and each $L(X_j)$ is $\kappa$-compact in $\mathsf{C}_0$, the objects $L(X)$, for $X\in\mathsf{C}^\kappa$, form an essentially small collection of $\kappa$-compact objects generating $\mathsf{C}_0$ under $\kappa$-filtered colimits. Hence $\mathsf{C}_0$ is $\kappa$-presentable, and $L$ is a morphism in $\mathsf{Pr}^{\mathsf{L}}_\kappa$. Moreover, if $A$ is $\kappa$-compact, its identity factors through one of the objects $L(X_j)$ in the preceding presentation. Hence every $\kappa$-compact object of $\mathsf{C}_0$ is a retract of $L(X)$ for some $X\in\mathsf{C}^\kappa$; see also \cite[Cor.~5.5.7.3]{lurie2009HTT}.
+
+Now assume the additional hypotheses. By \cite[Lem.~7.5]{reflectionprinciple}, the condition on internal Homs is equivalent to $L$ being \emph{compatible with the symmetric monoidal structure} in the sense of \cite[Def.~2.2.1.6]{higheralgebra}. It therefore follows from \cite[Prop.~2.2.1.9]{higheralgebra} that $\mathsf{C}_0$ inherits a symmetric monoidal structure for which $L$ is symmetric monoidal. Writing $\otimes_0$ for the resulting tensor product, we have
+\[A\otimes_0 B\simeq L(i(A)\otimes i(B)), \qquad 1_{\mathsf{C}_0}\simeq L(1_{\mathsf{C}}).\]
+The condition on internal Homs then implies that $\underline{\operatorname{Hom}}(i(-),i(-))$ is an internal Hom in $\mathsf{C}_0$. Thus $\otimes_0$ preserves small colimits separately in each variable.
+
+Finally, the unit $L(1_{\mathsf{C}})$ is $\kappa$-compact. If $A,B\in\mathsf{C}_0^\kappa$, choose $X,Y\in\mathsf{C}^\kappa$ such that $A$ and $B$ are retracts of $L(X)$ and $L(Y)$, respectively. Then $A\otimes_0 B$ is a retract of
+\[L(X)\otimes_0 L(Y)\simeq L(X\otimes Y),\]
+which is $\kappa$-compact since $X\otimes Y$ is $\kappa$-compact. It follows that $\mathsf{C}_0$ is a commutative algebra in $\mathsf{Pr}^{\mathsf{L}}_\kappa$. Since $L$ is symmetric monoidal and preserves $\kappa$-compact objects, it is a morphism in $\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)$, as desired.
+\end{proof}
+
+We now turn to commutative algebra objects. The following is a commutative-algebra version of standard monadic compactness results. The ordinary-categorical argument appears in \cite[Thm.~2.18]{low2016heart}. For the higher-categorical free-algebra and bar-resolution arguments, compare \cite[Lems.~6.15--6.16]{chromaticnullstellensatz}; for the stable associative analogue, compare \cite[Prop.~3.2(2)]{efimovKtheory}. We include a proof in the generality needed here.
+
+\begin{proposition}\label{forgetful functor preserves compacts}
+Let $\kappa\geq \aleph_1$ be a regular cardinal and let $\mathsf{C}$ be a commutative algebra in $\mathsf{Pr}^\mathsf{L}_\kappa$. Then the forgetful functor
+\[U\colon \mathsf{CAlg}(\mathsf{C})\to \mathsf{C}\]
+preserves and reflects $\kappa$-compact objects.
+\end{proposition}
+
+\begin{proof}
+Let $F\dashv U$ denote the free–forgetful adjunction, and put $T\colonequals U\circ F$. We first observe that both $F$ and $T$ preserve $\kappa$-compact objects. For $F$, this follows from the fact that its right adjoint $U$ preserves sifted colimits \cite[Cor.~3.2.3.2]{higheralgebra}. As for $T$, we use the free-algebra formula
+\[T(X)\simeq \coprod_{n\geq 0}\operatorname{Sym}^n(X)\simeq \coprod_{n\geq 0}(X^{\otimes n})_{S_n}\]
+of \cite[Ex.~3.1.3.14]{higheralgebra}. If $X$ is $\kappa$-compact, then, since $\mathsf{C}$ is an object of $\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_\kappa)$, each tensor power $X^{\otimes n}$ is $\kappa$-compact, including $X^{\otimes 0}=1$. Moreover, each classifying anima $\mathsf{B}S_n$ is $\aleph_1$-small; hence \cite[Tag~\href{https://kerodon.net/tag/064X}{064X}]{kerodon} first gives that each orbit $(X^{\otimes n})_{S_n}$ is $\kappa$-compact and then, since the coproduct is countable, that $T(X)$ is $\kappa$-compact.
+
+Now let $A$ be a commutative algebra in $\mathsf{C}$ such that $U(A)$ is $\kappa$-compact. The standard augmented bar resolution has terms $B_n(A)\simeq F(T^n(U(A)))$, and its augmentation induces an equivalence
+\[\operatornamewithlimits{colim}_{[n]\in \Delta^\mathrm{op}}B_n(A)\xrightarrow{\ \sim\ }A;\]
+see \cite[Prop.~4.7.3.14 and Lem.~3.2.2.6]{higheralgebra}. By the preceding paragraph, every $B_n(A)$ is $\kappa$-compact, so another application of \cite[Tag~\href{https://kerodon.net/tag/064X}{064X}]{kerodon} shows that $A$ is $\kappa$-compact as well.
+
+For the converse, let $\mathsf{K}\subseteq \mathsf{CAlg}(\mathsf{C})$ be the full subcategory spanned by the algebras whose underlying objects are $\kappa$-compact. We have just shown that
+\[\mathsf{K}\subseteq \mathsf{CAlg}(\mathsf{C})^\kappa.\]
+In order to prove equality, we first claim that $\mathsf{K}$ is stable under $\kappa$-small colimits. Let $D\colon \mathsf{I}\to \mathsf{K}\subseteq \mathsf{CAlg}(\mathsf{C})$ be a $\kappa$-small diagram. Applying the bar resolution objectwise and taking the colimit over $\mathsf{I}$ gives a simplicial commutative algebra
+\[S_\ast\colonequals \operatornamewithlimits{colim}_{i\in \mathsf{I}} B_\ast(D_i)\in \mathsf{Fun}(\Delta^\mathrm{op},\mathsf{CAlg}(\mathsf{C})).\]
+
+By the commutation of colimits with colimits, the geometric realization of $S_\ast$ is $\mleft|S_\ast\mright|\simeq \operatornamewithlimits{colim}_{i\in \mathsf{I}}D_i$. Moreover, since $F$ preserves small colimits, we have that
+\[S_n\simeq \operatornamewithlimits{colim}_{i\in \mathsf{I}} F(T^n(U(D_i)))\simeq F(X_n), \quad \text{for}\quad X_n\colonequals \operatornamewithlimits{colim}_{i\in \mathsf{I}}T^n(U(D_i)).\]
+The objects $U(D_i)$ are $\kappa$-compact, and $T$ preserves $\kappa$-compact objects. Since $\kappa$-compact objects are stable under $\kappa$-small colimits, each $X_n$ is therefore $\kappa$-compact. Hence so is
+\[U(S_n)\simeq T(X_n).\]
+
+The forgetful functor $U$ preserves sifted colimits, and in particular geometric realizations. It follows that
+\[U\mleft(\operatornamewithlimits{colim}_{i\in \mathsf{I}}D_i\mright)\simeq U\mleft(\operatornamewithlimits{colim}_{[n]\in \Delta^\mathrm{op}}S_n\mright)\simeq \operatornamewithlimits{colim}_{[n]\in \Delta^\mathrm{op}} U(S_n).\]
+Once again, this is a $\kappa$-small colimit of $\kappa$-compact objects, and is thus $\kappa$-compact. This establishes the claim.
+
+Next, using the nomenclature of Proposition~\ref{Mathews lemma}, we claim that $\mathsf{K}$ detects equivalences in $\mathsf{CAlg}(\mathsf{C})$. Let $\varphi\colon A\to B$ be a morphism in $\mathsf{CAlg}(\mathsf{C})$ such that
+\[\operatorname{Map}_{\mathsf{CAlg}(\mathsf{C})}(C,A)\xrightarrow{\ \varphi\circ -\ } \operatorname{Map}_{\mathsf{CAlg}(\mathsf{C})}(C,B)\]
+is an equivalence for every $C\in \mathsf{K}$. For each $X\in \mathsf{C}^\kappa$, the free algebra $F(X)$ belongs to $\mathsf{K}$, as $U(F(X))=T(X)$ is $\kappa$-compact. The adjunction $F\dashv U$ therefore shows that
+\[\operatorname{Map}_\mathsf{C}(X,U(A))\xrightarrow{\ U(\varphi)\circ -\ } \operatorname{Map}_\mathsf{C}(X,U(B))\]
+is an equivalence for all $X\in \mathsf{C}^\kappa$.
+
+Since $\mathsf{C}^\kappa$ detects equivalences in $\mathsf{C}$, the map $U(\varphi)$ is an equivalence, and hence so is $\varphi$, because $U$ is conservative. Proposition~\ref{Mathews lemma} now gives an equivalence
+\[\mathsf{Ind}_\kappa(\mathsf{K})\xrightarrow{\ \sim \ } \mathsf{CAlg}(\mathsf{C}).\]
+Finally, $\mathsf{K}$ is stable under retracts: indeed, $U$ preserves retracts and $\kappa$-compact objects of $\mathsf{C}$ are stable under retracts \cite[Tag~\href{https://kerodon.net/tag/064Z}{064Z}]{kerodon}. Consequently, \cite[Lem.~5.4.2.4]{lurie2009HTT} identifies the $\kappa$-compact objects of $\mathsf{Ind}_\kappa(\mathsf{K})$ with the objects of $\mathsf{K}$. Under the preceding equivalence, this gives
+\[\mathsf{CAlg}(\mathsf{C})^\kappa=\mathsf{K},\]
+which proves that $U$ preserves $\kappa$-compact objects.
+\end{proof}
+
+We conclude with a compactness result for localizations of presheaf categories, viewed as objects of $\mathsf{Pr}^{\mathsf{L}}_\kappa$. This result will be used to prove Proposition~\ref{CondAb is mu-compact}.
+
+\begin{proposition}\label{compactness of local objects}
+Let $\mu\geq \kappa$ be uncountable regular cardinals, let $\mathsf{C}$ be a $\mu$-small category, and let $W$ be a $\mu$-small set of morphisms between $\kappa$-compact objects of
+\[\mathsf{P}(\mathsf{C})=\mathsf{Fun}(\mathsf{C}^{\mathrm{op}},\mathsf{Ani}).\]
+Then the full subcategory of $\mathsf{P}(\mathsf{C})$ spanned by the $W$-local objects is a $\mu$-compact object of $\mathsf{Pr}^\mathsf{L}_\kappa$.
+\end{proposition}
+
+\begin{proof}
+Let $\mathsf{Eq}(\mathsf{Ani})\subseteq \mathsf{Fun}(\Delta^1,\mathsf{Ani})$ be the full subcategory spanned by the equivalences. For each morphism $w\colon X\to Y$ in $W$, consider the functor $T_w\colon \mathsf{P}(\mathsf{C})\to \mathsf{Fun}(\Delta^1,\mathsf{Ani})$ sending $Z\in\mathsf{P}(\mathsf{C})$ to the morphism
+\[\operatorname{Map}_{\mathsf{P}(\mathsf{C})}(Y,Z)\to \operatorname{Map}_{\mathsf{P}(\mathsf{C})}(X,Z).\]
+The full subcategory $\mathsf{P}_0\subseteq\mathsf{P}(\mathsf{C})$ defined by the pullback
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHByb2Rfe3dcXGluIFd9XFxtYXRoc2Z7RXF9KFxcbWF0aHNme0FuaX0pIl0sWzEsMSwiXFxwcm9kX3t3XFxpbiBXfVxcbWF0aHNme0Z1bn0oXFxEZWx0YV4xLFxcbWF0aHNme0FuaX0pIl0sWzAsMSwiXFxtYXRoc2Z7Q30iXSxbMCwwLCJcXG1hdGhzZntDfV8wIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMywyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDFdLFszLDBdXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{P}_0} \& {\displaystyle\prod_{w\in W}\mathsf{Eq}(\mathsf{Ani})} \\
+	{\mathsf{P}(\mathsf{C})} \& {\displaystyle\prod_{w\in W}\mathsf{Fun}(\Delta^1,\mathsf{Ani})}
+	\arrow[from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[hook, from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+is therefore precisely the full subcategory spanned by the $W$-local objects.
+
+Since the maps in $W$ are between $\kappa$-compact objects, the functors $T_w$ lie in $\mathsf{Pr}^\mathsf{R}_\kappa$, and so the preceding square is a pullback in $\mathsf{Pr}^\mathsf{R}_\kappa$. Indeed, $\mathsf{Pr}^\mathsf{R}_\kappa$ admits small limits and the inclusion
+\[\mathsf{Pr}^\mathsf{R}_\kappa\hookrightarrow\widehat{\mathsf{Cat}}\]
+preserves them \cite[Prop.~5.5.7.6]{lurie2009HTT}. Passing to left adjoints therefore yields a pushout square
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXHByb2Rfe3dcXGluIFd9XFxtYXRoc2Z7RXF9KFxcbWF0aHNme0FuaX0pIl0sWzAsMCwiXFxwcm9kX3t3XFxpbiBXfVxcbWF0aHNme0Z1bn0oXFxEZWx0YV4xLFxcbWF0aHNme0FuaX0pIl0sWzEsMCwiXFxtYXRoc2Z7UH0oXFxtYXRoc2Z7Q30pIl0sWzEsMSwiXFxtYXRoc2Z7UH1fMCJdLFsxLDBdLFsyLDNdLFsxLDJdLFswLDNdXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\displaystyle\coprod_{w\in W}\mathsf{Fun}(\Delta^1,\mathsf{Ani})} \& {\mathsf{P}(\mathsf{C})} \\
+	{\displaystyle\coprod_{w\in W}\mathsf{Eq}(\mathsf{Ani})} \& {\mathsf{P}_0}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+in $\mathsf{Pr}^\mathsf{L}_\kappa$.
+
+The same argument as in the proof of Lemma~\ref{Q is nice} shows that $\mathsf{P}(\mathsf{C})$ is a $\mu$-compact object of $\mathsf{Pr}^\mathsf{L}_\kappa$. It also shows that $\mathsf{Fun}(\Delta^1,\mathsf{Ani})$ is $\mu$-compact, by taking $\mathsf{C}=(\Delta^1)^{\mathrm{op}}$, while $\mathsf{Eq}(\mathsf{Ani})\simeq\mathsf{Ani}$ is $\mu$-compact by taking $\mathsf{C}=\ast$. Since $W$ is $\mu$-small, \cite[Tag~\href{https://kerodon.net/tag/064X}{064X}]{kerodon} implies that all vertices of the pushout square are $\mu$-compact, as desired.
+\end{proof}

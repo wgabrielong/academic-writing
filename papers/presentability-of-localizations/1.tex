@@ -1,0 +1,121 @@
+Many constructions in geometry and homotopy theory replace an object by one satisfying a prescribed condition. Sheafification, for example, associates a sheaf to a presheaf, while a completion functor replaces a module by a complete one. A common feature is that the resulting objects form a full subcategory whose inclusion admits a left adjoint. Such left adjoints are called \emph{reflective localizations}.
+
+In this paper, we study reflective localizations of $\infty$-categories, which we henceforth call \emph{categories}. Explicit constructions in this setting must keep track of higher homotopies and their coherences, making abstract existence criteria especially valuable. For presentable categories, such criteria take a particularly simple form: by the reflection theorem, the inclusion of a full subcategory $\mathsf{D}\hookrightarrow\mathsf{C}$ admits a left adjoint if and only if $\mathsf{D}$ is closed under small limits and sufficiently filtered colimits in $\mathsf{C}$ \cite[Thm.~1.1]{reflectionprinciple}.
+
+Informally, a presentable category is a large category controlled by a small collection of objects. More precisely, a category is \emph{$\kappa$-presentable}, for a regular cardinal $\kappa$, if it admits small colimits and is generated under $\kappa$-filtered colimits by a small subcategory of $\kappa$-compact objects. A category is \emph{presentable} if it is $\kappa$-presentable for some $\kappa$. A reflective localization between presentable categories is traditionally called a \emph{Bousfield localization}.
+
+We ask whether Bousfield localizations themselves form a presentable category when their sources and targets are allowed to vary subject to fixed size bounds. We prove that they do, both with and without compatible symmetric monoidal structures, and give explicit cardinal bounds. We also obtain an accessibility bound for the subcategory of localizations whose right adjoints preserve small colimits. Our main motivating application is the presentability of the category of analytic rings in the theory of condensed mathematics developed by Clausen and Scholze.
+
+\subsection*{Presentability of categories of localizations}
+
+Let $\kappa$ be an uncountable regular cardinal. We denote by $\mathsf{Pr}^{\mathsf{L}}_\kappa$ the category of $\kappa$-presentable categories and functors preserving small colimits and $\kappa$-compact objects. The category $\mathsf{Pr}^{\mathsf{L}}_\kappa$ is itself $\kappa$-presentable \cite[Prop.~2.3]{aoki2025higherpresentablecategorieslimits}, providing an ambient category in which to study localizations together with their sources and targets.
+
+For $\mathsf{V}\in\mathsf{Pr}^{\mathsf{L}}_\kappa$, we denote by
+\[\mathsf{Loc}_\kappa(\mathsf{V})\subseteq\mathsf{Fun}\mleft(\Delta^1,(\mathsf{Pr}^{\mathsf{L}}_\kappa)_{\mathsf{V}/}\mright)\]
+the full subcategory spanned by Bousfield localizations. Concretely, an object is a localization together with compatible functors from $\mathsf{V}$ to its source and target, all lying in $\mathsf{Pr}^{\mathsf{L}}_\kappa$. Its morphisms are commutative squares compatible with the corresponding structure functors from $\mathsf{V}$.
+
+We also consider a symmetric monoidal variant. The category $\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)$ consists of the $\kappa$-presentable symmetric monoidal categories whose tensor product preserves small colimits separately in each variable, whose tensor unit is $\kappa$-compact, and whose $\kappa$-compact objects are closed under tensor products. For $\mathsf{W}\in\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)$, we define
+\[\mathsf{Loc}^\otimes_\kappa(\mathsf{W})\subseteq\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)_{\mathsf{W}/}\mright)\]
+in the same way, now requiring the localizations and the structure functors from $\mathsf{W}$ to be symmetric monoidal.
+
+\begin{introthm}[\ref{walking localization}, \ref{result on monoidal localizations}]\label{thm A}
+The categories $\mathsf{Loc}_\kappa(\mathsf{V})$ and $\mathsf{Loc}^\otimes_\kappa(\mathsf{W})$ are $\kappa$-presentable. Moreover, their natural inclusions into the respective arrow categories preserve small colimits and $\kappa$-compact objects, and hence are morphisms in $\mathsf{Pr}^{\mathsf{L}}_\kappa$.
+\end{introthm}
+
+The proof relies on a criterion for full faithfulness due to Haine--Ramzi--Steinebrunner \cite[Prop.~1.4]{haine2025fullyfaithfulfunctorspushouts}. Applying this criterion to right adjoints, we construct a functor
+\[P_\kappa\colon\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)\to\mathsf{Fun}(\Delta^1\times\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)\]
+with the property that a morphism $F$ in $\mathsf{Pr}^{\mathsf{L}}_\kappa$ is a Bousfield localization if and only if the commutative square $P_\kappa(F)$ is a pushout.
+
+Thus $\mathsf{Loc}_\kappa(\ast)$ is the fiber product of $P_\kappa$ and the functor sending each span to its pushout square. We prove that both functors lie in $\mathsf{Pr}^{\mathsf{L}}_\kappa$, so this pullback gives the asserted presentability and preservation properties. Passing to coslice categories gives the general case; compatibility with tensor products gives the symmetric monoidal statement.
+
+\subsection*{Colimit-preserving right adjoints}
+
+For the application to analytic rings, we impose an additional condition on a Bousfield localization: we require its fully faithful right adjoint to preserve small colimits. We denote the corresponding full subcategories by
+\[\overline{\mathsf{Loc}}_\kappa(\mathsf{V})\subseteq\mathsf{Loc}_\kappa(\mathsf{V}),\qquad\overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})\subseteq\mathsf{Loc}^\otimes_\kappa(\mathsf{W}).\]
+In the symmetric monoidal setting, this condition is weaker than the familiar notion of a \emph{smashing localization} \cite[Thm.~7.7]{reflectionprinciple}. The distinction is essential for our application: the completion functor associated with an analytic ring, introduced below, is smashing if and only if it is an equivalence. 
+
+Recall that, for a regular cardinal $\mu$, a category is \emph{$\mu$-accessible} if it satisfies the definition of $\mu$-presentability above, except that it is not required to admit all small colimits. The following theorem shows that the subcategories introduced above are accessible and provides an explicit bound on their accessibility rank.
+
+\begin{introthm}[\ref{main categorical theorem}, \ref{main theorem on monoidal localizations}]\label{thm B}
+Let $\mu>\kappa$ be a regular cardinal satisfying $\operatorname{ecf}(\mu)\geq\kappa$, and suppose that $\mathsf{V}$ and $\mathsf{W}$ are $\mu$-compact. Then $\overline{\mathsf{Loc}}_\kappa(\mathsf{V})$ and $\overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})$ are $\mu$-accessible. Moreover, the natural inclusions
+\[\overline{\mathsf{Loc}}_\kappa(\mathsf{V})\hookrightarrow \mathsf{Loc}_\kappa(\mathsf{V}) \quad\text{and}\quad \overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})\hookrightarrow \mathsf{Loc}^\otimes_\kappa(\mathsf{W})\]
+preserve $\mu$-compact objects and $\kappa$-filtered colimits.
+\end{introthm}
+
+Here $\operatorname{ecf}(\mu)$ denotes the \emph{exponential cofinality} of $\mu$; see Remark~\ref{exponential cofinality}. The smallest regular cardinal $\mu>\kappa$ satisfying this condition is $(2^{<\kappa})^+$. Although the proof is more involved than that of the preceding theorem, it follows the same general strategy. We construct a functor
+\[Q_\kappa\colon\mathsf{Fun}(\Delta^1,\mathsf{Pr}^{\mathsf{L}}_\kappa)\to\mathsf{Fun}(\Delta^1,\mathsf{Ani}),\]
+where $\mathsf{Ani}$ denotes the category of \emph{animae} (also known as \emph{$\infty$-groupoids} or \emph{spaces}), such that $Q_\kappa(F)$ is an equivalence if and only if the right adjoint of $F$ preserves small colimits.
+
+Restricting $Q_\kappa$ to $\mathsf{Loc}_\kappa(\ast)$, we obtain $\overline{\mathsf{Loc}}_\kappa(\ast)$ as the pullback of $\mathsf{Loc}_{\kappa}(\ast)\to\mathsf{Fun}(\Delta^{1},\mathsf{Ani})$ along the inclusion of the full subcategory of equivalences into $\mathsf{Fun}(\Delta^{1},\mathsf{Ani})$. We prove that $Q_\kappa$ preserves $\kappa$-filtered colimits and $\mu$-compact objects, so this pullback yields the stated accessibility bound and preservation properties. As above, coslice categories and compatibility with tensor products give the general and symmetric monoidal cases.
+
+\subsection*{Applications to condensed mathematics}
+
+Condensed mathematics provides a setting for studying algebraic objects equipped with topologies using the tools of homological algebra. Analytic rings enrich this framework with a notion of completeness for modules, allowing constructions such as tensor products to be followed by completion. Throughout this introduction, rings and abelian groups are understood to be animated, and we leave the adjective \emph{light} implicit. We write $\mathsf{Ring}$ and $\mathsf{Ab}$ for the corresponding categories, and $\mathsf{Cond}(\mathsf{Ring})$ and $\mathsf{Cond}(\mathsf{Ab})$ for their categories of condensed objects.
+
+For a condensed ring $A^\triangleright$, we write $\mathsf{D}(A^\triangleright)$ for its derived category of condensed modules. A \emph{pre-analytic ring} is a pair $A=(A^\triangleright,\mathsf{D}(A))$ consisting of a condensed ring $A^\triangleright$ and a full subcategory $\mathsf{D}(A)$ of $\mathsf{D}(A^\triangleright)$. We think of its objects as the complete $A^\triangleright$-modules, and require the following conditions:
+\begin{enumerate}[label=(\roman*)]
+    \item The subcategory $\mathsf{D}(A)$ is closed under small limits and colimits. We denote its inclusion by $\iota_A$ and the left adjoint of $\iota_A$ by $-\otimes_{A^\triangleright}A$.
+    \item For every $M\in\mathsf{D}(A^\triangleright)$ and $N\in\mathsf{D}(A)$, the object $\underline{\operatorname{Hom}}(M,N)$ lies in $\mathsf{D}(A)$.
+    \item The endofunctor $L_A\colonequals\iota_A\circ(-\otimes_{A^\triangleright}A)$ preserves connective objects.
+\end{enumerate}
+
+By the reflection theorem of Ragimov--Schlank \cite[Thm.~1.1]{reflectionprinciple}, the left adjoint in (i) exists and $\mathsf{D}(A)$ is presentable. Thus
+\[-\otimes_{A^\triangleright}A\colon\mathsf{D}(A^\triangleright)\to\mathsf{D}(A)\]
+is a Bousfield localization, which we regard as a completion functor. By (i), its fully faithful right adjoint $\iota_A$ preserves small colimits, so this localization belongs to the class considered in the preceding subsection.
+
+A morphism of pre-analytic rings $A\to B$ is a morphism of condensed rings $\varphi\colon A^\triangleright\to B^\triangleright$ such that the restriction-of-scalars functor
+\[\varphi_*\colon\mathsf{D}(B^\triangleright)\to\mathsf{D}(A^\triangleright)\]
+maps $\mathsf{D}(B)$ into $\mathsf{D}(A)$. We denote by $\mathsf{PAnRing}$ the category of pre-analytic rings. An \emph{analytic ring} is a pre-analytic ring $A$ for which $A^\triangleright$ lies in $\mathsf{D}(A)$, so that the underlying ring is itself complete. We denote by $\mathsf{AnRing}\subseteq\mathsf{PAnRing}$ the full subcategory consisting of analytic rings.
+
+\begin{introthm}[\ref{PAnRing is presentable}, \ref{AnRing is presentable}]
+The categories $\mathsf{PAnRing}$ and $\mathsf{AnRing}$ are $\mu$-presentable, for $\mu=(2^{\aleph_0})^+$.
+\end{introthm}
+
+The $\mu$-presentability of analytic rings was announced in \cite[Lecture~15]{ClausenScholzeAnalyticStacks}, but, to our knowledge, a proof has not appeared in the literature; with the question being raised as an open point in \cite[\S1.2, Footnote~2]{camargo2026notessolidgeometry}. As an immediate consequence of presentability, we obtain the following completeness statement, for which we are not aware of an independent proof.
+
+\begin{introcor}[\ref{PAnRing is complete}, \ref{AnRing is complete}]
+The categories $\mathsf{PAnRing}$ and $\mathsf{AnRing}$ are complete. Moreover, the inclusion $\mathsf{AnRing}\hookrightarrow\mathsf{PAnRing}$ preserves and reflects small limits. 
+\end{introcor}
+
+To prove the theorem, we first use condition (iii) to equip
+$\mathsf{D}(A)$ with the inherited $t$-structure from $\mathsf{D}(A^\triangleright)$. We then show that a pre-analytic ring is determined by its connective part, while condition~(ii) ensures that completion is compatible with the symmetric monoidal structure. Setting $\mathsf{W}=\mathsf{Cond}(\mathsf{Ab})$, we obtain a cartesian diagram
+\[
+\begin{tikzcd}[column sep=large]
+    {\mathsf{PAnRing}}
+        & {\overline{\mathsf{Loc}}_{\aleph_1}^\otimes(\mathsf{W})} \\
+    {\mathsf{Cond}(\mathsf{Ring})}
+        & {\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_{\aleph_1})_{\mathsf{W}/},}
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow["s", from=1-2, to=2-2]
+    \arrow["{\mathsf{D}(-)_{\geq0}}", from=2-1, to=2-2]
+\end{tikzcd}
+\]
+where $s$ sends a localization to its source.
+
+The $\mu$-accessibility of $\mathsf{PAnRing}$ then follows from the general categorical results established in Theorems~\ref{thm A} and \ref{thm B}. Since $\mathsf{PAnRing}$ admits small colimits, it is in fact $\mu$-presentable. Finally, $\mathsf{AnRing}$ is a reflective localization of $\mathsf{PAnRing}$ whose inclusion preserves filtered colimits; consequently, $\mathsf{AnRing}$ is also $\mu$-presentable.
+
+\subsection*{Notation and conventions}
+
+In addition to the notation introduced above, we use the following conventions.
+\begin{itemize}[leftmargin=*, itemsep=0.5\baselineskip, topsep=0.5\baselineskip, parsep=0pt, before={\interlinepenalty=10000}]
+    \item \emph{Cardinals.} For a cardinal $\kappa$, we write $2^{<\kappa}=\sup_{\tau<\kappa}2^\tau$, where $\tau$ ranges over cardinals, and denote by $\kappa^+$ the least cardinal strictly greater than $\kappa$. The cardinality of a set $X$ is denoted by $\# X$.
+
+    \item \emph{Categories and animae.} We denote the categories of small categories and small animae by $\mathsf{Cat}$ and $\mathsf{Ani}$, respectively, and their large counterparts by $\widehat{\mathsf{Cat}}$ and $\widehat{\mathsf{Ani}}$.
+
+    \item \emph{Compact objects.} For a regular cardinal $\kappa$, we denote by $\mathsf{C}^\kappa\subseteq\mathsf{C}$ the full subcategory of $\kappa$-compact objects: those objects $X$ for which $\operatorname{Map}_{\mathsf{C}}(X,-)$ preserves $\kappa$-filtered colimits.
+
+    \item \emph{Presentable categories.} We write $\mathsf{Pr}^{\mathsf{L}}$ and $\mathsf{Pr}^{\mathsf{R}}$ for the categories of presentable categories and left and right adjoints, respectively. For regular $\kappa$, the variants $\mathsf{Pr}^{\mathsf{L}}_\kappa$ and $\mathsf{Pr}^{\mathsf{R}}_\kappa$ have $\kappa$-presentable categories as objects. Morphisms in the former preserve small colimits and $\kappa$-compact objects; morphisms in the latter preserve small limits and $\kappa$-filtered colimits. Their full subcategories spanned by stable categories are denoted by $\mathsf{Pr}^{\mathsf{L}}_{\kappa,\mathrm{st}}$ and $\mathsf{Pr}^{\mathsf{R}}_{\kappa,\mathrm{st}}$.
+
+    \item \emph{Accessible categories.} We write $\mathsf{Acc}$ for the category of accessible categories and accessible functors, namely functors preserving $\lambda$-filtered colimits for some regular cardinal $\lambda$. For regular $\kappa$, the category $\mathsf{Acc}_\kappa$ has $\kappa$-accessible categories as objects and functors preserving both $\kappa$-filtered colimits and $\kappa$-compact objects as morphisms.
+
+    \item \emph{Groupoid completion and cores.} For a category $\mathsf{C}$, we denote by $\mleft|\mathsf{C}\mright|$ its groupoid completion, obtained by inverting all morphisms, and by $\mathsf{C}^\simeq$ its core, obtained by retaining only equivalences. These constructions are left and right adjoint, respectively, to the inclusion $\mathsf{Ani}\hookrightarrow\mathsf{Cat}$. We also write $\mleft|S_\ast\mright|$ for the geometric realization of a simplicial object $S_\ast$.
+\end{itemize}
+
+\vspace{0.5em}
+
+\textsc{Acknowledgements.} The idea of studying properties of the category $\mathsf{AnRing}$ of analytic rings, including its presentability, through a suitable category of Bousfield localizations goes back to Niklas Kipp's doctoral thesis~\cite{Kipp}. We are grateful to him for useful discussions related to this approach.
+
+\vspace{0.5em}
+
+\textsc{Disclosure on AI use.} The authors used AI tools for literature search and to assist with language editing and presentation. The authors take full responsibility for the accuracy and integrity of all mathematical content.

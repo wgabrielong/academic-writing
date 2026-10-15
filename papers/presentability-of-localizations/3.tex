@@ -1,0 +1,436 @@
+\begin{definition}
+    Let $\kappa$ be a regular cardinal, and let $\mathsf{V}$ be a $\kappa$-presentable category. We denote by
+    \[\overline{\mathsf{Loc}}_\kappa(\mathsf{V})\subseteq \mathsf{Loc}_\kappa(\mathsf{V})\]
+    the full subcategory spanned by those Bousfield localizations whose fully faithful right adjoints preserve small colimits. For the terminal category $\ast$, we denote $\overline{\mathsf{Loc}}_\kappa(\ast)$ simply as $\overline{\mathsf{Loc}}_\kappa$.
+\end{definition}
+
+The main result of this section implies, in particular, that $\overline{\mathsf{Loc}}_\kappa(\mathsf{V})$ is $\mu$-accessible for every $\mu$-compact object $\mathsf{V}$ of $\mathsf{Pr}^\mathsf{L}_\kappa$, provided that $\mu>\kappa\geq\aleph_{1}$ are regular and $\operatorname{ecf}(\mu)\geq\kappa$. Here $\operatorname{ecf}(\mu)$ denotes the \emph{exponential cofinality} of $\mu$. The smallest regular cardinal $\mu>\kappa$ satisfying this condition is $(2^{<\kappa})^+$; see Remark~\ref{exponential cofinality}.
+
+\begin{theorem}\label{main categorical theorem}
+Let $\mu>\kappa\geq \aleph_1$ be regular cardinals satisfying $\operatorname{ecf}(\mu)\geq \kappa$. For a $\mu$-compact object $\mathsf{V}$ of $\mathsf{Pr}^\mathsf{L}_\kappa$, the natural inclusion
+\[\overline{\mathsf{Loc}}_\kappa(\mathsf{V})\hookrightarrow\mathsf{Loc}_\kappa(\mathsf{V})\]
+is a morphism in $\mathsf{Acc}_{\mu}$ and preserves $\kappa$-filtered colimits. In particular, the category $\overline{\mathsf{Loc}}_\kappa(\mathsf{V})$ is $\mu$-accessible.
+\end{theorem}
+
+The proof of this result, like that of the main theorem of the previous section, requires some preparation. We begin with a simple observation. Let $F\colon \mathsf{C}\to \mathsf{D}$ be a morphism in $\mathsf{Pr}^\mathsf{L}_\kappa$, with right adjoint $G\colon \mathsf{D}\to \mathsf{C}$. Since $G$ preserves $\kappa$-filtered colimits, it preserves all small colimits if and only if its restriction to $\mathsf{D}^\kappa$ preserves pushouts and $\kappa$-small coproducts \cite[Props.~4.4.2.7 and 5.5.1.9]{lurie2009HTT}. This motivates the following definition.
+
+\begin{definition}\label{I kappa}
+    Let $\kappa$ be a regular cardinal. We denote by $\operatorname{I}_\kappa$ a set consisting of the walking span $\Lambda^2_0$ and one discrete category of each cardinality strictly less than $\kappa$.
+\end{definition}
+
+We introduce the following notation, which will be convenient for the next lemma. Given a full subcategory $\mathsf{D}\subseteq\mathsf{C}$ and an object $S\in\mathsf{C}$, we set
+\[\mathsf{D}_{/S}\colonequals \mathsf{D}\times_{\mathsf{C}}\mathsf{C}_{/S}.\]
+Since the projection $\mathsf{C}_{/S}\to\mathsf{C}$ is an isofibration \cite[Tag~\href{https://kerodon.net/tag/0236}{0236}]{kerodon}, this fiber product has the expected concrete description: it is the full subcategory of $\mathsf{C}_{/S}$ spanned by the morphisms $X\to S$ whose source $X$ belongs to $\mathsf{D}$ \cite[Tag~\href{https://kerodon.net/tag/033T}{033T}]{kerodon}.
+
+\begin{lemma}\label{basic lemma on functor categories}
+    Let $\kappa$ be a regular cardinal, $\mathsf{C}$ be a $\kappa$-accessible category, and let $\mathsf{K}\in \operatorname{I}_\kappa$. For every diagram $u\colon \mathsf{K}\to \mathsf{C}$, the category
+    \[\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)_{/u}\]
+    is essentially small and $\kappa$-filtered. Its tautological diagram has colimit $u$ in $\mathsf{Fun}(\mathsf{K},\mathsf{C})$.
+\end{lemma}
+
+\begin{proof}
+By \cite[Tags~\href{https://kerodon.net/tag/06HY}{06HY} and \href{https://kerodon.net/tag/06J3}{06J3}]{kerodon}, the category $\mathsf{Fun}(\mathsf{K},\mathsf{C})$ is $\kappa$-compactly generated, and its $\kappa$-compact objects are precisely the functors that factor through $\mathsf{C}^\kappa\hookrightarrow\mathsf{C}$. Hence the inclusion
+\[\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)\hookrightarrow \mathsf{Fun}(\mathsf{K},\mathsf{C})\]
+exhibits $\mathsf{Fun}(\mathsf{K},\mathsf{C})$ as the $\operatorname{Ind}_\kappa$-completion of $\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)$ \cite[Tag~\href{https://kerodon.net/tag/067C}{067C}]{kerodon}. Moreover, since $\mathsf{C}^\kappa$ is essentially small and $\mathsf{K}$ is small, the category $\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)$ is essentially small. The result therefore follows from \cite[Tag~\href{https://kerodon.net/tag/06GA}{06GA}]{kerodon}.
+\end{proof}
+
+\begin{lemma}\label{groupoid completion and fibers}
+    Let $\mathsf{S}\to B$ be a functor from a small category to a small anima. This functor factors uniquely through the groupoid completion $\mathsf{S}\to |\mathsf{S}|$ and, for every $x\in B$, the natural map
+    \[\mleft|\mathsf{S}\times_B\{x\}\mright|\to \mleft|\mathsf{S}\mright|\times_B\{x\}\]
+    is an equivalence.
+\end{lemma}
+
+\begin{proof}
+The existence and uniqueness of the factorization follow from the universal property of groupoid completion $\mleft|-\mright|\colon \mathsf{Cat}\to \mathsf{Ani}$, as the left adjoint to the natural inclusion $\mathsf{Ani}\hookrightarrow\mathsf{Cat}$. The \emph{Rezk nerve}
+\[N\colon \mathsf{Cat}\to \mathsf{Fun}(\Delta^\mathsf{op},\mathsf{Ani}),\qquad
+\mathsf{S}\mapsto \mleft([n]\mapsto N_n(\mathsf{S})\colonequals\mathsf{Fun}([n],\mathsf{S})^\simeq\mright),\]
+is fully faithful, with essential image the complete Segal animae. Under this identification, animae correspond to constant simplicial animae, and groupoid completion is computed by geometric realization:
+\[\mleft|\mathsf{S}\mright|\simeq \operatornamewithlimits{colim}_{[n]\in\Delta^\mathsf{op}}N_n(\mathsf{S}).\]
+See \cite[\S2]{aaron}.
+
+Since $N_n\simeq\operatorname{Map}_{\mathsf{Cat}}([n],-)$ preserves limits, we have natural equivalences
+\[N_n(\mathsf{S}\times_B\{x\})\simeq N_n(\mathsf{S})\times_B\{x\},\]
+compatible with the simplicial structure maps. Taking geometric realizations and using the universality of colimits in $\mathsf{Ani}$ \cite[Tag~\href{https://kerodon.net/tag/05V5}{05V5}]{kerodon}, we conclude that the natural map
+\[\mleft|\mathsf{S}\times_B\{x\}\mright|\to \mleft|\mathsf{S}\mright|\times_B\{x\}\]
+is an equivalence.
+\end{proof}
+
+We now construct a functor that detects whether the right adjoint of a morphism in $\mathsf{Pr}^\mathsf{L}_\kappa$ preserves small colimits. In the proof of Theorem~\ref{main categorical theorem}, this functor plays a role analogous to that of $P_\kappa$ in the proof of Theorem~\ref{walking localization}.
+
+\begin{proposition}\label{key proposition}
+    Let $\kappa$ be a regular cardinal. There exists a functor
+    \[Q_\kappa\colon \mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)\to \mathsf{Fun}(\Delta^1,\mathsf{Ani})\]
+    such that $Q_\kappa(F)$ is an equivalence if and only if the right adjoint of $F$ preserves small colimits.
+\end{proposition}
+
+\begin{proof}
+    Let $F\colon \mathsf{C}\to \mathsf{D}$ be a morphism in $\mathsf{Pr}^\mathsf{L}_\kappa$, with right adjoint $G\colon \mathsf{D}\to \mathsf{C}$. Fix an object $\mathsf{K}$ of $\operatorname{I}_\kappa$ and a diagram $v\colon \mathsf{K}\to \mathsf{D}^\kappa$. Since $\operatorname{Map}_{\mathsf{C}}(c,-)$ are jointly conservative in $\mathsf{C}$ for $c\in\mathsf{C}^\kappa$, the natural map
+    \[\varphi\colon \operatornamewithlimits{colim}_{\mathsf{K}} G\circ v\to G\mleft( \operatornamewithlimits{colim}_{\mathsf{K}}v\mright)\]
+    is an equivalence if and only if $\operatorname{Map}_{\mathsf{C}}(X,\varphi)$ is an equivalence for all $X\in \mathsf{C}^\kappa$.
+
+    To express these maps in finitary terms and solely in terms of the left adjoint $F$, consider the category $\mathsf{J}_\kappa(F,v)$ defined by the fiber product
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhzZntKfShGLHUpIl0sWzAsMSwiXFxtYXRoc2Z7RnVufShcXG1hdGhzZntLfSxcXG1hdGhzZntDfV5cXGthcHBhKSJdLFsyLDAsIlxcbWF0aHNme0Z1bn0oXFxtYXRoc2Z7S30sXFxtYXRoc2Z7RH1eXFxrYXBwYSlfey91fSJdLFsyLDEsIlxcbWF0aHNme0Z1bn0oXFxtYXRoc2Z7S30sXFxtYXRoc2Z7RH1eXFxrYXBwYSkuIl0sWzIsM10sWzEsMywiRlxcY2lyYyAtIl0sWzAsMl0sWzAsMV1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{J}_\kappa(F,v)} \&\& {\mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)_{/v}} \\
+	{\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)} \&\& {\mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa).}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow["{F\circ -}", from=2-1, to=2-3]
+\end{tikzcd}\]
+Thus, an object of $\mathsf{J}_\kappa(F,v)$ is a pair $(u,\alpha)$ consisting of a functor $u\colon \mathsf{K}\to\mathsf{C}^\kappa$ and a natural transformation $\alpha\colon F\circ u\to v$. By adjunction, we obtain an equivalence
+\[\mathsf{J}_\kappa(F,v)\simeq \mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)_{/G\circ v}\]
+over $\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)$.
+
+Lemma~\ref{basic lemma on functor categories} consequently shows that $\mathsf{J}_\kappa(F,v)$ is $\kappa$-filtered and that the tautological diagram
+\[\Phi_\kappa(F,v)\colon \mathsf{J}_\kappa(F,v)\to\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)\hookrightarrow\mathsf{Fun}(\mathsf{K},\mathsf{C})\]
+has colimit $G\circ v$. Since, by \cite[Tag~\href{https://kerodon.net/tag/064X}{064X}]{kerodon}, a $\kappa$-small colimit of $\kappa$-compact objects remains $\kappa$-compact, we conclude that $\operatorname{Map}_{\mathsf{C}}(X,\varphi)$ is a morphism of the form
+\begin{equation}\label{the desired equivalence}
+\operatornamewithlimits{colim}_{\mathsf{J}_\kappa(F,v)}\operatorname{Map}_{\mathsf{C}^\kappa}\mleft(X,\operatornamewithlimits{colim}_{\mathsf{K}}\Phi_\kappa(F,v)\mright) \to  \operatorname{Map}_{\mathsf{D}^\kappa}\mleft(F(X),\operatornamewithlimits{colim}_{\mathsf{K}}v\mright).
+    \tag{$\ast$}
+\end{equation}
+
+For each $\mathsf{K}\in \operatorname{I}_\kappa$, denote by $Q^\mathsf{K}_{\kappa}(F)$ the colimit in $\mathsf{Fun}(\Delta^1,\mathsf{Ani})$ of the maps \eqref{the desired equivalence} indexed by the anima
+\[B^\mathsf{K}_\kappa(F)\colonequals (\mathsf{C}^\kappa)^\simeq\times \mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)^\simeq,\]
+and let $Q_{\kappa}(F)$ be the coproduct of the maps $Q^\mathsf{K}_{\kappa}(F)$ over all $\mathsf{K}\in \operatorname{I}_\kappa$. Since small colimits are strongly universal in $\mathsf{Ani}$ \cite[Tag~\href{https://kerodon.net/tag/05VY}{05VY}]{kerodon}, the preceding discussion shows that $Q_{\kappa}(F)$ is an equivalence if and only if the right adjoint $G$ preserves small colimits. In the remainder of the proof, we give an equivalent construction of $Q^\mathsf{K}_\kappa(F)$ that makes its functoriality in $F$ transparent.
+
+\textsc{Step I: Construction of the target of} $Q^\mathsf{K}_\kappa(F)$. Denote by $s$ and $t$ the source and target functors $\mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)\to \mathsf{D}^\kappa$ and consider the fiber product
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJCXlxcbWF0aHNme0t9X1xca2FwcGEoRikiXSxbMiwxLCIoXFxtYXRoc2Z7RH1eXFxrYXBwYSleXFxzaW1lcVxcdGltZXMgKFxcbWF0aHNme0R9Xlxca2FwcGEpXlxcc2ltZXEuIl0sWzIsMCwiXFxtYXRoc2Z7RnVufShcXERlbHRhXjEsXFxtYXRoc2Z7RH1eXFxrYXBwYSleXFxzaW1lcSJdLFswLDAsIlReXFxtYXRoc2Z7S31fXFxrYXBwYShGKSJdLFsyLDEsIihzLHQpIl0sWzAsMSwiRlxcdGltZXNcXG9wZXJhdG9ybmFtZXdpdGhsaW1pdHN7Y29saW19X1xcbWF0aHNme0t9Il0sWzMsMF0sWzMsMl1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{T^\mathsf{K}_\kappa(F)} \&\& {\mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)^\simeq} \\
+	{B^\mathsf{K}_\kappa(F)} \&\& {(\mathsf{D}^\kappa)^\simeq\times (\mathsf{D}^\kappa)^\simeq.}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{(s,t)}", from=1-3, to=2-3]
+	\arrow["{F\times\operatornamewithlimits{colim}_\mathsf{K}}", from=2-1, to=2-3]
+\end{tikzcd}\]
+Since $(s,t)\colon \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)^\simeq\to (\mathsf{D}^\kappa)^\simeq\times (\mathsf{D}^\kappa)^\simeq$ is a Kan fibration \cite[Tag~\href{https://kerodon.net/tag/01F4}{01F4}]{kerodon}, objects of $T^\mathsf{K}_\kappa(F)$ are triples $(X,v,g)$, where
+\[X\in\mathsf{C}^\kappa,\qquad v\colon\mathsf{K}\to\mathsf{D}^\kappa,\qquad g\colon F(X)\to\operatornamewithlimits{colim}_{\mathsf{K}}v.\]
+
+The projection $T^\mathsf{K}_\kappa(F)\to B^\mathsf{K}_\kappa(F)$ is itself a Kan fibration, being a base change of the source--target
+functor, hence a left fibration. Its fiber over $(X,v)$ is naturally equivalent to
+\[\operatorname{Map}_{\mathsf{D}^\kappa}\mleft(F(X),\operatornamewithlimits{colim}_{\mathsf{K}}v\mright).\]
+Its straightening is therefore precisely the diagram $B^\mathsf{K}_\kappa(F)\to \mathsf{Ani}$ whose colimit defines the target of $Q^\mathsf{K}_\kappa(F)$. By \cite[Tag~\href{https://kerodon.net/tag/02VE}{02VE}]{kerodon}, this colimit is the groupoid completion $\mleft| T^\mathsf{K}_\kappa(F)\mright|$ of $T^\mathsf{K}_\kappa(F)$. Since $T^\mathsf{K}_\kappa(F)$ is already an anima, we obtain
+\[\text{target of }Q^\mathsf{K}_\kappa(F)\simeq T^\mathsf{K}_\kappa(F).\]
+
+\textsc{Step II: Construction of the source of} $Q^\mathsf{K}_\kappa(F)$. Let $i\colon \mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)^\simeq\hookrightarrow \mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)$ denote the inclusion of the core. As above, denote by $s$ and $t$ the source and target functors $\mathsf{Fun}(\mathsf{K}\times\Delta^1,\mathsf{D}^\kappa)\to \mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)$. Define $\mathsf{J}^\mathsf{K}_\kappa(F)$ by the cartesian square
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhzZntKfV5cXG1hdGhzZntLfV9cXGthcHBhKEYpIl0sWzAsMSwiXFxtYXRoc2Z7RnVufShcXG1hdGhzZntLfSxcXG1hdGhzZntDfV5cXGthcHBhKVxcdGltZXMgXFxtYXRoc2Z7RnVufShcXG1hdGhzZntLfSxcXG1hdGhzZntEfV5cXGthcHBhKV5cXHNpbWVxIl0sWzIsMSwiXFxtYXRoc2Z7RnVufShcXG1hdGhzZntLfSxcXG1hdGhzZntEfV5cXGthcHBhKVxcdGltZXMgXFxtYXRoc2Z7RnVufShcXG1hdGhzZntLfSxcXG1hdGhzZntEfV5cXGthcHBhKS4iXSxbMiwwLCJcXG1hdGhzZntGdW59KFxcbWF0aHNme0t9XFx0aW1lcyBcXERlbHRhXjEsXFxtYXRoc2Z7RH1eXFxrYXBwYSkiXSxbMywyLCIocyx0KSJdLFsxLDIsIihGXFxjaXJjIC0pXFx0aW1lcyBpIl0sWzAsMV0sWzAsM11d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{J}^\mathsf{K}_\kappa(F)} \&\& {\mathsf{Fun}(\mathsf{K}\times \Delta^1,\mathsf{D}^\kappa)} \\
+	{\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)\times \mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)^\simeq} \&\& {\mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)\times \mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa).}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{(s,t)}", from=1-3, to=2-3]
+	\arrow["{(F\circ -)\times i}", from=2-1, to=2-3]
+\end{tikzcd}\]
+The source--target functor is an isofibration by \cite[Tag~\href{https://kerodon.net/tag/01F3}{01F3}]{kerodon}, hence the objects of $\mathsf{J}^\mathsf{K}_\kappa(F)$ are triples $(u,v,\alpha)$ consisting of functors
+\[u\colon\mathsf{K}\to\mathsf{C}^\kappa,\qquad v\colon\mathsf{K}\to\mathsf{D}^\kappa\]
+and a natural transformation $\alpha\colon F\circ u\to v$. Taking the fiber of $\mathsf{J}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)^\simeq$ over a functor $v\colon \mathsf{K}\to \mathsf{D}^\kappa$, we recover the category $\mathsf{J}_\kappa(F,v)$.
+
+Again, let $i\colon(\mathsf{C}^\kappa)^\simeq\hookrightarrow\mathsf{C}^\kappa$ denote the inclusion of the core, and write the source and target functors $\mathsf{Fun}(\Delta^1,\mathsf{C}^\kappa)\to\mathsf{C}^\kappa$ as $s$ and $t$, respectively. Define $\mathsf{S}^\mathsf{K}_\kappa(F)$ as the fiber product
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG1hdGhzZntTfV5cXG1hdGhzZntLfV9cXGthcHBhKEYpIl0sWzAsMSwiKFxcbWF0aHNme0N9Xlxca2FwcGEpXlxcc2ltZXFcXHRpbWVzIFxcbWF0aHNme0p9XlxcbWF0aHNme0t9X1xca2FwcGEoRikiXSxbMSwxLCIoXFxtYXRoc2Z7Q31eXFxrYXBwYSleXFxzaW1lcVxcdGltZXMgXFxtYXRoc2Z7RnVufShcXG1hdGhzZntLfSxcXG1hdGhzZntDfV5cXGthcHBhKSJdLFszLDEsIlxcbWF0aHNme0N9Xlxca2FwcGFcXHRpbWVzXFxtYXRoc2Z7Q31eXFxrYXBwYS4iXSxbMywwLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMSxcXG1hdGhzZntDfV5cXGthcHBhKSJdLFsxLDJdLFsyLDMsImlcXHRpbWVzXFxvcGVyYXRvcm5hbWV3aXRobGltaXRze2NvbGltfV9cXG1hdGhzZntLfSJdLFs0LDMsIihzLHQpIl0sWzAsNF0sWzAsMV1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{S}^\mathsf{K}_\kappa(F)} \&\&\& {\mathsf{Fun}(\Delta^1,\mathsf{C}^\kappa)} \\
+	{(\mathsf{C}^\kappa)^\simeq\times \mathsf{J}^\mathsf{K}_\kappa(F)} \& {(\mathsf{C}^\kappa)^\simeq\times \mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)} \&\& {\mathsf{C}^\kappa\times\mathsf{C}^\kappa.}
+	\arrow[from=1-1, to=1-4]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{(s,t)}", from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{i\times\operatornamewithlimits{colim}_\mathsf{K}}", from=2-2, to=2-4]
+\end{tikzcd}\]
+The objects of $\mathsf{S}^\mathsf{K}_\kappa(F)$ are quintuples $(X,u,v,\alpha,f)$, where
+\[X\in\mathsf{C}^\kappa,\qquad u\colon\mathsf{K}\to\mathsf{C}^\kappa,\qquad v\colon\mathsf{K}\to\mathsf{D}^\kappa,\qquad \alpha\colon F\circ u\to v,\qquad f\colon X\to\operatornamewithlimits{colim}_{\mathsf{K}}u.\]
+
+By composing the natural projections, we obtain a functor
+\[U\colon \mathsf{S}^\mathsf{K}_\kappa(F)\to (\mathsf{C}^\kappa)^\simeq\times \mathsf{J}^\mathsf{K}_\kappa(F)\to (\mathsf{C}^\kappa)^\simeq\times\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)\times \mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)^\simeq\to B^\mathsf{K}_\kappa(F),\]
+that maps a quintuple $(X,u,v,\alpha,f)$ to the pair $(X,v)$. Given that the fiber of the projection $\mathsf{J}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa)^\simeq$ at $v$ is naturally equivalent to $\mathsf{J}_\kappa(F,v)$, we obtain that the fiber $\mathsf{S}^\mathsf{K}_\kappa(F)_{(X,v)}$ of $U$ at $(X,v)\in B^\mathsf{K}_\kappa(F)$ fits into the cartesian diagram
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG1hdGhzZntTfV5cXG1hdGhzZntLfV9cXGthcHBhKEYpX3soWCx2KX0iXSxbMCwxLCJcXG1hdGhzZntKfV9cXGthcHBhKEYsdikiXSxbMSwxLCJcXG1hdGhzZntGdW59KFxcbWF0aHNme0t9LFxcbWF0aHNme0N9Xlxca2FwcGEpIl0sWzMsMSwiXFxtYXRoc2Z7Q31eXFxrYXBwYS4iXSxbMywwLCIoXFxtYXRoc2Z7Q31eXFxrYXBwYSlfe1gvfSJdLFswLDFdLFsxLDJdLFsyLDMsIlxcb3BlcmF0b3JuYW1ld2l0aGxpbWl0c3tjb2xpbX1fXFxtYXRoc2Z7S30iXSxbNCwzXSxbMCw0XV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{S}^\mathsf{K}_\kappa(F)_{(X,v)}} \&\&\& {(\mathsf{C}^\kappa)_{X/}} \\
+	{\mathsf{J}_\kappa(F,v)} \& {\mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)} \&\& {\mathsf{C}^\kappa.}
+	\arrow[from=1-1, to=1-4]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{\operatornamewithlimits{colim}_\mathsf{K}}", from=2-2, to=2-4]
+\end{tikzcd}\]
+
+According to \cite[Tag~\href{https://kerodon.net/tag/018K}{018K}]{kerodon}, the natural functor $(\mathsf{C}^\kappa)_{X/}\to \mathsf{C}^\kappa$ is a left fibration; hence so is its pullback $\mathsf{S}^\mathsf{K}_\kappa(F)_{(X,v)}\to \mathsf{J}_\kappa(F,v)$. Its straightening is precisely the functor $\mathsf{J}_\kappa(F,v)\to \mathsf{Ani}$ that maps $(u,\alpha)$ to
+\[\operatorname{Map}_{\mathsf{C}^\kappa}\mleft(X,\operatornamewithlimits{colim}_{\mathsf{K}}u\mright).\]
+As a result, Lemma~\ref{groupoid completion and fibers} and \cite[Tag~\href{https://kerodon.net/tag/02VE}{02VE}]{kerodon} imply that
+\[\mleft|\mathsf{S}^\mathsf{K}_\kappa(F)\mright|_{(X,v)}\simeq \mleft|\mathsf{S}^\mathsf{K}_\kappa(F)_{(X,v)}\mright|\simeq \operatornamewithlimits{colim}_{\mathsf{J}_\kappa(F,v)}\operatorname{Map}_{\mathsf{C}^\kappa}\mleft(X,\operatornamewithlimits{colim}_{\mathsf{K}}\Phi_\kappa(F,v)\mright).\]
+
+Since $B^\mathsf{K}_\kappa(F)$ is an anima, the functor $U$ factors uniquely through the groupoid completion; yielding a functor $\widetilde{U}\colon \mleft|\mathsf{S}^\mathsf{K}_\kappa(F)\mright|\to B^\mathsf{K}_\kappa(F)$. One more application of \cite[Tag~\href{https://kerodon.net/tag/02VE}{02VE}]{kerodon} yields that
+\[\text{source of }Q^\mathsf{K}_\kappa(F)\simeq \mleft|\mathsf{S}^\mathsf{K}_\kappa(F)\mright|.\]
+
+\textsc{Step III: Construction of the map} $Q^\mathsf{K}_\kappa(F)\colon \mleft|\mathsf{S}^\mathsf{K}_\kappa(F)\mright|\to T^\mathsf{K}_\kappa(F)$. We begin by constructing a functor $R\colon\mathsf{S}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)$ sending $(X,f,u,v,\alpha)$ to the composite
+\[F(X) \xrightarrow{\ F(f)\ }F\mleft(\operatornamewithlimits{colim}_\mathsf{K} u\mright)\simeq \operatornamewithlimits{colim}_\mathsf{K} F\circ u \xrightarrow{\ \operatornamewithlimits{colim}_\mathsf{K}\alpha\ }\operatornamewithlimits{colim}_\mathsf{K} v.\]
+We construct separately the three functors corresponding to the three morphisms in this composite.
+
+In what follows, any unlabeled functor is understood to be a projection from a fiber product. The first functor $R_1\colon \mathsf{S}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)$ is the composite
+\[\mathsf{S}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\Delta^1,\mathsf{C}^\kappa)\xrightarrow{\ F\circ -\ }\mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa).\]
+By the cartesian square defining $\mathsf{S}^\mathsf{K}_\kappa(F)$, it sends $(X,f,u,v,\alpha)$ to $F(f)\colon F(X)\to F\mleft(\operatornamewithlimits{colim}_\mathsf{K}u\mright)$. Similarly, the third functor $R_3\colon \mathsf{S}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)$ is the composite
+\[\mathsf{S}^\mathsf{K}_\kappa(F)\to \mathsf{J}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\mathsf{K}\times \Delta^1,\mathsf{D}^\kappa)\simeq \mathsf{Fun}(\Delta^1,\mathsf{Fun}(\mathsf{K},\mathsf{D}^\kappa))\xrightarrow{\ \operatornamewithlimits{colim}_\mathsf{K}\ }\mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa).\]
+
+It remains to construct the middle morphism. Let $\gamma_{\mathsf{K}}(F)\colon \mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)\to \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)$ be the functor induced by the natural transformation
+\[\operatornamewithlimits{colim}_\mathsf{K} (F\circ -)\to F\mleft(\operatornamewithlimits{colim}_\mathsf{K}-\mright).\]
+Since $F$ preserves $\kappa$-small colimits, $\gamma_\mathsf{K}(F)$ takes every diagram $u\colon\mathsf{K}\to\mathsf{C}^\kappa$ to an equivalence. Let $\overline{\gamma}_{\mathsf{K}}(F)\colon \mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)\to \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)$ be the functor obtained by taking the inverse of this equivalence. We then define $R_2$ as the composite
+\[\mathsf{S}^\mathsf{K}_\kappa(F)\to \mathsf{J}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\mathsf{K},\mathsf{C}^\kappa)\xrightarrow{\ \overline{\gamma}_{\mathsf{K}}(F) \ } \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa).\]
+
+Finally, we define $R\colon \mathsf{S}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)$ as the composite
+\[\mathsf{S}^\mathsf{K}_\kappa(F) \xrightarrow{\ (R_1,R_2,R_3)\ } \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)\times_{\mathsf{D}^\kappa} \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)\times_{\mathsf{D}^\kappa} \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)\to \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa),\]
+where the morphism on the right is composition. By definition, a morphism
+\[(X,f,u,v,\alpha)\to (X^\prime,f^\prime,u^\prime,v^\prime,\alpha^\prime)\]
+in $\mathsf{S}^\mathsf{K}_\kappa(F)$ has components
+$X\to X^\prime$ and $v\to v^\prime$ that are equivalences. Hence $R$ carries every morphism to an equivalence in $\mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)$, so that it factors through $\mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)^\simeq$.
+
+Using the universal property of pullbacks, the functor $R\colon \mathsf{S}^\mathsf{K}_\kappa(F)\to \mathsf{Fun}(\Delta^1,\mathsf{D}^\kappa)^\simeq$ together with the natural projection $\mathsf{S}^\mathsf{K}_\kappa(F)\to B^\mathsf{K}_\kappa(F)$ give rise to a functor $\mathsf{S}^\mathsf{K}_\kappa(F)\to T^\mathsf{K}_\kappa(F)$. Since $T^\mathsf{K}_\kappa(F)$ is an anima, it induces the desired map
+\[Q^\mathsf{K}_\kappa(F)\colon\mleft|\mathsf{S}^\mathsf{K}_\kappa(F)\mright|\to T^\mathsf{K}_\kappa(F).\]
+Opening up the constructions above, we see that the map induced on the fibers over $(X,v)\in B^\mathsf{K}_\kappa(F)$ is the map \eqref{the desired equivalence}.
+\end{proof}
+
+We next establish the properties of $Q_\kappa$ needed for the accessibility argument. We first prove a compactness bound for the functor $\mathsf{C}\mapsto\mathsf{C}^\kappa$. 
+
+\begin{lemma}\label{compactness bound}
+    Let $\mu>\kappa\geq \aleph_1$ be regular cardinals satisfying $\operatorname{ecf}(\mu)\geq \kappa$. Then the functor
+    \[\mathsf{Pr}^\mathsf{L}_\kappa\to \mathsf{Cat},\quad \mathsf{C}\mapsto \mathsf{C}^\kappa\]
+     preserves $\mu$-compact objects.
+\end{lemma}
+
+\begin{proof}
+Let $\mathsf{Rex}_\kappa$ denote the subcategory of $\mathsf{Cat}$ whose objects are small categories admitting $\kappa$-small colimits and whose morphisms are functors preserving $\kappa$-small colimits. By \cite[Prop.~5.5.7.8 and Rem.~5.5.7.9]{lurie2009HTT}, the functor $\mathsf{Pr}^\mathsf{L}_\kappa\to \mathsf{Cat}$ appearing in the statement of the lemma factors through an equivalence $\mathsf{Pr}^\mathsf{L}_\kappa\simeq \mathsf{Rex}_\kappa$. It therefore suffices to show that the natural inclusion
+\[i\colon \mathsf{Rex}_\kappa\hookrightarrow \mathsf{Cat}\]
+preserves $\mu$-compact objects.
+
+By the universal property of presheaf categories \cite[Thm.~5.1.5.6]{lurie2009HTT}, the inclusion $i$ admits a left adjoint $F$, given on objects by $F(\mathsf{C})=\mathsf{P}(\mathsf{C})^\kappa$. Moreover, this adjunction is monadic by \cite[Prop.~2.7]{aoki2025higherpresentablecategorieslimits}, yielding an equivalence between $\mathsf{Rex}_\kappa$ and the category of algebras over the monad $T\colonequals i\circ F$ on $\mathsf{Cat}$. Since $F$ preserves all colimits and $i$ preserves $\kappa$-filtered colimits \cite[Prop.~5.5.7.11]{lurie2009HTT}, the monad $T$ also preserves $\kappa$-filtered colimits.
+
+To match the notation of \cite{monads}, set $\mathsf{A}\colonequals\mathsf{Cat}^\kappa$ and let $\mathsf{Th}_\mathsf{A}(T)\subseteq\mathsf{Rex}_\kappa$ be the essential image of the composite
+\[\mathsf{A}=\mathsf{Cat}^\kappa\hookrightarrow\mathsf{Cat}\xrightarrow{\ F\ }\mathsf{Rex}_\kappa.\]
+We continue to write $F\colon\mathsf{A}\to\mathsf{Th}_\mathsf{A}(T)$ for the induced functor. By \cite[Thm.~6.7]{monads} and \cite[Lem.~2.4]{aoki2025higherpresentablecategorieslimits}, there is a pullback square
+\[\begin{tikzcd}[ampersand replacement=\&]
+    {\mathsf{Rex}_\kappa} \&\& {\mathsf{P}(\mathsf{Th}_\mathsf{A}(T))} \\
+    {\mathsf{Cat}} \&\& {\mathsf{P}(\mathsf{A}),}
+    \arrow[from=1-1, to=1-3]
+    \arrow["i"', hook, from=1-1, to=2-1]
+    \arrow["{-\circ F^\mathrm{op}}", from=1-3, to=2-3]
+    \arrow["\yo", from=2-1, to=2-3]
+\end{tikzcd}\]
+where $\yo$ denotes the restricted Yoneda embedding.
+
+Next, we claim that both $\yo$ and $-\circ F^\mathrm{op}$ belong to $\mathsf{Acc}_\mu$ and preserve $\kappa$-filtered colimits. Their sources and targets are all $\aleph_0$-presentable: presheaf categories are compactly generated by representables, while $\mathsf{Cat}$ is $\aleph_0$-presentable by \cite[Lem.~2.4]{aoki2025higherpresentablecategorieslimits}. Since colimits in presheaf categories are computed pointwise, precomposition with $F^\mathrm{op}$ preserves all small colimits. On the other hand, since every object of $\mathsf{A}=\mathsf{Cat}^\kappa$ is $\kappa$-compact in $\mathsf{Cat}$, the restricted Yoneda embedding $\yo$ preserves $\kappa$-filtered colimits.
+
+To verify that $\yo$ preserves $\mu$-compact objects, first note that $\mathsf{A}$ is $\mu$-small \cite[Tag~\href{https://kerodon.net/tag/03UW}{03UW}]{kerodon}. Hence, by \cite[Tag~\href{https://kerodon.net/tag/06JY}{06JY}]{kerodon}, a presheaf on $\mathsf{A}$ is $\mu$-compact if and only if it takes values in $\mathsf{Ani}^\mu$. Now let $\mathsf{C}$ be a $\mu$-compact object of $\mathsf{Cat}$. For every $\mathsf{D}\in\mathsf{A}=\mathsf{Cat}^\kappa$, we have
+\[\yo(\mathsf{C})(\mathsf{D})=\operatorname{Map}_{\mathsf{Cat}}(\mathsf{D},\mathsf{C})\simeq\mathsf{Fun}(\mathsf{D},\mathsf{C})^\simeq.\]
+Since $\mathsf{D}$ is $\kappa$-small and $\mathsf{C}$ is $\mu$-small \cite[Tag~\href{https://kerodon.net/tag/068N}{068N}]{kerodon}, we obtain that this anima is $\mu$-compact by \cite[Tags~\href{https://kerodon.net/tag/03ST}{03ST}, \href{https://kerodon.net/tag/03SV}{03SV}, and \href{https://kerodon.net/tag/0680}{0680}]{kerodon}. Thus $\yo(\mathsf{C})$ takes values in $\mathsf{Ani}^\mu$, proving the claim.
+
+It remains to show that $-\circ F^\mathrm{op}$ preserves $\mu$-compact objects. By \cite[Prop.~5.3.4.17]{lurie2009HTT}, every $\mu$-compact presheaf is a retract of a $\mu$-small colimit of representables. Since $-\circ F^\mathrm{op}$ preserves small colimits, it therefore suffices to verify that it maps representables to $\mu$-compact objects. For $\mathsf{E}\in\mathsf{A}=\mathsf{Cat}^\kappa$, adjunction identifies the image of the presheaf represented by $F(\mathsf{E})$ with
+\[\operatorname{Map}_{\mathsf{Rex}_\kappa}(F(-),F(\mathsf{E}))\simeq \operatorname{Map}_{\mathsf{Cat}}(-,T(\mathsf{E}))\simeq \mathsf{Fun}(-,T(\mathsf{E}))^\simeq.\]
+On the other hand, another application of \cite[Tag~\href{https://kerodon.net/tag/06JY}{06JY}]{kerodon} gives that
+\[T(\mathsf{E})\simeq\mathsf{Fun}(\mathsf{E}^\mathrm{op},\mathsf{Ani}^\kappa).\]
+Since $\mathsf{E}$ is $\kappa$-small and $\mathsf{Ani}^\kappa$ is $\mu$-small, the same size estimates used above imply that $T(\mathsf{E})$ is a $\mu$-compact category. Hence the preceding paragraph shows that $\mathsf{Fun}(-,T(\mathsf{E}))^\simeq$ is a $\mu$-compact presheaf, as desired.
+
+Having established that $\yo$ and $-\circ F^\mathrm{op}$ belong to $\mathsf{Acc}_\mu$ and preserve $\kappa$-filtered colimits, we may apply \cite[Tag~\href{https://kerodon.net/tag/06JE}{06JE}]{kerodon} to conclude that the natural inclusion $i\colon \mathsf{Rex}_\kappa\hookrightarrow\mathsf{Cat}$ preserves $\mu$-compact objects.
+\end{proof}
+
+\begin{remark}[On exponential cofinality]\label{exponential cofinality}
+Let $\kappa,\mu$ be regular cardinals. Then $\mathrm{ecf}(\mu)\geq\kappa$ in the sense of \cite[Tag~\href{https://kerodon.net/tag/03RT}{03RT}]{kerodon} holds if and only if $\mu\gg\kappa$ in the sense of \cite[Def.~A.2.6.3]{lurie2009HTT}. Either condition implies $\mu\unrhd\kappa$ in the sense of \cite[Tag~\href{https://kerodon.net/tag/061K}{061K}]{kerodon}.
+
+Indeed, $\mathrm{ecf}(\mu)\geq\kappa$ means that every product of $\mu$-small sets indexed by a $\kappa$-small set is $\mu$-small \cite[Tag~\href{https://kerodon.net/tag/03RV}{03RV}]{kerodon}. Applying this to constant families gives $\mu_0^{\kappa_0}<\mu$ for all cardinals $\kappa_0<\kappa$ and $\mu_0<\mu$, which is precisely the condition $\mu\gg\kappa$.
+
+Conversely, suppose $\mu\gg\kappa$, and let $\{T_i\}_{i\in I}$ be a family of $\mu$-small sets indexed by a $\kappa$-small set. Writing $\kappa_0\colonequals\#I$, we have $\kappa_0<2^{\kappa_0}<\mu$ by Cantor's theorem \cite[Tag~\href{https://kerodon.net/tag/03R4}{03R4}]{kerodon}. Regularity of $\mu$ therefore gives a cardinal $\mu_0<\mu$, the supremum of the $\# T_i$, such that $\#T_i\leq\mu_0$ for every $i\in I$ \cite[Tag~\href{https://kerodon.net/tag/03RJ}{03RJ}]{kerodon}. Hence
+\[\#\mleft(\prod_{i\in I}T_i\mright)\leq\mu_0^{\kappa_0}<\mu,\]
+proving $\mathrm{ecf}(\mu)\geq\kappa$. Since either condition forces $\mu\geq \kappa$, the implication $\mu\unrhd\kappa$ follows from \cite[Tag~\href{https://kerodon.net/tag/061P}{061P}]{kerodon}.
+
+The smallest regular cardinal $\mu>\kappa$ satisfying these equivalent conditions is $\mu=(2^{<\kappa})^+$. This cardinal satisfies $\mu\gg\kappa$ by \cite[Prop.~5.4.7]{borceux1994HCA2}. To verify minimality, let $\mu>\kappa$ be any regular cardinal satisfying $\mu\gg\kappa$. Then $2^{\kappa_0}<\mu$ for every $\kappa_0<\kappa$, and regularity of $\mu$ gives
+\[2^{<\kappa}=\sup_{\kappa_0<\kappa}2^{\kappa_0}<\mu.\]
+Here, we used that $\#\mleft\{\text{cardinals }\kappa_0<\kappa\mright\}\leq \kappa<\mu$, which can be proved by seeing $\kappa$ as the set of \emph{ordinals} $\alpha<\kappa$. Thus $(2^{<\kappa})^+\leq\mu$, as claimed.
+\end{remark}
+
+\begin{remark}[Lurie's simplicial argument]
+    The proof of \cite[Lem.~4.8.4.2]{higheralgebra} yields an alternative proof of Lemma~\ref{compactness bound}. If $\mathcal{K}$ is a $\kappa$-small collection of $\kappa$-small simplicial sets and $\mu\gg\kappa$, Lurie shows that every object of $\mathsf{Cat}(\mathcal{K})$ is a $\mu$-filtered colimit of $\mu$-small categories in $\mathsf{Cat}(\mathcal{K})$. Consequently, every $\mu$-compact object of $\mathsf{Cat}(\mathcal{K})$ is a retract of a $\mu$-small category, and hence $\mu$-compact in $\mathsf{Cat}$.
+
+    For $\mathcal{K}=I_{\kappa}$ as in Definition~\ref{I kappa}, we have $\mathsf{Cat}(\mathcal{K})=\mathsf{Rex}_{\kappa}$. In this case, the hypothesis that $\mathcal{K}$ is $\kappa$-small holds when $\kappa$ is a successor cardinal, but fails when $\kappa$ is a limit cardinal. However, this hypothesis is used in Lurie's proof only to establish claim $(\ast)$, where it ensures that every $\mu$-small simplicial subset is contained in a $\mu$-small subcategory whose inclusion is a morphism in $\mathsf{Cat}(\mathcal{K})$.
+    
+    Under our assumptions $\mu>\kappa\geq\aleph_1$ and $\mathrm{ecf}(\mu)\geq\kappa$, the collection of $\mathsf{K}$-shaped diagrams in any $\mu$-small simplicial set is $\mu$-small for every $\kappa$-small simplicial set $\mathsf{K}$ \cite[Tag~\href{https://kerodon.net/tag/03SG}{03SG}]{kerodon}. Moreover, $I_\kappa$ is itself $\mu$-small, since $\#I_\kappa\leq\kappa<\mu$. Consequently, the construction used to establish $(\ast)$ in \emph{loc.~cit.} still involves adjoining only a $\mu$-small simplicial subset at each stage, and the rest of the argument carries over verbatim.
+\end{remark}
+
+\begin{proposition}\label{key proposition 2}
+    Let $\mu>\kappa\geq \aleph_1$ be regular cardinals satisfying $\operatorname{ecf}(\mu)\geq \kappa$. The functor
+    \[Q_\kappa\colon \mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)\to \mathsf{Fun}(\Delta^1,\mathsf{Ani})\]
+    constructed in Proposition~\ref{key proposition} preserves $\kappa$-filtered colimits and $\mu$-compact objects. In particular, it is a morphism in $\mathsf{Acc}_\mu$.
+\end{proposition}
+
+\begin{proof}
+The functor $Q_\kappa$ is the coproduct of the functors $Q_\kappa^\mathsf{K}$, indexed by $\mathsf{K}\in \operatorname{I}_\kappa$. Since colimits commute with colimits, $Q_\kappa$ preserves $\kappa$-filtered colimits if each $Q_\kappa^\mathsf{K}$ does. Likewise, \cite[Tag~\href{https://kerodon.net/tag/064X}{064X}]{kerodon} shows that $Q_\kappa$ preserves $\mu$-compact objects provided that each $Q_\kappa^\mathsf{K}$ does. Colimits in functor categories being computed pointwise, \cite[Tag~\href{https://kerodon.net/tag/06HY}{06HY}]{kerodon} then implies that it is enough to verify that, for every $\mathsf{K}\in \operatorname{I}_\kappa$, the functors
+\[\mleft|\mathsf{S}^\mathsf{K}_\kappa\mright|, T^\mathsf{K}_\kappa\colon \mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)\to \mathsf{Ani},\]
+constructed in the proof of Proposition~\ref{key proposition}, preserve $\kappa$-filtered colimits and $\mu$-compact objects.
+
+\textsc{Step I: Preservation of} $\kappa$\textsc{-filtered colimits}. Let $F\colon \mathsf{C}\to \mathsf{D}$ be the colimit of a $\kappa$-filtered diagram
+\[\mathsf{I}\to \mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa),\qquad i\mapsto \mleft[F_i\colon \mathsf{C}_i\to \mathsf{D}_i\mright].\]
+Since colimits in functor categories are computed pointwise, we have
+\[\mathsf{C}\simeq \operatornamewithlimits{colim}_{i\in\mathsf{I}}\mathsf{C}_i \qquad\text{and}\qquad\mathsf{D}\simeq \operatornamewithlimits{colim}_{i\in\mathsf{I}}\mathsf{D}_i\]
+in $\mathsf{Pr}^\mathsf{L}_\kappa$. By \cite[Cor.~4.4.5.21 and Props.~5.5.7.8--5.5.7.11]{lurie2009HTT}, the functor $\mathsf{Pr}^\mathsf{L}_\kappa\to \mathsf{Cat}$, that maps a $\kappa$-presentable category $\mathsf{E}$ to the full subcategory $\mathsf{E}^\kappa$, preserves $\kappa$-filtered colimits. It follows that
+\[\mathsf{C}^\kappa\simeq\operatornamewithlimits{colim}_{i\in\mathsf{I}}\mathsf{C}_i^\kappa\qquad\text{and}\qquad\mathsf{D}^\kappa\simeq\operatornamewithlimits{colim}_{i\in\mathsf{I}}\mathsf{D}_i^\kappa,\]
+where the colimits on the right-hand side are computed in $\mathsf{Cat}$.
+
+Now let $\mathsf{K}$ be a $\kappa$-small category. In particular, $\mathsf{K}$ may be any element of $\operatorname{I}_\kappa$, the category $\Delta^1$, or any finite product of such categories. By \cite[Tags~\href{https://kerodon.net/tag/068N}{068N} and \href{https://kerodon.net/tag/068G}{068G}]{kerodon}, $\mathsf{K}$ is a $\kappa$-compact object of $\mathsf{Cat}$. Hence the functor
+\[\mathsf{Fun}(\mathsf{K},-)^\simeq \simeq \operatorname{Map}_{\mathsf{Cat}}(\mathsf{K},-)\colon \mathsf{Cat}\to \mathsf{Ani}\]
+preserves $\kappa$-filtered colimits. Taking $\mathsf{K}=\ast$, we conclude in particular that the functor $(-)^\simeq$ preserves $\kappa$-filtered colimits.
+
+Since filtered colimits are left exact in $\mathsf{Ani}$ \cite[Tag~\href{https://kerodon.net/tag/05Y0}{05Y0}]{kerodon}, it follows that the functor $T^\mathsf{K}_\kappa$ preserves $\kappa$-filtered colimits. The proof that
+\[\mathsf{S}^\mathsf{K}_\kappa\colon \mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)\to \mathsf{Cat}\]
+preserves $\kappa$-filtered colimits is analogous. Indeed, it suffices to use that filtered colimits are left exact in $\mathsf{Cat}$ and that the functor
+\[\mathsf{Fun}(\mathsf{K},-)\colon \mathsf{Cat}\to \mathsf{Cat}\]
+preserves $\kappa$-filtered colimits. The first of these facts is proved in \cite[Lem.~4.5.3.1]{lurie2018spectral}.
+
+For the second assertion, let $\mathsf{E}=\operatornamewithlimits{colim}_{i\in \mathsf{I}}\mathsf{E}_i$ be a $\kappa$-filtered colimit in $\mathsf{Cat}$, and consider the natural functor
+\[\operatornamewithlimits{colim}_{i\in \mathsf{I}}\mathsf{Fun}(\mathsf{K},\mathsf{E}_i)\to \mathsf{Fun}(\mathsf{K},\mathsf{E}).\]
+Since $\mathsf{Cat}$ is compactly generated by $\Delta^1$ \cite[Lem.~2.4]{aoki2025higherpresentablecategorieslimits}, the functor $\operatorname{Map}_\mathsf{Cat}(\Delta^1,-)$ is conservative. It therefore suffices to show that the induced map
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG9wZXJhdG9ybmFtZXdpdGhsaW1pdHN7Y29saW19X3tpXFxpbiBcXG1hdGhzZntJfX1cXG9wZXJhdG9ybmFtZXtNYXB9X1xcbWF0aHNme0NhdH1cXG1sZWZ0KFxcRGVsdGFeMSxcXG1hdGhzZntGdW59KFxcbWF0aHNme0t9LFxcbWF0aHNme0V9X2kpXFxtcmlnaHQpIl0sWzEsMCwiXFxvcGVyYXRvcm5hbWV7TWFwfV9cXG1hdGhzZntDYXR9XFxtbGVmdChcXERlbHRhXjEsXFxvcGVyYXRvcm5hbWV3aXRobGltaXRze2NvbGltfV97aVxcaW4gXFxtYXRoc2Z7SX19XFxtYXRoc2Z7RnVufShcXG1hdGhzZntLfSxcXG1hdGhzZntFfV9pKVxcbXJpZ2h0KSJdLFsxLDEsIlxcb3BlcmF0b3JuYW1le01hcH1fXFxtYXRoc2Z7Q2F0fVxcbWxlZnQoXFxEZWx0YV4xLFxcbWF0aHNme0Z1bn0oXFxtYXRoc2Z7S30sXFxtYXRoc2Z7RX0pXFxtcmlnaHQpIl0sWzAsMSwiXFxzaW0iXV0=
+\[\begin{tikzcd}[ampersand replacement=\&, row sep=scriptsize]
+	{\operatornamewithlimits{colim}_{i\in \mathsf{I}}\operatorname{Map}_\mathsf{Cat}\mleft(\Delta^1,\mathsf{Fun}(\mathsf{K},\mathsf{E}_i)\mright)} \& {\operatorname{Map}_\mathsf{Cat}\mleft(\Delta^1,\operatornamewithlimits{colim}_{i\in \mathsf{I}}\mathsf{Fun}(\mathsf{K},\mathsf{E}_i)\mright)} \\
+	\& {\operatorname{Map}_\mathsf{Cat}\mleft(\Delta^1,\mathsf{Fun}(\mathsf{K},\mathsf{E})\mright)}
+	\arrow["\sim", from=1-1, to=1-2]
+    \arrow[
+    from=1-2,
+    to=2-2,
+    rounded corners,
+    to path={
+        -- ([xshift=2ex]\tikztostart.east)
+        |- ([xshift=-2ex,yshift=1.5em]\tikztotarget.west)
+        -- ([xshift=-2ex]\tikztotarget.west)
+        -- (\tikztotarget.west)
+        \tikztonodes
+    }
+    ]
+\end{tikzcd}\]
+is an equivalence.
+
+Since $\mathsf{Cat}$ is cartesian closed, this reduces to the fact that $\Delta^1\times\mathsf{K}$ is $\kappa$-compact in $\mathsf{Cat}$. Finally, we note that the groupoid completion functor 
+\[\mleft|-\mright|\colon \mathsf{Cat}\to \mathsf{Ani}\]
+also preserves $\kappa$-filtered colimits, as it is left adjoint to the inclusion $\mathsf{Ani}\hookrightarrow\mathsf{Cat}$.
+
+\textsc{Step II: Preservation of} $\mu$\textsc{-compact objects}. Let $F\colon \mathsf{C}\to \mathsf{D}$ be a $\mu$-compact object of $\mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)$. By \cite[Tag~\href{https://kerodon.net/tag/06HY}{06HY}]{kerodon}, both $\mathsf{C}$ and $\mathsf{D}$ are $\mu$-compact objects of $\mathsf{Pr}^\mathsf{L}_\kappa$. Lemma~\ref{compactness bound} therefore implies that
+\[\mathsf{C}^\kappa,\mathsf{D}^\kappa\in \mathsf{Cat}^\mu.\]
+Equivalently, $\mathsf{C}^\kappa$ and $\mathsf{D}^\kappa$ are $\mu$-small categories \cite[Tag~\href{https://kerodon.net/tag/068N}{068N}]{kerodon}.
+
+As in the first step, let $\mathsf{K}$ be a $\kappa$-small category. Since $\operatorname{ecf}(\mu)\geq \kappa$, the functors
+\[\mathsf{Fun}(\mathsf{K},-)\colon \mathsf{Cat}\to \mathsf{Cat}\quad\text{and}\quad\mathsf{Fun}(\mathsf{K},-)^\simeq\colon \mathsf{Cat}\to \mathsf{Ani}\]
+preserve $\mu$-compact objects \cite[Tags~\href{https://kerodon.net/tag/03ST}{03ST}, \href{https://kerodon.net/tag/03SV}{03SV}, and \href{https://kerodon.net/tag/0680}{0680}]{kerodon}. In particular, taking $\mathsf{K}=\ast$, we conclude that the functor
+\[(-)^\simeq\colon \mathsf{Cat}\to \mathsf{Ani}\]
+also preserves $\mu$-compact objects.
+
+By \cite[Tag~\href{https://kerodon.net/tag/03SZ}{03SZ}]{kerodon}, the full subcategory $\mathsf{Cat}^\mu\subseteq \mathsf{Cat}$ is stable under fiber products. Moreover, the groupoid completion functor
+\[\mleft|-\mright|\colon \mathsf{Cat}\to \mathsf{Ani}\]
+preserves $\mu$-compact objects by \cite[Tags~\href{https://kerodon.net/tag/02ST}{02ST} and \href{https://kerodon.net/tag/05P8}{05P8}]{kerodon}. Since $\mleft|\mathsf{S}^\mathsf{K}_\kappa(F)\mright|$ and $T^\mathsf{K}_\kappa(F)$ are obtained from $F$ by iterating the operations considered above, it follows that both are $\mu$-compact objects of $\mathsf{Ani}$.
+\end{proof}
+
+We can now prove Theorem~\ref{main categorical theorem} by combining the criterion of Proposition~\ref{key proposition} with the preservation properties established above.
+
+\begin{proof}[Proof of Theorem~\ref{main categorical theorem}]
+From Proposition~\ref{key proposition}, we obtain a cartesian diagram
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG92ZXJsaW5le1xcbWF0aHNme0xvY319X1xca2FwcGEiXSxbMCwxLCJcXG1hdGhzZntMb2N9X1xca2FwcGEiXSxbMSwxLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMSxcXG1hdGhzZntQcn1eXFxtYXRoc2Z7TH1fXFxrYXBwYSkiXSxbMiwxLCJcXG1hdGhzZntGdW59KFxcRGVsdGFeMSxcXG1hdGhzZntBbml9KSwiXSxbMiwwLCJcXG1hdGhzZntFcX0oXFxtYXRoc2Z7QW5pfSkiXSxbMSwyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsIlFfXFxrYXBwYSJdLFs0LDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCw0XV0=
+\[\begin{tikzcd}
+	{\overline{\mathsf{Loc}}_\kappa} && {\mathsf{Eq}(\mathsf{Ani})} \\
+	{\mathsf{Loc}_\kappa} & {\mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)} & {\mathsf{Fun}(\Delta^1,\mathsf{Ani}),}
+	\arrow[from=1-1, to=1-3]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[hook, from=1-3, to=2-3]
+	\arrow[hook, from=2-1, to=2-2]
+	\arrow["{Q_\kappa}", from=2-2, to=2-3]
+\end{tikzcd}\]
+where $\mathsf{Eq}(\mathsf{Ani})\subseteq \mathsf{Fun}(\Delta^1,\mathsf{Ani})$ denotes the full subcategory spanned by the equivalences. By Theorem~\ref{walking localization}, the category $\mathsf{Loc}_\kappa$ is $\kappa$-presentable and the inclusion
+\[\mathsf{Loc}_\kappa\hookrightarrow \mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)\]
+is a morphism in $\mathsf{Pr}^\mathsf{L}_\kappa$. Likewise, Proposition~\ref{key proposition 2} shows that $Q_\kappa$ is a morphism in $\mathsf{Acc}_\mu$ which preserves $\kappa$-filtered colimits.
+
+Consider now the natural inclusion $\mathsf{Eq}(\mathsf{Ani})\hookrightarrow \mathsf{Fun}(\Delta^1,\mathsf{Ani})$. Evaluation at either endpoint induces an equivalence $\mathsf{Eq}(\mathsf{Ani})\simeq \mathsf{Ani}$, under which this inclusion is naturally equivalent to the functor
+\[\delta\colon \mathsf{Ani}\hookrightarrow\mathsf{Fun}(\Delta^1,\mathsf{Ani}),\quad X\mapsto (\operatorname{id}\colon X\to X).\]
+The category $\mathsf{Ani}$ is $\aleph_0$-presentable \cite[Tag~\href{https://kerodon.net/tag/06KJ}{06KJ}]{kerodon}. Since colimits in functor categories are computed pointwise, the functor $\delta$ preserves small colimits. Moreover, it preserves compact objects by \cite[Tag~\href{https://kerodon.net/tag/06HY}{06HY}]{kerodon}. Thus $\delta$, and therefore the inclusion above, is a morphism in $\mathsf{Pr}^\mathsf{L}_{\aleph_0}$.
+
+Since every morphism in the cartesian diagram above lies in $\mathsf{Acc}_\mu$ and preserves $\kappa$-filtered colimits, \cite[Tags~\href{https://kerodon.net/tag/06LM}{06LM} and \href{https://kerodon.net/tag/06AH}{06AH}]{kerodon} implies that the natural inclusion
+\[\overline{\mathsf{Loc}}_\kappa\hookrightarrow\mathsf{Loc}_\kappa\]
+is a morphism in $\mathsf{Acc}_\mu$ that preserves $\kappa$-filtered colimits. The desired result now follows by the same argument as in the proof of Theorem~\ref{walking localization}, with Proposition~\ref{lemma on coslices} being replaced by Proposition~\ref{lemma on accessible coslices}.
+
+For the reader's convenience, let us verify the compactness condition needed to apply Proposition~\ref{lemma on accessible coslices}. Since $\mathsf{V}$ is $\mu$-compact in $\mathsf{Pr}^\mathsf{L}_\kappa$, \cite[Tag~\href{https://kerodon.net/tag/06HY}{06HY}]{kerodon} implies that $\operatorname{id}_\mathsf{V}$ is $\mu$-compact in $\mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)$. Using that the inclusions
+\[
+\overline{\mathsf{Loc}}_\kappa\hookrightarrow \mathsf{Loc}_\kappa\hookrightarrow \mathsf{Fun}(\Delta^1,\mathsf{Pr}^\mathsf{L}_\kappa)
+\]
+are fully faithful and preserve $\mu$-filtered colimits, we deduce that $\operatorname{id}_\mathsf{V}$ is $\mu$-compact in $\overline{\mathsf{Loc}}_\kappa$, as required.
+\end{proof}
+
+We now study a symmetric monoidal analogue of Theorem~\ref{main categorical theorem}.
+
+\begin{definition}\label{barLoc tensor}
+Let $\kappa$ be a regular cardinal, and let $\mathsf{W}$ be a commutative algebra object in $\mathsf{Pr}^\mathsf{L}_{\kappa}$. We denote by
+\[\overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})\subseteq\mathsf{Loc}^\otimes_\kappa(\mathsf{W})\]
+the full subcategory spanned by those Bousfield localizations whose fully faithful right adjoints preserve small colimits. For $\mathsf{W}=\mathsf{Ani}$, we denote $\overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})$ simply as $\overline{\mathsf{Loc}}_\kappa^\otimes$.
+\end{definition}
+
+\begin{theorem}\label{main theorem on monoidal localizations}
+    Let $\mu>\kappa\geq \aleph_1$ be regular cardinals satisfying $\operatorname{ecf}(\mu)\geq \kappa$. For a $\mu$-compact object $\mathsf{W}$ of $\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_\kappa)$, the natural inclusion
+    \[\overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})\hookrightarrow\mathsf{Loc}^\otimes_\kappa(\mathsf{W})\]
+    is a morphism in $\mathsf{Acc}_{\mu}$ and preserves $\kappa$-filtered colimits. In particular, the category $\overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})$ is $\mu$-accessible.
+\end{theorem}
+
+The proof uses the symmetric monoidal structure on $\mathsf{Loc}_\kappa$ constructed in the previous section. We first show that this structure restricts to $\overline{\mathsf{Loc}}_\kappa$.
+
+\begin{lemma}\label{loc bar symmetric monoidal}
+Let $\kappa\geq \aleph_1$ be a regular cardinal. Endow $\mathsf{Loc}_\kappa$ with the symmetric monoidal structure of Lemma~\ref{commutative algebras in the functor category}. Then, the full subcategory $\overline{\mathsf{Loc}}_\kappa\subseteq\mathsf{Loc}_\kappa$ contains the symmetric monoidal unit and is closed under tensor products.
+\end{lemma}
+
+\begin{proof}
+Let $\widehat{\mathdutchcal{Cat}}$ denote the very large 2-category of large categories, and let $\mathdutchcal{Pr}^\mathsf{L}\subseteq\widehat{\mathdutchcal{Cat}}$ be the sub-2-category whose objects are the presentable categories, whose 1-morphisms are the left adjoints, and whose 2-morphisms are arbitrary natural transformations. As in \cite[\S1.2]{basechange}, the Lurie tensor product equips $\mathdutchcal{Pr}^\mathsf{L}$ with the structure of a symmetric monoidal 2-category. In particular, it induces a 2-functor
+\[- \otimes -\colon \mathdutchcal{Pr}^\mathsf{L}\times \mathdutchcal{Pr}^\mathsf{L}\to \mathdutchcal{Pr}^\mathsf{L}.\]
+
+Let $F$ and $F^\prime$ be objects of $\overline{\mathsf{Loc}}_\kappa$, with right adjoints $G$ and $G^\prime$, respectively. Since $G$ and $G^\prime$ preserve small colimits, they are themselves 1-morphisms in $\mathdutchcal{Pr}^\mathsf{L}$. Thus the adjunction
+\[(F,F^\prime)\dashv(G,G^\prime)\]
+is internal to the 2-category $\mathdutchcal{Pr}^\mathsf{L}\times\mathdutchcal{Pr}^\mathsf{L}$. Since 2-functors preserve adjunctions, applying the tensor product gives an adjunction
+\[F\otimes F^\prime\dashv G\otimes G^\prime.\]
+In particular, $G\otimes G^\prime$ preserves small colimits and so $F\otimes F^\prime$ lies in $\overline{\mathsf{Loc}}_\kappa$. Finally, the symmetric monoidal unit $\operatorname{id}_{\mathsf{Ani}}$ clearly belongs to $\overline{\mathsf{Loc}}_\kappa$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{main theorem on monoidal localizations}]
+By Lemma~\ref{loc bar symmetric monoidal}, the category $\overline{\mathsf{Loc}}_\kappa$ is symmetric monoidal, and the inclusion $\overline{\mathsf{Loc}}_\kappa\hookrightarrow \mathsf{Loc}_\kappa$ is a symmetric monoidal functor. We therefore obtain a cartesian diagram
+% https://q.uiver.app/#q=WzAsNCxbMiwwLCJcXG1hdGhzZntDQWxnfShcXG1hdGhzZntMb2N9X1xca2FwcGEpIl0sWzIsMSwiXFxtYXRoc2Z7TG9jfV9cXGthcHBhIl0sWzAsMSwiXFxvdmVybGluZXtcXG1hdGhzZntMb2N9fV9cXGthcHBhIl0sWzAsMCwiXFxtYXRoc2Z7Q0FsZ30oXFxvdmVybGluZXtcXG1hdGhzZntMb2N9fV9cXGthcHBhKSJdLFsyLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsMl0sWzAsMV0sWzMsMCwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+\[
+\begin{tikzcd}[ampersand replacement=\&]
+	{\mathsf{CAlg}(\overline{\mathsf{Loc}}_\kappa)} \&\& {\mathsf{CAlg}(\mathsf{Loc}_\kappa)} \\
+	{\overline{\mathsf{Loc}}_\kappa} \&\& {\mathsf{Loc}_\kappa,}
+	\arrow[hook, from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow[hook, from=2-1, to=2-3]
+\end{tikzcd}
+\]
+where the vertical arrows are the forgetful functors. The functor $\mathsf{CAlg}(\mathsf{Loc}_\kappa)\to \mathsf{Loc}_\kappa$ preserves $\kappa$-filtered colimits by \cite[Cor.~3.2.3.2]{higheralgebra} and $\mu$-compact objects by Proposition~\ref{forgetful functor preserves compacts}. Moreover, Theorem~\ref{main categorical theorem} shows that the inclusion $\overline{\mathsf{Loc}}_\kappa\hookrightarrow \mathsf{Loc}_\kappa$ has the same two properties.
+
+Applying \cite[Tags~\href{https://kerodon.net/tag/06LM}{06LM} and \href{https://kerodon.net/tag/06AH}{06AH}]{kerodon} to the cartesian square above, we deduce that
+\[\mathsf{CAlg}(\overline{\mathsf{Loc}}_\kappa)\hookrightarrow\mathsf{CAlg}(\mathsf{Loc}_\kappa)\]
+lies in $\mathsf{Acc}_\mu$ and preserves $\kappa$-filtered colimits. As observed in the final paragraph of the proof of Theorem~\ref{main categorical theorem}, the object $\operatorname{id}_\mathsf{W}$ is $\mu$-compact in $\mathsf{CAlg}(\overline{\mathsf{Loc}}_\kappa)$. Proposition~\ref{lemma on accessible coslices} therefore implies that the induced functor
+\[\mathsf{CAlg}(\overline{\mathsf{Loc}}_\kappa)_{\operatorname{id}_\mathsf{W}/}\hookrightarrow\mathsf{CAlg}(\mathsf{Loc}_\kappa)_{\operatorname{id}_\mathsf{W}/}\]
+also lies in $\mathsf{Acc}_\mu$ and preserves $\kappa$-filtered colimits.
+
+Finally, under the canonical equivalence
+\[\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)_{\mathsf{W}/}\mright)\simeq\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^{\mathsf{L}}_\kappa)\mright)_{\operatorname{id}_{\mathsf{W}}/},\]
+the latter functor identifies with the desired inclusion $\overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})\hookrightarrow\mathsf{Loc}^\otimes_\kappa(\mathsf{W})$, finishing the proof.
+\end{proof}
+
+Combining the main theorems of Sections~\ref{sec2} and~\ref{sec3}, we obtain the following corollary, which is the form of these results that we will use in the rest of the paper.
+
+\begin{corollary}\label{main theorem on monoidal localizations2}
+    Let $\mu>\kappa\geq \aleph_1$ be regular cardinals satisfying $\operatorname{ecf}(\mu)\geq \kappa$. For a $\mu$-compact object $\mathsf{W}$ of $\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_\kappa)$, the source and target functors
+    \[s,t\colon \overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})\to \mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\kappa})_{\mathsf{W}/},\]
+    which send a localization $\mathsf{C}\to\mathsf{D}$ to $\mathsf{C}$ and $\mathsf{D}$, respectively, are morphisms in $\mathsf{Acc}_{\mu}$ that preserve $\kappa$-filtered colimits.
+\end{corollary}
+
+\begin{proof}
+By \cite[Prop.~2.3]{aoki2025higherpresentablecategorieslimits}, Proposition~\ref{lemma on coslices}, and \cite[Tag~\href{https://kerodon.net/tag/06HY}{06HY}]{kerodon}, the source and target functors
+\[\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\kappa})_{\mathsf{W}/}\mright)\to \mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\kappa})_{\mathsf{W}/}\]
+are morphisms in $\mathsf{Pr}^\mathsf{L}_{\kappa}$. The result therefore follows by restricting these functors along the natural inclusions
+\[\overline{\mathsf{Loc}}^\otimes_\kappa(\mathsf{W})\hookrightarrow \mathsf{Loc}^\otimes_\kappa(\mathsf{W})\hookrightarrow\mathsf{Fun}\mleft(\Delta^1,\mathsf{CAlg}(\mathsf{Pr}^\mathsf{L}_{\kappa})_{\mathsf{W}/}\mright),\]
+which belong to $\mathsf{Acc}_\mu$ (and preserve $\kappa$-filtered colimits) and $\mathsf{Pr}^\mathsf{L}_\kappa$, respectively, by Theorem~\ref{main theorem on monoidal localizations} and Theorem~\ref{result on monoidal localizations}.
+\end{proof}
+
+\begin{remark}
+The same arguments prove variants of Theorems~\ref{main categorical theorem} and \ref{main theorem on monoidal localizations}, as well as of Corollary~\ref{main theorem on monoidal localizations2}, in which coslice categories are replaced by slice categories. In these variants, the assumptions that $\mathsf{V}$ and $\mathsf{W}$ be $\mu$-compact are not needed. The proofs are the same, except that Proposition~\ref{lemma on accessible coslices} is replaced by \cite[Tags~\href{https://kerodon.net/tag/06HU}{06HU} and \href{https://kerodon.net/tag/06LJ}{06LJ}]{kerodon}.
+\end{remark}
