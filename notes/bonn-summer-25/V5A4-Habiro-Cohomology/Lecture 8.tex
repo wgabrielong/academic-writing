@@ -1,7 +1,7 @@
 \section{Lecture 8 -- 11th July 2025}\label{sec: lecture 8}
 We will construct the Habiro ring stack. Recall that we have defined the analytic version of the Habiro ring \Cref{def: analytic Habiro ring} as the free $\ZZ((u))_{\square}$-algebra in one variable $q$ with appropriate growth conditions at roots of unity. We will consider a variant of this, where the condition that for all $\varepsilon>0$ the sequence $\left(\frac{u^{\varepsilon n}}{1-q^{n}}\right)_{n\geq0}$ is a nullsequence is removed. This will make the construction easier, but ring stack that we produce will be ill behaved on the locus where the abovementioned condition does not hold. 
 
-Consider the analogous situation in de Rham cohomology. In characteristic zero, the de Rham stack $X^{\mathsf{dR}}$ is defined to be the quotient of $X$ along the formal completion of the diagonal. But in characteristic $p>0$, one either needs to take the quotient by divided powers along the diagona. If not, the ring stack will compute infinitesmal cohomology, and does not recover de Rham cohomology. 
+Consider the analogous situation in de Rham cohomology. In characteristic zero, the de Rham stack $X^{\mathsf{dR}}$ is defined to be the quotient of $X$ along the formal completion of the diagonal. But in characteristic $p>0$, one either needs to take the quotient by divided powers along the diagonal. If not, the ring stack will compute infinitesmal cohomology, and does not recover de Rham cohomology.
 
 Recalling the discussion from the end of \Cref{sec: lecture 6}, the crux is defining a map $x\mapsto 1-^{\Hab}x$ which will allow us to define the gluing of $(\GG_{m})^{\Hab}$ with itself to $(\A^{1}_{\ZZ})^{\Hab}$. 
 \begin{lemma}
@@ -10,7 +10,7 @@ Recalling the discussion from the end of \Cref{sec: lecture 6}, the crux is defi
     at $q=\zeta_{m}$ is the overconvergent neighborhood of the subgroup of $m$th roots of unity $\bigcap_{\mu_{m}\subseteq U}U$ where $\mu_{m}=\{x\in\GG_{m,\Hcal^{\an}}^{\an}:x^{m}=1\}$. 
 \end{lemma}
 \begin{proof}
-    Obserbe the symbol $(x;\zeta_{m})_{n}$ is periodic. So it suffices to show that $(1-x^{m})^{n}$ has rapid decay. Equivalently, $1-x^{m}$ lies in an overconvergent neighborhood of zero, and $x$ is in an overconvergent neighborhood of $\mu_{m}$. 
+    Observe the symbol $(x;\zeta_{m})_{n}$ is periodic. So it suffices to show that $(1-x^{m})^{n}$ has rapid decay. Equivalently, $1-x^{m}$ lies in an overconvergent neighborhood of zero, and $x$ is in an overconvergent neighborhood of $\mu_{m}$. 
 \end{proof}
 \begin{example}\label{ex: analytic dR stack}
     Let $q=1$, then $G=(\{1\}\subseteq\GG_{m,\Hcal^{\an}}^{\an})^{\dagger}$ and the quotient $\GG_{m,\Hcal^{\an}}^{\an}/G$ is the analytic de Rham stack of Rodr\'{i}guez Camargo.  
@@ -32,7 +32,7 @@ By virtue of $(\A^{1,\an}_{\Hcal^{\an}})^{\Hab}$ being a ring object, there shou
 To construct $x\mapsto 1-^{\Hab}x$, we pick $x\in\GG_{m,\Hcal^{\an}}^{\an}\setminus G$ and seek to construct a $G$-torsor together with an injective map to $\GG_{m,\Hcal^{\an}}^{\an}$. Equivalently, this will be a subspace of $\GG_{m}^{\an}$ that is a $G$-torsor. 
 \begin{definition}[$1-^{\Hab}x$]\label{def: 1-Habx}
     $1-^{\Hab}x$ is the set of all $y\in\GG_{m,\Hcal^{\an}}^{\an}$ such that the sequence 
-    $$\sum_{k,\ell\geq0, k+\ell=n}(-1)^{n}q^{\frac{k(k-1)}{2}+\frac{\ell(\ell-1)}{2}}\left[\substack{n \\ n \hspace{0.3cm}\ell\hspace{0.3cm}n-k-\ell}\right]_{q}x^{k}y^{\ell}$$
+    $$\sum_{k,\ell\geq0, k+\ell=n}(-1)^{k+\ell}q^{\frac{k(k-1)}{2}+\frac{\ell(\ell-1)}{2}}\left[\substack{n \\ n \hspace{0.3cm}\ell\hspace{0.3cm}n-k-\ell}\right]_{q}x^{k}y^{\ell}$$
     has rapid decay. 
 \end{definition}
 The origin of this theory arises from some Cartier duality computations for algebraic groups: we seek to produce a map $\GG_{m,\Hcal}^{\an}\setminus G\to \GG_{m}/G$, but we can identify the latter with $\Hom_{\mathsf{add}}(G^{\vee}/q^{\ZZ},B\GG_{m})$ of additive homomorphisms where $G^{\vee}$ is the Cartier dual of $G$. We can write 
